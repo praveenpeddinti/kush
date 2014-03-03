@@ -1,53 +1,66 @@
 <?php
 
 /**
- * ContactForm class.
- * ContactForm is the data structure for keeping
- * contact form data. It is used by the 'contact' action of 'SiteController'.
+ * BasicinfoForm class.
+ * BasicinfoForm is the data structure for keeping
+ * basicinfo form data. It is used by the 'Basicinfo' action of 'UserController'.
  */
-class BasicinfoForm extends CFormModel
-{
-        public $Id;
-	public $FirstName;
-	public $MiddleName;
-	public $LastName;
-	public $Password;
-        public $RewritePassword;
-        public $IdentityProof;
-        public $Number;
-        public $Gender;
-        public $profilePicture;
-	
+class BasicinfoForm extends CFormModel {
 
-	/**
-	 * Declares the validation rules.
-	 */
-	public function rules()
-	{
-		return array(
-			// name, email, subject and body are required
-			array('Password, RewritePassword, Number', 'required','message'=>'Please enter a value for {attribute}.'),
-                        // password needs to be authenticated
-			//array('Password', 'authenticate'),
-                        array('Password', 'required', 'on' => 'insert'),
-            array('RewritePassword', 'compare', 'compareAttribute'=>'Password',
-                'message'=>'Password  and Rewrite Password must be match'
-                ),
-                    array('FirstName, MiddleName, LastName,Password,RewritePassword,IdentityProof,Number,Gender,profilePicture,Id', 'safe'),
-			
-			
-		);
-	}
+    public $Id;
+    public $FirstName;
+    public $MiddleName;
+    public $LastName;
+    public $Password;
+    public $RepeatPassword;
+    public $IdentityProof;
+    public $Number;
+    public $Gender;
+    public $profilePicture;
+    public $uIdDocument;
+    public $dateOfBirth;
 
-	/**
-	 * Declares customized attribute labels.
-	 * If not declared here, an attribute would have a label that is
-	 * the same as its name with the first letter in upper case.
-	 */
-	public function attributeLabels()
-	{
-		return array(
-			'verifyCode'=>'Verification Code',
-		);
-	}
+    /**
+     * Declares the validation rules.
+     */
+    public function rules() {
+        return array(
+            // name, email, subject and body are required
+            array('FirstName, LastName, dateOfBirth', 'required', 'message' => 'Please enter a value for {attribute}.'),
+            // password needs to be authenticated
+            //array('Password', 'authenticate'),
+            array('Password', 'required', 'on' => 'insert'),
+            array('RepeatPassword', 'compare', 'compareAttribute' => 'Password',
+                'message' => 'Password  and Repeat Password must be match'
+            ),
+           array('IdentityProof', 'ext.YiiConditionalValidator.YiiConditionalValidator',
+                       'if' => array(
+                           array('IdentityProof', 'in', 'range'=>array('1','2','3','4','5','6','7'), 'allowEmpty'=>false)
+                           //array('IdentityProof', 'compare', 'compareAttribute'=>'IdentityProof', 'allowEmpty'=>true),
+                       ),
+                       'then' => array(
+                           array('Number', 'required','message'=>'Please enter a value for Id Number'),
+                       ),),
+            //array('RepeatPassword', 'compare', 'compareAttribute' => 'Password',
+            //    'message' => 'Password  and Repeat Password must be match'
+            //),
+            //array('IdentityProof','compare','compareAttribute'=>'Select Proof of Identify','operator'=>'<', 'operator'=>'=','allowEmpty'=>false,'message'=>'{attribute} must be greater than "{compareValue}".')
+            // First Name, Last Name must be Alphabet and space
+            array('FirstName, LastName', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain Alphabet and space'),
+            array('FirstName, MiddleName, LastName,Password,RepeatPassword,IdentityProof,Number,Gender,profilePicture,uIdDocument,dateOfBirth,Id', 'safe'),
+        );
+    }
+
+    /**
+     * Declares customized attribute labels.
+     * If not declared here, an attribute would have a label that is
+     * the same as its name with the first letter in upper case.
+     */
+    public function attributeLabels() {
+        return array(
+            'verifyCode' => 'Verification Code',
+        );
+    }
+    
+
 }

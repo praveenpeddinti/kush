@@ -2,98 +2,167 @@
 
 class Registration extends CActiveRecord {
 
-    public $Id;
-    public $firstname;
-    public $midleName;
-    public $lastName;
-    public $email;
+    public $customer_id;
+    public $first_name;
+    public $midle_name;
+    public $last_name;
+    public $email_address;
     public $phone;
-    public $password;
-    public $createdDateTime;
-
+    public $alternate_phone;
+    public $customer_gender;
+    public $password_hash;
+    public $password_salt;
+    public $uId;
+    public $uIdNumber;
+    public $uIdDocument;
+    public $birth_date;
+    public $profilePicture;
+    public $create_timestamp;
+    public $update_timestamp;
 
     public static function model($className=__CLASS__) {
         return parent::model($className);
     }
 
     public function tableName() {
-        return 'Users';
+        return 'KG_Customer';
     }
 
-    //New User Registration
-    public function saveRegistrationData($model){
-        try{
-        $sampleDetails = new Registration();
-        $sampleDetails->firstName = $model->FirstName;
-        $sampleDetails->lastName = $model->LastName;
-        $sampleDetails->email = $model->Email;
-        $sampleDetails->phone = $model->Phone;
-        $sampleDetails->password = $model->Password;
-        
-        error_log("Details is====".$model->FirstName."===sno===".$model->LastName."===cn===".$model->Email."===ad===".$model->Phone."===sex==".$model->Password);
-        if($sampleDetails->save()){
-                $result = "success";
+    public function checkAuthentication($model) {
+        // only checking with the email not the username; should have do with the username also... ;
+        try {
+            $user = Registration::model()->findByAttributes(array(), '(email_address=:email_address OR phone=:phone) AND password_hash=:password_hash', array(':email_address' => $model->UserId, ':phone' => $model->UserId, ':password_hash' => md5($model->Password)));
+            if (isset($user)) {
+                $user->update_timestamp = gmdate("Y-m-d H:i:s", time());
+                $user->update();
             }
-             else {
-                $result = "failed";
-             }
-     error_log("success data======");
-        }catch(Exception $ex){
-            error_log("##########Exception Occurred saveData#############".$ex->getMessage());
+        } catch (Exception $ex) {
+            error_log("#########EXCEPTION OCCURRED IN CHECK AUTENTICATION########" . $ex->getMessage());
+        }
+        return $user;
+    }
+
+    public function getcheckEmailForPassword($model) {
+        try {
+            $user = Registration::model()->findByAttributes(array(), 'email_address=:email_address', array(':email_address' => $model->Email));
+        } catch (Exception $ex) {
+            error_log("#########EXCEPTION OCCURRED IN CHECK AUTENTICATION########" . $ex->getMessage());
+        }
+        return $user;
+    }
+
+    public function checkUserExist($model) {
+        try {
+            $user = Registration::model()->findByAttributes(array(), 'email_address=:email_address OR phone=:phone', array(':email_address' => $model->Email, ':phone' => $model->Phone));
+            if (empty($user)) {
+                $result = "No user";
+                return $result;
+            } else {
+                $result = "yes user";
+                return $result;
+            }
+        } catch (Exception $ex) {
+            error_log("############Error Occurred= in usergetDetails= #############" . $ex->getMessage());
         }
         return $result;
     }
 
-    //Update Registration Data
-     public function updateRegistrationData($model,$cId){
-         try{error_log("enter update customer==================".$cId);
-             $RegObj = Registration::model()->findByAttributes(array('Id'=>$cId));
-             $RegObj->firstName = $model->FirstName;
-             $RegObj->lastName = $model->LastName;
-             $RegObj->middleName = $model->MiddleName;
-             $RegObj->password = $model->Password;
-            if($RegObj->update())
-                $result1 = "success";
-
-         }catch(Exception $ex){
-             error_log("##########Exception Occurred updateData#############".$ex->getMessage());
-         }
-         return $result1;
-     }
-
-
-     //Update Registration Data in Contact form
-     public function updateRegistrationinContactData($model,$cId){
-         try{error_log("enter update customer==================".$cId."===".$model->Email."===".$model->Phone);
-             $RegObj = Registration::model()->findByAttributes(array('Id'=>$cId));
-             $RegObj->email = $model->Email;
-            $RegObj->phone = $model->Phone;
-            if($RegObj->update())
-                $result1 = "success";
-
-         }catch(Exception $ex){
-             error_log("##########Exception Occurred updateData#############".$ex->getMessage());
-         }
-         return $result1;
-     }
-
-    public function getCustomerDetails($id){
-            error_log("id==model==".$id);
-        try{
-//        $query = "Select * from Sample where Id = $id";
-        $customerDetails = Registration::model()->findByAttributes(array('Id'=>$id));
-//        $userResult = YII::app()->db->createCommand($query)->queryRow();
-        }catch(Exception $ex){
-            error_log("############Error Occurred= in usergetDetails= #############".$ex->getMessage());
+    //New User Registration
+    public function saveRegistrationData($model) {
+        try {
+            $sampleDetails = new Registration();
+            $sampleDetails->first_name = $model->FirstName;
+            $sampleDetails->last_name = $model->LastName;
+            $sampleDetails->email_address = $model->Email;
+            $sampleDetails->phone = $model->Phone;
+            $sampleDetails->password_hash = md5($model->Password);
+            $sampleDetails->password_salt = $model->Password;
+            $sampleDetails->create_timestamp = gmdate("Y-m-d H:i:s", time());
+            $sampleDetails->update_timestamp = gmdate("Y-m-d H:i:s", time());
+            if ($sampleDetails->save()) {
+                $result = "success";
+            } else {
+                $result = "failed";
+            }
+        } catch (Exception $ex) {
+            error_log("##########Exception Occurred saveData#############" . $ex->getMessage());
         }
-        return $customerDetails;
-
+        return $result;
     }
 
-     
+    public function userDetailsEithEmail($email) {
 
-    
+        try {
+            $userDetailsWithEmail = Registration::model()->findByAttributes(array('email_address' => $email));
+        } catch (Exception $ex) {
+            error_log("############Error Occurred= in usergetDetails= #############" . $ex->getMessage());
+        }
+        return $userDetailsWithEmail;
+    }
+
+    //Update Registration Data
+    public function updateRegistrationData($model, $cId) {
+        try {
+            $RegObj = Registration::model()->findByAttributes(array('customer_id' => $cId));
+
+            $RegObj->first_name = $model->FirstName;
+            $RegObj->last_name = $model->LastName;
+            $RegObj->middle_name = $model->MiddleName;
+            if (!empty($model->Password)) {
+                $RegObj->password_hash = md5($model->Password);
+                $RegObj->password_salt = $model->Password;
+            }
+            $RegObj->customer_gender = $model->Gender;
+            $RegObj->uId = $model->IdentityProof;
+            $RegObj->uIdNumber = $model->Number;
+            $RegObj->uIdDocument = $model->uIdDocument;
+            $RegObj->birth_date = $model->dateOfBirth;
+            $RegObj->profilePicture = $model->profilePicture;
+            $RegObj->update_timestamp = gmdate("Y-m-d H:i:s", time());
+
+            if ($RegObj->update()) {
+                $result = "success";
+            } else {
+                $result = "failed";
+            }
+        } catch (Exception $ex) {
+            error_log("##########Exception Occurred updateData#############" . $ex->getMessage());
+        }
+        return $result;
+    }
+
+    //Update Registration Data in Contact form
+    public function updateRegistrationinContactData($model, $cId) {
+        try {
+            $RegObj = Registration::model()->findByAttributes(array('customer_id' => $cId));
+            $RegObj->email_address = $model->Email;
+            $RegObj->phone = $model->Phone;
+            $RegObj->alternate_phone = $model->AlternatePhone;
+            if ($RegObj->update())
+                $result1 = "success";
+        } catch (Exception $ex) {
+            error_log("##########Exception Occurred updateData#############" . $ex->getMessage());
+        }
+        return $result1;
+    }
+
+    public function getCustomerDetails($id) {
+        try {
+            $customerDetails = Registration::model()->findByAttributes(array('customer_id' => $id));
+        } catch (Exception $ex) {
+            error_log("############Error Occurred= in usergetDetails= #############" . $ex->getMessage());
+        }
+        return $customerDetails;
+    }
+
+/*    public function getCustomerSaveDetails($email) {
+        try {
+            $customerDetails = Registration::model()->findByAttributes(array('email' => $email));
+        } catch (Exception $ex) {
+            error_log("############Error Occurred= in usergetDetails= #############" . $ex->getMessage());
+        }
+        return $customerDetails;
+    }*/
 
 }
-
 ?>

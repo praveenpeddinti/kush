@@ -13,7 +13,6 @@ class Basicinfo extends CActiveRecord {
     public $customerQuestionId;
     public $createdDateTime;
 
-
     public static function model($className=__CLASS__) {
         return parent::model($className);
     }
@@ -22,58 +21,32 @@ class Basicinfo extends CActiveRecord {
         return 'CustomerBasic';
     }
 
-    //New Sample Data
-    public function saveCustomerBasicDetails($model,$cId){
-       
-        try{error_log("enter save Basic info customer==================".$cId);
-        $sampleDetails = new Basicinfo();
-        $sampleDetails->customerId = $cId;
-        $sampleDetails->uId = $model->IdentityProof;
-        $sampleDetails->uIdNumber = $model->Number;
-        $sampleDetails->Gender = $model->Gender;
-        $sampleDetails->profilePicture = $model->profilePicture;
-        error_log("CustomerDetails is====".$model->IdentityProof."===sno===".$model->Number."===cn===".$model->Gender."===ad===".$cId);
-        if($sampleDetails->save()){
+    /**
+     * New Basic information store in DB
+     */
+    public function saveCustomerBasicDetails($model, $cId) {
+        try {
+            $sampleDetails = new Basicinfo();
+            $sampleDetails->customerId = $cId;
+            $sampleDetails->uId = $model->IdentityProof;
+            $sampleDetails->uIdNumber = $model->Number;
+            $sampleDetails->Gender = $model->Gender;
+            $sampleDetails->profilePicture = $model->profilePicture;
+            $sampleDetails->uIdDocument = $model->uIdDocument;
+            $sampleDetails->createdDateTime = gmdate("Y-m-d H:i:s", time());
+            if ($sampleDetails->save()) {
                 $result = "success";
-            }
-             else {
+            } else {
                 $result = "failed";
-             }
-     error_log("Cust  success data======");
-        }catch(Exception $ex){
-            error_log("##########Exception Occurred saveData#############".$ex->getMessage());
+            }
+        } catch (Exception $ex) {
+            error_log("##########Exception Occurred saveData#############" . $ex->getMessage());
         }
         return $result;
     }
 
-     
-    public function getUserDetails($id){
-            error_log("id==model==".$id);
-        try{
-//        $query = "Select * from Sample where Id = $id";
-        $sample = Sample::model()->findByAttributes(array('Id'=>$id));
-//        $userResult = YII::app()->db->createCommand($query)->queryRow();
-        }catch(Exception $ex){
-            error_log("############Error Occurred= in usergetDetails= #############".$ex->getMessage());
-        }
-        return $sample;
 
-    }
 
-    //View User Details
-    public function userDetails(){
-        try{
-            $query = "Select * from Sample";
-            
-        $userDetails = YII::app()->db->createCommand($query)->queryAll();
-        }catch(Exception $ex){
-
-        }
-        return $userDetails;
-    }
-
-    
 
 }
-
 ?>

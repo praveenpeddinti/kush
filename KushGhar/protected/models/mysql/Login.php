@@ -1,13 +1,12 @@
 <?php
 
-class Sample extends CActiveRecord {
+class Login extends CActiveRecord {
 
     public $Id;
-    public $Sno;
-    public $sname;
-    public $cname;
-    public $Address;
-    public $Body;
+    public $email;
+    public $phone;
+    public $password;
+   
 
 
     public static function model($className=__CLASS__) {
@@ -15,10 +14,8 @@ class Sample extends CActiveRecord {
     }
 
     public function tableName() {
-        return '';
+        return 'KG_Customer';
     }
-
-    
 
     
 

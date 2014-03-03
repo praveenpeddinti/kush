@@ -10,19 +10,19 @@ class ProofType extends CActiveRecord {
     }
 
     public function tableName() {
-        return 'UniqueIdentifiability';
+        return 'KG_UniqueIdentifiability';
     }
 
-    public function getIdentifyProof(){
-        try{
+    public function getIdentifyProof() {
+        try {
             $proofTypes = ProofType::model()->findAll();
-        }catch(Exception $ex){
+        } catch (Exception $ex) {
             
         }
         return $proofTypes;
     }
+
     
 
 }
-
 ?>

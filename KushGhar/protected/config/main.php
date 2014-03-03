@@ -17,6 +17,7 @@ return array(
         'application.models.*',
         'application.models.mysql.*',
         'application.components.*',
+        'application.extensions.*',
         'application.service.*',
         'application.renderscript.*',        
         'application.beans.*',
@@ -73,7 +74,7 @@ return array(
 		// uncomment the following to use a MySQL database
 		
 		'db'=>array(
-			'connectionString' => 'mysql:host=10.10.73.111;dbname=KushGhar',
+			'connectionString' => 'mysql:host=10.10.73.111;dbname=Kushghar',
 			'emulatePrepare' => true,
 			'username' => 'root',
 			'password' => 'techo2',

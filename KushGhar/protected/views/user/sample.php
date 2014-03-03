@@ -1,4 +1,9 @@
-<h1>Sample Form</h1>
+<div class="container">
+    <h1>Successfully Registration</h1>
+</div>
+
+
+<!--<h1>Sample Form</h1>
 <div class="flash-success">
 	<?php echo Yii::app()->user->getFlash('sample'); ?>
 </div>
@@ -46,4 +51,4 @@
 
 <?php $this->endWidget(); ?>
 
-</div>
+</div>-->

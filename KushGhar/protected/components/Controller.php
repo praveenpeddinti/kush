@@ -28,9 +28,12 @@ class Controller extends CController {
     public $registerForm;
     public $session;
     public $kushGharService;
-  
+   
     public function init() {
+       
        $this->kushGharService=new KushGharService();
+               Yii::app()->getClientScript()->registerCoreScript('jquery');
+
 //
 //       session object created ...
 //

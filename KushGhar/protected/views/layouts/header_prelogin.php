@@ -70,14 +70,17 @@
     <header class="inner_header">
         <div class="container">
             <div class="row-fluid">
+
+                <div class="pull-left">
+
                 <?php if (!empty($this->session['UserId'])) { ?>
-                <div class="span3">
+                
                     <a href="/user/basicinfo"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/inner_top_logo.png" alt="logo" class="logo"></a>
                 </div>
             
-                <div class="span8">
+                <div class="pull-right">
                     <ul class=" pull-right header_profile">
-                        <li class=" pull-left welcome_text">Welcome <?php echo $this->session['firstName']; ?></li>
+                        <li id="welcome" class=" pull-left welcome_text">Welcome <?php echo $this->session['firstName']; ?></li>
                         <li class=" pull-left  header_profile_settings dropdown">
                             <a data-original-title="Register" href="#"  data-placement="bottom"  class=" headeranchor" data-toggle="dropdown" id="drop3">
                                 <img src="<?php if ($this->session['LoginPic'] == '') { echo '/images/dummy_pp.jpg';} else {echo $this->session['LoginPic'];} ?>" >

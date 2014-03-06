@@ -36,10 +36,10 @@
 <script type="text/javascript">
     jwplayer('container').setup({
         file: '/images/KushgharIntro-360p.mp4',
-        image : '/images/video_img.png'
+        image : '/images/video_img.png',
         
-        /*width: '100'+"%",
-        aspectratio: '10:3',
+        width: '100'+"%"
+        /*aspectratio: '10:3',
         height:'250'*/
        
     });

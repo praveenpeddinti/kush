@@ -79,12 +79,11 @@ one home at a time</div>
    <div class="row-fluid paddingT10" >
    <div class="services">
    <ul>
-   	<li><a href="#" class="housecleaning"> <span>Cleaning</span> </a></li>
-    <li><a href="#" class="gardening"><span>Gardening</span></a></li>
-    <li><a href="#" class="laundry"><span>Laundry</span></a></li>
-    <li><a href="#" class="driver"><span>Driver</span></a></li>
-    <li> <a href="#" class="chef"><span>Chef</span></a></li>
-    <li><a href="#" class="more"></a></li>
+        <li><a href="#" class="housecleaning"> <span>Cleaning</span> </a></li>
+        <li><a href="#" class="driver"><span>Car Wash</span></a></li>
+        <li><a href="#" class="laundry"><span>Stewards/<br/>Stewardesses</span></a></li>
+        
+        <li><a href="#" class="more"></a></li>
    </ul>
    </div>
    </div>

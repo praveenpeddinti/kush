@@ -219,7 +219,7 @@
                                         <?php   echo CHtml::ajaxButton('Continue', array('user/basicinfo'), array(
                                                         'type' => 'POST',
                                                         'dataType' => 'json',
-                                                        'success' => 'function(data,status,xhr) { addBasicInformationhandler(data,status,xhr);}'), array('class' => 'btn btn-large'));
+                                                        'success' => 'function(data,status,xhr) { addBasicInformationhandler(data,status,xhr);}'), array('class' => 'btn btn-primary'));
                                          ?>
                                         </div>
                                     </div>
@@ -237,6 +237,7 @@
                                   )
                             ));?>
                             <?php echo $form->error($updatedPassword, 'error'); ?>
+                            <hr> 
                             <fieldset>
                                 <div class="row-fluid">
                                     <div class=" span4">
@@ -250,11 +251,12 @@
                                         <?php echo $form->error($updatedPassword, 'RepeatPassword'); ?>
                                     </div>
                                     <div class=" span4">
-                                       <?php echo CHtml::ajaxButton('Update', array('user/updatedPsw'), array(
+                                        <div  class=" paddingT30">
+                                       <?php echo CHtml::ajaxButton('Update Password', array('user/updatedPsw'), array(
                                             'type' => 'POST',
                                             'dataType' => 'json',
-                                            'success' => 'function(data,status,xhr) { updatePasswordhandler(data,status,xhr);}'), array('class' => 'btn btn-large', 'type' => 'submit'));
-                                    ?>
+                                            'success' => 'function(data,status,xhr) { updatePasswordhandler(data,status,xhr);}'), array('class' => 'btn btn-primary', 'type' => 'submit'));
+                                    ?></div>
                                     </div>
                                 </div>
 

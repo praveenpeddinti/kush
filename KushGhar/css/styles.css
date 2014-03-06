@@ -498,3 +498,4 @@ ul.header_profile{ list-style:none; margin:0; padding:0}
 .seven_sines ul li{ padding:5px;font-family: MuseoSlab300; font-size:20px;color:#000; padding-bottom:14px; text-align:center}
 .seven_sines ul li span{  font-family:MuseoSlab300; font-size:20px;color:#6CA050 ;}
 .btn-primary:hover {background: none repeat scroll 0 0 #6CA050;color: #000;}
+.paddingB20{padding-bottom: 20px}

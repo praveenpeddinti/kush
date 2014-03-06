@@ -71,10 +71,8 @@
         <div class="container">
             <div class="row-fluid">
 
-                <div class="pull-left">
-
                 <?php if (!empty($this->session['UserId'])) { ?>
-                
+                <div class="pull-left">
                     <a href="/user/basicinfo"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/inner_top_logo.png" alt="logo" class="logo"></a>
                 </div>
             
@@ -100,7 +98,7 @@
 
             </div>
 <?php }else{ ?>
-                <div class="span3">
+                <div class="pull-left">
                     <a href="/"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/inner_top_logo.png" alt="logo" class="logo"></a>
                 </div>
                 <?php } ?>

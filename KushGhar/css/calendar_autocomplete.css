@@ -180,13 +180,13 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
 	position: absolute;
 	left: .5em;
 	top: .5em;
-	background: #444444 url(../images/444444_40x100_textures_02_glass_25.png) 0 50% repeat-x;
+	background: #5b8743 ;
 }
 .ui-datepicker-next {
 	left: 14.6em;
 }
 .ui-datepicker-next:hover, .ui-datepicker-prev:hover {
-	background: #333333 url(../images/333333_40x100_textures_02_glass_25.png) 0 50% repeat-x;
+	background: #5b8743 url(../images/5b8743_40x100_textures_02_glass_25.png) 0 50% repeat-x;
 }
 .ui-datepicker-next a,
 .ui-datepicker-next label,
@@ -198,7 +198,7 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
 	display: block;
 	font-size: 1em;
 	background: url(../images/arrow_l.png) 50% 50% no-repeat;
-	border: 1px solid #777777;
+	border: 1px solid #92b97d;
 	cursor: pointer;
 }
 .ui-datepicker-next label,
@@ -220,7 +220,7 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
 .ui-datepicker-header select {
 	border: 1px solid #c9d5c7;
 	color: #000;
-	background: #c9d5c7;
+	background: #92b97d;
 	font-size: 1em;
 	line-height: 1.4em;
 	position: absolute;
@@ -248,20 +248,20 @@ table.ui-datepicker td.ui-datepicker-unselectable
 table.ui-datepicker td a {
 	padding: .1em .3em .1em 0;
 	display: block;
-	color: #cfcfcf;
-	background: #5d9341;
+	color: #fff;
+	background: #92b97d;
 	cursor: pointer;
-	border: 1px solid #91be7a;
+	border: 1px solid #719d4e;
 }
 table.ui-datepicker td a:hover {
-	border: 1px solid #444444;
-	color: #ffffff;
-	background: #91be7a;
+	border: 1px solid #719d4e;
+	color: #000;
+	background: #B2C821;
 }
 table.ui-datepicker td a:active {
 	border: 1px solid #841515;
 	color: #ffffff;
-	background: #841515 url(../images/841515_40x100_textures_02_glass_35.png) 0 50% repeat-x;
+	background: #F89406;
 }
 table.ui-datepicker .ui-datepicker-title-row td {
 	padding: .3em 0;
@@ -273,14 +273,14 @@ table.ui-datepicker .ui-datepicker-title-row td {
 }
 
 table.ui-datepicker .ui-datepicker-title-row td a {
-	color: #cfcfcf;
+	color: #fff;
 }
 
 table.ui-datepicker td.ui-datepicker-current-day a,
 table.ui-datepicker td.selected a
 {
 	color: black;
-	background: #999999 url(../images/999999_40x100_textures_02_glass_25.png) 0 50% repeat-x;
+	background: #F89406/* url(../images/999999_40x100_textures_02_glass_25.png) 0 50% repeat-x;*/
 }
 
 table.ui-datepicker td.ui-datepicker-today a

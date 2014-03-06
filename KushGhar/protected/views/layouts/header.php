@@ -32,7 +32,7 @@
         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/custom-form-elements.js"> </script>
         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery-ui.js"> </script>
         
-
+       
 
         <!--[if lte IE 9]>
        <style type="text/css">

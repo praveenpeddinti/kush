@@ -70,10 +70,11 @@
     <header class="inner_header">
         <div class="container">
             <div class="row-fluid">
+                <?php if (!empty($this->session['UserId'])) { ?>
                 <div class="span3">
                     <a href="/user/basicinfo"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/inner_top_logo.png" alt="logo" class="logo"></a>
                 </div>
-            <?php if (!empty($this->session['UserId'])) { ?>
+            
                 <div class="span8">
                     <ul class=" pull-right header_profile">
                         <li class=" pull-left welcome_text">Welcome <?php echo $this->session['firstName']; ?></li>
@@ -95,7 +96,11 @@
                 </ul>
 
             </div>
-<?php } ?>
+<?php }else{ ?>
+                <div class="span3">
+                    <a href="/"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/inner_top_logo.png" alt="logo" class="logo"></a>
+                </div>
+                <?php } ?>
         </div>
     </div>
 

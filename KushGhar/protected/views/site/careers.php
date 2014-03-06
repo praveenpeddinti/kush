@@ -2,7 +2,7 @@
 <div class="container">
     <div class="row-fluid">
         <div class="span12">
-            <div class="paddinground" style="height:375px">
+            <div class="paddinground" style="height:410px">
                 <h2>Careers</h2>
                 <div class="static_page_heading"></div>
                 <div class="page_header_mag" style="padding-top:120px">

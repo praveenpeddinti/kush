@@ -49,6 +49,7 @@
                 <div class="row-fluid">
                     <div class="span12">
                         <h4>Basic Information</h4>
+                        <hr>
                         <div class="paddinground">
                             <?php
                             $form = $this->beginWidget('CActiveForm', array(

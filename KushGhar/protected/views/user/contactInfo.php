@@ -43,7 +43,7 @@
      <div class="row-fluid">
        <div class="span12">
        	<h4>Contact Information</h4>
-       <hr></hr>
+       <hr>
        <div class="paddinground">
        	  <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'contactInfo-form',
@@ -67,12 +67,12 @@
     <div class=" span12">
     <div class=" span6">
     <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> phone'); ?>
-        <?php echo $form->textField($model,'Phone',array('value'=>$customerDetails->phone, 'placeholder'=>'Phone Number…', 'class'=>'span12', 'maxLength' => 10, 'onkeypress' => 'return isNumberKey(event);')); ?>
+        <?php echo $form->textField($model,'Phone',array('value'=>$customerDetails->phone, 'placeholder'=>'Phone Number…', 'class'=>'span12', 'maxLength' => 6, 'onkeypress' => 'return isNumberKey(event);')); ?>
         <?php echo $form->error($model,'Phone'); ?>
     </div>
     <div class=" span6">
     <?php echo $form->labelEx($model,'alternate Phone'); ?>
-        <?php echo $form->textField($model,'AlternatePhone',array('value'=>$customerAddressDetails->alternate_phone,'placeholder'=>'Alternative Phone Number…', 'class'=>'span12', 'maxLength' => 10, 'onkeypress' => 'return isNumberKey(event);')); ?>
+        <?php echo $form->textField($model,'AlternatePhone',array('value'=>$customerAddressDetails->alternate_phone,'placeholder'=>'Alternative Phone Number…', 'class'=>'span12', 'maxLength' => 6, 'onkeypress' => 'return isNumberKey(event);')); ?>
         <?php echo $form->error($model,'AlternatePhone'); ?>
     </div>
     </div>
@@ -103,7 +103,7 @@
    </div>
       <div class=" span6">
     <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> city'); ?>
-        <?php echo $form->textField($model,'City',array('value'=>$customerAddressDetails->address_city,'class'=>'span12')); ?>
+        <?php echo $form->textField($model,'City',array('value'=>$customerAddressDetails->address_city, 'maxLength' => 25, 'class'=>'span12')); ?>
         <?php echo $form->error($model,'City'); ?>
    </div>
    </div>
@@ -135,7 +135,7 @@
         <?php echo CHtml::ajaxButton('Continue',array('user/contactInfo'), array(
             'type' => 'POST',
                     'dataType' => 'json',
-'success' => 'function(data,status,xhr) { addContactInformationhandler(data,status,xhr);}'), array('class'=>'btn btn-large')); ?>
+'success' => 'function(data,status,xhr) { addContactInformationhandler(data,status,xhr);}'), array('class'=>'btn btn-primary')); ?>
 		
 	</div>
    </div>

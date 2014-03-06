@@ -87,7 +87,7 @@
     <div class="row-fluid">
         <div class="span12">
             <div class="paddinground">
-                <div class="span6">
+                <div class="span6 paddingB20">
                     <div class="reg_div">
                         <div class="paddinground">
                             <h2 class="reg_title">Registration</h2>
@@ -132,7 +132,7 @@
                                         echo CHtml::ajaxButton('Submit', array('user/registration'), array(
                                             'type' => 'POST',
                                             'dataType' => 'json',
-                                            'success' => 'function(data,status,xhr) { addNewUserhandler(data,status,xhr);}'), array('class' => 'btn btn-large'));
+                                            'success' => 'function(data,status,xhr) { addNewUserhandler(data,status,xhr);}'), array('class' => 'btn btn-primary'));
                                         ?>
                                     
                                     <!--<button type="submit" class="reg_fb"> </button>-->
@@ -142,8 +142,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="span6">
-                    <div class="reg_div">
+                <div class="span6 paddingB20">
+                    <div class="reg_div ">
                         <div class="paddinground">
                             <h2 class="reg_title">Login</h2>
                             <?php $form = $this->beginWidget('CActiveForm', array(
@@ -167,7 +167,7 @@
                                     <?php echo CHtml::ajaxButton('Login', array('user/login'), array(
                                             'type' => 'POST',
                                             'dataType' => 'json',
-                                            'success' => 'function(data,status,xhr) { loginhandler(data,status,xhr);}'), array('class' => 'btn btn-large', 'type' => 'submit'));
+                                            'success' => 'function(data,status,xhr) { loginhandler(data,status,xhr);}'), array('class' => 'btn btn-primary', 'type' => 'submit'));
                                     ?>
                                    
                                     <!--<button type="submit" class="login_fb"> </button>-->

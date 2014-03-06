@@ -1,4 +1,4 @@
-<div id="cc" class="container">
+<div class="container">
 <section>
 	<div class="container minHeight">
     <aside>
@@ -43,6 +43,7 @@
      <div class="row-fluid">
        <div class="span12">
        	<h4>Payment Information</h4>
+        <hr>
         <div class="paddinground">
        	  <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'paymentInfo-form',
@@ -73,8 +74,11 @@
     </div>
     <div class="row-fluid">
      <div class=" span6">
+         <?php
+         $string = (strlen($customerPaymentDetails->card_number) == 16) ? 'XXXXXXXXXXXX'.substr($customerPaymentDetails->card_number,12,16) : $customerPaymentDetails->card_number;
+         ?>
     <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> Card Number'); ?>
-        <?php echo $form->textField($model,'cardNumber',array('value'=>$customerPaymentDetails->card_number, 'placeholder'=>'Card Number…','maxlength'=>16,'onkeypress'=>'return isNumberKey(event);', 'class'=>'span12')); ?>
+        <?php echo $form->textField($model,'cardNumber',array('value'=>$string, 'placeholder'=>'Card Number…','maxlength'=>16,'onkeypress'=>'return isNumberKey(event);', 'class'=>'span12')); ?>
         <?php echo $form->error($model,'cardNumber'); ?>
     </div>
     </div>
@@ -98,15 +102,26 @@
  <div class="row-fluid">
     
      <div class=" span3">
+        <?php $months = array();
+              for( $i = 1; $i <= 12; ++$i )
+              $months[ $i ] = $i;
+
+              $current_year = date( 'Y' );
+              $end_year = $current_year + 15;
+              $years = array();
+              for( $i = $current_year; $i <= $end_year; $i++ )
+                    $years[ $i ] = $i;
+              ?>
+
         <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> Expiry Date'); ?>
-        <?php echo $form->dropDownList($model,'expiryMonth', array(''=>'Select Month','01' => '01', '02' => '02','03' => '04', '05' => '05','06' => '06', '07' => '08','09' => '10', '11' => '11','12' => '12'),
-              array('options' => array($customerPaymentDetails->card_expiry_month => array('selected' => 'selected')), 'class' => 'span12'));?>
+        <?php echo $form->dropDownList($model,'expiryMonth', $months, array('prompt'=>'Select Month',
+             'options' => array($customerPaymentDetails->card_expiry_month => array('selected' => 'selected')), 'class' => 'span12'));?>
         <?php echo $form->error($model,'expiryMonth'); ?>
     </div>
      <div class=" span3">
          <label><abbr title="required">&nbsp;&nbsp;</abbr></label>
-        <?php echo $form->dropDownList($model,'expiryYear', array(''=>'Select Year','2014' => '2014', '2015' => '2015','2016' => '2016', '2017' => '2017','2018' => '2018', '2019' => '2019','2020' => '2020', '2021' => '2021','2022' => '2022', '2023' => '2023','2024' => '2024', '2025' => '2025','2026' => '2026', '2027' => '2027','2028' => '2028'),
-              array('options' => array($customerPaymentDetails->card_expiry_year => array('selected' => 'selected')), 'class' => 'span12'));?>
+        <?php echo $form->dropDownList($model,'expiryYear', $years,
+              array('prompt'=>'Select Year','options' => array($customerPaymentDetails->card_expiry_year => array('selected' => 'selected')), 'class' => 'span12'));?>
         <?php echo $form->error($model,'expiryYear'); ?>
     </div>
  </div>
@@ -119,7 +134,7 @@
         <?php echo CHtml::ajaxButton('Submit',array('user/paymentInfo'), array(
             'type' => 'POST',
                     'dataType' => 'json',
-'success' => 'function(data,status,xhr) { paymenthandler(data,status,xhr);}'), array('class'=>'btn btn-large')); ?>
+'success' => 'function(data,status,xhr) { paymenthandler(data,status,xhr);}'), array('class'=>'btn btn-primary')); ?>
 		
 	</div>
    </div>
@@ -147,7 +162,8 @@ function paymenthandler(data){
             $("#PaymentInfoForm_error_em_").text('Profile updated successfully');
             $("#PaymentInfoForm_error_em_").fadeOut(6000, "");
       //document.getElementById('cc').innerHTML="<div style='height:460px;'><center><h1>Profile updated successfully </h1></center></div>";
-      window.location.href='basicinfo';
+      //window.location.href='basicinfo';
+      window.location.href='customerDetails';
     }else{
         //alert("No");
          var error=[];

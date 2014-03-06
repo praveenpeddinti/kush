@@ -24,8 +24,9 @@ class RegistrationForm extends CFormModel {
             // Email has to be a valid email address
             array('Email', 'email'),
             // Phone min 10 digits
-            array('Phone', 'length', "min" => "10"),
+            
             array('Phone', 'numerical'),
+            array('Phone', 'length', "min" => "10"),
             // password needs to be authenticated
             //array('Password', 'authenticate'),
             array('Password', 'required', 'on' => 'insert'),

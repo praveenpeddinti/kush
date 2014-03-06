@@ -28,6 +28,9 @@ class ContactInfoForm extends CFormModel {
             // email has to be a valid email address
             array('Email', 'email'),
             array('Phone, AlternatePhone', 'numerical'),
+            array('City', 'match', 'pattern' => '/^[a-zA-Z0-9]+$/', 'message' => '{attribute} can only contain Alphabet and digits'),
+            array('PinCode', 'numerical'),
+            array('cardNumber', 'length', 'min'=>6),
             array('State', 'required', 'message' => 'Please Select {attribute}.'),
             array('Email, Phone, AlternatePhone, Address1, Address2, State, City, PinCode, Landmark, Id', 'safe'),
         );

@@ -80,9 +80,9 @@
                     <ul class=" pull-right header_profile">
                         <li id="welcome" class=" pull-left welcome_text">Welcome <?php echo $this->session['firstName']; ?></li>
                         <li class=" pull-left  header_profile_settings dropdown">
-                            <a data-original-title="Register" href="#"  data-placement="bottom"  class=" headeranchor" data-toggle="dropdown" id="drop3">
+                           
                                 <img src="<?php if ($this->session['LoginPic'] == '') { echo '/images/dummy_pp.jpg';} else {echo $this->session['LoginPic'];} ?>" >
-                            </a>
+                             <a data-original-title="Register" href="#"  data-placement="bottom"  class=" headeranchor" data-toggle="dropdown" id="drop3"><i class="fa fa-cog"></i> </a>
                         <div class="dropdown-menu getStarted_dd_div " role="menu" aria-labelledby="dLabel">
                             <div class="headerpoptitle"><?php echo $this->session['firstName']; ?></div>
                             <ul>

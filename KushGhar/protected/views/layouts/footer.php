@@ -36,7 +36,7 @@
 <script type="text/javascript">
     jwplayer('container').setup({
         file: '/images/KushgharIntro-360p.mp4',
-        image : '/images/top_logos.png'
+        image : '/images/video_img.png'
         
         /*width: '100'+"%",
         aspectratio: '10:3',

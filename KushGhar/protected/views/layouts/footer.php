@@ -18,7 +18,7 @@
                 <div class="contact_info pull-right">
                     <div class="getintouch">
                         Get in touch
-                        <p style=" margin-top:5px">040 234 56789</p>
+                        <p style=" margin-top:5px">040 233 52575</p>
                         <p>helpme@kushghar.com</p>
                     </div>
                 </div>

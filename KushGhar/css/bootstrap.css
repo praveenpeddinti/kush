@@ -226,11 +226,11 @@ a:hover {
 .navbar-fixed-top .container,
 .navbar-fixed-bottom .container {
 /*  width: 1200px;*/
-  width: 940px;
+  width: 1000px;
 }
-.containerdata{width:940px}
+.containerdata{width:1000px}
 .span12 {
-  width: 940px;
+  width:1000px;
 }
 
 .span11 {

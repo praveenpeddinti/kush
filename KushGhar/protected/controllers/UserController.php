@@ -372,7 +372,7 @@ class UserController extends Controller {
             $model->attributes = $request->getParam('updatedPasswordForm');
             $errors = CActiveForm::validate($model);
             if ($errors != '[]') {
-                $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
+                $obj = array('status' => 'error', 'message' => '', 'error' => $errors);
             } else {
                 $result = $this->kushGharService->getupdatedPasswordInBasicInfo($model,$cId);
                 if ($result == "success") {
@@ -387,6 +387,46 @@ class UserController extends Controller {
             echo $renderScript;
         } else {
             $this->render('registration', array('model' => $model, 'modelLogin' => $modelLogin, 'modelSample' => $modelSample));
+        }
+    }
+
+    /**
+     * Total Customer Information Controller
+     */
+    public function actionCustomerDetails(){
+        error_log("enter cust Details=======");
+        $model = new CustomerDetailsForm;
+        $cId = $this->session['UserId'];
+        $States = $this->kushGharService->getStates();
+
+        $customerDetails = $this->kushGharService->getCustomerDetails($cId);
+        $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($cId);
+        $customerPaymentDetails = $this->kushGharService->getCustomerPaymentDetails($cId);
+        
+        $request = yii::app()->getRequest();
+        $formName = $request->getParam('CustomerDetailsForm');
+        if ($formName != '') {error_log("1111ent1er customerDetails Controller======================");
+            $model->attributes = $request->getParam('CustomerDetailsForm');
+            $errors = CActiveForm::validate($model);
+            if ($errors != '[]') {
+                $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
+            } else {error_log("enter customerDetails Controller======================");
+                $result1 = $this->kushGharService->updateRegistrationData($model, $cId);
+                $result2 = $this->kushGharService->saveCustomerInfoDetails($model, $cId);
+                $result = $this->kushGharService->updateCustomerPaymentData($model, $cId);
+              $result = "success";
+              if ($result == "success") {
+                    //$message = array("CustomerDetailsForm_error_em_" => 'Customer updated successfully');
+                    $obj = array('status' => 'success', 'data' => '', 'error' => '');
+                } else {
+                    //$message = array("CustomerDetailsForm_error" => 'Error Message.');
+                    $obj = array('status' => 'error', 'data' => '', 'error' => '');
+                }
+            }
+            $renderScript = $this->rendering($obj);
+            echo $renderScript;
+        } else {
+          $this->render('customerDetails', array('model' => $model, "States"=>$States, "customerDetails"=>$customerDetails,"customerAddressDetails"=>$customerAddressDetails, "customerPaymentDetails"=>$customerPaymentDetails));
         }
     }
 

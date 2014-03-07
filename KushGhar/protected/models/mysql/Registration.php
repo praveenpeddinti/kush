@@ -128,7 +128,7 @@ class Registration extends CActiveRecord {
 
             $RegObj->profilePicture = $model->profilePicture;
             $RegObj->update_timestamp = gmdate("Y-m-d H:i:s", time());
-
+            error_log("enter customerDetails Model======================");
             if ($RegObj->update()) {
                 $result = "success";
             } else {

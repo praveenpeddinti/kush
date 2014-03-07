@@ -24,7 +24,8 @@ class PaymentInfoForm extends CFormModel {
             array('cardHolderName, cardNumber', 'required', 'message' => 'Please enter a value for {attribute}.'),
             // Card holde name must be Alphabet and space
             array('cardHolderName', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain Alphabet and space'),
-            array('cardNumber', 'numerical'),
+            array('cardNumber', 'match', 'pattern' => '/^[X0-9]+$/', 'message' => '{attribute} can only contain numbers'),
+            //array('cardNumber', 'numerical'),
             array('cardNumber', 'length', 'min'=>16),
             array(' expiryMonth, expiryYear', 'required', 'message' => 'Please enter Expiry Date'),
             array('cardType', 'required', 'message' => 'Please Select {attribute}.'),

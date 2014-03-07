@@ -67,12 +67,12 @@
     <div class=" span12">
     <div class=" span6">
     <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> phone'); ?>
-        <?php echo $form->textField($model,'Phone',array('value'=>$customerDetails->phone, 'placeholder'=>'Phone Number…', 'class'=>'span12', 'maxLength' => 6, 'onkeypress' => 'return isNumberKey(event);')); ?>
+        <?php echo $form->textField($model,'Phone',array('value'=>$customerDetails->phone, 'placeholder'=>'Phone Number…', 'class'=>'span12', 'maxLength' => 10, 'onkeypress' => 'return isNumberKey(event);')); ?>
         <?php echo $form->error($model,'Phone'); ?>
     </div>
     <div class=" span6">
     <?php echo $form->labelEx($model,'alternate Phone'); ?>
-        <?php echo $form->textField($model,'AlternatePhone',array('value'=>$customerAddressDetails->alternate_phone,'placeholder'=>'Alternative Phone Number…', 'class'=>'span12', 'maxLength' => 6, 'onkeypress' => 'return isNumberKey(event);')); ?>
+        <?php echo $form->textField($model,'AlternatePhone',array('value'=>$customerAddressDetails->alternate_phone,'placeholder'=>'Alternative Phone Number…', 'class'=>'span12', 'maxLength' => 10, 'onkeypress' => 'return isNumberKey(event);')); ?>
         <?php echo $form->error($model,'AlternatePhone'); ?>
     </div>
     </div>

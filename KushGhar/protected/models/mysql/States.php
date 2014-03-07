@@ -14,7 +14,7 @@ class States extends CActiveRecord {
     }
 
     public function getAllStates() {
-        try {error_log("enter Stateeeemodel===");
+        try {
             $statesData = States::model()->findAll();
         } catch (Exception $ex) {
             

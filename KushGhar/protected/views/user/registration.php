@@ -1,5 +1,6 @@
 <script type="text/javascript">
-    function addNewUserhandler(data){
+
+     function addNewUserhandler(data){
         if(data.status=='success'){
             window.location.href='basicinfo';
         }else{
@@ -20,6 +21,8 @@
     }
 
     function loginhandler(data){
+       
+     
         if(data.status=='success'){
             window.location.href='basicinfo';
         }else{

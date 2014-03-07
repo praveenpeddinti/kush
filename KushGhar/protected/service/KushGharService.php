@@ -42,7 +42,7 @@ class KushGharService {
     }
 
     public function getStates() {
-        try {error_log("enter Stateeee===");
+        try {
             $result = States::model()->getAllStates();
         } catch (Exception $ex) {
             error_log("=============exception occurred in state=============" . $ex->getMessage());
@@ -87,6 +87,7 @@ class KushGharService {
 
     //Update Sample Data
     public function updateRegistrationData($model, $cId) {
+        error_log("dfdsfdsfds===========Service===");
         return Registration::model()->updateRegistrationData($model, $cId);
     }
 

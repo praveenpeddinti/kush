@@ -411,6 +411,8 @@ class UserController extends Controller {
             if ($errors != '[]') {
                 $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
             } else {error_log("enter customerDetails Controller======================");
+                $model->profilePicture=$this->session['LoginPic'];
+                error_log("pic image=====".$model->profilePicture);
                 $result1 = $this->kushGharService->updateRegistrationData($model, $cId);
                 $result2 = $this->kushGharService->saveCustomerInfoDetails($model, $cId);
                 $result = $this->kushGharService->updateCustomerPaymentData($model, $cId);

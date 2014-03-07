@@ -56,7 +56,7 @@
 )); ?><?php echo $form->error($model, 'error'); ?>
            <fieldset>
     <?php //echo $form->hiddenField($model,'Id'); ?>
-    <h6>Basic information</h6>
+    <h5>Basic information</h5>
     <div class="row-fluid">
     <div class=" span4">
         <?php echo $form->label($model, '<abbr title="required">*</abbr> first name'); ?>
@@ -88,7 +88,7 @@
         <?php echo $form->error($model, 'dateOfBirth'); ?>
     </div>
     </div>
-    <h6>Contact information</h6>
+    <h5>Contact information</h5>
     <div class="row-fluid">
     <div class=" span4">
         <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> email'); ?>
@@ -145,7 +145,7 @@
         <?php echo $form->error($model,'Landmark'); ?>
    </div>
    </div>
-    <h6>Payment information</h6>
+    <h5>Payment information</h5>
    <div class="row-fluid">
    <div class=" span6">
         <?php echo $form->label($model, '<abbr title="required">*</abbr> Card Type'); ?>

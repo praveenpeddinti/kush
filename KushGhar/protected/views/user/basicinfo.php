@@ -1,5 +1,5 @@
 <div class="container">
-    <!--<div id="instant_notifications" class="instant_notification">Project saved successfully!</div> -->
+    <div id="instant_notifications" class="instant_notification">Project saved successfully!</div> 
     <section>
         <div class="container minHeight">
             <aside>
@@ -277,7 +277,7 @@
 <script type="text/javascript">
     
 
-    (document).ready(function() { 
+    $(document).ready(function() { $("#instant_notifications").fadeOut(6000, "");
         <?php if($customerDetails->customer_gender == 1){ ?>
         $('#Gender').bootstrapSwitch('setState', true);
     <?php } else {?>

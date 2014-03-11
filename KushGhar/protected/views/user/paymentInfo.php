@@ -45,6 +45,7 @@
        	<h4>Payment Information</h4>
         <hr>
         <div class="paddinground">
+             <div id="paymentInfoSpinLoader"></div>
        	  <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'paymentInfo-form',
 	'enableClientValidation'=>true,
@@ -133,7 +134,9 @@
     <div class="pull-right">
         <?php echo CHtml::ajaxButton('Submit',array('user/paymentInfo'), array(
             'type' => 'POST',
-                    'dataType' => 'json',
+            'dataType' => 'json',
+            'beforeSend' => 'function(){
+                             scrollPleaseWait("paymentInfoSpinLoader","paymentInfo-form");}',
 'success' => 'function(data,status,xhr) { paymenthandler(data,status,xhr);}'), array('class'=>'btn btn-primary')); ?>
 		
 	</div>
@@ -153,7 +156,7 @@
 
 <script type="text/javascript">
 function paymenthandler(data){
-    
+    scrollPleaseWaitClose('paymentInsfoSpinLoader');
     if(data.status=='success'){
       //alert("Successfully registration")
       $("#PaymentInfoForm_error_em_").show();
@@ -162,8 +165,8 @@ function paymenthandler(data){
             $("#PaymentInfoForm_error_em_").text('Profile updated successfully');
             $("#PaymentInfoForm_error_em_").fadeOut(6000, "");
       //document.getElementById('cc').innerHTML="<div style='height:460px;'><center><h1>Profile updated successfully </h1></center></div>";
-      //window.location.href='basicinfo';
-      window.location.href='customerDetails';
+      window.location.href='basicinfo';
+      //window.location.href='customerDetails';
     }else{
         //alert("No");
          var error=[];

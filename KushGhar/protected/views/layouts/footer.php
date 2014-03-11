@@ -34,6 +34,26 @@
     } catch(err) {}</script>
 
 <script type="text/javascript">
+
+
+/**
+ * Description: To show the spinner when button is submit
+ */
+
+function scrollPleaseWait(spinnerId, divId){
+    var loaderScript = '<div id="loader_'+spinnerId+'" style="z-index: 99999; left:0;right:0; text-align: center; top: 350px;bottom:0; position: absolute;display: none" ><div id="cl_spiral_'+spinnerId+'" class="loader" ><div id="SpinLoader"><img src="/images/spinner.gif"></div></div></div>';
+    $("#"+spinnerId).html(loaderScript);
+    $("#loader_"+spinnerId).show();
+
+}
+/**
+ * Description: To hide the spinner after data in loaded
+ */
+function scrollPleaseWaitClose(spinnerId){
+    $("#loader_"+spinnerId).hide();
+}
+
+
     jwplayer('container').setup({
         file: '/images/KushgharIntro-360p.mp4',
         image : '/images/video_img.png',

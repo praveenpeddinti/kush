@@ -1,5 +1,5 @@
 <div class="container">
-    <div id="instant_notifications" class="instant_notification">Project saved successfully!</div> 
+    <div id="instant_notifications" class="instant_notification">Basic Information</div>
     <section>
         <div class="container minHeight">
             <aside>
@@ -52,6 +52,7 @@
                         <h4>Basic Information</h4>
                         <hr>
                         <div class="paddinground">
+                            <div id="basicInfoSpinLoader"></div>
                             <?php
                             $form = $this->beginWidget('CActiveForm', array(
                                     'id' => 'basicinfo-form',
@@ -62,6 +63,7 @@
                                     'htmlOptions' => array('enctype' => 'multipart/form-data'),
                             ));?>
                             <fieldset>
+                                
                                 <div class="row-fluid">
                                     <div class=" span6">
                                         <?php echo $form->label($model, '<abbr title="required">*</abbr> first name'); ?>
@@ -215,12 +217,22 @@
                                         </div>
                                     </div>
                                 </div>
+                               <div class="row-fluid">
+                                <div class=" span12">
+                                <?php echo $form->label($model, 'How do know KushGhar ?'); ?>
+                                    <?php echo $form->dropDownList($model,'foundKushgharBy', array(''=>'Select One','friend' => 'Friend', 'mail' => 'Mail'), array('options' => array($customerDetails->found_kushghar_by => array('selected' => 'selected')), 'disabled'=>false,'class' => 'span12'));?>
+                                    <?php echo $form->error($model,'foundKushgharBy'); ?>
+                                    <?php //echo $form->dropDownList($model, 'cardType', CHtml::listData(array('prompt'=>'Select Card Type','options' => ('Visa''Visa', 'Master' => 'Master')), 'Id', 'identifiability'), array('options' => array($customerPaymentDetails->card_type => array('selected' => 'selected')), 'class' => 'span12')); ?>
+                                </div>
+                                </div>
                                 <div class="row-fluid">
                                     <div class="span12 ">
                                         <div class="pull-right">
                                         <?php   echo CHtml::ajaxButton('Continue', array('user/basicinfo'), array(
                                                         'type' => 'POST',
                                                         'dataType' => 'json',
+                                                        'beforeSend' => 'function(){
+                                                                scrollPleaseWait("basicInfoSpinLoader","basicinfo-form");}',
                                                         'success' => 'function(data,status,xhr) { addBasicInformationhandler(data,status,xhr);}'), array('class' => 'btn btn-primary'));
                                          ?>
                                         </div>
@@ -257,10 +269,12 @@
                                        <?php echo CHtml::ajaxButton('Update Password', array('user/updatedPsw'), array(
                                             'type' => 'POST',
                                             'dataType' => 'json',
+                                            
                                             'success' => 'function(data,status,xhr) { updatePasswordhandler(data,status,xhr);}'), array('class' => 'btn btn-primary', 'type' => 'submit'));
                                     ?></div>
                                     </div>
                                 </div>
+                                
 
                                 
                                     </fieldset>
@@ -278,10 +292,16 @@
     
 
     $(document).ready(function() { $("#instant_notifications").fadeOut(6000, "");
-        <?php if($customerDetails->customer_gender == 1){ ?>
+
+    <?php if($customerDetails->customer_gender == 1){ ?>
         $('#Gender').bootstrapSwitch('setState', true);
     <?php } else {?>
         $('#Gender').bootstrapSwitch('setState', false);
+    <?php } ?>
+    <?php if($customerDetails->found_kushghar_by == ''){ ?>
+        document.getElementById('BasicinfoForm_foundKushgharBy').disabled = false;
+    <?php } else { ?>
+       document.getElementById('BasicinfoForm_foundKushgharBy').disabled = true;
     <?php } ?>
         $.datepicker.setDefaults({
             showOn: "button",
@@ -353,6 +373,7 @@ return false;
 
 
     function addBasicInformationhandler(data){
+        scrollPleaseWaitClose('basicInfoSpinLoader');
         if(data.status=='success'){
             window.location.href='contactInfo';
         }else{
@@ -556,5 +577,6 @@ return false;
             reader.readAsDataURL(ele.files[0]);
         }
     }
+
 
 </script>

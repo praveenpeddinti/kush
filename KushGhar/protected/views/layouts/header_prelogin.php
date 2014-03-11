@@ -86,7 +86,7 @@
                             <div class="headerpoptitle"><img src="<?php if ($this->session['LoginPic'] == '') { echo '/images/dummy_pp.jpg';} else {echo $this->session['LoginPic'];} ?>" ><?php echo $this->session['firstName']; ?></div>
                             <ul>
                                 <li><a href="account"> <i class="fa fa-user"></i> Account</a></li>
-                                <li><a href="#"><i class="fa fa-user"></i> Settings</a></li>
+                                <!--<li><a href="#"><i class="fa fa-user"></i> Settings</a></li>-->
                                 <li><a href="logout" ><i class="fa fa-power-off"></i> Logout</a></li>
 
                             </ul>

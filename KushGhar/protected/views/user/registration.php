@@ -1,6 +1,7 @@
 <script type="text/javascript">
 
      function addNewUserhandler(data){
+        scrollPleaseWaitClose('registrationSpinLoader');
         if(data.status=='success'){
             window.location.href='basicinfo';
         }else{
@@ -94,6 +95,7 @@
                     <div class="reg_div">
                         <div class="paddinground">
                             <h2 class="reg_title">Registration</h2>
+                            <div id="registrationSpinLoader"></div>
                             <?php
                             $form = $this->beginWidget('CActiveForm', array(
                                         'id' => 'registration-form',
@@ -135,6 +137,8 @@
                                         echo CHtml::ajaxButton('Submit', array('user/registration'), array(
                                             'type' => 'POST',
                                             'dataType' => 'json',
+                                            'beforeSend' => 'function(){
+                                                             scrollPleaseWait("registrationSpinLoader","paymentInfo-form");}',
                                             'success' => 'function(data,status,xhr) { addNewUserhandler(data,status,xhr);}'), array('class' => 'btn btn-primary'));
                                         ?>
                                     
@@ -170,6 +174,7 @@
                                     <?php echo CHtml::ajaxButton('Login', array('user/login'), array(
                                             'type' => 'POST',
                                             'dataType' => 'json',
+
                                             'success' => 'function(data,status,xhr) { loginhandler(data,status,xhr);}'), array('class' => 'btn btn-primary', 'type' => 'submit'));
                                     ?>
                                    

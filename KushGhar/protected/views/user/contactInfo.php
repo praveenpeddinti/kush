@@ -45,6 +45,7 @@
        	<h4>Contact Information</h4>
        <hr>
        <div class="paddinground">
+           <div id="contactInfoSpinLoader"></div>
        	  <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'contactInfo-form',
 	'enableClientValidation'=>true,
@@ -134,7 +135,9 @@
     <div class="pull-right">
         <?php echo CHtml::ajaxButton('Continue',array('user/contactInfo'), array(
             'type' => 'POST',
-                    'dataType' => 'json',
+            'dataType' => 'json',
+            'beforeSend' => 'function(){
+                             scrollPleaseWait("contactInfoSpinLoader","contactInfo-form");}',
 'success' => 'function(data,status,xhr) { addContactInformationhandler(data,status,xhr);}'), array('class'=>'btn btn-primary')); ?>
 		
 	</div>
@@ -154,7 +157,7 @@
 
 <script type="text/javascript">
 function addContactInformationhandler(data){
-    //alert(data.status);
+    scrollPleaseWaitClose('contactInfoSpinLoader');
     if(data.status=='success'){
      
 window.location.href='paymentInfo';

@@ -168,6 +168,7 @@ class UserController extends Controller {
         $cId = $this->session['UserId'];
         $customerDetails = $this->kushGharService->getCustomerDetails($cId);
         $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($cId);
+        $customerPaymentDetails = $this->kushGharService->getCustomerPaymentDetails($cId);
         $Identity = $this->kushGharService->getIdentifyProof();
         $request = yii::app()->getRequest();
         $formName = $request->getParam('BasicinfoForm');
@@ -202,7 +203,7 @@ class UserController extends Controller {
             $renderScript = $this->rendering($obj);
             echo $renderScript;
         } else {
-            $this->render('basicinfo', array("model" => $basicForm, "IdentityProof" => $Identity, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "updatedPassword"=> $updatedPasswordForm));
+            $this->render('basicinfo', array("model" => $basicForm, "IdentityProof" => $Identity, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails, "updatedPassword"=> $updatedPasswordForm));
         }
     }
 
@@ -217,6 +218,7 @@ class UserController extends Controller {
         
         $customerDetails = $this->kushGharService->getCustomerDetails($cId);
         $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($cId);
+        $customerPaymentDetails = $this->kushGharService->getCustomerPaymentDetails($cId);
         $request = yii::app()->getRequest();
         $formName = $request->getParam('ContactInfoForm');
         $this->session['LoginPic'] = $customerDetails->profilePicture;
@@ -241,7 +243,7 @@ class UserController extends Controller {
             $renderScript = $this->rendering($obj);
             echo $renderScript;
         } else {
-            $this->render('contactInfo', array("model" => $ContactInfoForm, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "States"=>$States));
+            $this->render('contactInfo', array("model" => $ContactInfoForm, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails, "States"=>$States));
         }
     }
 
@@ -252,6 +254,8 @@ class UserController extends Controller {
         $paymentForm = new PaymentInfoForm;
         $cId = $this->session['UserId'];
 
+        $customerDetails = $this->kushGharService->getCustomerDetails($cId);
+        $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($cId);
         $customerPaymentDetails = $this->kushGharService->getCustomerPaymentDetails($cId);
         $request = yii::app()->getRequest();
         $formName = $request->getParam('PaymentInfoForm');
@@ -274,7 +278,7 @@ class UserController extends Controller {
             $renderScript = $this->rendering($obj);
             echo $renderScript;
         } else {
-            $this->render('paymentInfo', array("model" => $paymentForm, "customerPaymentDetails" => $customerPaymentDetails));
+            $this->render('paymentInfo', array("model" => $paymentForm, "customerPaymentDetails" => $customerPaymentDetails,  "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails));
         }
     }
 

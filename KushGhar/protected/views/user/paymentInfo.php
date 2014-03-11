@@ -15,9 +15,32 @@
             <div id="accounts" class="collapse in">
             	<div class="selected_tab">Account</div>
             	<ul class="l_menu_sub_menu">
-                	<li class=""><a href="basicinfo"> <i class="fa fa-user"></i> Basic Info</a> <div class="status_info2"> </div></li>
-                    <li ><a href="contactInfo"> <i class="fa fa-phone"></i> Contact Info</a> <div class="status_info2"> </div></li>
-                    <li class="active"><a href="#"> <i class="fa fa-credit-card"></i> Payment Info</a> <div class="status_info3"> </div></li>
+                <?php  
+                    if((!empty($customerDetails->first_name)) && (!empty($customerDetails->middle_name)) && (!empty($customerDetails->last_name)) && (!empty($customerDetails->birth_date)) && (!empty($customerDetails->profilePicture)) && (!empty($customerDetails->found_kushghar_by))){
+                        $statusClassForBasic = 'status_info2';
+                    }else{
+                        $statusClassForBasic = 'status_info1';
+                    }
+                    if((!empty($customerAddressDetails->alternate_phone)) && (!empty($customerAddressDetails->address_line1)) && (!empty($customerAddressDetails->address_line2)) && (!empty($customerAddressDetails->address_state)) && (!empty($customerAddressDetails->address_city)) && (!empty($customerAddressDetails->address_pin_code)) && (!empty($customerAddressDetails->address_landmark))){
+                        $statusClassForContact = 'status_info2';
+                    }else{
+                        $statusClassForContact = 'status_info1';
+                    }
+                    if((!empty($customerPaymentDetails->card_type)) && (!empty($customerPaymentDetails->card_holder_name)) && (!empty($customerPaymentDetails->card_number)) && (!empty($customerPaymentDetails->card_expiry_month)) && (!empty($customerPaymentDetails->card_expiry_year))){
+                        $statusClassForPayment = 'status_info2';
+                    }else{
+                        $statusClassForPayment = 'status_info3';
+                    }
+                    ?>
+                    <li class="active"><a href="basicinfo"> <i class="fa fa-user"></i> Basic Info</a>
+                        <div class=<?php echo '"'.$statusClassForBasic.'"' ?>></div>
+                    </li>
+                    <li ><a href="contactInfo"> <i class="fa fa-phone"></i> Contact Info</a>
+                        <div class="<?php echo $statusClassForContact;?>"> </div>
+                    </li>
+                    <li ><a href="paymentInfo"> <i class="fa fa-credit-card"></i> Payment Info</a>
+                        <div class="<?php echo $statusClassForPayment;?>"> </div>
+                    </li>
                 </ul>
             </div>
             <div id="payment" class="collapse">

@@ -55,6 +55,14 @@
                         </div>
                     </div>
                 </div>
+                <div class="static_page_heading paddingT30"></div>
+                <h2>KushGhar Team</h2>
+                <div class="static_page_heading"></div>
+                <div class="row-fluid ">
+                    <div class="span12">
+                       <center class="ourteam_pic"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/our_team.png" width="700" height="480"></center>
+                    </div>
+                </div>
 
             </div>
         </div>

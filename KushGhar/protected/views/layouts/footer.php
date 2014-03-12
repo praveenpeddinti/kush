@@ -10,7 +10,7 @@
         <div class="row-fluid">
             <div class="span6">
                 <div class="copyrights">
-                    © 2014 KushGhar</br>
+                    © <?php echo date('Y');?> KushGhar</br>
                     Making people's lives better, one home at a time
                 </div>
             </div>

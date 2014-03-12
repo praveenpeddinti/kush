@@ -86,12 +86,12 @@
                                 <div class="row-fluid">
                                     <div class=" span6">
                                         <?php echo $form->label($model, '<abbr title="required">*</abbr> first name'); ?>
-                                        <?php echo $form->textField($model, 'FirstName', array('value' => $customerDetails->first_name, 'class' => 'span12')); ?>
+                                        <?php echo $form->textField($model, 'FirstName', array('value' => $customerDetails->first_name, 'maxLength' => 50, 'class' => 'span12')); ?>
                                         <?php echo $form->error($model, 'FirstName'); ?>
                                     </div>
                                     <div class=" span6">
                                         <?php echo $form->label($model, 'middle name'); ?>
-                                        <?php echo $form->textField($model, 'MiddleName', array('value' => $customerDetails->middle_name, 'class' => 'span12', 'placeholder' => 'Middle Name…')); ?>
+                                        <?php echo $form->textField($model, 'MiddleName', array('value' => $customerDetails->middle_name, 'class' => 'span12', 'maxLength' => 50, 'placeholder' => 'Middle Name…')); ?>
                                         <?php echo $form->error($model, 'MiddleName'); ?>
                                     </div>
                                 </div>
@@ -99,7 +99,7 @@
                                     <div class=" span12">
                                         <div class=" span6">
                                             <?php echo $form->label($model, '<abbr title="required">*</abbr> last name'); ?>
-                                            <?php echo $form->textField($model, 'LastName', array('value' => $customerDetails->last_name, 'class' => 'span12')); ?>
+                                            <?php echo $form->textField($model, 'LastName', array('value' => $customerDetails->last_name, 'maxLength' => 50, 'class' => 'span12')); ?>
                                             <?php echo $form->error($model, 'LastName'); ?>
                                             </div>
                                         
@@ -239,7 +239,7 @@
                                <div class="row-fluid">
                                 <div class=" span12">
                                 <?php echo $form->label($model, 'How do know KushGhar ?'); ?>
-                                    <?php echo $form->dropDownList($model,'foundKushgharBy', array(''=>'Select One','friend' => 'Friend', 'mail' => 'Mail'), array('options' => array($customerDetails->found_kushghar_by => array('selected' => 'selected')), 'disabled'=>false,'class' => 'span12'));?>
+                                    <?php echo $form->dropDownList($model,'foundKushgharBy', array(''=>'Select One','friend' => 'Friend', 'mail' => 'Mail'), array('options' => array($customerDetails->found_kushghar_by => array('selected' => 'selected')),'readonly'=>false,'class' => 'span12'));?>
                                     <?php echo $form->error($model,'foundKushgharBy'); ?>
                                     <?php //echo $form->dropDownList($model, 'cardType', CHtml::listData(array('prompt'=>'Select Card Type','options' => ('Visa''Visa', 'Master' => 'Master')), 'Id', 'identifiability'), array('options' => array($customerPaymentDetails->card_type => array('selected' => 'selected')), 'class' => 'span12')); ?>
                                 </div>
@@ -275,12 +275,12 @@
                                 <div class="row-fluid">
                                     <div class=" span4">
                                        <?php echo $form->label($updatedPassword, 'Update Password'); ?>
-                                <?php echo $form->passwordField($updatedPassword, 'Password', array('class' => 'span12')); ?>
+                                <?php echo $form->passwordField($updatedPassword, 'Password', array('maxLength' => 50, 'class' => 'span12')); ?>
                                 <?php echo $form->error($updatedPassword, 'Password'); ?>
                                     </div>
                                     <div class=" span4">
                                         <?php echo $form->label($updatedPassword, 'Repeat Password'); ?>
-                                        <?php echo $form->passwordField($updatedPassword, 'RepeatPassword', array('class' => 'span12')); ?>
+                                        <?php echo $form->passwordField($updatedPassword, 'RepeatPassword', array('maxLength' => 50, 'class' => 'span12')); ?>
                                         <?php echo $form->error($updatedPassword, 'RepeatPassword'); ?>
                                     </div>
                                     <div class=" span4">
@@ -295,7 +295,7 @@
                                 </div>
                                 
 
-                                
+
                                     </fieldset>
                             <?php $this->endWidget(); ?>
                                 
@@ -318,9 +318,9 @@
         $('#Gender').bootstrapSwitch('setState', false);
     <?php } ?>
     <?php if($customerDetails->found_kushghar_by == ''){ ?>
-        document.getElementById('BasicinfoForm_foundKushgharBy').disabled = false;
+        document.getElementById('BasicinfoForm_foundKushgharBy').readonly = false;
     <?php } else { ?>
-       document.getElementById('BasicinfoForm_foundKushgharBy').disabled = true;
+       document.getElementById('BasicinfoForm_foundKushgharBy').readonly = true;
     <?php } ?>
         $.datepicker.setDefaults({
             showOn: "button",

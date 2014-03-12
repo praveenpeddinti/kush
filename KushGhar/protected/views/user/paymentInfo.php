@@ -91,7 +91,7 @@
     <div class="row-fluid">
     <div class=" span6">
     <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> Card Holder Name'); ?>
-	<?php echo $form->textField($model,'cardHolderName',array('value'=>$customerPaymentDetails->card_holder_name, 'placeholder'=>'Card Holder Name…','class'=>'span12')); ?>
+	<?php echo $form->textField($model,'cardHolderName',array('value'=>$customerPaymentDetails->card_holder_name, 'placeholder'=>'Card Holder Name…', 'maxLength' => 50, 'class'=>'span12')); ?>
 	<?php echo $form->error($model,'cardHolderName'); ?>
     </div>
         
@@ -179,7 +179,7 @@
 
 <script type="text/javascript">
 function paymenthandler(data){
-    scrollPleaseWaitClose('paymentInsfoSpinLoader');
+    scrollPleaseWaitClose('paymentInfoSpinLoader');
     if(data.status=='success'){
       //alert("Successfully registration")
       $("#PaymentInfoForm_error_em_").show();

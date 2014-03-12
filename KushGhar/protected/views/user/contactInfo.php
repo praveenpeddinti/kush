@@ -83,7 +83,7 @@
     <div class="row-fluid">
     <div class=" span6">
     <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> email'); ?>
-	<?php echo $form->textField($model,'Email',array('value'=>$customerDetails->email_address, 'class'=>'span12')); ?>
+	<?php echo $form->textField($model,'Email',array('value'=>$customerDetails->email_address, 'maxLength' => 50, 'class'=>'span12')); ?>
 	<?php echo $form->error($model,'Email'); ?>
     </div>
     </div>
@@ -106,13 +106,13 @@
     <div class="row-fluid">
     <div class=" span6">
     <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> address line1'); ?>
-        <?php echo $form->textField($model,'Address1',array('value'=>$customerAddressDetails->address_line1,'placeholder'=>'Address Line 1…', 'class'=>'span12')); ?>
+        <?php echo $form->textField($model,'Address1',array('value'=>$customerAddressDetails->address_line1,'placeholder'=>'Address Line 1…', 'maxLength' => 100, 'class'=>'span12')); ?>
         <?php echo $form->error($model,'Address1'); ?>
 
    </div>
     <div class=" span6">
         <?php echo $form->labelEx($model,'address Line2'); ?>
-        <?php echo $form->textField($model,'Address2',array('value'=>$customerAddressDetails->address_line2,'placeholder'=>'Address Line 2…', 'class'=>'span12')); ?>
+        <?php echo $form->textField($model,'Address2',array('value'=>$customerAddressDetails->address_line2,'placeholder'=>'Address Line 2…', 'maxLength' => 100, 'class'=>'span12')); ?>
         <?php echo $form->error($model,'Address2'); ?>
     </div>
     </div>

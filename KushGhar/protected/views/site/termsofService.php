@@ -39,7 +39,7 @@
                 <h3>1.6. Use of the Service</h3>
                 <div class="static_page_heading"></div>
                 <p>The following restrictions apply to the use of the Service:</p>
-                <ol type="a" >
+                <ul type="disc" >
                     <li> You shall not create an Account or access the Service       if you are under the age of 18;</li>
                     <li> You shall monitor your Account to restrict use by       minors, and you will deny access to children under the age of 18. You       accept full responsibility for any unauthorized use of the Service by       minors. Your are responsible for any use of your credit card or other       payment instrument (e.g. PayPal) by minors;</li>
                     <li> You shall not have more than one Account, per platform or SNS, at any given time, and shall not create an account using a false identity or information, or on behalf of someone other than yourself;</li>
@@ -51,7 +51,7 @@
                     <li> You shall not rent, lease, sell, trade, gift, bequeath or otherwise transfer your Account or any virtual items or virtual currency associated with your Account to anyone without Kushghar, Inc’s written permission; and</li>
                     <li> You shall not access or use an Account, which has  been rented, leased, sold, traded, gifted, bequeathed, or otherwise       transferred from the Account creator without Kushghar, Inc’s permission.</li>
                     <li> If you access the Service from an SNS you shall comply with its terms of service/use as well as these Terms of Service.</li>
-                </ol>
+                </ul>
                 <div class="static_page_heading"></div>
                 <h3>1.7. Account Informationy</h3>
                 <div class="static_page_heading"></div>
@@ -62,12 +62,12 @@
                 <h3>1.8. Username and Password</h3>
                 <div class="static_page_heading"></div>
                 <P>During the Account creation process, you will be required to select a password ("Login Information"). The following rules govern the security of your Login Information:</P>
-                <ol type="a" >
+                <ul type="disc" >
                     <li> You shall not share the Account or the Login       Information, nor let anyone else access your account or do anything else       that might jeopardize the security of your Account;</li>
                     <li> In the event you become aware of or reasonably       suspect any breach of security, including without limitation any loss,       theft, or unauthorized disclosure of the Login Information, you must       immediately notify Kushghar, Inc and modify your Login Information;</li>
                     <li> You are solely responsible for maintaining the       confidentiality of the Login Information, and you will be responsible for       all uses of the Login Information, including purchases, whether or not       authorized by you; and</li>
                     <li> You are responsible for anything that happens       through your Account.</li>
-                </ol>
+                </ul>
                 <p>Kushghar, Inc reserves the right to remove or reclaim any usernames at any time and for any reason, including but not limited to claims by a third party that a username violates the third party’s rights.</p>
                 <div class="static_page_heading"></div>
                 <h3>1.9. License Limitations</h3>
@@ -75,38 +75,38 @@
                 <p>Any use of the Service in violation of these License Limitations is strictly prohibited, can result in the immediate revocation of your limited license granted by Section 1.4, and may subject you to liability for violations of law. ANY ATTEMPT BY YOU TO DISRUPT OR INTERFERE WITH THE SERVICE INCLUDING UNDERMINING OR MANIPULATING THE LEGITIMATE OPERATION OF ANY KUSHGHAR, INCSERVICE IS A VIOLATION OF KUSHGHAR, INC POLICY AND MAY BE A VIOLATION OF CRIMINAL AND CIVIL LAWS.</p>
                 <h5>You agree that you will not, under any circumstances:</h5>
                 <ul type="disc">
-                    <li>a.  Engage in any act that Kushghar, Inc deems to be in conflict with the spirit or intent of the Service, including but not limited to circumventing or manipulating these Terms, our website rules, website mechanics or policies;</li>
-                    <li>b.  Make improper use of Kushghar, Inc’s support services, including by submitting false abuse reports; or
-                    </li><li>c. Use the Service in connection with any violation of any applicable law or regulation, or do anything that promotes the violation of any applicable law or regulation;</li>
+                    <li>Engage in any act that Kushghar, Inc deems to be in conflict with the spirit or intent of the Service, including but not limited to circumventing or manipulating these Terms, our website rules, website mechanics or policies;</li>
+                    <li>Make improper use of Kushghar, Inc’s support services, including by submitting false abuse reports; or
+                    </li><li>Use the Service in connection with any violation of any applicable law or regulation, or do anything that promotes the violation of any applicable law or regulation;</li>
                 </ul>
                 <h5>OFFENSIVE OR INFRINGING CONTENT - You agree that you will not, under any circumstances:</h5>
                 <ul type="disc">
-                    <li>j. Post any information that is abusive, threatening, obscene, defamatory, libelous, or racially, sexually, religiously, or otherwise objectionable or offensive;</li>
-                    <li>k. Post any information that contains nudity, excessive violence, or offensive subject matter or that contains a link to such content;</li>
-                    <li>l. Attempt to, or harass, abuse, or harm, or advocate or incite harassment, abuse, or harm of another person, group, including Kushghar, Inc employees, including Kushghar, Inc’s customer service representatives; or</li>
-                    <li>m. Make available through the Service any material or information that infringes any copyright, trademark, patent, trade secret, right of privacy, right of publicity, or other right of any person or entity or impersonates any other person, including without limitation a Kushghar, Inc employee;</li>
+                    <li>Post any information that is abusive, threatening, obscene, defamatory, libelous, or racially, sexually, religiously, or otherwise objectionable or offensive;</li>
+                    <li>Post any information that contains nudity, excessive violence, or offensive subject matter or that contains a link to such content;</li>
+                    <li>Attempt to, or harass, abuse, or harm, or advocate or incite harassment, abuse, or harm of another person, group, including Kushghar, Inc employees, including Kushghar, Inc’s customer service representatives; or</li>
+                    <li>Make available through the Service any material or information that infringes any copyright, trademark, patent, trade secret, right of privacy, right of publicity, or other right of any person or entity or impersonates any other person, including without limitation a Kushghar, Inc employee;</li>
                 </ul>
                 <h5>COMMERCIAL ACTIVITY - You agree that you will not, under any circumstances:</h5>
                 <ul type="disc">
-                    <li> n. Without Kushghar, Inc’s express written consent, use the Service, any Kushghar, Incwebsites, or any part thereof for any commercial purpose, including but not limited to, (1) permitting, authorizing, or offering use of the Service, any Kushghar, Incservices, or any part thereof at a cyber café, computer internet center or any other commercial establishment provided however that, for clarity, providing the means for users to access the Internet is not prohibited by the forgoing, (2) communicating or facilitating any commercial advertisement or solicitation, or (3) gathering information, items or resources for sale;</li>
-                    <li> p. Transmit unauthorized communications through the Service, including junk mail, chain letters, spam and any materials that promote malware, spyware and downloadable items; or</li>
+                    <li>Without Kushghar, Inc’s express written consent, use the Service, any Kushghar, Incwebsites, or any part thereof for any commercial purpose, including but not limited to, (1) permitting, authorizing, or offering use of the Service, any Kushghar, Incservices, or any part thereof at a cyber café, computer internet center or any other commercial establishment provided however that, for clarity, providing the means for users to access the Internet is not prohibited by the forgoing, (2) communicating or facilitating any commercial advertisement or solicitation, or (3) gathering information, items or resources for sale;</li>
+                    <li>Transmit unauthorized communications through the Service, including junk mail, chain letters, spam and any materials that promote malware, spyware and downloadable items; or</li>
                 </ul>
                 <h5>UNAUTHORIZED USE OR CONNECTION TO THE SERVICE - You agree that you will not, under any circumstances:</h5>
                 <ul type="disc">
-                    <li> q. Interfere or attempt to interfere with the proper functioning of the Service or connect to or use the Service or any Kushghar, Incservices in any way not expressly permitted by these Terms of Service;</li><li>
-                        r. Use any unauthorized third-party software that accesses, intercepts, "mines", or otherwise collects information from or through the Service or that is in transit from or to the Service, including, without limitation, any software that reads areas of RAM or streams of network traffic used by the Service or any Kushghar, Incservices to store information about Kushghar, Incservices, elements, or environment. Kushghar, Inc may, at its sole and absolute discretion, allow the use of certain third party user interfaces;</li><li>
-                        s. Intercept, examine or otherwise observe any proprietary communications protocol used by a client, a Server, or the Service, whether through the use of a network analyzer, packet sniffer or other device;</li><li>
-                        t. Make any automated use of the system, or take any action that imposes or may impose (in our sole discretion) an unreasonable or disproportionately large load on our infrastructure;</li><li>
-                        u. Bypass any robot exclusion headers or other measures we take to restrict access to the service or use any software, technology, or device to send content or messages, scrape, spider, or crawl the Service, or harvest or manipulate data;</li><li>
-                        v. Use, facilitate, create, or maintain any unauthorized connection to the Service, including without limitation (1) any connection to any unauthorized server that emulates, or attempts to emulate any part of the Service, or (2) any connection using programs, tools, or software not expressly approved by Kushghar, Inc;</li><li>
-                        w. Reverse engineer, decompile, disassemble, decipher or otherwise attempt to derive the source code for any underlying software or other intellectual property used to provide the Service or any Kushghar, Incservice, or to obtain any information from the Service or any Kushghar, Incservice using any method not expressly permitted by Kushghar, Inc; or</li><li>
-                        x. Copy, modify or distribute rights or content from any Kushghar, Inc site, or Kushghar, Inc’s copyrights or trademarks or use any method to copy or distribute the content of the Service except as specifically allowed in these Terms of Service;</li>
+                    <li>Interfere or attempt to interfere with the proper functioning of the Service or connect to or use the Service or any Kushghar, Incservices in any way not expressly permitted by these Terms of Service;</li>
+                    <li>Use any unauthorized third-party software that accesses, intercepts, "mines", or otherwise collects information from or through the Service or that is in transit from or to the Service, including, without limitation, any software that reads areas of RAM or streams of network traffic used by the Service or any Kushghar, Incservices to store information about Kushghar, Incservices, elements, or environment. Kushghar, Inc may, at its sole and absolute discretion, allow the use of certain third party user interfaces;</li>
+                    <li>Intercept, examine or otherwise observe any proprietary communications protocol used by a client, a Server, or the Service, whether through the use of a network analyzer, packet sniffer or other device;</li>
+                    <li>Make any automated use of the system, or take any action that imposes or may impose (in our sole discretion) an unreasonable or disproportionately large load on our infrastructure;</li>
+                    <li>Bypass any robot exclusion headers or other measures we take to restrict access to the service or use any software, technology, or device to send content or messages, scrape, spider, or crawl the Service, or harvest or manipulate data;</li>
+                    <li>Use, facilitate, create, or maintain any unauthorized connection to the Service, including without limitation (1) any connection to any unauthorized server that emulates, or attempts to emulate any part of the Service, or (2) any connection using programs, tools, or software not expressly approved by Kushghar, Inc;</li>
+                    <li>Reverse engineer, decompile, disassemble, decipher or otherwise attempt to derive the source code for any underlying software or other intellectual property used to provide the Service or any Kushghar, Incservice, or to obtain any information from the Service or any Kushghar, Incservice using any method not expressly permitted by Kushghar, Inc; or</li>
+                    <li>Copy, modify or distribute rights or content from any Kushghar, Inc site, or Kushghar, Inc’s copyrights or trademarks or use any method to copy or distribute the content of the Service except as specifically allowed in these Terms of Service;</li>
                 </ul>
                 <h5>COLLECTION AND PUBLICATION OF PERSONAL INFORMATION - You agree that you will not, under any circumstances:</h5>
                 <ul type="disc">
-                    <li>y. Solicit or attempt to solicit personal information from other users of the Service or any Kushghar, Incservice; or</li>
-                    <li>z. Collect, harvest or post anyone’s private information, including personally identifiable information (whether in text, image or video form), identification documents, or financial information through the Service.</li>
-                    <li>aa. upload or transmit (or attempt to upload or to transmit), without Kushghar, Inc’s express permission, any material that acts as a passive or active information collection or transmission mechanism, including, without limitation, clear graphics interchange formats ("gifs"), 1x1 pixels, web bugs, cookies or other similar devices (sometimes referred to as "spyware," "passive collection mechanisms" or "pcms").</li>
+                    <li>Solicit or attempt to solicit personal information from other users of the Service or any Kushghar, Incservice; or</li>
+                    <li>Collect, harvest or post anyone’s private information, including personally identifiable information (whether in text, image or video form), identification documents, or financial information through the Service.</li>
+                    <li>upload or transmit (or attempt to upload or to transmit), without Kushghar, Inc’s express permission, any material that acts as a passive or active information collection or transmission mechanism, including, without limitation, clear graphics interchange formats ("gifs"), 1x1 pixels, web bugs, cookies or other similar devices (sometimes referred to as "spyware," "passive collection mechanisms" or "pcms").</li>
                 </ul>
                 <div class="static_page_heading"></div>
                 <h3>1.10. Suspension and Termination of Account and Service</h3>

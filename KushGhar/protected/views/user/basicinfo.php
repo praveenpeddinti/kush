@@ -127,7 +127,7 @@
                                     <div class=" span6">
                                         <?php echo $form->label($model, 'ID Number'); ?>
                                         
-                                        <?php echo $form->textField($model, 'Number', array('value' => $customerDetails->uIdNumber, 'class' => 'span12', 'placeholder' => 'ID Number…')); ?>
+                                        <?php echo $form->textField($model, 'Number', array('value' => $customerDetails->uIdNumber, 'class' => 'span12', 'placeholder' => 'ID Number…', 'maxLength' => 25)); ?>
                                         <?php echo $form->error($model, 'Number'); ?>
                                     </div>
                                 </div>

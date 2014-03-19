@@ -5,7 +5,7 @@ class SiteController extends Controller {
     /**
      * This is the default action index call our site
     */
-    public function actionIndex() {error_log("enter====");
+    public function actionIndex() {
        // $this->session->destroy();
         $this->render('index');
     }

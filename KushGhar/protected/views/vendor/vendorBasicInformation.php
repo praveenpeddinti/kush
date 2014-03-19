@@ -17,7 +17,7 @@
                             <div class="selected_tab">Account</div>
                             <ul class="l_menu_sub_menu">
                                 <?php
-                                 if((!empty($customerDetails->first_name)) && (!empty($customerDetails->middle_name)) && (!empty($customerDetails->last_name)) && (!empty($customerDetails->birth_date)) && (!empty($customerDetails->profilePicture)) && (!empty($customerDetails->found_kushghar_by))){
+                                 /*if((!empty($customerDetails->first_name)) && (!empty($customerDetails->middle_name)) && (!empty($customerDetails->last_name)) && (!empty($customerDetails->birth_date)) && (!empty($customerDetails->profilePicture)) && (!empty($customerDetails->found_kushghar_by))){
                                      $statusClassForBasic = 'status_info2';
                                  }else{
                                      $statusClassForBasic = 'status_info1';
@@ -33,16 +33,16 @@
                                      $statusClassForPayment = 'status_info2';
                                  }else{
                                      $statusClassForPayment = 'status_info3';
-                                 }
+                                 }*/
                                  ?>
-                                <li class="active"><a href="basicinfo"> <i class="fa fa-user"></i> Basic Info</a>
-                                    <div class=<?php echo '"'.$statusClassForBasic.'"' ?>></div>
+                                <li class="active"><a href="vendorBasicInformation"> <i class="fa fa-user"></i> Basic Info</a>
+                                    <div class="status_info1"></div>
                                 </li>
-                                <li ><a href="contactInfo"> <i class="fa fa-phone"></i> Contact Info</a>
-                                    <div class="<?php echo $statusClassForContact;?>"> </div>
+                                <li ><a href="vendorContactInformation"> <i class="fa fa-phone"></i> Contact Info</a>
+                                    <div class="status_info1"></div>
                                 </li>
-                                <li ><a href="paymentInfo"> <i class="fa fa-credit-card"></i> Payment Info</a>
-                                    <div class="<?php echo $statusClassForPayment;?>"> </div>
+                                <li ><a href="#"> <i class="fa fa-credit-card"></i> Payment Info</a>
+                                   <div class="status_info1"></div>
                                 </li>
                             </ul>
                         </div>
@@ -74,7 +74,7 @@
                             <div id="basicInfoSpinLoader"></div>
                             <?php
                             $form = $this->beginWidget('CActiveForm', array(
-                                    'id' => 'basicinfo-form',
+                                    'id' => 'vendorBasicInformation-form',
                                     'enableClientValidation' => true,
                                     'clientOptions' => array(
                                     'validateOnSubmit' => true,
@@ -82,79 +82,89 @@
                                     'htmlOptions' => array('enctype' => 'multipart/form-data'),
                             ));?>
                             <fieldset>
+                                <?php echo $form->hiddenField($model, 'vendorType',array('value'=>$this->session['VendorType'])); ?>
                                 
-                                <div class="row-fluid">
-                                    <div class=" span6">
+                                    <?php if($this->session['VendorType']==2){ ?>
+                                    <div class="row-fluid">
+                                    <div class=" span4">
+                                        <?php echo $form->label($model, '<abbr title="required">*</abbr> Primary Contact First Name'); ?>
+                                        <?php echo $form->textField($model, 'PrimaryContactFirstName', array('value' => $getVendorDetailsType1->first_name, 'maxLength' => 50, 'class' => 'span12')); ?>
+                                        <?php echo $form->error($model, 'PrimaryContactFirstName'); ?>
+                                    </div>
+                                    <div class=" span4">
+                                        <?php echo $form->label($model, 'Primary Contact Middle Name'); ?>
+                                        <?php echo $form->textField($model, 'PrimaryContactMiddleName', array('value' => $getVendorDetailsType1->middle_name, 'class' => 'span12', 'maxLength' => 50, 'placeholder' => 'Middle Name…')); ?>
+                                        <?php echo $form->error($model, 'PrimaryContactMiddleName'); ?>
+                                    </div>
+                                    <div class=" span4">
+                                        <?php echo $form->label($model, '<abbr title="required">*</abbr> Primary Contact Last Name'); ?>
+                                        <?php echo $form->textField($model, 'PrimaryContactLastName', array('value' => $getVendorDetailsType1->last_name, 'maxLength' => 50, 'class' => 'span12')); ?>
+                                        <?php echo $form->error($model, 'PrimaryContactLastName'); ?>
+                                    </div>
+                                    </div>
+                                    <div class="row-fluid">
+                                    <div class=" span4">
+                                        <?php echo $form->label($model, '<abbr title="required">*</abbr> Agency Name'); ?>
+                                        <?php echo $form->textField($model, 'AgencyName', array('value' => $getVendorDetailsType1->legal_name, 'maxLength' => 50, 'class' => 'span12')); ?>
+                                        <?php echo $form->error($model, 'AgencyName'); ?>
+                                    </div>
+                                    </div>
+                                    <?php } ?>
+                                    <?php if($this->session['VendorType']==1){ ?>
+                                    <div class="row-fluid">
+                                    <div class=" span4">
                                         <?php echo $form->label($model, '<abbr title="required">*</abbr> first name'); ?>
-                                        <?php echo $form->textField($model, 'FirstName', array('value' => $customerDetails->first_name, 'maxLength' => 50, 'class' => 'span12')); ?>
+                                        <?php echo $form->textField($model, 'FirstName', array('value' => $getVendorDetailsType1->first_name, 'maxLength' => 50, 'class' => 'span12')); ?>
                                         <?php echo $form->error($model, 'FirstName'); ?>
                                     </div>
-                                    <div class=" span6">
+                                    <div class=" span4">
                                         <?php echo $form->label($model, 'middle name'); ?>
-                                        <?php echo $form->textField($model, 'MiddleName', array('value' => $customerDetails->middle_name, 'class' => 'span12', 'maxLength' => 50, 'placeholder' => 'Middle Name…')); ?>
+                                        <?php echo $form->textField($model, 'MiddleName', array('value' => $getVendorDetailsType1->middle_name, 'class' => 'span12', 'maxLength' => 50, 'placeholder' => 'Middle Name…')); ?>
                                         <?php echo $form->error($model, 'MiddleName'); ?>
                                     </div>
-                                </div>
-                                <div class="row-fluid">
-                                    <div class=" span12">
-                                        <div class=" span6">
-                                            <?php echo $form->label($model, '<abbr title="required">*</abbr> last name'); ?>
-                                            <?php echo $form->textField($model, 'LastName', array('value' => $customerDetails->last_name, 'maxLength' => 50, 'class' => 'span12')); ?>
-                                            <?php echo $form->error($model, 'LastName'); ?>
-                                            </div>
-                                        
+                                    <div class=" span4">
+                                        <?php echo $form->label($model, '<abbr title="required">*</abbr> last name'); ?>
+                                        <?php echo $form->textField($model, 'LastName', array('value' => $getVendorDetailsType1->last_name, 'maxLength' => 50, 'class' => 'span12')); ?>
+                                        <?php echo $form->error($model, 'LastName'); ?>
                                     </div>
-                                </div>
-                                <!--<div class=" span6">
-                                        <?php echo $form->label($model, 'Update Password'); ?>
-                                        <?php echo $form->passwordField($model, 'Password', array('class' => 'span12')); ?>
-                                        <?php echo $form->error($model, 'Password'); ?>
                                     </div>
-                                    <div class=" span6">
-                                        <?php echo $form->label($model, 'Repeat Password'); ?>
-                                        <?php echo $form->passwordField($model, 'RepeatPassword', array('class' => 'span12')); ?>
-                                        <?php echo $form->error($model, 'RepeatPassword'); ?>
-                                    </div>
-                                </div>-->
-                                <!--<div class="row-fluid">
-                                    <div class=" span6">
+                                    <?php } ?>
+                                
+                                 <div class="row-fluid">
+                                    <div class=" span4">
                                         <?php echo $form->label($model, 'Proof of Identify'); ?>
-                                        <?php echo $form->dropDownList($model, 'IdentityProof', CHtml::listData($IdentityProof, 'Id', 'identifiability'), array('prompt'=>'Select Proof of Identify','options' => array($customerDetails->uId => array('selected' => 'selected')), 'class' => 'span12')); ?>
+                                        <?php echo $form->dropDownList($model, 'IdentityProof', CHtml::listData($IdentityProof, 'Id', 'identifiability'), array('prompt'=>'Select Proof of Identify','options' => array($getVendorDocuments->type_of_proof => array('selected' => 'selected')), 'class' => 'span12')); ?>
                                         <?php echo $form->error($model, 'IdentityProof'); ?>
-                                        <?php //echo $form->label($model, 'Proof of Identify'); ?>
-                                        <?php //echo $form->dropDownList($model, 'IdentityProof', CHtml::listData($IdentityProof, 'Id', 'identifiability'), array('options' => array($customerDetails->uId => array('selected' => 'selected')), 'class' => 'span12')); ?>
                                     </div>
-                                    <div class=" span6">
+                                    <div class=" span4">
                                         <?php echo $form->label($model, 'ID Number'); ?>
-                                        
-                                        <?php echo $form->textField($model, 'Number', array('value' => $customerDetails->uIdNumber, 'class' => 'span12', 'placeholder' => 'ID Number…')); ?>
+                                        <?php echo $form->textField($model, 'Number', array('value' => $getVendorDocuments->proof_number, 'class' => 'span12', 'placeholder' => 'ID Number…')); ?>
                                         <?php echo $form->error($model, 'Number'); ?>
                                     </div>
-                                </div>
-                                <div class="row-fluid">
-                                    <div class="span12">
-                                        <div class="span6">
+                                
+                                    
+                                        <div class="span4">
                                             <div class="form-group"><?php echo $form->label($model, 'Upload ID Proof'); ?>
                                                 <div class="control-group" style="position: relative">
                                                     <div class="thumbnail" style="width: 150px; height: 150px;margin-bottom:10px"><img style="width:150px;height:150px" src="<?php if (!empty($this->session['UserId'])) {
-                                                        echo $customerDetails->uIdDocument;
+                                                        echo $getVendorDocuments->proof_image_file_location;
                                                      } else {
                                                         echo '/images/profile/none.jpg';
                                                     } ?>"  id="uIdDocPreviewId"/>
                                                     </div>
                                                     <?php
-                                                    /*$this->widget('ext.EAjaxUpload.EAjaxUpload', array(
-                                                        'id' => 'BasicinfoForm_uIdDocument',
+                                                    $this->widget('ext.EAjaxUpload.EAjaxUpload', array(
+                                                        'id' => 'VendorBasicInformationForm_uIdDocument',
                                                         'config' => array(
                                                             'multiple' => false,
-                                                            'action' => Yii::app()->createUrl('user/docUpload'),
+                                                            'action' => Yii::app()->createUrl('vendor/docUpload'),
                                                             'allowedExtensions' => array("jpg", "jpeg", "gif", "png"), //array("jpg","jpeg","gif","exe","mov" and etc...
                                                             'sizeLimit' => 15 * 1024 * 1024, // maximum file size in bytes
 //                                                          'minSizeLimit'=>10*1024,// minimum file size in bytes
                                                             'onComplete' => "js:function(id, fileName, responseJSON){
                                                              var data = eval(responseJSON);
                                                              globaluIdDocument = '/images/documents/'+data.filename;
-                                                             $('#BasicinfoForm_uIdDocument').val('/images/documents/'+data.filename);
+                                                             $('#VendorBasicInformationForm_uIdDocument').val('/images/documents/'+data.filename);
                                                              $('#uIdDocPreviewId').attr('src',globaluIdDocument);
                                                               }",
                                                             //'messages'=>array(
@@ -166,46 +176,48 @@
                                                             //                 ),
                                                             'showMessage' => "js:function(message){  commonErrorDiv(message,'common_error');}"
                                                         )
-                                                    ));*/
+                                                    ));
                                                     ?>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>-->
+                                    
+                                </div>
+                                
+                                
 
                                 <div class="row-fluid paddingT10">
-                                    <div class="span6">
+                                    <div class="span4">
                                         <?php echo $form->label($model, 'Gender'); ?>
                                         <div class="switch switch-large" id="Gender" data-on-label="Male" data-off-label="Female">
                                         <?php echo $form->checkBox($model, 'Gender', array('id' => 'BasicInfoForm_Gender')); ?>
                                         </div>
                                        
                                     </div>
-<?php if(($customerDetails->birth_date=='0000-00-00') || (empty($customerDetails->birth_date))){ $birthdata ='';}else{$birthdata =date('d-m-Y', strtotime($customerDetails->birth_date));}?>
+<?php if(($getVendorDetailsType1->birth_date=='0000-00-00') || (empty($getVendorDetailsType1->birth_date))){ $birthdata ='';}else{$birthdata =date('d-m-Y', strtotime($getVendorDetailsType1->birth_date));}?>
                                     
-                                    <div class="span6">
+                                    <div class="span4">
                                         <?php echo $form->label($model, 'Date of Birth'); ?>
                                         <?php echo $form->textField($model, 'dateOfBirth', array('value' => $birthdata, 'class' => 'span10')); ?>
                                         <?php echo $form->error($model, 'dateOfBirth'); ?>
                                     </div>
-                                </div>
-                                <div class="row-fluid">
-                                    <div class="span12">
+                                
+                                
+                                    <div class="span4">
                                         <div class="form-group">
                                             <div class="form-group"><?php echo $form->label($model, 'Profile Picture'); ?>
                                                 <div class="control-group" style="position: relative">
                                                     <div class="thumbnail" style="width: 150px; height: 150px;margin-bottom:10px"><img style="width:150px;height:150px" src="<?php if (!empty($this->session['UserId'])) {
-                                                        echo $customerDetails->profilePicture;
+                                                        echo $getVendorDetailsType1->profilePicture;
                                                     } else {
                                                         echo '/images/profile/none.jpg';
                                                     } ?>"  id="profilePicPreviewId"/></div>
                                                     <?
                                                     $this->widget('ext.EAjaxUpload.EAjaxUpload', array(
-                                                        'id' => 'BasicinfoForm_profilePicture',
+                                                        'id' => 'VendorBasicInformationForm_profilePicture',
                                                         'config' => array(
                                                             'multiple' => false,
-                                                            'action' => Yii::app()->createUrl('user/fileUpload'),
+                                                            'action' => Yii::app()->createUrl('vendor/fileUpload'),
                                                             'allowedExtensions' => array("jpg", "jpeg", "gif", "png"), //array("jpg","jpeg","gif","exe","mov" and etc...
 
                                                             'sizeLimit' => 15 * 1024 * 1024, // maximum file size in bytes
@@ -214,7 +226,7 @@
                                     var data = eval(responseJSON);
 
                                     globalProfilePic = '/images/profile/'+data.filename;
-                                    $('#BasicinfoForm_ProfilePic').val('/images/profile/'+data.filename);
+                                    $('#VendorBasicInformationForm_ProfilePic').val('/images/profile/'+data.filename);
                                     $('#profilePicPreviewId').attr('src',globalProfilePic);
                                     }
                                     ",
@@ -235,11 +247,28 @@
 
                                         </div>
                                     </div>
+                              </div>
+                                <div class="row-fluid">
+                                    <div class=" span4">
+                                        <?php echo $form->label($model, ' web site'); ?>
+                                        <?php echo $form->textField($model, 'Website', array('value' => $getVendorDetailsType1->website, 'maxLength' => 50, 'class' => 'span12', 'placeholder' => 'Web site…')); ?>
+                                        <?php echo $form->error($model, 'Website'); ?>
+                                    </div>
+                                    <div class=" span4">
+                                        <?php echo $form->label($model, 'pan'); ?>
+                                        <?php echo $form->textField($model, 'Pan', array('value' => $getVendorDetailsType1->pan_card, 'class' => 'span12', 'maxLength' => 25, 'placeholder' => 'Pan card…')); ?>
+                                        <?php echo $form->error($model, 'Pan'); ?>
+                                    </div>
+                                    <div class=" span4">
+                                        <?php echo $form->label($model, 'Tin'); ?>
+                                        <?php echo $form->textField($model, 'Tin', array('value' => $getVendorDetailsType1->tin_number, 'class' => 'span12', 'maxLength' => 25, 'placeholder' => 'Tin number…')); ?>
+                                        <?php echo $form->error($model, 'Tin'); ?>
+                                    </div>
                                 </div>
                                <div class="row-fluid">
                                 <div class=" span12">
                                 <?php echo $form->label($model, 'How do know KushGhar ?'); ?>
-                                    <?php echo $form->dropDownList($model,'foundKushgharBy', array(''=>'Select One','friend' => 'Friend', 'mail' => 'Mail'), array('options' => array($customerDetails->found_kushghar_by => array('selected' => 'selected')), 'class' => 'span12'));?>
+                                    <?php echo $form->dropDownList($model,'foundKushgharBy', array(''=>'Select One','friend' => 'Friend', 'mail' => 'Mail'), array('options' => array($getVendorDetailsType1->found_kushghar_by => array('selected' => 'selected')), 'class' => 'span12'));?>
                                     <?php echo $form->error($model,'foundKushgharBy'); ?>
                                     <?php //echo $form->dropDownList($model, 'cardType', CHtml::listData(array('prompt'=>'Select Card Type','options' => ('Visa''Visa', 'Master' => 'Master')), 'Id', 'identifiability'), array('options' => array($customerPaymentDetails->card_type => array('selected' => 'selected')), 'class' => 'span12')); ?>
                                 </div>
@@ -247,57 +276,18 @@
                                 <div class="row-fluid">
                                     <div class="span12 ">
                                         <div class="pull-right">
-                                        <?php   echo CHtml::ajaxButton('Continue', array('user/basicinfo'), array(
+                                        <?php   echo CHtml::ajaxButton('Continue', array('vendor/vendorBasicInformation'), array(
                                                         'type' => 'POST',
                                                         'dataType' => 'json',
-                                                        'beforeSend' => 'function(){
-                                                                scrollPleaseWait("basicInfoSpinLoader","basicinfo-form");}',
-                                                        'success' => 'function(data,status,xhr) { addBasicInformationhandler(data,status,xhr);}'), array('class' => 'btn btn-primary'));
+                                                        //'beforeSend' => 'function(){
+                                                        //        scrollPleaseWait("basicInfoSpinLoader","vendorBasicInformation-form");}',
+                                                        'success' => 'function(data,status,xhr) { addVendorBasicInformationhandler(data,status,xhr);}'), array('class' => 'btn btn-primary'));
                                          ?>
                                         </div>
                                     </div>
                                 </div>
                             </fieldset>
-                                        <?php $this->endWidget(); ?>
-
-
-                            
-                                    <?php $form = $this->beginWidget('CActiveForm', array(
-                                  'id' => 'update-form',
-                                  'enableClientValidation' => true,
-                                  'clientOptions' => array(
-                                  'validateOnSubmit' => true,
-                                  )
-                            ));?>
-                            <?php echo $form->error($updatedPassword, 'error'); ?>
-                            <hr> 
-                            <fieldset>
-                                <div class="row-fluid">
-                                    <div class=" span4">
-                                       <?php echo $form->label($updatedPassword, 'Update Password'); ?>
-                                <?php echo $form->passwordField($updatedPassword, 'Password', array('maxLength' => 50, 'class' => 'span12')); ?>
-                                <?php echo $form->error($updatedPassword, 'Password'); ?>
-                                    </div>
-                                    <div class=" span4">
-                                        <?php echo $form->label($updatedPassword, 'Repeat Password'); ?>
-                                        <?php echo $form->passwordField($updatedPassword, 'RepeatPassword', array('maxLength' => 50, 'class' => 'span12')); ?>
-                                        <?php echo $form->error($updatedPassword, 'RepeatPassword'); ?>
-                                    </div>
-                                    <div class=" span4">
-                                        <div  class=" paddingT30">
-                                       <?php echo CHtml::ajaxButton('Update Password', array('user/updatedPsw'), array(
-                                            'type' => 'POST',
-                                            'dataType' => 'json',
-                                            
-                                            'success' => 'function(data,status,xhr) { updatePasswordhandler(data,status,xhr);}'), array('class' => 'btn btn-primary', 'type' => 'submit'));
-                                    ?></div>
-                                    </div>
-                                </div>
-                                
-
-
-                                    </fieldset>
-                            <?php $this->endWidget(); ?>
+                             <?php $this->endWidget(); ?>
                                 
                         </div>
                     </div>
@@ -312,12 +302,12 @@
 
     $(document).ready(function() { $("#instant_notifications").fadeOut(6000, "");
 
-    <?php if($customerDetails->customer_gender == 1){ ?>
+    <?php if($getVendorDetailsType1->vendor_gender == 1){ ?>
         $('#Gender').bootstrapSwitch('setState', true);
     <?php } else {?>
         $('#Gender').bootstrapSwitch('setState', false);
     <?php } ?>
-    <?php if($customerDetails->found_kushghar_by == ''){ ?>
+    <?php if($getVendorDetailsType1->found_kushghar_by == ''){ ?>
         //document.getElementById('BasicinfoForm_foundKushgharBy').disabled = false;
         //document.getElementById('BasicinfoForm_foundKushgharBy').selected = false;
     <?php } else { ?>
@@ -333,8 +323,8 @@
             changeYear: true,
             changeMonth: true
         });
-        document.getElementById('BasicinfoForm_dateOfBirth').readOnly = true;
-        $("#BasicinfoForm_dateOfBirth").datepicker({
+        document.getElementById('VendorBasicInformationForm_dateOfBirth').readOnly = true;
+        $("#VendorBasicInformationForm_dateOfBirth").datepicker({
             yearRange: "-100:-18",
             changeMonth: true,
             changeYear:true
@@ -346,9 +336,9 @@
             var $el = $(data.el)
             , value = data.value;
             if(value == true)
-                $("#BasicInfoForm_Sex").val('1');
+                $("#VendorBasicInformationForm_Sex").val('1');
             else
-                $("#BasicInfoForm_Sex").val('0');
+                $("#VendorBasicInformationForm_Sex").val('0');
         });
         $("[rel=tooltip]").tooltip();
 
@@ -392,10 +382,10 @@ return false;
 //dropdown box
 
 
-    function addBasicInformationhandler(data){
+    function addVendorBasicInformationhandler(data){
         scrollPleaseWaitClose('basicInfoSpinLoader');
         if(data.status=='success'){
-            window.location.href='contactInfo';
+            window.location.href='vendorContactInformation';
         }else{
             //alert("No");
             var error=[];

@@ -108,6 +108,7 @@ class UserController extends Controller {
                     $this->session['email'] = $result->email_address;
                     $this->session['firstName'] = $result->first_name;
                     $this->session['LoginPic'] = $result->profilePicture;
+                    $this->session['Type'] ='Customer';
                     $obj = array('status' => 'success', 'data' => $result, 'error' => '');
                 }
             }
@@ -120,6 +121,7 @@ class UserController extends Controller {
      * User Registration Form Controller START
      */
     public function actionRegistration() {
+        $this->session['Type']='Customer';
         $model = new RegistrationForm;
         $modelLogin = new LoginForm;
         $modelSample = new SampleForm;
@@ -138,6 +140,7 @@ class UserController extends Controller {
                     $custAddressDetails = $this->kushGharService->saveCustomerAddressDumpInfoDetails($getUserDetails->customer_id);
                     $paymentId = $this->kushGharService->saveCustomerPaymentDumpInfoDetails($getUserDetails->customer_id);
                     $this->session['UserId'] = $getUserDetails->customer_id;
+                    
                 } else {
                     $result = "failed";
                     $errors = array("RegistrationForm_error" => 'Already User Existed.');

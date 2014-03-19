@@ -1,9 +1,9 @@
 <script type="text/javascript">
 
-     function addNewUserhandler(data){
-        scrollPleaseWaitClose('registrationSpinLoader');
+     function addNewVendorhandler(data){
+        scrollPleaseWaitClose('vendorRegistrationSpinLoader');
         if(data.status=='success'){
-            window.location.href='basicinfo';
+            window.location.href='vendorBasicInformation';
         }else{
             var error=[];
             if(typeof(data.error)=='string'){
@@ -21,11 +21,11 @@
         }
     }
 
-    function loginhandler(data){
+    function vendorloginhandler(data){
        
      
         if(data.status=='success'){
-            window.location.href='basicinfo';
+            window.location.href='vendorBasicInformation';
         }else{
             var error=[];
         
@@ -56,7 +56,7 @@
         return true;
     }
 
-    function forgotPasswordhandler(data){
+    /*function forgotPasswordhandler(data){
         if(data.status=='success'){
             //window.location.href='basicinfo';
             $("#SampleForm_error_em_").show();
@@ -83,6 +83,20 @@
                 }
             });
         }
+    }*/
+
+    function validate_dropdown(id)
+    {
+        
+        if(id==1){
+            document.getElementById('Individual').style.display='block';
+            document.getElementById('Agency').style.display='none';
+        }
+        else{
+            document.getElementById('Agency').style.display='block';
+            document.getElementById('Individual').style.display='none';
+        }
+       
     }
 </script>
 
@@ -94,11 +108,11 @@
                 <div class="span6 paddingB20">
                     <div class="reg_div">
                         <div class="paddinground">
-                            <h2 class="reg_title">Registration</h2>
-                            <div id="registrationSpinLoader"></div>
+                            <h2 class="reg_title">Vendor Registration</h2>
+                            <div id="vendorRegistrationSpinLoader"></div>
                             <?php
                             $form = $this->beginWidget('CActiveForm', array(
-                                        'id' => 'registration-form',
+                                        'id' => 'vregistration-form',
                                         'enableClientValidation' => true,
                                         'clientOptions' => array(
                                             'validateOnSubmit' => true,
@@ -106,8 +120,13 @@
                                     )); ?>
                             <?php echo $form->error($model, 'error'); ?>
                             <fieldset>
-                                <?php echo $form->hiddenField($model, 'Id'); ?>
+                                <?php //echo $form->hiddenField($model, 'Id'); ?>
 
+                                <?php echo $form->label($model, 'Vendor Type'); ?>
+                                <?php //echo $form->dropDownList($model,'vendorType', array('Individual' => 'Individual', 'Agency' => 'Agency' ,'onchange'=>'js:validate_dropdown(this.value)', 'class' => 'span12'));?>
+                                <?php echo $form->dropDownList($model, 'vendorType', array('1' => 'Individual', '2' => 'Agency'), array('onchange'=>'validate_dropdown(this.value)','class' => 'span12'));?>
+                                <?php echo $form->error($model,'vendorType'); ?>
+                                <div id="Individual" style="display:block">
                                 <?php echo $form->label($model, '<abbr title="required">*</abbr> first name'); ?>
                                 <?php echo $form->textField($model, 'FirstName', array('class' => 'span12', 'placeholder' => 'First Name…')); ?>
                                 <?php echo $form->error($model, 'FirstName'); ?>
@@ -116,12 +135,26 @@
                                 <?php echo $form->textField($model, 'LastName', array('class' => 'span12', 'placeholder' => 'Last Name…')); ?>
                                 <?php echo $form->error($model, 'LastName'); ?>
 
+                                
+                                </div>
+                                <div id="Agency" style="display:none">
+                                <?php echo $form->label($model, '<abbr title="required">*</abbr> Agency Name'); ?>
+                                <?php echo $form->textField($model, 'AgencyName', array('class' => 'span12', 'placeholder' => 'Agency Name…')); ?>
+                                <?php echo $form->error($model, 'AgencyName'); ?>
+
+                                <?php echo $form->label($model, '<abbr title="required">*</abbr> Primary Contact First Name') ?>
+                                <?php echo $form->textField($model, 'PrimaryContactFirstName', array('class' => 'span12', 'placeholder' => 'First Name…')); ?>
+                                <?php echo $form->error($model, 'PrimaryContactFirstName'); ?>
+
+                                <label><?php echo $form->labelEx($model, '<abbr title="required">*</abbr> Primary Contact Last Name'); ?></label>
+                                <?php echo $form->textField($model, 'PrimaryContactLastName', array('class' => 'span12', 'placeholder' => 'Last Name…')); ?>
+                                <?php echo $form->error($model, 'PrimaryContactLastName'); ?>
+                                </div>
                                 <label><?php echo $form->labelEx($model, '<abbr title="required">*</abbr> email'); ?></label>
                                 <?php echo $form->textField($model, 'Email', array('class' => 'span12', 'placeholder' => 'Email…')); ?>
                                 <?php echo $form->error($model, 'Email'); ?>
-
                                 <label><?php echo $form->labelEx($model, '<abbr title="required">*</abbr> phone'); ?></label>
-                                <?php echo $form->textField($model, 'Phone', array('id' => 'RegistrationForm_Phone', 'class' => 'span12', 'placeholder' => 'Phone Number…', 'maxLength' => 10, 'onkeypress' => 'return isNumberKey(event);')); ?>
+                                <?php echo $form->textField($model, 'Phone', array('class' => 'span12', 'placeholder' => 'Phone Number…', 'maxLength' => 10, 'onkeypress' => 'return isNumberKey(event);')); ?>
                                 <?php echo $form->error($model, 'Phone'); ?>
 
                                 <label><?php echo $form->labelEx($model, '<abbr title="required">*</abbr> password'); ?></label>
@@ -134,12 +167,12 @@
                                 <center>
                                    
                                         <?php
-                                        echo CHtml::ajaxButton('Submit', array('user/registration'), array(
+                                        echo CHtml::ajaxButton('Submit', array('vendor/vregistration'), array(
                                             'type' => 'POST',
                                             'dataType' => 'json',
                                             'beforeSend' => 'function(){
-                                                             scrollPleaseWait("registrationSpinLoader","registration-form");}',
-                                            'success' => 'function(data,status,xhr) { addNewUserhandler(data,status,xhr);}'), array('class' => 'btn btn-primary'));
+                                                             scrollPleaseWait("vendorRegistrationSpinLoader","vregistration-form");}',
+                                            'success' => 'function(data,status,xhr) { addNewVendorhandler(data,status,xhr);}'), array('class' => 'btn btn-primary'));
                                         ?>
                                     
                                     <!--<button type="submit" class="reg_fb"> </button>-->
@@ -149,12 +182,13 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="span6 paddingB20">
                     <div class="reg_div ">
                         <div class="paddinground">
-                            <h2 class="reg_title">Login</h2>
+                            <h2 class="reg_title">Vendor Login</h2>
                             <?php $form = $this->beginWidget('CActiveForm', array(
-                                  'id' => 'login-form',
+                                  'id' => 'vendorLogin-form',
                                   'enableClientValidation' => true,
                                   'clientOptions' => array(
                                   'validateOnSubmit' => true,
@@ -169,68 +203,43 @@
                                 <?php echo $form->labelEx($modelLogin, 'password'); ?>
                                 <?php echo $form->passwordField($modelLogin, 'Password', array('class' => 'span12', 'placeholder' => 'Password…')); ?>
                                 <?php echo $form->error($modelLogin, 'Password'); ?>
+                                
+                                <div class="row-fluid paddingT10">
+                                    <div class="span6">
+                                        <?php echo $form->label($modelLogin, 'Vendor type'); ?>
+                                        <div class="switch switch-large" id="VendorType" data-on-label="Individual" data-off-label="Agency">
+                                        <?php echo $form->checkBox($modelLogin, 'VendorType'); ?>
+                                        </div>
+                                       
+                                    </div>
+                                 
+                                   
+                                </div>
+
                                 <center>
-                                    
-                                    <?php echo CHtml::ajaxButton('Login', array('user/login'), array(
+
+                                    <?php echo CHtml::ajaxButton('Login', array('vendor/login'), array(
                                             'type' => 'POST',
                                             'dataType' => 'json',
 
-                                            'success' => 'function(data,status,xhr) { loginhandler(data,status,xhr);}'), array('class' => 'btn btn-primary', 'type' => 'submit'));
+                                            'success' => 'function(data,status,xhr) { vendorloginhandler(data,status,xhr);}'), array('class' => 'btn btn-primary', 'type' => 'submit'));
                                     ?>
-                                   
+
                                     <!--<button type="submit" class="login_fb"> </button>-->
                                 </center>
                                     </fieldset>
                             <?php $this->endWidget(); ?>
 
-                              <!-- Button to trigger modal -->
-    <center><a href="#myModal" role="button" class="" data-toggle="modal">forgot your password?</a></center>
+                             
+    
 
-    <!-- Modal -->
-    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Forgot Password</h3>
-    </div>
-    <div class="modal-body">
-    <?php $form=$this->beginWidget('CActiveForm', array(
-                                                                'id'=>'forgot-form',
-                                                                'enableClientValidation'=>true,
-                                                                'clientOptions'=>array(
-                                                                        'validateOnSubmit'=>true,
-                                                                )
-                                                        )); ?>
-                                                        <?php echo $form->error($modelSample,'error'); ?>
-                                            <div class="logindiv">
-                                            <div class="row-fluid">
-                                            <div class="span12">
-                                              <?php echo $form->label($modelSample,'Email'); ?>
-   <?php echo $form->textField($modelSample,'Email', array( 'class'=>'span12','placeholder'=>'Email…')); ?>
-   <?php echo $form->error($modelSample,'Email'); ?>
-                                             </div>
-                                            </div>
-                                             
-                    <div class="headerbuttonpopup" style="text-align: right">
-                        
-                        <?php echo CHtml::ajaxButton('Send',array('user/forgot'), array(
-            'type' => 'POST',
-            'dataType' => 'json',
-            'success' => 'function(data,status,xhr) { forgotPasswordhandler(data,status,xhr);}'), array('class'=>'btn btn-primary','type'=>'submit')); ?>
-
-                    </div>
-               </div>
-<?php $this->endWidget(); ?>
-    </div>
-    <!--<div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <button class="btn btn-primary">Save changes</button>
-    </div>-->
-    </div><!-- button forgot-->
+    
 
 
                         </div>
                     </div>
                 </div>
+                
             </div>
         </div>
     </div>

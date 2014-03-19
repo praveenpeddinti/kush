@@ -20,6 +20,12 @@
                         </div>
                         <div class="header_menu_items">
                             <ul role="navigation" class="nav">
+                                <li class="mobilemiddle ">
+                                    <div class="btn-group">
+                                        <a href="/vendor/vregistration" class="btn btn-primary"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/vendor_b.png" class="logo" /></a>
+                                        
+                                    </div>
+                                </li>
                                 <li class="mobilemiddle">
                                     <div class="input-append search">
                                         <input class="serachInput" id="appendedInputButton" type="text" placeholder="Search...">
@@ -69,23 +75,34 @@
 <?php } else { ?>
     <header class="inner_header">
         <div class="container">
-            <div class="row-fluid">
+            <div class="row-fluid"><?php //echo "===2====".$this->getUniqueId()."=====".$this->session['Type']."===Id==".$this->session['UserId'];?>
 
                 <?php if (!empty($this->session['UserId'])) { ?>
                 <div class="pull-left">
+                    <?php if($this->session['Type']=='Customer'){?>
                     <a href="/user/basicinfo"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/inner_top_logo.png" alt="logo" class="logo"></a>
+                    <?php }?>
+                    <?php if($this->session['Type']=='Vendor'){?>
+                    <a href="/vendor/vendorBasicInformation"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/inner_top_logo.png" alt="logo" class="logo"></a>
+                    <?php }?>
                 </div>
-            
+
                 <div class="pull-right">
                     <ul class=" pull-right header_profile">
                         <li id="welcome" class=" pull-left welcome_text">Welcome <?php echo $this->session['firstName']; ?></li>
                         <li class=" pull-left  header_profile_settings dropdown">
-                           
+
                              <a data-original-title="Register" href="#"  data-placement="bottom"  class=" headeranchor" data-toggle="dropdown" id="drop3"><i class="fa fa-cog"></i> </a>
                         <div class="dropdown-menu getStarted_dd_div " role="menu" aria-labelledby="dLabel">
                             <div class="headerpoptitle"><img src="<?php if ($this->session['LoginPic'] == '') { echo '/images/dummy_pp.jpg';} else {echo $this->session['LoginPic'];} ?>" ><?php echo $this->session['firstName']; ?></div>
                             <ul>
-                                <li><a href="account"> <i class="fa fa-user"></i> Account</a></li>
+                                <?php if($this->session['Type']=='Customer'){?>
+                                <li><a href="/user/basicinfo"><i class="fa fa-user"></i> Account</a></li>
+                                <?php }?>
+                                <?php if($this->session['Type']=='Vendor'){?>
+                                <li><a href="/vendor/vendorBasicInformation"><i class="fa fa-user"></i> Account</a></li>
+                                <?php }?>
+                                <!--<li><a href="account"> <i class="fa fa-user"></i> Account</a></li>-->
                                 <!--<li><a href="#"><i class="fa fa-user"></i> Settings</a></li>-->
                                 <li><a href="logout" ><i class="fa fa-power-off"></i> Logout</a></li>
 

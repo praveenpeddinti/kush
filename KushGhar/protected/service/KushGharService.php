@@ -129,6 +129,168 @@ class KushGharService {
         return PaymentInfo::model()->getCustomerPaymentDetails($id);
     }
 
-    //payment Details End=========
+
+
+    /**
+     * Vendor Service Layer Start
+     */
+    /* VENDOR TYPE--------------Individual  */
+    //1. Checking the vendor exist ao not based on email_address
+    public function getcheckVendorForIndividual($model) {
+        try {
+            $result = VendorIndividualRegistration::model()->getcheckVendorForIndividual($model);
+        } catch (Exception $ex) {
+            error_log("=============exception occurred in login=============" . $ex->getMessage());
+        }
+        return $result;
+    }
+
+    //2.Save the vendor individual details
+    public function saveVendorForIndividualData($model) {
+        try {
+            $vendor = array();
+            $vendor = VendorIndividualRegistration::model()->saveVendorIndividualData($model);
+            if (!empty($vendor)) {
+                return $vendor;
+            } else {
+                return "false";
+            }
+        } catch (Exception $ex) {
+            error_log("=============exception occurred in login=============" . $ex->getMessage());
+        }
+    }
+
+    public function getVendorDetailsWithEmailIndividual($email) {error_log("Type 1=======");
+        return VendorIndividualRegistration::model()->vendorDetailsEithEmailType1($email);
+    }
+
+
+
+   //2.Get Vendor Type1 details
+    public function getVendorDetailsWithIndividual($Vid) {
+        return VendorIndividualRegistration::model()->getVendorDetailsType1($Vid);
+    }
+
+    //3.Get Vendor Type1 Documents details
+    public function getVendorDocumentsWithIndividual($Vid) {
+        return VendorIndividualDocuments::model()->getVendorDocumentsWithIndividual($Vid);
+    }
+
+    //4. Update Vendor Type1 Details from basic Information Controller action
+    public function updateVendorDetailsWithIndividual($model, $cId) {
+        error_log("dfdsfdsfds===========Service===");
+        return VendorIndividualRegistration::model()->updateVendorDetailsWithIndividual($model, $cId);
+    }
+
+
+    /* VENDOR TYPE--------------Agency  */
+    //1. Checking the vendor exist ao not based on email_address
+    public function getcheckVendorForAgency($model) {
+        try {
+            $result = VendorAgencyRegistration::model()->getcheckVendorForAgency($model);
+        } catch (Exception $ex) {
+            error_log("=============exception occurred in login=============" . $ex->getMessage());
+        }
+        return $result;
+    }
+
+
+
+    //2.Save the vendor agency details
+    public function saveVendorForAgencyData($model) {
+        try {
+            $vendor = array();
+            $vendor = VendorAgencyRegistration::model()->saveVendorAgencyData($model);
+            if (!empty($vendor)) {
+                return $vendor;
+            } else {
+                return "false";
+            }
+        } catch (Exception $ex) {
+            error_log("=============exception occurred in login=============" . $ex->getMessage());
+        }
+    }
+
+    public function getVendorDetailsWithEmailAgency($email) {error_log("Type 2=======");
+        return VendorAgencyRegistration::model()->vendorDetailsEithEmailType1($email);
+    }
+
+    //3.Get Vendor Type2 details
+    public function getVendorDetailsWithAgency($Vid) {
+        return VendorAgencyRegistration::model()->getVendorDetailsType2($Vid);
+    }
+    //4. Update Vendor Type2 Details from basic Information Controller action
+    public function updateVendorDetailsWithAgency($model, $cId) {
+        error_log("dfdsfdsfds===========Service===");
+        return VendorAgencyRegistration::model()->updateVendorDetailsWithAgency($model, $cId);
+    }
+
+
+    /* Vendor Login Checking  */
+    public function vendorLogin($model) {
+        try {error_log("service in====".$model->VendorType);
+            //$user = array();
+            if($model->VendorType==1){
+                $vendor = VendorIndividualRegistration ::model()->checkAuthentication($model);
+            }else{
+                $vendor = VendorAgencyRegistration ::model()->checkAuthentication($model);
+            }
+            if (!empty($vendor)) {
+                return $vendor;
+            } else {
+                return "false";
+            }
+        } catch (Exception $ex) {
+            error_log("=============exception occurred in login=============" . $ex->getMessage());
+        }
+        //return $user;
+    }
+
+    //Save dump details in vendor address table for registration
+    /*public function saveVendorAddressDumpInfo($vId,$vendorIndividualId) {
+        return VendorBasicInformation::model()->saveVendorAddressDumpInfo($vId,$vendorIndividualId);
+    }*/
+
+     /* VENDOR TYPE--------------Documents Details   */
+
+   //Save dump details in vendor documents table for registration
+    public function saveVendorDocumentsDumpInfo($vendorIndividualId,$vTypeId) {
+        error_log("srviceviID==".$vendorIndividualId."==TypevID===".$vTypeId);
+        return VendorIndividualDocuments::model()->saveVendorDocumentsDumpInfo($vendorIndividualId,$vTypeId);
+    }
+
+
+//1. Update Vendor Documents Details from basic Information Controller action
+    public function updateVendorDocuments($model, $cId) {
+        
+        return VendorIndividualDocuments::model()->updateVendorDocuments($model, $cId);
+    }
+
+
+  /* VENDOR TYPE--------------Address Details   */
+
+    //Save dump details in vendor Address table for registration
+    public function saveVendorAddressDumpInfo($vendorIndividualId,$vTypeId) {
+        
+        return VendorAddress::model()->saveVendorAddressDumpInfo($vendorIndividualId,$vTypeId);
+    }
+
+
+    //Contact  Information Details Start methods
+    public function getVendorAddressDetails($vId,$vTypeId) {
+        return VendorAddress::model()->getVendorAddressDetails($vId,$vTypeId);
+    }
+
+    // Update Vendor Address Details from contact Information Controller action
+    public function updateVendorAddressDetails($model, $vId,$VType) {
+
+        return VendorAddress::model()->updateVendorAddressDetails($model, $vId,$VType);
+    }
+
+    // Update Vendor Type1 Details from contact Information Controller action
+    public function updateVendorDetailsWithIndividualContact($model, $vId) {
+
+        return VendorIndividualRegistration::model()->updateVendorDetailsWithIndividualContact($model, $vId);
+    }
 }
 ?>

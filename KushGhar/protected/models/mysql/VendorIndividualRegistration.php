@@ -86,6 +86,7 @@ class VendorIndividualRegistration extends CActiveRecord {
             $vendorDetails->phone = $model->Phone;
             $vendorDetails->password_hash = md5($model->Password);
             $vendorDetails->password_salt = $model->Password;
+            $vendorDetails->profilePicture = '/images/profile/none.jpg';
             $vendorDetails->create_timestamp = gmdate("Y-m-d H:i:s", time());
             $vendorDetails->update_timestamp = gmdate("Y-m-d H:i:s", time());
             if ($vendorDetails->save()) {

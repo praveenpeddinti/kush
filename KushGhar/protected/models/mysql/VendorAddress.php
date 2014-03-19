@@ -42,6 +42,7 @@ class VendorAddress extends CActiveRecord {
             if($vTypeId == 2){
             $vendorDetails->vendor_business_id = $vendorIndividualId;
             }
+            
             $vendorDetails->update_timestamp = gmdate("Y-m-d H:i:s", time());
             if ($vendorDetails->save()) {
                 $result = "success";

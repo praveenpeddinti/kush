@@ -26,6 +26,7 @@ class VendorIndividualDocuments extends CActiveRecord {
             $vendorDetails = new VendorIndividualDocuments();
             $vendorDetails->vendor_individual_id = $vendorIndividualId;
             $vendorDetails->vendor_id = $vTypeId;
+            $vendorDetails->proof_image_file_location = '/images/profile/none.jpg';
             $vendorDetails->update_timestamp = gmdate("Y-m-d H:i:s", time());
             if ($vendorDetails->save()) {
                 $result = "success";

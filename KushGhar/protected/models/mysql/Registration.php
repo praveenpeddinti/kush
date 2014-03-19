@@ -83,6 +83,7 @@ class Registration extends CActiveRecord {
             $sampleDetails->phone = $model->Phone;
             $sampleDetails->password_hash = md5($model->Password);
             $sampleDetails->password_salt = $model->Password;
+            $vendorDetails->profilePicture = '/images/profile/none.jpg';
             $sampleDetails->create_timestamp = gmdate("Y-m-d H:i:s", time());
             $sampleDetails->update_timestamp = gmdate("Y-m-d H:i:s", time());
             if ($sampleDetails->save()) {

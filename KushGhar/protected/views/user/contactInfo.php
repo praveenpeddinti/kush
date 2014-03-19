@@ -95,8 +95,9 @@
         <?php echo $form->error($model,'Phone'); ?>
     </div>
     <div class=" span6">
-    <?php echo $form->labelEx($model,'alternate Phone'); ?>
-        <?php echo $form->textField($model,'AlternatePhone',array('value'=>$customerAddressDetails->alternate_phone,'placeholder'=>'Alternative Phone Number…', 'class'=>'span12', 'maxLength' => 10, 'onkeypress' => 'return isNumberKey(event);')); ?>
+        <?php if(($customerAddressDetails->alternate_phone=='0') || (empty($customerAddressDetails->alternate_phone))){ $alternatePhone ='';}else{$alternatePhone =$customerAddressDetails->alternate_phone;}?>
+        <?php echo $form->labelEx($model,'alternate Phone'); ?>
+        <?php echo $form->textField($model,'AlternatePhone',array('value'=>$alternatePhone,'placeholder'=>'Alternative Phone Number…', 'class'=>'span12', 'maxLength' => 10, 'onkeypress' => 'return isNumberKey(event);')); ?>
         <?php echo $form->error($model,'AlternatePhone'); ?>
     </div>
     </div>

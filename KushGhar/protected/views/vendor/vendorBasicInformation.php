@@ -132,13 +132,13 @@
                                 
                                  <div class="row-fluid">
                                     <div class=" span4">
-                                        <?php echo $form->label($model, 'Proof of Identify'); ?>
-                                        <?php echo $form->dropDownList($model, 'IdentityProof', CHtml::listData($IdentityProof, 'Id', 'identifiability'), array('prompt'=>'Select Proof of Identify','options' => array($getVendorDocuments->type_of_proof => array('selected' => 'selected')), 'class' => 'span12')); ?>
+                                        <?php echo $form->label($model, 'Proof of Identity'); ?>
+                                        <?php echo $form->dropDownList($model, 'IdentityProof', CHtml::listData($IdentityProof, 'Id', 'identifiability'), array('prompt'=>'Select Proof of Identity','options' => array($getVendorDocuments->type_of_proof => array('selected' => 'selected')), 'class' => 'span12')); ?>
                                         <?php echo $form->error($model, 'IdentityProof'); ?>
                                     </div>
                                     <div class=" span4">
                                         <?php echo $form->label($model, 'ID Number'); ?>
-                                        <?php echo $form->textField($model, 'Number', array('value' => $getVendorDocuments->proof_number, 'class' => 'span12', 'placeholder' => 'ID Number…')); ?>
+                                        <?php echo $form->textField($model, 'Number', array('value' => $getVendorDocuments->proof_number, 'class' => 'span12', 'maxLength' => 25, 'placeholder' => 'ID Number…')); ?>
                                         <?php echo $form->error($model, 'Number'); ?>
                                     </div>
                                 
@@ -325,12 +325,12 @@
         });
         document.getElementById('VendorBasicInformationForm_dateOfBirth').readOnly = true;
         $("#VendorBasicInformationForm_dateOfBirth").datepicker({
-            yearRange: "-100:-18",
+            yearRange: "-100:-14",
             changeMonth: true,
-            changeYear:true
+            changeYear:true,
+            defaultDate:"-14y-m-d"
         });
     });
-
     $(document).ready(function(){
         $('#Gender').on('switch-change', function (e, data) {
             var $el = $(data.el)

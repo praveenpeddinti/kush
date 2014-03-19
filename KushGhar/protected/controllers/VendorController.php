@@ -73,7 +73,7 @@ class VendorController extends Controller {
                     $this->session['firstName'] = $result->first_name;
                     $this->session['LoginPic'] = $result->profilePicture;
                     $this->session['Type'] ='Vendor';
-                    error_log("VendorType=see===".$result->email_address."===fName===".$result->first_name."===".$this->session['UserId']);
+                    error_log("VendorType=see===".$result->email_address."===fName===".$result->first_name."===".$this->session['UserId']."----".$this->session['LoginPic']);
                     $obj = array('status' => 'success', 'data' => $result, 'error' => '');
                 }
             }
@@ -196,7 +196,7 @@ class VendorController extends Controller {
                 //unset($this->session['fileName']);
                 //unset($this->session['docFileName']);
                 //$result = $this->kushGharService->updateRegistrationData($basicForm, $cId);
-                
+                error_log("picture====".$this->session['LoginPic']);
                 $saveDocuments = $this->kushGharService->updateVendorDocuments($basicForm, $Vid);
                 if($VType==1){
                     $result = $this->kushGharService->updateVendorDetailsWithIndividual($basicForm, $Vid);

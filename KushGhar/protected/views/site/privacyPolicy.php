@@ -10,7 +10,7 @@
                     Kushghar, Inc's Privacy Policy is here to help you understand what information we collect and how we use it to provide a better experience. When you registration, you accept our Privacy Policy and Terms of Service, you consent to our collection, storage, use and disclosure of your personal information as described in this Privacy Policy.
                 </p>
                 <div class="static_page_heading"></div>
-                <h3>What is covered</h3>
+                <h3>What is Covered</h3>
                 <div class="static_page_heading"></div>
                 <p>In this policy, "Kushghar, Inc" refers to Kushghar, Inc. and its Affiliates, which shall mean subsidiaries, parent companies, joint ventures and other corporate entities under common ownership. We may also refer to Kushghar, Inc as "We" or "Us”.</p>
                 <h5>This Privacy Policy describes:</h5>

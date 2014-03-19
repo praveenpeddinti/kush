@@ -20,12 +20,20 @@
                         </div>
                         <div class="header_menu_items">
                             <ul role="navigation" class="nav">
-                                <li class="mobilemiddle ">
+                                <li class="dropdown ">
+                                   
+                                        
+                                        <a href="/vendor/vregistration"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/vendor_b.png" class="logo" /></a>
+
+                                   
+                                    
+                                </li>
+                                <!--<li class="mobilemiddle ">
                                     <div class="btn-group">
                                         <a href="/vendor/vregistration" class="btn btn-primary"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/vendor_b.png" class="logo" /></a>
                                         
                                     </div>
-                                </li>
+                                </li>-->
                                 <li class="mobilemiddle">
                                     <div class="input-append search">
                                         <input class="serachInput" id="appendedInputButton" type="text" placeholder="Search...">

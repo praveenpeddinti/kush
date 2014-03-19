@@ -335,9 +335,10 @@
         });
         document.getElementById('BasicinfoForm_dateOfBirth').readOnly = true;
         $("#BasicinfoForm_dateOfBirth").datepicker({
-            yearRange: "-100:-18",
+            yearRange: "-100:-14",
             changeMonth: true,
-            changeYear:true
+            changeYear:true,
+            defaultDate:"-14y-m-d"
         });
     });
 

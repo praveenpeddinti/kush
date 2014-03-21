@@ -32,10 +32,10 @@
                         $statusClassForPayment = 'status_info3';
                     }
                     ?>
-                    <li class="active"><a href="basicinfo"> <i class="fa fa-user"></i> Basic Info</a>
+                    <li><a href="basicinfo"> <i class="fa fa-user"></i> Basic Info</a>
                         <div class=<?php echo '"'.$statusClassForBasic.'"' ?>></div>
                     </li>
-                    <li ><a href="contactInfo"> <i class="fa fa-phone"></i> Contact Info</a>
+                    <li  class="active"><a href="contactInfo"> <i class="fa fa-phone"></i> Contact Info</a>
                         <div class="<?php echo $statusClassForContact;?>"> </div>
                     </li>
                     <li ><a href="paymentInfo"> <i class="fa fa-credit-card"></i> Payment Info</a>

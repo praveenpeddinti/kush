@@ -28,9 +28,10 @@ class VendorContactInformationForm extends CFormModel {
             // email has to be a valid email address
             array('Email', 'email'),
             array('Phone, AlternatePhone', 'numerical', 'integerOnly'=>true),
+            array('Phone, AlternatePhone', 'length', "min" => "10"),
             array('City', 'match', 'pattern' => '/^[a-zA-Z0-9\s]+$/', 'message' => '{attribute} can only contain Alphabet and digits'),
             array('PinCode', 'numerical', 'integerOnly'=>true),
-            //array('cardNumber', 'length', 'min'=>6),
+            array('PinCode', 'length', 'min'=>6),
             array('State', 'required', 'message' => 'Please Select {attribute}.'),
             array('Email, Phone, AlternatePhone, Address1, Address2, State, City, PinCode, Landmark, Id', 'safe'),
         );

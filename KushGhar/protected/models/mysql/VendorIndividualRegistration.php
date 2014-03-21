@@ -55,6 +55,19 @@ class VendorIndividualRegistration extends CActiveRecord {
         return $vendor;
     }
 
+    //Update Password in Vendor Individual
+    public function updatedPasswordInVendor($model, $VId,$VType) {
+        try {
+            $vendorObj = VendorIndividualRegistration::model()->findByAttributes(array('vendor_id' => $VId));
+            $vendorObj->password_hash = md5($model->Password);
+            $vendorObj->password_salt = $model->Password;
+            if ($vendorObj->update())
+                $result1 = "success";
+        } catch (Exception $ex) {
+            error_log("##########Exception Occurred updateData#############" . $ex->getMessage());
+        }
+        return $result1;
+    }
 
     public function getcheckVendorForIndividual($model) {
         try {
@@ -172,6 +185,8 @@ class VendorIndividualRegistration extends CActiveRecord {
         }
         return $result;
     }
+
+
 
 }
 ?>

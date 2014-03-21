@@ -91,6 +91,7 @@
         if(id==1){
             document.getElementById('Individual').style.display='block';
             document.getElementById('Agency').style.display='none';
+            
         }
         else{
             document.getElementById('Agency').style.display='block';
@@ -122,9 +123,9 @@
                             <fieldset>
                                 <?php //echo $form->hiddenField($model, 'Id'); ?>
 
-                                <?php echo $form->label($model, 'Vendor Type'); ?>
+                                <?php echo $form->label($model, '<abbr title="required">*</abbr> Vendor Type'); ?>
                                 <?php //echo $form->dropDownList($model,'vendorType', array('Individual' => 'Individual', 'Agency' => 'Agency' ,'onchange'=>'js:validate_dropdown(this.value)', 'class' => 'span12'));?>
-                                <?php echo $form->dropDownList($model, 'vendorType', array('1' => 'Individual', '2' => 'Agency'), array('onchange'=>'validate_dropdown(this.value)','class' => 'span12'));?>
+                                <?php echo $form->dropDownList($model, 'vendorType', array(''=>'Select Vendor Type','1' => 'Individual', '2' => 'Agency'), array('onchange'=>'validate_dropdown(this.value)','class' => 'span12'));?>
                                 <?php echo $form->error($model,'vendorType'); ?>
                                 <div id="Individual" style="display:block">
                                 <?php echo $form->label($model, '<abbr title="required">*</abbr> first name'); ?>
@@ -207,7 +208,7 @@
                                 <div class="row-fluid paddingT10">
                                     <div class="span6">
                                         <?php echo $form->label($modelLogin, 'Vendor type'); ?>
-                                        <div class="switch switch-large" id="VendorType" data-on-label="Individual" data-off-label="Agency">
+                                        <div class="switch switch-large vender_type" id="VendorType" data-on-label="Individual" data-off-label="Agency">
                                         <?php echo $form->checkBox($modelLogin, 'VendorType'); ?>
                                         </div>
                                        

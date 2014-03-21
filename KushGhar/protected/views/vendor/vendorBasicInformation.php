@@ -267,7 +267,7 @@
                                 </div>
                                <div class="row-fluid">
                                 <div class=" span12">
-                                <?php echo $form->label($model, 'How do know KushGhar ?'); ?>
+                                <?php echo $form->label($model, 'How do you know KushGhar ?'); ?>
                                     <?php echo $form->dropDownList($model,'foundKushgharBy', array(''=>'Select One','friend' => 'Friend', 'mail' => 'Mail'), array('options' => array($getVendorDetailsType1->found_kushghar_by => array('selected' => 'selected')), 'class' => 'span12'));?>
                                     <?php echo $form->error($model,'foundKushgharBy'); ?>
                                     <?php //echo $form->dropDownList($model, 'cardType', CHtml::listData(array('prompt'=>'Select Card Type','options' => ('Visa''Visa', 'Master' => 'Master')), 'Id', 'identifiability'), array('options' => array($customerPaymentDetails->card_type => array('selected' => 'selected')), 'class' => 'span12')); ?>
@@ -288,6 +288,45 @@
                                 </div>
                             </fieldset>
                              <?php $this->endWidget(); ?>
+
+
+                            <?php $form = $this->beginWidget('CActiveForm', array(
+                                  'id' => 'vendorUpdate-form',
+                                  'enableClientValidation' => true,
+                                  'clientOptions' => array(
+                                  'validateOnSubmit' => true,
+                                  )
+                            ));?>
+                            <?php echo $form->error($updatedPassword, 'error'); ?>
+                            <hr>
+                            <fieldset>
+                                <div class="row-fluid">
+                                    <div class=" span4">
+                                       <?php echo $form->label($updatedPassword, 'Update Password'); ?>
+                                <?php echo $form->passwordField($updatedPassword, 'Password', array('maxLength' => 50, 'class' => 'span12')); ?>
+                                <?php echo $form->error($updatedPassword, 'Password'); ?>
+                                    </div>
+                                    <div class=" span4">
+                                        <?php echo $form->label($updatedPassword, 'Repeat Password'); ?>
+                                        <?php echo $form->passwordField($updatedPassword, 'RepeatPassword', array('maxLength' => 50, 'class' => 'span12')); ?>
+                                        <?php echo $form->error($updatedPassword, 'RepeatPassword'); ?>
+                                    </div>
+                                    <div class=" span4">
+                                        <div  class=" paddingT30">
+                                       <?php echo CHtml::ajaxButton('Update Password', array('vendor/updatedPsw'), array(
+                                            'type' => 'POST',
+                                            'dataType' => 'json',
+
+                                            'success' => 'function(data,status,xhr) { updatePasswordhandler(data,status,xhr);}'), array('class' => 'btn btn-primary', 'type' => 'submit'));
+                                    ?></div>
+                                    </div>
+                                </div>
+
+
+
+                                    </fieldset>
+                            <?php $this->endWidget(); ?>
+
                                 
                         </div>
                     </div>

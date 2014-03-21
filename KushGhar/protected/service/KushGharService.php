@@ -246,6 +246,16 @@ class KushGharService {
         //return $user;
     }
 
+    //Update Password vendor Individual 
+    public function getupdatedPasswordInVendor($model, $VId,$VType) {error_log("service-------------");
+        return VendorIndividualRegistration::model()->updatedPasswordInVendor($model, $VId,$VType);
+    }
+
+    //Update Password vendor  Agency
+    public function getupdatedPasswordInVendorAgency($model, $VId,$VType) {error_log("service-------------");
+        return VendorAgencyRegistration::model()->updatedPasswordInVendor($model, $VId,$VType);
+    }
+
     //Save dump details in vendor address table for registration
     /*public function saveVendorAddressDumpInfo($vId,$vendorIndividualId) {
         return VendorBasicInformation::model()->saveVendorAddressDumpInfo($vId,$vendorIndividualId);

@@ -134,7 +134,7 @@ class UserController extends Controller {
                 $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
             } else {
                 $Dresult = $this->kushGharService->getcheckUserExist($model);
-                if ($Dresult == 'No user') {
+                if ($Dresult == 'No user') {error_log("enter No user======".$Dresult);
                     $result = $this->kushGharService->saveRegistrationData($model);
                     $getUserDetails = $this->kushGharService->getUserDetailsWithEmail($model->Email);
                     $custAddressDetails = $this->kushGharService->saveCustomerAddressDumpInfoDetails($getUserDetails->customer_id);

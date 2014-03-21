@@ -25,6 +25,7 @@ class VendorRegistrationForm extends CFormModel {
         return array(
             // First Name, Email, Phone, Password and Repeat Password are required
             array('Email,Phone, Password, RepeatPassword', 'required', 'message' => 'Please enter a value for {attribute}.'),
+            array('vendorType', 'required', 'message' => 'Please Select Vendor Type.'),
             //array('AFirstName', 'required', 'message' => 'Please enter a value for Primary Contact First Name.'),
             //array('ALastName', 'required', 'message' => 'Please enter a value for Primary Contact Last Name.'),
             array('vendorType', 'ext.YiiConditionalValidator.YiiConditionalValidator',

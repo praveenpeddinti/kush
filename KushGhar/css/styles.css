@@ -503,3 +503,10 @@ ul.header_profile{ list-style:none; margin:0; padding:0}
 .instant_notification{ position:absolute; right:10px; background:#FC0; padding:10px; color:#000; text-align:right; top:20px; border-radius:8px;}
 .ourteam_pic { margin:auto; textalign:center; margin-top:20px}
 .ourteam_pic img{  textalign:center;border:4px solid #f2f2f2; }
+.btn_vendor {background: url(../images/vendor_b.png) no-repeat left 8px;padding:0 10px	 }
+
+.nav > li > a.vendor_b{ background: none;}
+.nav > li > a:hover.vendor_b{ background: none;}
+
+
+

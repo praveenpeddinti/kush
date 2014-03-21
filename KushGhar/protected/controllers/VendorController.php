@@ -159,7 +159,7 @@ class VendorController extends Controller {
     public function actionVendorBasicInformation() {error_log("enter basic info====".$this->session['VendorType']."==".$this->session['UserId']);
         error_log("picture=====".$this->session['LoginPic']);
         $basicForm = new VendorBasicInformationForm;
-        //$updatedPasswordForm = new updatedPasswordForm;
+        $updatedPasswordForm = new updatedPasswordForm;
         $Vid = $this->session['UserId'];
         $VType = $this->session['VendorType'];
         $this->session['Type']='Vendor';
@@ -220,7 +220,7 @@ class VendorController extends Controller {
         } else {error_log("elsepppppppppp");
             //$this->render('basicinfo', array("model" => $basicForm, "IdentityProof" => $Identity, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails, "updatedPassword"=> $updatedPasswordForm));
         //}
-        $this->render('vendorBasicInformation', array("model" => $basicForm, "IdentityProof" => $Identity, "getVendorDocuments" => $getVendorDocuments, "getVendorDetailsType1" => $getVendorDetailsType1));
+        $this->render('vendorBasicInformation', array("model" => $basicForm, "IdentityProof" => $Identity, "getVendorDocuments" => $getVendorDocuments, "getVendorDetailsType1" => $getVendorDetailsType1, "updatedPassword"=> $updatedPasswordForm));
         }
     }
 
@@ -367,7 +367,45 @@ class VendorController extends Controller {
     }
 
 
+ /**
+     * Vendor Updated Password in Basic info page START
+     */
+    public function actionUpdatedPsw() { error_log("enter-------");
+        $model = new updatedPasswordForm;
+        $VId = $this->session['UserId'];
+        $VType = $this->session['VendorType'];
+        $request = yii::app()->getRequest();
+        $formName = $request->getParam('updatedPasswordForm');
+        if ($formName != '') {
+            $model->attributes = $request->getParam('updatedPasswordForm');
+            $errors = CActiveForm::validate($model);
+            if ($errors != '[]') {
+                $obj = array('status' => 'error', 'message' => '', 'error' => $errors);
+            } else {error_log("enter--ele-----");
+                if($VType==1){
+                    $result = $this->kushGharService->getupdatedPasswordInVendor($model, $VId,$VType);
+                }
+                if($VType==2){
+                    $result = $this->kushGharService->getupdatedPasswordInVendorAgency($model, $VId,$VType);
 
+                }
+
+
+                //$result = $this->kushGharService->getupdatedPasswordInBasicInfo($model,$cId);
+                if ($result == "success") {
+                    $message = array("RegistrationForm_error" => 'Password is updated successfully');
+                    $obj = array('status' => 'success', 'data' => $message, 'error' => '');
+                } else {
+                    $message = array("RegistrationForm_error" => 'Already User Existed.');
+                    $obj = array('status' => 'error', 'data' => '', 'error' => $message);
+                }
+            }
+            $renderScript = $this->rendering($obj);
+            echo $renderScript;
+        } else {
+            $this->render('registration', array('model' => $model, 'modelLogin' => $modelLogin, 'modelSample' => $modelSample));
+        }
+    }
 
 
 

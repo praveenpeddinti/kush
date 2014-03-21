@@ -23,7 +23,7 @@
                                 <li class="dropdown ">
                                    
                                         
-                                        <a href="/vendor/vregistration"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/vendor_b.png" class="logo" /></a>
+                                        <a class="vendor_b" href="/vendor/vregistration"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/vendor_b.png" class="logo" /></a>
 
                                    
                                     
@@ -83,7 +83,7 @@
 <?php } else { ?>
     <header class="inner_header">
         <div class="container">
-            <div class="row-fluid"><?php //echo "===2====".$this->getUniqueId()."=====".$this->session['Type']."===Id==".$this->session['UserId'];?>
+            <div class="row-fluid"><?php echo "===2====".$this->getUniqueId()."=====".$this->session['Type']."===Id==".$this->session['UserId'];?>
 
                 <?php if (!empty($this->session['UserId'])) { ?>
                 <div class="pull-left">

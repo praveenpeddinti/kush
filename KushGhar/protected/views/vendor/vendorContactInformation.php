@@ -87,7 +87,7 @@
     <div class="row-fluid">
     <div class=" span6">
     <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> email'); ?>
-	<?php echo $form->textField($model,'Email',array('value'=>$getVendorDetailsType1->email_address, 'maxLength' => 100, 'class'=>'span12', 'placeholder'=>'Phone Number…')); ?>
+	<?php echo $form->textField($model,'Email',array('value'=>$getVendorDetailsType1->email_address, 'maxLength' => 100, 'class'=>'span12', 'placeholder'=>'Email…')); ?>
 	<?php echo $form->error($model,'Email'); ?>
     </div>
     </div>

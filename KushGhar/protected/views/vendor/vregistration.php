@@ -144,11 +144,11 @@
                                 <?php echo $form->error($model, 'AgencyName'); ?>
 
                                 <?php echo $form->label($model, '<abbr title="required">*</abbr> Primary Contact First Name') ?>
-                                <?php echo $form->textField($model, 'PrimaryContactFirstName', array('class' => 'span12', 'placeholder' => 'First Name…', 'maxLength' => 50)); ?>
+                                <?php echo $form->textField($model, 'PrimaryContactFirstName', array('class' => 'span12', 'placeholder' => 'Primary Contact First Name…', 'maxLength' => 50)); ?>
                                 <?php echo $form->error($model, 'PrimaryContactFirstName'); ?>
 
                                 <label><?php echo $form->labelEx($model, '<abbr title="required">*</abbr> Primary Contact Last Name'); ?></label>
-                                <?php echo $form->textField($model, 'PrimaryContactLastName', array('class' => 'span12', 'placeholder' => 'Last Name…', 'maxLength' => 50)); ?>
+                                <?php echo $form->textField($model, 'PrimaryContactLastName', array('class' => 'span12', 'placeholder' => 'Primary Contact Last Name…', 'maxLength' => 50)); ?>
                                 <?php echo $form->error($model, 'PrimaryContactLastName'); ?>
                                 </div>
                                 <label><?php echo $form->labelEx($model, '<abbr title="required">*</abbr> email'); ?></label>
@@ -198,11 +198,11 @@
                             <?php echo $form->error($modelLogin, 'error'); ?>
                             <fieldset>
                                 <?php echo $form->label($modelLogin, 'user ID', array('class' => 'span12')); ?>
-                                <?php echo $form->textField($modelLogin, 'UserId', array('class' => 'span12', 'placeholder' => 'Email / Phone Number…', 'maxLength' => 50)); ?>
+                                <?php echo $form->textField($modelLogin, 'UserId', array('class' => 'span12', 'placeholder' => 'Email / Phone Number…', 'maxLength' => 100)); ?>
                                 <?php echo $form->error($modelLogin, 'UserId'); ?>
 
                                 <?php echo $form->labelEx($modelLogin, 'password'); ?>
-                                <?php echo $form->passwordField($modelLogin, 'Password', array('class' => 'span12', 'placeholder' => 'Password…', 'maxLength' => 50)); ?>
+                                <?php echo $form->passwordField($modelLogin, 'Password', array('class' => 'span12', 'placeholder' => 'Password…', 'maxLength' => 100)); ?>
                                 <?php echo $form->error($modelLogin, 'Password'); ?>
                                 
                                 <div class="row-fluid paddingT10">

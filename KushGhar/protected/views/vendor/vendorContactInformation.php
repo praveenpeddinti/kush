@@ -87,7 +87,7 @@
     <div class="row-fluid">
     <div class=" span6">
     <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> email'); ?>
-	<?php echo $form->textField($model,'Email',array('value'=>$getVendorDetailsType1->email_address, 'maxLength' => 100, 'class'=>'span12')); ?>
+	<?php echo $form->textField($model,'Email',array('value'=>$getVendorDetailsType1->email_address, 'maxLength' => 100, 'class'=>'span12', 'placeholder'=>'Phone Number…')); ?>
 	<?php echo $form->error($model,'Email'); ?>
     </div>
     </div>
@@ -133,7 +133,7 @@
    </div>
       <div class=" span6">
     <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> city'); ?>
-        <?php echo $form->textField($model,'City',array('value'=>$getVendorAddress->address_city, 'maxLength' => 25, 'class'=>'span12')); ?>
+        <?php echo $form->textField($model,'City',array('value'=>$getVendorAddress->address_city, 'maxLength' => 25, 'class'=>'span12','placeholder'=>'City…',)); ?>
         <?php echo $form->error($model,'City'); ?>
    </div>
    </div>

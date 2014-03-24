@@ -86,7 +86,7 @@
                                 <div class="row-fluid">
                                     <div class=" span6">
                                         <?php echo $form->label($model, '<abbr title="required">*</abbr> first name'); ?>
-                                        <?php echo $form->textField($model, 'FirstName', array('value' => $customerDetails->first_name, 'maxLength' => 50, 'class' => 'span12')); ?>
+                                        <?php echo $form->textField($model, 'FirstName', array('value' => $customerDetails->first_name, 'maxLength' => 50, 'class' => 'span12', 'placeholder' => 'First Name…')); ?>
                                         <?php echo $form->error($model, 'FirstName'); ?>
                                     </div>
                                     <div class=" span6">
@@ -99,7 +99,7 @@
                                     <div class=" span12">
                                         <div class=" span6">
                                             <?php echo $form->label($model, '<abbr title="required">*</abbr> last name'); ?>
-                                            <?php echo $form->textField($model, 'LastName', array('value' => $customerDetails->last_name, 'maxLength' => 50, 'class' => 'span12')); ?>
+                                            <?php echo $form->textField($model, 'LastName', array('value' => $customerDetails->last_name, 'maxLength' => 50, 'class' => 'span12', 'placeholder' => 'Last Name…')); ?>
                                             <?php echo $form->error($model, 'LastName'); ?>
                                             </div>
                                         
@@ -186,7 +186,7 @@
                                     
                                     <div class="span6">
                                         <?php echo $form->label($model, 'Date of Birth'); ?>
-                                        <?php echo $form->textField($model, 'dateOfBirth', array('value' => $birthdata, 'class' => 'span10')); ?>
+                                        <?php echo $form->textField($model, 'dateOfBirth', array('value' => $birthdata, 'class' => 'span10', 'placeholder' => 'Date of Birth…')); ?>
                                         <?php echo $form->error($model, 'dateOfBirth'); ?>
                                     </div>
                                 </div>
@@ -275,12 +275,12 @@
                                 <div class="row-fluid">
                                     <div class=" span4">
                                        <?php echo $form->label($updatedPassword, 'Update Password'); ?>
-                                <?php echo $form->passwordField($updatedPassword, 'Password', array('maxLength' => 50, 'class' => 'span12')); ?>
+                                <?php echo $form->passwordField($updatedPassword, 'Password', array('maxLength' => 50, 'class' => 'span12', 'placeholder' => 'Update Password…')); ?>
                                 <?php echo $form->error($updatedPassword, 'Password'); ?>
                                     </div>
                                     <div class=" span4">
                                         <?php echo $form->label($updatedPassword, 'Repeat Password'); ?>
-                                        <?php echo $form->passwordField($updatedPassword, 'RepeatPassword', array('maxLength' => 50, 'class' => 'span12')); ?>
+                                        <?php echo $form->passwordField($updatedPassword, 'RepeatPassword', array('maxLength' => 50, 'class' => 'span12', 'placeholder' => 'Repeat Password…')); ?>
                                         <?php echo $form->error($updatedPassword, 'RepeatPassword'); ?>
                                     </div>
                                     <div class=" span4">

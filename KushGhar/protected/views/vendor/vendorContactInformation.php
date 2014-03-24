@@ -15,13 +15,32 @@
             <div id="accounts" class="collapse in">
             	<div class="selected_tab">Account</div>
             	<ul class="l_menu_sub_menu">
-                
-                    <li class="active"><a href="vendorBasicInformation"> <i class="fa fa-user"></i> Basic Info</a>
-                        <div class="status_info1"></div>
-                    </li>
-                    <li ><a href="vendorBasicInformation"> <i class="fa fa-phone"></i> Contact Info</a>
-                        <div class="status_info1"></div>
-                    </li>
+                    <?php
+                                 if((!empty($getVendorDetailsType1->first_name)) && (!empty($getVendorDetailsType1->middle_name)) && (!empty($getVendorDetailsType1->last_name)) && (!empty($getVendorDetailsType1->birth_date)) && (!empty($getVendorDetailsType1->profilePicture)) && (!empty($getVendorDetailsType1->found_kushghar_by)) && (!empty($getVendorDetailsType1->website)) && (!empty($getVendorDetailsType1->pan_card)) && (!empty($getVendorDetailsType1->tin_number))){
+                                     $statusClassForBasic = 'status_info2';
+                                 }else{
+                                     $statusClassForBasic = 'status_info1';
+                                 }
+                                 if((!empty($getVendorDetailsType1->email_address)) && (!empty($getVendorDetailsType1->phone)) && ($getVendorAddress->alternate_phone!=0) && (!empty($getVendorAddress->address_line1)) && (!empty($getVendorAddress->address_line2)) && (!empty($getVendorAddress->address_state)) && (!empty($getVendorAddress->address_city)) && (!empty($getVendorAddress->address_pin_code)) && (!empty($getVendorAddress->address_landmark))){
+
+                                     $statusClassForContact = 'status_info2';
+                                 }else{
+
+                                     $statusClassForContact = 'status_info1';
+                                 }
+                                 /*if((!empty($customerPaymentDetails->card_type)) && (!empty($customerPaymentDetails->card_holder_name)) && (!empty($customerPaymentDetails->card_number)) && (!empty($customerPaymentDetails->card_expiry_month)) && (!empty($customerPaymentDetails->card_expiry_year))){
+                                     $statusClassForPayment = 'status_info2';
+                                 }else{
+                                     $statusClassForPayment = 'status_info3';
+                                 }*/
+                                 ?>
+                                <li><a href="vendorBasicInformation"> <i class="fa fa-user"></i> Basic Info</a>
+                                    <div class=<?php echo '"'.$statusClassForBasic.'"' ?>></div>
+                                </li>
+                                <li  class="active"><a href="vendorContactInformation"> <i class="fa fa-phone"></i> Contact Info</a>
+                                    <div class=<?php echo '"'.$statusClassForContact.'"' ?>></div>
+                                </li>
+              
                     <li ><a href="#"> <i class="fa fa-credit-card"></i> Payment Info</a>
                         <div class="status_info1"></div>
                     </li>

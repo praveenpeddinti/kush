@@ -164,6 +164,7 @@ class VendorController extends Controller {
         $VType = $this->session['VendorType'];
         $this->session['Type']='Vendor';
         $getVendorDocuments = $this->kushGharService->getVendorDocumentsWithIndividual($Vid);
+        $getVendorAddress = $this->kushGharService->getVendorAddressDetails($Vid,$VType);
         if($VType==1){
         $getVendorDetailsType1 = $this->kushGharService->getVendorDetailsWithIndividual($Vid);
         }
@@ -220,7 +221,7 @@ class VendorController extends Controller {
         } else {error_log("elsepppppppppp");
             //$this->render('basicinfo', array("model" => $basicForm, "IdentityProof" => $Identity, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails, "updatedPassword"=> $updatedPasswordForm));
         //}
-        $this->render('vendorBasicInformation', array("model" => $basicForm, "IdentityProof" => $Identity, "getVendorDocuments" => $getVendorDocuments, "getVendorDetailsType1" => $getVendorDetailsType1, "updatedPassword"=> $updatedPasswordForm));
+        $this->render('vendorBasicInformation', array("model" => $basicForm, "IdentityProof" => $Identity, "getVendorDocuments" => $getVendorDocuments, "getVendorDetailsType1" => $getVendorDetailsType1, "getVendorAddress" => $getVendorAddress, "updatedPassword"=> $updatedPasswordForm));
         }
     }
 

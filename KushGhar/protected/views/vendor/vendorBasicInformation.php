@@ -256,13 +256,13 @@
                                         <?php echo $form->error($model, 'Website'); ?>
                                     </div>
                                     <div class=" span4">
-                                        <?php echo $form->label($model, 'pan'); ?>
-                                        <?php echo $form->textField($model, 'Pan', array('value' => $getVendorDetailsType1->pan_card, 'class' => 'span12', 'maxLength' => 25, 'placeholder' => 'Pan…')); ?>
+                                        <?php echo $form->label($model, 'Pan', array('class' => 'labelUpperCase')); ?>
+                                        <?php echo $form->textField($model, 'Pan', array('value' => $getVendorDetailsType1->pan_card, 'class' => 'span12', 'maxLength' => 25, 'placeholder' => 'PAN…')); ?>
                                         <?php echo $form->error($model, 'Pan'); ?>
                                     </div>
                                     <div class=" span4">
-                                        <?php echo $form->label($model, 'Tin'); ?>
-                                        <?php echo $form->textField($model, 'Tin', array('value' => $getVendorDetailsType1->tin_number, 'class' => 'span12', 'maxLength' => 25, 'placeholder' => 'Tin…')); ?>
+                                        <?php echo $form->label($model, 'Tin', array('class' => 'labelUpperCase')); ?>
+                                        <?php echo $form->textField($model, 'Tin', array('value' => $getVendorDetailsType1->tin_number, 'class' => 'span12', 'maxLength' => 25, 'placeholder' => 'TIN…')); ?>
                                         <?php echo $form->error($model, 'Tin'); ?>
                                     </div>
                                 </div>

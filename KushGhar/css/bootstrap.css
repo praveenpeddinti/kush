@@ -5899,3 +5899,6 @@ a.badge:hover {
 #canvasLoader{
     margin: auto
 }
+.labelUpperCase{
+   text-transform: uppercase;
+}

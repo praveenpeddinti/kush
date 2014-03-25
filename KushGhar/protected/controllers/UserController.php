@@ -525,9 +525,9 @@ class UserController extends Controller {
             } else {
                 $result = $this->kushGharService->getInvitationUser($inviteForm);
                
-                if ($result == "success") {error_log("dsdfdsfsdfsdif====");
+                if ($result == "success") {error_log("dsdfdsfsdfsdif====".$inviteForm->Email);
                     $mess = 'Hi' . "\r\n";
-                    $mess = $mess . 'Welcome to KushGhar. You are Invited ' . $result->password_salt . "\r\n\n";
+                    $mess = $mess . 'Welcome to KushGhar. You are Invited ' . "\r\n\n";
                     $mess = $mess . 'Please click on following link http://115.248.17.88:6060/user/registrtions?uname=' . $inviteForm->Email . "\r\n\n";
                     $mess = $mess . 'Thanks & Regards,' . "\r\n" . 'KushGhar.';
                     $to = $inviteForm->Email;
@@ -537,8 +537,8 @@ class UserController extends Controller {
                             'X-Mailer: PHP/' . phpversion();
                     mail($to, $subject, $message, $headers);
                     
-                    $errors = 'Invitation send by your Email';
-                    $obj = array('status' => 'success', 'data' => '', 'error' => $errors);
+                    //$errors = 'Invitation send by your Email';
+                    $obj = array('status' => 'success', 'data' => $result, 'error' => 'Invitation send by your Email');
                 } else {error_log("dsdfdsfsdfsdelse===");
                     $errors = array("InviteForm_error" => 'User exist with these Email.');
                     $obj = array('status' => '', 'data' => '', 'error' => $errors);

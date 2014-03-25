@@ -88,6 +88,15 @@
     function validate_dropdown(id)
     {
         
+        document.getElementById('VendorRegistrationForm_AgencyName_em_').innerHTML='';
+        document.getElementById('VendorRegistrationForm_PrimaryContactFirstName_em_').innerHTML='';
+        document.getElementById('VendorRegistrationForm_PrimaryContactLastName_em_').innerHTML='';
+        document.getElementById('VendorRegistrationForm_FirstName_em_').innerHTML='';
+        document.getElementById('VendorRegistrationForm_LastName_em_').innerHTML='';
+        document.getElementById('VendorRegistrationForm_Email_em_').innerHTML='';
+        document.getElementById('VendorRegistrationForm_Phone_em_').innerHTML='';
+        document.getElementById('VendorRegistrationForm_Password_em_').innerHTML='';
+        document.getElementById('VendorRegistrationForm_RepeatPassword_em_').innerHTML='';
         if(id==1){
             document.getElementById('Individual').style.display='block';
             document.getElementById('Agency').style.display='none';

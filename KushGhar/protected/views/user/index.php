@@ -9,7 +9,7 @@
      <div class="row-fluid" >
        <div class="span12">
          <div class="easy_steps">
-           <div class="easy_steps_title" >Making your home happier is otnly 3 easy steps</div>
+           <div class="easy_steps_title" >Making your home happier is only 3 easy steps</div>
          </div>
 
        </div>

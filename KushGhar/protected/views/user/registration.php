@@ -1,5 +1,40 @@
 <script type="text/javascript">
+        $( document ).ready(function() {
+alert("enter site index==="+document.getElementById('VV').value);
+ if(document.getElementById('VV').value ==0)
+        $('#myModal').modal('show');
 
+});
+
+
+
+     function inviteCustomershandler(data){alert("enter site index==="+data.status);
+        //scrollPleaseWaitClose('registrationSpinLoader');
+        if(data.status=='success'){alert("success==="+data.error);
+            $("#InviteForm_error_em_").show();
+            $("#InviteForm_error_em_").removeClass('errorMessage');
+            $("#InviteForm_error_em_").addClass('alert alert-success');
+            $("#InviteForm_error_em_").text(data.error);
+            
+        }else{alert("else");alert("error==="+data.error);
+            var error=[];
+            
+            $("#InviteForm_error_em_").removeClass('alert alert-success');
+            $("#InviteForm_error_em_").addClass('errorMessage');
+            if(typeof(data.error)=='string'){
+                var error=eval("("+data.error.toString()+")");
+            }else{
+                var error=eval(data.error);
+            }
+            $.each(error, function(key, val) {
+                if($("#"+key+"_em_")){
+                    $("#"+key+"_em_").text(val);
+                    $("#"+key+"_em_").show();
+                    $("#"+key).parent().addClass('error');
+                }
+            });
+        }
+    }
      function addNewUserhandler(data){
         scrollPleaseWaitClose('registrationSpinLoader');
         if(data.status=='success'){
@@ -107,6 +142,7 @@
                             <?php echo $form->error($model, 'error'); ?>
                             <fieldset>
                                 <?php echo $form->hiddenField($model, 'Id'); ?>
+                                <input type="hidden" id="VV" value="<?php echo $one;?>" >
 
                                 <?php echo $form->label($model, '<abbr title="required">*</abbr> first name'); ?>
                                 <?php echo $form->textField($model, 'FirstName', array('class' => 'span12', 'placeholder' => 'First Name…', 'maxLength' => 50)); ?>
@@ -184,10 +220,10 @@
                             <?php $this->endWidget(); ?>
 
                               <!-- Button to trigger modal -->
-    <center><a href="#myModal" role="button" class="" data-toggle="modal">forgot your password?</a></center>
+    <!--<center><a href="#myModal" role="button" class="" data-toggle="modal">forgot your password?</a></center>-->
 
     <!-- Modal -->
-    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <!--<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="myModalLabel">Forgot Password</h3>
@@ -225,7 +261,7 @@
     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
     <button class="btn btn-primary">Save changes</button>
     </div>-->
-    </div><!-- button forgot-->
+    <!--</div><!-- button forgot-->
 
 
                         </div>
@@ -235,3 +271,51 @@
         </div>
     </div>
 </div>
+<!-- Popup block Start -->
+     <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+         <div class="modal-header">
+             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+             <center><h3 id="myModalLabel">Thank You</h3></center>
+         </div>
+         <div class="modal-body">
+             <?php $form=$this->beginWidget('CActiveForm', array(
+                                                                'id'=>'invite-form',
+                                                                'enableClientValidation'=>true,
+                                                                'clientOptions'=>array(
+                                                                        'validateOnSubmit'=>true,
+                                                                )
+                                                        )); ?>
+                                                        
+                                            <?php echo $form->error($inviteModel, 'error'); ?>
+                                            <div class="row-fluid">
+                                            <div class="span6">
+                                              <?php echo $form->label($inviteModel,'FirstName'); ?>
+   <?php echo $form->textField($inviteModel,'FirstName', array( 'class'=>'span12','placeholder'=>'First Name…')); ?>
+   <?php echo $form->error($inviteModel,'FirstName'); ?>
+                                             </div>
+                                                <div class="span6">
+                                              <?php echo $form->label($inviteModel,'LastName'); ?>
+   <?php echo $form->textField($inviteModel,'LastName', array( 'class'=>'span12','placeholder'=>'Last Name…')); ?>
+   <?php echo $form->error($inviteModel,'LastName'); ?>
+                                             </div>
+                                            </div>
+             <div class="row-fluid">
+                                            <div class="span12">
+                                              <?php echo $form->label($inviteModel,'Email'); ?>
+   <?php echo $form->textField($inviteModel,'Email', array( 'class'=>'span12','placeholder'=>'Email…')); ?>
+   <?php echo $form->error($inviteModel,'Email'); ?>
+                                             </div>
+                                                
+                                            </div>
+         
+         <div class="modal-footer">
+             <?php echo CHtml::ajaxButton('Invite',array('user/invite'), array(
+            'type' => 'POST',
+            'dataType' => 'json',
+            'success' => 'function(data,status,xhr) { inviteCustomershandler(data,status,xhr);}'), array('class'=>'btn btn-primary','type'=>'submit')); ?>
+
+             
+         </div>
+             <?php $this->endWidget(); ?>
+     </div>
+     </div><!-- Popup block End -->

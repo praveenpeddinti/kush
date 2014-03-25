@@ -128,7 +128,7 @@
    </div>
       <div class=" span6">
     <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> city'); ?>
-        <?php echo $form->textField($model,'City',array('value'=>$customerAddressDetails->address_city, 'maxLength' => 25, 'class'=>'span12')); ?>
+        <?php echo $form->textField($model,'City',array('value'=>$customerAddressDetails->address_city, 'maxLength' => 25, 'class'=>'span12', 'placeholder'=>'City…')); ?>
         <?php echo $form->error($model,'City'); ?>
    </div>
    </div>

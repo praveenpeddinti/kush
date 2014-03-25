@@ -302,5 +302,36 @@ class KushGharService {
 
         return VendorIndividualRegistration::model()->updateVendorDetailsWithIndividualContact($model, $vId);
     }
+    
+    
+    
+    /**
+     * Invitation users Start
+     */
+    /* VENDOR TYPE--------------Individual  */
+    //1. Checking the vendor exist ao not based on email_address
+    /*public function getcheckVendorForIndividual($model) {
+        try {
+            $result = VendorIndividualRegistration::model()->getcheckVendorForIndividual($model);
+        } catch (Exception $ex) {
+            error_log("=============exception occurred in login=============" . $ex->getMessage());
+        }
+        return $result;
+    }*/
+
+    //2.Save the Invitation details
+    public function getInvitationUser($model) {
+        try {
+            $users = array();
+            $users = InviteUser::model()->saveInvitationUser($model);
+            if (!empty($users)) {
+                return $users;
+            } else {
+                return "false";
+            }
+        } catch (Exception $ex) {
+            error_log("=============exception occurred in login=============" . $ex->getMessage());
+        }
+    }
 }
 ?>

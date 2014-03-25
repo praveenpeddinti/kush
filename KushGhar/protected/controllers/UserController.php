@@ -121,12 +121,17 @@ class UserController extends Controller {
      * User Registration Form Controller START
      */
     public function actionRegistration() {
+        $_REQUEST['uname']=0;
+        $inviteForm = new InviteForm;
         $this->session['Type']='Customer';
+        error_log("id==con==".$_REQUEST['uname']."====".$this->session['Type']);
         $model = new RegistrationForm;
         $modelLogin = new LoginForm;
         $modelSample = new SampleForm;
         $request = yii::app()->getRequest();
         $formName = $request->getParam('RegistrationForm');
+        
+       
         if ($formName != '') {
             $model->attributes = $request->getParam('RegistrationForm');
             $errors = CActiveForm::validate($model);
@@ -157,7 +162,7 @@ class UserController extends Controller {
             $renderScript = $this->rendering($obj);
             echo $renderScript;
         } else {
-            $this->render('registration', array('model' => $model, 'modelLogin' => $modelLogin, 'modelSample' => $modelSample));
+            $this->render('registration', array('model' => $model, 'modelLogin' => $modelLogin, 'modelSample' => $modelSample,'one'=>$_REQUEST['uname'], "inviteModel" => $inviteForm));
         }
     }
 
@@ -459,6 +464,94 @@ class UserController extends Controller {
             error_log("#########Exception Occurred########$ex->getMessage()");
         }
     }
+    
+   public function actionRegistrations(){
+        $this->session['Type']='';
+        error_log("id==con==".$_REQUEST['uname']."====".$this->session['Type']);
+         $inviteForm = new InviteForm;
+        $model = new RegistrationForm;
+        $modelLogin = new LoginForm;
+        $modelSample = new SampleForm;
+        $request = yii::app()->getRequest();
+        $formName = $request->getParam('RegistrationForm');
+        
+        if ($formName != '') {
+            $model->attributes = $request->getParam('RegistrationForm');
+            $errors = CActiveForm::validate($model);
+            if ($errors != '[]') {
+                $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
+            } else {
+                $Dresult = $this->kushGharService->getcheckUserExist($model);
+                if ($Dresult == 'No user') {error_log("enter No user======".$Dresult);
+                    $result = $this->kushGharService->saveRegistrationData($model);
+                    $getUserDetails = $this->kushGharService->getUserDetailsWithEmail($model->Email);
+                    $custAddressDetails = $this->kushGharService->saveCustomerAddressDumpInfoDetails($getUserDetails->customer_id);
+                    $paymentId = $this->kushGharService->saveCustomerPaymentDumpInfoDetails($getUserDetails->customer_id);
+                    $this->session['UserId'] = $getUserDetails->customer_id;
+                    
+                } else {
+                    $result = "failed";
+                    $errors = array("RegistrationForm_error" => 'Already User Existed.');
+                    $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
+                }
+                if ($result == "success") {
+                    $message = array("RegistrationForm_error" => 'Registration successfully.');
+                    $obj = array('status' => 'success', 'data' => $message, 'error' => '');
+                } else {
+                    $message = array("RegistrationForm_error" => 'Already User Existed.');
+                    $obj = array('status' => 'error', 'data' => '', 'error' => $message);
+                }
+            }
+            $renderScript = $this->rendering($obj);
+            echo $renderScript;
+        } else {
+            $this->render('registration', array('model' => $model, 'modelLogin' => $modelLogin, 'modelSample' => $modelSample,'one'=>$_REQUEST['uname'], "inviteModel" => $inviteForm));
+            }
+    }
+    
+    
+    /**
+     * Invitation Users Start
+     */
+    public function actionInvite() {error_log("dfdsfsdfsd enter Invite");
+        $inviteForm = new InviteForm;
+        $request = yii::app()->getRequest();
+        $formName = $request->getParam('InviteForm');
+        if ($formName != '') {error_log("enter error-------------");
+            $inviteForm->attributes = $request->getParam('InviteForm');
+            $errors = CActiveForm::validate($inviteForm);
+            if ($errors != '[]') {
+                $obj = array('status' => '', 'data' => '', 'error' => $errors);
+            } else {
+                $result = $this->kushGharService->getInvitationUser($inviteForm);
+               
+                if ($result == "success") {error_log("dsdfdsfsdfsdif====");
+                    $mess = 'Hi' . "\r\n";
+                    $mess = $mess . 'Welcome to KushGhar. You are Invited ' . $result->password_salt . "\r\n\n";
+                    $mess = $mess . 'Please click on following link http://115.248.17.88:6060/user/registrtions?uname=' . $inviteForm->Email . "\r\n\n";
+                    $mess = $mess . 'Thanks & Regards,' . "\r\n" . 'KushGhar.';
+                    $to = $inviteForm->Email;
+                    $subject = 'Kushghar Invitation';
+                    $message = $mess;
+                    $headers = 'From: praveen.peddinti@gmail.com' . "\r\n" .
+                            'X-Mailer: PHP/' . phpversion();
+                    mail($to, $subject, $message, $headers);
+                    
+                    $errors = 'Invitation send by your Email';
+                    $obj = array('status' => 'success', 'data' => '', 'error' => $errors);
+                } else {error_log("dsdfdsfsdfsdelse===");
+                    $errors = array("InviteForm_error" => 'User exist with these Email.');
+                    $obj = array('status' => '', 'data' => '', 'error' => $errors);
+                }
+            }
+            $renderScript = $this->rendering($obj);
+            echo $renderScript;
+        } else {
+            $this->render('invite', array("model" => $inviteForm));
+        }
+        //$this->render('invite', array("model" => $inviteForm));
+    }
+    
 }
 
 

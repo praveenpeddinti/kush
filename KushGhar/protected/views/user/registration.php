@@ -1,6 +1,6 @@
 <script type="text/javascript">
         $( document ).ready(function() {
-alert("enter site index==="+document.getElementById('VV').value);
+//alert("enter site index==="+document.getElementById('VV').value);
  if(document.getElementById('VV').value ==0)
         $('#myModal').modal('show');
 
@@ -8,15 +8,15 @@ alert("enter site index==="+document.getElementById('VV').value);
 
 
 
-     function inviteCustomershandler(data){alert("enter site index==="+data.status);
+     function inviteCustomershandler(data){//alert("enter site index==="+data.status);
         //scrollPleaseWaitClose('registrationSpinLoader');
-        if(data.status=='success'){alert("success==="+data.error);
+        if(data.status=='success'){//alert("success==="+data.error);
             $("#InviteForm_error_em_").show();
             $("#InviteForm_error_em_").removeClass('errorMessage');
             $("#InviteForm_error_em_").addClass('alert alert-success');
             $("#InviteForm_error_em_").text(data.error);
             
-        }else{alert("else");alert("error==="+data.error);
+        }else{//alert("else");alert("error==="+data.error);
             var error=[];
             
             $("#InviteForm_error_em_").removeClass('alert alert-success');

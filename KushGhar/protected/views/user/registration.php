@@ -11,15 +11,15 @@
 
 
 
-     function inviteCustomershandler(data){//alert("enter site index==="+data.status);
-        //scrollPleaseWaitClose('registrationSpinLoader');
-        if(data.status=='success'){//alert("success==="+data.error);
+     function inviteCustomershandler(data){alert("enter site index==="+data.status);
+        scrollPleaseWaitClose('inviteSpinLoader');
+        if(data.status=='success'){alert("success==="+data.error);
             $("#InviteForm_error_em_").show();
             $("#InviteForm_error_em_").removeClass('errorMessage');
             $("#InviteForm_error_em_").addClass('alert alert-success');
             $("#InviteForm_error_em_").text(data.error);
-            $("#InviteForm_error_em_").fadeOut(6000, "");
-            window.location.href='/';
+            //$("#InviteForm_error_em_").fadeOut(6000, "");
+            //window.location.href='/';
             
         }else{//alert("else");alert("error==="+data.error);
             var error=[];
@@ -282,6 +282,7 @@
              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
              <center><h3 id="myModalLabel">Thank You</h3></center>
          </div>
+         <div id="inviteSpinLoader"></div>
          <div class="modal-body">
              <?php $form=$this->beginWidget('CActiveForm', array(
                                                                 'id'=>'invite-form',
@@ -317,6 +318,8 @@
              <?php echo CHtml::ajaxButton('Invite',array('user/invite'), array(
             'type' => 'POST',
             'dataType' => 'json',
+            'beforeSend' => 'function(){
+                             scrollPleaseWait("inviteSpinLoader","invite-form");}',
             'success' => 'function(data,status,xhr) { inviteCustomershandler(data,status,xhr);}'), array('class'=>'btn btn-primary','type'=>'submit')); ?>
 
              

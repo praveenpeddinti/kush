@@ -18,8 +18,8 @@
             $("#InviteForm_error_em_").removeClass('errorMessage');
             $("#InviteForm_error_em_").addClass('alert alert-success');
             $("#InviteForm_error_em_").text(data.error);
-            //$("#InviteForm_error_em_").fadeOut(6000, "");
-            //window.location.href='/';
+            $("#InviteForm_error_em_").fadeOut(6000, "");
+            window.location.href='/';
             
         }else{//alert("else");alert("error==="+data.error);
             var error=[];

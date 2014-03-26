@@ -528,7 +528,7 @@ class UserController extends Controller {
                 if ($result == "success") {error_log("dsdfdsfsdfsdif====".$inviteForm->Email);
                     $mess = 'Hi' . "\r\n";
                     $mess = $mess . 'Welcome to KushGhar. You are Invited ' . "\r\n\n";
-                    $mess = $mess . 'Please click on following link http://115.248.17.88:6060/user/registrtions?uname=' . $inviteForm->Email . "\r\n\n";
+                    $mess = $mess . 'Please click on following link http://115.248.17.88:6060/user/registrations?uname=' . $inviteForm->Email . "\r\n\n";
                     $mess = $mess . 'Thanks & Regards,' . "\r\n" . 'KushGhar.';
                     $to = $inviteForm->Email;
                     $subject = 'Kushghar Invitation';

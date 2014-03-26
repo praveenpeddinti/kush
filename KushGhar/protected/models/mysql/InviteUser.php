@@ -60,7 +60,7 @@ class InviteUser extends CActiveRecord {
         return $result;
     }
 
-    public function saveInvitationUser($model) {
+    public function saveInvitationUser($model,$type) {
         $result = "false";
         $user = InviteUser::model()->findByAttributes(array('email_address' => $model->Email));
         
@@ -73,6 +73,8 @@ class InviteUser extends CActiveRecord {
                 $user->first_name = stripcslashes($model->FirstName);
                 $user->last_name = stripcslashes($model->LastName);
                 $user->email_address = stripcslashes($model->Email);
+                $user->type = stripcslashes($type);
+                $user->create_timestamp = gmdate("Y-m-d H:i:s", time());
                 
                 if (!$user->save())
                     $result = "false";//return CHtml::errorSummary($this);

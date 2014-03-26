@@ -1,5 +1,45 @@
 <script type="text/javascript">
+     $( document ).ready(function() {
+            $("#myModal").modal({ backdrop: 'static', keyboard: false,show:false });
+//alert("enter site index==="+document.getElementById('VV').value);
+//alert(document.getElementById('VV').value);
+ if(document.getElementById('VV').value!='inviteToEmail')
+        $('#myModal').modal('show');
+        
 
+});
+
+
+
+     function inviteCustomershandler(data){//alert("enter site index==="+data.status);
+        //scrollPleaseWaitClose('registrationSpinLoader');
+        if(data.status=='success'){//alert("success==="+data.error);
+            $("#InviteForm_error_em_").show();
+            $("#InviteForm_error_em_").removeClass('errorMessage');
+            $("#InviteForm_error_em_").addClass('alert alert-success');
+            $("#InviteForm_error_em_").text(data.error);
+            $("#InviteForm_error_em_").fadeOut(6000, "");
+            window.location.href='/';
+            
+        }else{//alert("else");alert("error==="+data.error);
+            var error=[];
+            
+            $("#InviteForm_error_em_").removeClass('alert alert-success');
+            $("#InviteForm_error_em_").addClass('errorMessage');
+            if(typeof(data.error)=='string'){
+                var error=eval("("+data.error.toString()+")");
+            }else{
+                var error=eval(data.error);
+            }
+            $.each(error, function(key, val) {
+                if($("#"+key+"_em_")){
+                    $("#"+key+"_em_").text(val);
+                    $("#"+key+"_em_").show();
+                    $("#"+key).parent().addClass('error');
+                }
+            });
+        }
+    }
      function addNewVendorhandler(data){
         scrollPleaseWaitClose('vendorRegistrationSpinLoader');
         if(data.status=='success'){
@@ -129,7 +169,8 @@
                                         ),
                                     )); ?>
                             <?php echo $form->error($model, 'error'); ?>
-                            <fieldset>
+                            <input type="hidden" id="VV" value="<?php echo $one;?>" >
+                            <fieldset><?php echo "yyyyyy===".$one;?>
                                 <?php //echo $form->hiddenField($model, 'Id'); ?>
 
                                 <?php echo $form->label($model, '<abbr title="required">*</abbr> Vendor Type'); ?>
@@ -254,3 +295,51 @@
         </div>
     </div>
 </div>
+<!-- Popup block Start -->
+     <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+         <div class="modal-header">
+             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+             <center><h3 id="myModalLabel">Thank You</h3></center>
+         </div>
+         <div class="modal-body">
+             <?php $form=$this->beginWidget('CActiveForm', array(
+                                                                'id'=>'invite-form',
+                                                                'enableClientValidation'=>true,
+                                                                'clientOptions'=>array(
+                                                                        'validateOnSubmit'=>true,
+                                                                )
+                                                        )); ?>
+                                                        
+                                            <?php echo $form->error($inviteModel, 'error'); ?>
+                                            <div class="row-fluid">
+                                            <div class="span6">
+                                              <?php echo $form->label($inviteModel,'FirstName'); ?>
+   <?php echo $form->textField($inviteModel,'FirstName', array( 'class'=>'span12','placeholder'=>'First Name…')); ?>
+   <?php echo $form->error($inviteModel,'FirstName'); ?>
+                                             </div>
+                                                <div class="span6">
+                                              <?php echo $form->label($inviteModel,'LastName'); ?>
+   <?php echo $form->textField($inviteModel,'LastName', array( 'class'=>'span12','placeholder'=>'Last Name…')); ?>
+   <?php echo $form->error($inviteModel,'LastName'); ?>
+                                             </div>
+                                            </div>
+             <div class="row-fluid">
+                                            <div class="span12">
+                                              <?php echo $form->label($inviteModel,'Email'); ?>
+   <?php echo $form->textField($inviteModel,'Email', array( 'class'=>'span12','placeholder'=>'Email…')); ?>
+   <?php echo $form->error($inviteModel,'Email'); ?>
+                                             </div>
+                                                
+                                            </div>
+         
+         <div class="modal-footer">
+             <?php echo CHtml::ajaxButton('Invite',array('user/invite'), array(
+            'type' => 'POST',
+            'dataType' => 'json',
+            'success' => 'function(data,status,xhr) { inviteCustomershandler(data,status,xhr);}'), array('class'=>'btn btn-primary','type'=>'submit')); ?>
+
+             
+         </div>
+             <?php $this->endWidget(); ?>
+     </div>
+     </div><!-- Popup block End -->

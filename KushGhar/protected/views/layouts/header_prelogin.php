@@ -5,7 +5,13 @@
                 <div class="span12">
                     <!--header logo start-->
                     <div class="span3">
+                        <?php if($this->session['UserType']=='inviteToEmail'){?>
+                        <a href="/site/invite"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/top_logos.png" alt="logo" class="logo" /></a>
+                        <?php } else if($this->session['UserType']=='inviteToCust'){ ?> 
+                        <a href="/site/inviteCust"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/top_logos.png" alt="logo" class="logo" /></a>
+                        <?php }else { ?>
                         <a href="/"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/top_logos.png" alt="logo" class="logo" /></a>
+                        <?php } ?>
                     </div>
                     <!--header logo end -->
                     <!--h_right start -->
@@ -83,7 +89,7 @@
 <?php } else { ?>
     <header class="inner_header">
         <div class="container">
-            <div class="row-fluid"><?php echo "===2====".$this->getUniqueId()."=====".$this->session['Type']."===Id==".$this->session['UserId'];?>
+            <div class="row-fluid"><?php //echo "===2====".$this->getUniqueId()."=====".$this->session['Type']."===Id==".$this->session['UserId'];?>
 
                 <?php if (!empty($this->session['UserId'])) { ?>
                 <div class="pull-left">
@@ -123,7 +129,13 @@
             </div>
 <?php }else{ ?>
                 <div class="pull-left">
+                    <?php if($this->session['UserType']=='inviteToEmail'){?>
+                    <a href="/site/invite"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/inner_top_logo.png" alt="logo" class="logo"></a>
+                    <?php } else if($this->session['UserType']=='inviteToCust'){ ?> 
+                    <a href="/site/inviteCust"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/inner_top_logo.png" alt="logo" class="logo"></a>
+                    <?php } else {?>
                     <a href="/"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/inner_top_logo.png" alt="logo" class="logo"></a>
+                    <?php } ?>
                 </div>
                 <?php } ?>
         </div>

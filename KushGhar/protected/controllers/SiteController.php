@@ -6,6 +6,9 @@ class SiteController extends Controller {
      * This is the default action index call our site
     */
     public function actionIndex() {
+        $this->session['UserType']='';
+        //if(empty($this->session['UserType'])){ unset ($_SESSION['UserType']);}
+        error_log("enter splash page==index====".$this->session['UserType']);
        // $this->session->destroy();
         $this->render('index');
     }
@@ -67,6 +70,25 @@ class SiteController extends Controller {
         } catch (Exception $ex) {
             error_log("#########Exception Occurred########$ex->getMessage()");
         }
+    }
+    
+    public function actionInvite() {
+        $this->session['UserType'] = "inviteToEmail";
+        error_log("enter splash page======".$this->session['UserType']);
+       // $this->session->destroy();
+        $this->render('index');
+    }
+    public function actionInviteCust() {
+        
+        /*if(empty($_REQUEST['uname'])){
+           $this->session['UserType'] = ""; 
+        }else{
+           $this->session['UserType'] = "inviteToCust"; 
+        }*/
+        $this->session['UserType'] = "inviteToCust";
+        //error_log($_REQUEST['uname']."==enter splash page======".$this->session['UserType']);
+       // $this->session->destroy();
+        $this->render('index');
     }
 
 }

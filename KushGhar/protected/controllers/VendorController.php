@@ -88,7 +88,12 @@ class VendorController extends Controller {
      * User Registration Form Controller START
      */
     public function actionVregistration() {
+        $_REQUEST['uname']=$this->session['UserType'];
+        //$uname=$this->session['UserType'];
+        $inviteForm = new InviteForm;
         $this->session['Type']='Vendor';
+        //error_log("id==con==".$_REQUEST['uname']."====".$this->session['Type']);
+       
         $model = new VendorRegistrationForm;
         $modelLogin = new VendorLoginForm;
         $request = yii::app()->getRequest();
@@ -148,7 +153,7 @@ class VendorController extends Controller {
             $renderScript = $this->rendering($obj);
             echo $renderScript;
         } else {
-            $this->render('vregistration', array('model' => $model, 'modelLogin' => $modelLogin));
+            $this->render('vregistration', array('model' => $model, 'modelLogin' => $modelLogin,'one'=>$_REQUEST['uname'], "inviteModel" => $inviteForm));
         }
     }
 
@@ -427,6 +432,11 @@ class VendorController extends Controller {
             error_log("#########Exception Occurred########$ex->getMessage()");
         }
     }
+    
+    
+    
+    
+    
 }
 
 

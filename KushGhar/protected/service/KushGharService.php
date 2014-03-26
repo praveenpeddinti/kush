@@ -320,10 +320,10 @@ class KushGharService {
     }*/
 
     //2.Save the Invitation details
-    public function getInvitationUser($model) {
+    public function getInvitationUser($model,$type) {
         try {
             $users = array();
-            $users = InviteUser::model()->saveInvitationUser($model);
+            $users = InviteUser::model()->saveInvitationUser($model,$type);
             if (!empty($users)) {
                 return $users;
             } else {

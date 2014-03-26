@@ -1,8 +1,11 @@
 <script type="text/javascript">
         $( document ).ready(function() {
+            $("#myModal").modal({ backdrop: 'static', keyboard: false,show:false });
 //alert("enter site index==="+document.getElementById('VV').value);
- if(document.getElementById('VV').value ==0)
+ //alert(document.getElementById('VV').value);
+ if(document.getElementById('VV').value!='inviteToEmail')
         $('#myModal').modal('show');
+        
 
 });
 
@@ -15,6 +18,8 @@
             $("#InviteForm_error_em_").removeClass('errorMessage');
             $("#InviteForm_error_em_").addClass('alert alert-success');
             $("#InviteForm_error_em_").text(data.error);
+            $("#InviteForm_error_em_").fadeOut(6000, "");
+            window.location.href='/';
             
         }else{//alert("else");alert("error==="+data.error);
             var error=[];

@@ -121,7 +121,8 @@ class UserController extends Controller {
      * User Registration Form Controller START
      */
     public function actionRegistration() {
-        $_REQUEST['uname']=0;
+        $_REQUEST['uname']=$this->session['UserType'];
+        //$_REQUEST['uname']=0;
         $inviteForm = new InviteForm;
         $this->session['Type']='Customer';
         error_log("id==con==".$_REQUEST['uname']."====".$this->session['Type']);
@@ -465,8 +466,8 @@ class UserController extends Controller {
         }
     }
     
-   public function actionRegistrations(){
-        $this->session['Type']='';
+   /*public function actionRegistrations(){
+        $this->session['Type']='Customer';
         error_log("id==con==".$_REQUEST['uname']."====".$this->session['Type']);
          $inviteForm = new InviteForm;
         $model = new RegistrationForm;
@@ -474,6 +475,7 @@ class UserController extends Controller {
         $modelSample = new SampleForm;
         $request = yii::app()->getRequest();
         $formName = $request->getParam('RegistrationForm');
+        
         
         if ($formName != '') {
             $model->attributes = $request->getParam('RegistrationForm');
@@ -502,12 +504,13 @@ class UserController extends Controller {
                     $obj = array('status' => 'error', 'data' => '', 'error' => $message);
                 }
             }
+            
             $renderScript = $this->rendering($obj);
             echo $renderScript;
         } else {
             $this->render('registration', array('model' => $model, 'modelLogin' => $modelLogin, 'modelSample' => $modelSample,'one'=>$_REQUEST['uname'], "inviteModel" => $inviteForm));
             }
-    }
+    }*/
     
     
     /**
@@ -523,12 +526,12 @@ class UserController extends Controller {
             if ($errors != '[]') {
                 $obj = array('status' => '', 'data' => '', 'error' => $errors);
             } else {
-                $result = $this->kushGharService->getInvitationUser($inviteForm);
+                $result = $this->kushGharService->getInvitationUser($inviteForm, $this->session['Type']);
                
                 if ($result == "success") {error_log("dsdfdsfsdfsdif====".$inviteForm->Email);
                     $mess = 'Hi' . "\r\n";
                     $mess = $mess . 'Welcome to KushGhar. You are Invited ' . "\r\n\n";
-                    $mess = $mess . 'Please click on following link http://115.248.17.88:6060/user/registrations?uname=' . $inviteForm->Email . "\r\n\n";
+                    $mess = $mess . 'Please click on following link http://115.248.17.88:6060/site/invite?uname=' . $inviteForm->Email . "\r\n\n";
                     $mess = $mess . 'Thanks & Regards,' . "\r\n" . 'KushGhar.';
                     $to = $inviteForm->Email;
                     $subject = 'Kushghar Invitation';

@@ -11,9 +11,9 @@
 
 
 
-     function inviteCustomershandler(data){alert("enter site index==="+data.status);
+     function inviteCustomershandler(data){//alert("enter site index==="+data.status);
         scrollPleaseWaitClose('inviteSpinLoader');
-        if(data.status=='success'){alert("success==="+data.error);
+        if(data.status=='success'){//alert("success==="+data.error);
             $("#InviteForm_error_em_").show();
             $("#InviteForm_error_em_").removeClass('errorMessage');
             $("#InviteForm_error_em_").addClass('alert alert-success');
@@ -135,7 +135,7 @@
                     <div class="reg_div">
                         <div class="paddinground">
                             <h2 class="reg_title">Registration</h2>
-                            <div id="registrationSpinLoader"></div>
+                            <div id="registrationSpinLoader" style="top:26px"></div>
                             <?php
                             $form = $this->beginWidget('CActiveForm', array(
                                         'id' => 'registration-form',

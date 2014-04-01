@@ -357,5 +357,5 @@
 .has-switch span.switch-danger.active {
   background-color: #e9322d \9;
 }
-.has-switch.switch-large, .vender_type{min-width:210px;}
+#VendorType{min-width:210px;}
 .vender_type > .switch-off>.has-switch label, .vender_type > .switch-on>.has-switch label {width:30%;}

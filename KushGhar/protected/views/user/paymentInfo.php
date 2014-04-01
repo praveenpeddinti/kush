@@ -125,7 +125,7 @@
   
  <div class="row-fluid">
     
-     <div class=" span3">
+     <div class=" span3  m_ExpiryDate">
         <?php $months = array();
               for( $i = 1; $i <= 12; ++$i )
               $months[ $i ] = $i;
@@ -142,7 +142,7 @@
              'options' => array($customerPaymentDetails->card_expiry_month => array('selected' => 'selected')), 'class' => 'span12'));?>
         <?php echo $form->error($model,'expiryMonth'); ?>
     </div>
-     <div class=" span3">
+     <div class=" span3 m_ExpiryDate">
          <label><abbr title="required">&nbsp;&nbsp;</abbr></label>
         <?php echo $form->dropDownList($model,'expiryYear', $years,
               array('prompt'=>'Select Year','options' => array($customerPaymentDetails->card_expiry_year => array('selected' => 'selected')), 'class' => 'span12'));?>

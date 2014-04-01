@@ -142,8 +142,8 @@
                                         <?php echo $form->textField($model, 'Number', array('value' => $getVendorDocuments->proof_number, 'class' => 'span12', 'maxLength' => 25, 'placeholder' => 'ID Number…')); ?>
                                         <?php echo $form->error($model, 'Number'); ?>
                                     </div>
-                                
-                                    
+                                </div>
+                                    <div class="row-fluid paddingT10">
                                         <div class="span4">
                                             <div class="form-group"><?php echo $form->label($model, 'Upload ID Proof'); ?>
                                                 <div class="control-group" style="position: relative">
@@ -182,8 +182,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    
-                                </div>
+                                     </div>
+                                
                                 
                                 
 
@@ -199,11 +199,11 @@
                                     
                                     <div class="span4">
                                         <?php echo $form->label($model, 'Date of Birth'); ?>
-                                        <?php echo $form->textField($model, 'dateOfBirth', array('value' => $birthdata, 'class' => 'span10', 'placeholder' => 'Date of Birth…')); ?>
+                                        <?php echo $form->textField($model, 'dateOfBirth', array('value' => $birthdata, 'class' => 'span10 dob', 'placeholder' => 'Date of Birth…')); ?>
                                         <?php echo $form->error($model, 'dateOfBirth'); ?>
                                     </div>
-                                
-                                
+                                </div>
+                                <div class="row-fluid paddingT10">
                                     <div class="span4">
                                         <div class="form-group">
                                             <div class="form-group"><?php echo $form->label($model, 'Profile Picture'); ?>
@@ -313,7 +313,7 @@
                                         <?php echo $form->error($updatedPassword, 'RepeatPassword'); ?>
                                     </div>
                                     <div class=" span4">
-                                        <div  class=" paddingT30">
+                                        <div  class=" paddingT30 m_paddingT30">
                                        <?php echo CHtml::ajaxButton('Update Password', array('vendor/updatedPsw'), array(
                                             'type' => 'POST',
                                             'dataType' => 'json',

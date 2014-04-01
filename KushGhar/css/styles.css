@@ -236,6 +236,7 @@ header.poptitle img{border-radius:50px; width:30px; height:30px; margin-right:8p
 ul.header_profile{ list-style:none; margin:0; padding:0}
 .error404{ background: url(../images/404error.png) no-repeat center top; margin:auto; width:800px; min-height:450px; position:relative}
 .error404 .error404_msg{ position:absolute; padding-top:400px; margin: auto; text-align: center; font-size:22px}
+.paddingR180{ padding-right:180px}
 
 
 @media (max-width: 767px) {
@@ -306,6 +307,8 @@ ul.header_profile{ list-style:none; margin:0; padding:0}
 .paddingT30.m_paddingT30{ padding-top: 0px;}
 .span3.m_ExpiryDate{ width:45%;padding-right:5px; float: left;}
                 .span10.dob{width:120px}
+                .main_caption { padding:10px; text-align: center}
+                .seven_sines .paddingR180{ padding-right:10px}
 		}
 /*Datepicker */
 /*!

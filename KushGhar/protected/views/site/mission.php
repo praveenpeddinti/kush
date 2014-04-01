@@ -40,7 +40,7 @@
                         <li>
                         	Worship <span>without</span> sacrifice.
                         </li>
-                        <li class="pull-right" style="padding-right:180px;"><i>Mahatma Gandhi...</i></li>
+                        <li class="pull-right paddingR180" ><i>Mahatma Gandhi...</i></li>
 
                        </ul>
                         

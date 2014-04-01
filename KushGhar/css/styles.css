@@ -235,7 +235,7 @@ header.poptitle img{border-radius:50px; width:30px; height:30px; margin-right:8p
 
 ul.header_profile{ list-style:none; margin:0; padding:0}
 .error404{ background: url(../images/404error.png) no-repeat center top; margin:auto; width:800px; min-height:450px; position:relative}
-.error404 .error404_msg{ position:absolute; padding-top:400px; margin-left:200px; font-size:22px}
+.error404 .error404_msg{ position:absolute; padding-top:400px; margin: auto; text-align: center; font-size:22px}
 
 
 @media (max-width: 767px) {
@@ -255,6 +255,7 @@ ul.header_profile{ list-style:none; margin:0; padding:0}
     border-bottom: 5px solid #B2C821;border-left:0px;}
 	.sub_menu { width:auto}
 	.our_services{ padding-left:20%;}
+        .footer_links { padding-top:5px;}
 	
 	
 	}
@@ -299,7 +300,12 @@ ul.header_profile{ list-style:none; margin:0; padding:0}
 		.our_services{ padding-left:0%}
 		
 		.services ul { margin:0 auto; padding:0; list-style:none;padding-left:inherit;}
-		.services ul li{ border-left:0; float:none;}
+		.services ul li{ border-left:0; float:none;}.footer_links { padding-top:5px;}
+                .error404{ width:auto; }
+.error404 .error404_msg{ padding-top:400px; margin:auto; font-size:12px; text-align: center}
+.paddingT30.m_paddingT30{ padding-top: 0px;}
+.span3.m_ExpiryDate{ width:45%;padding-right:5px; float: left;}
+                .span10.dob{width:120px}
 		}
 /*Datepicker */
 /*!
@@ -507,6 +513,7 @@ ul.header_profile{ list-style:none; margin:0; padding:0}
 
 .nav > li > a.vendor_b{ background: none;}
 .nav > li > a:hover.vendor_b{ background: none;}
+
 
 
 

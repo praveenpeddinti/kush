@@ -204,7 +204,7 @@
                 <div class="static_page_heading"></div>
                 <p>You understand that the Service is an evolving one. Kushghar, Inc may require that you accept updates to the Service. You acknowledge and agree that Kushghar, Inc may update the Service, with or without notifying you. You may need to update third party software from time to time in order to receive the Service.</p>
                 <div class="static_page_heading"></div>
-                <h3>7. DISCLAIMERS/LIMITATIONS/WAIVERS/INDEMNIFICATION</h3><h3>7.1. Disclaimer of Warranties</h3>
+                <h3>7. DISCLAIMERS / LIMITATIONS / WAIVERS / INDEMNIFICATION</h3><h3>7.1. Disclaimer of Warranties</h3>
                 <div class="static_page_heading"></div>
                 <p>YOU EXPRESSLY AGREE THAT USE OF THE SERVICE IS AT YOUR SOLE RISK AND IS PROVIDED ON AN "AS IS" BASIS WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, WARRANTIES OF TITLE OR IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE (EXCEPT ONLY TO THE EXTENT PROHIBITED UNDER APPLICABLE LAW WITH ANY LEGALLY REQUIRED WARRANTY PERIOD THE SHORTER OF THIRTY DAYS FROM FIRST USE OR THE MINIMUM PERIOD REQUIRED).</p><p>
                     WITHOUT LIMITING THE FOREGOING, NEITHER KUSHGHAR, INC NOR ITS AFFILIATES OR SUBSIDIARIES, OR ANY OF THEIR DIRECTORS, EMPLOYEES, AGENTS, ATTORNEYS, THIRD-PARTY CONTENT PROVIDERS, DISTRIBUTORS, LICENSEES OR LICENSORS (COLLECTIVELY, "KUSHGHAR, INC PARTIES") WARRANT THAT THE SERVICE WILL BE UNINTERRUPTED OR ERROR-FREE.

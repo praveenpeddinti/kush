@@ -98,7 +98,7 @@ class UserController extends Controller {
             if ($errors != '[]') {
                 $obj = array('status' => '', 'data' => '', 'error' => $errors);
             } else {
-                $result = $this->kushGharService->login($model);
+                $result = $this->kushGharService->login($model,'User');
                 if ($result == "false") {
                     $errors = array("LoginForm_error" => 'Invalid User or Password.');
                     $obj = array('status' => '', 'data' => '', 'error' => $errors);
@@ -530,9 +530,10 @@ class UserController extends Controller {
                
                 if ($result == "success") {error_log("dsdfdsfsdfsdif====".$inviteForm->Email);
                     $mess = 'Hi' . "\r\n";
-                    $mess = $mess . 'Welcome to KushGhar. You are Invited ' . "\r\n\n";
-                    $mess = $mess . 'Please click on following link http://115.248.17.88:6060/site/invite?uname=' . $inviteForm->Email . "\r\n\n";
-                    $mess = $mess . 'Thanks & Regards,' . "\r\n" . 'KushGhar.';
+                    $mess = $mess . 'Welcome from KushGhar.com ' . "\r\n\n";
+                    $mess = $mess . 'You can visit KushGhar.com by clicking following url. ' . "\r\n\n";
+                    $mess = $mess . 'http://115.248.17.88:6060/site/invite?uname=' . $inviteForm->Email . "\r\n\n";
+                    $mess = $mess . 'Regards,' . "\r\n" . 'KushGhar.';
                     $to = $inviteForm->Email;
                     $subject = 'Kushghar Invitation';
                     $message = $mess;

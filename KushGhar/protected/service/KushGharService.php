@@ -2,10 +2,15 @@
 
 class KushGharService {
 
-    public function login($model) {
+    public function login($model,$role) {
         try {
             //$user = array();
-            $user = Registration::model()->checkAuthentication($model);
+            if($role=='User'){
+                $user = Registration::model()->checkAuthentication($model);
+            }
+            if($role=='Admin'){
+                $user = Admin::model()->checkAuthentication($model);
+            }
             if (!empty($user)) {
                 return $user;
             } else {
@@ -333,5 +338,26 @@ class KushGharService {
             error_log("=============exception occurred in login=============" . $ex->getMessage());
         }
     }
+    
+    /*
+     * New Users invitations For Admin
+     */
+    public function getcheckNewUserExist($emailId) { 
+        try {
+            $result = InviteUser::model()->checkNewUserExist($emailId);
+            error_log("service=========".$result);
+        } catch (Exception $ex) {
+            error_log("=============exception occurred in login=============" . $ex->getMessage());
+        }
+        return $result;
+    }
+    
+    public function getAllUsers() {
+        return InviteUser::model()->getAllUsers();
+    }
+    public function getStatusUser($id,$val) {
+        return InviteUser::model()->getStatusUser($id,$val);
+    }
+    
 }
 ?>

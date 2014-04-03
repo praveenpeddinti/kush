@@ -25,7 +25,7 @@ one home at a time</div>
    	<li>Service providers are background checked and certified</li>
     </ul>
     <center>
-        <div class="btn-group"  >
+        <div class="btn-group paddingT10">
             <a href="/user/registration"><button class="btn btn-large dropdown-toggle getstarted_button"  >
             Get Started 
             </button></a>

@@ -26,6 +26,13 @@
                         </div>
                         <div class="header_menu_items">
                             <ul role="navigation" class="nav">
+                                <!--<li class="dropdown ">
+                                    <div class="btn-group">
+                                        <button class="btn btn-primary Login_button" data-toggle="dropdown" onclick="adminLoginpopup();">
+                                            Admin <span class="caret">&nbsp;</span>
+                                        </button>                                       
+                                    </div>
+                                </li>-->
                                 <li class="dropdown ">
                                    
                                         
@@ -99,6 +106,9 @@
                     <?php if($this->session['Type']=='Vendor'){?>
                     <a href="/vendor/vendorBasicInformation"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/inner_top_logo.png" alt="logo" class="logo"></a>
                     <?php }?>
+                    <?php if($this->session['Type']=='Admin'){?>
+                    <a href="/admin/dashboard"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/inner_top_logo.png" alt="logo" class="logo"></a>
+                    <?php }?>
                 </div>
 
                 <div class="pull-right">
@@ -115,6 +125,9 @@
                                 <?php }?>
                                 <?php if($this->session['Type']=='Vendor'){?>
                                 <li><a href="/vendor/vendorBasicInformation"><i class="fa fa-user"></i> Account</a></li>
+                                <?php }?>
+                                <?php if($this->session['Type']=='Admin'){?>
+                                <li><a href="/admin/dashboard"><i class="fa fa-user"></i> Account</a></li>
                                 <?php }?>
                                 <!--<li><a href="account"> <i class="fa fa-user"></i> Account</a></li>-->
                                 <!--<li><a href="#"><i class="fa fa-user"></i> Settings</a></li>-->
@@ -146,5 +159,8 @@
 <script type="text/javascript">
     function loginpopup(){
         window.location.href=<?php echo Yii::app()->request->baseUrl; ?>'/user/registration';
+    }
+    function adminLoginpopup(){
+        window.location.href=<?php echo Yii::app()->request->baseUrl; ?>'/admin/login';
     }
 </script>

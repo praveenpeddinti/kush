@@ -40,14 +40,13 @@ class InviteUser extends CActiveRecord {
         $result = "false";
         $user = InviteUser::model()->findByAttributes(array('email_address' => $model->Email));
         
-        error_log($model->LastName."*********************************firt name");
         if (!isset($user)) {
             try {
                 $user = new InviteUser();
                 
                 
-                $user->first_name = stripcslashes($model->FirstName);
-                $user->last_name = stripcslashes($model->LastName);
+                //$user->first_name = stripcslashes($model->FirstName);
+                //$user->last_name = stripcslashes($model->LastName);
                 $user->email_address = stripcslashes($model->Email);
                 $user->type = stripcslashes($type);
                 $user->create_timestamp = gmdate("Y-m-d H:i:s", time());
@@ -63,11 +62,21 @@ class InviteUser extends CActiveRecord {
         return $result;
     }
 
-    
-   public function getAllUsers(){
+   public function getTotalUsers(){
         try{            
-            $query = "SELECT * FROM KG_InvitationUsers";
+            $query = "SELECT count(*) as count FROM KG_InvitationUsers";
                    
+            $result = Yii::app()->db->createCommand($query)->queryRow();
+        
+        }catch(Exception $ex){
+            error_log("################Exception Occurred  getAllContacts##############".$ex->getMessage());
+        }
+        return $result['count'];
+    } 
+   public function getAllUsers($start,$end){
+        try{            
+            $query = "SELECT * FROM KG_InvitationUsers limit ".$start. ",".$end;
+              error_log("query====".$query."===");     
             $result = Yii::app()->db->createCommand($query)->queryAll();
         
         }catch(Exception $ex){

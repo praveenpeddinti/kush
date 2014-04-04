@@ -311,18 +311,8 @@
                                                         )); ?>
                                                         
                                             <?php echo $form->error($inviteModel, 'error'); ?>
-                                            <div class="row-fluid">
-                                            <div class="span6">
-                                              <?php echo $form->label($inviteModel,'FirstName'); ?>
-   <?php echo $form->textField($inviteModel,'FirstName', array( 'class'=>'span12','placeholder'=>'First Name…')); ?>
-   <?php echo $form->error($inviteModel,'FirstName'); ?>
-                                             </div>
-                                                <div class="span6">
-                                              <?php echo $form->label($inviteModel,'LastName'); ?>
-   <?php echo $form->textField($inviteModel,'LastName', array( 'class'=>'span12','placeholder'=>'Last Name…')); ?>
-   <?php echo $form->error($inviteModel,'LastName'); ?>
-                                             </div>
-                                            </div>
+                                            <?php echo $form->hiddenField($inviteModel,'InviteType', array('value'=>'0')); ?>
+                                            
              <div class="row-fluid">
                                             <div class="span12">
                                               <?php echo $form->label($inviteModel,'Email'); ?>

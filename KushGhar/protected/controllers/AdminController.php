@@ -145,11 +145,44 @@ public function actionDashboard(){error_log("enter dashboard================");
     }
 }
 
-  public function actionManage(){
+  public function actionManage(){error_log("dfdfdf-----------1---");
       try{
-          $model = new BulkForm;
-          $userDetails = $this->kushGharService->getAllUsers();
+          //if(isset($_GET['userDetails_page'])){
+          //$model = new BulkForm;
+          //$userDetails = $this->kushGharService->getAllUsers();
+       
+          /*$provider = new CArrayDataProvider($userDetails, 
+            array(
+                "pagination" => array(
+                    "pageSize" => 5
+                )
+           )
+        );*/
+        
+        $this->render("manage");
           
+          
+          //$renderHtml=$this->renderPartial('newManage', array('userDetails'=>$userDetails,true)); 
+          //$renderHtml=$this->render('manage', array('userDetails'=>$userDetails,true)); 
+          //$obj = array('status' => 'success', 'html' => $renderHtml);
+          //$renderScript = $this->rendering($obj);
+          //echo $renderScript;
+          //}
+      }catch(Exception $ex){
+           error_log("#########Exception Occurred########".$ex->getMessage());
+      }
+  }
+  
+  public function actionNewManage(){error_log("dfdfdfnew manage-----------1---");
+      try{
+          if(isset($_GET['userDetails_page'])){error_log("dfdfdfnew manage-----------2--".$_GET['userDetails_page']."==".$_GET['pageSize']);
+          $model = new BulkForm;
+          $totaluser = $this->kushGharService->getTotalUsers();
+          error_log("total====".$totaluser);
+          $startLimit = ((int)$_GET['userDetails_page']-1)*(int)$_GET['pageSize'];
+          $endLimit = $_GET['pageSize'];
+          $userDetails = $this->kushGharService->getAllUsers($startLimit,$endLimit);
+       error_log("dfdfdfnew manage-----------3--");
           /*$provider = new CArrayDataProvider($userDetails, 
             array(
                 "pagination" => array(
@@ -161,7 +194,13 @@ public function actionDashboard(){error_log("enter dashboard================");
         //$this->render("manage", array("userDetails" => $provider));
           
           
-          $this->render('manage', array('userDetails'=>$userDetails));  
+          $renderHtml=$this->renderPartial('newManage', array('userDetails'=>$userDetails, 'totalCount' => $totaluser),true); 
+          error_log("dfdfdfnew manage----------4---".$renderHtml);
+          //$renderHtml=$this->render('manage', array('userDetails'=>$userDetails,true)); 
+          $obj = array('status' => 'success', 'html' => $renderHtml, 'totalCount' => $totaluser);
+          $renderScript = $this->rendering($obj);
+          echo $renderScript;
+          }
       }catch(Exception $ex){
            error_log("#########Exception Occurred########".$ex->getMessage());
       }

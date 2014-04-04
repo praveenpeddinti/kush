@@ -12,6 +12,7 @@
         <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrapSwitch.css" rel="stylesheet">
         <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap-responsive.css" rel="stylesheet">
         <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/calendar_autocomplete.css" rel="stylesheet">
+            <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/simplePagination.css" rel="stylesheet">
         <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/styles.css" rel="stylesheet">
         <script src="http://jwpsrv.com/library/lTLXvre_EeKQUxIxOQulpA.js"></script>
         <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/fonts.css" rel="stylesheet">
@@ -23,6 +24,7 @@
         <!-- Fav and touch icons -->
         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrap.js"> </script>
          <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrapSwitch.js"> </script>
+         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.simplePagination.js"> </script>
         <script>
             // tooltip demo
             $('.tooltiplink').tooltip({

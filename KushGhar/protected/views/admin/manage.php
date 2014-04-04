@@ -106,10 +106,10 @@
                             <div class="selected_tab">Dashboard</div>
                             <ul class="l_menu_sub_menu">
 
-                                <li class="active"><a href="/admin/dashboard"> <i class="fa fa-user"></i> Invite Friends</a>
+                                <li><a href="/admin/dashboard"> <i class="fa fa-user"></i> Invite Friends</a>
 
                                 </li>
-                                <li><a href="/admin/manage"> <i class="fa fa-phone"></i> Invite Management</a>
+                                <li  class="active"><a href="/admin/manage"> <i class="fa fa-phone"></i> Invite Management</a>
 
                                 </li>
 
@@ -126,31 +126,22 @@
                         <h4>Invitation Management</h4>
                         
                         <div class="paddinground">    
-                            <fieldset> 
-                                <fieldset>    
-                                <table class="table table-bordered" id="userTable">
-                                    <tr>
-                                        <th>Email Address</th><th>Status</th>
-                                    </tr>
-                                        <?php
-                                        if (count($userDetails) > 0) {
-                                            foreach ($userDetails as $row) {
-                                        ?>
-                                        <tr>
-                                            <td><?php echo $row['email_address']; ?></td>
-                                            <td><input id="user_<?php echo $row['Id']; ?>" data-id="<?php echo $row['Id']; ?>" data-status="<?php echo $row['status']; ?>" type="button" value=" " class="<? if ($row['status'] == '1') echo 'icon_delete'; if ($row['status'] == '0') echo 'icon_inactive'; ?>" alt="Change Status" title="Change Status"/></td>
-                                        </tr>
-                                        <?php  } ?>
-                                        <?php //$this->widget("ext.yiinfinite-scroll.YiinfiniteScroller", array("itemSelector" => "div.items","pages" => $userDetails->pagination)); ?>
+                            <div id="tablewidget"  style="margin: auto;">
+                                <table id="userTable" class="table table-hover">
+
+                                    <thead><tr><th>Email Address</th><th>Actions</th></tr></thead>
+                                    <tbody id="abusedWords_tbody">
                                         
-                                         <?php } else {?>
-                                        <tr>
-                                            <td colspan="2">No Record(s) are found.</td>
-                                        </tr>
-                                        <?php } ?>
+                                    </tbody>
                                 </table>
-                                   
-                            </fieldset> 
+                                <div class="pagination pagination-right">
+                                    <div id="pagination"></div>  
+
+                                </div>
+                            </div>  
+                            
+                        
+                                
                         </div>
                     </div>    
                 </div>
@@ -159,6 +150,7 @@
     </section>
 </div>
 <script type="text/javascript">
+    var globalspace = new Object();
     $(document).ready(function() {
         $('#userTable tr td input').live('click', function() {
             var id = $(this).attr('data-id');
@@ -166,4 +158,70 @@
             statusChangeUser(Number(id), Number(status));
         });
     });
+    
+    $(function(){
+        getCollectionDataWithPagination('/admin/newManage','userDetails', 'abusedWords_tbody',1,5, '');
+    });
+    
+    
+    
+    function ajaxRequest(url, queryString,callback,dataType,beforeSendCallback) { 
+    var data = queryString;
+    if(dataType==null || dataType==undefined){
+        dataType = "json";
+    }
+    $.ajax({
+        dataType: dataType,
+        type: "POST",
+        url: url,
+        async: true,
+        data: data,
+        success: function(data) { 
+            if(callback!=null && callback!=undefined){
+            callback(data);
+            }
+        },
+        error: function(data) {            
+            
+          
+        },
+         beforeSend: function() {
+             if(beforeSendCallback!=null && beforeSendCallback!=undefined){
+                   beforeSendCallback();
+             }
+             
+            }
+        
+    });
+}
+function getCollectionDataWithPagination(URL,CollectionName, MainDiv, CurrentPage, PageSize, callback){
+   //alert("URL===="+URL+"==CollectionName==="+CollectionName+"==MainDiv==="+MainDiv+"==CurrentPage==="+CurrentPage+"==PageSize==="+PageSize);
+    globalspace[MainDiv+'_page'] = Number(CurrentPage);
+        globalspace[MainDiv+'_pageSize']=Number(PageSize);
+
+        var newURL =  URL+"?"+CollectionName+"_page="+globalspace[MainDiv+'_page']+"&pageSize="+globalspace[MainDiv+'_pageSize'];
+    var data = "";  
+    
+    ajaxRequest(newURL,data,function(data){getCollectionDataWithPaginationHandler(data,URL,CollectionName,MainDiv,callback)});
+}
+    function getCollectionDataWithPaginationHandler(data,URL,CollectionName,MainDiv,callback){
+          //scrollPleaseWaitClose('spinner_admin');
+        $("#"+MainDiv).html(data.html);
+                    
+                //$('#'+MainDiv+'_count').text(data.totalCount);
+                $("#pagination").pagination({
+                    currentPage: globalspace[MainDiv+'_page'],
+                    items: data.totalCount,
+                    itemsOnPage: globalspace[MainDiv+'_pageSize'],
+                    cssStyle: 'light-theme',
+                    onPageClick: function(pageNumber, event) {
+                        globalspace[MainDiv+'_page'] = pageNumber;
+                        getCollectionDataWithPagination(URL,CollectionName, MainDiv, globalspace[MainDiv+'_page'], globalspace[MainDiv+'_pageSize'], callback)
+                    }
+
+                });
+                if(callback!=''){
+                    callback();
+                }
+    }
 </script>

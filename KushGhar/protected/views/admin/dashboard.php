@@ -82,6 +82,7 @@
                             ));?>
                             
                             <?php echo $form->error($model, 'error'); ?>
+                            <?php echo $form->hiddenField($model,'InviteType', array('value'=>'1')); ?>
                             <fieldset>
                             <div class="row-fluid">    
                             <div class=" span8">

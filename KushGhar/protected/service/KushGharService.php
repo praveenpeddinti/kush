@@ -352,8 +352,13 @@ class KushGharService {
         return $result;
     }
     
-    public function getAllUsers() {
-        return InviteUser::model()->getAllUsers();
+    
+    public function getTotalUsers() {
+        return InviteUser::model()->getTotalUsers();
+    }
+    public function getAllUsers($startLimit,$endLimit) {
+        error_log("sta===".$startLimit."==end===".$endLimit);
+        return InviteUser::model()->getAllUsers($startLimit,$endLimit);
     }
     public function getStatusUser($id,$val) {
         return InviteUser::model()->getStatusUser($id,$val);

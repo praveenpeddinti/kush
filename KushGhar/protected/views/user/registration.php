@@ -280,7 +280,7 @@
      <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
          <div class="modal-header">
              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-             <center><h3 id="myModalLabel">Thank You</h3></center>
+             <center><h3 id="myModalLabel">Thank you for visiting Gushghar,currently Gushghar works in invite only mode. Could you please provided valid email address to invite you.</h3></center>
          </div>
          <div id="inviteSpinLoader"></div>
          <div class="modal-body">
@@ -297,14 +297,14 @@
              <?php echo $form->hiddenField($inviteModel,'InviteType', array('value'=>'0')); ?>
              <div class="row-fluid">
                                             <div class="span12">
-                                              <?php echo $form->label($inviteModel,'Email'); ?>
+                                              <?php echo $form->label($inviteModel,'<abbr title="required">*</abbr> Email'); ?>
    <?php echo $form->textField($inviteModel,'Email', array( 'class'=>'span12','placeholder'=>'Email…')); ?>
    <?php echo $form->error($inviteModel,'Email'); ?>
                                              </div>
                                                 
                                             </div>
          
-         <div class="modal-footer">
+         <div style="text-align: right">
              <?php echo CHtml::ajaxButton('Invite',array('user/invite'), array(
             'type' => 'POST',
             'dataType' => 'json',

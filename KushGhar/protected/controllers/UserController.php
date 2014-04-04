@@ -544,7 +544,7 @@ class UserController extends Controller {
                     //$errors = 'Invitation send by your Email';
                     $obj = array('status' => 'success', 'data' => $result, 'error' => 'Invitation send by your Email');
                 } else {error_log("dsdfdsfsdfsdelse===");
-                    $errors = array("InviteForm_error" => 'User exist with these Email.');
+                    $errors = array("InviteForm_error" => 'User already Invited.');
                     $obj = array('status' => '', 'data' => '', 'error' => $errors);
                 }
             }

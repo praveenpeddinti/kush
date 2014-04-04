@@ -39,7 +39,7 @@
     <div class="row-fluid" style="height:480px">
         <div class="span12">
             <div class="paddinground">
-                <div class="span12 paddingB20">
+                <div class="span6 paddingB20">
                     <div class="reg_div ">
                         <div class="paddinground">
                             <h2 class="reg_title">Adminstrator Login</h2>

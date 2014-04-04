@@ -41,7 +41,12 @@
  */
 
 function scrollPleaseWait(spinnerId, divId){
+   if(spinnerId=='inviteSpinLoader'){
+    var loaderScript = '<div id="loader_'+spinnerId+'" style="z-index: 99999; left:0;right:0; text-align: center; top: 85px;bottom:0; position: absolute;display: none" ><div id="cl_spiral_'+spinnerId+'" class="loader" ><div id="SpinLoader"><img src="/images/spinner.gif"></div></div></div>';
+       
+   }else{
     var loaderScript = '<div id="loader_'+spinnerId+'" style="z-index: 99999; left:0;right:0; text-align: center; top: 350px;bottom:0; position: absolute;display: none" ><div id="cl_spiral_'+spinnerId+'" class="loader" ><div id="SpinLoader"><img src="/images/spinner.gif"></div></div></div>';
+    }
     $("#"+spinnerId).html(loaderScript);
     $("#loader_"+spinnerId).show();
 

@@ -33,8 +33,11 @@ class InviteForm extends CFormModel
                 'if' => array(
                 array('InviteType', 'compare', 'compareValue'=>"1")),
                 'then' => array(
-                 array('EmailIds', 'required','message'=>'Please enter a value for {attribute}.'),
-                 array('EmailIds', 'email'),),
+                 //array('EmailIds', 'required','message'=>'Please enter a value for {attribute}.'),
+                 //array('EmailIds', 'email'),
+                 //array('EmailIds', 'myvalidtions'),
+                    array('EmailIds','my_required'),
+                    ),
                 ),
                 
                 
@@ -48,6 +51,13 @@ class InviteForm extends CFormModel
 		);
 	}
 
-	
+        
+        
+        /*public function myvalidtions($attribute,$params){error_log("enter-----------");
+            error_log("----".$attribute."----".$params);
+            $params =array();
+            $req = CValidator::createValidator('EmailIds', $this,array('EmailIds'),$params);
+            $req->validate($this);
+        }*/
 	
 }

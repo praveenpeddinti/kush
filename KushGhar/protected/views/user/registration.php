@@ -11,7 +11,7 @@
 
 
 
-     function inviteCustomershandler(data){alert("enter site index==="+data.status);
+     function inviteCustomershandler(data){//alert("enter site index==="+data.status);
         scrollPleaseWaitClose('inviteSpinLoader');
         if(data.status=='success'){//alert("success==="+data.error);
             $("#InviteForm_error_em_").show();
@@ -279,7 +279,7 @@
 <!-- Popup block Start -->
      <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
          <div class="modal-header">
-             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+             <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>-->
              <center><h3 id="myModalLabel">Thank you for visiting Gushghar,currently Gushghar works in invite only mode. Could you please provided valid email address to invite you.</h3></center>
          </div>
          <div id="inviteSpinLoader"></div>

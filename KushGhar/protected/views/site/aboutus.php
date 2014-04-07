@@ -50,7 +50,7 @@
                         <div class="span10 paddingL20">
                             <h3>Ramakrishna  Tummala</h3>
                             <div class="design">Managing Director</div>
-                            <p> I am a mechanical engineer from National Institute of Technology,Calicut,India. I started my career with Denison Hydraulics India ltd at their Patancheru Plant. Denison is in the business of manufacturing Hydraulic equipment & supplying equipment as OEMs. My last position held at Denison was Regional Sales Manager for South Zone. </p>
+                            <p> I am a mechanical engineer from National Institute of Technology, Calicut, India. I have spent many years in senior management in manufacturing, marketing and sales, and pharmaceuticals before choosing the entrepreneurial route. I have promoted several successful businesses in healthcare services, data management, technology, and aerial imaging. Several of these companies are industry leaders and pioneers in terms of processes, quality systems, and human resource practices. I have also launched a rural BPO in a village in Andhra Pradesh with 50 executives working as per US quality and security parameters. Kushghar is my contribution to bringing high-quality home services to the Indian market. My commitment to Kushghar is also driven by my desire to organize and improve the conditions and practices in the home services segment. </p>
                             <div class="dashed_separator"></div>
                         </div>
                     </div>

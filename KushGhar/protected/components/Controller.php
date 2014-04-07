@@ -77,7 +77,25 @@ class Controller extends CController {
     }
 
    
-   
+   public function sendMailToUser($to, $name, $subject, $message, $employerName, $employerEmail, $templateType) {
+        error_log("enter sendMail============");
+       $streamObj = array();
+        $streamObj['toAddress'] = $to;
+        $streamObj['userName'] = $name;
+        $streamObj['subject'] = $subject;
+        $streamObj['message'] = $message;
+        $streamObj['companyLogo'] = '';
+        $streamObj['employerName'] = $employerName;
+        $streamObj['employerEmail'] = $employerEmail;
+        $streamObj['mailType'] = $templateType;
+
+        // $streamObj['isNew'] =(boolean)1;
+        try {
+            Yii::app()->mail->sendmails($streamObj);
+        } catch (Exception $ex) {
+            error_log("#########Exception Occurred in sendMailToUser########".$ex->getMessage());
+        }
+    }
  
  
 

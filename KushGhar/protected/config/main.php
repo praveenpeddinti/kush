@@ -99,6 +99,9 @@ return array(
 			),
                 
 		),
+            'mail'=>array(
+                        'class' => 'application.extensions.mail.Mail',
+                ),
       
             ),
 // application-level parameters that can be accessed

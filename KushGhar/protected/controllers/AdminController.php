@@ -97,7 +97,11 @@ public function actionDashboard(){error_log("enter dashboard================");
                 $email=array();
                 $email=explode(",",$model->EmailIds);
                  $flag=0;
-                for($i=0;$i<sizeof($email);$i++){
+                $messages = "Successfull upgrated. <br/>Please login with the below email:<br/> Email: $email[0]";
+                            
+                 $this->sendMailToUser('lakshman.peruri@gmail.com', 'KushGhar', 'Kushghar Invitation', $messages, 'praveen', 'praveen.peddinti@gmail.com', 'getintouch');
+        
+                 for($i=0;$i<sizeof($email);$i++){
                     
                    //$details=$this->kushGharService->getcheckNewUserExist($email[$i]);
                     $details=$this->kushGharService->getcheckNewUserExist($email[$i]);
@@ -119,7 +123,7 @@ public function actionDashboard(){error_log("enter dashboard================");
                     error_log("flag======".$flag);
                 }
                 if($flag==sizeof($email)){ $result='success';}
-                //$result='success';
+                $result='success';
                 error_log("dffffffffffffffff===".$result);
                 if ($result == "success") {
                     //$message = Yii::t('translation', 'Thank you for contacting us. We will respond to you as soon as possible');

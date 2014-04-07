@@ -88,13 +88,13 @@
                             <div class=" span8">
     
         <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> Email Ids'); ?>
-        <?php echo $form->textArea($model,'EmailIds',array('placeholder'=>'Email Addresses…', 'maxlength' => 200, 'cols'=>10, 'rows'=>10, 'class' => 'span12')); ?>
+        <?php echo $form->textArea($model,'EmailIds',array('placeholder'=>'Email Ids…', 'maxlength' => 200, 'cols'=>10, 'rows'=>10, 'class' => 'span12')); ?>
         <?php echo $form->error($model,'EmailIds'); ?>
                                 
    </div>
                                 <div class=" span4">
                                         <div  class=" paddingT30">
-                                       <?php echo CHtml::ajaxButton('Send mails', array('admin/dashboard'), array(
+                                       <?php echo CHtml::ajaxButton('Invite', array('admin/dashboard'), array(
                                             'type' => 'POST',
                                             'dataType' => 'json',
                                             

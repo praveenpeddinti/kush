@@ -299,7 +299,7 @@
      <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
          <div class="modal-header">
              <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>-->
-             <center><h3 id="myModalLabel">Thank you for visiting Kushghar,currently Kushghar works in invite only mode. Could you please provided valid email address to invite you.</h3></center>
+             <center><h3 id="myModalLabel">Thank you for visiting Kushghar,currently Kushghar works in invite only mode. Could you please provide valid email address to invite you.</h3></center>
          </div>
          <div class="modal-body">
              <?php $form=$this->beginWidget('CActiveForm', array(

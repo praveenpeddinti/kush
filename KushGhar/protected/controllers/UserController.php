@@ -529,13 +529,13 @@ class UserController extends Controller {
                 $result = $this->kushGharService->getInvitationUser($inviteForm, $this->session['Type']);
                
                 if ($result == "success") {error_log("dsdfdsfsdfsdif====".$inviteForm->Email);
-                    $mess = 'Hi' . "\r\n";
+                    $mess = 'Hi' . "\r\n\n";
                     $mess = $mess . 'Welcome from KushGhar.com ' . "\r\n\n";
                     $mess = $mess . 'You can visit KushGhar.com by clicking following url. ' . "\r\n\n";
                     $mess = $mess . 'http://115.248.17.88:6060/site/invite?uname=' . $inviteForm->Email . "\r\n\n";
                     $mess = $mess . 'Regards,' . "\r\n" . 'KushGhar.';
                     $to = $inviteForm->Email;
-                    $subject = 'Kushghar Invitation';
+                    $subject = 'KushGhar Invitation';
                     $message = $mess;
                     $headers = 'From: praveen.peddinti@gmail.com' . "\r\n" .
                             'X-Mailer: PHP/' . phpversion();

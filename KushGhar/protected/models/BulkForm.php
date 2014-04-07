@@ -30,7 +30,7 @@ class BulkForm extends CFormModel
 
 	public function my_required($attribute_name, $params) {
         if (empty($this->EmailIds)) {
-            $this->addError('EmailIds', 'Please enter Telephone number or Mobile number');
+            $this->addError('EmailIds', 'Please enter a value for Email Id(s)');
         }
         $email = array();
         $email = explode(",", $this->EmailIds);

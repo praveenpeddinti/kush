@@ -97,20 +97,16 @@ public function actionDashboard(){error_log("enter dashboard================");
                 $email=array();
                 $email=explode(",",$model->EmailIds);
                  $flag=0;
-                 
-                    /*$mess1 = $mess1 . 'Welcome from KushGhar.com ' . "\r\n\n";
-                    $mess1 = $mess1 . 'You can visit KushGhar.com by clicking following url. ' . "\r\n\n";
-                    $mess1 = $mess1 . 'http://115.248.17.88:6060/site/invite?uname=' . $email[0] . "\r\n\n";
-                    $messages = $mess1;           
-                    $this->sendMailToUser('praveen.peddinti@techo2.com', 'KushGhar', 'Kushghar Invitation', $messages, 'praveen', 'praveen.peddinti@gmail.com', 'getintouch');
-                    */
+
                  for($i=0;$i<sizeof($email);$i++){
                     
                    //$details=$this->kushGharService->getcheckNewUserExist($email[$i]);
                     $details=$this->kushGharService->getcheckNewUserExist($email[$i]);
                     error_log("email id is====".$details);
                     if($details=='No user'){error_log("new users eith email ====".$email[$i]);
+
                     /*$mess = 'Hi' . "\r\n\n";
+
                     $mess = $mess . 'Welcome from KushGhar.com ' . "\r\n\n";
                     $mess = $mess . 'You can visit KushGhar.com by clicking following url. ' . "\r\n\n";
                     $mess = $mess . 'http://115.248.17.88:6060/site/invite?uname=' . $email[$i] . "\r\n\n";

@@ -17,8 +17,10 @@ class coActiveMailServer {
         $authPassword = 'praveen@techo2';
          //$authMail = 'suresh.govindu@techo2.com';
         //$authPassword = 'sureshreddygovindu1';
-        $coActiveLogo = YII::app()->params['SERVER_URL'] . "/images/footer_logo.png";
+        //$coActiveLogo = YII::app()->params['SERVER_URL'] . "/KushGhar/images/footer_logo.png";
+        $coActiveLogo ='http://10.10.73.107/KushGhar/images/big_bullet.png';
         $date = date("Y-m-d");
+        error_log("logo------------------".$coActiveLogo);
         if ($obj['mailType'] == "employerMessage") {
             $this->employerMessage($obj, $host, $port, $authMail, $authPassword, $coActiveLogo,$date);
         } else if ($obj['mailType'] == "employeeVerification") {
@@ -45,7 +47,7 @@ class coActiveMailServer {
   function getInTouchMessage($obj, $host, $port, $authMail, $authPassword,$coActiveLogo,$date) {
         $template2 = '';
 
-        error_log("&*****************&&&&&&&&&&&&&&&&********************in dependentMessage function=========");
+        error_log($coActiveLogo."==&*****************&&&&&&&&&&&&&&&&********************in dependentMessage function=========");
         $temp2 = "/opt/lampp/htdocs/KushGhar/protected/extensions/mail/getintouchmessage.html";
         $handle2 = fopen($temp2, "r");
         $data2 = file_get_contents($temp2);
@@ -72,15 +74,17 @@ class coActiveMailServer {
                     $mail->Password = $authPassword;
                     $mail->SetFrom($employerEmail, $employerName);
                    // $mail->AddReplyTo($employerEmail, $employerName);
+                    //$template2 = str_replace('{--EMAILIDS--}',stripslashes($emailIds),$template2);  
                     $template2 = str_replace('{--USERNAME--}',stripslashes(ucwords("$userName")),$data2);                    
                     $template2 = str_replace('{--DATE--}',stripslashes($date),$template2);
                     $template2 = str_replace('{--MESSAGE--}',stripslashes($message),$template2);
                     $template2 = str_replace('{--EMPLOYERNAME--}',stripslashes($employerName),$template2);
                     $template2 = str_replace('{--COACTIVELOGO--}', stripslashes($coActiveLogo), $template2);
                      $template2 = str_replace('{--SITEURL--}', YII::app()->params['SERVER_URL'], $template2);
+                     $template2 = str_replace('{--TOADDRESS--}',stripslashes($addAddress),$template2);
                     $mail->AddAddress($addAddress, $userName);
                     
-                    $mail->Subject =  "Thanks for your message!";
+                    $mail->Subject =  "KushGhar Invitation";
                     $mail->Body = $template2;                    
                     $mail->AltBody = 'This is a plain-text message body';
                     if (!$mail->Send()) {

@@ -162,7 +162,7 @@
                                 <?php echo $form->error($model, 'Email'); ?>
 
                                 <label><?php echo $form->labelEx($model, '<abbr title="required">*</abbr> phone'); ?></label>
-                                <?php echo $form->textField($model, 'Phone', array('id' => 'RegistrationForm_Phone', 'class' => 'span12', 'placeholder' => 'Phone Number…', 'maxLength' => 10, 'onkeypress' => 'return isNumberKey(event);')); ?>
+                                <?php echo $form->textField($model, 'Phone', array('id' => 'RegistrationForm_Phone', 'class' => 'span12', 'placeholder' => 'Phone…', 'maxLength' => 10, 'onkeypress' => 'return isNumberKey(event);')); ?>
                                 <?php echo $form->error($model, 'Phone'); ?>
 
                                 <label><?php echo $form->labelEx($model, '<abbr title="required">*</abbr> password'); ?></label>

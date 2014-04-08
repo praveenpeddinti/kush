@@ -247,12 +247,13 @@ class VendorController extends Controller {
         if($VType==1){
 
         $getVendorDetailsType1 = $this->kushGharService->getVendorDetailsWithIndividual($Vid);
+        
         }
         if($VType==2){
         $getVendorDetailsType1 = $this->kushGharService->getVendorDetailsWithAgency($Vid);
 
         }
-        
+        $this->session['LoginPic'] = $getVendorDetailsType1->profilePicture;
         $request = yii::app()->getRequest();
         $formName = $request->getParam('VendorContactInformationForm');
         if ($formName != '') {error_log("enter contact error info====");

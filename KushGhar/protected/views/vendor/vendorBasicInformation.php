@@ -139,7 +139,7 @@
                                     </div>
                                     <div class=" span4">
                                         <?php echo $form->label($model, 'ID Number'); ?>
-                                        <?php echo $form->textField($model, 'Number', array('value' => $getVendorDocuments->proof_number, 'class' => 'span12', 'maxLength' => 25, 'placeholder' => 'ID Number…')); ?>
+                                        <?php echo $form->textField($model, 'Number', array('value' => $getVendorDocuments->proof_number, 'class' => 'span12', 'maxLength' => 25, 'placeholder' => 'Id Number…')); ?>
                                         <?php echo $form->error($model, 'Number'); ?>
                                     </div>
                                 </div>

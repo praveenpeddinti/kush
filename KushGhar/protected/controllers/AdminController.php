@@ -97,27 +97,41 @@ public function actionDashboard(){error_log("enter dashboard================");
                 $email=array();
                 $email=explode(",",$model->EmailIds);
                  $flag=0;
-                $messages = "Successfull upgrated. <br/>Please login with the below email:<br/> Email: $email[0]";
-                            
-                 $this->sendMailToUser('lakshman.peruri@gmail.com', 'KushGhar', 'Kushghar Invitation', $messages, 'praveen', 'praveen.peddinti@gmail.com', 'getintouch');
-        
+                 
+                    /*$mess1 = $mess1 . 'Welcome from KushGhar.com ' . "\r\n\n";
+                    $mess1 = $mess1 . 'You can visit KushGhar.com by clicking following url. ' . "\r\n\n";
+                    $mess1 = $mess1 . 'http://115.248.17.88:6060/site/invite?uname=' . $email[0] . "\r\n\n";
+                    $messages = $mess1;           
+                    $this->sendMailToUser('praveen.peddinti@techo2.com', 'KushGhar', 'Kushghar Invitation', $messages, 'praveen', 'praveen.peddinti@gmail.com', 'getintouch');
+                    */
                  for($i=0;$i<sizeof($email);$i++){
                     
                    //$details=$this->kushGharService->getcheckNewUserExist($email[$i]);
                     $details=$this->kushGharService->getcheckNewUserExist($email[$i]);
                     error_log("email id is====".$details);
                     if($details=='No user'){error_log("new users eith email ====".$email[$i]);
-                    $mess = 'Hi' . "\r\n";
+                    /*$mess = 'Hi' . "\r\n\n";
                     $mess = $mess . 'Welcome from KushGhar.com ' . "\r\n\n";
                     $mess = $mess . 'You can visit KushGhar.com by clicking following url. ' . "\r\n\n";
                     $mess = $mess . 'http://115.248.17.88:6060/site/invite?uname=' . $email[$i] . "\r\n\n";
                     $mess = $mess . 'Regards,' . "\r\n" . 'KushGhar.';
                     $to = $email[$i];
-                    $subject = 'Kushghar Invitation';
+                    $subject = 'KushGhar Invitation';
                     $message = $mess;
                     $headers = 'From: praveen.peddinti@gmail.com' . "\r\n" .
                             'X-Mailer: PHP/' . phpversion();
-                    mail($to, $subject, $message, $headers);
+                    mail($to, $subject, $message, $headers);*/
+                    $to = $email[$i];
+                    $subject = 'KushGhar Invitation';
+                    $mess1 = 'Welcome from KushGhar.com ' . "\r\n\n";
+                    $mess1 = $mess1 . 'You can visit KushGhar.com by clicking following url. ' . "\r\n\n";
+                    //$mess1 = $mess1 . 'http://115.248.17.88:6060/site/invite?uname=' . $email[$i] . "\r\n\n";
+                    $messages = $mess1;           
+                    $this->sendMailToUser($to, $to, $subject, $messages, 'KushGhar', 'praveen.peddinti@techo2.com', 'getintouch');
+        
+                    
+        
+                 
                     }
                     $flag++;
                     error_log("flag======".$flag);

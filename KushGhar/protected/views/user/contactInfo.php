@@ -91,13 +91,13 @@
     <div class=" span12">
     <div class=" span6">
     <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> phone'); ?>
-        <?php echo $form->textField($model,'Phone',array('value'=>$customerDetails->phone, 'placeholder'=>'Phone Number…', 'class'=>'span12', 'maxLength' => 10, 'onkeypress' => 'return isNumberKey(event);')); ?>
+        <?php echo $form->textField($model,'Phone',array('value'=>$customerDetails->phone, 'placeholder'=>'Phone…', 'class'=>'span12', 'maxLength' => 10, 'onkeypress' => 'return isNumberKey(event);')); ?>
         <?php echo $form->error($model,'Phone'); ?>
     </div>
     <div class=" span6">
         <?php if(($customerAddressDetails->alternate_phone=='0') || (empty($customerAddressDetails->alternate_phone))){ $alternatePhone ='';}else{$alternatePhone =$customerAddressDetails->alternate_phone;}?>
         <?php echo $form->labelEx($model,'alternate Phone'); ?>
-        <?php echo $form->textField($model,'AlternatePhone',array('value'=>$alternatePhone,'placeholder'=>'Alternative Phone Number…', 'class'=>'span12', 'maxLength' => 10, 'onkeypress' => 'return isNumberKey(event);')); ?>
+        <?php echo $form->textField($model,'AlternatePhone',array('value'=>$alternatePhone,'placeholder'=>'Alternate Phone…', 'class'=>'span12', 'maxLength' => 10, 'onkeypress' => 'return isNumberKey(event);')); ?>
         <?php echo $form->error($model,'AlternatePhone'); ?>
     </div>
     </div>
@@ -143,7 +143,7 @@
     <div class="row-fluid">
     <div class=" span12">
     <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> landmark'); ?>
-        <?php echo $form->textArea($model,'Landmark',array('value'=>$customerAddressDetails->address_landmark, 'placeholder'=>'Description', 'maxlength' => 150, 'class' => 'span12')); ?>
+        <?php echo $form->textArea($model,'Landmark',array('value'=>$customerAddressDetails->address_landmark, 'placeholder'=>'Landmark…', 'maxlength' => 150, 'class' => 'span12')); ?>
         <?php echo $form->error($model,'Landmark'); ?>
 
    </div>

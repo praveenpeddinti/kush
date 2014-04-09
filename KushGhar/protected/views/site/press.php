@@ -6,7 +6,9 @@
                 <h2>Press</h2>
                 <div class="static_page_heading"></div>
                 <div class="page_header_mag" style="padding-top:120px">
-          	Press Data....</div>
+                    <p>KushGhar in the Press</p>
+                    <p>Interested in writing about KushGhar? Email to <i style="color:#6CA050">press@kushghar.com<i></p>
+                </div>
                 <div class="static_page_heading" style="padding-bottom:120px"></div>
             </div>
             

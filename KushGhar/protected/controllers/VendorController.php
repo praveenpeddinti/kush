@@ -121,7 +121,7 @@ class VendorController extends Controller {
                         //$this->session['Type']='Vendor';
                     }else {
                          $result="fail";
-                        $message = array("VendorRegistrationForm_error" => 'Already Vendor Existed.');
+                        $message = array("VendorRegistrationForm_error" => 'Vendor Already Exists.');
                         $obj = array('status' => 'error', 'data' => '', 'error' => $message);
                 }
 
@@ -138,7 +138,7 @@ class VendorController extends Controller {
                         $this->session['VendorType'] = $model->vendorType;
                     }else {error_log("dsfsdfsdd=====".$Dresult);
                     $result="fail";
-                    $message = array("VendorRegistrationForm_error" => 'Already Vendor Existed.');
+                    $message = array("VendorRegistrationForm_error" => 'Vendor Already Exists.');
                     $obj = array('status' => 'error', 'data' => '', 'error' => $message);
                 }
                 }
@@ -146,7 +146,7 @@ class VendorController extends Controller {
                     $message = array("VendorRegistrationForm_error" => 'Registration successfully.');
                     $obj = array('status' => 'success', 'data' => $message, 'error' => '');
                 } else {
-                    $message = array("VendorRegistrationForm_error" => 'Already Vendor Existed.');
+                    $message = array("VendorRegistrationForm_error" => 'Vendor Already Exists.');
                     $obj = array('status' => 'error', 'data' => '', 'error' => $message);
                 }
             }
@@ -179,7 +179,7 @@ class VendorController extends Controller {
         }
         //$getVendorDocuments = $this->kushGharService->getVendorDocumentsWithIndividual($Vid);
         $Identity = $this->kushGharService->getIdentifyProof();
-               
+         $this->session['firstName']=$getVendorDetailsType1->first_name;      
         $request = yii::app()->getRequest();
         $formName = $request->getParam('VendorBasicInformationForm');
         if ($formName != '') {error_log("enter basic error info====");

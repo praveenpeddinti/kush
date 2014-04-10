@@ -149,14 +149,14 @@ class UserController extends Controller {
                     
                 } else {
                     $result = "failed";
-                    $errors = array("RegistrationForm_error" => 'Already User Existed.');
+                    $errors = array("RegistrationForm_error" => 'User Already Exists.');
                     $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
                 }
                 if ($result == "success") {
                     $message = array("RegistrationForm_error" => 'Registration successfully.');
                     $obj = array('status' => 'success', 'data' => $message, 'error' => '');
                 } else {
-                    $message = array("RegistrationForm_error" => 'Already User Existed.');
+                    $message = array("RegistrationForm_error" => 'User Already Exists.');
                     $obj = array('status' => 'error', 'data' => '', 'error' => $message);
                 }
             }
@@ -174,10 +174,12 @@ class UserController extends Controller {
         error_log("picture=====".$this->session['LoginPic']);
         $basicForm = new BasicinfoForm;
         $updatedPasswordForm = new updatedPasswordForm;
+        
         $cId = $this->session['UserId'];
         $customerDetails = $this->kushGharService->getCustomerDetails($cId);
         $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($cId);
         $customerPaymentDetails = $this->kushGharService->getCustomerPaymentDetails($cId);
+        $this->session['firstName']=$customerDetails->first_name;
         $Identity = $this->kushGharService->getIdentifyProof();
         $request = yii::app()->getRequest();
         $formName = $request->getParam('BasicinfoForm');

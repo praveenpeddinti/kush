@@ -134,7 +134,7 @@
                 <div class="span6 paddingB20">
                     <div class="reg_div">
                         <div class="paddinground">
-                            <h2 class="reg_title">Registration</h2>
+                            <h2 class="reg_title">New User Registration</h2>
                             <div id="registrationSpinLoader" style="top:26px"></div>
                             <?php
                             $form = $this->beginWidget('CActiveForm', array(
@@ -193,7 +193,7 @@
                 <div class="span6 paddingB20">
                     <div class="reg_div ">
                         <div class="paddinground">
-                            <h2 class="reg_title">Login</h2>
+                            <h2 class="reg_title">Existing User Login</h2>
                             <?php $form = $this->beginWidget('CActiveForm', array(
                                   'id' => 'login-form',
                                   'enableClientValidation' => true,
@@ -225,10 +225,10 @@
                             <?php $this->endWidget(); ?>
 
                               <!-- Button to trigger modal -->
-    <!--<center><a href="#myModal" role="button" class="" data-toggle="modal">forgot your password?</a></center>-->
+    <center><a href="#myModalforgot" role="button" class="" data-toggle="modal">forgot your password?</a></center>
 
     <!-- Modal -->
-    <!--<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div id="myModalforgot" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="myModalLabel">Forgot Password</h3>
@@ -266,7 +266,7 @@
     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
     <button class="btn btn-primary">Save changes</button>
     </div>-->
-    <!--</div><!-- button forgot-->
+    </div><!-- button forgot-->
 
 
                         </div>
@@ -280,7 +280,7 @@
      <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
          <div class="modal-header">
              <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>-->
-             <center><h3 id="myModalLabel">Thank you for visiting Kushghar,currently Kushghar works in invite only mode. Could you please provide valid email address to invite you.</h3></center>
+            <h3 id="myModalLabel">Thank you for your interest in KushGhar.</br>In order to meet all our customers needs we are only taking people by invite at this time.We will send you an email that contains a link to register very soon. </br>If you have a friend who is a member of the KushGhar family, they can invite you today. </h3>
          </div>
          <div id="inviteSpinLoader"></div>
          <div class="modal-body">

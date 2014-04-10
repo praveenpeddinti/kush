@@ -123,7 +123,7 @@ public function actionDashboard(){error_log("enter dashboard================");
                     $mess1 = $mess1 . 'You can visit KushGhar.com by clicking following url. ' . "\r\n\n";
                     //$mess1 = $mess1 . 'http://115.248.17.88:6060/site/invite?uname=' . $email[$i] . "\r\n\n";
                     $messages = $mess1;           
-                    $this->sendMailToUser($to, $to, $subject, $messages, 'KushGhar', 'praveen.peddinti@techo2.com', 'getintouch');
+                    $this->sendMailToUser($to, $to, $subject, $messages, 'KushGhar', 'no-reply@kushghar.com', 'getintouch');
         
                     
         

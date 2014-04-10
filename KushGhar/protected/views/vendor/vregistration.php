@@ -158,7 +158,7 @@
                 <div class="span6 paddingB20">
                     <div class="reg_div">
                         <div class="paddinground">
-                            <h2 class="reg_title">Vendor Registration</h2>
+                            <h2 class="reg_title">New Vendor Registration</h2>
                             <div id="vendorRegistrationSpinLoader"></div>
                             <?php
                             $form = $this->beginWidget('CActiveForm', array(
@@ -237,7 +237,7 @@
                 <div class="span6 paddingB20">
                     <div class="reg_div ">
                         <div class="paddinground">
-                            <h2 class="reg_title">Vendor Login</h2>
+                            <h2 class="reg_title">Existing Vendor Login</h2>
                             <?php $form = $this->beginWidget('CActiveForm', array(
                                   'id' => 'vendorLogin-form',
                                   'enableClientValidation' => true,
@@ -299,7 +299,7 @@
      <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
          <div class="modal-header">
              <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>-->
-             <center><h3 id="myModalLabel">Thank you for visiting Kushghar,currently Kushghar works in invite only mode. Could you please provide valid email address to invite you.</h3></center>
+             <h3 id="myModalLabel">Thank you for your interest in KushGhar.</br>In order to meet all our customers needs we are only taking people by invite at this time.We will send you an email that contains a link to register very soon. </br>If you have a friend who is a member of the KushGhar family, they can invite you today. </h3>
          </div>
          <div class="modal-body">
              <?php $form=$this->beginWidget('CActiveForm', array(

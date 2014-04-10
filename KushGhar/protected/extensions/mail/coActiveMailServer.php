@@ -12,6 +12,7 @@ class coActiveMailServer {
    function __construct($obj) {
  
        $host = 'mail.techo2.com';
+       //$host = 'mail.gmail.com';
         $port = 465;
         $authMail = 'praveen.peddinti@techo2.com';
         $authPassword = 'praveen@techo2';

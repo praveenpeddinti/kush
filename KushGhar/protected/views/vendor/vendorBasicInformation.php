@@ -268,7 +268,8 @@
                                 </div>
                                <div class="row-fluid">
                                 <div class=" span12">
-                                <?php echo $form->label($model, 'How do you know KushGhar ?'); ?>
+                                    <label>How do you know KushGhar?</label>
+                                <?php //echo $form->label($model, 'How do you know KushGhar ?'); ?>
                                     <?php echo $form->dropDownList($model,'foundKushgharBy', array(''=>'Select One','friend' => 'Friend', 'mail' => 'Mail'), array('options' => array($getVendorDetailsType1->found_kushghar_by => array('selected' => 'selected')), 'class' => 'span12'));?>
                                     <?php echo $form->error($model,'foundKushgharBy'); ?>
                                     <?php //echo $form->dropDownList($model, 'cardType', CHtml::listData(array('prompt'=>'Select Card Type','options' => ('Visa''Visa', 'Master' => 'Master')), 'Id', 'identifiability'), array('options' => array($customerPaymentDetails->card_type => array('selected' => 'selected')), 'class' => 'span12')); ?>

@@ -280,7 +280,9 @@
      <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
          <div class="modal-header">
              <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>-->
-            <h3 id="myModalLabel">Thank you for your interest in KushGhar.</br>In order to meet all our customers needs we are only taking people by invite at this time.We will send you an email that contains a link to register very soon. </br>If you have a friend who is a member of the KushGhar family, they can invite you today. </h3>
+             <center><h3>Thank you for your interest in KushGhar.</h3></center>
+             <p>In order to meet all our customers needs we are only taking people by invite at this time.We will send you an email that contains a link to register very soon.
+             <br/>If you have a friend who is a member of the KushGhar family, they can invite you today. </p>
          </div>
          <div id="inviteSpinLoader"></div>
          <div class="modal-body">

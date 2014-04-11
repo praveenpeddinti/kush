@@ -2,7 +2,7 @@
     <div class="row-fluid">
         <div class="span12">
             <div class="paddinground">
-                <h2>TERMS OF SERVICE</h2>
+                <h2>Terms of Service</h2>
                 <div class="static_page_heading"></div>
                 <h5>Last updated 01 January, 2014</h5>
                 <div class="static_page_heading"></div>

@@ -558,6 +558,10 @@ class UserController extends Controller {
         //$this->render('invite', array("model" => $inviteForm));
     }
     
+    public function actionHome(){error_log("enter homeeeeeeeeeeeeeeeeee");
+        $this->redirect('/site/index');
+    }
+    
 }
 
 

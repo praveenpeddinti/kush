@@ -124,6 +124,10 @@
             });
         }
     }
+    
+    function homePage(){
+        window.location.href=<?php echo Yii::app()->request->baseUrl; ?>'/site/index';
+    }
 </script>
 
 
@@ -201,10 +205,10 @@
                                   'validateOnSubmit' => true,
                                   )
                             ));?>
-                            <?php echo $form->error($modelLogin, 'error'); ?>
+                            <?php echo $form->error($modelLogin, 'error', array('class'=>'errorMessageFont')); ?>
                             <fieldset>
                                 <?php echo $form->label($modelLogin, '<abbr title="required">*</abbr> user ID'); ?>
-                                <?php echo $form->textField($modelLogin, 'UserId', array('class' => 'span12', 'placeholder' => 'Email / Phone Number…', 'maxLength' => 100)); ?>
+                                <?php echo $form->textField($modelLogin, 'UserId', array('class' => 'span12', 'placeholder' => 'Email…', 'maxLength' => 100)); ?>
                                 <?php echo $form->error($modelLogin, 'UserId'); ?>
 
                                 <?php echo $form->labelEx($modelLogin, '<abbr title="required">*</abbr> password'); ?>
@@ -280,9 +284,26 @@
      <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
          <div class="modal-header">
              <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>-->
-             <center><h3>Thank you for your interest in KushGhar.</h3></center>
-             <p>In order to meet all our customers needs we are only taking people by invite at this time.We will send you an email that contains a link to register very soon.
+             <div class="row-fluid">
+                 <div class="span12">
+                      <center><h3>Thank you for your interest in KushGhar.</h3></center>
+                 </div></div>
+                 <div class="row-fluid">
+                 <div class="span12">
+                     <div class="span3">
+                         <a href="/"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/color_logo.png" alt="logo" class="logo" /></a>
+                     </div>
+                     <div class="span9">
+                        
+             <p class="t_left">In order to meet all our customers needs we are only taking people by invite at this time.We will send you an email that contains a link to register very soon.
              <br/>If you have a friend who is a member of the KushGhar family, they can invite you today. </p>
+                     </div>
+                 </div>
+                     
+             </div>
+             
+             
+             
          </div>
          <div id="inviteSpinLoader"></div>
          <div class="modal-body">
@@ -305,17 +326,20 @@
                                              </div>
                                                 
                                             </div>
-         
+        
+            
          <div style="text-align: right">
-             <?php echo CHtml::ajaxButton('Invite',array('user/invite'), array(
+             <?php echo CHtml::ajaxButton('Request an Invite',array('user/invite'), array(
             'type' => 'POST',
             'dataType' => 'json',
             'beforeSend' => 'function(){
                              scrollPleaseWait("inviteSpinLoader","invite-form");}',
             'success' => 'function(data,status,xhr) { inviteCustomershandler(data,status,xhr);}'), array('class'=>'btn btn-primary','type'=>'submit')); ?>
 
-             
+           <button class="btn btn-primary" onclick="homePage();">Home</button>
          </div>
+            
              <?php $this->endWidget(); ?>
+            
      </div>
      </div><!-- Popup block End -->

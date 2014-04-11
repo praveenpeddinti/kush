@@ -52,10 +52,10 @@
                                 )
                             ));
                             ?>
-                            <?php echo $form->error($adminLogin, 'error'); ?>
+                            <?php echo $form->error($adminLogin, 'error', array('class'=>'errorMessageFont')); ?>
                             <fieldset>
                                 <?php echo $form->label($adminLogin, '<abbr title="required">*</abbr> user ID'); ?>
-                                <?php echo $form->textField($adminLogin, 'UserId', array('class' => 'span12', 'placeholder' => 'Email / Phone Number…', 'maxLength' => 100)); ?>
+                                <?php echo $form->textField($adminLogin, 'UserId', array('class' => 'span12', 'placeholder' => 'Email…', 'maxLength' => 100)); ?>
                                 <?php echo $form->error($adminLogin, 'UserId'); ?>
                                 <?php echo $form->labelEx($adminLogin, '<abbr title="required">*</abbr> password'); ?>
                                 <?php echo $form->passwordField($adminLogin, 'Password', array('class' => 'span12', 'placeholder' => 'Password…', 'maxLength' => 100)); ?>

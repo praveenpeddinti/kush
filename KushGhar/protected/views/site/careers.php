@@ -41,7 +41,7 @@
                     <li> Two wheeler with Valid licence is an advantage.</li>                                  
                 </ul>
                 <h3>Reports to</h3>Office Manager
-                <div class="static_page_heading"></div>
+                
                 
             </div>
 

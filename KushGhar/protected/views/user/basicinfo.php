@@ -68,7 +68,7 @@
             <article>
                 <div class="row-fluid">
                     <div class="span12">
-                        <h4>Basic Information</h4><?php echo "======".$customerDetails->first_name;?>
+                        <h4>Basic Information</h4>
                         <hr>
                         <div class="paddinground">
                             <div id="basicInfoSpinLoader"></div>

@@ -115,9 +115,10 @@
                                 
                         </div>
                     </div>
+                </article>
                 </div>
-            </article>
-        </div>
+            
+        
     </section>
 </div>
 

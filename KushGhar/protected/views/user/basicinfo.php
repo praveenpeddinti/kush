@@ -186,7 +186,7 @@
                                     
                                     <div class="span6">
                                         <?php echo $form->label($model, 'Date of Birth'); ?>
-                                        <?php echo $form->textField($model, 'dateOfBirth', array('value' => $birthdata, 'class' => 'span10', 'placeholder' => 'Date of Birth…')); ?>
+                                        <?php echo $form->textField($model, 'dateOfBirth', array('value' => $birthdata, 'class' => 'span10 dob', 'placeholder' => 'Date of Birth…')); ?>
                                         <?php echo $form->error($model, 'dateOfBirth'); ?>
                                     </div>
                                 </div>

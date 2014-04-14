@@ -77,11 +77,11 @@ one home at a time</div>
      </div>
   <div class="our_services">
    <div class="row-fluid paddingT10" >
-   <div class="services">
+   <div class="services span12 paddingl20p">
    <ul>
-        <li><a href="#" class="housecleaning"> <span>Cleaning</span> </a></li>
-        <li><a href="#" class="driver"><span>Car Wash</span></a></li>
-        <li><a href="#" class="laundry"><span>Stewards/<br/>Stewardesses</span></a></li>
+       <li><a href="/site/cleaning" class="housecleaning has-popover" title="" data-toggle="popover" data-placement="top" data-content="<ul><li>Pooja room</li><li>Kitchen room</li><li>Bed room</li><li>Living room</li><li>Bath room</li></ul>" data-original-title="Cleaning" > <span>Cleaning</span> </a></li>
+        <li><a href="/site/carwash" class="driver has-popover" title="" data-toggle="popover" data-placement="top" data-content="<ul><li>Car exterior wash</li><li>Car interior dusting</li></ul>" data-original-title="Car Wash" ><span>Car Wash</span></a></li>
+        <li><a href="/site/stewards" class="laundry has-popover" title="" data-toggle="popover" data-placement="top" data-content="<ul><li>Food counter setup</li><li>Wine / bar counter setup</li><li>Assist in seating the Guests</li><li>Take the order</li><li>Serve all order</li><li>Keep garbage area clean</li></ul>" data-original-title="Stewards/Stewardesses" ><span>Stewards/<br/>Stewardesses</span></a></li>
         
         <li><a href="#" class="more"></a></li>
    </ul>
@@ -91,3 +91,28 @@ one home at a time</div>
 
   </div>
      </section>
+    <script type="text/javascript">
+    $(function () {
+    var showPopover = function () {
+        $(this).popover('show');
+    }
+    , hidePopover = function () {
+        $(this).popover('hide');
+    };
+
+
+    $('.has-popover').popover({
+        html:true,
+        //content: 'Test1',
+        //title: 'Title',
+        trigger: 'manual'
+    })
+
+
+    .focus(showPopover)
+    .blur(hidePopover)
+    .hover(showPopover, hidePopover);
+});
+
+    </script>
+   

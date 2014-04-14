@@ -6,9 +6,10 @@
                 <div class="asideBG">
                     <div class="left_nav">
                         <ul class="main">
-                            <li class="active"><a href="#"  ><span class="KGservices"> </span></a></li>
+                            <li class="active"><a href="#" ><span class="KGaccounts"> </span></a></li>
+                            <li class=""><a href="#"  ><span class="KGservices"> </span></a></li>
                             <li class=""><a href="#" ><span class="KGpayment"> </span></a></li>
-                            <li class=""><a href="#" ><span class="KGaccounts"> </span></a></li>
+                            
                         </ul>
 
                     </div>
@@ -142,6 +143,36 @@
                                         <?php echo $form->textField($model, 'Number', array('value' => $getVendorDocuments->proof_number, 'class' => 'span12', 'maxLength' => 25, 'placeholder' => 'Id Number…')); ?>
                                         <?php echo $form->error($model, 'Number'); ?>
                                     </div>
+                                     
+                                         
+                                         
+                                     <!--<div class="span4">
+                                         
+                                         <?php //echo $form->label($model, '<abbr title="required">*</abbr> Services'); ?>
+                                         <?php //echo $form->dropDownList($model, 'Services', CHtml::listData($getServices, 'Id', 'name'), array('prompt'=>'--Select Services--','options' => array($getServices->Id => array('selected' => 'selected')),  'class' => 'span12')); ?>
+                                         <?php //echo $form->dropDownList($model, 'Services', CHtml::listData($getServices, 'Id', 'name'), array('prompt'=>'Select Services','options' => array('1','3' => array('selected' => 'selected')),' multiple'=>'true', 'class' => 'span12')); ?>
+<?php //echo $form->dropDownList($model, 'Services', CHtml::listData($getServices,'Id','name'), array('prompt'=> 'Please Select', 'options' => array('1','3' => array('selected' => 'selected')), 'multiple' => 'multiple')); ?>                                          
+   <?php //echo $form->dropDownList($model,'Services', array(''=>'--Select Services--'), array('options' => array(in_array($getServices->Id, $documents) => array('selected' => 'selected')), 'class' => 'span12','multiple'=>'true'));?>
+                                         <?php echo $form->error($model,'Services'); ?>
+                                     </div>-->
+                                     <div class="span4">
+                                    <?php echo $form->label($model, '<abbr title="required">*</abbr> Services'); ?>
+                                         <?php 
+                                    
+                                    $documents=array();
+                                    $documents=explode(",",$getVendorDetailsType1->services);
+                                    
+                                    error_log("else=length=====".sizeof($documents));
+                                    if(sizeof($documents)>0){error_log("if=======");
+                                        foreach ($documents as $eachValue)
+                                    $selectedOptions[$eachValue] = array('selected'=>'selected');
+                                    }else{error_log("else======");
+                                        $selectedOptions = '';
+                                    }
+                                                                      
+                                    echo $form->dropDownList($model, 'Services', CHtml::listData($getServices,'Id','name'), array('multiple'=>'true','prompt'=>'Select Services ','options'=>$selectedOptions)); ?>                                          
+                                    <?php echo $form->error($model,'Services'); ?>     
+                                         </div>
                                 </div>
                                     <div class="row-fluid paddingT10">
                                         <div class="span4">

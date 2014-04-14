@@ -97,7 +97,7 @@ class VendorController extends Controller {
         $model = new VendorRegistrationForm;
         $modelLogin = new VendorLoginForm;
         $request = yii::app()->getRequest();
-        
+        $getServices = $this->kushGharService->getServices();
         $formName = $request->getParam('VendorRegistrationForm');
         if ($formName != '') {
             $model->attributes = $request->getParam('VendorRegistrationForm');
@@ -153,7 +153,7 @@ class VendorController extends Controller {
             $renderScript = $this->rendering($obj);
             echo $renderScript;
         } else {
-            $this->render('vregistration', array('model' => $model, 'modelLogin' => $modelLogin,'one'=>$_REQUEST['uname'], "inviteModel" => $inviteForm));
+            $this->render('vregistration', array('model' => $model, 'modelLogin' => $modelLogin,'one'=>$_REQUEST['uname'], "inviteModel" => $inviteForm, "getServices"=>$getServices));
         }
     }
 
@@ -163,11 +163,13 @@ class VendorController extends Controller {
      */
     public function actionVendorBasicInformation() {error_log("enter basic info====".$this->session['VendorType']."==".$this->session['UserId']);
         error_log("picture=====".$this->session['LoginPic']);
+        
         $basicForm = new VendorBasicInformationForm;
         $updatedPasswordForm = new updatedPasswordForm;
         $Vid = $this->session['UserId'];
         $VType = $this->session['VendorType'];
         $this->session['Type']='Vendor';
+        $getServices = $this->kushGharService->getServices();
         $getVendorDocuments = $this->kushGharService->getVendorDocumentsWithIndividual($Vid);
         $getVendorAddress = $this->kushGharService->getVendorAddressDetails($Vid,$VType);
         if($VType==1){
@@ -177,13 +179,23 @@ class VendorController extends Controller {
         $getVendorDetailsType1 = $this->kushGharService->getVendorDetailsWithAgency($Vid);
         
         }
+        error_log($getVendorDetailsType1->services."===== legth====");
         //$getVendorDocuments = $this->kushGharService->getVendorDocumentsWithIndividual($Vid);
         $Identity = $this->kushGharService->getIdentifyProof();
          $this->session['firstName']=$getVendorDetailsType1->first_name;      
         $request = yii::app()->getRequest();
         $formName = $request->getParam('VendorBasicInformationForm');
+        
+        
+        
         if ($formName != '') {error_log("enter basic error info====");
             $basicForm->attributes = $request->getParam('VendorBasicInformationForm');
+            
+           
+           error_log($getVendorDetailsType1->services."===== legth====".sizeof($basicForm->Services));
+            for($i=0;$i<sizeof($basicForm->Services);$i++)
+                {error_log("------------".$basicForm->Services[$i]."----");}
+           
             $errors = CActiveForm::validate($basicForm);
             if ($errors != '[]') {
                 $obj = array('status' => 'error', 'message' => '', 'error' => $errors);
@@ -226,7 +238,7 @@ class VendorController extends Controller {
         } else {error_log("elsepppppppppp");
             //$this->render('basicinfo', array("model" => $basicForm, "IdentityProof" => $Identity, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails, "updatedPassword"=> $updatedPasswordForm));
         //}
-        $this->render('vendorBasicInformation', array("model" => $basicForm, "IdentityProof" => $Identity, "getVendorDocuments" => $getVendorDocuments, "getVendorDetailsType1" => $getVendorDetailsType1, "getVendorAddress" => $getVendorAddress, "updatedPassword"=> $updatedPasswordForm));
+        $this->render('vendorBasicInformation', array("model" => $basicForm, "IdentityProof" => $Identity, "getVendorDocuments" => $getVendorDocuments, "getVendorDetailsType1" => $getVendorDetailsType1, "getVendorAddress" => $getVendorAddress, "updatedPassword"=> $updatedPasswordForm, "getServices"=>$getServices));
         }
     }
 

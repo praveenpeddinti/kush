@@ -26,6 +26,7 @@ class VendorBasicInformationForm extends CFormModel {
     public $Pan;
     public $Tin;
     public $foundKushgharBy;
+    public $Services;
 
     /**
      * Declares the validation rules.
@@ -40,6 +41,7 @@ class VendorBasicInformationForm extends CFormModel {
                 array('vendorType', 'compare', 'compareValue'=>"1")),
                 'then' => array(
                 array('FirstName,LastName,', 'required'),
+                array(' Services', 'required', 'message' => 'Please Select Services'),
                 array('FirstName,MiddleName,LastName,', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain Alphabet and space'),),
             ),
             array('vendorType', 'ext.YiiConditionalValidator.YiiConditionalValidator',
@@ -47,12 +49,13 @@ class VendorBasicInformationForm extends CFormModel {
                 array('vendorType', 'compare', 'compareValue'=>"2")),
                 'then' => array(
                 array('PrimaryContactFirstName, PrimaryContactLastName,AgencyName', 'required'),
+                array(' Services', 'required', 'message' => 'Please Select Services'),
                 array('PrimaryContactFirstName,PrimaryContactMiddleName,PrimaryContactLastName,AgencyName', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain Alphabet and space'),),
             ),
             //array('IdentityProof','compare','compareAttribute'=>'Select Proof of Identify','operator'=>'<', 'operator'=>'=','allowEmpty'=>false,'message'=>'{attribute} must be greater than "{compareValue}".')
             // First Name, Last Name must be Alphabet and space
             //array('FirstName, MiddleName, LastName', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain Alphabet and space'),
-            array('FirstName, MiddleName, LastName,PrimaryContactFirstName,PrimaryContactMiddleName,PrimaryContactLastName,AgencyName,IdentityProof,Number,Gender,profilePicture,uIdDocument,dateOfBirth,Website,Pan,Tin,foundKushgharBy,Id,vendorType', 'safe'),
+            array('Services,FirstName, MiddleName, LastName,PrimaryContactFirstName,PrimaryContactMiddleName,PrimaryContactLastName,AgencyName,IdentityProof,Number,Gender,profilePicture,uIdDocument,dateOfBirth,Website,Pan,Tin,foundKushgharBy,Id,vendorType', 'safe'),
         );
     }
 

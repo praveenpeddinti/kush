@@ -364,5 +364,13 @@ class KushGharService {
         return InviteUser::model()->getStatusUser($id,$val);
     }
     
+    
+    /*
+     * KushGhar Services 
+     */
+    public function getServices(){
+        return Services::model()->getServices();
+    }
+    
 }
 ?>

@@ -319,13 +319,36 @@
              
              <?php echo $form->hiddenField($inviteModel,'InviteType', array('value'=>'0')); ?>
              <div class="row-fluid">
-                                            <div class="span12">
-                                              <?php echo $form->label($inviteModel,'<abbr title="required">*</abbr> Email'); ?>
-   <?php echo $form->textField($inviteModel,'Email', array( 'class'=>'span12','placeholder'=>'Email…')); ?>
-   <?php echo $form->error($inviteModel,'Email'); ?>
-                                             </div>
-                                                
-                                            </div>
+                 <div class="span6">
+                    <?php echo $form->label($inviteModel,'<abbr title="required">*</abbr> First Name'); ?>
+                    <?php echo $form->textField($inviteModel,'FName', array( 'class'=>'span12','placeholder'=>'First Name…')); ?>
+                    <?php echo $form->error($inviteModel,'FName'); ?>
+                 </div>
+                 <div class="span6">
+                    <?php echo $form->label($inviteModel,'<abbr title="required">*</abbr> Last Name'); ?>
+                    <?php echo $form->textField($inviteModel,'LName', array( 'class'=>'span12','placeholder'=>'Last Name…')); ?>
+                    <?php echo $form->error($inviteModel,'LName'); ?>
+                 </div>
+             </div>
+              <div class="row-fluid">
+                 <div class="span12">
+                    <?php echo $form->label($inviteModel,'<abbr title="required">*</abbr> Email'); ?>
+                    <?php echo $form->textField($inviteModel,'Email', array( 'class'=>'span12','placeholder'=>'Email…')); ?>
+                    <?php echo $form->error($inviteModel,'Email'); ?>
+                 </div>
+              </div>
+             <div class="row-fluid">
+                 <div class="span6">
+                    <?php echo $form->label($inviteModel,'Services'); ?>
+                    <?php echo $form->dropDownList($inviteModel, 'Services', CHtml::listData($getServices,'Id','name'), array('multiple'=>'true','prompt'=>'Select Services ','options'=>'','class'=>'span12')); ?>                                          
+                    <?php echo $form->error($inviteModel,'Services'); ?>     
+                 </div>
+                 <div class="span6">
+                    <?php echo $form->label($inviteModel,'Location'); ?>
+                    <?php echo $form->dropDownList($inviteModel,'Location', array(''=>'Select Location','Ameerpet' => 'Ameerpet', 'Balapur' => 'Balapur', 'Charminar' => 'Charminar', 'Dilsukhnagar'=>'Dilsukhnagar','SRNagar' => 'SRNagar', 'LBNagar' => 'LBNagar', 'Uppal' => 'Uppal', 'Punjagutta'=>'Punjagutta'), array('options' => '', 'class' => 'span12'));?>
+                    <?php echo $form->error($inviteModel,'Location'); ?> 
+                 </div>
+             </div>
         
             
          <div style="text-align: right">

@@ -16,6 +16,7 @@ class VendorAgencyRegistration extends CActiveRecord {
     public $password_hash;
     public $password_salt;
     public $birth_date;
+    public $services;
     public $create_timestamp;
     public $update_timestamp;
     public $found_kushghar_by;
@@ -130,6 +131,10 @@ class VendorAgencyRegistration extends CActiveRecord {
     //Update Vendor Type2 Details from basic Information Controller action4
     public function updateVendorDetailsWithAgency($model, $VId) {
         try {error_log("1enter VendorDetails Model======================");
+            $selectedOptions='';    
+            for($i=0;$i<sizeof($model->Services);$i++)
+            $selectedOptions = $selectedOptions.$model->Services[$i].',';            
+        
             $VendorObj = VendorAgencyRegistration::model()->findByAttributes(array('vendor_id' => $VId));
 
             $VendorObj->first_name = $model->PrimaryContactFirstName;
@@ -142,6 +147,7 @@ class VendorAgencyRegistration extends CActiveRecord {
             $VendorObj->pan_card = $model->Pan;
             $VendorObj->tin_number = $model->Tin;
             $VendorObj->website = $model->Website;
+            $VendorObj->services = $selectedOptions;
             //$RegObj->uId = $model->IdentityProof;
             //$RegObj->uIdNumber = $model->Number;
             //$RegObj->uIdDocument = $model->uIdDocument;

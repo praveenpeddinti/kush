@@ -4969,7 +4969,9 @@ background-color: #eeeeee;
   opacity: 0.8;
   filter: alpha(opacity=80);
 }
-
+.modal-open {
+    overflow: hidden;
+}
 .modal {
   position: fixed;
   top: 50%;
@@ -5902,3 +5904,5 @@ a.badge:hover {
 .labelUpperCase{
    text-transform: uppercase;
 }
+
+.header_contact_info ul li.email a, .header_contact_info ul li.email a:hover{ color: #fff; }

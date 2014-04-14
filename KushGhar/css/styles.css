@@ -149,7 +149,7 @@ textarea, input[type="text"], input[type="password"], input[type="datetime"], in
 .getStarted_dd_div ul li a:hover, .getStarted_dd_div ul li a:focus{ background:none; color:#008287;text-decoration:none}
 .btn { line-height:15px; border-radius:10px;}
 .paddinground{ padding:20px; margin:auto; }
-.services ul { margin:0 auto; padding:0; list-style:none; padding-left:20%;}
+.services ul { margin:0 auto; padding:0; list-style:none;}
 .services ul li{ border-left:1px solid #ccc; float:left; }
 .services ul li .services_last-child{ border-right:1px solid #ccc; }
 .services ul li a{text-align:center; margin:auto; width:100%}
@@ -170,8 +170,8 @@ textarea, input[type="text"], input[type="password"], input[type="datetime"], in
 .static_page_heading{ border-bottom:2px solid #ededed;}
 h2, h3, h4, h5{ font-family:MuseoSlab700;color:#4a5152; margin:5px 0; font-weight:normal}
 h2{font-size:24px; line-height:35px;}
-h3{font-size:18px; color:#34c1d5; line-height:25px;}
-h4{font-size:18px; line-height:20px; color:#4a5152; padding:20px 15px 0px 15px;}
+h3{font-size:18px; color:#6CA050; line-height:25px;padding:10px 15px 0px 0px;}
+h4{font-size:16px; line-height:20px; color:#4a5152; padding:20px 15px 0px 0px;}
 h5{font-size:14px;line-height:18px;}
 .aboutus_pic{ padding:10px; text-align:center; display:block}
 .aboutus_pic img{ border:6px solid #d7d7d7; max-width:135px; max-height:135px;}
@@ -237,6 +237,7 @@ ul.header_profile{ list-style:none; margin:0; padding:0}
 .error404{ background: url(../images/404error.png) no-repeat center top; margin:auto; width:800px; min-height:450px; position:relative}
 .error404 .error404_msg{ position:absolute; padding-top:400px; margin: auto; text-align: center; font-size:22px}
 .paddingR180{ padding-right:180px}
+.paddingl20p{ padding-left:20%;}
 
 
 @media (max-width: 767px) {
@@ -309,6 +310,8 @@ ul.header_profile{ list-style:none; margin:0; padding:0}
                 .span10.dob{width:120px}
                 .main_caption { padding:10px; text-align: center}
                 .seven_sines .paddingR180{ padding-right:10px}
+                .modal.fade.in {top:10%}
+                .paddingl20p{ padding-left:0%}
 		}
 /*Datepicker */
 /*!
@@ -519,8 +522,15 @@ ul.header_profile{ list-style:none; margin:0; padding:0}
 
 .icon_delete{background:url(../images/active_user.png) no-repeat left top; width:16px; height:16px; border:0; cursor:pointer}
 .icon_inactive{background:url(../images/in_active_user.png) no-repeat left top; width:16px; height:16px; border:0; cursor:pointer}
-.modal-header p{margin:0px;padding:5px;line-height:15px;font-size:12px;color:#333;text-align:center;letter-spacing: 1px;}
+.modal-header p{margin:0px;padding:5px;line-height:15px;font-size:14px;color:#333;text-align:center;}
 .modal-header p.t_left{ text-align: left;}
 .errorMessageFont{font-weight:bold;color: #F7682A;margin-top: -5px;};
 
+/*home page services */
 
+.services .popover ul{ list-style:none; margin: 0 ; padding:0 ;left: 0px}
+.services .popover ul li{ background:url(../images/services_check_points.png) no-repeat left 3px ;font-size:14px;line-height:16px; padding:5px 10px 10px 30px;left: 0px; border: 0px;}
+.services .popover ul li h3.popover-title{ color:#F30} 
+.service_banner{ display: block; border: 0;}
+
+.services{ margin: auto;}

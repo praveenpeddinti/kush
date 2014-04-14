@@ -14,6 +14,7 @@ class VendorIndividualRegistration extends CActiveRecord {
     public $password_hash;
     public $password_salt;
     public $birth_date;
+    public $services;
     public $profilePicture;
     public $pan_card;
     public $tin_number;
@@ -135,7 +136,11 @@ class VendorIndividualRegistration extends CActiveRecord {
 
      //Update Vendor Type1 Details from basic Information Controller action4
     public function updateVendorDetailsWithIndividual($model, $VId) {
-        try {error_log("1enter VendorDetails Model======================");
+        try {
+        $selectedOptions='';    
+        for($i=0;$i<sizeof($model->Services);$i++)
+            $selectedOptions = $selectedOptions.$model->Services[$i].',';
+            
             $VendorObj = VendorIndividualRegistration::model()->findByAttributes(array('vendor_id' => $VId));
 
             $VendorObj->first_name = $model->FirstName;
@@ -143,6 +148,7 @@ class VendorIndividualRegistration extends CActiveRecord {
             $VendorObj->middle_name = $model->MiddleName;
             $VendorObj->birth_date = date('Y-m-d', strtotime($model->dateOfBirth));
             $VendorObj->profilePicture = $model->profilePicture;
+            $VendorObj->services = $selectedOptions;
             $VendorObj->vendor_gender = $model->Gender;
             $VendorObj->pan_card = $model->Pan;
             $VendorObj->tin_number = $model->Tin;
@@ -153,7 +159,7 @@ class VendorIndividualRegistration extends CActiveRecord {
             //$RegObj->birth_date = $model->dateOfBirth;
             $VendorObj->found_kushghar_by = $model->foundKushgharBy;
             $VendorObj->update_timestamp = gmdate("Y-m-d H:i:s", time());
-            error_log("enter VendorDetails Model======================");
+            
             if ($VendorObj->update()) {
                 $result = "success";
             } else {
@@ -168,13 +174,13 @@ class VendorIndividualRegistration extends CActiveRecord {
 
     //Update Vendor Type1 Details from Contact Information Controller action
     public function updateVendorDetailsWithIndividualContact($model, $VId) {
-        try {error_log("1enter VendorDetails Model======================");
+        try {
             $VendorObj = VendorIndividualRegistration::model()->findByAttributes(array('vendor_id' => $VId));
 
             $VendorObj->email_address = $model->Email;
             $VendorObj->phone = $model->Phone;
             $VendorObj->update_timestamp = gmdate("Y-m-d H:i:s", time());
-            error_log("enter VendorDetails Model======================");
+            
             if ($VendorObj->update()) {
                 $result = "success";
             } else {

@@ -90,5 +90,28 @@ class SiteController extends Controller {
        // $this->session->destroy();
         $this->render('index');
     }
+    
+    
+    /* Cleaning Page */
+    public function actionCleaning() {
+        error_log("invite====".$this->session['UserType']);
+        $inviteForm = new InviteForm;
+        $getServices = $this->kushGharService->getServices();
+        $this->render('cleaning',array("inviteModel" => $inviteForm, "getServices"=>$getServices));
+    }
+    /* Car Washing Page */
+    public function actionCarwash() {
+        error_log("invite====".$this->session['UserType']);
+        $inviteForm = new InviteForm;
+        $getServices = $this->kushGharService->getServices();
+        $this->render('carwash',array("inviteModel" => $inviteForm, "getServices"=>$getServices));
+    }
+    /* Stewards Page */
+    public function actionStewards() {
+        error_log("invite====".$this->session['UserType']);
+        $inviteForm = new InviteForm;
+        $getServices = $this->kushGharService->getServices();
+        $this->render('stewards',array("inviteModel" => $inviteForm, "getServices"=>$getServices));
+    }
 
 }

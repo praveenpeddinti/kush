@@ -125,13 +125,14 @@ class UserController extends Controller {
         //$_REQUEST['uname']=0;
         $inviteForm = new InviteForm;
         $this->session['Type']='Customer';
+        
         error_log("id==con==".$_REQUEST['uname']."====".$this->session['Type']);
         $model = new RegistrationForm;
         $modelLogin = new LoginForm;
         $modelSample = new SampleForm;
         $request = yii::app()->getRequest();
         $formName = $request->getParam('RegistrationForm');
-        
+        $getServices = $this->kushGharService->getServices();
        
         if ($formName != '') {
             $model->attributes = $request->getParam('RegistrationForm');
@@ -163,7 +164,7 @@ class UserController extends Controller {
             $renderScript = $this->rendering($obj);
             echo $renderScript;
         } else {
-            $this->render('registration', array('model' => $model, 'modelLogin' => $modelLogin, 'modelSample' => $modelSample,'one'=>$_REQUEST['uname'], "inviteModel" => $inviteForm));
+            $this->render('registration', array('model' => $model, 'modelLogin' => $modelLogin, 'modelSample' => $modelSample,'one'=>$_REQUEST['uname'], "inviteModel" => $inviteForm, "getServices"=>$getServices));
         }
     }
 
@@ -525,6 +526,7 @@ class UserController extends Controller {
         if ($formName != '') {error_log("enter error-------------");
             $inviteForm->attributes = $request->getParam('InviteForm');
             $errors = CActiveForm::validate($inviteForm);
+            error_log("size==========".sizeof($inviteForm->Services)."==location==".$inviteForm->Location);
             if ($errors != '[]') {
                 $obj = array('status' => '', 'data' => '', 'error' => $errors);
             } else {

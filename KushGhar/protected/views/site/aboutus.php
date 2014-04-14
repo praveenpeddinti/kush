@@ -8,7 +8,7 @@
                 <div class="page_header_mag">
           	We at KushGhar want to make peoples homes and lives better by providing services to those with busy lives needing help at home and opportunities to those who want to take care of others. Together everyone has a happier home - KushGhar
                 </div>
-                <div class="static_page_heading"></div>
+                
                 <h2>Our Team</h2>
                 <div class="static_page_heading"></div>
                 <div class="row-fluid">
@@ -55,7 +55,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="static_page_heading paddingT30"></div>
+                <div class=" paddingT30"></div>
                 <h2>KushGhar Team</h2>
                 <div class="static_page_heading"></div>
                 <div class="row-fluid ">

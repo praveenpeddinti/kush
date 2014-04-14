@@ -6,10 +6,9 @@
                 <div class="static_page_heading"></div>
                 <h5>Last updated 01 January, 2014</h5>
                 <div class="static_page_heading"></div>
-                <p>
-                    KushGhar, Inc's Privacy Policy is here to help you understand what information we collect and how we use it to provide a better experience. When you registration, you accept our Privacy Policy and Terms of Service, you consent to our collection, storage, use and disclosure of your personal information as described in this Privacy Policy.
+                <p>KushGhar, Inc's Privacy Policy is here to help you understand what information we collect and how we use it to provide a better experience. When you registration, you accept our Privacy Policy and Terms of Service, you consent to our collection, storage, use and disclosure of your personal information as described in this Privacy Policy.
                 </p>
-                <div class="static_page_heading"></div>
+                
                 <h3>What is Covered</h3>
                 <div class="static_page_heading"></div>
                 <p>In this policy, "KushGhar, Inc" refers to KushGhar, Inc. and its Affiliates, which shall mean subsidiaries, parent companies, joint ventures and other corporate entities under common ownership. We may also refer to KushGhar, Inc as "We" or "Us”.</p>
@@ -22,7 +21,7 @@
                     <li>how we protect the information we store about you</li>
                 </ul>
                 <p>If you have questions regarding this Privacy Policy or our collection and use of information, please contact us as described in Section 14 ("Contact Us"). </p>
-                <div class="static_page_heading"></div>
+                
                 <h3>What We Collect</h3>
                 <div class="static_page_heading"></div>
                 <p>
@@ -38,7 +37,7 @@
                     <li>your birthday</li>
                 </ul>
                 <p>By using the KushGhar, Incsite,  you are authorizing KushGhar, Inc to collect, store, and use in accordance with  this Privacy Policy any and all information that you agreed Facebook could  provide to KushGhar, Inc through the Facebook Application Programming Interface  (&quot;API&quot;). Your agreement takes place when you &quot;accept&quot; or  &quot;allow&quot; (or similar terms) our application on Facebook.<br>
-                <div class="static_page_heading"></div>
+                
                 <h3>What We Collect from You  Directly</h3>
                 <div class="static_page_heading"></div>
                 <p>When you interact with KushGhar,  Inc directly, either through a KushGhar, Incsite (whether or not on an SNS), at  www.KushGhar.com, or any KushGhar, Inc-owned website, we may collect and store  information from you directly as described below:</p>
@@ -69,7 +68,7 @@
                 <p>We receive and store the  information you provide, including your telephone number, when you sign up to  have SMS notifications sent directly to your mobile phone. These messages  notify you of service activity. You can adjust the types of notifications you receive  and when you receive them by editing your SMS notification settings; just log  in to your KushGhar account and choose SMS mobile.</p>
                 <h5>Technical and Usage  Information</h5>
                 <p>  When you access our  websites, we collect (i) certain technical information about your computer  system and (ii) usage statistics about your interactions with our websites.  This information is collected through the use of server log files and tracking  technologies to collect and analyze certain types of technical information  including cookies. Some of the cookies the Service places on your computer are  linked to your user ID. For more information on how we utilize cookies and  other tracking technologies please review the &quot;Gathering Automated  Information&amp; Cookies&quot; in Section 3 (&quot;How We Gather Information&quot;).</p>
-                <div class="static_page_heading"></div>
+                
                 <h3>How We Gather Information </h3>
                 <div class="static_page_heading"></div>
                 <p>We may collect  information about you in any one or more of the following ways:<br>
@@ -90,7 +89,7 @@
                 <p> You can set your web  browser to warn you about attempts to place cookies on your computer, or limit  the type of cookies you allow. If you disable cookies, you may lose some of the  features and functionality of our site, as KushGhar, Inc cookies are necessary  to track and enhance your service. Please note that companies delivering  advertisements in our site may also use cookies or other technologies, and  those practices are subject to their own policies.</p>
                 <h5>Other Sources</h5>
                 <p> We may collect or receive  information from other sources including (i) other KushGhar, Inc users who  choose to upload their email contacts, and (ii) third party information  providers. This information will be used to supplement your profile - primarily  to help you and your friends connect. It will be combined with other  information we collect.</p>
-                <div class="static_page_heading"></div>
+                
                 <h3>What we do with Collected Information </h3>
                 <div class="static_page_heading"></div>
                 <p>In general, we collect,  store and use your information to provide you with a safe, smooth, efficient,  and customized experience. For example, we may use information collected from  you in any one or more of the following ways:</p>
@@ -110,7 +109,7 @@
                 </ul>
                 <p>One important use of your  information is communication. If you have provided your e-mail address to KushGhar,  Inc, we'll use it to respond to (i) customer support inquiries, and (ii) keep  you informed of your service activity, including comments from friends,  notifications about services. We may also send promotional e-mail messages and  promotional SMS messages directly.</p>
                 <p> You always have the  choice to stop receiving Promotional Communications. When you receive  Promotional Communications from us you will have the opportunity to &quot;opt  out&quot; by (i) following the unsubscribe instructions provided in the  Promotional Communication you receive or (ii) by editing your preferences.  Please note that despite your indicated e-mail preferences, we may still send  you administrative messages regarding KushGhar, Incservices, including, for  example, administrative confirmations, and notices of updates to our Policies.  For more information on your messaging options see &quot;Messaging Options&quot;  below.</p>
-                <div class="static_page_heading"></div>
+                
                 <h3>Sharing of Your Information </h3>
                 <div class="static_page_heading"></div>
                 <p>We will NOT share KushGhar,  Incinformation with third parties, except for the following:<br>
@@ -126,11 +125,11 @@
                 <p>Your information, and the  contents of your private online communications, may be accessed and disclosed  (i) in response to legal process (for example, a court order, search warrant or  subpoena); (ii) when we have a good faith belief that we are required to  disclose the information in response to legal process; (iii) in other  circumstances in which KushGhar, Inc believes the KushGhar, Incweb sites are  being used in the commission of a crime (including exchanging information with  other companies and organizations for the purposes of fraud protection and  credit risk reduction); (iv) when we have a good faith belief that there is an  emergency that poses a threat to the safety of you or another person; and (v)  when necessary either to protect the rights or property of KushGhar, Inc  including to enforce our&nbsp;<a href="http://www.uybgames.com/about/terms_of_service.php">Terms of Service</a>, or for us to render the service you have  requested.</p>
                 <h5>Sale or Merger</h5>
                 <p> In the event that KushGhar,  Inc undergoes a business transition, such as a merger, acquisition by another  company, or sale of all or a portion of its assets, we may transfer all of your  information, including personal information, to the successor organization in  such transition. If material changes to KushGhar, Inc's privacy practices will  occur as a result of the business transition, we will notify you and other  users (in the manner described in Section 12) of the business transition prior  to transferring your personal information.</p>
-                <div class="static_page_heading"></div>
+                
                 <h3>Policies Concerning Children and Their Information </h3>
                 <div class="static_page_heading"></div>
                 <p>Our websites are not  intended for children under the age of 18 and we do not knowingly collect any  personal information from such children. Children under the age of 18 should  not use our websites at any time. In the event that we learn that we have  inadvertently gathered personal information from children under the age of 18,  we will take reasonable measures to promptly erase such information from our  records.</p>
-                <div class="static_page_heading"></div>
+                
                 <h3>Accessing &amp; Updating Your Information </h3>
                 <div class="static_page_heading"></div>
                 <p>To manage the information  KushGhar, Inc receives about you from the Facebook, you will need to follow the  instructions at that site for updating your information and changing your  privacy settings. On Facebook, for example, as of the effective date of this  Privacy Policy, you can edit your privacy settings for applications to do the  following:</p>
@@ -148,31 +147,31 @@
                     <li>You may change your e-mail preferences at any time, by visiting your e-mail preference page.</li>
                     <li>If you have additional questions about this Privacy Policy, contact us at privacy@Kushghar.com.</li>
                 </ul>
-                <div class="static_page_heading"></div>
+                
                 <h3>Messaging Options </h3>
                 <div class="static_page_heading"></div>
                 <p>If you access our siteusing  a Facebook account, KushGhar, Inc will be able to access and store profile and  other information about you as described above. The categories of information  you share with us will depend, in part, on the privacy settings you have  established at Facebook where you access the application. Facebook allows you  to control how you share information with third-party applications and  websites, such as KushGhar, Inc sites, through your privacy settings on Facebook.  KushGhar, Inc does not control what privacy settings those sites make available  to their users, so we refer you to the privacy policies that are posted on  those sites to learn what options they make available to their users. KushGhar,  Inc does not offer an &quot;opt out&quot; option for specific fields that are  shared by Facebook where you access the account(s).</p>
                 <h5>Promotional Communications  Opt Out</h5>
                 <p>You can choose to opt out  of receiving additional promotional e-mails from KushGhar, Inc by clicking on  the &quot;unsubscribe&quot; link in any such e-mail, or visiting the e-mail  preference page. Please note that once we receive your request, it may take an  additional period of time for your opt-out to become effective. Your  unsubscribe or e-mail preference change will be processed promptly, and in no  event longer than 10 business days. You can opt out of receiving SMS messages  by texting STOP to the number we send from for that particular SMS program.</p>
                 <p> Note that if you opt-out  of our Promotional Communications, we may still e-mail or communicate with you  from time to time if we need to provide you with information or if we need to  request information from you with respect to a transaction initiated by you or  for other legitimate non-marketing reasons.</p>
-                <div class="static_page_heading"></div>
+                
                 <h3>Privacy Policies of Linked Sites and Advertisers </h3>
                 <div class="static_page_heading"></div>
                 <p>Our websites may contain  advertisements from companies other than KushGhar, Inc with their own websites.  We are not responsible for the privacy practices or the content of such  websites. If you have any questions about how these other websites use your  information, you should review their policies and contact them directly.</p>
-                <div class="static_page_heading"></div>
+                
                 <h3>Security of Your Information </h3>
                 <div class="static_page_heading"></div>
                 <p>KushGhar, Inc implements  reasonable security measures to protect the security of your information both  online and offline, and we are committed to the protection of customer  information.</p>
                 <p>For user accounts  registered directly with KushGhar, Inc profile information is protected by the  password each member uses to access their online account. It is important that  you protect and maintain the security of your account and that you immediately  notify us of any unauthorized use of your account. If you forget the password  to your KushGhar, Inc account, the website allows you to request that  instructions be sent to you that explain how to reset your password. When you  sign into your account or enter payment information (such as a credit card  number when purchasing virtual currency), we encrypt the transmission of that  information using secure socket layer technology (&quot;SSL&quot;).</p>
                 <p> While we take reasonable  precautions against possible security breaches of our websites and our customer  databases and records, no website or Internet transmission is completely  secure, and we cannot guarantee that unauthorized access, hacking, data loss,  or other breaches will never occur. We urge you to take steps to keep your personal  information safe (including your account password), and to log out of your  account after use. If your SNS account is hacked, this may lead to unauthorized  access of your KushGhar, Incaccount, so be careful to keep your account  information secure. If you have questions about the security of our websites,  please contact us at privacy@Kushghar.com.</p>
                 <p> Unfortunately, the  transmission of information over the Internet is not completely secure.  Although we strive to protect your personal data, we cannot guarantee the  security of your data while it is being transmitted to our site; any  transmission is at your own risk. Once we have received your information, we  have procedures and security features in place to try to prevent unauthorized  access.</p>
-                <div class="static_page_heading"></div>
+                
                 <h3>Changes to Our Privacy Policy </h3>
                 <div class="static_page_heading"></div>
                 <p>If we decide to make  material changes to our Privacy Policy, we will notify you and other users by  placing a notice on KushGhar.com or by sending you a notice to the e-mail  address we have on file for you. We may supplement this process by placing  notices in our site and on other KushGhar, Inc websites. You should  periodically check&nbsp;<a href="http://www.Kushghar.com">http://www.Kushghar.com</a>&nbsp;and this privacy page for updates.</p>
                 <h5>Right to Access</h5>
                 <p> Users in certain  jurisdictions have a right to access personal information held about them. Your  right of access can be exercised in accordance with applicable law. Please  submit any requests for access to your personal data in writing to privacy@Kushghar.com.</p>
-                <div class="static_page_heading"></div>
+                
                 <h3>Contact Us </h3>
                 <div class="static_page_heading"></div>
                 <p>If you have any  questions, comments or concerns regarding our Privacy Policy and/or practices,  please send an e-mail to privacy@Kushghar.com.<br>

@@ -6,6 +6,8 @@ class InviteUser extends CActiveRecord {
     public $last_name;
     public $email_address;
     public $status;
+    public $services;
+    public $location;
     
 
     public static function model($className=__CLASS__) {
@@ -38,6 +40,9 @@ class InviteUser extends CActiveRecord {
 
     public function saveInvitationUser($model,$type) {
         $result = "false";
+        $selectedOptions='';    
+        for($i=0;$i<sizeof($model->Services);$i++)
+            $selectedOptions = $selectedOptions.$model->Services[$i].',';
         $user = InviteUser::model()->findByAttributes(array('email_address' => $model->Email));
         
         if (!isset($user)) {
@@ -45,10 +50,12 @@ class InviteUser extends CActiveRecord {
                 $user = new InviteUser();
                 
                 
-                //$user->first_name = stripcslashes($model->FirstName);
-                //$user->last_name = stripcslashes($model->LastName);
+                $user->first_name = stripcslashes($model->FName);
+                $user->last_name = stripcslashes($model->LName);
                 $user->email_address = stripcslashes($model->Email);
                 $user->type = stripcslashes($type);
+                $user->services = $selectedOptions;
+                $user->location = $model->Location;
                 $user->create_timestamp = gmdate("Y-m-d H:i:s", time());
                 
                 if (!$user->save())

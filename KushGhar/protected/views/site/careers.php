@@ -6,7 +6,7 @@
                 <h2>Careers</h2>
                 <div class="static_page_heading"></div>
                 <h3>HOUSEMAN JD</h3>
-                <h3>Responsibilities</h3>
+                <h4>Responsibilities</h4>
                 <div class="static_page_heading"></div>
                 <ul type="disc" >
                     <li> To be depended on to arrive at work at the prescribed time each day.</li>
@@ -20,7 +20,8 @@
                     <li> Communicate effectively with office staff and clients.</li>
                     <li> Perform other related duties as assigned.</li>
                 </ul>
-                <h3>Skills</h3>
+                
+                <h4>Skills</h4>
                 <div class="static_page_heading"></div>
                 <ul type="disc" >
                     <li> Ability to stand for extended periods of time.</li>
@@ -29,18 +30,22 @@
                     <li> Written communication skills.</li>
                     <li> Reasoning skills.</li>                    
                 </ul>
-                <h3>Experience</h3>
+                
+                <h4>Experience</h4>
                 <div class="static_page_heading"></div>
                 <ul type="disc" >
                     <li> 02 Years experience in the corporate office cleaning.</li>
                     <li> 01 Years experience in the Domestic house cleaning.</li>                                  
                 </ul>
-                <h3>Certification/Licenses</h3>
+                
+                <h4>Certification/Licenses</h4>
                 <div class="static_page_heading"></div>
                 <ul type="disc" >
                     <li> Two wheeler with Valid licence is an advantage.</li>                                  
                 </ul>
-                <h3>Reports to</h3>Office Manager
+                
+                <h4>Reports to</h4>
+                <div class="static_page_heading"></div>Office Manager
                 
                 
             </div>

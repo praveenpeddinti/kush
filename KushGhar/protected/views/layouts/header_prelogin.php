@@ -22,7 +22,7 @@
                             <div class="header_contact_info pull-right">
                                 <ul>
                                     <li class="phone">040 233 52575</li>
-                                    <li class="email">helpme@kushghar.com</li>
+                                    <li class="email"><a href="mailto:helpme@kushghar.com">helpme@kushghar.com</a></li>
                                 </ul>
                             </div>
                         </div>

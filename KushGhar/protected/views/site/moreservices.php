@@ -25,10 +25,10 @@
                         <div id="services" class="collapse in">
                             <div class="selected_tab">Services</div>
                             <ul class="l_menu_sub_menu">
-                                <li class="active"><a href="/site/cleaning"> Cleaning</a></li>
+                                <li ><a href="/site/cleaning"> Cleaning</a></li>
                                 <li ><a href="/site/carwash"> Car Wash</a> </li>
                                 <li ><a href="/site/stewards">  Stewards / Stewardesses</a> </li>
-                                <li ><a href="#">  More ...</a> </li>
+                                <li class="active"><a href="/site/moreservices">  More ...</a> </li>
                             </ul>
                         </div>
                     </div>
@@ -46,13 +46,12 @@
                                 <div class="span12">
 
                                     <div class="paddingL20">
-                                        <h3>House cleaning Service</h3>
+                                        <h3>Drivers Service</h3>
                                         <ul>
-                                            <li>Pooja room</li>
-                                            <li>Kitchen room</li>
-                                            <li>Bed room</li>
-                                            <li>Living room</li>
-                                            <li>Bath room</li>
+                                            <li>Drive vehicles locally or out of area as needed</li>
+                                            <li>Deliver vehicles to appropriate destination in a safe and courteous manner</li>
+                                            <li>Perform miscellaneous job-related duties as assigned</li>
+                                            <li>Follw the traffic rules</li> 
                                         </ul>   
                                     </div>
                                 </div>

@@ -113,5 +113,12 @@ class SiteController extends Controller {
         $getServices = $this->kushGharService->getServices();
         $this->render('stewards',array("inviteModel" => $inviteForm, "getServices"=>$getServices));
     }
+    /* More Services Page */
+    public function actionMoreservices() {
+        error_log("invite====".$this->session['UserType']);
+        $inviteForm = new InviteForm;
+        $getServices = $this->kushGharService->getServices();
+        $this->render('moreservices',array("inviteModel" => $inviteForm, "getServices"=>$getServices));
+    }
 
 }

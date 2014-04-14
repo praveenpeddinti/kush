@@ -25,10 +25,10 @@
                         <div id="services" class="collapse in">
                             <div class="selected_tab">Services</div>
                             <ul class="l_menu_sub_menu">
-                                <li class="active"><a href="/site/cleaning"> Cleaning</a></li>
+                                <li ><a href="/site/cleaning"> Cleaning</a></li>
                                 <li ><a href="/site/carwash"> Car Wash</a> </li>
-                                <li ><a href="/site/stewards">  Stewards / Stewardesses</a> </li>
-                                <li ><a href="#">  More ...</a> </li>
+                                <li class="active"><a href="/site/stewards">  Stewards / Stewardesses</a> </li>
+                                <li ><a href="/site/moreservices">  More ...</a> </li>
                             </ul>
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                 <div class="row-fluid">
                     <div class="span12">
                         <input type="hidden" id="VV" value="<?php echo $this->session['UserType'];?>" >
-                        <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/service_banner2.jpg" class="service_banner" />
+                        <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/service_banner3.jpg" class="service_banner" />
                         <div class="paddinground">
                             <h2>What services Kushghar Offer ?</h2>
                             <div class="static_page_heading"></div>

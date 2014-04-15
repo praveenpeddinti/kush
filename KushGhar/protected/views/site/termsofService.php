@@ -7,6 +7,7 @@
                 <h5>Last updated 01 January, 2014</h5>
                 <div class="static_page_heading"></div>
                 <h3>1. LICENSE</h3>
+                
                 <h4>1.1. Governing Agreement</h4>
                 <div class="static_page_heading"></div>
                 <p>
@@ -138,8 +139,8 @@
                     By transmitting or submitting any User Content while using the Service, you affirm, represent and warrant that such transmission or submission is (a) accurate and not confidential; (b) not in violation of any laws, contractual restrictions or other third party rights, and that you have permission from any third party whose personal information or intellectual property is comprised in the User Content; (c) free of viruses, adware, spyware, worms or other malicious code; and (d) you acknowledge and agree that any of your personal information within such content will at all times be processed by KushGhar, Inc in accordance with its Privacy Policy.</p><p>
                     You hereby grant KushGhar, Inc a perpetual and irrevocable (other than as provided below), worldwide, fully paid-up and royalty free, non-exclusive, unlimited license, including the right to sublicense and assign to third parties, and right to copy, reproduce, fix, adapt, modify, improve, translate, reformat, create derivative works from, manufacture, introduce into circulation, commercialize, publish, distribute, sell, license, sublicense, transfer, rent, lease, transmit, publicly display, publicly perform, or provide access to electronically, broadcast, communicate to the public by telecommunication, display, perform, enter into computer memory, and use and practice, in any way now known or in the future discovered, your User Content as well as all modified and derivative works thereof. To the extent permitted by applicable laws, you hereby waive any moral rights you may have in any User Content. The license you grant Us to use user posted content (except any content you submit in response to KushGhar, Inc promotions and competition or any other content specifically solicited by KushGhar, Inc) ends when you delete your User Content or you close your Account unless your User content has been shared with others, and they have not deleted it. However, you understand and accept that removed content may persist in back-up copies for a reasonable period of time.
                 </p>
-                <div class="static_page_heading"></div>
-                <h3>2. USER CONTENT</h3><h4>2.1. Content Screening</h4>
+                
+                <h3>2. USER CONTENT</h3> <h4>2.1. Content Screening</h4>
                 <div class="static_page_heading"></div>
                 <p>
                     KushGhar, Inc assumes no responsibility for the conduct of any user submitting any User Content, and assumes no responsibility for monitoring the Service for inappropriate content or conduct.</p><p>
@@ -177,7 +178,7 @@
                 <p>If you have a dispute with one or more users, you release us (and our officers, directors, agents, subsidiaries, joint ventures and employees) from claims, demands and damages (actual and consequential) of every kind and nature, known and unknown, arising out of or in any way connected with such disputes. If you are a California resident, you waive California Civil Code §1542, which says: "A general release does not extend to claims which the creditor does not know or suspect to exist in his favor at the time of executing the release, which if known by him must have materially affected his settlement with the debtor."</p>
                 
                 <h3>3. FEES AND PURCHASE TERMS</h3>
-                <div class="static_page_heading"></div>
+                
                 <h4>3.1. Purchases</h4>
                 <div class="static_page_heading"></div>
                 <p>
@@ -191,9 +192,9 @@
                 <h4>3.2. Payment of Fees</h4>
                 <div class="static_page_heading"></div>
                 <p>You agree to pay all fees and applicable taxes incurred by you or anyone using an Account registered to you. KushGhar, Inc may revise the pricing for the goods and services offered through the Service at any time. YOU ACKNOWLEDGE THAT KUSHGHAR, INC IS NOT REQUIRED TO PROVIDE A REFUND FOR ANY REASON, AND THAT YOU WILL NOT RECEIVE MONEY OR OTHER COMPENSATION FOR UNUSED VIRTUAL ITEMS WHEN AN ACCOUNT IS CLOSED, WHETHER SUCH CLOSURE WAS VOLUNTARY OR INVOLUNTARY.</p>
-                <div class="static_page_heading"></div>
+                
                 <h3>4. THIRD PARTY ADVERTISING</h3>
-                <div class="static_page_heading"></div>
+                
                 <h4>4.1. Third Party Advertisements</h4>
                 <div class="static_page_heading"></div>
                 <p>You understand that the Service may feature advertisements from KushGhar, Inc or third parties. KushGhar, Inc's disclosure of information for third party advertising is addressed inKushGhar, Inc Privacy Policy.</p>

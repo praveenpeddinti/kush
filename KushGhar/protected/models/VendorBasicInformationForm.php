@@ -42,6 +42,8 @@ class VendorBasicInformationForm extends CFormModel {
                 'then' => array(
                 array('FirstName,LastName,', 'required'),
                 array(' Services', 'required', 'message' => 'Please Select Services'),
+                //array('Services', 'compare', 'operator'=>'!=', 'compareValue'=>'', 'message'=>'Please Selecst Services'),
+               
                 array('FirstName,MiddleName,LastName,', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain Alphabet and space'),),
             ),
             array('vendorType', 'ext.YiiConditionalValidator.YiiConditionalValidator',
@@ -69,6 +71,8 @@ class VendorBasicInformationForm extends CFormModel {
             'verifyCode' => 'Verification Code',
         );
     }
+    
+    
     
 
 }

@@ -161,9 +161,15 @@
 <?php } ?>
 <script type="text/javascript">
     function loginpopup(){
+        
         window.location.href=<?php echo Yii::app()->request->baseUrl; ?>'/user/registration';
+        
     }
     function adminLoginpopup(){
         window.location.href=<?php echo Yii::app()->request->baseUrl; ?>'/admin/login';
     }
+    
+    
+    
+    
 </script>

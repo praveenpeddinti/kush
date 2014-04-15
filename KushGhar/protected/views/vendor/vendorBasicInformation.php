@@ -156,7 +156,7 @@
                                          <?php echo $form->error($model,'Services'); ?>
                                      </div>-->
                                      <div class="span4">
-                                    <?php echo $form->label($model, '<abbr title="required">*</abbr> Services'); ?>
+                                    <?php echo $form->label($model, 'Select Services of Interest'); ?>
                                          <?php 
                                     
                                     $documents=array();
@@ -170,7 +170,7 @@
                                         $selectedOptions = '';
                                     }
                                                                       
-                                    echo $form->dropDownList($model, 'Services', CHtml::listData($getServices,'Id','name'), array('multiple'=>'true','prompt'=>'Select Services ','options'=>$selectedOptions)); ?>                                          
+                                    echo $form->dropDownList($model, 'Services', CHtml::listData($getServices,'Id','name'),  array('multiple'=>'true','options'=>$selectedOptions)); ?>                                          
                                     <?php echo $form->error($model,'Services'); ?>     
                                          </div>
                                 </div>

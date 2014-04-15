@@ -8,8 +8,57 @@
         
 
 });
+/*$(function(){alert("ffdf");
+        getCollectionDataWithPagination('/user/registration','inviteModel', 'modelBodyDiv', '');
+    });
+function ajaxRequest(url, queryString,callback,dataType,beforeSendCallback) { 
+    var data = queryString;
+    if(dataType==null || dataType==undefined){
+        dataType = "json";
+    }
+    $.ajax({
+        dataType: dataType,
+        type: "POST",
+        url: url,
+        async: true,
+        data: data,
+        success: function(data) { 
+            if(callback!=null && callback!=undefined){
+            callback(data);
+            }
+        },
+        error: function(data) {            
+            
+          
+        },
+         beforeSend: function() {
+             if(beforeSendCallback!=null && beforeSendCallback!=undefined){
+                   beforeSendCallback();
+             }
+             
+            }
+        
+    });
+}
+function getCollectionDataWithPagination(URL,CollectionName, MainDiv,callback){
+    alert("========"+url+"==========="+CollectionName+MainDiv);
+   //alert("URL===="+URL+"==CollectionName==="+CollectionName+"==MainDiv==="+MainDiv+"==CurrentPage==="+CurrentPage+"==PageSize==="+PageSize);
+    
 
-
+        var newURL =  URL+"?"+CollectionName;
+    var data = "";  
+    
+    ajaxRequest(newURL,data,function(data){getCollectionDataWithPaginationHandler(data,URL,CollectionName,MainDiv,callback)});
+}
+    function getCollectionDataWithPaginationHandler(data,URL,CollectionName,MainDiv,callback){
+          //scrollPleaseWaitClose('spinner_admin');
+        $("#"+MainDiv).html(data.html);
+                    
+                
+                if(callback!=''){
+                    callback();
+                }
+    }*/
 
      function inviteCustomershandler(data){//alert("enter site index==="+data.status);
         scrollPleaseWaitClose('inviteSpinLoader');
@@ -280,6 +329,7 @@
         </div>
     </div>
 </div>
+
 <!-- Popup block Start -->
      <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
          <div class="modal-header">
@@ -339,8 +389,8 @@
               </div>
              <div class="row-fluid">
                  <div class="span6">
-                    <?php echo $form->label($inviteModel,'Services'); ?>
-                    <?php echo $form->dropDownList($inviteModel, 'Services', CHtml::listData($getServices,'Id','name'), array('multiple'=>'true','prompt'=>'Select Services ','options'=>'','class'=>'span12')); ?>                                          
+                    <?php echo $form->label($inviteModel,'Select Services of Interest'); ?>
+                    <?php echo $form->dropDownList($inviteModel, 'Services', CHtml::listData($getServices,'Id','name'), array('multiple'=>'true','options'=>'','class'=>'span12')); ?>                                          
                     <?php echo $form->error($inviteModel,'Services'); ?>     
                  </div>
                  <div class="span6">

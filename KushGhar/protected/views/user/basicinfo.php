@@ -69,7 +69,7 @@
             <article>
                 <div class="row-fluid">
                     <div class="span12">
-                        <h4>Basic Information</h4>
+                        <h4 class="paddingL20">Basic Information</h4>
                         <hr>
                         <div class="paddinground">
                             <div id="basicInfoSpinLoader"></div>

@@ -352,12 +352,12 @@
                  </div>
               </div>
              <div class="row-fluid">
-                 <div class="span8">
-                    <?php echo $form->label($inviteModel,'Services'); ?>
-                    <?php echo $form->dropDownList($inviteModel, 'Services', CHtml::listData($getServices,'Id','name'), array('multiple'=>'true','prompt'=>'Select Services ','options'=>''),array('class'=>'span12')); ?>                                          
+                 <div class="span6">
+                    <?php echo $form->label($inviteModel,'Select Services of Interest'); ?>
+                    <?php echo $form->dropDownList($inviteModel, 'Services', CHtml::listData($getServices,'Id','name'), array('multiple'=>'true','options'=>''),array('class'=>'span12')); ?>                                          
                     <?php echo $form->error($inviteModel,'Services'); ?>     
                  </div>
-                 <div class="span4">
+                 <div class="span6">
                     <?php echo $form->label($inviteModel,'Location'); ?>
                     <?php echo $form->dropDownList($inviteModel,'Location', array(''=>'Select Location','Ameerpet' => 'Ameerpet', 'Balapur' => 'Balapur', 'Charminar' => 'Charminar', 'Dilsukhnagar'=>'Dilsukhnagar','SRNagar' => 'SRNagar', 'LBNagar' => 'LBNagar', 'Uppal' => 'Uppal', 'Punjagutta'=>'Punjagutta'), array('options' => '', 'class' => 'span12'));?>
                     <?php echo $form->error($inviteModel,'Location'); ?> 

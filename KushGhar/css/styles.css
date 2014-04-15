@@ -536,3 +536,6 @@ ul.header_profile{ list-style:none; margin:0; padding:0}
 .services{ margin: auto;}
 input.serachInput::-ms-clear { width : 0; height: 0; }
 input.serachInput::-ms-reveal { width : 0; height: 0;} 
+.dontOffer{ border:2px solid #FDF7D3;  margin-bottom: 10px;}
+.dontOffer h3{color:#cd0a0a; font-family:MuseoSlab300Italic}
+.dontOffer ul li{color:#999; }

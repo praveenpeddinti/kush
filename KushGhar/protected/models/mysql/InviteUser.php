@@ -50,8 +50,8 @@ class InviteUser extends CActiveRecord {
                 $user = new InviteUser();
                 
                 
-                $user->first_name = stripcslashes($model->FName);
-                $user->last_name = stripcslashes($model->LName);
+                $user->first_name = stripcslashes($model->FirstName);
+                $user->last_name = stripcslashes($model->LastName);
                 $user->email_address = stripcslashes($model->Email);
                 $user->type = stripcslashes($type);
                 $user->services = $selectedOptions;

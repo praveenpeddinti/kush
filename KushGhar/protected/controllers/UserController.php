@@ -533,17 +533,26 @@ class UserController extends Controller {
                 $result = $this->kushGharService->getInvitationUser($inviteForm, $this->session['Type']);
                
                 if ($result == "success") {error_log("dsdfdsfsdfsdif====".$inviteForm->Email);
-                    $mess = 'Hi' . "\r\n\n";
+                    /*$mess = 'Hi' . "\r\n\n";
                     $mess = $mess . 'Welcome from KushGhar.com ' . "\r\n\n";
                     $mess = $mess . 'You can visit KushGhar.com by clicking following url. ' . "\r\n\n";
                     $mess = $mess . 'http://115.248.17.88:6060/site/invite?uname=' . $inviteForm->Email . "\r\n\n";
                     $mess = $mess . 'Regards,' . "\r\n" . 'KushGhar.';
                     $to = $inviteForm->Email;
+                    $name = $inviteForm->FirstName;
                     $subject = 'KushGhar Invitation';
                     $message = $mess;
                     $headers = 'From: praveen.peddinti@gmail.com' . "\r\n" .
                             'X-Mailer: PHP/' . phpversion();
-                    mail($to, $subject, $message, $headers);
+                    mail($to, $subject, $message, $headers);*/
+                    $to = $inviteForm->Email;
+                    $name = $inviteForm->FirstName;
+                    $subject = 'KushGhar Invitation';
+                    $mess1 = "\r\n";
+                    $mess1 = $mess1 . 'Thank you for requesting an invite to KushGhar. We are expanding our service areas every week. You will be getting an email with a link to register and start your services. ' . "\r\n\n";
+                    //$mess1 = $mess1 . 'http://115.248.17.88:6060/site/invite?uname=' . $email[$i] . "\r\n\n";
+                    $messages = $mess1;           
+                    $this->sendMailToUser($to, $name, $subject, $messages, 'KushGhar', 'no-reply@kushghar.com', 'InvitationMail');
                     
                     //$errors = 'Invitation send by your Email';
                     $obj = array('status' => 'success', 'data' => $result, 'error' => 'Invitation send by your Email');

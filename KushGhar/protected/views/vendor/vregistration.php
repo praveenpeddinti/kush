@@ -148,9 +148,7 @@
         }
        
     }
-    function homePage(){
-        window.location.href=<?php echo Yii::app()->request->baseUrl; ?>'/site/index';
-    }
+    
 </script>
 
 
@@ -335,13 +333,13 @@
              <div class="row-fluid">
                  <div class="span6">
                     <?php echo $form->label($inviteModel,'<abbr title="required">*</abbr> First Name'); ?>
-                    <?php echo $form->textField($inviteModel,'FName', array( 'class'=>'span12','placeholder'=>'First Name…')); ?>
-                    <?php echo $form->error($inviteModel,'FName'); ?>
+                    <?php echo $form->textField($inviteModel,'FirstName', array( 'class'=>'span12','placeholder'=>'First Name…')); ?>
+                    <?php echo $form->error($inviteModel,'FirstName'); ?>
                  </div>
                  <div class="span6">
                     <?php echo $form->label($inviteModel,'<abbr title="required">*</abbr> Last Name'); ?>
-                    <?php echo $form->textField($inviteModel,'LName', array( 'class'=>'span12','placeholder'=>'Last Name…')); ?>
-                    <?php echo $form->error($inviteModel,'LName'); ?>
+                    <?php echo $form->textField($inviteModel,'LastName', array( 'class'=>'span12','placeholder'=>'Last Name…')); ?>
+                    <?php echo $form->error($inviteModel,'LastName'); ?>
                  </div>
              </div>
               <div class="row-fluid">
@@ -359,8 +357,8 @@
                  </div>
                  <div class="span6">
                     <?php echo $form->label($inviteModel,'Location'); ?>
-                    <?php echo $form->dropDownList($inviteModel,'Location', array(''=>'Select Location','Ameerpet' => 'Ameerpet', 'Balapur' => 'Balapur', 'Charminar' => 'Charminar', 'Dilsukhnagar'=>'Dilsukhnagar','SRNagar' => 'SRNagar', 'LBNagar' => 'LBNagar', 'Uppal' => 'Uppal', 'Punjagutta'=>'Punjagutta'), array('options' => '', 'class' => 'span12'));?>
-                    <?php echo $form->error($inviteModel,'Location'); ?> 
+                    <?php echo $form->dropDownList($inviteModel,'Location', array(''=>'Select Location','Ameerpet' => 'Ameerpet', 'Banjara Hills' => 'Banjara Hills', 'Charminar' => 'Charminar', 'Dilsukhnagar'=>'Dilsukhnagar', 'Jubilee Hills'=>'Jubilee Hills','LBNagar' => 'LBNagar', 'Punjagutta'=>'Punjagutta','SRNagar' => 'SRNagar', 'Uppal' => 'Uppal'), array('options' => '', 'class' => 'span12'));?>
+                    <?php echo $form->error($inviteModel,'Location'); ?>  
                  </div>
              </div>
          

@@ -109,6 +109,6 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
-            'SERVER_URL'=>'http://115.248.17.88:6060',
+            'SERVER_URL'=>'http://10.10.73.107:6060',
 	),
 );

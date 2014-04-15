@@ -248,7 +248,7 @@ table.ui-datepicker td.ui-datepicker-unselectable
 table.ui-datepicker td a {
 	padding: .1em .3em .1em 0;
 	display: block;
-	color: #fff;
+	color: #000;
 	background: #92b97d;
 	cursor: pointer;
 	border: 1px solid #719d4e;

@@ -22,6 +22,7 @@
            <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie.css" rel="stylesheet">
         <![endif]-->
         <!-- Fav and touch icons -->
+        <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/common.js"> </script>
         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrap.js"> </script>
          <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrapSwitch.js"> </script>
          <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.simplePagination.js"> </script>

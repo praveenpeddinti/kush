@@ -11,8 +11,8 @@ class InviteForm extends CFormModel
         public $Email;
         public $InviteType;
         public $EmailIds;
-        public $FName;
-        public $LName;
+        public $FirstName;
+        public $LastName;
         public $Services;
         public $Location;
 	
@@ -29,8 +29,8 @@ class InviteForm extends CFormModel
                 'if' => array(
                 array('InviteType', 'compare', 'compareValue'=>"0")),
                 'then' => array(
-                 array('FName,LName,Email', 'required','message'=>'Please enter a value for {attribute}.'),
-                    array('FName, LName', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain Alphabet and space'),
+                 array('FirstName,LastName,Email', 'required','message'=>'Please enter a value for {attribute}.'),
+                    array('FirstName, LastName', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain Alphabet and space'),
                  array('Email', 'email'),),
                 ),
                 
@@ -50,7 +50,7 @@ class InviteForm extends CFormModel
                 //array('EmailIds', 'required','message'=>'Please enter a value for {attribute}.'),
                 // Email has to be a valid email address
                 
-                array(' FName,LName,Services,Email,EmailIds,Location', 'safe'),
+                array(' FirstName,LastName,Services,Email,EmailIds,Location', 'safe'),
                        
 		
 		);

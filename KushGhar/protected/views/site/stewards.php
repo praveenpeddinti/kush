@@ -61,18 +61,19 @@
 
                             <div class="row-fluid">
                                 <div class="span12">
-
-                                    <div class=" paddingL20">
-                                        <h3>What services Kushghar don't Offer ?</h3>
-                                        <ul>
-                                            <li>Lifting items weighing over 15 Kgs (including large furniture)</li>
-                                            <li>Cleaning outside of windows</li>
-                                            <li>Cleaning pet messes and/or heavily soiled areas</li>
-                                            <li>Cleaning of mold and/or biohazardous material</li>
-                                            <li>Steam cleaning</li>
-                                            <li>Carpet cleaning</li>
-                                            <li>Deep stain removal</li>
-                                        </ul>
+                                    <div class="dontOffer">
+                                        <div class=" paddingL20">
+                                            <h3 >What services Kushghar don't Offer ?</h3>
+                                            <ul>
+                                                <li>Lifting items weighing over 15 Kgs (including large furniture)</li>
+                                                <li>Cleaning outside of windows</li>
+                                                <li>Cleaning pet messes and/or heavily soiled areas</li>
+                                                <li>Cleaning of mold and/or biohazardous material</li>
+                                                <li>Steam cleaning</li>
+                                                <li>Carpet cleaning</li>
+                                                <li>Deep stain removal</li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -128,13 +129,13 @@
         <div class="row-fluid">
             <div class="span6">
                 <?php echo $form->label($inviteModel, '<abbr title="required">*</abbr> First Name'); ?>
-                <?php echo $form->textField($inviteModel, 'FName', array('class' => 'span12', 'placeholder' => 'First Name…')); ?>
-                <?php echo $form->error($inviteModel, 'FName'); ?>
+                <?php echo $form->textField($inviteModel, 'FirstName', array('class' => 'span12', 'placeholder' => 'First Name…')); ?>
+                <?php echo $form->error($inviteModel, 'FirstName'); ?>
             </div>
             <div class="span6">
                 <?php echo $form->label($inviteModel, '<abbr title="required">*</abbr> Last Name'); ?>
-                <?php echo $form->textField($inviteModel, 'LName', array('class' => 'span12', 'placeholder' => 'Last Name…')); ?>
-                <?php echo $form->error($inviteModel, 'LName'); ?>
+                <?php echo $form->textField($inviteModel, 'LastName', array('class' => 'span12', 'placeholder' => 'Last Name…')); ?>
+                <?php echo $form->error($inviteModel, 'LastName'); ?>
             </div>
         </div>
         <div class="row-fluid">
@@ -152,8 +153,8 @@
             </div>
             <div class="span6">
                 <?php echo $form->label($inviteModel, 'Location'); ?>
-                <?php echo $form->dropDownList($inviteModel, 'Location', array('' => 'Select Location', 'Ameerpet' => 'Ameerpet', 'Balapur' => 'Balapur', 'Charminar' => 'Charminar', 'Dilsukhnagar' => 'Dilsukhnagar', 'SRNagar' => 'SRNagar', 'LBNagar' => 'LBNagar', 'Uppal' => 'Uppal', 'Punjagutta' => 'Punjagutta'), array('options' => '', 'class' => 'span12')); ?>
-                <?php echo $form->error($inviteModel, 'Location'); ?> 
+                <?php echo $form->dropDownList($inviteModel,'Location', array(''=>'Select Location','Ameerpet' => 'Ameerpet', 'Banjara Hills' => 'Banjara Hills', 'Charminar' => 'Charminar', 'Dilsukhnagar'=>'Dilsukhnagar', 'Jubilee Hills'=>'Jubilee Hills','LBNagar' => 'LBNagar', 'Punjagutta'=>'Punjagutta','SRNagar' => 'SRNagar', 'Uppal' => 'Uppal'), array('options' => '', 'class' => 'span12'));?>
+                    <?php echo $form->error($inviteModel,'Location'); ?> 
             </div>
         </div>
 

@@ -57,7 +57,7 @@ class coActiveMailServer {
                     $mail->Debugoutput = 'html';
                     $mail->Host = $host;
                     $mail->Port = $port;
-                    $mail->SMTPSecure = 'ssl';
+                    $mail->SMTPSecure = '';
                     $mail->SMTPAuth = true;
                     $mail->Username = $authMail;
                     $mail->Password = $authPassword;
@@ -117,8 +117,8 @@ class coActiveMailServer {
                     $mail->Debugoutput = 'html';
                     $mail->Host = $host;
                     $mail->Port = $port;
-                    $mail->SMTPSecure = 'ssl';
-                    //$mail->SMTPSecure = '';
+                    //$mail->SMTPSecure = 'ssl';
+                    $mail->SMTPSecure = '';
                     $mail->SMTPAuth = true;
                     $mail->Username = $authMail;
                     $mail->Password = $authPassword;

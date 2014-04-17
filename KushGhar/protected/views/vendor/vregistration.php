@@ -1,16 +1,5 @@
 <script type="text/javascript">
-     $( document ).ready(function() {
-            $("#myModal").modal({ backdrop: 'static', keyboard: false,show:false });
-//alert("enter site index==="+document.getElementById('VV').value);
-//alert(document.getElementById('VV').value);
- if(document.getElementById('VV').value!='inviteToEmail')
-        $('#myModal').modal('show');
-        
-
-});
-
-
-
+     
      function inviteCustomershandler(data){//alert("enter site index==="+data.status);
         //scrollPleaseWaitClose('registrationSpinLoader');
         if(data.status=='success'){//alert("success==="+data.error);
@@ -296,80 +285,3 @@
         </div>
     </div>
 </div>
-<!-- Popup block Start -->
-     <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-         <div class="modal-header">
-             <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>-->
-             <div class="row-fluid">
-                 <div class="span12">
-                      <center><h3>Thank you for your interest in KushGhar.</h3></center>
-                 </div></div>
-                 <div class="row-fluid">
-                 <div class="span12">
-                     <div class="span3">
-                         <a href="/"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/color_logo.png" alt="logo" class="logo" /></a>
-                     </div>
-                     <div class="span9">
-                        
-             <p class="t_left">In order to meet all our customers needs we are only taking people by invite at this time.We will send you an email that contains a link to register very soon.
-             <br/>If you have a friend who is a member of the KushGhar family, they can invite you today. </p>
-                     </div>
-                 </div>
-                     
-             </div>
-         </div>
-         <div class="modal-body">
-             <?php $form=$this->beginWidget('CActiveForm', array(
-                                                                'id'=>'invite-form',
-                                                                'enableClientValidation'=>true,
-                                                                'clientOptions'=>array(
-                                                                        'validateOnSubmit'=>true,
-                                                                )
-                                                        )); ?>
-                                                        
-                                            <?php echo $form->error($inviteModel, 'error'); ?>
-                                            <?php echo $form->hiddenField($inviteModel,'InviteType', array('value'=>'0')); ?>
-                                            
-             <div class="row-fluid">
-                 <div class="span6">
-                    <?php echo $form->label($inviteModel,'<abbr title="required">*</abbr> First Name'); ?>
-                    <?php echo $form->textField($inviteModel,'FirstName', array( 'class'=>'span12','placeholder'=>'First Name…')); ?>
-                    <?php echo $form->error($inviteModel,'FirstName'); ?>
-                 </div>
-                 <div class="span6">
-                    <?php echo $form->label($inviteModel,'<abbr title="required">*</abbr> Last Name'); ?>
-                    <?php echo $form->textField($inviteModel,'LastName', array( 'class'=>'span12','placeholder'=>'Last Name…')); ?>
-                    <?php echo $form->error($inviteModel,'LastName'); ?>
-                 </div>
-             </div>
-              <div class="row-fluid">
-                 <div class="span12">
-                    <?php echo $form->label($inviteModel,'<abbr title="required">*</abbr> Email'); ?>
-                    <?php echo $form->textField($inviteModel,'Email', array( 'class'=>'span12','placeholder'=>'Email…')); ?>
-                    <?php echo $form->error($inviteModel,'Email'); ?>
-                 </div>
-              </div>
-             <div class="row-fluid">
-                 <div class="span6">
-                    <?php echo $form->label($inviteModel,'Select Services of Interest'); ?>
-                    <?php echo $form->dropDownList($inviteModel, 'Services', CHtml::listData($getServices,'Id','name'), array('multiple'=>'true','options'=>''),array('class'=>'span12')); ?>                                          
-                    <?php echo $form->error($inviteModel,'Services'); ?>     
-                 </div>
-                 <div class="span6">
-                    <?php echo $form->label($inviteModel,'Location'); ?>
-                    <?php echo $form->dropDownList($inviteModel,'Location', array(''=>'Select Location','Ameerpet' => 'Ameerpet', 'Banjara Hills' => 'Banjara Hills', 'Charminar' => 'Charminar', 'Dilsukhnagar'=>'Dilsukhnagar', 'Jubilee Hills'=>'Jubilee Hills','LBNagar' => 'LBNagar', 'Punjagutta'=>'Punjagutta','SRNagar' => 'SRNagar', 'Uppal' => 'Uppal'), array('options' => '', 'class' => 'span12'));?>
-                    <?php echo $form->error($inviteModel,'Location'); ?>  
-                 </div>
-             </div>
-         
-         <div style="text-align: right">
-             <?php echo CHtml::ajaxButton('Request an Invite',array('user/invite'), array(
-            'type' => 'POST',
-            'dataType' => 'json',
-            'success' => 'function(data,status,xhr) { inviteCustomershandler(data,status,xhr);}'), array('class'=>'btn btn-primary','type'=>'submit')); ?>
-
-            <button class="btn btn-primary" onclick="homePage();">Home</button> 
-         </div>
-             <?php $this->endWidget(); ?>
-     </div>
-     </div><!-- Popup block End -->

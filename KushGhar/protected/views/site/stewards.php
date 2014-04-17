@@ -59,24 +59,7 @@
                                 </div>
                             </div>
 
-                            <div class="row-fluid">
-                                <div class="span12">
-                                    <div class="dontOffer">
-                                        <div class=" paddingL20">
-                                            <h3 >What services Kushghar don't Offer ?</h3>
-                                            <ul>
-                                                <li>Lifting items weighing over 15 Kgs (including large furniture)</li>
-                                                <li>Cleaning outside of windows</li>
-                                                <li>Cleaning pet messes and/or heavily soiled areas</li>
-                                                <li>Cleaning of mold and/or biohazardous material</li>
-                                                <li>Steam cleaning</li>
-                                                <li>Carpet cleaning</li>
-                                                <li>Deep stain removal</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            
                             <button class="btn btn-large dropdown-toggle getstarted_button"  onclick="cleaning();">Get Started</button>
                         </div>
                     </div>
@@ -161,7 +144,7 @@
 
         <div style="text-align: right">
             <?php
-            echo CHtml::ajaxButton('Request an Invite', array('user/invite'), array(
+            echo CHtml::ajaxButton('Request Invite', array('user/invite'), array(
                 'type' => 'POST',
                 'dataType' => 'json',
                 'beforeSend' => 'function(){

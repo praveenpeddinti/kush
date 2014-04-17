@@ -400,7 +400,7 @@ function getCollectionDataWithPagination(URL,CollectionName, MainDiv,callback){
         
             
          <div style="text-align: right">
-             <?php echo CHtml::ajaxButton('Request an Invite',array('user/invite'), array(
+             <?php echo CHtml::ajaxButton('Request Invite',array('user/invite'), array(
             'type' => 'POST',
             'dataType' => 'json',
             'beforeSend' => 'function(){

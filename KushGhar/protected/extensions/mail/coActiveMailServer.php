@@ -11,13 +11,15 @@ class coActiveMailServer {
 
    function __construct($obj) {
  
-       $host = 'mail.techo2.com';
-       //$host = 'mail.gmail.com';
+        /*$host = 'mail.techo2.com';
         $port = 465;
         $authMail = 'praveen.peddinti@techo2.com';
-        $authPassword = 'praveen@techo2';
-         //$authMail = 'suresh.govindu@techo2.com';
-        //$authPassword = 'sureshreddygovindu1';
+        $authPassword = 'praveen@techo2';*/
+       
+        $host = 'webmail.kushghar.com';
+        $port = 25;
+        $authMail = 'no-reply@kushghar.com'; 
+        $authPassword = 'Kush1029';
         $coActiveLogo = YII::app()->params['SERVER_URL'] . "/images/color_logo.png";
         //$coActiveLogo = "http://115.248.17.88:6060/images/color_logo.png";
         $date = date("Y-m-d");
@@ -101,7 +103,7 @@ class coActiveMailServer {
         $addAddress = $obj['toAddress'];
         $userName = $obj['userName'];
         $message = $obj['message'];
-        
+        $Kushmessage2 = "KushGhar - Making people's lives better, one home at a time.";
         $employerName = $obj['employerName'];
         $employerEmail = $obj['employerEmail'];
         error_log("&************1111111*****&&&&&&&&&&&&&&&&********************in dependentMessage function=========$addAddress===$userName");
@@ -116,6 +118,7 @@ class coActiveMailServer {
                     $mail->Host = $host;
                     $mail->Port = $port;
                     $mail->SMTPSecure = 'ssl';
+                    //$mail->SMTPSecure = '';
                     $mail->SMTPAuth = true;
                     $mail->Username = $authMail;
                     $mail->Password = $authPassword;
@@ -125,6 +128,7 @@ class coActiveMailServer {
                     $template2 = str_replace('{--USERNAME--}',stripslashes(ucwords("$userName")),$data2);                    
                     $template2 = str_replace('{--DATE--}',stripslashes($date),$template2);
                     $template2 = str_replace('{--MESSAGE--}',stripslashes($message),$template2);
+                    $template2 = str_replace('{--MESSAGE2--}',stripslashes($Kushmessage2),$template2);
                     $template2 = str_replace('{--EMPLOYERNAME--}',stripslashes($employerName),$template2);
                     $template2 = str_replace('{--COACTIVELOGO--}', stripslashes($coActiveLogo), $template2);
                      $template2 = str_replace('{--SITEURL--}', YII::app()->params['SERVER_URL'], $template2);

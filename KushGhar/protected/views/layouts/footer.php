@@ -6,10 +6,12 @@
                     <a href="#">Site Map</a> | <a href="/site/aboutus">About Us</a> | <a href="/site/press">Press</a> | <a href="/site/careers">Careers</a> | <a href="/site/mission">KushGhar's Mission</a> | <a href="/site/termsofService">Terms of Service </a> | <a href="/site/privacyPolicy">Privacy Notice</a> | <a href="<?php echo Yii::app()->request->baseUrl; ?>/admin/login">Admin</a>
                 </div>
             </div>
+            
         </div>
         <div class="row-fluid">
             <div class="span6">
-                <div class="copyrights">
+                <a href="https://www.facebook.com/kushghar" target="_blank"><img src='<?php echo Yii::app()->request->baseUrl; ?>/images/fb_icon.png'/></a>  <a href="https://twitter.com/kushghar"><img src='<?php echo Yii::app()->request->baseUrl; ?>/images/twitter_icon.png'/></a>
+                    <div class="copyrights">
                     © <?php echo date('Y');?> KushGhar</br>
                     Making people's lives better, one home at a time
                 </div>

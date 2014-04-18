@@ -20,7 +20,7 @@ footer .container{min-height:158px;}
 .contact_info{ background:url(../images/footer_logo.png) no-repeat right top; margin-top:20px; margin-bottom:10x; min-height:100px}
 .contact_info .getintouch{ border-right:1px solid #fff;margin-right:180px; padding-right:10px; font-size:18px; font-family:MuseoSlab500; text-align:right;color:#fff;}
 .contact_info .getintouch p{text-align:right;font-size:20px; font-family:MuseoSlab700; color:#fff; padding:5px 0 0 0; margin:0}
-.copyrights{ color:#fff; padding-top:60px;}
+.copyrights{ color:#fff; padding-top:28px;}
 .footer_links{color:#fff; margin-bottom:5px;}
 .footer_links a{color:#fff; text-decoration:none }
 .footer_links a:hover, .footer_links a:focus{color:#fff; text-decoration:underline }

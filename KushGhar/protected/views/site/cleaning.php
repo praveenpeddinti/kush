@@ -48,7 +48,7 @@
                                     <div class="paddingL20">
                                         <h3>House cleaning Service</h3>
                                         <ul>
-                                            <li>Pooja room</li>
+                                            
                                             <li>Kitchen room</li>
                                             <li>Bed room</li>
                                             <li>Living room</li>
@@ -148,11 +148,11 @@
         </div>
         <div class="row-fluid">
             <div class="span6">
-                <?php echo $form->label($inviteModel, 'Services'); ?>
-                <?php echo $form->dropDownList($inviteModel, 'Services', CHtml::listData($getServices, 'Id', 'name'), array('multiple' => 'true', 'prompt' => 'Select Services ', 'options' => ''), array('class' => 'span12')); ?>                                          
-                <?php echo $form->error($inviteModel, 'Services'); ?>     
-            </div>
-            <div class="span6">
+                    <?php echo $form->label($inviteModel,'Select Services of Interest'); ?>
+                    <?php echo $form->dropDownList($inviteModel, 'Services', CHtml::listData($getServices,'Id','name'), array('multiple'=>'true','options'=>'','class'=>'span12')); ?>                                          
+                    <?php echo $form->error($inviteModel,'Services'); ?>     
+                 </div>
+                  <div class="span6">
                 <?php echo $form->label($inviteModel, 'Location'); ?>
                 <?php echo $form->dropDownList($inviteModel,'Location', array(''=>'Select Location','Ameerpet' => 'Ameerpet', 'Banjara Hills' => 'Banjara Hills', 'Charminar' => 'Charminar', 'Dilsukhnagar'=>'Dilsukhnagar', 'Jubilee Hills'=>'Jubilee Hills','LBNagar' => 'LBNagar', 'Punjagutta'=>'Punjagutta','SRNagar' => 'SRNagar', 'Uppal' => 'Uppal'), array('options' => '', 'class' => 'span12'));?>
                     <?php echo $form->error($inviteModel,'Location'); ?> 

@@ -137,9 +137,9 @@
         </div>
         <div class="row-fluid">
             <div class="span6">
-                <?php echo $form->label($inviteModel, 'Services'); ?>
-                <?php echo $form->dropDownList($inviteModel, 'Services', CHtml::listData($getServices, 'Id', 'name'), array('multiple' => 'true', 'prompt' => 'Select Services ', 'options' => ''), array('class' => 'span12')); ?>                                          
-                <?php echo $form->error($inviteModel, 'Services'); ?>     
+                <?php echo $form->label($inviteModel,'Select Services of Interest'); ?>
+                <?php echo $form->dropDownList($inviteModel, 'Services', CHtml::listData($getServices,'Id','name'), array('multiple'=>'true','options'=>'','class'=>'span12')); ?>                                          
+                <?php echo $form->error($inviteModel,'Services'); ?>     
             </div>
             <div class="span6">
                 <?php echo $form->label($inviteModel, 'Location'); ?>

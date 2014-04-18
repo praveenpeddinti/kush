@@ -79,11 +79,11 @@ one home at a time</div>
    <div class="row-fluid paddingT10" >
    <div class="services span12 paddingl20p">
    <ul>
-       <li><a href="/site/cleaning" class="housecleaning has-popover" title="" data-toggle="popover" data-placement="top" data-content="<ul><li>Pooja room</li><li>Kitchen room</li><li>Bed room</li><li>Living room</li><li>Bath room</li></ul>" data-original-title="Cleaning" > <span>Cleaning</span> </a></li>
-        <li><a href="/site/carwash" class="driver has-popover" title="" data-toggle="popover" data-placement="top" data-content="<ul><li>Car exterior wash</li><li>Car interior dusting</li></ul>" data-original-title="Car Wash" ><span>Car Wash</span></a></li>
+       <li><a href="/site/cleaning" class="housecleaning has-popover" title="" data-toggle="popover" data-placement="top" data-content="<ul><li>Kitchen room</li><li>Bed room</li><li>Living room</li><li>Bath room</li></ul>" data-original-title="Cleaning" > <span>Home <br/>Cleaning</span> </a></li>
+       <li><a href="/site/carwash" class="driver has-popover" title="" data-toggle="popover" data-placement="top" data-content="<ul><li>Car exterior wash</li><li>Car interior dusting</li></ul>" data-original-title="Car Wash" ><span>Car <br/> Wash</span></a></li>
         <li><a href="/site/stewards" class="laundry has-popover" title="" data-toggle="popover" data-placement="top" data-content="<ul><li>Food counter setup</li><li>Wine / bar counter setup</li><li>Assist in seating the Guests</li><li>Take the order</li><li>Serve all order</li><li>Keep garbage area clean</li></ul>" data-original-title="Stewards/Stewardesses" ><span>Stewards/<br/>Stewardesses</span></a></li>
-        
-        <li><a href="/site/moreservices" class="more has-popover" title="" data-toggle="popover" data-placement="top" data-content="<ul><li>Drive vehicles locally or out of area as needed</li><li>Deliver vehicles to appropriate destination in a safe and courteous manner</li><li>Perform miscellaneous job-related duties as assigned</li><li>Follw the traffic rules</li> </ul>" data-original-title="More Services" ></a></li>
+        <!--<li>Drive vehicles locally or out of area as needed</li><li>Deliver vehicles to appropriate destination in a safe and courteous manner</li><li>Perform miscellaneous job-related duties as assigned</li><li>Follw the traffic rules</li> -->
+        <li><a href="/site/moreservices" class="more has-popover" title="" data-toggle="popover" data-placement="top" data-content="<ul><li>Drivers Service</li> </ul>" data-original-title="More Services" ></a></li>
    </ul>
    </div>
    </div>

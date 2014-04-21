@@ -4,7 +4,7 @@
 //This should be done in your php.ini, but this is how to do it if you don't have access to that
 //date_default_timezone_set('America/Toronto');
 
-require '/opt/lampp/htdocs/CoActive/protected/extensions/mail/class.phpmailer.php';
+require '/opt/lampp/htdocs/KushGhar/protected/extensions/mail/class.phpmailer.php';
 
 class coActiveMailServer {
 

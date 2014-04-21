@@ -9,9 +9,9 @@ header{ background:#6ca050; min-height:125px;}
 header .container{ }
 .header_contact_info{ float:left; display:block;}
 .header_contact_info ul{ margin:0; padding:0; list-style:none;}
-.header_contact_info ul li{ float:left;margin:0; padding:0; list-style:none; font-size:20px; color:#fff; line-height:32px; margin-right:20px;font-family:MuseoSlab500}
-.header_contact_info ul li.phone{ background:url(../images/icons.png) no-repeat left 8px; padding-left:20px;}
-.header_contact_info  ul li.email{ background:url(../images/icons.png) no-repeat left -27px; padding-left:30px;}
+.header_contact_info ul li{ float:left;margin:10px 0 0 0; padding:0; list-style:none; font-size:20px; color:#fff; line-height:32px; margin-right:20px;font-family:MuseoSlab500}
+.header_contact_info ul li.phone{ background:url(../images/icons.png) no-repeat left 8px; padding-left:20px;font-size:35px;line-height:32px; }
+.header_contact_info  ul li.email{ background:url(../images/icons.png) no-repeat left -27px; padding-left:30px;font-size:18px;line-height:32px;}
 .header_menu_items{ clear:both; float:right}
 .header_menu_items ul{ margin:0; padding:30px 0 0 0; list-style:none;}
 .header_menu_items ul li{ margin-left:10px; padding:0; float:left}
@@ -312,6 +312,7 @@ ul.header_profile{ list-style:none; margin:0; padding:0}
                 .seven_sines .paddingR180{ padding-right:10px}
                 .modal.fade.in {top:10%}
                 .paddingl20p{ padding-left:0%}
+                .header_contact_info ul{padding-left: 20px;}
 		}
 /*Datepicker */
 /*!

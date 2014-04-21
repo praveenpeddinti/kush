@@ -10,8 +10,10 @@
         </div>
         <div class="row-fluid">
             <div class="span6">
-                <a href="https://www.facebook.com/kushghar" target="_blank"><img src='<?php echo Yii::app()->request->baseUrl; ?>/images/fb_icon.png'/></a>  <a href="https://twitter.com/kushghar"><img src='<?php echo Yii::app()->request->baseUrl; ?>/images/twitter_icon.png'/></a>
+                
                     <div class="copyrights">
+                        <div class="row-fluid">
+                            <div class="span6"><a href="https://www.facebook.com/kushghar" target="_blank"><img src='<?php echo Yii::app()->request->baseUrl; ?>/images/fb_icon.png'/></a>  <a href="https://twitter.com/kushghar"><img src='<?php echo Yii::app()->request->baseUrl; ?>/images/twitter_icon.png'/></a></div></div>
                     © <?php echo date('Y');?> KushGhar</br>
                     Making people's lives better, one home at a time
                 </div>

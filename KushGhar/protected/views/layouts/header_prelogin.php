@@ -21,8 +21,8 @@
                         <div class=" mobilerightclear">
                             <div class="header_contact_info pull-right">
                                 <ul>
-                                    <li class="phone">040 233 52575</li>
-                                    <li class="email"><a href="mailto:helpme@kushghar.com">helpme@kushghar.com</a></li>
+                                    <li class="phone" style="color:#F58220">040 233 52575</li>
+                                    <li class="email" ><a href="mailto:helpme@kushghar.com" style="color:#F58220">helpme@kushghar.com</a></li>
                                 </ul>
                             </div>
                         </div>

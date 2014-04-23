@@ -26,9 +26,8 @@ one home at a time</div>
     </ul>
     <center>
         <div class="btn-group paddingT10">
-            <a href="/user/registration"><button class="btn btn-large dropdown-toggle getstarted_button"  >
-            Get Started 
-            </button></a>
+            <a href="/user/registration"><p class="btn btn-large dropdown-toggle getstarted_button">Get Started</p></a>
+            <!--<a href="/user/registration"><button class="btn btn-large dropdown-toggle getstarted_button">Get Started</button></a>-->
         </div>
         </center>
     </div>
@@ -114,5 +113,16 @@ one home at a time</div>
     .hover(showPopover, hidePopover);
 });
 
+
+
+    jwplayer('container').setup({
+        file: '/images/KushgharIntro-360p.mp4',
+        image : '/images/video_img.png',
+        
+        width: '100'+"%"
+        /*aspectratio: '10:3',
+        height:'250'*/
+       
+    });
     </script>
    

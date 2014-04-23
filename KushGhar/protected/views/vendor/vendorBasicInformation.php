@@ -1,5 +1,5 @@
 <div class="container">
-    <div id="instant_notifications" class="instant_notification">Basic Information</div>
+    <!--<div id="instant_notifications" class="instant_notification">Basic Information</div>-->
     <section>
         <div class="container minHeight">
             <aside>
@@ -70,7 +70,7 @@
             <article>
                 <div class="row-fluid">
                     <div class="span12">
-                        <h4>Basic Information</h4>
+                        <h4 class="paddingL20">Basic Information</h4>
                         <hr>
                         <div class="paddinground">
                             <div id="basicInfoSpinLoader"></div>

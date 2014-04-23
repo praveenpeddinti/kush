@@ -60,18 +60,18 @@ class UserController extends Controller {
             } else {
                 $result = $this->kushGharService->getcheckEmailForPassword($modelSample);
                 if ($result == "false") {
-                    $errors = array("SampleForm_error" => 'Customer dostnot exist with these details.');
+                    $errors = array("SampleForm_error" => 'Customer does not exist with these details.');
                     $obj = array('status' => '', 'data' => '', 'error' => $errors);
-                } else {
-                    $mess = 'Hi' . "\r\n";
-                    $mess = $mess . 'Welcome to KushGhar. Your new password is ' . $result->password_salt . "\r\n\n";
-                    $mess = $mess . 'Thanks & Regards,' . "\r\n" . 'KushGhar.';
+                } else {error_log("enter else===========");
+                    //$mess = 'Hi' . "\r\n";
+                    $mess = 'Welcome to KushGhar. Your new password is ' . $result->password_salt . "\r\n\n";
+                   
                     $to = $result->email_address;
                     $subject = 'Password details';
                     $message = $mess;
-                    $headers = 'From: praveen.peddinti@gmail.com' . "\r\n" .
-                            'X-Mailer: PHP/' . phpversion();
-                    mail($to, $subject, $message, $headers);
+                    
+                    $this->sendMailToUser($to, '', $subject, $message, 'KushGhar', 'no-reply@kushghar.com', 'PasswordMail');
+                    
                     $obj = array('status' => 'success', 'data' => $result, 'error' => 'Password is sent to your mail');
                 }
             }
@@ -83,7 +83,7 @@ class UserController extends Controller {
     /**
      * Displays the login page
      */
-    public function actionLogin() {
+    public function actionLogin() {error_log("===========in login form==========");
         $model = new LoginForm;
         // if it is ajax validation request
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'login-form') {
@@ -120,10 +120,10 @@ class UserController extends Controller {
     /**
      * User Registration Form Controller START
      */
-    public function actionRegistration() {
+    public function actionRegistration() {error_log("===========in reg form==========");
         $_REQUEST['uname']=$this->session['UserType'];
         //$_REQUEST['uname']=0;
-        $inviteForm = new InviteForm;
+        //$inviteForm = new InviteForm;
         $this->session['Type']='Customer';
         
         error_log("id==con==".$_REQUEST['uname']."====".$this->session['Type']);
@@ -132,7 +132,7 @@ class UserController extends Controller {
         $modelSample = new SampleForm;
         $request = yii::app()->getRequest();
         $formName = $request->getParam('RegistrationForm');
-        $getServices = $this->kushGharService->getServices();
+        //$getServices = $this->kushGharService->getServices();
        
         if ($formName != '') {
             $model->attributes = $request->getParam('RegistrationForm');
@@ -164,7 +164,7 @@ class UserController extends Controller {
             $renderScript = $this->rendering($obj);
             echo $renderScript;
         } else {
-            $this->render('registration', array('model' => $model, 'modelLogin' => $modelLogin, 'modelSample' => $modelSample,'one'=>$_REQUEST['uname'], "inviteModel" => $inviteForm, "getServices"=>$getServices));
+            $this->render('registration', array('model' => $model, 'modelLogin' => $modelLogin, 'modelSample' => $modelSample,'one'=>$_REQUEST['uname']));
         }
     }
 
@@ -516,62 +516,67 @@ class UserController extends Controller {
     }*/
     
     
-    /**
-     * Invitation Users Start
-     */
-    public function actionInvite() {error_log("dfdsfsdfsd enter Invite");
-        $inviteForm = new InviteForm;
-        $request = yii::app()->getRequest();
-        $formName = $request->getParam('InviteForm');
-        if ($formName != '') {error_log("enter error-------------");
-            $inviteForm->attributes = $request->getParam('InviteForm');
-            $errors = CActiveForm::validate($inviteForm);
-            error_log("size==========".sizeof($inviteForm->Services)."==location==".$inviteForm->Location);
-            if ($errors != '[]') {
-                $obj = array('status' => '', 'data' => '', 'error' => $errors);
-            } else {
-                $result = $this->kushGharService->getInvitationUser($inviteForm, $this->session['Type']);
-               
-                if ($result == "success") {error_log("dsdfdsfsdfsdif====".$inviteForm->Email);
-                    /*$mess = 'Hi' . "\r\n\n";
-                    $mess = $mess . 'Welcome from KushGhar.com ' . "\r\n\n";
-                    $mess = $mess . 'You can visit KushGhar.com by clicking following url. ' . "\r\n\n";
-                    $mess = $mess . 'http://115.248.17.88:6060/site/invite?uname=' . $inviteForm->Email . "\r\n\n";
-                    $mess = $mess . 'Regards,' . "\r\n" . 'KushGhar.';
-                    $to = $inviteForm->Email;
-                    $name = $inviteForm->FirstName;
-                    $subject = 'KushGhar Invitation';
-                    $message = $mess;
-                    $headers = 'From: praveen.peddinti@gmail.com' . "\r\n" .
-                            'X-Mailer: PHP/' . phpversion();
-                    mail($to, $subject, $message, $headers);*/
-                    $to = $inviteForm->Email;
-                    $name = $inviteForm->FirstName;
-                    $subject = 'KushGhar Invitation';
-                    $mess1 = "\r\n";
-                    //$mess1 = $mess1 . 'Thank you for requesting an invite to KushGhar. We are expanding our service areas every week. You will be getting an email with a link to register and start your services. ' . "\r\n\n";
-                    $mess1 = $mess1 . 'http://115.248.17.88:6060/site/invite?uname=' . $to . "\r\n\n";
-                    $messages = $mess1;           
-                    $this->sendMailToUser($to, $name, $subject, $messages, 'KushGhar', 'no-reply@kushghar.com', 'InvitationMail');
-                    
-                    //$errors = 'Invitation send by your Email';
-                    $obj = array('status' => 'success', 'data' => $result, 'error' => 'Invitation send by your Email');
-                } else {error_log("dsdfdsfsdfsdelse===");
-                    $errors = array("InviteForm_error" => 'User already Invited.');
-                    $obj = array('status' => '', 'data' => '', 'error' => $errors);
-                }
-            }
-            $renderScript = $this->rendering($obj);
-            echo $renderScript;
-        } else {
-            $this->render('invite', array("model" => $inviteForm));
-        }
-        //$this->render('invite', array("model" => $inviteForm));
-    }
     
     public function actionHome(){error_log("enter homeeeeeeeeeeeeeeeeee");
         $this->redirect('/site/index');
     }
+    
+    
+    public function actionInviteRegistration(){
+        if($_REQUEST){
+            $inviteForm = new InviteForm;
+            $request = yii::app()->getRequest();
+            $formName = $request->getParam('InviteForm');
+            if ($formName != '') {error_log("enter error-------111111111sss------");
+                $inviteForm->attributes = $request->getParam('InviteForm');
+                $errors = CActiveForm::validate($inviteForm);
+                error_log("size==========".sizeof($inviteForm->Services)."==location==".$inviteForm->Location);
+                if ($errors != '[]') {
+                    $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
+                } else {
+                    $result = $this->kushGharService->getInvitationUser($inviteForm, $this->session['Type']);
+
+                    if ($result == "success") {error_log("dsdfdsfsdfsdif====".$inviteForm->Email);
+                        /*$mess = 'Hi' . "\r\n\n";
+                        $mess = $mess . 'Welcome from KushGhar.com ' . "\r\n\n";
+                        $mess = $mess . 'You can visit KushGhar.com by clicking following url. ' . "\r\n\n";
+                        $mess = $mess . 'http://115.248.17.88:6060/site/invite?uname=' . $inviteForm->Email . "\r\n\n";
+                        $mess = $mess . 'Regards,' . "\r\n" . 'KushGhar.';
+                        $to = $inviteForm->Email;
+                        $name = $inviteForm->FirstName;
+                        $subject = 'KushGhar Invitation';
+                        $message = $mess;
+                        $headers = 'From: praveen.peddinti@gmail.com' . "\r\n" .
+                                'X-Mailer: PHP/' . phpversion();
+                        mail($to, $subject, $message, $headers);*/
+                        $to = $inviteForm->Email;
+                        $name = $inviteForm->FirstName;
+                        $subject = 'KushGhar Invitation';
+                        $mess1 = "\r\n";
+                        //$mess1 = $mess1 . 'Thank you for requesting an invite to KushGhar. We are expanding our service areas every week. You will be getting an email with a link to register and start your services. ' . "\r\n\n";
+                        $mess1 = $mess1 . 'http://115.248.17.88:6060/site/invite?uname=' . $to . "\r\n\n";
+                        $messages = $mess1;           
+                        $this->sendMailToUser($to, $name, $subject, $messages, 'KushGhar', 'no-reply@kushghar.com', 'InvitationMail');
+
+                        //$errors = 'Invitation send by your Email';
+                        $obj = array('status' => 'success', 'data' => $result, 'error' => 'Invitation send by your Email');
+                    } else {error_log("dsdfdsfsdfsdelse===");
+                        $errors = array("InviteForm_error" => 'User already Invited.');
+                        $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
+                    }
+                }
+                $renderScript = $this->rendering($obj);
+                echo $renderScript;
+            } else {
+                $this->render('invite', array("model" => $inviteForm));
+            }
+        }else{
+            $inviteForm = new InviteForm;
+            $getServices = $this->kushGharService->getServices();
+            $this->renderPartial('inviteRegistration', array("inviteModel"=>$inviteForm, "getServices"=>$getServices));
+        }
+    }
+    
     
 }
 

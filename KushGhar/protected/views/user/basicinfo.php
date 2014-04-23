@@ -1,5 +1,5 @@
 <div class="container">
-    <div id="instant_notifications" class="instant_notification">Basic Information</div>
+    <!--<div id="instant_notifications" class="instant_notification">Basic Information</div>-->
     <section>
         <div class="container minHeight">
             <aside>

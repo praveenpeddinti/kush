@@ -216,10 +216,11 @@
                                             'success' => 'function(data,status,xhr) { addNewVendorhandler(data,status,xhr);}'), array('class' => 'btn btn-primary'));
                                         ?>
                                     
-                                    <!--<button type="submit" class="reg_fb"> </button>-->
+                                   
                                 </center>
                             </fieldset>
                            <?php $this->endWidget(); ?>
+                            <!--<button type="submit" class="reg_fb"> </button>-->
                         </div>
                     </div>
                 </div>
@@ -238,14 +239,14 @@
                             <?php echo $form->error($modelLogin, 'error', array('class'=>'errorMessageFont')); ?>
                             <fieldset>
                                 <?php echo $form->label($modelLogin, '<abbr title="required">*</abbr> user ID'); ?>
-                                <?php echo $form->textField($modelLogin, 'UserId', array('class' => 'span12', 'placeholder' => 'Email / Phone Number…', 'maxLength' => 100)); ?>
+                                <?php echo $form->textField($modelLogin, 'UserId', array('class' => 'span12', 'placeholder' => 'Email…', 'maxLength' => 100)); ?>
                                 <?php echo $form->error($modelLogin, 'UserId'); ?>
 
                                 <?php echo $form->labelEx($modelLogin, '<abbr title="required">*</abbr> password'); ?>
                                 <?php echo $form->passwordField($modelLogin, 'Password', array('class' => 'span12', 'placeholder' => 'Password…', 'maxLength' => 100)); ?>
                                 <?php echo $form->error($modelLogin, 'Password'); ?>
                                 
-                                <div class="row-fluid paddingT10">
+                                <div class="row-fluid paddingB20">
                                     <div class="span6">
                                         <?php echo $form->label($modelLogin, 'Vendor type'); ?>
                                         <div class="switch switch-large vender_type" id="VendorType" data-on-label="Individual" data-off-label="Agency">
@@ -256,7 +257,7 @@
                                  
                                    
                                 </div>
-
+                                
                                 <center>
 
                                     <?php echo CHtml::ajaxButton('Login', array('vendor/login'), array(
@@ -268,9 +269,10 @@
 
                                     <!--<button type="submit" class="login_fb"> </button>-->
                                 </center>
+                                    
                                     </fieldset>
                             <?php $this->endWidget(); ?>
-
+                            <button type="submit" class="login_fb"> </button>
                              
     
 

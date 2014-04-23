@@ -68,7 +68,7 @@
     <article>
      <div class="row-fluid">
        <div class="span12">
-       	<h4>Contact Information</h4>
+       	<h4 class="paddingL20">Contact Information</h4>
        <hr>
        <div class="paddinground">
            <div id="contactInfoSpinLoader"></div>

@@ -62,16 +62,7 @@ function scrollPleaseWaitClose(spinnerId){
     $("#loader_"+spinnerId).hide();
 }
 
-
-    jwplayer('container').setup({
-        file: '/images/KushgharIntro-360p.mp4',
-        image : '/images/video_img.png',
-        
-        width: '100'+"%"
-        /*aspectratio: '10:3',
-        height:'250'*/
-       
-    });
+   
 
     
 

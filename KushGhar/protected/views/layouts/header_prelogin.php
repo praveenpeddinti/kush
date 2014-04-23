@@ -163,7 +163,7 @@
     function loginpopup(){
         
         window.location.href=<?php echo Yii::app()->request->baseUrl; ?>'/user/registration';
-        
+        //getCollectionDataWithPagination('/user/inviteRegistration','my', 'modelBodyDiv', '');
         
     }
     function adminLoginpopup(){

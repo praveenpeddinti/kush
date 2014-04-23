@@ -46,19 +46,32 @@
                                 <div class="span12">
 
                                     <div class="paddingL20">
-                                        <h3>Steward service</h3>
+                                        <h3>Steward / Stewardesses service</h3>
+                                        <p>This service includes a very well trained professional steward / stewardesses to serving Food, snacks, wine and taking care of Guests / visitors needs during the parties / get-to-gathers time.</p>
                                         <ul>
-                                            <li>Food counter setup</li>
-                                            <li>Wine / bar counter setup</li>
-                                            <li>Assist in seating the Guests</li>
-                                            <li>Take the order</li>
-                                            <li>Serve all order</li>
-                                            <li>Keep garbage area clean</li>
+                                            <li>Supplies of food</li>
+                                            <li>Supplies of Wine / liquor</li>
+                                            <li>Assisting in seating the Guests</li>
+                                            <li>Re- filling of Food and Liquor</li>
+                                            <li>Garbage emptying</li>
                                         </ul>   
                                     </div>
                                 </div>
                             </div>
+                            <div class="row-fluid">
+                                <div class="span12">
 
+                                    <div class="dontOffer">
+                                        
+                                    <div class=" paddingL20">
+                                        <h3 >Exclusions:</h3>
+                                        <ul>
+                                            <li>Our crew will not be doing plates / vessels washing.</li>
+                                        </ul>
+                                    </div>
+                                        </div>
+                                </div>
+                            </div>
                             
                             <button class="btn btn-large dropdown-toggle getstarted_button"  onclick="cleaning();">Get Started</button>
                         </div>

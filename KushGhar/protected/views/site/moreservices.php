@@ -40,24 +40,26 @@
                         <input type="hidden" id="VV" value="<?php echo $this->session['UserType'];?>" >
                         <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/service_banner1.jpg" class="service_banner" />
                         <div class="paddinground">
-                            <h2>What services Kushghar Offer ?</h2>
+                            <h2>What services Kushghar Offer in Future?</h2>
                             <div class="static_page_heading"></div>
                             <div class="row-fluid">
                                 <div class="span12">
 
                                     <div class="paddingL20">
-                                        <h3>Drivers Service</h3>
+                                        <h3>Future Services</h3>
                                         <ul>
-                                            <li>Drive vehicles locally or out of area as needed</li>
-                                            <li>Deliver vehicles to appropriate destination in a safe and courteous manner</li>
-                                            <li>Perform miscellaneous job-related duties as assigned</li>
-                                            <li>Follw the traffic rules</li> 
+                                            <li>Drivers Service</li>
+                                            <li>Gardener</li>
+                                            <li>Plumber</li>
+                                            <li>ElectricianBaby sitting</li>
+                                            <li>Nurse</li>
+                                            <li>Baby sitting</li>
                                         </ul>   
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="row-fluid">
+                            <!--<div class="row-fluid">
                                 <div class="span12">
                                     <div class="dontOffer">
                                         <div class=" paddingL20">
@@ -74,7 +76,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>-->
                             <button class="btn btn-large dropdown-toggle getstarted_button"  onclick="cleaning();">Get Started</button>
                         </div>
                     </div>

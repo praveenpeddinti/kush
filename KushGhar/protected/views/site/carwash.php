@@ -39,9 +39,14 @@
 
                                     <div class="paddingL20">
                                         <h3>Car cleaning service</h3>
+                                        <p>This service includes a very well trained professional cleaning crew and also includes car interior cleaning and exterior washing, washing wheels, rinsing and dying vehicle and we use organic free chemicals which remove contaminants.</p>
                                         <ul>
-                                            <li>Car exterior wash</li>
-                                            <li>Car interior dusting</li>
+                                            <li>Brush, vacuum, and clean the interior</li>
+                                            <li>Clean wheels and tires</li>
+                                            <li>Wash exterior</li>
+                                            <li>Apply tire dressing</li>
+                                            <li>Polish wheels</li>
+                                            <li>Rinsing and drying</li>
                                         </ul>   
                                     </div>
                                 </div>
@@ -53,15 +58,9 @@
                                     <div class="dontOffer">
                                         
                                     <div class=" paddingL20">
-                                        <h3 >What services Kushghar don't Offer ?</h3>
+                                        <h3 >Exclusions:</h3>
                                         <ul>
-                                            <li>Lifting items weighing over 15 Kgs (including large furniture)</li>
-                                            <li>Cleaning outside of windows</li>
-                                            <li>Cleaning pet messes and/or heavily soiled areas</li>
-                                            <li>Cleaning of mold and/or biohazardous material</li>
-                                            <li>Steam cleaning</li>
-                                            <li>Carpet cleaning</li>
-                                            <li>Deep stain removal</li>
+                                            <li>Our crew will not be doing polishing & waxing of vehicle and will not do interior seats shampooing.</li>
                                         </ul>
                                     </div>
                                         </div>

@@ -53,7 +53,10 @@
                                             <li>Bed room</li>
                                             <li>Living room</li>
                                             <li>Bath room</li>
-                                        </ul>   
+                                            <li>Common areas</li>
+                                        </ul>
+                                        <p>All of your home will be dusted, vacuumed, cleaned and arranged as a 5 star hotel room is arranged. Satisfaction guaranteed.</p>
+                                        <p><b>Please note:-</b> Basic package does not include, Cleaning outside of windows, steam cleaning, carpet cleaning and Deep stain removal. If you need any of these please let us know in advance by contacting our customer service.</p>
                                     </div>
                                 </div>
                             </div>
@@ -64,15 +67,9 @@
                                     <div class="dontOffer">
                                         
                                     <div class=" paddingL20">
-                                        <h3 >What services Kushghar don't Offer ?</h3>
+                                        <h3>Exclusions:</h3>
                                         <ul>
-                                            <li>Lifting items weighing over 15 Kgs (including large furniture)</li>
-                                            <li>Cleaning outside of windows</li>
-                                            <li>Cleaning pet messes and/or heavily soiled areas</li>
-                                            <li>Cleaning of mold and/or biohazardous material</li>
-                                            <li>Steam cleaning</li>
-                                            <li>Carpet cleaning</li>
-                                            <li>Deep stain removal</li>
+                                            <li>Our crew will not be lifting items weighing over 15 Kgs (including large furniture) for safety reasons, and will not clean pet messes and/or heavily soiled areas, mold and/or bio hazardous material.</li>
                                         </ul>
                                     </div>
                                         </div>

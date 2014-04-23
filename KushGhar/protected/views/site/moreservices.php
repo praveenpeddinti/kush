@@ -52,7 +52,6 @@
                                             <li>Gardener</li>
                                             <li>Plumber</li>
                                             <li>Electrician</li>
-                                            <li>Baby sitting</li>
                                             <li>Nurse</li>
                                             <li>Baby sitting</li>
                                         </ul>   

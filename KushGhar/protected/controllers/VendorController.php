@@ -62,7 +62,7 @@ class VendorController extends Controller {
                 error_log("VendorType====".$model->VendorType);
                 $result = $this->kushGharService->vendorLogin($model);
                 if ($result == "false") {
-                    $errors = array("VendorLoginForm_error" => 'Invalid Vendor or Password.');
+                    $errors = array("VendorLoginForm_error" => 'Invalid User Id or Password.');
                     $obj = array('status' => '', 'data' => '', 'error' => $errors);
                 } else {error_log("enter okkkk");
                     $this->session['VendorType'] = $model->VendorType;

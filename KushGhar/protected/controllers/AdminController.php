@@ -11,7 +11,7 @@ class AdminController extends Controller {
             // page action renders "static" pages stored under 'protected/views/site/pages'
             // They can be accessed via: index.php?r=site/page&view=FileName
             'page' => array(
-            'class' => 'CViewAction',
+                'class' => 'CViewAction',
             ),
         );
     }
@@ -57,7 +57,7 @@ class AdminController extends Controller {
             if ($errors != '[]') {
                 $obj = array('status' => '', 'data' => '', 'error' => $errors);
             } else {
-                $result = $this->kushGharService->login($model,'Admin');
+                $result = $this->kushGharService->login($model, 'Admin');
                 if ($result == "false") {
                     $errors = array("LoginForm_error" => 'Invalid User or Password.');
                     $obj = array('status' => '', 'data' => '', 'error' => $errors);
@@ -67,191 +67,121 @@ class AdminController extends Controller {
                     $this->session['email'] = $result->email_address;
                     $this->session['firstName'] = $result->first_name;
                     $this->session['LoginPic'] = $result->profilePicture;
-                    $this->session['Type'] ='Admin';
+                    $this->session['Type'] = 'Admin';
                     $obj = array('status' => 'success', 'data' => $result, 'error' => '');
                 }
             }
             $renderScript = $this->rendering($obj);
             echo $renderScript;
-        }else{
-           $this->render('login', array('adminLogin' => $model));
- 
+        } else {
+            $this->render('login', array('adminLogin' => $model));
         }
     }
 
-   
-public function actionDashboard(){error_log("enter dashboard================");
-    try{
-    $this->session['Type']='Admin';
-    $model = new BulkForm;
-    
-    $request = yii::app()->getRequest();
-        $formName = $request->getParam('BulkForm');
-        if ($formName != '') {
-            $model->attributes = $request->getParam('BulkForm');
-            $errors = CActiveForm::validate($model);
-            if ($errors != '[]') {error_log("dfdfdf=======");
-                $obj = array('status' => 'error', 'message' => '', 'error' => $errors);
-            } else {
-                error_log("emails are====".$model->EmailIds);
-                $email=array();
-                $email=explode(",",$model->EmailIds);
-                 $flag=0;
+    public function actionDashboard() {
+        try {
+            $this->session['Type'] = 'Admin';
+            $model = new BulkForm;
 
-                 for($i=0;$i<sizeof($email);$i++){
-                    
-                   //$details=$this->kushGharService->getcheckNewUserExist($email[$i]);
-                    $details=$this->kushGharService->getcheckNewUserExist($email[$i]);
-                    error_log("email id is====".$details);
-                    if($details=='No user'){error_log("new users eith email ====".$email[$i]);
-
-                    /*$mess = 'Hi' . "\r\n\n";
-
-                    $mess = $mess . 'Welcome from KushGhar.com ' . "\r\n\n";
-                    $mess = $mess . 'You can visit KushGhar.com by clicking following url. ' . "\r\n\n";
-                    $mess = $mess . 'http://115.248.17.88:6060/site/invite?uname=' . $email[$i] . "\r\n\n";
-                    $mess = $mess . 'Regards,' . "\r\n" . 'KushGhar.';
-                    $to = $email[$i];
-                    $subject = 'KushGhar Invitation';
-                    $message = $mess;
-                    $headers = 'From: praveen.peddinti@gmail.com' . "\r\n" .
-                            'X-Mailer: PHP/' . phpversion();
-                    mail($to, $subject, $message, $headers);*/
-                    $to = $email[$i];
-                    $subject = 'KushGhar Invitation';
-                    //$mess1 = $mess1 . 'Thank you for requesting an invite to KushGhar. We are expanding our service areas every week. You will be getting an email with a link to register and start your services. ' . "\r\n\n";
-                    $mess1 =  'http://115.248.17.88:6060/site/invite?uname=' . $email[$i] . "\r\n\n";
-                    $messages = $mess1;
-                    //$mess1 = 'Welcome from KushGhar.com ' . "\r\n\n";
-                    //$mess1 = $mess1 . 'You can visit KushGhar.com by clicking following url. ' . "\r\n\n";
-                    //$mess1 = $mess1 . 'http://115.248.17.88:6060/site/invite?uname=' . $email[$i] . "\r\n\n";
-                    //$messages = $mess1;           
-                    $this->sendMailToUser($to, '', $subject, $messages, 'KushGhar', 'no-reply@kushghar.com', 'InvitationMail');
-        
-                    
-        
-                 
-                    }
-                    $flag++;
-                    error_log("flag======".$flag);
-                }
-                if($flag==sizeof($email)){ $result='success';}
-                $result='success';
-                error_log("dffffffffffffffff===".$result);
-                if ($result == "success") {
-                    //$message = Yii::t('translation', 'Thank you for contacting us. We will respond to you as soon as possible');
-                    $obj = array('status' => 'success', 'message' => 'ggg', 'error' => '');
+            $request = yii::app()->getRequest();
+            $formName = $request->getParam('BulkForm');
+            if ($formName != '') {
+                $model->attributes = $request->getParam('BulkForm');
+                $errors = CActiveForm::validate($model);
+                if ($errors != '[]') {
+                    $obj = array('status' => 'error', 'message' => '', 'error' => $errors);
                 } else {
-                    //$message = Yii::t('translation', 'Already User Existed');
-                    $obj = array('status' => 'error', 'message' => '', 'error' => 'dfdfd');
+                    $email = array();
+                    $email = explode(",", $model->EmailIds);
+                    $flag = 0;
+
+                    for ($i = 0; $i < sizeof($email); $i++) {
+                        $details = $this->kushGharService->getcheckNewUserExist($email[$i]);
+                        if ($details == 'No user') {
+                            $to = $email[$i];
+                            $subject = 'KushGhar Invitation';
+                            //$mess1 = 'http://www.kushghar.com/site/invite?uname=' . $email[$i] . "\r\n\n";
+                            $mess1 = 'http://115.248.17.88:6060/site/invite?uname=' . $email[$i] . "\r\n\n";
+                            $messages = $mess1;
+                            $this->sendMailToUser($to, '', $subject, $messages, 'KushGhar', 'no-reply@kushghar.com', 'InvitationMail');
+                        }
+                        $flag++;
+                    }
+                    if ($flag == sizeof($email)) {
+                        $result = 'success';
+                    }
+                    $result = 'success';
+                    if ($result == "success") {
+                        $obj = array('status' => 'success', 'message' => 'ggg', 'error' => '');
+                    } else {
+                        $obj = array('status' => 'error', 'message' => '', 'error' => 'dfdfd');
+                    }
                 }
+                $renderScript = $this->rendering($obj);
+                echo $renderScript;
+            } else {
+                $this->render('dashboard', array('model' => $model));
             }
-            $renderScript = $this->rendering($obj);
-            echo $renderScript;
-        } else {
-            $this->render('dashboard',array('model'=> $model));  
-            }
-    
-    
-    
-    
-    
-    }catch (Exception $ex) {
+        } catch (Exception $ex) {
             error_log("#########Exception Occurred########$ex->getMessage()");
-        
+        }
     }
-}
 
-  public function actionManage(){error_log("dfdfdf-----------1---");
-      try{
-          //if(isset($_GET['userDetails_page'])){
-          //$model = new BulkForm;
-          //$userDetails = $this->kushGharService->getAllUsers();
-       
-          /*$provider = new CArrayDataProvider($userDetails, 
-            array(
-                "pagination" => array(
-                    "pageSize" => 5
-                )
-           )
-        );*/
-        
-        $this->render("manage");
-          
-          
-          //$renderHtml=$this->renderPartial('newManage', array('userDetails'=>$userDetails,true)); 
-          //$renderHtml=$this->render('manage', array('userDetails'=>$userDetails,true)); 
-          //$obj = array('status' => 'success', 'html' => $renderHtml);
-          //$renderScript = $this->rendering($obj);
-          //echo $renderScript;
-          //}
-      }catch(Exception $ex){
-           error_log("#########Exception Occurred########".$ex->getMessage());
-      }
-  }
-  
-  public function actionNewManage(){error_log("dfdfdfnew manage-----------1---");
-      try{
-          if(isset($_GET['userDetails_page'])){error_log("dfdfdfnew manage-----------2--".$_GET['userDetails_page']."==".$_GET['pageSize']);
-          $model = new BulkForm;
-          $totaluser = $this->kushGharService->getTotalUsers();
-          error_log("total====".$totaluser);
-          $startLimit = ((int)$_GET['userDetails_page']-1)*(int)$_GET['pageSize'];
-          $endLimit = $_GET['pageSize'];
-          $userDetails = $this->kushGharService->getAllUsers($startLimit,$endLimit);
-       error_log("dfdfdfnew manage-----------3--");
-          /*$provider = new CArrayDataProvider($userDetails, 
-            array(
-                "pagination" => array(
-                    "pageSize" => 5
-                )
-           )
-        );*/
-        
-        //$this->render("manage", array("userDetails" => $provider));
-          
-          
-          $renderHtml=$this->renderPartial('newManage', array('userDetails'=>$userDetails, 'totalCount' => $totaluser),true); 
-          error_log("dfdfdfnew manage----------4---".$renderHtml);
-          //$renderHtml=$this->render('manage', array('userDetails'=>$userDetails,true)); 
-          $obj = array('status' => 'success', 'html' => $renderHtml, 'totalCount' => $totaluser);
-          $renderScript = $this->rendering($obj);
-          echo $renderScript;
-          }
-      }catch(Exception $ex){
-           error_log("#########Exception Occurred########".$ex->getMessage());
-      }
-  }
-  
-  public function actionManageStatus(){
-      error_log("Enter Active status====".$_POST['Id']."===".$_POST['status']);
-      $changeUserStatus = $this->kushGharService->getStatusUser($_POST['Id'],$_POST['status']);
-      $obj = array('status' => 'error', 'data' => '', 'error' => $changeUserStatus);
-      echo CJSON::encode($obj);
-  }
-  
-  public function actionInviteStatus(){
-      error_log("Enter Invite status====".$_POST['Id']."===".$_POST['status']."===".$_POST['email']);
-      $subject = 'KushGhar Invitation';
-      $email = $_POST['email'];
-      $mess1 =  'http://www.kushghar.com/site/invite?uname=' . $email . "\r\n\n";
-      $messages = $mess1;
-      $changeUserStatus = $this->kushGharService->sendInviteMailToUser($_POST['Id'],$_POST['status']);
-      $this->sendMailToUser($_POST['email'], '', $subject, $messages, 'KushGhar', 'no-reply@kushghar.com', 'InvitationMail');
-      $obj = array('status' => 'error', 'data' => '', 'error' => $changeUserStatus);
-      echo CJSON::encode($obj);
-  }
+    public function actionManage() {
+        try {
+            $this->render("manage");
+        } catch (Exception $ex) {
+            error_log("#########Exception Occurred########" . $ex->getMessage());
+        }
+    }
 
+    public function actionNewManage() {
+        try {
+            if (isset($_GET['userDetails_page'])) {
+                $model = new BulkForm;
+                $totaluser = $this->kushGharService->getTotalUsers();
+                $startLimit = ((int) $_GET['userDetails_page'] - 1) * (int) $_GET['pageSize'];
+                $endLimit = $_GET['pageSize'];
+                $userDetails = $this->kushGharService->getAllUsers($startLimit, $endLimit);
+                $renderHtml = $this->renderPartial('newManage', array('userDetails' => $userDetails, 'totalCount' => $totaluser), true);
+                $obj = array('status' => 'success', 'html' => $renderHtml, 'totalCount' => $totaluser);
+                $renderScript = $this->rendering($obj);
+                echo $renderScript;
+            }
+        } catch (Exception $ex) {
+            error_log("#########Exception Occurred########" . $ex->getMessage());
+        }
+    }
+
+    public function actionManageStatus() {
+        $changeUserStatus = $this->kushGharService->getStatusUser($_POST['Id'], $_POST['status']);
+        $obj = array('status' => 'error', 'data' => '', 'error' => $changeUserStatus);
+        echo CJSON::encode($obj);
+    }
+
+    public function actionInviteStatus() {
+        $subject = 'KushGhar Invitation';
+        $email = $_POST['email'];
+        
+        //$mess1 = 'http://www.kushghar.com/site/invite?uname=' . $email . "\r\n\n";
+        $mess1 = 'http://115.248.17.88:6060/site/invite?uname=' . $email . "\r\n\n";
+        $messages = $mess1;
+        $changeUserStatus = $this->kushGharService->sendInviteMailToUser($_POST['Id'], $_POST['status']);
+        $this->sendMailToUser($_POST['email'], '', $subject, $messages, 'KushGhar', 'no-reply@kushghar.com', 'InvitationMail');
+        $obj = array('status' => 'error', 'data' => '', 'error' => $changeUserStatus);
+        echo CJSON::encode($obj);
+    }
 
     public function actionLogout() {
         try {
             $this->session->destroy();
-            unset ($_SESSION['UserId']);
+            unset($_SESSION['UserId']);
             $this->redirect("/site/index");
         } catch (Exception $ex) {
             error_log("#########Exception Occurred########$ex->getMessage()");
         }
     }
+
     public function actionAccount() {
         try {
 
@@ -260,8 +190,5 @@ public function actionDashboard(){error_log("enter dashboard================");
             error_log("#########Exception Occurred########$ex->getMessage()");
         }
     }
-  
-    
+
 }
-
-

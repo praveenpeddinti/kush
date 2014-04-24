@@ -5,7 +5,7 @@ class VendorController extends Controller {
     /**
      * Declares class-based actions.
      */
-    public function actions() {error_log("1111111111111111dddddddddddddddddddd===============");
+    public function actions() {
         return array(
             // captcha action renders the CAPTCHA image displayed on the contact page
             // page action renders "static" pages stored under 'protected/views/site/pages'
@@ -20,7 +20,7 @@ class VendorController extends Controller {
      * This is the default 'index' action that is invoked
      * when an action is not explicitly requested by users.
      */
-    public function actionIndex() {error_log("dddddddddddddddddddd===============");
+    public function actionIndex() {
         // renders the view file 'protected/views/site/index.php'
         // using the default layout 'protected/views/layouts/main.php'
         //$this->layout = 'layout';
@@ -59,12 +59,11 @@ class VendorController extends Controller {
                 $obj = array('status' => '', 'data' => '', 'error' => $errors);
             } else {
                 if($model->VendorType==0){$model->VendorType=2;}
-                error_log("VendorType====".$model->VendorType);
                 $result = $this->kushGharService->vendorLogin($model);
                 if ($result == "false") {
                     $errors = array("VendorLoginForm_error" => 'Invalid User Id or Password.');
                     $obj = array('status' => '', 'data' => '', 'error' => $errors);
-                } else {error_log("enter okkkk");
+                } else {
                     $this->session['VendorType'] = $model->VendorType;
                     if($model->VendorType==2){$this->session['UserId'] = $result->vendor_id;}
                     if($model->VendorType==1){$this->session['UserId'] = $result->vendor_id;}
@@ -73,7 +72,6 @@ class VendorController extends Controller {
                     $this->session['firstName'] = $result->first_name;
                     $this->session['LoginPic'] = $result->profilePicture;
                     $this->session['Type'] ='Vendor';
-                    error_log("VendorType=see===".$result->email_address."===fName===".$result->first_name."===".$this->session['UserId']."----".$this->session['LoginPic']);
                     $obj = array('status' => 'success', 'data' => $result, 'error' => '');
                 }
             }

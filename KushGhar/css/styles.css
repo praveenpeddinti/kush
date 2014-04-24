@@ -238,10 +238,10 @@ ul.header_profile{ list-style:none; margin:0; padding:0}
 .error404 .error404_msg{ position:absolute; padding-top:400px; margin: auto; text-align: center; font-size:22px}
 .paddingR180{ padding-right:180px}
 .paddingl20p{ padding-left:20%;}
-.twitter_follows{float:left; padding:20px 20px 20px 10px; border-left: 1px solid #ccc;border-right: 1px solid #ccc}
+.twitter_follows{float:left; padding:25px 20px 25px 10px; border-left: 1px solid #ccc;border-right: 1px solid #ccc}
 .paddingT20{padding-top:20px }
-.fb_pr_div{float:left;}
-
+.fb_pr_div{position: absolute;top:0;left:10px;width:60px;overflow: hidden}
+.MarginT{ margin-top: 20px;}
 
 @media (max-width: 767px) {
 	.Login_dd_div {float:none; right:0px; left:0px;width:298px;text-align:left}
@@ -278,7 +278,7 @@ ul.header_profile{ list-style:none; margin:0; padding:0}
 		.easy_steps{ background:none;}
 		.twitter_follows{ border-left:0px solid #ccc;border-right: 0px solid #ccc}
                 .social_div{margin: auto; float:none; text-align: center}
-                .twitter_follows{ margin: auto; float:none;text-align: center}
+                .twitter_follows{ margin: auto; float:none;text-align: center; padding: 40px 20px 0px 10px}
                 .fb_pr_div{margin: auto; float:none;text-align: center}
 
 		
@@ -318,10 +318,12 @@ ul.header_profile{ list-style:none; margin:0; padding:0}
                 .span10.dob{width:120px}
                 .main_caption { padding:10px; text-align: center}
                 .seven_sines .paddingR180{ padding-right:10px}
-                .modal.fade.in {top:10%}
+                .modal.fade.in {top:0}
                 .paddingl20p{ padding-left:0%}.header_contact_info ul{display: none;}
                 .header_contact_info ul{padding-left: 20px;}
                 .footer_links, .copyrights{ text-align: center}
+                .MarginT{margin-top: 0px;}
+
 		}
 /*Datepicker */
 /*!

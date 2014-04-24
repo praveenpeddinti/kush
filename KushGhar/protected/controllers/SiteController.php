@@ -7,9 +7,6 @@ class SiteController extends Controller {
     */
     public function actionIndex() {
         $this->session['UserType']='';
-        //if(empty($this->session['UserType'])){ unset ($_SESSION['UserType']);}
-        error_log("enter splash page==index====".$this->session['UserType']);
-       // $this->session->destroy();
         $this->render('index');
     }
 
@@ -94,28 +91,24 @@ class SiteController extends Controller {
     
     /* Cleaning Page */
     public function actionCleaning() {
-        error_log("invite====".$this->session['UserType']);
         $inviteForm = new InviteForm;
         $getServices = $this->kushGharService->getServices();
         $this->render('cleaning',array("inviteModel" => $inviteForm, "getServices"=>$getServices));
     }
     /* Car Washing Page */
     public function actionCarwash() {
-        error_log("invite====".$this->session['UserType']);
         $inviteForm = new InviteForm;
         $getServices = $this->kushGharService->getServices();
         $this->render('carwash',array("inviteModel" => $inviteForm, "getServices"=>$getServices));
     }
     /* Stewards Page */
     public function actionStewards() {
-        error_log("invite====".$this->session['UserType']);
         $inviteForm = new InviteForm;
         $getServices = $this->kushGharService->getServices();
         $this->render('stewards',array("inviteModel" => $inviteForm, "getServices"=>$getServices));
     }
     /* More Services Page */
     public function actionMoreservices() {
-        error_log("invite====".$this->session['UserType']);
         $inviteForm = new InviteForm;
         $getServices = $this->kushGharService->getServices();
         $this->render('moreservices',array("inviteModel" => $inviteForm, "getServices"=>$getServices));

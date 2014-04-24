@@ -49,17 +49,33 @@
     <body>
        
 <!-- Popup block Start -->
-     <div id='myModal' class='modal hide fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
+     <div  class='modal hide fade' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true' style="display: none">
          <div class="modal-header">
              <!--<button type='button' class='close' data-dismiss='modal' aria-hidden='true'>×</button>-->
-             <div class='row-fluid'>
-                 <div class='span12'>
-                      <center><h3>Thank you for your interest in KushGhar.</h3></center>
-                 </div></div>
+            
        </div>
          
          <div class='modal-body'>
-             <div class="paddinground">
+             
+            
+     </div>
+         
+     </div><!-- Popup block End -->
+
+     
+     
+     <div class="modal fade" id='myModal'>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+         <div class='row-fluid'>
+                 <div class='span12'>
+                      <center><h3>Thank you for your interest in KushGhar.</h3></center>
+                 </div></div>
+      </div>
+      <div class="modal-body">
+        <div class="paddinground">
              <div class='row-fluid'>
                  <div class='span12'>
                      <div class='span3'>
@@ -77,7 +93,11 @@
                  
              </div>
              </div>
-            
-     </div>
-         
-     </div><!-- Popup block End -->
+      </div>
+      <div class="modal-footer" style="display:none">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -62,7 +62,7 @@ class UserController extends Controller {
                 if ($result == "false") {
                     $errors = array("SampleForm_error" => 'Customer does not exist with these details.');
                     $obj = array('status' => '', 'data' => '', 'error' => $errors);
-                } else {error_log("enter else===========");
+                } else {
                     //$mess = 'Hi' . "\r\n";
                     $mess = 'Welcome to KushGhar. Your new password is ' . $result->password_salt . "\r\n\n";
                    
@@ -83,7 +83,7 @@ class UserController extends Controller {
     /**
      * Displays the login page
      */
-    public function actionLogin() {error_log("===========in login form==========");
+    public function actionLogin() {
         $model = new LoginForm;
         // if it is ajax validation request
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'login-form') {
@@ -120,13 +120,12 @@ class UserController extends Controller {
     /**
      * User Registration Form Controller START
      */
-    public function actionRegistration() {error_log("===========in reg form==========");
+    public function actionRegistration() {
         $_REQUEST['uname']=$this->session['UserType'];
         //$_REQUEST['uname']=0;
         //$inviteForm = new InviteForm;
         $this->session['Type']='Customer';
         
-        error_log("id==con==".$_REQUEST['uname']."====".$this->session['Type']);
         $model = new RegistrationForm;
         $modelLogin = new LoginForm;
         $modelSample = new SampleForm;
@@ -141,7 +140,7 @@ class UserController extends Controller {
                 $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
             } else {
                 $Dresult = $this->kushGharService->getcheckUserExist($model);
-                if ($Dresult == 'No user') {error_log("enter No user======".$Dresult);
+                if ($Dresult == 'No user') {
                     $result = $this->kushGharService->saveRegistrationData($model);
                     $getUserDetails = $this->kushGharService->getUserDetailsWithEmail($model->Email);
                     $custAddressDetails = $this->kushGharService->saveCustomerAddressDumpInfoDetails($getUserDetails->customer_id);
@@ -172,7 +171,6 @@ class UserController extends Controller {
      * User BaiscInfo Form Controller END
      */
     public function actionBasicinfo() {
-        error_log("picture=====".$this->session['LoginPic']);
         $basicForm = new BasicinfoForm;
         $updatedPasswordForm = new updatedPasswordForm;
         
@@ -223,7 +221,6 @@ class UserController extends Controller {
      * User contactInfo Form Controller END
      */
     public function actionContactInfo() {
-        error_log("picture=====".$this->session['LoginPic']);
         $ContactInfoForm = new ContactInfoForm;
         $cId = $this->session['UserId'];
         $States = $this->kushGharService->getStates();
@@ -234,7 +231,6 @@ class UserController extends Controller {
         $request = yii::app()->getRequest();
         $formName = $request->getParam('ContactInfoForm');
         $this->session['LoginPic'] = $customerDetails->profilePicture;
-        error_log("picture=====".$this->session['LoginPic']);
         if ($formName != '') {
             $ContactInfoForm->attributes = $request->getParam('ContactInfoForm');
             $errors = CActiveForm::validate($ContactInfoForm);
@@ -368,7 +364,7 @@ class UserController extends Controller {
                 $appendPath = "/" . $pathArray[$i] . $appendPath;
             }
             $originalPath = $appendPath;
-            error_log("--------------" . $originalPath);
+            
         } catch (Exception $ex) {
             error_log("#########Exception Occurred########$ex->getMessage()");
         }
@@ -410,7 +406,6 @@ class UserController extends Controller {
      * Total Customer Information Controller
      */
     public function actionCustomerDetails(){
-        error_log("enter cust Details=======");
         $model = new CustomerDetailsForm;
         $cId = $this->session['UserId'];
         $States = $this->kushGharService->getStates();
@@ -421,14 +416,13 @@ class UserController extends Controller {
         
         $request = yii::app()->getRequest();
         $formName = $request->getParam('CustomerDetailsForm');
-        if ($formName != '') {error_log("1111ent1er customerDetails Controller======================");
+        if ($formName != '') {
             $model->attributes = $request->getParam('CustomerDetailsForm');
             $errors = CActiveForm::validate($model);
             if ($errors != '[]') {
                 $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
-            } else {error_log("enter customerDetails Controller======================");
+            } else {
                 $model->profilePicture=$this->session['LoginPic'];
-                error_log("pic image=====".$model->profilePicture);
                 $result1 = $this->kushGharService->updateRegistrationData($model, $cId);
                 $result2 = $this->kushGharService->saveCustomerInfoDetails($model, $cId);
                 $result = $this->kushGharService->updateCustomerPaymentData($model, $cId);
@@ -469,55 +463,8 @@ class UserController extends Controller {
         }
     }
     
-   /*public function actionRegistrations(){
-        $this->session['Type']='Customer';
-        error_log("id==con==".$_REQUEST['uname']."====".$this->session['Type']);
-         $inviteForm = new InviteForm;
-        $model = new RegistrationForm;
-        $modelLogin = new LoginForm;
-        $modelSample = new SampleForm;
-        $request = yii::app()->getRequest();
-        $formName = $request->getParam('RegistrationForm');
-        
-        
-        if ($formName != '') {
-            $model->attributes = $request->getParam('RegistrationForm');
-            $errors = CActiveForm::validate($model);
-            if ($errors != '[]') {
-                $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
-            } else {
-                $Dresult = $this->kushGharService->getcheckUserExist($model);
-                if ($Dresult == 'No user') {error_log("enter No user======".$Dresult);
-                    $result = $this->kushGharService->saveRegistrationData($model);
-                    $getUserDetails = $this->kushGharService->getUserDetailsWithEmail($model->Email);
-                    $custAddressDetails = $this->kushGharService->saveCustomerAddressDumpInfoDetails($getUserDetails->customer_id);
-                    $paymentId = $this->kushGharService->saveCustomerPaymentDumpInfoDetails($getUserDetails->customer_id);
-                    $this->session['UserId'] = $getUserDetails->customer_id;
-                    
-                } else {
-                    $result = "failed";
-                    $errors = array("RegistrationForm_error" => 'Already User Existed.');
-                    $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
-                }
-                if ($result == "success") {
-                    $message = array("RegistrationForm_error" => 'Registration successfully.');
-                    $obj = array('status' => 'success', 'data' => $message, 'error' => '');
-                } else {
-                    $message = array("RegistrationForm_error" => 'Already User Existed.');
-                    $obj = array('status' => 'error', 'data' => '', 'error' => $message);
-                }
-            }
-            
-            $renderScript = $this->rendering($obj);
-            echo $renderScript;
-        } else {
-            $this->render('registration', array('model' => $model, 'modelLogin' => $modelLogin, 'modelSample' => $modelSample,'one'=>$_REQUEST['uname'], "inviteModel" => $inviteForm));
-            }
-    }*/
     
-    
-    
-    public function actionHome(){error_log("enter homeeeeeeeeeeeeeeeeee");
+    public function actionHome(){
         $this->redirect('/site/index');
     }
     
@@ -527,40 +474,22 @@ class UserController extends Controller {
             $inviteForm = new InviteForm;
             $request = yii::app()->getRequest();
             $formName = $request->getParam('InviteForm');
-            if ($formName != '') {error_log("enter error-------111111111sss------");
+            if ($formName != '') {
                 $inviteForm->attributes = $request->getParam('InviteForm');
                 $errors = CActiveForm::validate($inviteForm);
-                error_log("size==========".sizeof($inviteForm->Services)."==location==".$inviteForm->Location);
                 if ($errors != '[]') {
                     $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
                 } else {
                     $result = $this->kushGharService->getInvitationUser($inviteForm, $this->session['Type']);
 
-                    if ($result == "success") {error_log("dsdfdsfsdfsdif====".$inviteForm->Email);
-                        /*$mess = 'Hi' . "\r\n\n";
-                        $mess = $mess . 'Welcome from KushGhar.com ' . "\r\n\n";
-                        $mess = $mess . 'You can visit KushGhar.com by clicking following url. ' . "\r\n\n";
-                        $mess = $mess . 'http://115.248.17.88:6060/site/invite?uname=' . $inviteForm->Email . "\r\n\n";
-                        $mess = $mess . 'Regards,' . "\r\n" . 'KushGhar.';
-                        $to = $inviteForm->Email;
-                        $name = $inviteForm->FirstName;
-                        $subject = 'KushGhar Invitation';
-                        $message = $mess;
-                        $headers = 'From: praveen.peddinti@gmail.com' . "\r\n" .
-                                'X-Mailer: PHP/' . phpversion();
-                        mail($to, $subject, $message, $headers);*/
+                    if ($result == "success") {
+                        
                         $to = $inviteForm->Email;
                         $name = $inviteForm->FirstName.' '.$inviteForm->LastName;
                         $subject = 'KushGhar Invitation';
-                        //$mess1 = "\r\n";
-                        //$mess1 = $mess1 . 'Thank you for requesting an invite to KushGhar. We are expanding our service areas every week. You will be getting an email with a link to register and start your services. ' . "\r\n\n";
-                        //$mess1 = $mess1 . 'http://115.248.17.88:6060/site/invite?uname=' . $to . "\r\n\n";
-                        //$messages = $mess1;           
                         $this->sendMailToUser($to, $name, $subject, '', 'KushGhar', 'no-reply@kushghar.com', 'sendInvitationMailToUser');
-
-                        //$errors = 'Invitation send by your Email';
                         $obj = array('status' => 'success', 'data' => $result, 'error' => 'Invitation sent Successfully.');
-                    } else {error_log("dsdfdsfsdfsdelse===");
+                    } else {
                         $errors = array("InviteForm_error" => 'User already Invited.');
                         $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
                     }
@@ -579,5 +508,3 @@ class UserController extends Controller {
     
     
 }
-
-

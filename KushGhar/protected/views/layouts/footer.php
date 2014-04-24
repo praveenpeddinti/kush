@@ -10,14 +10,16 @@
         </div>
         <div class="row-fluid">
             <div class="span6">
-                <div class="row-fluid">
-                   <div class="fb_pr_div span2" >
-                       <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Ffacebook.com%2Fkushghar&amp;width&amp;layout=box_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=65&amp;appId=143691012363705" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:65px;" allowTransparency="true"></iframe>
-                     </div>
-                     <div class="twitter_follows span6">
+                <div class="row-fluid MarginT" >
+                   <div class="span9" style="position: relative" >
+                       <div class="fb_pr_div" ><iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Ffacebook.com%2Fkushghar&amp;width&amp;layout=box_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=65&amp;appId=143691012363705" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:65px;" allowTransparency="true"></iframe>
+                       </div>
+                    <div class="twitter_follows " style="margin-left:70px;padding-left:20px;padding-right:0">
                      <a href="https://twitter.com/kushghar" class="twitter-follow-button" data-dnt="true">Follow </a>
  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script> 
-                     </div>
+                     </div>  
+                   </div>
+                    
                     <div class="span3 social_div paddingT20 " ><a href="https://www.facebook.com/kushghar" target="_blank"><img src='<?php echo Yii::app()->request->baseUrl; ?>/images/fb_icon.png'/></a>  <a href="https://twitter.com/kushghar" target="_blank"><img src='<?php echo Yii::app()->request->baseUrl; ?>/images/twitter_icon.png'/></a></div>
                   
                 </div>

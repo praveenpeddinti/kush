@@ -238,6 +238,9 @@ ul.header_profile{ list-style:none; margin:0; padding:0}
 .error404 .error404_msg{ position:absolute; padding-top:400px; margin: auto; text-align: center; font-size:22px}
 .paddingR180{ padding-right:180px}
 .paddingl20p{ padding-left:20%;}
+.twitter_follows{float:left; padding:20px 20px 20px 10px; border-left: 1px solid #ccc;border-right: 1px solid #ccc}
+.paddingT20{padding-top:20px }
+.fb_pr_div{float:left;}
 
 
 @media (max-width: 767px) {
@@ -273,17 +276,22 @@ ul.header_profile{ list-style:none; margin:0; padding:0}
 		header .container .nav > li .getStarted_dd_div:before{left:50%}
 		.getStarted_dd_div, .Login_dd_div {left: -240px;}
 		.easy_steps{ background:none;}
-		
+		.twitter_follows{ border-left:0px solid #ccc;border-right: 0px solid #ccc}
+                .social_div{margin: auto; float:none; text-align: center}
+                .twitter_follows{ margin: auto; float:none;text-align: center}
+                .fb_pr_div{margin: auto; float:none;text-align: center}
 
 		
 		}
 	
 	@media (max-width: 480px) {
 		.header_menu_items ul li {float:none;display:block;text-align:center; margin-bottom:10px;}
+                .header_contact_info ul{display: none;}
 	}
 	@media (min-width: 480px) and (max-width: 639px) {
 		.header_menu_items ul li {float:none;display:block;text-align:center; margin-bottom:10px;}
 		.header_menu_items{ float:none}
+                
 		
 	}
 	@media (min-width: 640px) and (max-width: 800px) {
@@ -311,8 +319,9 @@ ul.header_profile{ list-style:none; margin:0; padding:0}
                 .main_caption { padding:10px; text-align: center}
                 .seven_sines .paddingR180{ padding-right:10px}
                 .modal.fade.in {top:10%}
-                .paddingl20p{ padding-left:0%}
+                .paddingl20p{ padding-left:0%}.header_contact_info ul{display: none;}
                 .header_contact_info ul{padding-left: 20px;}
+                .footer_links, .copyrights{ text-align: center}
 		}
 /*Datepicker */
 /*!
@@ -540,3 +549,4 @@ input.serachInput::-ms-reveal { width : 0; height: 0;}
 .dontOffer{ border:2px solid #FDF7D3;  margin-bottom: 10px;}
 .dontOffer h3{color:#cd0a0a; font-family:MuseoSlab300Italic}
 .dontOffer ul li{color:#999; }
+

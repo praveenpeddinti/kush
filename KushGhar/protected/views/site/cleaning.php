@@ -67,7 +67,7 @@
                                     <div class="dontOffer">
                                         
                                     <div class=" paddingL20">
-                                        <h3>Exclusions:</h3>
+                                        <p><i>Exclusions:</i></p>
                                         <ul>
                                             <li>Our crew will not be lifting items weighing over 15 Kgs (including large furniture) for safety reasons, and will not clean pet messes and/or heavily soiled areas, mold and/or bio hazardous material.</li>
                                         </ul>

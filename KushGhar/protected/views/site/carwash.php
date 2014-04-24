@@ -58,7 +58,7 @@
                                     <div class="dontOffer">
                                         
                                     <div class=" paddingL20">
-                                        <h3 >Exclusions:</h3>
+                                        <p><i>Exclusions:</i></p>
                                         <ul>
                                             <li>Our crew will not be doing polishing & waxing of vehicle and will not do interior seats shampooing.</li>
                                         </ul>

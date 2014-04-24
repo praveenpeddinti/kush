@@ -21,6 +21,7 @@ return array(
         'application.service.*',
         'application.renderscript.*',        
         'application.beans.*',
+            
          
 	),
 

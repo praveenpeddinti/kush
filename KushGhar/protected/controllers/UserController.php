@@ -559,7 +559,7 @@ class UserController extends Controller {
                         $this->sendMailToUser($to, $name, $subject, '', 'KushGhar', 'no-reply@kushghar.com', 'sendInvitationMailToUser');
 
                         //$errors = 'Invitation send by your Email';
-                        $obj = array('status' => 'success', 'data' => $result, 'error' => 'Invitation send by your Email');
+                        $obj = array('status' => 'success', 'data' => $result, 'error' => 'Invitation sent Successfully.');
                     } else {error_log("dsdfdsfsdfsdelse===");
                         $errors = array("InviteForm_error" => 'User already Invited.');
                         $obj = array('status' => 'error', 'data' => '', 'error' => $errors);

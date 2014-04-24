@@ -24,6 +24,7 @@ class InviteUser extends CActiveRecord {
             $newDetails = new InviteUser();
             $user = InviteUser::model()->findByAttributes(array(), 'email_address=:email_address', array(':email_address' => $emailId));
             $newDetails->email_address = $emailId;
+            $newDetails->invite = 1;
             if (empty($user)) {
                 $newDetails->save();
                 $result = "No user";
@@ -106,6 +107,22 @@ class InviteUser extends CActiveRecord {
         }
         return $result;
     }
+    public function sendInviteMailToUser($id,$val){
+        //if($val==0){$status=1;}
+        if($val==1){$status=0;}
+        error_log("----------".$id.'---------'.$val.'----'.$status);
+        $result = "failed";
+        try{
+            $InviteObj = InviteUser::model()->findByAttributes(array('Id'=>$id));
+            $InviteObj->invite = $status;
+            if($InviteObj->update())
+                $result = "success";
+        }catch(Exception $ex){
+             error_log("################Exception Occurred  changeContactStatus##############".$ex->getMessage());
+        }
+        return $result;
+    }
+    
 
 
     

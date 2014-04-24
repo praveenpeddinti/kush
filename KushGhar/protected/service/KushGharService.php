@@ -363,6 +363,9 @@ class KushGharService {
     public function getStatusUser($id,$val) {
         return InviteUser::model()->getStatusUser($id,$val);
     }
+    public function sendInviteMailToUser($id,$val) {
+        return InviteUser::model()->sendInviteMailToUser($id,$val);
+    }
     
     
     /*

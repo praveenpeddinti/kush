@@ -119,11 +119,14 @@ public function actionDashboard(){error_log("enter dashboard================");
                     mail($to, $subject, $message, $headers);*/
                     $to = $email[$i];
                     $subject = 'KushGhar Invitation';
-                    $mess1 = 'Welcome from KushGhar.com ' . "\r\n\n";
-                    $mess1 = $mess1 . 'You can visit KushGhar.com by clicking following url. ' . "\r\n\n";
+                    //$mess1 = $mess1 . 'Thank you for requesting an invite to KushGhar. We are expanding our service areas every week. You will be getting an email with a link to register and start your services. ' . "\r\n\n";
+                    $mess1 =  'http://115.248.17.88:6060/site/invite?uname=' . $email[$i] . "\r\n\n";
+                    $messages = $mess1;
+                    //$mess1 = 'Welcome from KushGhar.com ' . "\r\n\n";
+                    //$mess1 = $mess1 . 'You can visit KushGhar.com by clicking following url. ' . "\r\n\n";
                     //$mess1 = $mess1 . 'http://115.248.17.88:6060/site/invite?uname=' . $email[$i] . "\r\n\n";
-                    $messages = $mess1;           
-                    $this->sendMailToUser($to, $to, $subject, $messages, 'KushGhar', 'no-reply@kushghar.com', 'getintouch');
+                    //$messages = $mess1;           
+                    $this->sendMailToUser($to, '', $subject, $messages, 'KushGhar', 'no-reply@kushghar.com', 'InvitationMail');
         
                     
         
@@ -223,6 +226,18 @@ public function actionDashboard(){error_log("enter dashboard================");
   public function actionManageStatus(){
       error_log("Enter Active status====".$_POST['Id']."===".$_POST['status']);
       $changeUserStatus = $this->kushGharService->getStatusUser($_POST['Id'],$_POST['status']);
+      $obj = array('status' => 'error', 'data' => '', 'error' => $changeUserStatus);
+      echo CJSON::encode($obj);
+  }
+  
+  public function actionInviteStatus(){
+      error_log("Enter Invite status====".$_POST['Id']."===".$_POST['status']."===".$_POST['email']);
+      $subject = 'KushGhar Invitation';
+      $email = $_POST['email'];
+      $mess1 =  'http://www.kushghar.com/site/invite?uname=' . $email . "\r\n\n";
+      $messages = $mess1;
+      $changeUserStatus = $this->kushGharService->sendInviteMailToUser($_POST['Id'],$_POST['status']);
+      $this->sendMailToUser($_POST['email'], '', $subject, $messages, 'KushGhar', 'no-reply@kushghar.com', 'InvitationMail');
       $obj = array('status' => 'error', 'data' => '', 'error' => $changeUserStatus);
       echo CJSON::encode($obj);
   }

@@ -4,7 +4,7 @@
             $("#BulkForm_error_em_").show();
             $("#BulkForm_error_em_").removeClass('errorMessage');
             $("#BulkForm_error_em_").addClass('alert alert-success');
-            $("#BulkForm_error_em_").text('Sending mails');
+            $("#BulkForm_error_em_").text('Invitation(s) sent Successfully.');
             $("#BulkForm_error_em_").fadeOut(6000, "");
             
             //window.location.href='contactInfo';
@@ -69,7 +69,7 @@
             <article>
                 <div class="row-fluid">
                     <div class="span12">
-                        <h4>Invite Friends</h4>
+                        <h4 class="paddingL20">Invite Friends</h4>
                         <hr>
                         <div class="paddinground">
                        

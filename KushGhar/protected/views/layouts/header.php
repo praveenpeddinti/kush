@@ -56,7 +56,11 @@
                  <div class='span12'>
                       <center><h3>Thank you for your interest in KushGhar.</h3></center>
                  </div></div>
-                 <div class='row-fluid'>
+       </div>
+         
+         <div class='modal-body'>
+             <div class="paddinground">
+             <div class='row-fluid'>
                  <div class='span12'>
                      <div class='span3'>
                          <a href='/'><img src='<?php echo Yii::app()->request->baseUrl; ?>/images/color_logo.png' alt='logo' class='logo' /></a>
@@ -69,13 +73,11 @@
                  </div>
                      
              </div>
-             
-             
-             
-         </div>
-       
-         <div id='modelBodyDiv' class='modal-body'>
-             
+             <div id='modelBodyDiv' >
+                 
+             </div>
+             </div>
             
      </div>
+         
      </div><!-- Popup block End -->

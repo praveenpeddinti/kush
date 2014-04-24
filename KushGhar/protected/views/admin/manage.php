@@ -33,7 +33,29 @@
             return false;
         return true;
     }
+    function inviteUser(rowNos, status,email) {
+        
+        var data = "Id=" + rowNos + "&status=" + status+ "&email=" + email;
+            
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: '<?php echo Yii::app()->createAbsoluteUrl("/admin/inviteStatus"); ?>',
+                data: data,
+                success: function(data) {
+                    $('#message').show();
+                    $("#message").addClass('alert alert-success');
+                    $("#message").text('Invitation sent Successfully.');
+                    $("#message").fadeOut(6000, "");
+                    $('#usera_' + rowNos).remove();
+                    //activeFormHandler(data, status, rowNos);
+                },
+                error: function(data) { // if error occured
+                    
 
+                }
+            });
+    }
 
     function statusChangeUser(rowNos, status) {
         //alert(status);
@@ -55,12 +77,12 @@
                     activeFormHandler(data, status, rowNos);
                 },
                 error: function(data) { // if error occured
-                    alert("Error occured.please try again");
+                    //alert("Error occured.please try again");
 
                 }
             });
         } else {
-            alert("Cancel!");
+            //alert("Cancel!");
         }
     }
 
@@ -123,10 +145,10 @@
             <article>
                 <div class="row-fluid" style="height:480px">
                     <div class="span12">
-                        <h4>Invitation Management</h4>
+                        <h4 class="paddingL20">Invitation Management</h4>
                         
                         <div class="paddinground">    
-                            <div id="tablewidget"  style="margin: auto;">
+                            <div id="tablewidget"  style="margin: auto;"><div id="message" style="display:none"></div>
                                 <table id="userTable" class="table table-hover">
 
                                     <thead><tr><th>Email Address</th><th>Actions</th></tr></thead>
@@ -155,7 +177,17 @@
         $('#userTable tr td input').live('click', function() {
             var id = $(this).attr('data-id');
             var status = $(this).attr('data-status');
-            statusChangeUser(Number(id), Number(status));
+            var id2 = $(this).attr('invite-id');
+            var inviteStatus = $(this).attr('invite-status');
+            var inviteEmail = $(this).attr('invite-email');
+           
+        
+            if(id>0){
+                statusChangeUser(Number(id), Number(status));
+            }
+            if(id2>0){
+                inviteUser(Number(id2), Number(inviteStatus), inviteEmail);
+            }
         });
     });
     

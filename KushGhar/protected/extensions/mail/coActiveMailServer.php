@@ -21,7 +21,6 @@ class coActiveMailServer {
         $authMail = 'no-reply@kushghar.com'; 
         $authPassword = 'Kush1029';
         $coActiveLogo = YII::app()->params['SERVER_URL'] . "/images/color_logo.png";
-        //$coActiveLogo = "http://115.248.17.88:6060/images/color_logo.png";
         $date = date("Y-m-d");
         
         if ($obj['mailType'] == "InvitationMail") {

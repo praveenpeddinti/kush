@@ -272,7 +272,7 @@
                                     
                                     </fieldset>
                             <?php $this->endWidget(); ?>
-                            <button type="submit" class="login_fb"> </button>
+                            <!--<button type="submit" class="login_fb"> </button>-->
                              
     
 

@@ -47,6 +47,7 @@
 
                                     <div class="paddingL20">
                                         <h3>House cleaning Service</h3>
+                                        <p>This service includes a very well trained professional cleaning crew and also includes all the cleaning supplies including vacuum cleaners and air fresheners, and when they leave your home it will look and feel like a brand new model house.</p>
                                         <ul>
                                             
                                             <li>Kitchen room</li>

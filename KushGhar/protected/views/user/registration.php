@@ -232,7 +232,7 @@ function getCollectionDataWithPagination(URL,CollectionName, MainDiv,callback){
                                         echo CHtml::ajaxButton('Submit', array('user/registration'), array(
                                             'type' => 'POST',
                                             'dataType' => 'json',
-                                            'beforeSend' => 'function(){alert("before send in registration ");
+                                            'beforeSend' => 'function(){
                                                              scrollPleaseWait("registrationSpinLoader","registration-form");}',
                                             'success' => 'function(data,status,xhr) { addNewUserhandler(data,status,xhr);}'), array('class' => 'btn btn-primary'));
                                         ?>

@@ -11,16 +11,18 @@ class qqUploadedFileXhr {
         error_log("=====save in File====".$path);
         $input = fopen("php://input", "r");
         $temp = tmpfile();
-        error_log("=====temp File====".$temp);
+        error_log("=====temp File====".$temp."====".$input);
         $realSize = stream_copy_to_stream($input, $temp);
         fclose($input);
         if ($realSize != $this->getSize()){
             return false;
         }
         $target = fopen($path, "w");
-        error_log("=====after File ====".$temp);
+        error_log("=====after File ====".$target);
         fseek($temp, 0, SEEK_SET);
+        error_log("target===1===".$temp);
         stream_copy_to_stream($temp, $target);
+        error_log("target===2===".$temp);
         fclose($target);
         
         return true;

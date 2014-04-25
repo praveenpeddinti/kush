@@ -171,6 +171,7 @@ class UserController extends Controller {
      * User BaiscInfo Form Controller END
      */
     public function actionBasicinfo() {
+        error_log("file profile======".$this->session['LoginPic']);
         $basicForm = new BasicinfoForm;
         $updatedPasswordForm = new updatedPasswordForm;
         
@@ -188,9 +189,9 @@ class UserController extends Controller {
             if ($errors != '[]') {
                 $obj = array('status' => 'error', 'message' => '', 'error' => $errors);
             } else {
-                if ($this->session['fileName'] == '') {
+                if ($this->session['fileName'] == '') {error_log("----if1basic===========");
                     $basicForm->profilePicture = $customerDetails->profilePicture;
-                } else {
+                } else {error_log("----else1basic===========");
                     $basicForm->profilePicture = $this->session['fileName'];
                 }
                 /*if ($this->session['docFileName'] == '') {

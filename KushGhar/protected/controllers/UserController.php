@@ -300,6 +300,7 @@ class UserController extends Controller {
         $allowedExtensions = array("jpg", "jpeg", "gif", "png"); //array("jpg","jpeg","gif","exe","mov" and etc...
         $sizeLimit = 15 * 1024 * 1024; // maximum file size in bytes
         $uploader = new qqFileUploader($allowedExtensions, $sizeLimit);
+        error_log("----2---3333--");
         $result = $uploader->handleUpload($folder);
         error_log("----2-----".$result);
         $return = CJSON::encode($result);

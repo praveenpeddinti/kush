@@ -300,15 +300,19 @@ class UserController extends Controller {
         $sizeLimit = 15 * 1024 * 1024; // maximum file size in bytes
         $uploader = new qqFileUploader($allowedExtensions, $sizeLimit);
         $result = $uploader->handleUpload($folder);
+        error_log("----2-----".$result);
         $return = CJSON::encode($result);
         $fileSize = filesize($folder . $result['filename']); //GETTING FILE SIZE
         $fileName = $result['filename']; //GETTING FILE NAME
+        error_log("----1-----".$fileName);
+        error_log("----2-----".$fileSize);
         $imgArr = explode(".", $fileName);
         $finalImg_name = $result['filename'];
         // creating small image from the Big one...
 
         try {
             $finalImg_name_new = $this->findUploadedPath() . '/images/profile/' . $finalImg_name;
+            
             $dest = str_replace(' ', '', $finalImg_name_new);
             $_SESSION['oldfilename'] = $finalImg_name_new;
             $img = Yii::app()->simpleImage->load($folder . $result['filename']); // load file from the specified the path...
@@ -364,7 +368,7 @@ class UserController extends Controller {
                 $appendPath = "/" . $pathArray[$i] . $appendPath;
             }
             $originalPath = $appendPath;
-            
+            error_log("path folder============".$originalPath);
         } catch (Exception $ex) {
             error_log("#########Exception Occurred########$ex->getMessage()");
         }

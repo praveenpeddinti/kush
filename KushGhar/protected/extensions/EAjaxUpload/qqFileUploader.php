@@ -18,7 +18,7 @@ class qqUploadedFileXhr {
             return false;
         }
         $target = fopen($path, "w");
-        error_log("=====after File saved====".$temp);
+        error_log("=====after File ====".$temp);
         fseek($temp, 0, SEEK_SET);
         stream_copy_to_stream($temp, $target);
         fclose($target);

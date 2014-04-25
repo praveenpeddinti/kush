@@ -8,6 +8,7 @@ class qqUploadedFileXhr {
      * @return boolean TRUE on success
      */
     function save($path) {
+        error_log("=====save in File====".$path);
         $input = fopen("php://input", "r");
         $temp = tmpfile();
         $realSize = stream_copy_to_stream($input, $temp);
@@ -42,7 +43,7 @@ class qqUploadedFileForm {
      * Save the file to the specified path
      * @return boolean TRUE on success
      */
-    function save($path) {        
+    function save($path) { error_log("=====save in Form====".$path);       
         if(!move_uploaded_file($this->getTempName(), $path)){
             return false;
         }
@@ -73,11 +74,11 @@ class qqFileUploader {
 
         $this->checkServerSettings();
 
-        if (isset($_GET['qqfile'])) {
+        if (isset($_GET['qqfile'])) {error_log("enter File==================");
             $this->file = new qqUploadedFileXhr();
-        } elseif (isset($_FILES['qqfile'])) {
+        } elseif (isset($_FILES['qqfile'])) {error_log("enter Form==================");
             $this->file = new qqUploadedFileForm();
-        } else {
+        } else {error_log("enter else==================");
             $this->file = false;
         }
     }

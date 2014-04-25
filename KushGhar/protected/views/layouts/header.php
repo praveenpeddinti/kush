@@ -68,7 +68,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
          <div class='row-fluid'>
                  <div class='span12'>
                       <center><h3>Thank you for your interest in KushGhar.</h3></center>

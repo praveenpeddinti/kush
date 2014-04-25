@@ -65,6 +65,7 @@ class qqFileUploader {
     private $file;
 
     function __construct(array $allowedExtensions = array(), $sizeLimit = 15728640){
+        error_log("enter default cons==============".$sizeLimit);
         $allowedExtensions = array_map("strtolower", $allowedExtensions);
 
         $this->allowedExtensions = $allowedExtensions;

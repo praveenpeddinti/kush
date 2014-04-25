@@ -281,15 +281,18 @@ function getCollectionDataWithPagination(URL,CollectionName, MainDiv,callback){
                             <!--<button type="submit" class="login_fb"> </button>-->
                               <!-- Button to trigger modal -->
     <center><a href="#myModalforgot" role="button" class="" data-toggle="modal">forgot your password?</a></center>
-
-    <!-- Modal -->
-    <div id="myModalforgot" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
+    
+    
+    
+    <div id="myModalforgot" class="modal fade" id='myModal'>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="myModalLabel">Forgot Password</h3>
     </div>
-    <div class="modal-body">
-    <?php $form=$this->beginWidget('CActiveForm', array(
+      <div class="modal-body">
+        <?php $form=$this->beginWidget('CActiveForm', array(
                                                                 'id'=>'forgot-form',
                                                                 'enableClientValidation'=>true,
                                                                 'clientOptions'=>array(
@@ -316,12 +319,20 @@ function getCollectionDataWithPagination(URL,CollectionName, MainDiv,callback){
                     </div>
                </div>
 <?php $this->endWidget(); ?>
-    </div>
-    <!--<div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <button class="btn btn-primary">Save changes</button>
-    </div>-->
-    </div><!-- button forgot-->
+      </div>
+      <div class="modal-footer" style="display:none">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+    
+    
+    
+    
+    
+    
 
 
                         </div>

@@ -85,9 +85,10 @@ class qqFileUploader {
     private function checkServerSettings(){
         $postSize = $this->toBytes(ini_get('post_max_size'));
         $uploadSize = $this->toBytes(ini_get('upload_max_filesize'));
-
+error_log("enter checkServerSettings==============".$postSize."===".$uploadSize);
         if ($postSize > $this->sizeLimit || $uploadSize > $this->sizeLimit){
             $size = max(1, $this->sizeLimit / 1024 / 1024) . 'M';
+            error_log("enter checkServerSettings=if=============".$size);
             die("{'error':'increase post_max_size and upload_max_filesize to $size'}");
         }
     }

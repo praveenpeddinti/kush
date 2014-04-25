@@ -6,6 +6,7 @@ class InviteUser extends CActiveRecord {
     public $last_name;
     public $email_address;
     public $status;
+    public $invite;
     public $services;
     public $location;
     
@@ -19,12 +20,12 @@ class InviteUser extends CActiveRecord {
     }
 
     public function checkNewUserExist($emailId) {
-        try {error_log("email id is model====".$emailId);
+        try {
             $result='';
             $newDetails = new InviteUser();
             $user = InviteUser::model()->findByAttributes(array(), 'email_address=:email_address', array(':email_address' => $emailId));
             $newDetails->email_address = $emailId;
-            $newDetails->invite = 1;
+            $newDetails->invite = 0;
             if (empty($user)) {
                 $newDetails->save();
                 $result = "No user";
@@ -56,6 +57,7 @@ class InviteUser extends CActiveRecord {
                 $user->email_address = stripcslashes($model->Email);
                 $user->type = stripcslashes($type);
                 $user->services = $selectedOptions;
+                $user->invite = 1;
                 $user->location = $model->Location;
                 $user->create_timestamp = gmdate("Y-m-d H:i:s", time());
                 
@@ -66,7 +68,7 @@ class InviteUser extends CActiveRecord {
             } catch (Exception $ex) {
                 error_log("=====Exception occurred in saveModel====" . $ex->getMessage());
             }
-        }error_log("result=========".$result); 
+        }
         return $result;
     }
 
@@ -84,7 +86,7 @@ class InviteUser extends CActiveRecord {
    public function getAllUsers($start,$end){
         try{            
             $query = "SELECT * FROM KG_InvitationUsers limit ".$start. ",".$end;
-              error_log("query====".$query."===");     
+                
             $result = Yii::app()->db->createCommand($query)->queryAll();
         
         }catch(Exception $ex){
@@ -95,7 +97,6 @@ class InviteUser extends CActiveRecord {
     public function getStatusUser($id,$val){
         if($val==0){$status=1;}
         if($val==1){$status=0;}
-        error_log("----------".$id.'---------'.$val.'----'.$status);
         $result = "failed";
         try{
             $InviteObj = InviteUser::model()->findByAttributes(array('Id'=>$id));
@@ -110,7 +111,6 @@ class InviteUser extends CActiveRecord {
     public function sendInviteMailToUser($id,$val){
         //if($val==0){$status=1;}
         if($val==1){$status=0;}
-        error_log("----------".$id.'---------'.$val.'----'.$status);
         $result = "failed";
         try{
             $InviteObj = InviteUser::model()->findByAttributes(array('Id'=>$id));

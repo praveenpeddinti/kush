@@ -57,7 +57,7 @@
                                             <li>Common areas</li>
                                         </ul>
                                         <p>All of your home will be dusted, vacuumed, cleaned and arranged as a 5 star hotel room is arranged. Satisfaction guaranteed.</p>
-                                        <p><b>Please note:-</b> Basic package does not include, Cleaning outside of windows, steam cleaning, carpet cleaning and Deep stain removal. If you need any of these please let us know in advance by contacting our customer service.</p>
+                                        <p>We do provide additional service such as cleaning outside windows, steam cleaning, carpet cleaning and deep stain removal. These services are at an additional fee. </p>
                                     </div>
                                 </div>
                             </div>

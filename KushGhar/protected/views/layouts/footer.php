@@ -3,7 +3,7 @@
         <div class="row-fluid">
             <div class="span12">
                 <div class="footer_links paddingT10">
-                    <a href="logout">Home</a> | <a href="/site/aboutus">About Us</a> | <a href="/site/press">Press</a> | <a href="/site/careers">Careers</a> | <a href="/site/mission">KushGhar's Mission</a> | <a href="/site/termsofService">Terms of Service </a> | <a href="/site/privacyPolicy">Privacy Notice</a> | <a href="<?php echo Yii::app()->request->baseUrl; ?>/admin/login">Admin</a>
+                    <a href="/site/logout">Home</a> | <a href="/site/aboutus">About Us</a> | <a href="/site/press">Press</a> | <a href="/site/careers">Careers</a> | <a href="/site/mission">KushGhar's Mission</a> | <a href="/site/termsofService">Terms of Service </a> | <a href="/site/privacyPolicy">Privacy Notice</a> | <a href="<?php echo Yii::app()->request->baseUrl; ?>/admin/login">Admin</a>
                 </div>
             </div>
             
@@ -11,6 +11,7 @@
         <div class="row-fluid">
             <div class="span6">
                 <div class="row-fluid MarginT" >
+                    <div class="span3 social_div paddingT20 " ><a href="https://www.facebook.com/kushghar" target="_blank"><img src='<?php echo Yii::app()->request->baseUrl; ?>/images/fb_icon.png'/></a>  <a href="https://twitter.com/kushghar" target="_blank"><img src='<?php echo Yii::app()->request->baseUrl; ?>/images/twitter_icon.png'/></a></div>
                    <div class="span9" style="position: relative" >
                        <div class="fb_pr_div" ><iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Ffacebook.com%2Fkushghar&amp;width&amp;layout=box_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=65&amp;appId=143691012363705" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:65px;" allowTransparency="true"></iframe>
                        </div>
@@ -20,7 +21,7 @@
                      </div>  
                    </div>
                     
-                    <div class="span3 social_div paddingT20 " ><a href="https://www.facebook.com/kushghar" target="_blank"><img src='<?php echo Yii::app()->request->baseUrl; ?>/images/fb_icon.png'/></a>  <a href="https://twitter.com/kushghar" target="_blank"><img src='<?php echo Yii::app()->request->baseUrl; ?>/images/twitter_icon.png'/></a></div>
+                    
                   
                 </div>
                 

@@ -147,8 +147,9 @@
 
     <div class="row-fluid">
     <div class=" span12">
+        <?php echo $model->Landmark=$getVendorAddress->address_landmark;?>
     <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> landmark'); ?>
-        <?php echo $form->textArea($model,'Landmark',array('value'=>$getVendorAddress->address_landmark, 'placeholder'=>'Landmark…', 'maxlength' => 150, 'class' => 'span12')); ?>
+        <?php echo $form->textArea($model,'Landmark',array('placeholder'=>'Landmark…', 'maxlength' => 150, 'class' => 'span12')); ?>
         <?php echo $form->error($model,'Landmark'); ?>
 
    </div>

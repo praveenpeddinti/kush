@@ -154,7 +154,7 @@ textarea, input[type="text"], input[type="password"], input[type="datetime"], in
 .services ul li .services_last-child{ border-right:1px solid #ccc; }
 .services ul li a{text-align:center; margin:auto; width:100%}
 .services ul li a.housecleaning, .services ul li a.gardening, .services ul li a.laundry, .services ul li a.driver, .services ul li a.chef, .services ul li a.more, .services ul li a:hover{ background-image:url(../images/services_icon.png) ; width:140px;height:100px;}
-.services ul li a:hover, .services ul li a:focus{ text-decoration:none;}
+.services ul li a:hover, .services ul li a:focus{ text-decoration:none; background-color: none}
 .services ul li a span{ font-size:18px; font-family:MuseoSlab700; color:#f58220; text-align:center; display:block; text-decoration:none; padding-top:80px}
 .services ul li a:hover span{color:#6ca050; text-decoration:none}
 .services a i{ background:url(../images/r_arrow.png) no-repeat center top; height:14px; width:10px; text-decoration:none;}
@@ -164,7 +164,7 @@ textarea, input[type="text"], input[type="password"], input[type="datetime"], in
 .services ul li a.driver{background-position: center top; background-repeat:no-repeat; min-height:120px; display:block }
 .services ul li a.chef{background-position: center -147px; background-repeat:no-repeat; min-height:120px; display:block }
 .services ul li a.more{background-position: center -768px; background-repeat:no-repeat; min-height:120px; display:block }
-.services ul li a:hover.more{background-position: center -876px; background-repeat:no-repeat; min-height:120px; display:block }
+.services ul li a:hover.more{background-position: center -876px; background-repeat:no-repeat; min-height:120px; display:block;background-color:none }
 
 .our_services .row-fluid .span2 { margin-left:0;}
 .static_page_heading{ border-bottom:2px solid #ededed;}
@@ -238,11 +238,11 @@ ul.header_profile{ list-style:none; margin:0; padding:0}
 .error404 .error404_msg{ position:absolute; padding-top:400px; margin: auto; text-align: center; font-size:22px}
 .paddingR180{ padding-right:180px}
 .paddingl20p{ padding-left:20%;}
-.twitter_follows{float:left; padding:25px 20px 25px 10px; border-left: 1px solid #ccc;border-right: 1px solid #ccc}
+.twitter_follows{float:left; padding:25px 20px 25px 10px; border-left: 1px solid #fff;border-right: 1px solid #fff}
 .paddingT20{padding-top:20px }
-.fb_pr_div{position: absolute;top:0;left:10px;width:60px;overflow: hidden}
+.fb_pr_div{position: absolute;top:0;left:7px;width:60px;overflow: hidden}
 .MarginT{ margin-top: 20px;}
-
+.social_div{border-right: 1px solid #fff; padding-bottom: 26px;}
 @media (max-width: 767px) {
 	.Login_dd_div {float:none; right:0px; left:0px;width:298px;text-align:left}
 	header .container .nav > li .Login_dd_div:before, header .container .nav > li .getStarted_dd_div:before{left:50%}
@@ -253,7 +253,7 @@ ul.header_profile{ list-style:none; margin:0; padding:0}
 	aside:after{display:none; width:auto}
 	.left_nav{width:auto; background:#495153}
 	.left_nav ul.main li{ border-left:1px solid #434b4d}
-	.left_nav ul.main li a span{width:109px}
+	.left_nav ul.main li a span{width:104px}
 	.left_nav .main:after{content:" ";clear:both; display:block}
 	.left_nav ul.main li{float:left}
 	.left_nav ul.main li.active a span.KGaccounts, .left_nav ul.main li.active a span.KGpayment, .left_nav ul.main li.active a span.KGservices {
@@ -261,6 +261,7 @@ ul.header_profile{ list-style:none; margin:0; padding:0}
 	.sub_menu { width:auto}
 	.our_services{ padding-left:20%;}
         .footer_links { padding-top:5px;}
+        
 	
 	
 	}
@@ -323,6 +324,7 @@ ul.header_profile{ list-style:none; margin:0; padding:0}
                 .header_contact_info ul{padding-left: 20px;}
                 .footer_links, .copyrights{ text-align: center}
                 .MarginT{margin-top: 0px;}
+                .social_div{border-right: 0px solid #fff; padding-bottom: 20px;}
 
 		}
 /*Datepicker */

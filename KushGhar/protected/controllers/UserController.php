@@ -293,9 +293,10 @@ class UserController extends Controller {
     /**
      * File Profile picture function
      */
-    public function actionFileUpload() {
+    public function actionFileUpload() {error_log("enter file upload-----");
         Yii::import("ext.EAjaxUpload.qqFileUploader");
         $folder = $this->findUploadedPath() . '/images/profile/'; // folder for uploaded files
+        error_log("--------floder----".$folder);
         $allowedExtensions = array("jpg", "jpeg", "gif", "png"); //array("jpg","jpeg","gif","exe","mov" and etc...
         $sizeLimit = 15 * 1024 * 1024; // maximum file size in bytes
         $uploader = new qqFileUploader($allowedExtensions, $sizeLimit);

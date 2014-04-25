@@ -155,6 +155,7 @@ textarea, input[type="text"], input[type="password"], input[type="datetime"], in
 .services ul li a{text-align:center; margin:auto; width:100%}
 .services ul li a.housecleaning, .services ul li a.gardening, .services ul li a.laundry, .services ul li a.driver, .services ul li a.chef, .services ul li a.more, .services ul li a:hover{ background-image:url(../images/services_icon.png) ; width:140px;height:100px;}
 .services ul li a:hover, .services ul li a:focus{ text-decoration:none; background-color: none}
+
 .services ul li a span{ font-size:18px; font-family:MuseoSlab700; color:#f58220; text-align:center; display:block; text-decoration:none; padding-top:80px}
 .services ul li a:hover span{color:#6ca050; text-decoration:none}
 .services a i{ background:url(../images/r_arrow.png) no-repeat center top; height:14px; width:10px; text-decoration:none;}
@@ -164,7 +165,7 @@ textarea, input[type="text"], input[type="password"], input[type="datetime"], in
 .services ul li a.driver{background-position: center top; background-repeat:no-repeat; min-height:120px; display:block }
 .services ul li a.chef{background-position: center -147px; background-repeat:no-repeat; min-height:120px; display:block }
 .services ul li a.more{background-position: center -768px; background-repeat:no-repeat; min-height:120px; display:block }
-.services ul li a:hover.more{background-position: center -876px; background-repeat:no-repeat; min-height:120px; display:block;background-color:none }
+.services ul li a:hover.more{background-position: center -876px; background-repeat:no-repeat; min-height:120px; display:block; }
 
 .our_services .row-fluid .span2 { margin-left:0;}
 .static_page_heading{ border-bottom:2px solid #ededed;}
@@ -539,7 +540,7 @@ ul.header_profile{ list-style:none; margin:0; padding:0}
 .icon_invite{background:url(../images/user_plus.png) no-repeat left top; width:16px; height:16px; border:0; cursor:pointer}
 .modal-header p{margin:0px;padding:5px;line-height:15px;font-size:14px;color:#333;text-align:center;}
 .modal-header p.t_left{ text-align: left;}
-.errorMessageFont{font-weight:bold;color: #F7682A;margin-top: -5px;}
+.errorMessageFont{color: #F7682A;margin-top: -5px;}
 
 /*home page services */
 
@@ -554,4 +555,4 @@ input.serachInput::-ms-reveal { width : 0; height: 0;}
 .dontOffer{ border:2px solid #FDF7D3;  margin-bottom: 10px;}
 .dontOffer h3{color:#cd0a0a; font-family:MuseoSlab300Italic}
 .dontOffer ul li{color:#999; }
-
+.services ul li a:active.more, .services ul li a:focus.more{background-color: #fff;}

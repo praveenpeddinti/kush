@@ -59,7 +59,7 @@ class AdminController extends Controller {
             } else {
                 $result = $this->kushGharService->login($model, 'Admin');
                 if ($result == "false") {
-                    $errors = array("LoginForm_error" => 'Invalid User or Password.');
+                    $errors = array("LoginForm_error" => 'Invalid User Id or Password.');
                     $obj = array('status' => '', 'data' => '', 'error' => $errors);
                 } else {
                     $ppp = md5($result->password_hash);

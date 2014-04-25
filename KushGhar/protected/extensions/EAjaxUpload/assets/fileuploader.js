@@ -620,7 +620,7 @@ qq.extend(qq.FileUploader.prototype, {
             qq.addClass(item, this._classes.fail);
         }
     },
-    _addToList: function(id, fileName){
+    _addToList: function(id, fileName){alert('====='+fileName);
         var item = qq.toElement(this._options.fileTemplate);
         item.qqFileId = id;
 

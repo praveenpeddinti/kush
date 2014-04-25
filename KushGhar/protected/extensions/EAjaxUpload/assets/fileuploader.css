@@ -44,12 +44,10 @@
 }
 .qq-upload-button-hover {color: #333333;
   background-color: #c4a33d;
-  *background-color: #c4a33d
-background-color: #c4a33d \9;
+  
 }
 .qq-upload-button-focus {outline:1px dotted black;background-color: #c4a33d;
-  *background-color: #c4a33d
-background-color: #c4a33d \9;}
+  }
 .qq-upload-button-hover[disabled] {
   color: #333333;
   background-color: #c4a33d;

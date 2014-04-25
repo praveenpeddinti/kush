@@ -171,7 +171,6 @@ class UserController extends Controller {
      * User BaiscInfo Form Controller END
      */
     public function actionBasicinfo() {
-        error_log("file profile======".$this->session['LoginPic']);
         $basicForm = new BasicinfoForm;
         $updatedPasswordForm = new updatedPasswordForm;
         
@@ -189,9 +188,9 @@ class UserController extends Controller {
             if ($errors != '[]') {
                 $obj = array('status' => 'error', 'message' => '', 'error' => $errors);
             } else {
-                if ($this->session['fileName'] == '') {error_log("----if1basic===========");
+                if ($this->session['fileName'] == '') {
                     $basicForm->profilePicture = $customerDetails->profilePicture;
-                } else {error_log("----else1basic===========");
+                } else {
                     $basicForm->profilePicture = $this->session['fileName'];
                 }
                 /*if ($this->session['docFileName'] == '') {
@@ -315,7 +314,7 @@ class UserController extends Controller {
 
         try {
             $finalImg_name_new = $this->findUploadedPath() . '/images/profile/' . $finalImg_name;
-            
+            error_log("----try2-----".$finalImg_name_new);
             $dest = str_replace(' ', '', $finalImg_name_new);
             $_SESSION['oldfilename'] = $finalImg_name_new;
             $img = Yii::app()->simpleImage->load($folder . $result['filename']); // load file from the specified the path...

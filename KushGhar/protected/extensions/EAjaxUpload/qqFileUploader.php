@@ -71,7 +71,7 @@ class qqFileUploader {
         $this->allowedExtensions = $allowedExtensions;
         $this->sizeLimit = $sizeLimit;
 
-        $this->checkServerSettings();
+        //$this->checkServerSettings();
 
         if (isset($_GET['qqfile'])) {error_log("enter File==================");
             $this->file = new qqUploadedFileXhr();

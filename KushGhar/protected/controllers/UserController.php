@@ -11,7 +11,7 @@ class UserController extends Controller {
             // page action renders "static" pages stored under 'protected/views/site/pages'
             // They can be accessed via: index.php?r=site/page&view=FileName
             'page' => array(
-            'class' => 'CViewAction',
+                'class' => 'CViewAction',
             ),
         );
     }
@@ -39,7 +39,6 @@ class UserController extends Controller {
         }
     }
 
-    
     /**
      * Forgot password action method
      */
@@ -63,15 +62,13 @@ class UserController extends Controller {
                     $errors = array("SampleForm_error" => 'Customer does not exist with these details.');
                     $obj = array('status' => '', 'data' => '', 'error' => $errors);
                 } else {
-                    //$mess = 'Hi' . "\r\n";
                     $mess = 'Welcome to KushGhar. Your new password is ' . $result->password_salt . "\r\n\n";
-                   
                     $to = $result->email_address;
                     $subject = 'Password details';
                     $message = $mess;
-                    
+
                     $this->sendMailToUser($to, '', $subject, $message, 'KushGhar', 'no-reply@kushghar.com', 'PasswordMail');
-                    
+
                     $obj = array('status' => 'success', 'data' => $result, 'error' => 'Password is sent to your mail');
                 }
             }
@@ -98,7 +95,7 @@ class UserController extends Controller {
             if ($errors != '[]') {
                 $obj = array('status' => '', 'data' => '', 'error' => $errors);
             } else {
-                $result = $this->kushGharService->login($model,'User');
+                $result = $this->kushGharService->login($model, 'User');
                 if ($result == "false") {
                     $errors = array("LoginForm_error" => 'Invalid User Id or Password.');
                     $obj = array('status' => '', 'data' => '', 'error' => $errors);
@@ -108,7 +105,7 @@ class UserController extends Controller {
                     $this->session['email'] = $result->email_address;
                     $this->session['firstName'] = $result->first_name;
                     $this->session['LoginPic'] = $result->profilePicture;
-                    $this->session['Type'] ='Customer';
+                    $this->session['Type'] = 'Customer';
                     $obj = array('status' => 'success', 'data' => $result, 'error' => '');
                 }
             }
@@ -121,18 +118,18 @@ class UserController extends Controller {
      * User Registration Form Controller START
      */
     public function actionRegistration() {
-        $_REQUEST['uname']=$this->session['UserType'];
+        $_REQUEST['uname'] = $this->session['UserType'];
         //$_REQUEST['uname']=0;
         //$inviteForm = new InviteForm;
-        $this->session['Type']='Customer';
-        
+        $this->session['Type'] = 'Customer';
+
         $model = new RegistrationForm;
         $modelLogin = new LoginForm;
         $modelSample = new SampleForm;
         $request = yii::app()->getRequest();
         $formName = $request->getParam('RegistrationForm');
         //$getServices = $this->kushGharService->getServices();
-       
+
         if ($formName != '') {
             $model->attributes = $request->getParam('RegistrationForm');
             $errors = CActiveForm::validate($model);
@@ -146,7 +143,6 @@ class UserController extends Controller {
                     $custAddressDetails = $this->kushGharService->saveCustomerAddressDumpInfoDetails($getUserDetails->customer_id);
                     $paymentId = $this->kushGharService->saveCustomerPaymentDumpInfoDetails($getUserDetails->customer_id);
                     $this->session['UserId'] = $getUserDetails->customer_id;
-                    
                 } else {
                     $result = "failed";
                     $errors = array("RegistrationForm_error" => 'User Already Exists.');
@@ -163,7 +159,7 @@ class UserController extends Controller {
             $renderScript = $this->rendering($obj);
             echo $renderScript;
         } else {
-            $this->render('registration', array('model' => $model, 'modelLogin' => $modelLogin, 'modelSample' => $modelSample,'one'=>$_REQUEST['uname']));
+            $this->render('registration', array('model' => $model, 'modelLogin' => $modelLogin, 'modelSample' => $modelSample, 'one' => $_REQUEST['uname']));
         }
     }
 
@@ -173,13 +169,13 @@ class UserController extends Controller {
     public function actionBasicinfo() {
         $basicForm = new BasicinfoForm;
         $updatedPasswordForm = new updatedPasswordForm;
-        
+
         $cId = $this->session['UserId'];
         $customerDetails = $this->kushGharService->getCustomerDetails($cId);
         $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($cId);
-        
+
         $customerPaymentDetails = $this->kushGharService->getCustomerPaymentDetails($cId);
-        $this->session['firstName']=$customerDetails->first_name;
+        $this->session['firstName'] = $customerDetails->first_name;
         $Identity = $this->kushGharService->getIdentifyProof();
         $request = yii::app()->getRequest();
         $formName = $request->getParam('BasicinfoForm');
@@ -194,12 +190,12 @@ class UserController extends Controller {
                 } else {
                     $basicForm->profilePicture = $this->session['fileName'];
                 }
-                /*if ($this->session['docFileName'] == '') {
-                    $basicForm->uIdDocument = $customerDetails->uIdDocument;
-                } else {
-                    $basicForm->uIdDocument = $this->session['docFileName'];
-                }*/
-                $this->session['LoginPic']=$this->session['fileName'];
+                /* if ($this->session['docFileName'] == '') {
+                  $basicForm->uIdDocument = $customerDetails->uIdDocument;
+                  } else {
+                  $basicForm->uIdDocument = $this->session['docFileName'];
+                  } */
+                $this->session['LoginPic'] = $this->session['fileName'];
                 //unset($this->session['fileName']);
                 //unset($this->session['docFileName']);
                 $result = $this->kushGharService->updateRegistrationData($basicForm, $cId);
@@ -214,7 +210,7 @@ class UserController extends Controller {
             $renderScript = $this->rendering($obj);
             echo $renderScript;
         } else {
-            $this->render('basicinfo', array("model" => $basicForm, "IdentityProof" => $Identity, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails, "updatedPassword"=> $updatedPasswordForm));
+            $this->render('basicinfo', array("model" => $basicForm, "IdentityProof" => $Identity, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails, "updatedPassword" => $updatedPasswordForm));
         }
     }
 
@@ -225,7 +221,7 @@ class UserController extends Controller {
         $ContactInfoForm = new ContactInfoForm;
         $cId = $this->session['UserId'];
         $States = $this->kushGharService->getStates();
-        
+
         $customerDetails = $this->kushGharService->getCustomerDetails($cId);
         $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($cId);
         $customerPaymentDetails = $this->kushGharService->getCustomerPaymentDetails($cId);
@@ -252,7 +248,7 @@ class UserController extends Controller {
             $renderScript = $this->rendering($obj);
             echo $renderScript;
         } else {
-            $this->render('contactInfo', array("model" => $ContactInfoForm, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails, "States"=>$States));
+            $this->render('contactInfo', array("model" => $ContactInfoForm, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails, "States" => $States));
         }
     }
 
@@ -287,14 +283,14 @@ class UserController extends Controller {
             $renderScript = $this->rendering($obj);
             echo $renderScript;
         } else {
-            $this->render('paymentInfo', array("model" => $paymentForm, "customerPaymentDetails" => $customerPaymentDetails,  "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails));
+            $this->render('paymentInfo', array("model" => $paymentForm, "customerPaymentDetails" => $customerPaymentDetails, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails));
         }
     }
 
     /**
      * File Profile picture function
      */
-    public function actionFileUpload() { error_log("enter uloading====");
+    public function actionFileUpload() {
         Yii::import("ext.EAjaxUpload.qqFileUploader");
         $folder = $this->findUploadedPath() . '/images/profile/'; // folder for uploaded files
         $allowedExtensions = array("jpg", "jpeg", "gif", "png"); //array("jpg","jpeg","gif","exe","mov" and etc...
@@ -308,7 +304,7 @@ class UserController extends Controller {
         $finalImg_name = $result['filename'];
         // creating small image from the Big one...
 
-        try {error_log("enter try block------------------");
+        try {
             $finalImg_name_new = $this->findUploadedPath() . '/images/profile/' . $finalImg_name;
             $dest = str_replace(' ', '', $finalImg_name_new);
             $_SESSION['oldfilename'] = $finalImg_name_new;
@@ -317,46 +313,14 @@ class UserController extends Controller {
             $img->save($finalImg_name_new); // saving into the specified path...
             $finalImg_name = '/images/profile/' . $finalImg_name;
             $this->session['fileName'] = $finalImg_name;
-           error_log("enter uloading====".$finalImg_name);
+            
         } catch (Exception $e) {
             error_log("***********************" . $e->getMessage());
         }
         echo $return; // it's array
     }
 
-    /**
-     * upload customer proof Document--------
-     */
-    /*public function actionDocUpload() {
-        Yii::import("ext.EAjaxUpload.qqFileUploader");
-        $folder = $this->findUploadedPath() . '/images/documents/'; // folder for uploaded files
-        $allowedExtensions = array("jpg", "jpeg", "gif", "png"); //array("jpg","jpeg","gif","exe","mov" and etc...
-        $sizeLimit = 15 * 1024 * 1024; // maximum file size in bytes
-        $uploader = new qqFileUploader($allowedExtensions, $sizeLimit);
-        $result = $uploader->handleUpload($folder);
-        $return = CJSON::encode($result);
-        $fileSize = filesize($folder . $result['filename']); //GETTING FILE SIZE
-        $fileName = $result['filename']; //GETTING FILE NAME
-        $imgArr = explode(".", $fileName);
-        $finalImg_name = $result['filename'];
-        // creating small image from the Big one...
-
-        try {
-            $finalImg_name_new = $this->findUploadedPath() . '/images/documents/' . $finalImg_name;
-            $dest = str_replace(' ', '', $finalImg_name_new);
-            $_SESSION['oldfilename'] = $finalImg_name_new;
-            $img = Yii::app()->simpleImage->load($folder . $result['filename']); // load file from the specified the path...
-            $img->resizeToHeight(50); // creating image height to 50...
-            $img->save($finalImg_name_new); // saving into the specified path...
-            $finalImg_name = '/images/documents/' . $finalImg_name;
-            $this->session['docFileName'] = $finalImg_name;
-        } catch (Exception $e) {
-            error_log("***********************" . $e->getMessage());
-        }
-        echo $return; // it's array
-    }*/
-
-    function findUploadedPath() {
+     function findUploadedPath() {
 
         try {
             $path = dirname(__FILE__);
@@ -366,13 +330,12 @@ class UserController extends Controller {
                 $appendPath = "/" . $pathArray[$i] . $appendPath;
             }
             $originalPath = $appendPath;
-            error_log("path folder============".$originalPath);
+            
         } catch (Exception $ex) {
             error_log("#########Exception Occurred########$ex->getMessage()");
         }
         return $originalPath;
     }
-
 
     /**
      * Updated Password in Basic info page START
@@ -388,7 +351,7 @@ class UserController extends Controller {
             if ($errors != '[]') {
                 $obj = array('status' => 'error', 'message' => '', 'error' => $errors);
             } else {
-                $result = $this->kushGharService->getupdatedPasswordInBasicInfo($model,$cId);
+                $result = $this->kushGharService->getupdatedPasswordInBasicInfo($model, $cId);
                 if ($result == "success") {
                     $message = array("RegistrationForm_error" => 'Password is updated successfully');
                     $obj = array('status' => 'success', 'data' => $message, 'error' => '');
@@ -407,7 +370,7 @@ class UserController extends Controller {
     /**
      * Total Customer Information Controller
      */
-    public function actionCustomerDetails(){
+    public function actionCustomerDetails() {
         $model = new CustomerDetailsForm;
         $cId = $this->session['UserId'];
         $States = $this->kushGharService->getStates();
@@ -415,7 +378,7 @@ class UserController extends Controller {
         $customerDetails = $this->kushGharService->getCustomerDetails($cId);
         $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($cId);
         $customerPaymentDetails = $this->kushGharService->getCustomerPaymentDetails($cId);
-        
+
         $request = yii::app()->getRequest();
         $formName = $request->getParam('CustomerDetailsForm');
         if ($formName != '') {
@@ -424,12 +387,12 @@ class UserController extends Controller {
             if ($errors != '[]') {
                 $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
             } else {
-                $model->profilePicture=$this->session['LoginPic'];
+                $model->profilePicture = $this->session['LoginPic'];
                 $result1 = $this->kushGharService->updateRegistrationData($model, $cId);
                 $result2 = $this->kushGharService->saveCustomerInfoDetails($model, $cId);
                 $result = $this->kushGharService->updateCustomerPaymentData($model, $cId);
-              $result = "success";
-              if ($result == "success") {
+                $result = "success";
+                if ($result == "success") {
                     //$message = array("CustomerDetailsForm_error_em_" => 'Customer updated successfully');
                     $obj = array('status' => 'success', 'data' => '', 'error' => '');
                 } else {
@@ -440,22 +403,20 @@ class UserController extends Controller {
             $renderScript = $this->rendering($obj);
             echo $renderScript;
         } else {
-          $this->render('customerDetails', array('model' => $model, "States"=>$States, "customerDetails"=>$customerDetails,"customerAddressDetails"=>$customerAddressDetails, "customerPaymentDetails"=>$customerPaymentDetails));
+            $this->render('customerDetails', array('model' => $model, "States" => $States, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails));
         }
     }
-
-
-
 
     public function actionLogout() {
         try {
             $this->session->destroy();
-            unset ($_SESSION['UserId']);
+            unset($_SESSION['UserId']);
             $this->redirect("/site/index");
         } catch (Exception $ex) {
             error_log("#########Exception Occurred########$ex->getMessage()");
         }
     }
+
     public function actionAccount() {
         try {
 
@@ -464,15 +425,13 @@ class UserController extends Controller {
             error_log("#########Exception Occurred########$ex->getMessage()");
         }
     }
-    
-    
-    public function actionHome(){
+
+    public function actionHome() {
         $this->redirect('/site/index');
     }
-    
-    
-    public function actionInviteRegistration(){
-        if($_REQUEST){
+
+    public function actionInviteRegistration() {
+        if ($_REQUEST) {
             $inviteForm = new InviteForm;
             $request = yii::app()->getRequest();
             $formName = $request->getParam('InviteForm');
@@ -485,9 +444,9 @@ class UserController extends Controller {
                     $result = $this->kushGharService->getInvitationUser($inviteForm, $this->session['Type']);
 
                     if ($result == "success") {
-                        
+
                         $to = $inviteForm->Email;
-                        $name = $inviteForm->FirstName.' '.$inviteForm->LastName;
+                        $name = $inviteForm->FirstName . ' ' . $inviteForm->LastName;
                         $subject = 'KushGhar Invitation';
                         $this->sendMailToUser($to, $name, $subject, '', 'KushGhar', 'no-reply@kushghar.com', 'sendInvitationMailToUser');
                         $obj = array('status' => 'success', 'data' => $result, 'error' => 'Invitation sent Successfully.');
@@ -501,12 +460,11 @@ class UserController extends Controller {
             } else {
                 $this->render('invite', array("model" => $inviteForm));
             }
-        }else{
+        } else {
             $inviteForm = new InviteForm;
             $getServices = $this->kushGharService->getServices();
-            $this->renderPartial('inviteRegistration', array("inviteModel"=>$inviteForm, "getServices"=>$getServices));
+            $this->renderPartial('inviteRegistration', array("inviteModel" => $inviteForm, "getServices" => $getServices));
         }
     }
-    
-    
+
 }

@@ -7,7 +7,7 @@ class qqUploadedFileXhr {
      * Save the file to the specified path
      * @return boolean TRUE on success
      */
-    function save($path) {error_log("=====save in File===".$path);  
+    function save($path) { 
         $input = fopen("php://input", "r");
         $temp = tmpfile();
         $realSize = stream_copy_to_stream($input, $temp);
@@ -42,7 +42,7 @@ class qqUploadedFileForm {
      * Save the file to the specified path
      * @return boolean TRUE on success
      */
-    function save($path) { error_log("=====save in Form====".$path);       
+    function save($path) {  
         if(!move_uploaded_file($this->getTempName(), $path)){
             return false;
         }
@@ -65,7 +65,6 @@ class qqFileUploader {
     private $file;
 
     function __construct(array $allowedExtensions = array(), $sizeLimit = 15728640){
-        error_log("enter default cons==============".$sizeLimit);
         $allowedExtensions = array_map("strtolower", $allowedExtensions);
 
         $this->allowedExtensions = $allowedExtensions;
@@ -73,11 +72,11 @@ class qqFileUploader {
 
         //$this->checkServerSettings();
 
-        if (isset($_GET['qqfile'])) {error_log("enter File==================");
+        if (isset($_GET['qqfile'])) {
             $this->file = new qqUploadedFileXhr();
-        } elseif (isset($_FILES['qqfile'])) {error_log("enter Form==================");
+        } elseif (isset($_FILES['qqfile'])) {
             $this->file = new qqUploadedFileForm();
-        } else {error_log("enter else==================");
+        } else {
             $this->file = false;
         }
     }
@@ -106,7 +105,6 @@ class qqFileUploader {
      * Returns array('success'=>true) or array('error'=>'error message')
      */
     function handleUpload($uploadDirectory, $replaceOldFile = FALSE){
-        error_log("----handleUpload====--$uploadDirectory");
         if (!is_writable($uploadDirectory)){
             return array('error' => "Server error. Upload directory isn't writable.");
         }else{

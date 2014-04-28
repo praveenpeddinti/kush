@@ -21,7 +21,7 @@
                             <div class="design">Chief Executive Officer</div>
                             <p>
 
-                                Under Sanjoy’s leadership, KushGhar has become the fastest-growing home services company in India. Sanjoy oversees all aspects of KushGhar's strategy and operations, with a special focus on growing KushGhar's business across India. He has over 17 years of experience successfully building various Software applications in diverse industries using diverse technologies. He has a bachelors degree in Mechanical Engineering and also is a successful entrepreneur.
+                                A software developer by training, I moved to the US nearly 20 years back. I have headed enterprise solutioning for industry leaders in retail, shipping, and telecom. With Kushghar, I want to bring to India the professionalism, accountability and respect for human life that I see around me. For professionals like me, time is at the highest premium. If someone provides me a quality service where I do not have to supervise or worry, I can spend that time with my family or the things that really matter to me. With the changing demographics of Indian cities, I realized two things during my visits home. There is a crying need for high quality home services, and the skillset available for these services do not come close to the expectations of the new-age Indian professional. This is how Kushghar was born.
                             </p>
                             <div class="dashed_separator"></div>
                         </div>
@@ -36,7 +36,7 @@
                         <div class="span10 paddingL20">
                             <h3>Scott Yacko </h3>
                             <div class="design">Chief Technical Officer</div>
-                            <p>As KushGhar's chief technical officer, I'm responsible for the day to day operations of the KushGhar systems, development and internet presents. I have a varied background, all of which is about solving problems. I have co-founded a number of start-ups and worked for big and small companies as an employee and consultant in my 27 year career. I have a under-graduate degree in computer science and a MBA, both from Indiana University. </p>
+                            <p>With a degree in Computer Science and an MBA, both from Indiana University, I have co-founded a number of startups as well as worked for some of the biggest names in the US in the last three decades. I often thought about what I could do to help people – not just giving them what they need today – but to have a better life in the long run. Kushghar, for me, is an opportunity to impact families across the economic spectrum, to give people what they need to change their life and their kids’ lives. High quality, professional and safe home services to give families better and more time together, and an easily-taught science which provides a stable and respectable livelihood to our staff. This is our vision of making people’s lives better, one home at a time.  </p>
                             <div class="dashed_separator"></div>
                         </div>
                     </div>

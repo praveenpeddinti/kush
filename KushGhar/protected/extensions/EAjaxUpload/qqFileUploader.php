@@ -7,22 +7,17 @@ class qqUploadedFileXhr {
      * Save the file to the specified path
      * @return boolean TRUE on success
      */
-    function save($path) {
-        error_log("=====save in File====".$path);
+    function save($path) {error_log("=====save in File===".$path);  
         $input = fopen("php://input", "r");
         $temp = tmpfile();
-        error_log("=====temp File====".$temp."====".$input);
         $realSize = stream_copy_to_stream($input, $temp);
         fclose($input);
         if ($realSize != $this->getSize()){
             return false;
         }
         $target = fopen($path, "w");
-        error_log("=====after File ====".$target);
         fseek($temp, 0, SEEK_SET);
-        error_log("target===1===".$temp);
         stream_copy_to_stream($temp, $target);
-        error_log("target===2===".$temp);
         fclose($target);
         
         return true;
@@ -76,7 +71,7 @@ class qqFileUploader {
         $this->allowedExtensions = $allowedExtensions;
         $this->sizeLimit = $sizeLimit;
 
-        //$this->checkServerSettings();
+        $this->checkServerSettings();
 
         if (isset($_GET['qqfile'])) {error_log("enter File==================");
             $this->file = new qqUploadedFileXhr();
@@ -90,10 +85,8 @@ class qqFileUploader {
     private function checkServerSettings(){
         $postSize = $this->toBytes(ini_get('post_max_size'));
         $uploadSize = $this->toBytes(ini_get('upload_max_filesize'));
-error_log("enter checkServerSettings==============".$postSize."===".$uploadSize);
         if ($postSize > $this->sizeLimit || $uploadSize > $this->sizeLimit){
             $size = max(1, $this->sizeLimit / 1024 / 1024) . 'M';
-            error_log("enter checkServerSettings=if=============".$size);
             die("{'error':'increase post_max_size and upload_max_filesize to $size'}");
         }
     }

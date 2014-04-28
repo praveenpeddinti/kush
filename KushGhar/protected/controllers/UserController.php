@@ -177,6 +177,7 @@ class UserController extends Controller {
         $cId = $this->session['UserId'];
         $customerDetails = $this->kushGharService->getCustomerDetails($cId);
         $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($cId);
+        
         $customerPaymentDetails = $this->kushGharService->getCustomerPaymentDetails($cId);
         $this->session['firstName']=$customerDetails->first_name;
         $Identity = $this->kushGharService->getIdentifyProof();
@@ -293,28 +294,22 @@ class UserController extends Controller {
     /**
      * File Profile picture function
      */
-    public function actionFileUpload() {error_log("enter file upload-----");
+    public function actionFileUpload() { error_log("enter uloading====");
         Yii::import("ext.EAjaxUpload.qqFileUploader");
         $folder = $this->findUploadedPath() . '/images/profile/'; // folder for uploaded files
-        error_log("--------floder----".$folder);
         $allowedExtensions = array("jpg", "jpeg", "gif", "png"); //array("jpg","jpeg","gif","exe","mov" and etc...
         $sizeLimit = 15 * 1024 * 1024; // maximum file size in bytes
         $uploader = new qqFileUploader($allowedExtensions, $sizeLimit);
-        error_log("----2---3333--");
         $result = $uploader->handleUpload($folder);
-        error_log("----2-----".$result);
         $return = CJSON::encode($result);
         $fileSize = filesize($folder . $result['filename']); //GETTING FILE SIZE
         $fileName = $result['filename']; //GETTING FILE NAME
-        error_log("----1-----".$fileName);
-        error_log("----2-----".$fileSize);
         $imgArr = explode(".", $fileName);
         $finalImg_name = $result['filename'];
         // creating small image from the Big one...
 
-        try {
+        try {error_log("enter try block------------------");
             $finalImg_name_new = $this->findUploadedPath() . '/images/profile/' . $finalImg_name;
-            error_log("----try2-----".$finalImg_name_new);
             $dest = str_replace(' ', '', $finalImg_name_new);
             $_SESSION['oldfilename'] = $finalImg_name_new;
             $img = Yii::app()->simpleImage->load($folder . $result['filename']); // load file from the specified the path...
@@ -322,6 +317,7 @@ class UserController extends Controller {
             $img->save($finalImg_name_new); // saving into the specified path...
             $finalImg_name = '/images/profile/' . $finalImg_name;
             $this->session['fileName'] = $finalImg_name;
+           error_log("enter uloading====".$finalImg_name);
         } catch (Exception $e) {
             error_log("***********************" . $e->getMessage());
         }
@@ -331,7 +327,7 @@ class UserController extends Controller {
     /**
      * upload customer proof Document--------
      */
-    public function actionDocUpload() {
+    /*public function actionDocUpload() {
         Yii::import("ext.EAjaxUpload.qqFileUploader");
         $folder = $this->findUploadedPath() . '/images/documents/'; // folder for uploaded files
         $allowedExtensions = array("jpg", "jpeg", "gif", "png"); //array("jpg","jpeg","gif","exe","mov" and etc...
@@ -358,7 +354,7 @@ class UserController extends Controller {
             error_log("***********************" . $e->getMessage());
         }
         echo $return; // it's array
-    }
+    }*/
 
     function findUploadedPath() {
 

@@ -395,7 +395,7 @@ return false;
     }
 
     function UserProfilefiles(obj,errId)
-    {
+    {alert("dfdsfsd");
         if ($.browser.msie) {
             UserProfilefilesIE(obj,errId);
             return;

@@ -1,10 +1,11 @@
 .input-append .btn-search {
     
     background: #EAEAEA; }
-.input-append .btn-large{ padding-bottom:10px;}
+.input-append .btn-large{ padding-bottom:7px;line-height:20px;}
 .btn-search I.fa-search{margin-left:-10px;}
 .input-append Input[type='text']{line-height: 40px}
 .input-append Input::-ms-clear {display: none;}
 input.serachInput::-ms-clear { width : 0; height: 0; } input.serachInput::-ms-reveal { width : 0; height: 0;} 
 .has-switch SPAN.switch-left{background-color:#003bb3}
 .services ul li a:active.more, .services ul li a:focus.more{background-color: #fff;}
+.btn-primary {border-color:#5c8844}

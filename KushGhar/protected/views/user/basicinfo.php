@@ -106,6 +106,8 @@
                                         
                                     </div>
                                 </div>
+                               
+
                                 <div class="row-fluid paddingT10">
                                     <div class="span6">
                                         <?php echo $form->label($model, 'Gender'); ?>
@@ -161,8 +163,6 @@
                                                         )
                                                     ));
                                                     ?>
-                                                    
-                                                    
                                                 </div>
 
                                             </div>
@@ -395,7 +395,7 @@ return false;
     }
 
     function UserProfilefiles(obj,errId)
-    {alert("dfdsfsd");
+    {
         if ($.browser.msie) {
             UserProfilefilesIE(obj,errId);
             return;

@@ -33,7 +33,7 @@
             return false;
         return true;
     }
-    function inviteUser(rowNos, status,email) {alert("rowNos===="+rowNos+"==status===="+status+"==email===="+email);
+    function inviteUser(rowNos, status,email) {
         
         var data = "Id=" + rowNos + "&status=" + status+ "&email=" + email;
             
@@ -115,9 +115,7 @@
         }
     }
     function activeFormHandler2(data, status, rowNos) {
-        alert(data);
-        alert(status);
-        alert(rowNos);
+        
 
         if (status == 0) {
             $('#usera_' + rowNos).attr('class', 'icon_reinvite');

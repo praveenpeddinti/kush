@@ -1,6 +1,6 @@
 <?php if (($this->getUniqueId() == 'site') &&(empty($this->session['UserId']))) { ?>
     <header>
-        <div class="container">
+        <div class="container"><?php //echo "===1====".$this->getUniqueId()."=====".$this->session['Type']."===Id==".$this->session['UserId'];?>
             <div class="row-fluid">
                 <div class="span12">
                     <!--header logo start-->
@@ -53,6 +53,19 @@
                                 <li class="mobilemiddle">
                                     <div class="input-append search">
                                         <!--<div id='cse' style='width: 100%;'>Loading</div>-->
+                                        <script>
+  (function() {
+    var cx = '001516148304717743126:d3ggxtr1sve';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<gcse:search></gcse:search>
                                         <input class="serachInput" id="appendedInputButton" type="text" placeholder="Search...">
                                         <button class="btn btn-large btn-search" type="button"><i class="fa fa-search"></i></button>
                                     </div>

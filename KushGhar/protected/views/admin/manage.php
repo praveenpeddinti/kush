@@ -33,7 +33,7 @@
             return false;
         return true;
     }
-    function inviteUser(rowNos, status,email) {
+    function inviteUser(rowNos, status,email) {alert("rowNos===="+rowNos+"==status===="+status+"==email===="+email);
         
         var data = "Id=" + rowNos + "&status=" + status+ "&email=" + email;
             
@@ -43,12 +43,14 @@
                 url: '<?php echo Yii::app()->createAbsoluteUrl("/admin/inviteStatus"); ?>',
                 data: data,
                 success: function(data) {
+                    
                     $('#message').show();
                     $("#message").addClass('alert alert-success');
                     $("#message").text('Invitation sent Successfully.');
                     $("#message").fadeOut(6000, "");
-                    $('#usera_' + rowNos).remove();
-                    //activeFormHandler(data, status, rowNos);
+                    //$('#usera_' + rowNos).remove();
+                    activeFormHandler2(data, status, rowNos);
+                    
                 },
                 error: function(data) { // if error occured
                     
@@ -74,7 +76,12 @@
                 url: '<?php echo Yii::app()->createAbsoluteUrl("/admin/manageStatus"); ?>',
                 data: data,
                 success: function(data) {
-                    activeFormHandler(data, status, rowNos);
+                    //activeFormHandler(data, status, rowNos);
+                    $('#message').show();
+                    $("#message").addClass('alert alert-success');
+                    $("#message").text('Delete user Successfully.');
+                    $("#message").fadeOut(6000, "");
+                    $('#row_' + rowNos).remove();
                 },
                 error: function(data) { // if error occured
                     //alert("Error occured.please try again");
@@ -97,6 +104,30 @@
         } else {
             $('#user_' + rowNos).attr('class', 'icon_delete');
             $('#user_' + rowNos).attr('data-status', '1');
+        }
+
+        if (data.status == 'success') {
+            //alert("ok");
+        } else {
+
+            //alert("else part");
+
+        }
+    }
+    function activeFormHandler2(data, status, rowNos) {
+        alert(data);
+        alert(status);
+        alert(rowNos);
+
+        if (status == 0) {
+            $('#usera_' + rowNos).attr('class', 'icon_reinvite');
+            $('#usera_' + rowNos).attr('invite-status', '1');
+        } else if (status == 1) {
+            $('#usera_' + rowNos).attr('class', 'icon_reinvite');
+            $('#usera_' + rowNos).attr('invite-status', '2');
+        }else {
+            $('#usera_' + rowNos).attr('class', 'icon_reinvite');
+            $('#usera_' + rowNos).attr('invite-status', '2');
         }
 
         if (data.status == 'success') {
@@ -151,7 +182,7 @@
                             <div id="tablewidget"  style="margin: auto;"><div id="message" style="display:none"></div>
                                 <table id="userTable" class="table table-hover">
 
-                                    <thead><tr><th>Email Address</th><th>Actions</th></tr></thead>
+                                    <thead><tr><th>Email Address</th><th>Status</th><th>Actions</th></tr></thead>
                                     <tbody id="abusedWords_tbody">
                                         
                                     </tbody>
@@ -182,10 +213,10 @@
             var inviteEmail = $(this).attr('invite-email');
            
         
-            if(id>0){
+            if(id>0){alert("delte");
                 statusChangeUser(Number(id), Number(status));
             }
-            if(id2>0){
+            if(id2>0){alert("invite");
                 inviteUser(Number(id2), Number(inviteStatus), inviteEmail);
             }
         });

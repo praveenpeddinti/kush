@@ -6,9 +6,21 @@
                 <div class="asideBG">
                     <div class="left_nav">
                         <ul class="main">
-                            <li class=""><a href="#" ><span class="KGaccounts"> </span></a></li>
+                            <?php 
+                            if(!empty($this->session['UserId']) && ($this->session['Type']=='Vendor')){
+                                $accout = '<a href="/vendor/vendorBasicinformation" ><span class="KGaccounts"> </span></a>';
+                                $payment = '<a href="#" ><span class="KGpayment"> </span></a>';
+                            }else if(!empty($this->session['UserId']) && ($this->session['Type']=='Customer')){
+                                $accout = '<a href="/user/basicinfo" ><span class="KGaccounts"> </span></a>';
+                                $payment = '<a href="/user/paymentInfo" ><span class="KGpayment"> </span></a>';
+                            }else{
+                                $accout = '<span class="KGaccounts"> </span>';
+                                $payment = '<span class="KGpayment"> </span>';
+                            }
+?>
+                            <li class="" ><?php echo $accout;?></li>
                             <li class="active"><a href="#"  ><span class="KGservices"> </span></a></li>
-                            <li class=""><a href="#" ><span class="KGpayment"> </span></a></li>
+                            <li class="" ><?php echo $payment;?></li>
 
                         </ul>
 
@@ -64,16 +76,12 @@
 
                             <div class="row-fluid">
                                 <div class="span12">
-
-                                    <div class="dontOffer">
-                                        
                                     <div class=" paddingL20">
                                         <p><i>Exclusions:</i></p>
                                         <ul>
                                             <li>Our crew will not be lifting items weighing over 15 Kgs (including large furniture) for safety reasons, and will not clean pet messes and/or heavily soiled areas, mold and/or bio hazardous material.</li>
                                         </ul>
                                     </div>
-                                        </div>
                                 </div>
                             </div>
                             <button class="btn btn-large dropdown-toggle getstarted_button"  onclick="cleaning();">Get Started</button>

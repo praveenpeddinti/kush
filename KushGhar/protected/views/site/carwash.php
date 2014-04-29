@@ -6,9 +6,21 @@
                 <div class="asideBG">
                     <div class="left_nav">
                         <ul class="main">
-                            <li class=""><a href="#" ><span class="KGaccounts"> </span></a></li>
+                            <?php 
+                            if(!empty($this->session['UserId']) && ($this->session['Type']=='Vendor')){
+                                $accout = '<a href="/vendor/vendorBasicinformation" ><span class="KGaccounts"> </span></a>';
+                                $payment = '<a href="#" ><span class="KGpayment"> </span></a>';
+                            }else if(!empty($this->session['UserId']) && ($this->session['Type']=='Customer')){
+                                $accout = '<a href="/user/basicinfo" ><span class="KGaccounts"> </span></a>';
+                                $payment = '<a href="/user/paymentInfo" ><span class="KGpayment"> </span></a>';
+                            }else{
+                                $accout = '<span class="KGaccounts"> </span>';
+                                $payment = '<span class="KGpayment"> </span>';
+                            }
+?>
+                            <li class="" ><?php echo $accout;?></li>
                             <li class="active"><a href="#"  ><span class="KGservices"> </span></a></li>
-                            <li class=""><a href="#" ><span class="KGpayment"> </span></a></li>
+                            <li class="" ><?php echo $payment;?></li>
 
                         </ul>
 
@@ -54,15 +66,11 @@
 
                             <div class="row-fluid">
                                 <div class="span12">
-
-                                    <div class="dontOffer">
-                                        
                                     <div class=" paddingL20">
                                         <p><i>Exclusions:</i></p>
                                         <ul>
                                             <li>Our crew will not be doing polishing & waxing of vehicle and will not do interior seats shampooing.</li>
-                                        </ul>
-                                    </div>
+                                        </ul>                                 
                                         </div>
                                 </div>
                             </div>

@@ -9,12 +9,19 @@
                                         //if (is_object($abuseWords)) {
                                         foreach ($userDetails as $row) {
                                         ?>
-                                        <tr class="odd">
+                                        <tr id="row_<?php echo $row['Id'];?>" class="odd">
                                             <td><?php echo $row['email_address']; ?></td>
-                                            <td><input id="user_<?php echo $row['Id']; ?>" data-id="<?php echo $row['Id']; ?>" data-status="<?php echo $row['status']; ?>" type="button" value=" " class="<? if ($row['status'] == '1') echo 'icon_delete'; if ($row['status'] == '0') echo 'icon_inactive'; ?>" alt="Change Status" title="Change Status"/>
-                                            <?php if ($row['invite'] == '1'){?>
-                                            <input id="usera_<?php echo $row['Id']; ?>" invite-id="<?php echo $row['Id']; ?>" invite-status="<?php echo $row['invite']; ?>" invite-email="<?php echo $row['email_address']; ?>" type="button" value=" " class="<? if ($row['invite'] == '1') echo 'icon_invite';?>" alt="Invite" title="Invite"/>
-                                            <?php }?>
+                                            <td>
+                                                <?php 
+                                                if($row['invite']==0){$status = 'Not Invited';} 
+                                                if($row['invite']==1){$status = 'Invited';} 
+                                                if($row['invite']==2){$status = 'Re-Invited';} 
+                                            echo $status; ?></td>
+                                            <td>
+                                            
+                                            <input id="usera_<?php echo $row['Id']; ?>" invite-id="<?php echo $row['Id']; ?>" invite-status="<?php echo $row['invite']; ?>" invite-email="<?php echo $row['email_address']; ?>" type="button" value=" " class="<? if ($row['invite'] == '0') echo 'icon_invite'; if ($row['invite'] == '1') echo 'icon_reinvite'; if ($row['invite'] == '2') echo 'icon_reinvite';?>" alt="Invite" title="Invite"/>
+                                            
+                                            <input id="user_<?php echo $row['Id']; ?>" data-id="<?php echo $row['Id']; ?>" data-status="<?php echo $row['status']; ?>" type="button" value=" " class="<? if ($row['status'] == '1') echo 'icon_delete'; ?>" alt="Delete" title="Delete"/>
                                             </td>
                                                     </tr>
         <?php }

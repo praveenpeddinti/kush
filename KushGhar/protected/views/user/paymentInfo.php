@@ -88,8 +88,7 @@
         <?php echo $form->error($model,'cardType'); ?>
         <?php //echo $form->dropDownList($model, 'cardType', CHtml::listData(array('prompt'=>'Select Card Type','options' => ('Visa''Visa', 'Master' => 'Master')), 'Id', 'identifiability'), array('options' => array($customerPaymentDetails->card_type => array('selected' => 'selected')), 'class' => 'span12')); ?>
     </div>
-    </div>
-    <div class="row-fluid">
+    
     <div class=" span6">
     <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> Card Holder Name'); ?>
 	<?php echo $form->textField($model,'cardHolderName',array('value'=>$customerPaymentDetails->card_holder_name, 'placeholder'=>'Card Holder Name…', 'maxLength' => 50, 'class'=>'span12')); ?>
@@ -106,7 +105,7 @@
         <?php echo $form->textField($model,'cardNumber',array('value'=>$string, 'placeholder'=>'Card Number…','maxlength'=>16,'onkeypress'=>'return isNumberKey(event);', 'class'=>'span12')); ?>
         <?php echo $form->error($model,'cardNumber'); ?>
     </div>
-    </div>
+    
 
 
     <!--<div class="row-fluid">
@@ -124,7 +123,7 @@
    </div>-->
         
   
- <div class="row-fluid">
+
     
      <div class=" span3  m_ExpiryDate">
         <?php $months = array();
@@ -150,7 +149,38 @@
         <?php echo $form->error($model,'expiryYear'); ?>
     </div>
  </div>
-
+   
+<div class="row-fluid">
+     <div class=" span4">
+         <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> First Name'); ?>
+         <?php echo $form->textField($model,'FirstName',array('value'=>$customerPaymentDetails->first_name, 'placeholder'=>'First Name…','maxlength'=>50, 'class'=>'span12')); ?>
+        <?php echo $form->error($model,'FirstName'); ?>
+    </div>
+    <div class=" span4">
+         <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> Last Name'); ?>
+         <?php echo $form->textField($model,'LastName',array('value'=>$customerPaymentDetails->last_name, 'placeholder'=>'Last Name…','maxlength'=>50, 'class'=>'span12')); ?>
+         <?php echo $form->error($model,'LastName'); ?>
+    </div>
+    <div class=" span4">
+         <?php if(($customerPaymentDetails->phone=='0') || (empty($customerPaymentDetails->phone))){ $Phone ='';}else{$Phone =$customerPaymentDetails->phone;}?>
+         <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> Phone'); ?>
+         <?php echo $form->textField($model,'Phone',array('value'=>$Phone, 'placeholder'=>'Phone…','maxlength'=>10, 'class'=>'span12')); ?>
+         <?php echo $form->error($model,'Phone'); ?>
+    </div>
+    </div>
+   <div class="row-fluid">
+     <div class=" span6">
+         <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> Address1'); ?>
+         <?php echo $form->textField($model,'Address1',array('value'=>$customerPaymentDetails->address1, 'placeholder'=>'Address1…','maxlength'=>50, 'class'=>'span12')); ?>
+        <?php echo $form->error($model,'Address1'); ?>
+    </div>
+    <div class=" span6">
+         <?php echo $form->labelEx($model,' Address2'); ?>
+         <?php echo $form->textField($model,'Address2',array('value'=>$customerPaymentDetails->address2, 'placeholder'=>'Address2…','maxlength'=>50, 'class'=>'span12')); ?>
+         <?php echo $form->error($model,'Address2'); ?>
+    </div>
+    
+    </div>
 
 
    <div class="row-fluid">

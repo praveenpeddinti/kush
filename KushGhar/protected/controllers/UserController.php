@@ -120,7 +120,8 @@ class UserController extends Controller {
     public function actionRegistration() {
         $_REQUEST['uname'] = $this->session['UserType'];
         //$_REQUEST['uname']=0;
-        //$inviteForm = new InviteForm;
+        //$inviteForm = new InviteForm;\
+        
         $this->session['Type'] = 'Customer';
 
         $model = new RegistrationForm;
@@ -167,6 +168,7 @@ class UserController extends Controller {
      * User BaiscInfo Form Controller END
      */
     public function actionBasicinfo() {
+        
         $basicForm = new BasicinfoForm;
         $updatedPasswordForm = new updatedPasswordForm;
 

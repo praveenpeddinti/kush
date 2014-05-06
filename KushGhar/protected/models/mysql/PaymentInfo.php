@@ -50,6 +50,11 @@ class PaymentInfo extends CActiveRecord {
             $paymentDetails->card_expiry_month = $model->expiryMonth;
             $paymentDetails->card_expiry_year = $model->expiryYear;
             //$paymentDetails->secure_code = $model->secureCode;
+            $paymentDetails->first_name = $model->FirstName;
+            $paymentDetails->last_name = $model->LastName;
+            $paymentDetails->phone = $model->Phone;
+            $paymentDetails->address1 = $model->Address1;
+            $paymentDetails->address2 = $model->Address2;
             $paymentDetails->update_timestamp = gmdate("Y-m-d H:i:s", time());
             if ($paymentDetails->update()) {
                 $result = "success";

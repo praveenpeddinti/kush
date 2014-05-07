@@ -35,6 +35,13 @@ class VendorRegistrationForm extends CFormModel {
                 array('FirstName,LastName,', 'required'),
                 array('FirstName,LastName,', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain Alphabet and space'),),
             ),
+            array('vendorType', 'ext.YiiConditionalValidator.YiiConditionalValidator',
+                'if' => array(
+                array('vendorType', 'compare', 'compareValue'=>"")),
+                'then' => array(
+                array('FirstName,LastName,', 'required'),
+                array('FirstName,LastName,', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain Alphabet and space'),),
+            ),
 
             array('vendorType', 'ext.YiiConditionalValidator.YiiConditionalValidator',
                 'if' => array(
@@ -55,11 +62,7 @@ class VendorRegistrationForm extends CFormModel {
             array('RepeatPassword', 'compare', 'compareAttribute' => 'Password',
                 'message' => 'Password  and Repeat Password must be match'
             ),
-            // First Name, Last Name must be Alphabet and space
-            //array('FirstName, LastName', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain Alphabet and space'),
-            //array('AFirstName', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => 'Primary Contact First Name can only contain Alphabet and space'),
-            //array('ALastName', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => 'Primary Contact Last Name can only contain Alphabet and space'),
-
+            
             array('vendorType,FirstName,LastName,PrimaryContactFirstName,PrimaryContactLastName,AgencyName,Email,Phone,Password,RepeatPassword,Id', 'safe'),
         );
     }

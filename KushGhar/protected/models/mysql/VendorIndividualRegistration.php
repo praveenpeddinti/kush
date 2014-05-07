@@ -26,7 +26,7 @@ class VendorIndividualRegistration extends CActiveRecord {
     public $update_timestamp;
     public $found_kushghar_by;
 
-    public static function model($className=__CLASS__) {
+    public static function model($className = __CLASS__) {
         return parent::model($className);
     }
 
@@ -34,18 +34,17 @@ class VendorIndividualRegistration extends CActiveRecord {
         return 'KG_vendor_individual';
     }
 
-
-
     public function checkAuthentication($model) {
         // only checking with the email not the username; should have do with the username also... ;
         try {
-            if(!is_numeric($model->UserId)){
-                $vendor = VendorIndividualRegistration::model()->findByAttributes(array(), 'email_address=:email_address  AND password_hash=:password_hash', array(':email_address' => $model->UserId, ':password_hash' => md5($model->Password)));
-                error_log("login----is not numeric-----".$model->UserId."------2-----".$model->Password);
-            }else{
-                $vendor = VendorIndividualRegistration::model()->findByAttributes(array(), 'phone=:phone AND password_hash=:password_hash', array(':phone' => $model->UserId, ':password_hash' => md5($model->Password)));
-                error_log("login---is numeric------".$model->UserId."------2-----".$model->Password);
-            }
+            /* if(!is_numeric($model->UserId)){
+              $vendor = VendorIndividualRegistration::model()->findByAttributes(array(), 'email_address=:email_address  AND password_hash=:password_hash', array(':email_address' => $model->UserId, ':password_hash' => md5($model->Password)));
+              error_log("login----is not numeric-----".$model->UserId."------2-----".$model->Password);
+              }else{
+              $vendor = VendorIndividualRegistration::model()->findByAttributes(array(), 'phone=:phone AND password_hash=:password_hash', array(':phone' => $model->UserId, ':password_hash' => md5($model->Password)));
+              error_log("login---is numeric------".$model->UserId."------2-----".$model->Password);
+              } */
+            $vendor = VendorIndividualRegistration::model()->findByAttributes(array(), 'email_address=:email_address  AND password_hash=:password_hash', array(':email_address' => $model->UserId, ':password_hash' => md5($model->Password)));
             if (isset($vendor)) {
                 $vendor->update_timestamp = gmdate("Y-m-d H:i:s", time());
                 $vendor->update();
@@ -57,7 +56,7 @@ class VendorIndividualRegistration extends CActiveRecord {
     }
 
     //Update Password in Vendor Individual
-    public function updatedPasswordInVendor($model, $VId,$VType) {
+    public function updatedPasswordInVendor($model, $VId, $VType) {
         try {
             $vendorObj = VendorIndividualRegistration::model()->findByAttributes(array('vendor_id' => $VId));
             $vendorObj->password_hash = md5($model->Password);
@@ -86,12 +85,10 @@ class VendorIndividualRegistration extends CActiveRecord {
         return $result;
     }
 
-
     //New Vendor Individual Registration
     public function saveVendorIndividualData($model) {
         try {
-            $dd=Vendor::model()->getSavedetails($model->vendorType);
-            error_log("fddffdfgf=====".$dd);
+            $dd = Vendor::model()->getSavedetails($model->vendorType);
             $vendorDetails = new VendorIndividualRegistration();
             $vendorDetails->vendor_id = $dd;
             $vendorDetails->first_name = $model->FirstName;
@@ -115,8 +112,7 @@ class VendorIndividualRegistration extends CActiveRecord {
     }
 
     public function vendorDetailsEithEmailType1($email) {
-
-        try {error_log("vender Type 1 details with email============");
+        try {
             $vendorDetailsWithEmail = VendorIndividualRegistration::model()->findByAttributes(array('email_address' => $email));
         } catch (Exception $ex) {
             error_log("############Error Occurred= in usergetDetails= #############" . $ex->getMessage());
@@ -133,16 +129,13 @@ class VendorIndividualRegistration extends CActiveRecord {
         return $vendorDetails;
     }
 
-
-     //Update Vendor Type1 Details from basic Information Controller action4
+    //Update Vendor Type1 Details from basic Information Controller action4
     public function updateVendorDetailsWithIndividual($model, $VId) {
         try {
-        $selectedOptions='';    
-        for($i=0;$i<sizeof($model->Services);$i++)
-            $selectedOptions = $selectedOptions.$model->Services[$i].',';
-            
+            $selectedOptions = '';
+            for ($i = 0; $i < sizeof($model->Services); $i++)
+                $selectedOptions = $selectedOptions . $model->Services[$i] . ',';
             $VendorObj = VendorIndividualRegistration::model()->findByAttributes(array('vendor_id' => $VId));
-
             $VendorObj->first_name = $model->FirstName;
             $VendorObj->last_name = $model->LastName;
             $VendorObj->middle_name = $model->MiddleName;
@@ -153,13 +146,8 @@ class VendorIndividualRegistration extends CActiveRecord {
             $VendorObj->pan_card = $model->Pan;
             $VendorObj->tin_number = $model->Tin;
             $VendorObj->website = $model->Website;
-            //$RegObj->uId = $model->IdentityProof;
-            //$RegObj->uIdNumber = $model->Number;
-            //$RegObj->uIdDocument = $model->uIdDocument;
-            //$RegObj->birth_date = $model->dateOfBirth;
             $VendorObj->found_kushghar_by = $model->foundKushgharBy;
             $VendorObj->update_timestamp = gmdate("Y-m-d H:i:s", time());
-            
             if ($VendorObj->update()) {
                 $result = "success";
             } else {
@@ -170,17 +158,14 @@ class VendorIndividualRegistration extends CActiveRecord {
         }
         return $result;
     }
-
 
     //Update Vendor Type1 Details from Contact Information Controller action
     public function updateVendorDetailsWithIndividualContact($model, $VId) {
         try {
             $VendorObj = VendorIndividualRegistration::model()->findByAttributes(array('vendor_id' => $VId));
-
             $VendorObj->email_address = $model->Email;
             $VendorObj->phone = $model->Phone;
             $VendorObj->update_timestamp = gmdate("Y-m-d H:i:s", time());
-            
             if ($VendorObj->update()) {
                 $result = "success";
             } else {
@@ -191,8 +176,5 @@ class VendorIndividualRegistration extends CActiveRecord {
         }
         return $result;
     }
-
-
-
 }
 ?>

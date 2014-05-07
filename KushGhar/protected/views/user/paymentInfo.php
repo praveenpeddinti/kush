@@ -219,12 +219,12 @@
    <div class="row-fluid">
      <div class=" span6">
          <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> Address1'); ?>
-         <?php echo $form->textField($model,'Address1',array('value'=>$customerPaymentDetails->address1, 'placeholder'=>'Address1…','maxlength'=>50, 'class'=>'span12')); ?>
+         <?php echo $form->textField($model,'Address1',array('value'=>$customerPaymentDetails->address1, 'placeholder'=>'Address1…','maxlength'=>100, 'class'=>'span12')); ?>
         <?php echo $form->error($model,'Address1'); ?>
     </div>
     <div class=" span6">
          <?php echo $form->labelEx($model,' Address2'); ?>
-         <?php echo $form->textField($model,'Address2',array('value'=>$customerPaymentDetails->address2, 'placeholder'=>'Address2…','maxlength'=>50, 'class'=>'span12')); ?>
+         <?php echo $form->textField($model,'Address2',array('value'=>$customerPaymentDetails->address2, 'placeholder'=>'Address2…','maxlength'=>100, 'class'=>'span12')); ?>
          <?php echo $form->error($model,'Address2'); ?>
     </div>
     

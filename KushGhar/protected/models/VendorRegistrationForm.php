@@ -32,14 +32,14 @@ class VendorRegistrationForm extends CFormModel {
                 'if' => array(
                 array('vendorType', 'compare', 'compareValue'=>"1")),
                 'then' => array(
-                array('FirstName,LastName,', 'required'),
+                array('FirstName,LastName,', 'required','message' => 'Please enter a value for {attribute}.'),
                 array('FirstName,LastName,', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain Alphabet and space'),),
             ),
             array('vendorType', 'ext.YiiConditionalValidator.YiiConditionalValidator',
                 'if' => array(
                 array('vendorType', 'compare', 'compareValue'=>"")),
                 'then' => array(
-                array('FirstName,LastName,', 'required'),
+                array('FirstName,LastName,', 'required','message' => 'Please enter a value for {attribute}.'),
                 array('FirstName,LastName,', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain Alphabet and space'),),
             ),
 

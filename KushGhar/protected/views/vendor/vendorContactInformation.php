@@ -42,7 +42,7 @@
                                 </li>
               
                     <li ><a href="#"> <i class="fa fa-credit-card"></i> Payment Info</a>
-                        <div class="status_info1"></div>
+                        <div class="status_info3"></div>
                     </li>
                 </ul>
             </div>

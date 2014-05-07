@@ -16,24 +16,71 @@
                     <div class="sub_menu ">
                         <div id="accounts" class="collapse in">
                             <div class="selected_tab">Account</div>
+                            
                             <ul class="l_menu_sub_menu">
+                                <li>
+                                    
+                                    <div id="progressbar"></div>
+                                </li>
                                 <?php
                                  if((!empty($customerDetails->first_name)) && (!empty($customerDetails->middle_name)) && (!empty($customerDetails->last_name)) && (!empty($customerDetails->birth_date)) && (!empty($customerDetails->profilePicture)) && (!empty($customerDetails->found_kushghar_by))){
                                      $statusClassForBasic = 'status_info2';
-                                 }else{
+                                     $basicPercent = 35;
+                                     error_log("1point----".$basicPercent);
+                                 }else if((empty($customerDetails->middle_name)) && (empty($customerDetails->found_kushghar_by)) && (empty($customerDetails->profilePicture)) && (empty($customerDetails->birth_date))){
                                      $statusClassForBasic = 'status_info1';
+                                     $basicPercent = 15;
+                                     error_log("2point----".$basicPercent);
+                                 }else if((empty($customerDetails->middle_name)) && (empty($customerDetails->found_kushghar_by)) && (empty($customerDetails->profilePicture))){
+                                     
+                                     $statusClassForBasic = 'status_info1';
+                                     $basicPercent = 20;
+                                     error_log("3point----".$basicPercent);
+                                 }else if((empty($customerDetails->found_kushghar_by)) && (empty($customerDetails->profilePicture))){
+                                     
+                                     $statusClassForBasic = 'status_info1';
+                                     $basicPercent = 25;
+                                     error_log("5point----".$basicPercent);
+                                 }else if((empty($customerDetails->profilePicture))){
+                                     
+                                     $statusClassForBasic = 'status_info1';
+                                     $basicPercent = 30;
+                                     error_log("6point----".$basicPercent);
+                                 }else if((empty($customerDetails->found_kushghar_by))){
+                                     
+                                     $statusClassForBasic = 'status_info1';
+                                     $basicPercent = 30;
+                                     error_log("6point----".$basicPercent);
+                                 }else {
+                                     $statusClassForBasic = 'status_info1';
+                                     $basicPercent = 10;
+                                     error_log("4point----".$basicPercent);
+                                     
                                  }
                                  if((!empty($customerAddressDetails->alternate_phone)) && (!empty($customerAddressDetails->address_line1)) && (!empty($customerAddressDetails->address_line2)) && (!empty($customerAddressDetails->address_state)) && (!empty($customerAddressDetails->address_city)) && (!empty($customerAddressDetails->address_pin_code)) && (!empty($customerAddressDetails->address_landmark))){
                                      
                                      $statusClassForContact = 'status_info2';
+                                     $contactPercent = 35;
+                                 }else if((empty($customerAddressDetails->address_line1))){
+                                     
+                                     $statusClassForContact = 'status_info1';
+                                     $contactPercent = 20;
+                                     error_log("6point----".$contactPercent);
                                  }else{
                                      
                                      $statusClassForContact = 'status_info1';
+                                     $contactPercent = 10;
+                                     error_log("elsepoint----".$contactPercent);
                                  }
-                                 if((!empty($customerPaymentDetails->card_type)) && (!empty($customerPaymentDetails->card_holder_name)) && (!empty($customerPaymentDetails->card_number)) && (!empty($customerPaymentDetails->card_expiry_month)) && (!empty($customerPaymentDetails->card_expiry_year))){
+                                 if((!empty($customerPaymentDetails->card_type)) && (!empty($customerPaymentDetails->card_holder_name)) && (!empty($customerPaymentDetails->card_number)) && (!empty($customerPaymentDetails->card_expiry_month)) && (!empty($customerPaymentDetails->card_expiry_year)) && (!empty($customerPaymentDetails->first_name)) && (!empty($customerPaymentDetails->last_name))&& (!empty($customerPaymentDetails->phone)) && (!empty($customerPaymentDetails->address1)) && (!empty($customerPaymentDetails->address2))){
                                      $statusClassForPayment = 'status_info2';
+                                     $payPercent = 35;
+                                 }else if (empty($customerPaymentDetails->address2)){
+                                     $statusClassForPayment = 'status_info1';
+                                     $payPercent = 20;
                                  }else{
                                      $statusClassForPayment = 'status_info3';
+                                     $payPercent = 0;
                                  }
                                  ?>
                                 <li class="active"><a href="basicinfo"> <i class="fa fa-user"></i> Basic Info</a>
@@ -70,6 +117,7 @@
                 <div class="row-fluid">
                     <div class="span12">
                         <h4 class="paddingL20">Basic Information</h4>
+                        
                         <hr>
                         <div class="paddinground">
                             <div id="basicInfoSpinLoader"></div>
@@ -171,17 +219,16 @@
                                     </div>
                                 </div>
                                <div class="row-fluid">
-                                <div class=" span12">
+                                <div class=" span6">
                                     <label>How do you know KushGhar?</label>
                                 <?php //echo $form->label($model, 'How do you know KushGhar ?'); ?>
                                     <?php echo $form->dropDownList($model,'foundKushgharBy', array(''=>'Select One','friend' => 'Friend', 'mail' => 'Mail'), array('options' => array($customerDetails->found_kushghar_by => array('selected' => 'selected')), 'class' => 'span12'));?>
                                     <?php echo $form->error($model,'foundKushgharBy'); ?>
                                     <?php //echo $form->dropDownList($model, 'cardType', CHtml::listData(array('prompt'=>'Select Card Type','options' => ('Visa''Visa', 'Master' => 'Master')), 'Id', 'identifiability'), array('options' => array($customerPaymentDetails->card_type => array('selected' => 'selected')), 'class' => 'span12')); ?>
                                 </div>
-                                </div>
-                                <div class="row-fluid">
-                                    <div class="span12 ">
-                                        <div class="pull-right">
+                                
+                                    <div class="span6 ">
+                                        <div class="pull-right paddingT30">
                                         <?php   echo CHtml::ajaxButton('Continue', array('user/basicinfo'), array(
                                                         'type' => 'POST',
                                                         'dataType' => 'json',
@@ -244,8 +291,12 @@
 
 <script type="text/javascript">
     
-
-    $(document).ready(function() { $("#instant_notifications").fadeOut(6000, "");
+    
+    $(document).ready(function() { 
+        
+        <?php $totalPercent = $basicPercent+$contactPercent+$payPercent;?>
+        $( "#progressbar" ).progressbar({value: <?php echo $totalPercent;?>});
+        $("#instant_notifications").fadeOut(6000, "");
 
     <?php if($customerDetails->customer_gender == 1){ ?>
         $('#Gender').bootstrapSwitch('setState', true);

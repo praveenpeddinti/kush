@@ -34,6 +34,7 @@
         return true;
     }
     function inviteUser(rowNos, status,email) {
+        //scrollPleaseWait("InviteInfoSpinLoader","contactInfo-form");
         
         var data = "Id=" + rowNos + "&status=" + status+ "&email=" + email;
             
@@ -43,7 +44,7 @@
                 url: '<?php echo Yii::app()->createAbsoluteUrl("/admin/inviteStatus"); ?>',
                 data: data,
                 success: function(data) {
-                    
+                    //scrollPleaseWaitClose('InviteInfoSpinLoader');
                     $('#message').show();
                     $("#message").addClass('alert alert-success');
                     $("#message").text('Invitation sent Successfully.');
@@ -62,10 +63,11 @@
     function statusChangeUser(rowNos, status) {
         //alert(status);
         if (status == 1) {
-            var statusData = 'Do you want to change Active to Inactive?';
-        } else {
+            var statusData = 'Do you want to Delete?';
+        } 
+        /*else {
             var statusData = 'Do you want to change Inactive to Active?';
-        }
+        }*/
         var r = confirm(statusData);
         if (r == true) {
             var data = "Id=" + rowNos + "&status=" + status;
@@ -120,12 +122,15 @@
         if (status == 0) {
             $('#usera_' + rowNos).attr('class', 'icon_reinvite');
             $('#usera_' + rowNos).attr('invite-status', '1');
+            $('#status_' + rowNos).text('Invited');
         } else if (status == 1) {
             $('#usera_' + rowNos).attr('class', 'icon_reinvite');
             $('#usera_' + rowNos).attr('invite-status', '2');
+            $('#status_' + rowNos).text('Re-Invited');
         }else {
             $('#usera_' + rowNos).attr('class', 'icon_reinvite');
             $('#usera_' + rowNos).attr('invite-status', '2');
+            $('#status_' + rowNos).text('Re-Invited');
         }
 
         if (data.status == 'success') {
@@ -140,6 +145,7 @@
 </script>
 
 <div class="container">
+    
     <section>
         <div class="container minHeight">
             <aside>
@@ -177,6 +183,7 @@
                         <h4 class="paddingL20">Invitation Management</h4>
                         
                         <div class="paddinground">    
+                            <div id="InviteInfoSpinLoader"></div>
                             <div id="tablewidget"  style="margin: auto;"><div id="message" style="display:none"></div>
                                 <table id="userTable" class="table table-hover">
 
@@ -211,10 +218,10 @@
             var inviteEmail = $(this).attr('invite-email');
            
         
-            if(id>0){alert("delte");
+            if(id>0){
                 statusChangeUser(Number(id), Number(status));
             }
-            if(id2>0){alert("invite");
+            if(id2>0){
                 inviteUser(Number(id2), Number(inviteStatus), inviteEmail);
             }
         });

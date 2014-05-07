@@ -11,7 +11,7 @@
                                         ?>
                                         <tr id="row_<?php echo $row['Id'];?>" class="odd">
                                             <td><?php echo $row['email_address']; ?></td>
-                                            <td>
+                                            <td id="status_<?php echo $row['Id']; ?>">
                                                 <?php 
                                                 if($row['invite']==0){$status = 'Not Invited';} 
                                                 if($row['invite']==1){$status = 'Invited';} 

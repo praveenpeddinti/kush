@@ -95,13 +95,14 @@ class InviteUser extends CActiveRecord {
         return $result;
     }
     public function getStatusUser($id,$val){
-        if($val==0){$status=1;}
-        if($val==1){$status=0;}
+        //if($val==0){$status=1;}
+        //if($val==1){$status=0;}
         $result = "failed";
         try{
             $InviteObj = InviteUser::model()->findByAttributes(array('Id'=>$id));
-            $InviteObj->status = $status;
-            if($InviteObj->update())
+            //$InviteObj->status = $status;
+            if($InviteObj->delete())
+            //if($InviteObj->update())
                 $result = "success";
         }catch(Exception $ex){
              error_log("################Exception Occurred  changeContactStatus##############".$ex->getMessage());

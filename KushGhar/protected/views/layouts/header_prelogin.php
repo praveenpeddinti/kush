@@ -51,7 +51,7 @@
                                     </div>
                                 </li>-->
                                 <li class="mobilemiddle">
-                                    <div class="input-append search">
+                                    <div class="input-append " style="width:187px">
                                         <!--<div id='cse' style='width: 100%;'>Loading</div>-->
                                         <script>
   (function() {
@@ -66,8 +66,8 @@
   })();
 </script>
 <gcse:search></gcse:search>
-                                        <input class="serachInput" id="appendedInputButton" type="text" placeholder="Search...">
-                                        <button class="btn btn-large btn-search" type="button"><i class="fa fa-search"></i></button>
+                                        <!--<input class="serachInput" id="appendedInputButton" type="text" placeholder="Search...">
+                                        <button class="btn btn-large btn-search" type="button"><i class="fa fa-search"></i></button>-->
                                     </div>
                                 </li>
                                 <li class="dropdown ">
@@ -176,12 +176,12 @@
 <script type="text/javascript">
     function loginpopup(){
         
-        window.location.href=<?php echo Yii::app()->request->baseUrl; ?>'/user/registration';
+        window.location.href='<?php echo Yii::app()->request->baseUrl; ?>/user/registration';
         //getCollectionDataWithPagination('/user/inviteRegistration','my', 'modelBodyDiv', '');
         
     }
     function adminLoginpopup(){
-        window.location.href=<?php echo Yii::app()->request->baseUrl; ?>'/admin/login';
+        window.location.href='<?php echo Yii::app()->request->baseUrl; ?>/admin/login';
     }
     
     

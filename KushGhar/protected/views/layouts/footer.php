@@ -46,6 +46,59 @@
         </div>
     </div>
 </footer>
+<style type="text/css">
+   .gsc-control-cse{ background-color: transparent;
+    border-color: transparent;}
+
+
+.cse .gsc-control-cse, .gsc-control-cse {
+    border-radius:0px;
+    padding: 0px;
+   
+}
+.gsc-search-box-tools .gsc-search-box .gsc-input {
+    padding-right: 0px;
+}
+input.gsc-search-button {
+    margin-left: 0px;margin-top: 0px;
+}
+input.gsc-search-button, input.gsc-search-button:hover, input.gsc-search-button:focus {
+    background-color: #EAEAEA;
+    background-image: none;
+    border-color: #CCCCCC;
+    filter: none;
+}
+.cse .gsc-search-button input.gsc-search-button-v2, input.gsc-search-button-v2 {
+    
+    padding: 11px 11px;
+    border-radius:0px 10px 10px 0;
+}
+
+.gsib_a {
+    padding: 0px;
+    
+}
+
+.gsc-input-box {
+    border-radius:10px 0px 0px 10px;
+    border: 1px solid #CCCCCC;
+    height: 25px;
+    padding: 10px 0px 0 10px;
+width:136px
+}
+
+input.gsc-input{height:30px}
+.gsst_a {
+    padding: 0px;
+}
+input.gsc-input, .gsc-input-box, .gsc-input-box-hover, .gsc-input-box-focus{box-shadow: 0 0px 0px rgba(0, 0, 0, 0.075) inset;}
+input[type="text"]:focus{box-shadow: 0 0px 0px rgba(0, 0, 0, 0.075) inset, 0 0 0px rgba(82, 168, 236, 0.6)}
+input.gsc-input {
+   
+    font-size: 15px;
+   
+}
+    </style>
 <script type="text/javascript">
     try {
         var trackId = '<?php echo Yii::app()->params['googleTrackId']; ?>';

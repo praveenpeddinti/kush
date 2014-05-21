@@ -121,9 +121,9 @@
                 
                 <div class="row-fluid">
                     <div class="span12">
+                        <h2 class="paddingL20">Services </h2> <hr>
                         
-                        
-                        <div class="paddinground">
+                        <div class="paddinground paddingTop0">
                             
                             <div id="serviceSpinLoader"></div>
                             
@@ -144,22 +144,26 @@
                                 
                                 <div class="row-fluid">
                                     <div class=" span12">
-                                        
-                                        <?php //echo $form->radioButton($model, 'HouseCleaning', array('value'=>1, 'uncheckValue'=>null)); ?>
-                                    <?php echo  $form->radioButtonList($homeModel,'HouseCleaning',array('1'=>'Please clean my house','0'=>'Not Required'),array('separator'=>'', 'labelOptions'=>array('style'=>'display:inline'))); ?>
-                                        <?php echo $form->error($homeModel, 'HouseCleaning'); ?>    
+                                        <div class="services_opts">
+                                            <ul>
+                                                <li class="house_cleaning">
+                                                    <?php //echo $form->radioButton($model, 'HouseCleaning', array('value'=>1, 'uncheckValue'=>null)); ?>
+                                    <?php echo  $form->radioButtonList($homeModel,'HouseCleaning',array('1'=>'Please clean my house','0'=>'Not Required'),array('separator'=>'<span class="spacerbet_radio spacerbet_radio_100">&nbsp;</span>', 'labelOptions'=>array('style'=>'margin-bottom:0', 'class'=>'spacerbet_radio_label'),'class'=>'styled')); ?>
+                                        <?php echo $form->error($homeModel, 'HouseCleaning'); ?>   
+                                                </li>
+                                                <li class="car_wash not_required">
+                                                    <?php echo  $form->radioButtonList($homeModel,'CarCleaning',array('1'=>'I want my car to be wash','0'=>'No car wash'),array('separator'=>'<span class="spacerbet_radio spacerbet_radio_82">&nbsp;</span>', 'labelOptions'=>array('style'=>'margin-bottom:0', 'class'=>'spacerbet_radio_label'),'class'=>'styled')); ?>
+                                                </li>
+                                                <li class="stewards select">
+                                                    <?php echo  $form->radioButtonList($homeModel,'StewardCleaning',array('1'=>'I want stewards for my party','0'=>'Not Required'),array('separator'=>'<span class="spacerbet_radio spacerbet_radio_57">&nbsp;</span>', 'labelOptions'=>array('style'=>'margin-bottom:0', 'class'=>'spacerbet_radio_label'),'class'=>'styled')); ?>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                         
                                     </div>                                 
                                 </div>
-                                <div class="row-fluid">
-                                    <div class=" span12">
-                                        <?php echo  $form->radioButtonList($homeModel,'CarCleaning',array('1'=>'I want my car to be wash','0'=>'No car wash'),array('separator'=>'', 'labelOptions'=>array('style'=>'display:inline'))); ?>
-                                     </div>                                 
-                                </div>
-                                <div class="row-fluid">
-                                    <div class=" span12">
-                                        <?php echo  $form->radioButtonList($homeModel,'StewardCleaning',array('1'=>'I want stewards for my party','0'=>'Not Required'),array('separator'=>'', 'labelOptions'=>array('style'=>'display:inline'))); ?>
-                                     </div>                                 
-                                </div>
+                                
+                                
                                 <div class="row-fluid">
                                 <div class=" span12">
                                   <div class="pull-right paddingT30">

@@ -38,7 +38,7 @@
                 <div class="contact_info pull-right">
                     <div class="getintouch">
                         Get in touch
-                        <p style=" margin-top:5px">040 233 52575</p>
+                        <p style=" margin-top:5px">1800-3070-6959</p>
                         <p>helpme@kushghar.com</p>
                     </div>
                 </div>

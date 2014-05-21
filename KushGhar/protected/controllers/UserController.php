@@ -468,5 +468,424 @@ class UserController extends Controller {
             $this->renderPartial('inviteRegistration', array("inviteModel" => $inviteForm, "getServices" => $getServices));
         }
     }
+    
+    
+    
+    /*
+     * Services Control actions start
+     */
+    public function actionHomeService(){error_log("enter Home services controller---------");
+        $homeModel = new HomeServiceForm;
+        $cId = $this->session['UserId'];
+        $customerDetails = $this->kushGharService->getCustomerDetails($cId);
+        $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($cId);
+        $customerPaymentDetails = $this->kushGharService->getCustomerPaymentDetails($cId);
+        
+        $request = yii::app()->getRequest();
+        $formName = $request->getParam('HomeServiceForm');
+        if ($formName != '') {error_log("dsfsdfsd");
+            $homeModel->attributes = $request->getParam('HomeServiceForm');
+            error_log("------".$homeModel->HouseCleaning);
+            $errors = CActiveForm::validate($homeModel);
+            if ($errors != '[]') {error_log("enter valid=====");
+                $obj = array('status' => 'error', 'message' => '', 'error' => $errors);
+            } else {error_log("--else----".$homeModel->HouseCleaning ."--CC--".$homeModel->CarCleaning."--SC--".$homeModel->StewardCleaning);
+                if(empty($homeModel->HouseCleaning) && empty($homeModel->CarCleaning) && empty($homeModel->StewardCleaning)){
+                        $errors = array("HomeServiceForm_error" => 'Please select any Service.');
+                    $obj = array('status' => '', 'data' => '', 'error' => $errors);
+                    //$obj = array('status' => 'error', 'message' => '', 'error' => 'Please select any Service');
+                    }else{
+                        $HouseCleaning = 0;
+                        $CarCleaning=0;
+                        $StewardCleaning=0;
+                        if(!empty($homeModel->HouseCleaning)){
+                            $HouseCleaning = 1;
+                        }
+                        if (!empty($homeModel->CarCleaning)) {
+                            $CarCleaning=1;
+                        }
+                        if (!empty($homeModel->StewardCleaning)) {
+                            $StewardCleaning = 1;
+                        }
+                        $data='';
+                        if(!empty($homeModel->HouseCleaning)){
+                            error_log("-----------------------aaaa---1-");
+                            $houseModel = new HouseCleaningForm;
+                            $getServiceDetails = $this->kushGharService->getDetails($cId);
+                            error_log("squarefeets is ===".$getServiceDetails['squarefeets']);
+                            $data=$this->renderPartial('services', array('model'=>$houseModel,'getServiceDetails'=>$getServiceDetails,'HouseCleaning'=>$HouseCleaning,'CarCleaning'=>$CarCleaning,'StewardCleaning'=>$StewardCleaning), true);
+                        
+                            
+                        }
+                        elseif (!empty($homeModel->CarCleaning)) {
+                            error_log("===============car wash ------=========hone\n");
+                                $carModel = new CarWashForm;
+                                $cId = $this->session['UserId'];
+                                 $States = $this->kushGharService->getStates();
+                                $customerDetails = $this->kushGharService->getCustomerDetails($cId);
+                            $data=$this->renderPartial('carwash', array('model'=>$carModel, "customerDetails" => $customerDetails, 'States' => $States, 'HouseCleaning'=>$HouseCleaning,'CarCleaning'=>$CarCleaning,'StewardCleaning'=>$StewardCleaning), true);
+                        }elseif (!empty($homeModel->StewardCleaning)) {
+                            error_log("-----------------------aaaa---2-");
+                            $stewardModel = new StewardCleaningForm;
+                            $data=$this->renderPartial('stewards', array('model1'=>$stewardModel, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails,'HouseCleaning'=>$HouseCleaning,'CarCleaning'=>$CarCleaning,'StewardCleaning'=>$StewardCleaning), true);
+                    error_log("========================2\n");
+                            //$data=$this->renderPartial('stewards', array('model1'=>$stewardModel,'HouseCleaning'=>$HouseCleaning,'CarCleaning'=>$CarCleaning,'StewardCleaning'=>$StewardCleaning), true);
+                            
+                        }
+                        $obj = array('status' => 'success', 'data' => $data, 'error' => '','HouseCleaning'=>$HouseCleaning,'CarCleaning'=>$CarCleaning,'StewardCleaning'=>$StewardCleaning);
+                    }
+            }
+            $renderScript = $this->rendering($obj);
+            echo $renderScript;
+        } else {
+            $this->render('homeService', array("homeModel"=>$homeModel,"customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails));
+    
+        }
+        }
+    
+    
+    public function actionServices(){error_log("enter services controller---------");
+        $houseModel = new HouseCleaningForm;
+        $cId = $this->session['UserId'];
+        $customerDetails = $this->kushGharService->getCustomerDetails($cId);
+        $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($cId);
+        $customerPaymentDetails = $this->kushGharService->getCustomerPaymentDetails($cId);
+        
+        $request = yii::app()->getRequest();
+        $formName = $request->getParam('HouseCleaningForm');
+        if ($formName != '') {
+        $houseModel->attributes = $request->getParam('HouseCleaningForm');
+            error_log("---ddd---".$houseModel->HouseCleaning);
+            
+            $errors = CActiveForm::validate($houseModel);
+            if ($errors != '[]') {error_log("enter valid=====");
+                $obj = array('status' => 'error', 'message' => '', 'error' => $errors);
+        }else{
+            //Saving Logic
+            $result = $this->kushGharService->addHouseCleaningService($houseModel, $cId);
+            error_log("result===========".$result."type====".$_REQUEST['Type']);
+            $HouseCleaning = 0;
+            $CarCleaning=0;
+            $StewardCleaning=0;
+            if(!empty($houseModel->HouseCleaning)){
+                $HouseCleaning = 1;
+            }
+            if (!empty($houseModel->CarCleaning)) {
+                $CarCleaning=1;
+            }
+            if (!empty($houseModel->StewardCleaning)) {
+                $StewardCleaning = 1;
+            }
+            
+            if($_REQUEST['Type']=='next'){
+                $data='';
+                /*if((!empty($houseModel->HouseCleaning))   ){
+                    error_log("-----------------------aaaa---1-");
+                    $houseModel = new HouseCleaningForm;
+                    $data=$this->renderPartial('services', array('model'=>$houseModel,'HouseCleaning'=>$HouseCleaning,'CarCleaning'=>$CarCleaning,'StewardCleaning'=>$StewardCleaning), true);
+                }
+                else*/if (!empty($houseModel->CarCleaning)) {
+                    error_log("-----------------------carbeforeenteraaaa---1-".$houseModel->SquareFeets);
+                 $carModel = new CarWashForm;
+                        //$cId = $this->session['UserId'];
+                        $States = $this->kushGharService->getStates();
+                        //$customerDetails = $this->kushGharService->getCustomerDetails($cId);
+                    $data=$this->renderPartial('carwash', array('model'=>$carModel, 'customerDetails' => $customerDetails, 'States' => $States, 'HouseCleaning'=>$HouseCleaning,'CarCleaning'=>$CarCleaning,'StewardCleaning'=>$StewardCleaning), true);
 
+                }elseif (!empty($houseModel->StewardCleaning)) {
+                    error_log("-----------------------house cleaning aaaa---2-");
+                    $stewardModel = new StewardCleaningForm;
+                    error_log("========================1\n");
+                    //$cId = $this->session['UserId'];
+                    //$customerDetails = $this->kushGharService->getCustomerDetails($cId);
+                    //$customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($cId);
+                    //$customerPaymentDetails = $this->kushGharService->getCustomerPaymentDetails($cId);
+                    
+                    $data=$this->renderPartial('stewards', array('model1'=>$stewardModel, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails,'HouseCleaning'=>$HouseCleaning,'CarCleaning'=>$CarCleaning,'StewardCleaning'=>$StewardCleaning), true);
+                    error_log("========================2\n");
+                }
+                error_log("========================3\n");
+                $obj = array('status' => 'success', 'data' => $data, 'error' => '','HouseCleaning'=>$HouseCleaning,'CarCleaning'=>$CarCleaning,'StewardCleaning'=>$StewardCleaning);
+            error_log("========================4\n");
+                
+                }else{error_log("house clean yes====".$houseModel->HouseCleaning);
+                $priceModel = new PriceQuoteForm;
+                $cId = $this->session['UserId'];
+                $customerDetails = $this->kushGharService->getCustomerDetails($cId);
+                $getServiceDetails = $this->kushGharService->getDetails($cId);
+                
+                $data=$this->renderPartial('priceQuote', array("customerDetails" => $customerDetails, "getServiceDetails" => $getServiceDetails,'HouseCleaning'=>$houseModel->HouseCleaning,'StewardsCleaning'=>$houseModel->StewardCleaning), true);
+                error_log("house clean 2yes====".$houseModel->HouseCleaning);
+                $obj = array('status' => 'success', 'data' => $data, 'error' => '');
+            }
+        }error_log("========================8\n");
+        $renderScript = $this->rendering($obj);
+        error_log("========================last");
+        echo $renderScript;
+        }else{
+        $this->render('services', array("model"=>$houseModel,"model1"=>$stewardModel,"customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails,"HC"=>$HC,"CC"=>$CC,"SC"=>$SC));
+        }    
+        
+    
+    }
+    /*public function actionServices(){error_log("enter services controller---------");
+        $houseModel = new HouseCleaningForm;
+        $cId = $this->session['UserId'];
+        $customerDetails = $this->kushGharService->getCustomerDetails($cId);
+        $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($cId);
+        $customerPaymentDetails = $this->kushGharService->getCustomerPaymentDetails($cId);
+        $this->session['firstName'] = $customerDetails->first_name;
+        $request = yii::app()->getRequest();
+        $formName = $request->getParam('HouseCleaningForm');
+       
+        if ($formName != '') {
+            $houseModel->attributes = $request->getParam('HouseCleaningForm');
+            $errors = CActiveForm::validate($houseModel);
+            if ($errors != '[]') {
+                $obj = array('status' => 'error', 'message' => '', 'error' => $errors);
+            } else {
+                $result = $this->kushGharService->addHouseCleaningService($houseModel, $cId);
+                error_log("results==========".$result);
+                if ($result == "success") {
+                    $message = Yii::t('translation', 'Thank you for contacting us. We will respond to you as soon as possible');
+                    $obj = array('status' => 'success', 'message' => $message, 'error' => '');
+                } else {
+                    $message = Yii::t('translation', 'Already User Existed');
+                    $obj = array('status' => 'error', 'message' => '', 'error' => $message);
+                }
+            }
+           
+           $renderScript = $this->rendering($obj);
+            echo $renderScript;
+        } else {
+          $this->render('services', array("model"=>$houseModel,"customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails));
+            }
+        
+    }*/
+    
+    
+    public function actionCarwash(){error_log("enter car services controller---------");
+        $houseModel = new CarWashForm;
+        $cId = $this->session['UserId'];
+        
+        $customerDetails = $this->kushGharService->getCustomerDetails($cId);
+        $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($cId);
+        $customerPaymentDetails = $this->kushGharService->getCustomerPaymentDetails($cId);
+        $this->session['firstName'] = $customerDetails->first_name;
+        $request = yii::app()->getRequest();
+        $formName = $request->getParam('CarWashForm');
+        if ($formName != '') {
+        $houseModel->attributes = $request->getParam('CarWashForm');
+            error_log("---Car--");
+            
+            $errors = CActiveForm::validate($houseModel);
+            if ($errors != '[]') {error_log("enter valid=====");
+                $obj = array('status' => 'error', 'message' => '', 'error' => $errors);
+        }else{
+            {error_log("---Car2--".$houseModel->StewardCleaning);
+                        $HouseCleaning = 0;
+                        $CarCleaning=0;
+                        $StewardCleaning=0;
+                        /*if(!empty($houseModel->HouseCleaning)){
+                            $HouseCleaning = 1;
+                        }*/
+                        if (!empty($houseModel->CarCleaning)) {
+                            $CarCleaning=1;
+                        }
+                        if (!empty($houseModel->StewardCleaning)) {
+                            $StewardCleaning = 1;
+                        }
+                        $data='';
+                        /*if(!empty($houseModel->HouseCleaning)){
+                            error_log("-----------------------aaaa---1-");
+                            $houseModel = new HouseCleaningForm;
+                            $data=$this->renderPartial('services', array('model'=>$houseModel,'HouseCleaning'=>$HouseCleaning,'CarCleaning'=>$CarCleaning,'StewardCleaning'=>$StewardCleaning), true);
+                        }
+                        elseif (!empty($houseModel->CarCleaning)) {
+                         $carModel = new CarWashForm;
+                            $data=$this->renderPartial('carwash', array('model'=>$carModel), true);
+                        }else*/if (!empty($houseModel->StewardCleaning)) {
+                            error_log("-----------------------aaaa---2-");
+                            $stewardModel = new StewardCleaningForm;
+                            //$data=$this->renderPartial('stewards', array('model1'=>$stewardModel), true);
+                            $data=$this->renderPartial('stewards', array('model1'=>$stewardModel, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails,'HouseCleaning'=>$HouseCleaning,'CarCleaning'=>$CarCleaning,'StewardCleaning'=>$StewardCleaning), true);
+                            
+                        }/*else{error_log("enter price quote");
+                        //$priceModel = new PriceQuoteForm;
+                        $cId = $this->session['UserId'];
+                        $customerDetails = $this->kushGharService->getCustomerDetails($cId);
+                        $getServiceDetails = $this->kushGharService->getDetails($cId);
+                        $data=$this->renderPartial('priceQuote', array("customerDetails" => $customerDetails, "getServiceDetails" => $getServiceDetails), true);
+                        }*/
+                        $obj = array('status' => 'success', 'data' => $data, 'error' => '','HouseCleaning'=>$HouseCleaning,'CarCleaning'=>$CarCleaning,'StewardCleaning'=>$StewardCleaning);
+                    }
+        }
+        $renderScript = $this->rendering($obj);
+        echo $renderScript;
+        } else {
+            //$this->render('carwash', array("customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails));
+        }
+        //$this->render('carwash', array("customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails));
+    }
+    
+    
+    
+    
+    
+    public function actionStewards(){error_log("enter Stewards services controller---------");
+        $stewardModel = new StewardCleaningForm;
+        $cId = $this->session['UserId'];
+        $customerDetails = $this->kushGharService->getCustomerDetails($cId);
+        $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($cId);
+        $customerPaymentDetails = $this->kushGharService->getCustomerPaymentDetails($cId);
+        $request = yii::app()->getRequest();
+        $formName = $request->getParam('StewardCleaningForm');
+        
+        if ($formName != '') {
+        $stewardModel->attributes = $request->getParam('StewardCleaningForm');
+            error_log("---ddd---".$stewardModel->HouseCleaning);
+            
+            $errors = CActiveForm::validate($stewardModel);
+            if ($errors != '[]') {error_log("enter valid=====");
+                $obj = array('status' => 'error', 'message' => '', 'error' => $errors);
+        }else{error_log("startTime===".$stewardModel->StartTime."=====".$stewardModel->EndTime);
+        
+        $date_a = new DateTime($stewardModel->StartTime);
+$date_b = new DateTime($stewardModel->EndTime);
+        
+        $interval = date_diff($date_a,$date_b);
+
+            error_log("------------------inter-------".round($interval->format('%h:%i:%s')));
+            error_log("------------------No of Stewards-------".$stewardModel->totalStewards);
+            //Saving Logic
+            $result = $this->kushGharService->addStewardsCleaningService($stewardModel, $cId);
+            error_log("result===========".$result."type====".$_REQUEST['Type']);
+            $HouseCleaning = 0;
+            $CarCleaning=0;
+            $StewardCleaning=0;
+            if(!empty($houseModel->HouseCleaning)){
+                $HouseCleaning = 1;
+            }
+            if (!empty($houseModel->CarCleaning)) {
+                $CarCleaning=1;
+            }
+            if (!empty($houseModel->StewardCleaning)) {
+                $StewardCleaning = 1;
+            }
+            
+            if($_REQUEST['Type']=='next'){
+                $data='';
+                /*if((!empty($houseModel->HouseCleaning))   ){
+                    error_log("-----------------------aaaa---1-");
+                    $houseModel = new HouseCleaningForm;
+                    $data=$this->renderPartial('services', array('model'=>$houseModel,'HouseCleaning'=>$HouseCleaning,'CarCleaning'=>$CarCleaning,'StewardCleaning'=>$StewardCleaning), true);
+                }
+                elseif (!empty($houseModel->CarCleaning)) {
+                    error_log("-----------------------carbeforeenteraaaa---1-".$houseModel->SquareFeets);
+                 $carModel = new CarWashForm;
+                        $cId = $this->session['UserId'];
+                        $States = $this->kushGharService->getStates();
+                        $customerDetails = $this->kushGharService->getCustomerDetails($cId);
+                    $data=$this->renderPartial('carwash', array('model'=>$carModel, 'customerDetails' => $customerDetails, 'States' => $States, 'HouseCleaning'=>$HouseCleaning,'CarCleaning'=>$CarCleaning,'StewardCleaning'=>$StewardCleaning), true);
+
+                }else*/if (!empty($houseModel->StewardCleaning)) {
+                    error_log("-----------------------aaaa---2-");
+                    $stewardModel = new StewardCleaningForm;
+                    $data=$this->renderPartial('stewards', array('model1'=>$stewardModel), true);
+
+                }
+                $obj = array('status' => 'success', 'data' => $data, 'error' => '','HouseCleaning'=>$HouseCleaning,'CarCleaning'=>$CarCleaning,'StewardCleaning'=>$StewardCleaning);
+            }else{error_log("type====".$_REQUEST['Type']);
+            error_log("stewards clean 2yes====".$stewardModel->HouseCleaning);
+                $priceModel = new PriceQuoteForm;
+                $cId = $this->session['UserId'];
+                $customerDetails = $this->kushGharService->getCustomerDetails($cId);
+                $getServiceDetails = $this->kushGharService->getDetails($cId);
+                $getStewardsServiceDetails = $this->kushGharService->getStewardsDetails($cId);
+                $data=$this->renderPartial('priceQuote', array("customerDetails" => $customerDetails, "getServiceDetails" => $getServiceDetails, 'getStewardsServiceDetails'=>$getStewardsServiceDetails,'HouseCleaning'=>$stewardModel->HouseCleaning,'StewardsCleaning'=>$stewardModel->StewardCleaning), true);
+                $obj = array('status' => 'success', 'data' => $data, 'error' => '');
+            }
+        }error_log("========================8\n");
+        $renderScript = $this->rendering($obj);
+        error_log("========================last");
+        echo $renderScript;
+        }else{
+        $this->render('stewards', array("model1"=>$stewardModel, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails));
+        }    
+        
+    
+    }
+    
+    /*public function actionStewards(){error_log("enter stewards services controller---------");
+        $stewardModel = new StewardCleaningForm;
+        $cId = $this->session['UserId'];
+        $customerDetails = $this->kushGharService->getCustomerDetails($cId);
+        $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($cId);
+        $customerPaymentDetails = $this->kushGharService->getCustomerPaymentDetails($cId);
+        $this->session['firstName'] = $customerDetails->first_name;
+        /*$request = yii::app()->getRequest();
+        $formName = $request->getParam('BasicinfoForm');
+        if ($formName != '') {
+            $basicForm->attributes = $request->getParam('BasicinfoForm');
+            $errors = CActiveForm::validate($basicForm);
+            if ($errors != '[]') {
+                $obj = array('status' => 'error', 'message' => '', 'error' => $errors);
+            } else {
+                if ($this->session['fileName'] == '') {
+                    $basicForm->profilePicture = $customerDetails->profilePicture;
+                } else {
+                    $basicForm->profilePicture = $this->session['fileName'];
+                }
+               
+                $this->session['LoginPic'] = $this->session['fileName'];
+                $result = $this->kushGharService->updateRegistrationData($basicForm, $cId);
+                if ($result == "success") {
+                    $message = Yii::t('translation', 'Thank you for contacting us. We will respond to you as soon as possible');
+                    $obj = array('status' => 'success', 'message' => $message, 'error' => '');
+                } else {
+                    $message = Yii::t('translation', 'Already User Existed');
+                    $obj = array('status' => 'error', 'message' => '', 'error' => $message);
+                }
+            }
+            $renderScript = $this->rendering($obj);
+            echo $renderScript;
+        } else {
+            $this->render('basicinfo', array("model" => $basicForm, "IdentityProof" => $Identity, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails, "updatedPassword" => $updatedPasswordForm));
+        }*/
+        //$this->render('stewards', array("model"=>$stewardModel, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails));
+    //}
+    
+    /*
+     * Services control actions end
+     */
+    public function actionPriceQuote(){error_log("enter Price ing Controller---------");
+         $priceModel = new PriceQuoteForm;
+         $cId = $this->session['UserId'];
+        $customerDetails = $this->kushGharService->getCustomerDetails($cId);
+        $getServiceDetails = $this->kushGharService->getDetails($cId);
+        //$this->session['firstName'] = $customerDetails->first_name;
+        //$data = "praveen";
+        //$obj = array('status' => 'success', 'data' => $data, 'error' => '');
+        //$renderScript = $this->rendering($obj);
+        //echo $renderScript;
+        $request = yii::app()->getRequest();
+        $formName = $request->getParam('PriceQuoteForm');
+        if ($formName != '') {error_log("dfdfddfdfsd====");
+            $basicForm->attributes = $request->getParam('PriceQuoteForm');
+            $errors = CActiveForm::validate($basicForm);
+            if ($errors != '[]') {
+                $obj = array('status' => 'error', 'message' => '', 'error' => $errors);
+            } else {
+                error_log("else====");
+               $data = "Praveen";
+                $obj = array('status' => 'success', 'data' => $data, 'error' => '');
+                
+            }
+            $renderScript = $this->rendering($obj);
+            echo $renderScript;
+        } else {
+            $this->render('priceQuote', array("customerDetails" => $customerDetails, "getServiceDetails" => $getServiceDetails));
+        }
+        //$this->render('priceQuote', array("customerDetails" => $customerDetails, "getServiceDetails" => $getServiceDetails));
+    }
 }

@@ -2,13 +2,13 @@
 
 class KushGharService {
 
-    public function login($model,$role) {
+    public function login($model, $role) {
         try {
             //$user = array();
-            if($role=='User'){
+            if ($role == 'User') {
                 $user = Registration::model()->checkAuthentication($model);
             }
-            if($role=='Admin'){
+            if ($role == 'Admin') {
                 $user = Admin::model()->checkAuthentication($model);
             }
             if (!empty($user)) {
@@ -92,7 +92,6 @@ class KushGharService {
 
     //Update Sample Data
     public function updateRegistrationData($model, $cId) {
-        error_log("dfdsfdsfds===========Service===");
         return Registration::model()->updateRegistrationData($model, $cId);
     }
 
@@ -115,6 +114,7 @@ class KushGharService {
     public function getupdatedPasswordInBasicInfo($model, $cId) {
         return Registration::model()->updatedPasswordInBasicInfo($model, $cId);
     }
+
     //Update Sample Data
     public function updateRegistrationinContactData($model, $cId) {
         return Registration::model()->updateRegistrationinContactData($model, $cId);
@@ -133,8 +133,6 @@ class KushGharService {
     public function getCustomerPaymentDetails($id) {
         return PaymentInfo::model()->getCustomerPaymentDetails($id);
     }
-
-
 
     /**
      * Vendor Service Layer Start
@@ -165,13 +163,11 @@ class KushGharService {
         }
     }
 
-    public function getVendorDetailsWithEmailIndividual($email) {error_log("Type 1=======");
+    public function getVendorDetailsWithEmailIndividual($email) {
         return VendorIndividualRegistration::model()->vendorDetailsEithEmailType1($email);
     }
 
-
-
-   //2.Get Vendor Type1 details
+    //2.Get Vendor Type1 details
     public function getVendorDetailsWithIndividual($Vid) {
         return VendorIndividualRegistration::model()->getVendorDetailsType1($Vid);
     }
@@ -183,12 +179,11 @@ class KushGharService {
 
     //4. Update Vendor Type1 Details from basic Information Controller action
     public function updateVendorDetailsWithIndividual($model, $cId) {
-        error_log("dfdsfdsfds===========Service===");
         return VendorIndividualRegistration::model()->updateVendorDetailsWithIndividual($model, $cId);
     }
 
-
     /* VENDOR TYPE--------------Agency  */
+
     //1. Checking the vendor exist ao not based on email_address
     public function getcheckVendorForAgency($model) {
         try {
@@ -198,8 +193,6 @@ class KushGharService {
         }
         return $result;
     }
-
-
 
     //2.Save the vendor agency details
     public function saveVendorForAgencyData($model) {
@@ -216,7 +209,7 @@ class KushGharService {
         }
     }
 
-    public function getVendorDetailsWithEmailAgency($email) {error_log("Type 2=======");
+    public function getVendorDetailsWithEmailAgency($email) {
         return VendorAgencyRegistration::model()->vendorDetailsEithEmailType1($email);
     }
 
@@ -224,20 +217,20 @@ class KushGharService {
     public function getVendorDetailsWithAgency($Vid) {
         return VendorAgencyRegistration::model()->getVendorDetailsType2($Vid);
     }
+
     //4. Update Vendor Type2 Details from basic Information Controller action
     public function updateVendorDetailsWithAgency($model, $cId) {
-        error_log("dfdsfdsfds===========Service===");
         return VendorAgencyRegistration::model()->updateVendorDetailsWithAgency($model, $cId);
     }
 
-
     /* Vendor Login Checking  */
+
     public function vendorLogin($model) {
-        try {error_log("service in====".$model->VendorType);
+        try {
             //$user = array();
-            if($model->VendorType==1){
+            if ($model->VendorType == 1) {
                 $vendor = VendorIndividualRegistration ::model()->checkAuthentication($model);
-            }else{
+            } else {
                 $vendor = VendorAgencyRegistration ::model()->checkAuthentication($model);
             }
             if (!empty($vendor)) {
@@ -252,83 +245,73 @@ class KushGharService {
     }
 
     //Update Password vendor Individual 
-    public function getupdatedPasswordInVendor($model, $VId,$VType) {error_log("service-------------");
-        return VendorIndividualRegistration::model()->updatedPasswordInVendor($model, $VId,$VType);
+    public function getupdatedPasswordInVendor($model, $VId, $VType) {
+        return VendorIndividualRegistration::model()->updatedPasswordInVendor($model, $VId, $VType);
     }
 
     //Update Password vendor  Agency
-    public function getupdatedPasswordInVendorAgency($model, $VId,$VType) {error_log("service-------------");
-        return VendorAgencyRegistration::model()->updatedPasswordInVendor($model, $VId,$VType);
+    public function getupdatedPasswordInVendorAgency($model, $VId, $VType) {
+        return VendorAgencyRegistration::model()->updatedPasswordInVendor($model, $VId, $VType);
     }
 
     //Save dump details in vendor address table for registration
-    /*public function saveVendorAddressDumpInfo($vId,$vendorIndividualId) {
-        return VendorBasicInformation::model()->saveVendorAddressDumpInfo($vId,$vendorIndividualId);
-    }*/
+    /* public function saveVendorAddressDumpInfo($vId,$vendorIndividualId) {
+      return VendorBasicInformation::model()->saveVendorAddressDumpInfo($vId,$vendorIndividualId);
+      } */
 
-     /* VENDOR TYPE--------------Documents Details   */
+    /* VENDOR TYPE--------------Documents Details   */
 
-   //Save dump details in vendor documents table for registration
-    public function saveVendorDocumentsDumpInfo($vendorIndividualId,$vTypeId) {
-        error_log("srviceviID==".$vendorIndividualId."==TypevID===".$vTypeId);
-        return VendorIndividualDocuments::model()->saveVendorDocumentsDumpInfo($vendorIndividualId,$vTypeId);
+    //Save dump details in vendor documents table for registration
+    public function saveVendorDocumentsDumpInfo($vendorIndividualId, $vTypeId) {
+        return VendorIndividualDocuments::model()->saveVendorDocumentsDumpInfo($vendorIndividualId, $vTypeId);
     }
-
 
 //1. Update Vendor Documents Details from basic Information Controller action
     public function updateVendorDocuments($model, $cId) {
-        
         return VendorIndividualDocuments::model()->updateVendorDocuments($model, $cId);
     }
 
-
-  /* VENDOR TYPE--------------Address Details   */
+    /* VENDOR TYPE--------------Address Details   */
 
     //Save dump details in vendor Address table for registration
-    public function saveVendorAddressDumpInfo($vendorIndividualId,$vTypeId) {
-        
-        return VendorAddress::model()->saveVendorAddressDumpInfo($vendorIndividualId,$vTypeId);
+    public function saveVendorAddressDumpInfo($vendorIndividualId, $vTypeId) {
+        return VendorAddress::model()->saveVendorAddressDumpInfo($vendorIndividualId, $vTypeId);
     }
 
-
     //Contact  Information Details Start methods
-    public function getVendorAddressDetails($vId,$vTypeId) {
-        return VendorAddress::model()->getVendorAddressDetails($vId,$vTypeId);
+    public function getVendorAddressDetails($vId, $vTypeId) {
+        return VendorAddress::model()->getVendorAddressDetails($vId, $vTypeId);
     }
 
     // Update Vendor Address Details from contact Information Controller action
-    public function updateVendorAddressDetails($model, $vId,$VType) {
-
-        return VendorAddress::model()->updateVendorAddressDetails($model, $vId,$VType);
+    public function updateVendorAddressDetails($model, $vId, $VType) {
+        return VendorAddress::model()->updateVendorAddressDetails($model, $vId, $VType);
     }
 
     // Update Vendor Type1 Details from contact Information Controller action
     public function updateVendorDetailsWithIndividualContact($model, $vId) {
-
         return VendorIndividualRegistration::model()->updateVendorDetailsWithIndividualContact($model, $vId);
     }
-    
-    
-    
+
     /**
      * Invitation users Start
      */
     /* VENDOR TYPE--------------Individual  */
     //1. Checking the vendor exist ao not based on email_address
-    /*public function getcheckVendorForIndividual($model) {
-        try {
-            $result = VendorIndividualRegistration::model()->getcheckVendorForIndividual($model);
-        } catch (Exception $ex) {
-            error_log("=============exception occurred in login=============" . $ex->getMessage());
-        }
-        return $result;
-    }*/
+    /* public function getcheckVendorForIndividual($model) {
+      try {
+      $result = VendorIndividualRegistration::model()->getcheckVendorForIndividual($model);
+      } catch (Exception $ex) {
+      error_log("=============exception occurred in login=============" . $ex->getMessage());
+      }
+      return $result;
+      } */
 
     //2.Save the Invitation details
-    public function getInvitationUser($model,$type) {
+    public function getInvitationUser($model, $type) {
         try {
             $users = array();
-            $users = InviteUser::model()->saveInvitationUser($model,$type);
+            $users = InviteUser::model()->saveInvitationUser($model, $type);
             if (!empty($users)) {
                 return $users;
             } else {
@@ -338,42 +321,65 @@ class KushGharService {
             error_log("=============exception occurred in login=============" . $ex->getMessage());
         }
     }
-    
+
     /*
      * New Users invitations For Admin
      */
-    public function getcheckNewUserExist($emailId) { 
+
+    public function getcheckNewUserExist($emailId) {
         try {
             $result = InviteUser::model()->checkNewUserExist($emailId);
-            error_log("service=========".$result);
         } catch (Exception $ex) {
             error_log("=============exception occurred in login=============" . $ex->getMessage());
         }
         return $result;
     }
-    
-    
+
     public function getTotalUsers() {
         return InviteUser::model()->getTotalUsers();
     }
-    public function getAllUsers($startLimit,$endLimit) {
-        error_log("sta===".$startLimit."==end===".$endLimit);
-        return InviteUser::model()->getAllUsers($startLimit,$endLimit);
+
+    public function getAllUsers($startLimit, $endLimit) {
+        return InviteUser::model()->getAllUsers($startLimit, $endLimit);
     }
-    public function getStatusUser($id,$val) {
-        return InviteUser::model()->getStatusUser($id,$val);
+
+    public function getStatusUser($id, $val) {
+        return InviteUser::model()->getStatusUser($id, $val);
     }
-    public function sendInviteMailToUser($id,$val) {
-        return InviteUser::model()->sendInviteMailToUser($id,$val);
+
+    public function sendInviteMailToUser($id, $val) {
+        return InviteUser::model()->sendInviteMailToUser($id, $val);
     }
-    
-    
+
     /*
-     * KushGhar Services 
+     * KushGhar Services start code
      */
-    public function getServices(){
+
+    public function getServices() {
         return Services::model()->getServices();
     }
     
+    // add new House cleaning Service
+    public function addHouseCleaningService($model, $cId) {
+        return HouseCleaningService::model()->addHouseCleaningService($model, $cId);
+    }
+    
+    public function getDetails($cId) {
+        return HouseCleaningService::model()->getServicesDetails($cId);
+    }
+    
+    
+    //add new Stewards Service
+    public function addStewardsCleaningService($model, $cId) {
+        return StewardsCleaningService::model()->addStewardsCleaningService($model, $cId);
+    }
+    
+    public function getStewardsDetails($cId) {
+        return StewardsCleaningService::model()->getServicesDetails($cId);
+    }
+    
+    // Kushghar Services end code
+
 }
+
 ?>

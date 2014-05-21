@@ -15,6 +15,7 @@
             <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/simplePagination.css" rel="stylesheet">
         <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/styles.css" rel="stylesheet">
         <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/fonts.css" rel="stylesheet">
+        <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/mobiscroll.custom-2.4.4.min.css" rel="stylesheet">
            
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
@@ -27,6 +28,7 @@
         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrap.js"> </script>
          <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrapSwitch.js"> </script>
          <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.simplePagination.js"> </script>
+         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/mobiscroll.custom-2.4.4.min.js"> </script>
         <script>
             // tooltip demo
             $('.tooltiplink').tooltip({
@@ -48,6 +50,7 @@
        </style>
      <![endif]-->
         <script>
+            var globalspace = new Object();
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)

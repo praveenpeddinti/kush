@@ -208,7 +208,7 @@
     </section>
 </div>
 <script type="text/javascript">
-    var globalspace = new Object();
+    
     $(document).ready(function() {
         $('#userTable tr td input').live('click', function() {
             var id = $(this).attr('data-id');

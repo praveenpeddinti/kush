@@ -83,15 +83,18 @@
                                      $payPercent = 0;
                                  }
                                  ?>
+                                <li><a href="homeService"> <i class="fa fa-user"></i> Service Details</a></li>
+                                <li><a href="#"> <i class="fa fa-user"></i> Price Quote</a></li>
+                                <li><a href="paymentInfo"> <i class="fa fa-credit-card"></i> Payment Info</a>
+                                    <div class="<?php echo $statusClassForPayment;?>"> </div>
+                                </li>
                                 <li class="active"><a href="basicinfo"> <i class="fa fa-user"></i> Basic Info</a>
                                     <div class=<?php echo '"'.$statusClassForBasic.'"' ?>></div>
                                 </li>
                                 <li><a href="contactInfo"> <i class="fa fa-phone"></i> Contact Info</a>
                                     <div class="<?php echo $statusClassForContact;?>"> </div>
                                 </li>
-                                <li><a href="paymentInfo"> <i class="fa fa-credit-card"></i> Payment Info</a>
-                                    <div class="<?php echo $statusClassForPayment;?>"> </div>
-                                </li>
+                                
                             </ul>
                         </div>
                         <div id="payment" class="collapse">
@@ -383,7 +386,7 @@ return false;
         scrollPleaseWaitClose('basicInfoSpinLoader');
         if(data.status=='success'){
             window.location.href='contactInfo';
-        }else{
+        }else{alert(data.error);
             //alert("No");
             var error=[];
             if(typeof(data.error)=='string'){

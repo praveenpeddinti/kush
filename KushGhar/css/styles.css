@@ -577,9 +577,7 @@ input.serachInput::-ms-reveal { width : 0; height: 0;}
 #HomeServiceForm_CarCleaning, #HomeServiceForm_StewardCleaning, #HomeServiceForm_HouseCleaning{display: block;padding-top:10px}
 
 
-.housecleaning_title {
-    background-position: left top;
-}
+
 .housecleaning_title, .carwash_title, .stewards_title {
     background-attachment: scroll;
     background-clip: border-box;
@@ -591,8 +589,16 @@ input.serachInput::-ms-reveal { width : 0; height: 0;}
     color: #4A5152;
     font-family: MuseoSlab700;
     font-size: 18px;
-    line-height: 90px;
-    padding-left: 110px;
+    padding:30px 30px 30px 110px;
+}
+.housecleaning_title {
+    background-position: left -486px;
+}
+.carwash_title {
+    background-position: left top;
+}
+.stewards_title {
+    background-position: left -659px;
 }
 .details {
     font-family: MuseoSlab700;

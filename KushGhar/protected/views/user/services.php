@@ -13,21 +13,28 @@
 
 
                             <!--<input type="hidden" id="HouseCleaning" value="<?php echo $HouseCleaning;?>" >-->
+                            
                             <fieldset>
-                                <div class="row-fluid">
-                                    <div class=" span12">
-                                        House Cleaning Service
+                                <div class=" row-fluid borderB">
+                                    <div class="span8 ">
+                                        <div class="housecleaning_title">
+                                            House leaning Service
+                                        </div>
+                                    </div>
+                                    <div class="span4 ">
+                                        <div class="pull-right">
+                                            <a class="details" href="/site/cleaning">Service Details</a>
+                                        </div>
                                     </div>
                                 </div>
+       
                                 <div class="row-fluid">
-                                    <div class=" span6">
+                                    <div class=" span3">
                                         <?php echo $form->label($model, 'Square Feets'); ?>
-                                        <?php echo $form->textField($model, 'SquareFeets', array('value'=>$getServiceDetails['squarefeets'],'maxLength' => 10, 'class' => 'span8', 'placeholder' => 'Square Feets…')); ?>
+                                        <?php echo $form->textField($model, 'SquareFeets', array('value'=>$getServiceDetails['squarefeets'],'maxLength' => 10, 'class' => 'span12', 'placeholder' => 'Square Feets…')); ?>
                                         <?php echo $form->error($model, 'SquareFeets'); ?>
                                     </div>
-                                    <div class=" span6">
-                                        <a href="/site/cleaning" target="_blank">House Cleaning Details</a>
-                                    </div>
+                                    
                                     
                                 </div>
                                 <div class="row-fluid">
@@ -37,36 +44,54 @@
                                         $Rooms[ $i ] = $i;
                                         ?>
                                         <?php echo $form->label($model, 'Living Room(s)'); ?>
-                                        <?php echo $form->dropDownList($model,'LivingRooms', $Rooms, array('options' => array($getServiceDetails['total_livingRooms'] => array('selected' => 'selected')), 'class' => 'span6'));?>
+                                        <?php echo $form->dropDownList($model,'LivingRooms', $Rooms, array('options' => array($getServiceDetails['total_livingRooms'] => array('selected' => 'selected')), 'class' => 'span12'));?>
                                         <?php //echo $form->dropDownList($model,'LivingRooms', array('1' => '1', '2' => '2', '3'=>'3', '4'=>'4', '5'=>'5'), array('options' => array($getServiceDetails['total_livingRooms'] => array('selected' => 'selected'))),array('class' => 'span6'));?>
                                         
                                     </div>
                                     <div class=" span3">
                                         <?php echo $form->label($model, 'Bed Room(s)'); ?>
-                                        <?php echo $form->dropDownList($model,'BedRooms', $Rooms, array('options' => array($getServiceDetails['total_bedRooms'] => array('selected' => 'selected')), 'class' => 'span6'));?>
+                                        <?php echo $form->dropDownList($model,'BedRooms', $Rooms, array('options' => array($getServiceDetails['total_bedRooms'] => array('selected' => 'selected')), 'class' => 'span12'));?>
                                         <?php //echo $form->dropDownList($model,'BedRooms', array('1' => '1', '2' => '2', '3'=>'3', '4'=>'4', '5'=>'5'), array('class' => 'span6'));?>
                                         
                                     </div>
                                     <div class=" span3">
                                         <?php echo $form->label($model, 'Kitchen(s)'); ?>
-                                        <?php echo $form->dropDownList($model,'Kitchens', $Rooms, array('options' => array($getServiceDetails['total_kitchens'] => array('selected' => 'selected')), 'class' => 'span6'));?>
+                                        <?php echo $form->dropDownList($model,'Kitchens', $Rooms, array('options' => array($getServiceDetails['total_kitchens'] => array('selected' => 'selected')), 'class' => 'span12'));?>
                                         <?php //echo $form->dropDownList($model,'Kitchens', array('1' => '1', '2' => '2', '3'=>'3', '4'=>'4', '5'=>'5'), array('class' => 'span6'));?>
                                         
                                     </div>
                                     <div class=" span3">
                                         <?php echo $form->label($model, 'Bath Room(s)'); ?>
-                                        <?php echo $form->dropDownList($model,'BathRooms', $Rooms, array('options' => array($getServiceDetails['total_bathRooms'] => array('selected' => 'selected')), 'class' => 'span6'));?>
+                                        <?php echo $form->dropDownList($model,'BathRooms', $Rooms, array('options' => array($getServiceDetails['total_bathRooms'] => array('selected' => 'selected')), 'class' => 'span12'));?>
                                             <?php //echo $form->dropDownList($model,'BathRooms', array('1' => '1', '2' => '2', '3'=>'3', '4'=>'4', '5'=>'5'), array('class' => 'span6'));?>
                                         
                                     </div>
                                     
                                     
-                                </div>
-                                <div class="dontOffer">
-                                    <div class="row-fluid">
-                                        <div class="span12"><h5>Additional Services</h5></div>
-                                    </div>
-                                    <div class="row-fluid">
+                                </div><hr>
+                               
+                                    <h4 class="paddingTop0 ">Additional Services</h4>
+                                    <div class="Additional_S"> <div class="row-fluid">
+                                            <div class="span4 window_cleaning  "><label>Window Grills Cleaning</label>
+                                            <div class="switch switch-large" id="WindowGrills" data-on-label="Yes" data-off-label="No">
+                                                <?php echo $form->checkBox($model, 'WindowGrills', array('id' => 'HouseCleaningForm_WindowGrills')); ?>
+                                                </div>
+                                            </div>
+                                            <div class="span4 fridge dashed_left_border  "><label>Fridge Interior Cleaning</label>
+                                            <div class="switch switch-large" id="FridgeInterior" data-on-label="Yes" data-off-label="No">
+                                                <?php echo $form->checkBox($model, 'FridgeInterior', array('id' => 'HouseCleaningForm_FridgeInterior')); ?>
+                                                </div>
+                                            </div>
+                                            <div class="span4 woven dashed_left_border "><label>Micro woven Cleaning</label>
+                                             <div class="switch switch-large" id="MicroWaveOven" data-on-label="Yes" data-off-label="No">
+                                                <?php echo $form->checkBox($model, 'MicroWaveOven', array('id' => 'HouseCleaningForm_MicroWaveOven')); ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><hr>
+                                    
+                                    
+                                   <!--<div class="row-fluid">
                                             <div class="span6">
                                                 <?php echo $form->label($model, 'Window Grills Cleaning'); ?>
                                                 <div class="switch switch-large" id="WindowGrills" data-on-label="Yes" data-off-label="No">
@@ -88,8 +113,8 @@
                                                 </div>
                                             </div>
                                             
-                                    </div>
-                                </div>
+                                    </div>-->
+                                
                                 <div class="row-fluid">
                                 <div class=" span12">
                                   <div class="pull-right paddingT30">

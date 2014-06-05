@@ -316,7 +316,7 @@ $(document).ready(function() {
                 type = 'next';
             }
             queryString += '&Type=' + type;
-            alert(queryString);
+            //alert(queryString);
             ajaxRequest('/user/services', queryString, addHouseCleaningServicehandler);
         }
     }
@@ -540,7 +540,7 @@ $(document).ready(function() {
         }
         var queryString = $('#carwash-form').serialize();
         queryString += '&Type=' + type+'&DL='+DL;
-        alert("car wash Form Details=="+queryString);
+        //alert("car wash Form Details=="+queryString);
        ajaxRequest('/user/carwash', queryString, addCarWashCleaningServicehandler);
     }
    
@@ -647,7 +647,7 @@ $(document).ready(function() {
     }
     function onTotalStewards(obj) {
        
-        $("#StewardCleaningForm_totalStewards").val(Math.round(obj.value / 5));
+        $("#StewardCleaningForm_totalStewards").val(Math.round(obj.value / 15));
 
     }
     function submitStewardsCleaning() {
@@ -735,7 +735,7 @@ $(document).ready(function() {
                 type = 'next';
             }
             queryString += '&Type=' + type;
-            alert("StewardsCleaning Form Details=="+queryString);
+            //alert("StewardsCleaning Form Details=="+queryString);
 
             ajaxRequest('/user/stewards', queryString, addStewardCleaningServicehandler);
         }

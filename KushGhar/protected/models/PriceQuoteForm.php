@@ -10,6 +10,7 @@ class PriceQuoteForm extends CFormModel {
     public $HouseCleaning;
     public $CarCleaning;
     public $StewardCleaning;
+    public $PriceFlag;
     
     
     
@@ -21,7 +22,7 @@ class PriceQuoteForm extends CFormModel {
              
             //array('HouseCleaning', 'required', 'message' => 'Please enter a value for {attribute}.'),
              
-            array('HouseCleaning, CarCleaning, StewardCleaning, Id', 'safe'),
+            array('PriceFlag, HouseCleaning, CarCleaning, StewardCleaning, Id', 'safe'),
         );
     }
 

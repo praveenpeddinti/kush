@@ -10,15 +10,15 @@ class CarWashForm extends CFormModel {
     public $ServicesId;
     public $TotalCars;
     public $DifferentLocation;
-    public $CompanyName;
-    public $LicenseNumber;
+    //public $CompanyName;
+    //public $LicenseNumber;
     public $MakeOfCar;
-    public $ModelOfCar;
-    public $CallMe;
-    public $DifferentNumber;
+    //public $ModelOfCar;
+    //public $CallMe;
+    public $DifferentAddress;
     public $AlternatePhone;
     public $InteriorCleaning;
-    public $InteriorColor;
+    //public $InteriorColor;
     public $ExteriorCleaning;
     public $ExteriorColor;
     public $WaxCar;
@@ -32,6 +32,7 @@ class CarWashForm extends CFormModel {
     public $HouseCleaning;
     public $CarCleaning;
     public $StewardCleaning;
+    public $PriceFlag;
     
     
     /**
@@ -40,9 +41,12 @@ class CarWashForm extends CFormModel {
     public function rules() {
         return array(
              
-            array('HouseCleaning, CarCleaning, StewardCleaning, TotalCars, DifferentLocation, CompanyName, LicenseNumber, MakeOfCar, ModelOfCar, CallMe, DifferentNumber,
-                  AlternatePhone, InteriorCleaning, InteriorColor, ExteriorCleaning, ExteriorColor, WaxCar, ShampooSeats, 
+            array('PriceFlag, HouseCleaning, CarCleaning, StewardCleaning, TotalCars, DifferentLocation, MakeOfCar, DifferentAddress,
+                  AlternatePhone, ExteriorCleaning, ExteriorColor, InteriorCleaning,WaxCar, ShampooSeats, 
                   Address1, Address2, State, City, PinCode, Status, ServicesId, Id', 'safe'),
+            //array('HouseCleaning, CarCleaning, StewardCleaning, TotalCars, DifferentLocation, CompanyName, LicenseNumber, MakeOfCar, ModelOfCar, CallMe, DifferentAddress,
+            //      AlternatePhone, InteriorCleaning, InteriorColor, ExteriorCleaning, ExteriorColor, WaxCar, ShampooSeats, 
+             //     Address1, Address2, State, City, PinCode, Status, ServicesId, Id', 'safe'),
         );
     }
 

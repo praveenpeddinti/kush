@@ -561,7 +561,7 @@ input.serachInput::-ms-reveal { width : 0; height: 0;}
 .services_opts ul{margin: 0; padding: 0; list-style: none;}
 .services_opts ul li.house_cleaning, .services_opts ul li.car_wash, .services_opts ul li.stewards{}
 .services_opts ul li{padding: 10px ; line-height: 20px; border-bottom: 2px solid #fff }
-.services_opts ul li.house_cleaning, .services_opts ul li.car_wash, .services_opts ul li.stewards{ padding-left:120px;background: #f5f5f5 url(../images/services_icon.png) no-repeat left top; line-height: 69px;}
+.services_opts ul li.house_cleaning, .services_opts ul li.car_wash, .services_opts ul li.stewards{ padding:30px 10px 30px 105px;background: #f5f5f5 url(../images/services_icon.png) no-repeat left top; /*line-height: 69px;*/}
 .services_opts ul li.house_cleaning{ background-position: left -477px}
 .services_opts ul li.car_wash{ background-position: left 4px}
 .services_opts ul li.stewards{ background-position: left -656px}
@@ -571,10 +571,10 @@ input.serachInput::-ms-reveal { width : 0; height: 0;}
 .spacerbet_radio_100{width:100px}
 .spacerbet_radio_82{width:82px}
 .spacerbet_radio_57{width:57px}
-.services_opts ul li .checkbox, .services_opts ul li .radio {	width: 25px;height: 25px;padding: 0 5px 0 0;background: url(../images/checkbox.png) no-repeat;display:inline-block;}
+.services_opts ul li .checkbox, .services_opts ul li .radio {	width: 25px;height: 25px;padding: 0 5px 0 0;background: url(../images/checkbox.png) no-repeat;display:inline;}
 .services_opts ul li .radio {background: url(../images/radio.png) no-repeat;}
-.services_opts ul li .spacerbet_radio_label{display: inline-block;vertical-align: super}
-#HomeServiceForm_CarCleaning, #HomeServiceForm_StewardCleaning, #HomeServiceForm_HouseCleaning{display: block;padding-top:10px}
+.services_opts ul li .spacerbet_radio_label{display: inline;vertical-align: super}
+#HomeServiceForm_CarCleaning, #HomeServiceForm_StewardCleaning, #HomeServiceForm_HouseCleaning{padding-top:10px}
 
 
 
@@ -603,7 +603,7 @@ input.serachInput::-ms-reveal { width : 0; height: 0;}
 .details {
     font-family: MuseoSlab700;
     font-size: 14px;
-    line-height: 90px;
+    line-height: 30px;
 }
 .paddingTop0{ padding-top:0px;}
 .borderB{border-bottom:2px solid #dddddd;}
@@ -628,13 +628,54 @@ input.serachInput::-ms-reveal { width : 0; height: 0;}
 .panel-heading .stewards_title2{background-position: left -665px;}
 
 
-.panel-title a .count{ position:absolute; right:10p; top:30px; right:5px; background: url(../images/collaps_icons.png) no-repeat 70px top; padding-right:60px; height:32px; padding-top:3px; color:#F60  }
-.panel-title a.collapsed .count{ position:absolute; right:10p; top:30px; right:5px; background: url(../images/collaps_icons.png) no-repeat 70px -51px; padding-right:60px; height:32px; padding-top:3px;color:#F60  }
+.panel-title a .count{ position:absolute; right:10p; top:30px; right:5px; background: url(../images/collaps_icons.png) no-repeat 28px top; padding-right:60px; height:32px; padding-top:3px; color:#F60  }
+.panel-title a.collapsed .count{ position:absolute; right:10p; top:30px; right:5px; background: url(../images/collaps_icons.png) no-repeat 28px -51px; padding-right:60px; height:32px; padding-top:3px;color:#F60  }
 
 .price{}
 .price tr{}
 .price tr th{ background:#f4f4f4; color:#333333; font-size:16px;}
 .price tr th.total{ color:#F60; font-size:16px;}
 
-        
-        
+.Additional_S_price{ padding: 5px; margin: 5px; border: 1px solid #ccc;text-align: center }
+.Additional_S_price label{ color:#F58220;display:inherit }
+
+
+
+
+/* custom styles */
+.checkbox, .radio {
+    background: url("../images/checkbox.png") no-repeat scroll 0 0 transparent;
+    /*clear: left;*/
+    display: block;
+    float: left;
+    height: 25px;
+    padding: 0 5px 0 0;
+    width: 25px;
+}
+.radio {
+    background: url("../images/radio.png") no-repeat scroll 0 0 transparent;
+}
+.radiobutton label {
+    display: inline;
+    float: left;
+    line-height: 25px;
+    margin-bottom: 0;
+}
+.radiobutton {
+}
+.radiobutton label {
+    display: inline;
+    float: left;
+    line-height: 25px;
+    margin-bottom: 0;
+}
+.radiobutton span {
+    clear: none;
+    display: inline;
+}
+.lineheight26{line-height: 26px}
+
+#HomeServiceForm_HouseCleaning label {float:left;display:inline; padding-right:10px;line-height: 27px;}
+#HomeServiceForm_CarCleaning label {float:left;display:inline; padding-right:10px;line-height: 27px;}
+#HomeServiceForm_StewardCleaning label {float:left;display:inline; padding-right:5px;line-height: 27px;}
+.serviceprice{ position:absolute; right:10p; top:30px; right:5px; padding-right:40px; height:32px; padding-top:3px;color:#F60  }

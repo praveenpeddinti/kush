@@ -11,53 +11,58 @@ $form = $this->beginWidget('CActiveForm', array(
 <?php echo $form->hiddenField($model1, 'HouseCleaning', array('value'=>$HouseCleaning)); ?>
 <?php echo $form->hiddenField($model1, 'CarCleaning', array('value'=>$CarCleaning)); ?>
 <?php echo $form->hiddenField($model1, 'StewardCleaning', array('value'=>$StewardCleaning)); ?>
+<?php echo $form->hiddenField($model1, 'PriceFlag', array('value'=>$PriceFlag)); ?> 
 <?php echo $form->error($model1, 'error'); ?>
 <fieldset>
-    <div class="row-fluid">
-        <div class=" span12">
-            Stewards / Stewardess Service
-        </div>
+    <div class=" row-fluid borderB">
+        <div class="span12 ">
+            <div class="stewards_title">
+                Stewards / Stewardess Service <a class="details has-popover" target="_blank" title="" data-toggle="popover" data-placement="bottom" data-content="<ul><li>Supplies of food</li><li>Supplies of Wine / liquor</li><li>Assisting in seating the Guests</li><li>Re- filling of Food and Liquor</li><li>Garbage emptying</li></ul>" data-original-title="Stewards/Stewardesses" href="/site/stewards">(What is Included<b>?</b>)</a>
+            </div>
+        </div>        
     </div>
+    
+    
     <div class="row-fluid">
         <div class=" span4">
             <?php echo $form->label($model1, '<abbr title="required">*</abbr> Event Type'); ?>
-            <?php echo $form->dropDownList($model1, 'EventType', array('' => 'Select Event', '1' => 'Formal Party', '2' => 'Casual Party', '3' => 'Birthday Party', '4' => 'Anniversary', '5' => 'Funeral', '6' => 'Sporting Event', '7' => 'Other'), array('onchange' => 'javascript:onChangeProduto(this.value);', 'class' => 'span8')); ?>
+            <?php echo $form->dropDownList($model1, 'EventType', array('' => 'Select Event', '1' => 'Formal Party', '2' => 'Casual Party', '3' => 'Birthday Party', '4' => 'Anniversary', '5' => 'Funeral', '6' => 'Sporting Event', '7' => 'Other'), array('options' => array($getServiceDetails['event_type'] => array('selected' => 'selected')),'onchange' => 'javascript:onChangeProduto(this.value);', 'class' => 'span8')); ?>
 <?php echo $form->error($model1, 'EventType'); ?>
         </div>
         <div class=" span4" id='otherDiv' style="display:none">
-            <?php echo $form->label($model1, 'Event Name'); ?>
+            <?php echo $form->label($model1, '<abbr title="required">*</abbr> Event Name'); ?>
             <?php echo $form->textField($model1, 'EventName', array('maxLength' => 10, 'class' => 'span8', 'placeholder' => 'Event Name…')); ?>
 <?php echo $form->error($model1, 'EventName'); ?>
         </div>
         <div class=" span4">
-            <label>&nbsp;</label>
-            <a href="/site/stewards" target="_blank">Stewards Details</a>
-        </div>
+            <?php echo $form->label($model1, '<abbr title="required">*</abbr> People Attending'); ?>
+            <?php echo $form->textField($model1, 'AttendPeople', array('value'=>$getServiceDetails['attend_people'], 'onblur' => 'javascript:onTotalStewards(this);','maxLength' => 5, 'class' => 'span6')); ?>
+            <?php echo $form->error($model1, 'AttendPeople'); ?>
+        </div> 
 
     </div>
     <div class="row-fluid">
         <div class=" span4">
-            <?php echo $form->label($model1, 'Start Time'); ?>
-            <?php echo $form->textField($model1, 'StartTime', array('onchange' => 'javascript:onChangeTime();', 'class' => 'span10', 'placeholder' => 'Start Time…')); ?>
+            <?php echo $form->label($model1, '<abbr title="required">*</abbr> Event Start Time'); ?>
+            <?php echo $form->textField($model1, 'StartTime', array('value'=>$getServiceDetails['start_time'], 'onchange' => 'javascript:onChangeTime();', 'class' => 'span10', 'placeholder' => 'Start Time…')); ?>
 <?php echo $form->error($model1, 'StartTime'); ?>
         </div>
         <div class=" span4">
-            <?php echo $form->label($model1, 'End Time'); ?>
-            <?php echo $form->textField($model1, 'EndTime', array('onchange' => 'javascript:onChangeTime();','class' => 'span10', 'placeholder' => 'End Time…')); ?>
+            <?php echo $form->label($model1, '<abbr title="required">*</abbr> Event End Time'); ?>
+            <?php echo $form->textField($model1, 'EndTime', array('value'=>$getServiceDetails['end_time'], 'onchange' => 'javascript:onChangeTime();','class' => 'span10', 'placeholder' => 'End Time…')); ?>
 <?php echo $form->error($model1, 'EndTime'); ?>
         </div>
         <div class=" span4">
-            <?php echo $form->label($model1, 'People Attend'); ?>
-            <?php echo $form->textField($model1, 'AttendPeople', array('onblur' => 'javascript:onTotalStewards(this);','maxLength' => 5, 'class' => 'span6')); ?>
-<?php echo $form->error($model1, 'AttendPeople'); ?>
+            <?php echo $form->label($model1, 'DurationHour(s)'); ?>
+            <?php echo $form->textField($model1, 'DurationHours', array('value'=>$getServiceDetails['service_hours'], 'class' => 'span4', 'readonly'=>'true')); ?>
+
         </div> 
         
     </div>
-    <div class="dontOffer">
-        <div class="row-fluid">
-            <div class="span12"><h5>Services Required</h5></div>
-        </div>
-        <div class="row-fluid">
+    
+    <hr><h4 class="paddingTop0 ">Services Required</h4>
+    <div class="Additional_S">
+          <div class="row-fluid">
             <div class="span4">
                     <?php echo $form->label($model1, 'Appetizers'); ?>
                 <div class="switch switch-large" id="Appetizers" data-on-label="Yes" data-off-label="No">
@@ -93,22 +98,12 @@ $form = $this->beginWidget('CActiveForm', array(
         </div>
     </div>
     <div class="row-fluid">
-        <div class=" span4">
-            <?php echo $form->label($model1, 'DurationHour(s)'); ?>
-            <?php echo $form->textField($model1, 'DurationHours', array('class' => 'span4')); ?>
-
-        </div> 
-        <div class="span4">
-            <label>How long do you want KushGhar to provide services</label>
-            <?php echo $form->textField($model1, 'ServiceHours', array('maxLength' => 10, 'class' => 'span6')); ?>
-<?php echo $form->error($model1, 'ServiceHours'); ?>
-
-        </div>
-        <div class="span4">
-            <label>No of Stewards</label>
-            <?php echo $form->textField($model1, 'totalStewards', array('class' => 'span6')); ?>
-<?php echo $form->error($model1, 'totalStewards'); ?>
-
+        
+        
+        <div class="span6">
+            <label># of Stewards</label>
+            <?php echo $form->textField($model1, 'totalStewards', array('value'=>$getServiceDetails['no_of_stewards'], 'class' => 'span6', 'readonly'=>'true')); ?>
+            <?php echo $form->error($model1, 'totalStewards'); ?>
         </div>
     </div>
     <div class="row-fluid">
@@ -130,6 +125,35 @@ $form = $this->beginWidget('CActiveForm', array(
 <?php $this->endWidget(); ?>
 <script type="text/javascript">
     $(document).ready(function() {
+        <?php if($getServiceDetails['appetizers'] == 1){ ?>
+        $('#Appetizers').bootstrapSwitch('setState', true);
+        <?php } else {?>
+        $('#Appetizers').bootstrapSwitch('setState', false);
+        <?php } ?>
+       
+        <?php if($getServiceDetails['dinner'] == 1){ ?>
+        $('#Dinner').bootstrapSwitch('setState', true);
+        <?php } else {?>
+        $('#Dinner').bootstrapSwitch('setState', false);
+        <?php } ?>
+        
+        <?php if($getServiceDetails['dessert'] == 1){ ?>
+        $('#Dessert').bootstrapSwitch('setState', true);
+        <?php } else {?>
+        $('#Dessert').bootstrapSwitch('setState', false);
+        <?php } ?>
+         
+        <?php if($getServiceDetails['alcoholic'] == 1){ ?>
+        $('#Beverage').bootstrapSwitch('setState', true);
+        <?php } else {?>
+        $('#Beverage').bootstrapSwitch('setState', false);
+        <?php } ?>
+            
+        <?php if($getServiceDetails['post_dinner'] == 1){ ?>
+        $('#PostDinner').bootstrapSwitch('setState', true);
+        <?php } else {?>
+        $('#PostDinner').bootstrapSwitch('setState', false);
+        <?php } ?>
         //Date and Time start
         var currentDate=new Date();
                 var maxdate=new Date();
@@ -179,6 +203,28 @@ $form = $this->beginWidget('CActiveForm', array(
         $('#PostDinner').bootstrapSwitch();
         
     });
+    $(function () {
+    var showPopover = function () {
+        $(this).popover('show');
+    }
+    , hidePopover = function () {
+        $(this).popover('hide');
+    };
+
+
+    $('.has-popover').popover({
+        html:true,
+        //content: 'Test1',
+        //title: 'Title',
+        trigger: 'manual'
+    })
+
+
+    .focus(showPopover)
+    .blur(hidePopover)
+    .hover(showPopover, hidePopover);
+});
+
 </script>
 
 

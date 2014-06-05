@@ -86,7 +86,7 @@ var Custom = {
 				inputs = document.getElementsByTagName("input");
 				for(a = 0; a < inputs.length; a++) {
 					if(inputs[a].name == group && inputs[a] != this.nextSibling) {
-						inputs[a].previousSibling.style.backgroundPosition = "0 0";
+						//inputs[a].previousSibling.style.backgroundPosition = "0 0";
 					}
 				}
 			}

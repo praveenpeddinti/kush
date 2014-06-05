@@ -78,7 +78,7 @@ class Controller extends CController {
 
    
    public function sendMailToUser($to, $name, $subject, $message, $employerName, $employerEmail, $templateType) {
-        error_log("enter sendMail============");
+        error_log("order  enter sendMail============");
        $streamObj = array();
         $streamObj['toAddress'] = $to;
         $streamObj['userName'] = $name;

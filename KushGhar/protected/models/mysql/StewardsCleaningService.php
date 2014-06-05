@@ -49,7 +49,7 @@ class StewardsCleaningService extends CActiveRecord {
             $servicesDetails->dessert = $model->Dessert;
             $servicesDetails->alcoholic = $model->Beverage;
             $servicesDetails->post_dinner = $model->PostDinner;
-            $servicesDetails->service_hours = $model->ServiceHours;
+            $servicesDetails->service_hours = $model->DurationHours;
             $servicesDetails->no_of_stewards = $model->totalStewards;
             $servicesDetails->create_timestamp = gmdate("Y-m-d H:i:s", time());
             $servicesDetails->update_timestamp = gmdate("Y-m-d H:i:s", time());

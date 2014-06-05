@@ -122,6 +122,13 @@
        	<h4 class="paddingL20">Payment Information</h4>
         <hr>
         <div class="paddinground">
+        <div class="row-fluid">
+            <div class=" span12">
+                <h4 class="paddingL20">Currently payment only received by check / cash</h4>
+            </div>
+        </div>  
+        </div>
+        <!--hidden start 1<div class="paddinground">
              <div id="paymentInfoSpinLoader"></div>
        	  <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'paymentInfo-form',
@@ -178,7 +185,7 @@
   
 
     
-     <div class=" span3  m_ExpiryDate">
+     <!--hidden start 2<div class=" span3  m_ExpiryDate">
         <?php $months = array();
               for( $i = 1; $i <= 12; ++$i )
               $months[ $i ] = $i;
@@ -252,7 +259,7 @@
     </fieldset>
     <?php $this->endWidget(); ?>
 
-       </div>
+       </div>hidden end-->
       </div>
      </div>
     </article>

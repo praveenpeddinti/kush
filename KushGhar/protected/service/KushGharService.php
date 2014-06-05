@@ -360,12 +360,44 @@ class KushGharService {
     }
     
     // add new House cleaning Service
-    public function addHouseCleaningService($model, $cId) {
-        return HouseCleaningService::model()->addHouseCleaningService($model, $cId);
+    public function addHouseCleaningService($model, $cId, $haveService) {
+        return HouseCleaningService::model()->addHouseCleaningService($model, $cId, $haveService);
+    }
+    
+    // update House cleaning Service
+    public function updateHouseCleaningService($model, $cId, $haveService) {
+        return HouseCleaningService::model()->updateHouseCleaningService($model, $cId, $haveService);
     }
     
     public function getDetails($cId) {
         return HouseCleaningService::model()->getServicesDetails($cId);
+    }
+    
+    public function checkingHouseService($cId) {
+        try {
+            $result = HouseCleaningService::model()->checkingHouseService($cId);
+        } catch (Exception $ex) {
+            error_log("=============exception occurred in login=============" . $ex->getMessage());
+        }
+        return $result;
+    }
+    
+    // add new Car wash Service
+    public function addCarWashService($model, $cId,$DL) {error_log("----enter model service---");
+        return CarWashService::model()->addCarWashService($model, $cId,$DL);
+    }
+    
+    public function getCarWashDetails($cId) {
+        return CarWashService::model()->getServicesDetails($cId);
+    }
+    
+    public function checkingCarService($cId) {
+        try {
+            $result = CarWashService::model()->checkingCarService($cId);
+        } catch (Exception $ex) {
+            error_log("=============exception occurred in login=============" . $ex->getMessage());
+        }
+        return $result;
     }
     
     

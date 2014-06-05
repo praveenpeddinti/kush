@@ -105,6 +105,7 @@ $form = $this->beginWidget('CActiveForm', array(
             <?php echo $form->textField($model1, 'totalStewards', array('value'=>$getServiceDetails['no_of_stewards'], 'class' => 'span6', 'readonly'=>'true')); ?>
             <?php echo $form->error($model1, 'totalStewards'); ?>
         </div>
+        
     </div>
     <div class="row-fluid">
         <div class=" span12">

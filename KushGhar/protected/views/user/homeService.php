@@ -285,8 +285,15 @@ $(document).ready(function() {
             $("#HouseCleaningForm_SquareFeets_em_").text("Please Enter Numbers only");
             return false;
         }
-        if (($('#HouseCleaningForm_LivingRooms').val() == '0') && ($('#HouseCleaningForm_BedRooms').val() == '0') && ($('#HouseCleaningForm_Kitchens').val() == '0') && ($('#HouseCleaningForm_BathRooms').val() == '0')) {
+        if ($('#HouseCleaningForm_ServiceStartTime').val() == '') {
             $("#HouseCleaningForm_SquareFeets_em_").hide();
+            $("#HouseCleaningForm_ServiceStartTime_em_").show();
+            $("#HouseCleaningForm_ServiceStartTime_em_").addClass('errorMessage');
+            $("#HouseCleaningForm_ServiceStartTime_em_").text("Please Select When do you want service");
+            return false;
+        }
+        if (($('#HouseCleaningForm_LivingRooms').val() == '0') && ($('#HouseCleaningForm_BedRooms').val() == '0') && ($('#HouseCleaningForm_Kitchens').val() == '0') && ($('#HouseCleaningForm_BathRooms').val() == '0')) {
+            $("#HouseCleaningForm_ServiceStartTime_em_").hide();
             $("#HouseCleaningForm_LivingRooms_em_").show();
             $("#HouseCleaningForm_LivingRooms_em_").addClass('errorMessage');
             $("#HouseCleaningForm_LivingRooms_em_").text("Please Select Any One");
@@ -309,6 +316,7 @@ $(document).ready(function() {
                 type = 'next';
             }
             queryString += '&Type=' + type;
+            alert(queryString);
             ajaxRequest('/user/services', queryString, addHouseCleaningServicehandler);
         }
     }
@@ -350,7 +358,14 @@ $(document).ready(function() {
 
         var dd='';
         var DL = $("#CarWashForm_DifferentLocation").val();
-        
+        if ($("#CarWashForm_ServiceStartTime").val() == "") {
+                $("#CarWashForm_ServiceStartTime_em_").show();
+                $("#CarWashForm_ServiceStartTime_em_").addClass('errorMessage');
+                $("#CarWashForm_ServiceStartTime_em_").text("Please Select When do you want service");
+                return false;
+            }else{
+              $("#CarWashForm_ServiceStartTime_em_").hide();  
+            }
         if($("#CarWashForm_DifferentLocation").val()=='0'){ dumpcars='1';}else{dumpcars=$('#CarWashForm_TotalCars').val();};
         for (var i = 1; i <= dumpcars; i++) {
             
@@ -525,7 +540,7 @@ $(document).ready(function() {
         }
         var queryString = $('#carwash-form').serialize();
         queryString += '&Type=' + type+'&DL='+DL;
-       // alert("car wash Form Details=="+queryString);
+        alert("car wash Form Details=="+queryString);
        ajaxRequest('/user/carwash', queryString, addCarWashCleaningServicehandler);
     }
    

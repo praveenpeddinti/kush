@@ -3,7 +3,9 @@
 class HouseCleaningService extends CActiveRecord {
 
     public $CustId;
+    public $order_number;
     public $squarefeets;
+    public $houseservice_start_time;
     public $total_livingRooms;
     public $total_bedRooms;
     public $total_kitchens;
@@ -29,14 +31,16 @@ class HouseCleaningService extends CActiveRecord {
     
     //New Services
     public function addHouseCleaningService($model,$cId,$haveService) {
-        try { error_log("have a service==============".$haveService);
+        try { error_log("have a service==============".$model->ServiceStartTime);
             //$user = HouseCleaningService::model()->findByAttributes(array('CustId' => $cId));
             //error_log("uuuuuuuuuuuuuuu=============");
             //if($user==false){eror_log("falseeeeeeeeeeeeeeeeee");}else{error_log("yessssssssss");}
-        
+            $orderNo="KG000".$cId.gmdate("Y-m-d", time());
             $servicesDetails = new HouseCleaningService();
             $servicesDetails->CustId = $cId;
+            $servicesDetails->order_number = $orderNo;
             $servicesDetails->squarefeets = $model->SquareFeets;
+            $servicesDetails->houseservice_start_time = $model->ServiceStartTime;
             $servicesDetails->total_livingRooms = $model->LivingRooms;
             $servicesDetails->total_bedRooms = $model->BedRooms;
             $servicesDetails->total_kitchens = $model->Kitchens;
@@ -65,13 +69,15 @@ class HouseCleaningService extends CActiveRecord {
     }
     
     public function updateHouseCleaningService($model,$cId,$haveService) {
-        try { error_log("have a service=======update=======".$haveService);
+        try { error_log("have a service=======update=======".$model->ServiceStartTime);
             $servicesDetails = HouseCleaningService::model()->findByAttributes(array('CustId' => $cId));
             
         
-            //$servicesDetails = new HouseCleaningService();
+            $orderNo="KG000".$cId.gmdate("Y-m-d", time());
             $servicesDetails->CustId = $cId;
+            $servicesDetails->order_number = $orderNo;
             $servicesDetails->squarefeets = $model->SquareFeets;
+            $servicesDetails->houseservice_start_time = $model->ServiceStartTime;
             $servicesDetails->total_livingRooms = $model->LivingRooms;
             $servicesDetails->total_bedRooms = $model->BedRooms;
             $servicesDetails->total_kitchens = $model->Kitchens;
@@ -81,7 +87,7 @@ class HouseCleaningService extends CActiveRecord {
             $servicesDetails->microwave_oven_interior = $model->MicroWaveOven;
             $servicesDetails->pooja_room_cleaning = $model->PoojaRoom;
             $servicesDetails->service_no_of_times = $model->NumberOfTimesServices;
-            $servicesDetails->create_timestamp = gmdate("Y-m-d H:i:s", time());
+            //$servicesDetails->create_timestamp = gmdate("Y-m-d H:i:s", time());
             $servicesDetails->update_timestamp = gmdate("Y-m-d H:i:s", time());
             
                 if ($servicesDetails->update()) {

@@ -6,7 +6,7 @@
             </div>            
             <div class="row-fluid">
                 <div class="span12">
-                    <h2 class="paddingL20"> Your Order is successsfully added.</h2> 
+                    <h2 class="paddingL20"> Your Order is successsfully added. We Will contact you shortly.</h2> 
                 </div>
             </div>
             

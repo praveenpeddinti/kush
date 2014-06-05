@@ -792,14 +792,21 @@ class UserController extends Controller {
         }else{error_log("startTime===".$stewardModel->StartTime."=====".$stewardModel->EndTime);
         
         $date_a = new DateTime($stewardModel->StartTime);
-$date_b = new DateTime($stewardModel->EndTime);
+        $date_b = new DateTime($stewardModel->EndTime);
         
         $interval = date_diff($date_a,$date_b);
 
             error_log("------------------inter-------".round($interval->format('%h:%i:%s')));
             error_log("------------------No of Stewards-------".round($interval->format('%h:%i:%s')));
             //Saving Logic
+            $rows = $this->kushGharService->checkingStewardService($cId);
+            error_log("service===========".$rows);
+            if($rows=='No Service'){error_log("-----------no service----");
             $result = $this->kushGharService->addStewardsCleaningService($stewardModel, $cId);
+            }else{error_log("-----------Yes service----");
+            $result = $this->kushGharService->updateStewardsCleaningService($stewardModel, $cId);
+            }
+            
             error_log("result===========".$result."type====".$_REQUEST['Type']);
             $HouseCleaning = 0;
             $CarCleaning=0;
@@ -949,6 +956,7 @@ $date_b = new DateTime($stewardModel->EndTime);
         error_log("enter service order controller=====");
         $cId = $this->session['UserId'];
         $customerDetails = $this->kushGharService->getCustomerDetails($cId);
+        
         $subject = "Place Order";
         $messages = $customerDetails;
         //$this->sendMailToUser('praveen.peddinti@gmail.com', '', $subject, $messages, 'KushGhar', 'no-reply@kushghar.com', 'OrderPlace');

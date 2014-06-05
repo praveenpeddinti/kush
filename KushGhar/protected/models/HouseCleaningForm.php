@@ -9,6 +9,7 @@ class HouseCleaningForm extends CFormModel {
     public $Id;
     public $CustId;
     public $SquareFeets;
+    public $ServiceStartTime;
     public $LivingRooms;
     public $BedRooms;
     public $Kitchens;
@@ -31,7 +32,7 @@ class HouseCleaningForm extends CFormModel {
     public function rules() {
         return array(
             //array('SquareFeets',  'required', 'message' => 'Please enter a value for {attribute}.'),
-            array('CustId,PriceFlag, HouseCleaning, CarCleaning, StewardCleaning, SquareFeets, LivingRooms, BedRooms, Kitchens, BathRooms, WindowGrills, FridgeInterior, MicroWaveOven, PoojaRoom, NumberOfTimesServices, Status, Id', 'safe'),
+            array('CustId,PriceFlag, HouseCleaning, CarCleaning, StewardCleaning, SquareFeets, ServiceStartTime, LivingRooms, BedRooms, Kitchens, BathRooms, WindowGrills, FridgeInterior, MicroWaveOven, PoojaRoom, NumberOfTimesServices, Status, Id', 'safe'),
         );
     }
 

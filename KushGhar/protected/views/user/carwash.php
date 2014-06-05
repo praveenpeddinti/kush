@@ -1,11 +1,16 @@
 <?php error_log(sizeof($getCarWashServiceDetails)."======11111111111111111111111111111111====");
-$NOCars =''; if(sizeof($getCarWashServiceDetails)==1){
+$NOCars ='';$CarServiceTime ='';
+
         foreach($getCarWashServiceDetails as $ee){
-        $NOCars=$ee['total_cars'];}
-    }elseif(sizeof($getCarWashServiceDetails)==0){$NOCars =1;}else{
+        
+        $CarServiceTime = $ee['carservice_start_time'];
+        }
+        
+    
+ if(sizeof($getCarWashServiceDetails)==0){$NOCars =1;}else{
         $NOCars=sizeof($getCarWashServiceDetails);
     }
-    error_log("---NOC--------".$NOCars);
+    error_log("---NOC--------".$NOCars."======".$CarServiceTime);
 //foreach($getCarWashServiceDetails as $rw){
 //    error_log("===make_of_car==".$rw['make_of_car']);foreach($getCarWashServiceDetails as $dd){$totalCars =$dd['total_cars'];}
 //}
@@ -50,18 +55,24 @@ $form = $this->beginWidget('CActiveForm', array(
     </div>
     
     <div class="row-fluid">
-        <div class=" span4">
+        <div class=" span2">
             <label><abbr title="required">*</abbr> # of Cars</label>
             
             <?php echo $form->textField($model, 'TotalCars', array('value'=>$NOCars, 'maxLength' => 3, 'class' => 'span6', 'placeholder' => '','onblur' => 'javascript:onTotalcars(this);')); ?>
             <?php echo $form->error($model, 'TotalCars'); ?>
         </div>
-        <div class=" span8" id="DifferentLocationDiv" style="display:none">
+        
+        <div class=" span5" id="DifferentLocationDiv" style="display:none">
             <label>Are they at different location</label>
             <div class="switch switch-large DifferentLocation" id="DifferentLocation" data-on-label="Yes" data-off-label="No">
                 <?php echo $form->checkBox($model, 'DifferentLocation'); ?>
             </div>
         </div>
+        <div class=" span5">
+            <label><abbr title="required">*</abbr> When do you want service</label>
+            <?php echo $form->textField($model, 'ServiceStartTime', array('value'=>$CarServiceTime, 'class' => 'span8', 'placeholder' => '')); ?>
+            <?php echo $form->error($model, 'ServiceStartTime'); ?>
+        </div> 
     </div>
     <div class="newcars" id="newcars" style="display: none;">
         
@@ -86,6 +97,27 @@ $form = $this->beginWidget('CActiveForm', array(
     
     
     $(document).ready(function() {
+        
+        var currentDate=new Date();
+                var maxdate=new Date();
+                maxdate.setFullYear(maxdate.getFullYear()-19);
+                var mindate=new Date();
+                mindate.setFullYear(mindate.getFullYear());
+                mindate.setMonth(currentDate.getMonth());
+                mindate.setDate(currentDate.getDate()+1);
+                
+                $('#CarWashForm_ServiceStartTime').scroller({
+                    preset: 'datetime',
+                    //timeFormat:'hh:ii A ',
+                    timeFormat:'HH:ii',
+                    theme: 'android', // for android set theme:'android'
+                    display: 'modal',
+                    mode: 'scroller',
+                    dateFormat:'yyyy-mm-dd',
+                    dateOrder: 'Md ddyy',
+                    timeWheels:'HHii',
+                    minDate:  mindate
+                });
         $('#DifferentLocation').bootstrapSwitch();
         var html = "";
         var sHtml = "";

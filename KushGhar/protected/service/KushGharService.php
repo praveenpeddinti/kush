@@ -406,8 +406,22 @@ class KushGharService {
         return StewardsCleaningService::model()->addStewardsCleaningService($model, $cId);
     }
     
+    // update Stewards cleaning Service
+    public function updateStewardsCleaningService($model, $cId) {
+        return StewardsCleaningService::model()->updateStewardsCleaningService($model, $cId);
+    }
+    
     public function getStewardsDetails($cId) {
         return StewardsCleaningService::model()->getServicesDetails($cId);
+    }
+    
+    public function checkingStewardService($cId) {
+        try {
+            $result = StewardsCleaningService::model()->checkingStewardService($cId);
+        } catch (Exception $ex) {
+            error_log("=============exception occurred in login=============" . $ex->getMessage());
+        }
+        return $result;
     }
     
     // Kushghar Services end code

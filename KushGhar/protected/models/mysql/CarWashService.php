@@ -6,7 +6,9 @@ class CarWashService extends CActiveRecord {
     public $CustId;
     public $total_cars;
     public $make_of_car;
+    public $order_number;
     public $different_location;
+    public $carservice_start_time;
     public $interior_cleaning;
     public $exterior_color;
     public $status;
@@ -36,7 +38,8 @@ class CarWashService extends CActiveRecord {
     public function addCarWashService($model,$cId,$DL) {error_log("-----New car wash Service fields in model--------");
         try {
             $servicesDetails = new CarWashService();
-            
+            $orderNo="KG000".$cId.gmdate("Y-m-d", time());
+            error_log("cartime====".$model->ServiceStartTime);
             error_log("tCars==".$model->TotalCars."======".$DL."=====".json_encode($model->DifferentAddress));
             error_log("tCars==".$model->TotalCars."======".$DL."=====".json_encode($model->Address1));
             error_log("tCars==".$model->TotalCars."======".$DL."=====".json_encode($model->Address2));
@@ -84,7 +87,7 @@ class CarWashService extends CActiveRecord {
                 error_log("enter save==3===");
                 //error_log("==ADD==".$different_address[$i]."==add1==".$address1[$i]."==add2==".$address2[$i]."==phone==".$alternate_phone[$i]."==Sate==".$state[$i]."==CITY==".$city[$i]."==PINCODE==".$pin_code[$i]);
                 error_log("==add1==".$address1[$i]."==add2==".$address2[$i]."==phone==".$alternate_phone[$i]."==Sate==".$state[$i]."==CITY==".$city[$i]."==PINCODE==".$pin_code[$i]);
-            $query = "insert into  KG_Car_cleaning_service(ServiceId,CustId,total_cars,different_location,make_of_car,exterior_color,interior_cleaning,shampoo_seats,wax_car,different_number,address_line1,address_line2,alternate_phone,address_state,address_city,address_pin_code,create_timestamp,update_timestamp) values(2,$cId,$model->TotalCars,$DL,'$make_of_car[$i]','$exterior_color[$i]',$interior_cleaning[$i],$shampoo_seats[$i],$shampoo_mats[$i],$different_address[$i],'$address1[$i]','$address2[$i]','$alternate_phone[$i]','$state[$i]','$city[$i]','$pin_code[$i]','$create_timestamp','$update_timestamp')";
+            $query = "insert into  KG_Car_cleaning_service(ServiceId,CustId,total_cars,different_location,carservice_start_time,make_of_car,order_number,exterior_color,interior_cleaning,shampoo_seats,wax_car,different_number,address_line1,address_line2,alternate_phone,address_state,address_city,address_pin_code,create_timestamp,update_timestamp) values(2,$cId,$model->TotalCars,$DL,'$model->ServiceStartTime','$make_of_car[$i]','$orderNo','$exterior_color[$i]',$interior_cleaning[$i],$shampoo_seats[$i],$shampoo_mats[$i],$different_address[$i],'$address1[$i]','$address2[$i]','$alternate_phone[$i]','$state[$i]','$city[$i]','$pin_code[$i]','$create_timestamp','$update_timestamp')";
             
             //error_log($i."urrrrpdate profile in user profile pageeeeeeeeeee". $query);
             //$query = "insert into  KG_Car_cleaning_service(ServiceId,CustId,total_cars,make_of_car,exterior_color,different_number,interior_cleaning,shampoo_seats,wax_car,address_line1,address_line2,alternate_phone,address_state,address_city,address_pin_code,create_timestamp,update_timestamp) values(2,$cId,$model->TotalCars,'$make_of_car[$i]','$exterior_color[$i]',$different_address[$i],$interior_cleaning[$i],$shampoo_seats[$i],$shampoo_mats[$i],'$address1[$i]','$address2[$i]','$alternate_phone[$i]','$state[$i]','$city[$i]','$pin_code[$i]','$create_timestamp','$update_timestamp')";
@@ -94,10 +97,13 @@ class CarWashService extends CActiveRecord {
             }
            
             }else{error_log("else---------");
+            $orderNo="KG000".$cId.gmdate("Y-m-d", time());
             $servicesDetails->CustId = $cId;
             $servicesDetails->total_cars = $model->TotalCars;
             $servicesDetails->make_of_car = $model->MakeOfCar;
+            $servicesDetails->order_number = $orderNo;
             $servicesDetails->different_location = $DL;
+            $servicesDetails->carservice_start_time = $model->ServiceStartTime;
             $servicesDetails->interior_cleaning = $model->InteriorCleaning;
             $servicesDetails->exterior_color = $model->ExteriorColor;
             $servicesDetails->wax_car = $model->WaxCar;

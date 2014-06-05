@@ -10,6 +10,7 @@ class CarWashForm extends CFormModel {
     public $ServicesId;
     public $TotalCars;
     public $DifferentLocation;
+    public $ServiceStartTime;
     //public $CompanyName;
     //public $LicenseNumber;
     public $MakeOfCar;
@@ -41,7 +42,7 @@ class CarWashForm extends CFormModel {
     public function rules() {
         return array(
              
-            array('PriceFlag, HouseCleaning, CarCleaning, StewardCleaning, TotalCars, DifferentLocation, MakeOfCar, DifferentAddress,
+            array('PriceFlag, HouseCleaning, CarCleaning, StewardCleaning, TotalCars, DifferentLocation, ServiceStartTime, MakeOfCar, DifferentAddress,
                   AlternatePhone, ExteriorCleaning, ExteriorColor, InteriorCleaning,WaxCar, ShampooSeats, 
                   Address1, Address2, State, City, PinCode, Status, ServicesId, Id', 'safe'),
             //array('HouseCleaning, CarCleaning, StewardCleaning, TotalCars, DifferentLocation, CompanyName, LicenseNumber, MakeOfCar, ModelOfCar, CallMe, DifferentAddress,

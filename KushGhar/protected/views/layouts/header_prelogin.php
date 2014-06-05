@@ -126,6 +126,7 @@
                     <?php if($this->session['Type']=='Admin'){?>
                     <a href="/admin/dashboard"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/inner_top_logo.png" alt="logo" class="logo"></a>
                     <?php }?>
+                    <div class="comesoon">We are available Hyderabad now. We will be national wide shortly</div>
                 </div>
 
                 <div class="pull-right">

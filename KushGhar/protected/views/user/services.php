@@ -29,7 +29,12 @@
                                         <?php echo $form->label($model, 'Square Feets'); ?>
                                         <?php if($getServiceDetails['squarefeets']=='0') {$squareFeetsValue='';}else{ $squareFeetsValue=$getServiceDetails['squarefeets']=='';} echo $form->textField($model, 'SquareFeets', array('value'=>$squareFeetsValue,'maxLength' => 5, 'class' => 'span12', 'placeholder' => 'Square Feets…')); ?>
                                         <?php echo $form->error($model, 'SquareFeets'); ?>
-                                    </div>   
+                                    </div> 
+                                    <div class=" span9">
+                                        <label><abbr title="required">*</abbr> When do you want service</label>
+                                        <?php echo $form->textField($model, 'ServiceStartTime', array('value'=>$getServiceDetails['houseservice_start_time'], 'onchange' => 'javascript:onChangeTime();', 'class' => 'span6', 'placeholder' => '')); ?>
+                                        <?php echo $form->error($model, 'ServiceStartTime'); ?>
+                                    </div> 
                                 </div>
                                 <div class="row-fluid">
                                     <div class=" span3">
@@ -141,6 +146,29 @@
     
     $(document).ready(function() {
          Custom.init();
+         //Date and Time start
+        var currentDate=new Date();
+                var maxdate=new Date();
+                maxdate.setFullYear(maxdate.getFullYear()-19);
+                var mindate=new Date();
+                mindate.setFullYear(mindate.getFullYear());
+                mindate.setMonth(currentDate.getMonth());
+                mindate.setDate(currentDate.getDate()+1);
+                
+                $('#HouseCleaningForm_ServiceStartTime').scroller({
+                    preset: 'datetime',
+                    //timeFormat:'hh:ii A ',
+                    timeFormat:'HH:ii',
+                    theme: 'android', // for android set theme:'android'
+                    display: 'modal',
+                    mode: 'scroller',
+                    dateFormat:'yyyy-mm-dd',
+                    dateOrder: 'Md ddyy',
+                    timeWheels:'HHii',
+                    minDate:  mindate
+                });
+         
+         
         $('#WindowGrills').bootstrapSwitch();
         $('#FridgeInterior').bootstrapSwitch();
         $('#MicroWaveOven').bootstrapSwitch();

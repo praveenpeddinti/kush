@@ -1,4 +1,4 @@
-<?php 
+<?php error_log(sizeof($getCarWashServiceDetails)."======11111111111111111111111111111111====");
 $NOCars =''; if(sizeof($getCarWashServiceDetails)==1){
         foreach($getCarWashServiceDetails as $ee){
         $NOCars=$ee['total_cars'];}
@@ -6,8 +6,13 @@ $NOCars =''; if(sizeof($getCarWashServiceDetails)==1){
         $NOCars=sizeof($getCarWashServiceDetails);
     }
     error_log("---NOC--------".$NOCars);
+//foreach($getCarWashServiceDetails as $rw){
+//    error_log("===make_of_car==".$rw['make_of_car']);foreach($getCarWashServiceDetails as $dd){$totalCars =$dd['total_cars'];}
+//}
+
 
 ?>
+<?php //if(count($getCarWashServiceDetails)=='1'){$totalCars =1;}else if(count($getCarWashServiceDetails)=='0'){$totalCars =1;}else{$totalCars=count($getCarWashServiceDetails);};?>
 <?php
 $form = $this->beginWidget('CActiveForm', array(
     'id' => 'carwash-form',
@@ -86,7 +91,9 @@ $form = $this->beginWidget('CActiveForm', array(
         var sHtml = "";
         
         <?php if(isset($getCarWashServiceDetails) && sizeof($getCarWashServiceDetails)>0){ 
-         foreach($getCarWashServiceDetails as $rw){ ?>
+            error_log("==00000000000000======sdfasdfsdfsdf11111111111111111");$j=1; foreach($getCarWashServiceDetails as $rw){ ?>
+        
+    //alert("edit form starting=====");
         sHtml +='<div class="cardetails" >'+
         '<div class=" row-fluid">'+
             '<div class="span12 ">'+
@@ -184,7 +191,7 @@ $form = $this->beginWidget('CActiveForm', array(
            
     
 <? $j++;?>
-        <?php } }else{?>
+        <?php } }else{?>//alert("default=====view==="+$('#CarWashForm_DifferentLocation').val());
           sHtml ='<div class="cardetails" >'+
         '<div class=" row-fluid">'+
             '<div class="span12 ">'+
@@ -276,9 +283,14 @@ $form = $this->beginWidget('CActiveForm', array(
         '</div>'+
     '</div>';
     
-      
+    
+    
+    //$('#CarWashForm_DifferentLocation').val('0');
+    
+    
         <?php } ?>
           
+    //alert(sHtml);
     $(".newcars").html(sHtml).show();
     var totalcars1 =  $('#CarWashForm_TotalCars').val();   
     bindDiffEdit(totalcars1);
@@ -288,6 +300,7 @@ $form = $this->beginWidget('CActiveForm', array(
             value = data.value;
             if(value == true){//alert("yes");
                 $('#CarWashForm_DifferentLocation').val('1');
+              //3alert($('#CarWashForm_TotalCars').val()+"===="+$('#CarWashForm_DifferentLocation').val());
                    var totalcars =  $('#CarWashForm_TotalCars').val();                                                                                                            
               for(var i=1;i<=totalcars;i++){
                   
@@ -379,9 +392,10 @@ $form = $this->beginWidget('CActiveForm', array(
               //alert(html);
              
               $(".newcars").html(html).show(); 
-                          
+              //alert("====html con==="+$(".newcars").html())
+             
                 bindDiff(totalcars);
-            }else{
+            }else{//alert("no diff location===========");
             $('#CarWashForm_DifferentLocation').val('0');
             var changeTheCarsHtml = '<div class="cardetails" >'+
         '<div class=" row-fluid">'+
@@ -479,6 +493,7 @@ $('#1_DifferentAddress').bootstrapSwitch();
               $('#1_InteriorCleaning').bootstrapSwitch();
               $('#1_InteriorCleaning').val('0');
               $('#1_DifferentAddress').val('0');
+        //$('#ExteriorCleaning').bootstrapSwitch();
         $('#1_WaxCar').bootstrapSwitch();
         $('#1_ShampooSeats').bootstrapSwitch();
         $('#1_DifferentAddress').on('switch-change', function (e, data) {
@@ -509,9 +524,126 @@ $('#1_DifferentAddress').bootstrapSwitch();
         });
 }
 
-      });
+
+            /*else{
+                 html='';
+               //alert("no"); 
+           var totalcars = $('#CarWashForm_TotalCars').val();
+           alert("car----"+totalcars);
+                  for(var i=0;i<totalcars;i++){
+                  if(i==0){alert("else000000000000");
+                     html = $(".cardetails").html();
+                  }
+              }
+              //$(".newcars").html(html).show(); 
+              $(".newcars").html(sHtml).show(); 
+              $('#1_DifferentAddress').bootstrapSwitch();
+              $('#1_InteriorCleaning').bootstrapSwitch();
+        //$('#ExteriorCleaning').bootstrapSwitch();
+        $('#1_WaxCar').bootstrapSwitch();
+        $('#1_ShampooSeats').bootstrapSwitch();
+       
+        $('#1_InteriorCleaning').on('switch-change', function (e, data) {
+            var $el = $(data.el),
+            value = data.value;
+            if(value == true){
+                $('#1_InteriorCleaning').val('1');
+               $('#1_interiorDiv').show();
+               $('#1_WaxCar').bootstrapSwitch('setState', true);
+               $('#1_ShampooSeats').bootstrapSwitch('setState', true);
+            }
+            else{
+                 $('#1_InteriorCleaning').val('0');
+                $('#1_interiorDiv').hide();
+                $('#1_WaxCar').bootstrapSwitch('setState', false);
+                $('#1_ShampooSeats').bootstrapSwitch('setState', false);
+            }
+        });
+        $('#1_DifferentAddress').on('switch-change', function (e, data) {
+            var $el = $(data.el),
+            value = data.value;
+            if(value == true){
+               $('#1_AddressFieldsDiv').show();
+            }
+            else{
+               $('#1_AddressFieldsDiv').hide();
+           }
+        });
+          }*/
+        });
         
+        <?php //if($getCarWashServiceDetails['total_cars']>1){ ?>
+           //alert("multiple");
+           
+           //$('#DifferentLocationDiv').show();
+        <?php //}else{?>
+            //$('#DifferentLocationDiv').hide();
+        <?php //}?>
         
+        //$('.DifferentAddress').bootstrapSwitch();
+        
+        //$('#CarWashForm_DifferentLocation').bootstrapSwitch();
+        /*$('#CarWashForm_DifferentLocation').bootstrapSwitch('setState', false);
+        $('#CarWashForm_DifferentLocation').val('0');
+        $('#1_DifferentAddress').bootstrapSwitch();
+        //$('#AlternatePhone').bootstrapSwitch();
+        $('#1_InteriorCleaning').bootstrapSwitch();
+        //$('#ExteriorCleaning').bootstrapSwitch();
+        $('#1_WaxCar').bootstrapSwitch();
+        $('#1_ShampooSeats').bootstrapSwitch();
+       
+        $('#1_InteriorCleaning').on('switch-change', function (e, data) {
+            var $el = $(data.el),
+            value = data.value;
+            if(value == true){
+                 $('#1_InteriorCleaning').val('1');
+               $('#1_interiorDiv').show();
+               $('#1_WaxCar').bootstrapSwitch('setState', true);
+               $('#1_ShampooSeats').bootstrapSwitch('setState', true);
+               $('#1_WaxCar').val('1');
+               $('#1_ShampooSeats').val('1');
+            }
+            else{
+                 $('#1_InteriorCleaning').val('0');
+                $('#1_interiorDiv').hide();
+                $('#1_WaxCar').bootstrapSwitch('setState', false);
+                $('#1_ShampooSeats').bootstrapSwitch('setState', false);
+                $('#1_WaxCar').val('0');
+                $('#1_ShampooSeats').val('0');
+            }
+        });
+        $('#1_DifferentAddress').on('switch-change', function (e, data) {
+            var $el = $(data.el),
+            value = data.value;
+            if(value == true){
+               $('#1_AddressFieldsDiv').show();
+               $('#1_DifferentAddress').val('1');
+            }
+            else{
+               $('#1_AddressFieldsDiv').hide();
+               $('#1_DifferentAddress').val('0');
+           }
+        });
+        $('#1_WaxCar').on('switch-change', function (e, data) {
+            var $el = $(data.el),
+            value = data.value;
+            if(value == true){
+               $('#1_WaxCar').val('1');
+            }
+            else{
+               $('#1_WaxCar').val('0');
+           }
+        });
+        $('#1_ShampooSeats').on('switch-change', function (e, data) {
+            var $el = $(data.el),
+            value = data.value;
+            if(value == true){
+               $('#1_ShampooSeats').val('1');
+            }
+            else{
+               $('#1_ShampooSeats').val('0');
+           }
+        });*/
         
     });
     function onTotalcars(obj){
@@ -755,9 +887,14 @@ function bindDiff(nValue){
     });
 
 function bindDiffEdit(nValue){
-  if($('#CarWashForm_TotalCars').val()=='1'){
+   //alert("--bindDiff-Edit-"+nValue+"===="+$('#CarWashForm_TotalCars').val())
+   
+        if($('#CarWashForm_TotalCars').val()=='1'){
   
    $('#CarWashForm_DifferentLocation').val('0');}//else{ $('#DifferentLocation').bootstrapSwitch();}
+   //alert("DL==1=="+$("#CarWashForm_DifferentLocation").val());
+    //if($('#CarWashForm_TotalCars').val()>1){$("#CarWashForm_DifferentLocation").val("1");}else{$("#CarWashForm_DifferentLocation").val("0");}
+     // alert("DL=2==="+$("#CarWashForm_DifferentLocation").val());
         for(var k=1; k<=nValue; k++){
         
         //alert("for1----kkkkkkkkkkkkkkk---"+k+"===="+h);
@@ -819,7 +956,8 @@ $(".DifferentAddress").live('mouseenter',function(){
     
 
 <?php if(isset($getCarWashServiceDetails) && sizeof($getCarWashServiceDetails)>0){ 
-    $j=1; foreach($getCarWashServiceDetails as $rw){ ?>
+    error_log("==00000000000000======sdfasdfsdfsdf11111111111111111");
+    $j=1; foreach($getCarWashServiceDetails as $rw){ error_log("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjj====".$j);?>
          <?php if($rw['different_location']==1){?>
            $('#CarWashForm_DifferentLocation').val('1');  
            //alert("for cond in=="+$('#CarWashForm_DifferentLocation').val());
@@ -827,7 +965,7 @@ $(".DifferentAddress").live('mouseenter',function(){
               $('#CarWashForm_DifferentLocation').val('0');  
            //alert("for else cond in=="+$('#CarWashForm_DifferentLocation').val());
          <?php }?>
-         <?php if($rw['different_number'] == 1){ ?>
+         <?php if($rw['different_number'] == 1){ error_log("iiiiiiiiiiiiiiiiiiiddddddddddddddddddddd====");?>
           
         //$('#DifferentLocationDiv').show();
         //$('#DifferentLocation').bootstrapSwitch();
@@ -836,13 +974,13 @@ $(".DifferentAddress").live('mouseenter',function(){
         $('#<?php echo $j; ?>_DifferentAddress').bootstrapSwitch('setState', true);
         $('#<?php echo $j; ?>_AddressFieldsDiv').show();
         $('#<?php echo $j; ?>_DifferentAddress').val('1');
-        <?php } else { ?>
+        <?php } else { error_log("eeeeeeeeeeeeeeeeeeeeeeddddddddddddddddddddd====");  ?>
            
         //$('#<?php echo $j; ?>_DifferentAddress').bootstrapSwitch();
         $('#<?php echo $j; ?>_DifferentAddress').bootstrapSwitch('setState', false);
         $('#<?php echo $j; ?>_DifferentAddress').val('0');
         <?php } ?> 
-           
+            <?php  error_log("iiiiiiiiijjjjjjjjjjjjjjjjjjjiiiiiiiiiiddddddddddddddddddddd====".$j);?>
         <?php if($rw['interior_cleaning'] == 1){ ?>
         $('#<?php echo $j; ?>_InteriorCleaning').bootstrapSwitch('setState', true);
         $('#<?php echo $j; ?>_interiorDiv').show();

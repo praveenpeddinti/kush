@@ -92,9 +92,7 @@
                     <li  class="active"><a href="contactInfo"> <i class="fa fa-phone"></i> Contact Info</a>
                         <div class="<?php echo $statusClassForContact;?>"> </div>
                     </li>
-                    <li ><a href="paymentInfo"> <i class="fa fa-credit-card"></i> Payment Info</a>
-                        <div class="<?php echo $statusClassForPayment;?>"> </div>
-                    </li>
+                    
                 </ul>
             </div>
             <div id="payment" class="collapse">

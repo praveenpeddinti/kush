@@ -107,12 +107,7 @@ $Stotal = 0; ?>
                                             </tr>
             <?php } ?>
 
-                                        <?php if ($cw['wax_car'] != 0) { ?>
-                                            <tr>
-                                                <td>Wax / Polish Car</td>
-                                                <td><?php echo "<b>Yes</b>"; ?></td>
-                                            </tr>
-            <?php } ?>
+                                        
                                         <?php if ($cw['shampoo_seats'] != 0) { ?>
                                             <tr>
                                                 <td>Shampoo Seats</td>
@@ -199,7 +194,7 @@ $Stotal = 0; ?>
                             </div>
                         </div>
                     </div>
-    <?php } ?>
+    <?php }?>
             </div>
 
         </div>
@@ -462,12 +457,7 @@ $Stotal = 0; ?>
                                                                         </tr>
                                                     <?php } ?>
 
-                                                    <?php if ($cw['wax_car'] != 0) { ?>
-                                                                        <tr>
-                                                                            <td>Wax / Polish Car</td>
-                                                                            <td><?php echo "<b>Yes</b>"; ?></td>
-                                                                        </tr>
-            <?php } ?>
+                                                    
             <?php if ($cw['shampoo_seats'] != 0) { ?>
                                                                         <tr>
                                                                             <td>Shampoo Seats</td>

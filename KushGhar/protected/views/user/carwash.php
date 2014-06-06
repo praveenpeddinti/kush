@@ -1,14 +1,16 @@
 <?php error_log(sizeof($getCarWashServiceDetails)."======11111111111111111111111111111111====");
-$NOCars ='';$CarServiceTime ='';
+$NOCars ='';$CarServiceTime ='';$TCars='';
 
         foreach($getCarWashServiceDetails as $ee){
         
         $CarServiceTime = $ee['carservice_start_time'];
+        $TCars = $ee['total_cars'];
         }
         
     
  if(sizeof($getCarWashServiceDetails)==0){$NOCars =1;}else{
-        $NOCars=sizeof($getCarWashServiceDetails);
+        //$NOCars=sizeof($getCarWashServiceDetails);
+         $NOCars = $TCars;
     }
     error_log("---NOC--------".$NOCars."======".$CarServiceTime);
 //foreach($getCarWashServiceDetails as $rw){
@@ -33,7 +35,7 @@ $form = $this->beginWidget('CActiveForm', array(
 <?php echo $form->hiddenField($model, 'ExteriorColor'); ?> 
 <?php echo $form->hiddenField($model, 'InteriorCleaning'); ?> 
 <?php echo $form->hiddenField($model, 'ShampooSeats'); ?>
-<?php echo $form->hiddenField($model, 'WaxCar'); ?>
+<?php //echo $form->hiddenField($model, 'WaxCar'); ?>
 <?php echo $form->hiddenField($model, 'DifferentAddress'); ?>
 
 <?php echo $form->hiddenField($model, 'Address1'); ?>
@@ -165,13 +167,6 @@ $form = $this->beginWidget('CActiveForm', array(
                     '</div>'+
                     '<div id="<?php echo $j; ?>_ShampooSeatsTooltip" class="Additional_S_price" style="display:none">Cost of Services is <b>Rs.<label>400</label>/-</b></div>'+
              '</div>'+
-            '<div class=" span4">'+
-                '<label> Shampoo Mats</label>'+
-                    '<div class="switch switch-large WaxCar" data-id="<?php echo $j; ?>" id="<?php echo $j; ?>_WaxCar" data-on-label="Yes" data-off-label="No">'+
-                        '<input type="checkbox">'+
-                    '</div>'+
-                    '<div id="<?php echo $j; ?>_WaxCarTooltip" class="Additional_S_price" style="display:none">Cost of Services is <b>Rs.<label>350</label>/-</b></div>'+
-            '</div>'+     
         '</div>'+
         '</div>'+
         '<div class="AddressFieldsDiv" id="<?php echo $j; ?>_AddressFieldsDiv" Style="display:none">'+
@@ -263,13 +258,6 @@ $form = $this->beginWidget('CActiveForm', array(
                     '</div>'+
                     '<div id="1_ShampooSeatsTooltip" class="Additional_S_price" style="display:none">Cost of Services is <b>Rs.<label>400</label>/-</b></div>'+
              '</div>'+
-            '<div class=" span4">'+
-                '<label> Shampoo Mats</label>'+
-                    '<div class="switch switch-large WaxCar" data-id="1" id="1_WaxCar" data-on-label="Yes" data-off-label="No">'+
-                        '<input type="checkbox">'+
-                    '</div>'+
-                    '<div id="1_WaxCarTooltip" class="Additional_S_price" style="display:none">Cost of Services is <b>Rs.<label>350</label>/-</b></div>'+
-            '</div>'+     
         '</div>'+
         '</div>'+
         '<div class="AddressFieldsDiv" id="1_AddressFieldsDiv" Style="display:none">'+
@@ -374,12 +362,6 @@ $form = $this->beginWidget('CActiveForm', array(
                         '<input type="checkbox">'+
                     '</div>'+
              '</div>'+
-            '<div class=" span4">'+
-                '<label> Shampoo Mats</label>'+
-                    '<div class="switch switch-large WaxCar" data-id="'+i+'" id="'+i+'_WaxCar" data-on-label="Yes" data-off-label="No">'+
-                        '<input type="checkbox">'+
-                    '</div>'+
-            '</div>'+     
         '</div>'+
         '</div>'+
         '<div class="AddressFieldsDiv" id="'+i+'_AddressFieldsDiv" Style="display:none">'+
@@ -468,13 +450,6 @@ $form = $this->beginWidget('CActiveForm', array(
                     '</div>'+
                     '<div id="1_ShampooSeatsTooltip" class="Additional_S_price" style="display:none">Cost of Services is <b>Rs.<label>400</label>/-</b></div>'+
              '</div>'+
-            '<div class=" span4">'+
-                '<label> Shampoo Mats</label>'+
-                    '<div class="switch switch-large WaxCar" data-id="1" id="1_WaxCar" data-on-label="Yes" data-off-label="No">'+
-                        '<input type="checkbox">'+
-                    '</div>'+
-                    '<div id="1_WaxCarTooltip" class="Additional_S_price" style="display:none">Cost of Services is <b>Rs.<label>350</label>/-</b></div>'+
-            '</div>'+     
         '</div>'+
         '</div>'+
         '<div class="AddressFieldsDiv" id="1_AddressFieldsDiv" Style="display:none">'+
@@ -526,7 +501,7 @@ $('#1_DifferentAddress').bootstrapSwitch();
               $('#1_InteriorCleaning').val('0');
               $('#1_DifferentAddress').val('0');
         //$('#ExteriorCleaning').bootstrapSwitch();
-        $('#1_WaxCar').bootstrapSwitch();
+        
         $('#1_ShampooSeats').bootstrapSwitch();
         $('#1_DifferentAddress').on('switch-change', function (e, data) {
             var $el = $(data.el),
@@ -544,13 +519,11 @@ $('#1_DifferentAddress').bootstrapSwitch();
             if(value == true){//2alert("default form-----")
                 $('#1_InteriorCleaning').val('1');
                $('#1_interiorDiv').show();
-               $('#1_WaxCar').bootstrapSwitch('setState', true);
                $('#1_ShampooSeats').bootstrapSwitch('setState', true);
             }
             else{
                  $('#1_InteriorCleaning').val('0');
                 $('#1_interiorDiv').hide();
-                $('#1_WaxCar').bootstrapSwitch('setState', false);
                 $('#1_ShampooSeats').bootstrapSwitch('setState', false);
             }
         });
@@ -572,7 +545,6 @@ $('#1_DifferentAddress').bootstrapSwitch();
               $('#1_DifferentAddress').bootstrapSwitch();
               $('#1_InteriorCleaning').bootstrapSwitch();
         //$('#ExteriorCleaning').bootstrapSwitch();
-        $('#1_WaxCar').bootstrapSwitch();
         $('#1_ShampooSeats').bootstrapSwitch();
        
         $('#1_InteriorCleaning').on('switch-change', function (e, data) {
@@ -581,13 +553,11 @@ $('#1_DifferentAddress').bootstrapSwitch();
             if(value == true){
                 $('#1_InteriorCleaning').val('1');
                $('#1_interiorDiv').show();
-               $('#1_WaxCar').bootstrapSwitch('setState', true);
                $('#1_ShampooSeats').bootstrapSwitch('setState', true);
             }
             else{
                  $('#1_InteriorCleaning').val('0');
                 $('#1_interiorDiv').hide();
-                $('#1_WaxCar').bootstrapSwitch('setState', false);
                 $('#1_ShampooSeats').bootstrapSwitch('setState', false);
             }
         });
@@ -621,7 +591,6 @@ $('#1_DifferentAddress').bootstrapSwitch();
         //$('#AlternatePhone').bootstrapSwitch();
         $('#1_InteriorCleaning').bootstrapSwitch();
         //$('#ExteriorCleaning').bootstrapSwitch();
-        $('#1_WaxCar').bootstrapSwitch();
         $('#1_ShampooSeats').bootstrapSwitch();
        
         $('#1_InteriorCleaning').on('switch-change', function (e, data) {
@@ -630,17 +599,13 @@ $('#1_DifferentAddress').bootstrapSwitch();
             if(value == true){
                  $('#1_InteriorCleaning').val('1');
                $('#1_interiorDiv').show();
-               $('#1_WaxCar').bootstrapSwitch('setState', true);
                $('#1_ShampooSeats').bootstrapSwitch('setState', true);
-               $('#1_WaxCar').val('1');
                $('#1_ShampooSeats').val('1');
             }
             else{
                  $('#1_InteriorCleaning').val('0');
                 $('#1_interiorDiv').hide();
-                $('#1_WaxCar').bootstrapSwitch('setState', false);
                 $('#1_ShampooSeats').bootstrapSwitch('setState', false);
-                $('#1_WaxCar').val('0');
                 $('#1_ShampooSeats').val('0');
             }
         });
@@ -656,16 +621,7 @@ $('#1_DifferentAddress').bootstrapSwitch();
                $('#1_DifferentAddress').val('0');
            }
         });
-        $('#1_WaxCar').on('switch-change', function (e, data) {
-            var $el = $(data.el),
-            value = data.value;
-            if(value == true){
-               $('#1_WaxCar').val('1');
-            }
-            else{
-               $('#1_WaxCar').val('0');
-           }
-        });
+        
         $('#1_ShampooSeats').on('switch-change', function (e, data) {
             var $el = $(data.el),
             value = data.value;
@@ -725,13 +681,6 @@ $('#1_DifferentAddress').bootstrapSwitch();
                     '</div>'+
                     '<div id="1_ShampooSeatsTooltip" class="Additional_S_price" style="display:none">Cost of Services is <b>Rs.<label>400</label>/-</b></div>'+
              '</div>'+
-            '<div class=" span4">'+
-                '<label> Shampoo Mats</label>'+
-                    '<div class="switch switch-large WaxCar" data-id="1" id="1_WaxCar" data-on-label="Yes" data-off-label="No">'+
-                        '<input type="checkbox">'+
-                    '</div>'+
-                    '<div id="1_WaxCarTooltip" class="Additional_S_price" style="display:none">Cost of Services is <b>Rs.<label>350</label>/-</b></div>'+
-            '</div>'+     
         '</div>'+
         '</div>'+
         '<div class="AddressFieldsDiv" id="1_AddressFieldsDiv" Style="display:none">'+
@@ -819,11 +768,9 @@ function bindDiff(nValue){
        $("#"+k+"_DifferentAddress").bootstrapSwitch();
        $("#"+k+"_InteriorCleaning").bootstrapSwitch();
         //$('#ExteriorCleaning').bootstrapSwitch();
-        $("#"+k+"_WaxCar").bootstrapSwitch();
         $("#"+k+"_ShampooSeats").bootstrapSwitch();
         $("#"+k+"_DifferentAddress").val('0');
         $("#"+k+"_InteriorCleaning").val('0');
-        $("#"+k+"_WaxCar").val('0');
         $("#"+k+"_ShampooSeats").val('0');
    
             
@@ -855,22 +802,17 @@ function bindDiff(nValue){
             if(value == true){//alert("yes"+id)
                $("#"+id+"_InteriorCleaning").val('1');
                $("#"+id+"_interiorDiv").show();
-               $("#"+id+"_WaxCar").bootstrapSwitch('setState', true);
                $("#"+id+"_ShampooSeats").bootstrapSwitch('setState', true);
-               $("#"+id+"_WaxCar").val('1');
                $("#"+id+"_ShampooSeats").val('1');
                $("#"+id+"_ShampooSeatsTooltip").show();
-               $("#"+id+"_WaxCarTooltip").show();
             }
             else{//alert("No"+id)
                $("#"+id+"_InteriorCleaning").val('0');
                $("#"+id+"_interiorDiv").hide();
-               $("#"+id+"_WaxCar").bootstrapSwitch('setState', false);
                $("#"+id+"_ShampooSeats").bootstrapSwitch('setState', false);
-               $("#"+id+"_WaxCar").val('0');
                $("#"+id+"_ShampooSeats").val('0');
                $("#"+id+"_ShampooSeatsTooltip").hide();
-               $("#"+id+"_WaxCarTooltip").hide();
+
             }
         });
     });
@@ -895,28 +837,7 @@ function bindDiff(nValue){
             }
         });
     });
-    $(".WaxCar").live('mouseenter',function(){
-        var id = $(this).data('id');
-        $("#"+id+"_WaxCar").on('switch-change', function (e, data) {
-            var $el = $(data.el),
-            value = data.value;
-            if(value == true){
-              
-               $("#"+id+"_WaxCar").bootstrapSwitch('setState', true);
-               
-               $("#"+id+"_WaxCar").val('1');
-               $("#"+id+"_WaxCarTooltip").show();
-            }
-            
-            else{//alert("No"+id)
-               
-               $("#"+id+"_WaxCar").bootstrapSwitch('setState', false);
-               
-               $("#"+id+"_WaxCar").val('0');
-               $("#"+id+"_WaxCarTooltip").hide();
-            }
-        });
-    });
+
 
 function bindDiffEdit(nValue){
    //alert("--bindDiff-Edit-"+nValue+"===="+$('#CarWashForm_TotalCars').val())
@@ -933,11 +854,9 @@ function bindDiffEdit(nValue){
        $("#"+k+"_DifferentAddress").bootstrapSwitch();
        $("#"+k+"_InteriorCleaning").bootstrapSwitch();
         //$('#ExteriorCleaning').bootstrapSwitch();
-        $("#"+k+"_WaxCar").bootstrapSwitch();
         $("#"+k+"_ShampooSeats").bootstrapSwitch();
         $("#"+k+"_DifferentAddress").val('0');
         $("#"+k+"_InteriorCleaning").val('0');
-        $("#"+k+"_WaxCar").val('0');
         $("#"+k+"_ShampooSeats").val('0');
    
             
@@ -970,17 +889,13 @@ $(".DifferentAddress").live('mouseenter',function(){
             if(value == true){
                $("#1_InteriorCleaning").val('1');
                $("#1_interiorDiv").show();
-               $("#1_WaxCar").bootstrapSwitch('setState', true);
                $("#1_ShampooSeats").bootstrapSwitch('setState', true);
-               $("#1_WaxCar").val('1');
                $("#1_ShampooSeats").val('1');
             }
             else{//alert("No"+id)
                $("#1_InteriorCleaning").val('0');
                $("#1_interiorDiv").hide();
-               $("#1_WaxCar").bootstrapSwitch('setState', false);
                $("#1_ShampooSeats").bootstrapSwitch('setState', false);
-               $("#1_WaxCar").val('0');
                $("#1_ShampooSeats").val('0');
             }
         });
@@ -1016,27 +931,16 @@ $(".DifferentAddress").live('mouseenter',function(){
         <?php if($rw['interior_cleaning'] == 1){ ?>
         $('#<?php echo $j; ?>_InteriorCleaning').bootstrapSwitch('setState', true);
         $('#<?php echo $j; ?>_interiorDiv').show();
-        $('#<?php echo $j; ?>_WaxCar').bootstrapSwitch('setState', true);
         $('#<?php echo $j; ?>_ShampooSeats').bootstrapSwitch('setState', true);
          $('#<?php echo $j; ?>_InteriorCleaning').val('1');
         <?php } else {?>
             
         $('#<?php echo $j; ?>_InteriorCleaning').bootstrapSwitch('setState', false);
         $('#<?php echo $j; ?>_InteriorCleaning').val('0');
-        $('#<?php echo $j; ?>_WaxCar').bootstrapSwitch('setState', false);
         $('#<?php echo $j; ?>_ShampooSeats').bootstrapSwitch('setState', false);
         $('#<?php echo $j; ?>_interiorDiv').hide();
         <?php } ?>
             
-        <?php if($rw['wax_car'] == 1){ ?>
-        $('#<?php echo $j; ?>_WaxCar').bootstrapSwitch('setState', true);
-        $('#<?php echo $j; ?>_WaxCar').val('1');
-        $("#<?php echo $j; ?>_WaxCarTooltip").show();
-        <?php } else {?>
-        $('#<?php echo $j; ?>_WaxCar').bootstrapSwitch('setState', false);
-        $('#<?php echo $j; ?>_WaxCar').val('0');
-        $("#<?php echo $j; ?>_WaxCarTooltip").hide();
-        <?php } ?>  
         
         <?php if($rw['shampoo_seats'] == 1){ ?>
         $('#<?php echo $j; ?>_ShampooSeats').bootstrapSwitch('setState', true);

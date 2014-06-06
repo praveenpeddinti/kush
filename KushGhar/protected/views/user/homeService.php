@@ -366,6 +366,7 @@ $(document).ready(function() {
             }else{
               $("#CarWashForm_ServiceStartTime_em_").hide();  
             }
+            alert($("#CarWashForm_DifferentLocation").val());
         if($("#CarWashForm_DifferentLocation").val()=='0'){ dumpcars='1';}else{dumpcars=$('#CarWashForm_TotalCars').val();};
         for (var i = 1; i <= dumpcars; i++) {
             
@@ -391,14 +392,9 @@ $(document).ready(function() {
                 return false;
             } else {
                 $("#" + i + "_ExteriorColor_em").hide();
-                if (color == "") {
-                    color = $("#" + i + "_ExteriorColor").val();
-                } else if (color != "") {
-                    color = color + "," + $("#" + i + "_ExteriorColor").val();
-                }
-                $('#CarWashForm_ExteriorColor').val(color);
+                
             }
-            
+             
             if (interiorCleaning == "") {
                 interiorCleaning = $("#" + i + "_InteriorCleaning").val();
             } else if (interiorCleaning != "") {
@@ -413,13 +409,13 @@ $(document).ready(function() {
 
             }
             $('#CarWashForm_ShampooSeats').val(shampooSeats);
-            if (shampooMats == "") {
+            /*if (shampooMats == "") {
                 shampooMats = $("#" + i + "_WaxCar").val();
             } else if (shampooMats != "") {
                 shampooMats = shampooMats + "," + $("#" + i + "_WaxCar").val();
 
             }
-            $('#CarWashForm_WaxCar').val(shampooMats);
+            $('#CarWashForm_WaxCar').val(shampooMats);*/
             
             if($("#" + i + "_DifferentAddress").val()=='0'){
             }else{
@@ -479,7 +475,13 @@ $(document).ready(function() {
             }
             //Pin Code validation end
         }
-             if (differentAddress == "") {
+              if (color == "") {
+                    color = $("#" + i + "_ExteriorColor").val()+",";
+                } else if (color != "") {
+                    color = color + "," + $("#" + i + "_ExteriorColor").val();
+                }
+                $('#CarWashForm_ExteriorColor').val(color); 
+              if (differentAddress == "") {
                     differentAddress = $("#" + i + "_DifferentAddress").val();
                 } else if (differentAddress != "") {
                     differentAddress = differentAddress + "," + $("#" + i + "_DifferentAddress").val();
@@ -530,7 +532,7 @@ $(document).ready(function() {
                 }
                 $('#CarWashForm_PinCode').val(pin_code);
         }
-
+        //alert("===color==="+color);
         var type = '';
         if ($('#CarWashCleaningSubmit').val() == 'Submit') {
             type = 'submit';

@@ -27,7 +27,7 @@
                                 <div class="row-fluid">
                                     <div class=" span3">
                                         <?php echo $form->label($model, 'Square Feets'); ?>
-                                        <?php if($getServiceDetails['squarefeets']=='0') {$squareFeetsValue='';}else{ $squareFeetsValue=$getServiceDetails['squarefeets']=='';} echo $form->textField($model, 'SquareFeets', array('value'=>$squareFeetsValue,'maxLength' => 5, 'class' => 'span12', 'placeholder' => 'Square Feets…')); ?>
+                                        <?php if($getServiceDetails['squarefeets']=='0') {$squareFeetsValue='';}else{ $squareFeetsValue=$getServiceDetails['squarefeets'];} echo $form->textField($model, 'SquareFeets', array('value'=>$squareFeetsValue,'maxLength' => 5, 'class' => 'span12', 'placeholder' => 'Square Feets…')); ?>
                                         <?php echo $form->error($model, 'SquareFeets'); ?>
                                     </div> 
                                     <div class=" span9">

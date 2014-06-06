@@ -22,7 +22,7 @@
                         <div class=" mobilerightclear">
                             <div class="header_contact_info pull-right">
                                 <ul>
-                                    <li class="phone" style="color:#F58220">1800-3070-6959</li>
+                                    <li class="phone" style="color:#F58220">1-800-3070-6959</li>
                                     <li class="email" ><a href="mailto:helpme@kushghar.com" style="color:#F58220">helpme@kushghar.com</a></li>
                                 </ul>
                             </div>
@@ -126,7 +126,7 @@
                     <?php if($this->session['Type']=='Admin'){?>
                     <a href="/admin/dashboard"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/inner_top_logo.png" alt="logo" class="logo"></a>
                     <?php }?>
-                    <div class="comesoon">We are available Hyderabad now. We will be national wide shortly</div>
+                    <div class="comesoon">We are currently available in Hyderabad. We plan be nation wide soon.</div>
                 </div>
 
                 <div class="pull-right">
@@ -175,6 +175,8 @@
 </header>
 <?php } ?>
 <script type="text/javascript">
+    
+    
     function loginpopup(){
         
         window.location.href='<?php echo Yii::app()->request->baseUrl; ?>/user/registration';

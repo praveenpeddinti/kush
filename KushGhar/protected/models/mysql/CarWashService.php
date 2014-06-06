@@ -12,7 +12,7 @@ class CarWashService extends CActiveRecord {
     public $interior_cleaning;
     public $exterior_color;
     public $status;
-    public $wax_car;
+    //public $wax_car;
     public $shampoo_seats;
     public $different_number;
     public $address_line1;
@@ -48,14 +48,14 @@ class CarWashService extends CActiveRecord {
             error_log("tCars==".$model->TotalCars."======".$DL."=====".json_encode($model->City));
             error_log("tCars==".$model->TotalCars."======".$DL."=====".json_encode($model->PinCode));
             error_log("tCars==".$model->TotalCars."======".$DL."=====".json_encode($model->InteriorCleaning));
-            error_log("tCars==".$model->TotalCars."===========".json_encode($model->WaxCar));
+            //error_log("tCars==".$model->TotalCars."===========".json_encode($model->WaxCar));
             if($DL==0){$dumpCars = 1;}else{$dumpCars = $model->TotalCars;}
             if($dumpCars>1){error_log("enter save=====");
             $make_of_car = explode(',', $model->MakeOfCar);
             $exterior_color = explode(',', $model->ExteriorColor);
             $interior_cleaning = explode(',', $model->InteriorCleaning);
             $shampoo_seats = explode(',', $model->ShampooSeats);
-            $shampoo_mats = explode(',', $model->WaxCar);
+            //$shampoo_mats = explode(',', $model->WaxCar);
             $different_address = explode(',', $model->DifferentAddress);
             
             $address1 = explode(',', $model->Address1);
@@ -87,7 +87,7 @@ class CarWashService extends CActiveRecord {
                 error_log("enter save==3===");
                 //error_log("==ADD==".$different_address[$i]."==add1==".$address1[$i]."==add2==".$address2[$i]."==phone==".$alternate_phone[$i]."==Sate==".$state[$i]."==CITY==".$city[$i]."==PINCODE==".$pin_code[$i]);
                 error_log("==add1==".$address1[$i]."==add2==".$address2[$i]."==phone==".$alternate_phone[$i]."==Sate==".$state[$i]."==CITY==".$city[$i]."==PINCODE==".$pin_code[$i]);
-            $query = "insert into  KG_Car_cleaning_service(ServiceId,CustId,total_cars,different_location,carservice_start_time,make_of_car,order_number,exterior_color,interior_cleaning,shampoo_seats,wax_car,different_number,address_line1,address_line2,alternate_phone,address_state,address_city,address_pin_code,create_timestamp,update_timestamp) values(2,$cId,$model->TotalCars,$DL,'$model->ServiceStartTime','$make_of_car[$i]','$orderNo','$exterior_color[$i]',$interior_cleaning[$i],$shampoo_seats[$i],$shampoo_mats[$i],$different_address[$i],'$address1[$i]','$address2[$i]','$alternate_phone[$i]','$state[$i]','$city[$i]','$pin_code[$i]','$create_timestamp','$update_timestamp')";
+            $query = "insert into  KG_Car_cleaning_service(ServiceId,CustId,total_cars,different_location,carservice_start_time,make_of_car,order_number,exterior_color,interior_cleaning,shampoo_seats,different_number,address_line1,address_line2,alternate_phone,address_state,address_city,address_pin_code,create_timestamp,update_timestamp) values(2,$cId,$model->TotalCars,$DL,'$model->ServiceStartTime','$make_of_car[$i]','$orderNo','$exterior_color[$i]',$interior_cleaning[$i],$shampoo_seats[$i],$different_address[$i],'$address1[$i]','$address2[$i]','$alternate_phone[$i]','$state[$i]','$city[$i]','$pin_code[$i]','$create_timestamp','$update_timestamp')";
             
             //error_log($i."urrrrpdate profile in user profile pageeeeeeeeeee". $query);
             //$query = "insert into  KG_Car_cleaning_service(ServiceId,CustId,total_cars,make_of_car,exterior_color,different_number,interior_cleaning,shampoo_seats,wax_car,address_line1,address_line2,alternate_phone,address_state,address_city,address_pin_code,create_timestamp,update_timestamp) values(2,$cId,$model->TotalCars,'$make_of_car[$i]','$exterior_color[$i]',$different_address[$i],$interior_cleaning[$i],$shampoo_seats[$i],$shampoo_mats[$i],'$address1[$i]','$address2[$i]','$alternate_phone[$i]','$state[$i]','$city[$i]','$pin_code[$i]','$create_timestamp','$update_timestamp')";
@@ -106,7 +106,7 @@ class CarWashService extends CActiveRecord {
             $servicesDetails->carservice_start_time = $model->ServiceStartTime;
             $servicesDetails->interior_cleaning = $model->InteriorCleaning;
             $servicesDetails->exterior_color = $model->ExteriorColor;
-            $servicesDetails->wax_car = $model->WaxCar;
+            //$servicesDetails->wax_car = $model->WaxCar;
             $servicesDetails->shampoo_seats = $model->ShampooSeats;
             $servicesDetails->different_number = $model->DifferentAddress;
             $servicesDetails->address_line1 = rtrim($model->Address1,",");

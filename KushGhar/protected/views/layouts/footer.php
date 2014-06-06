@@ -38,9 +38,9 @@
                 <div class="contact_info pull-right">
                     <div class="getintouch">
                         Get in touch
-                        <p style=" margin-top:5px">1800-3070-6959</p>
+                        <p style=" margin-top:5px">1-800-3070-6959</p>
                         <p>helpme@kushghar.com</p>
-                        <p style="font-family: MuseoSlab500;font-size:10px;font-weight: normal">We are available Hyderabad now. We will be national wide shortly.</p>
+                        <p style="font-family: MuseoSlab500;font-size:10px;color:#FFF;font-weight: normal">We are currently available in Hyderabad. We plan be nation wide soon.</p>
                     </div>
                 </div>
             </div>

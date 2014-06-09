@@ -65,7 +65,7 @@ $form = $this->beginWidget('CActiveForm', array(
         </div>
         
         <div class=" span5" id="DifferentLocationDiv" style="display:none">
-            <label>Are they at different location</label>
+            <label>Are they at different Address</label>
             <div class="switch switch-large DifferentLocation" id="DifferentLocation" data-on-label="Yes" data-off-label="No">
                 <?php echo $form->checkBox($model, 'DifferentLocation'); ?>
             </div>
@@ -115,7 +115,8 @@ $form = $this->beginWidget('CActiveForm', array(
                     theme: 'android', // for android set theme:'android'
                     display: 'modal',
                     mode: 'scroller',
-                    dateFormat:'yyyy-mm-dd',
+                    //dateFormat:'yyyy-mm-dd',
+                    dateFormat:'dd-mm-yyyy',
                     dateOrder: 'Md ddyy',
                     timeWheels:'HHii',
                     minDate:  mindate
@@ -123,6 +124,7 @@ $form = $this->beginWidget('CActiveForm', array(
         $('#DifferentLocation').bootstrapSwitch();
         var html = "";
         var sHtml = "";
+        
         
         <?php if(isset($getCarWashServiceDetails) && sizeof($getCarWashServiceDetails)>0){ 
             error_log("==00000000000000======sdfasdfsdfsdf11111111111111111");$j=1; foreach($getCarWashServiceDetails as $rw){ ?>
@@ -145,12 +147,7 @@ $form = $this->beginWidget('CActiveForm', array(
                 '<input type="text" class="span12" maxLength="25" value="<?php echo $rw['exterior_color']?>" placeholder="Exterior Color..." id="<?php echo $j; ?>_ExteriorColor">'+
                 '<div id="<?php echo $j; ?>_ExteriorColor_em" class="errorMessage" style="display:none"></div>'+
             '</div>'+
-            '<div class=" span4">'+
-                '<label> Different Address</label>'+
-                '<div class="switch switch-large DifferentAddress" data-id="<?php echo $j; ?>" data-on-label="Yes" data-off-label="No" id="<?php echo $j; ?>_DifferentAddress">'+
-                    '<input type="checkbox" >'+
-                '</div>'+
-            '</div>'+
+
         '</div>'+
         '<div class="row-fluid">'+
             '<div class="span4">'+
@@ -218,30 +215,71 @@ $form = $this->beginWidget('CActiveForm', array(
            
     
 <? $j++;?>
-        <?php } }else{?>//alert("default=====view==="+$('#CarWashForm_DifferentLocation').val());
-          sHtml ='<div class="cardetails" >'+
+        <?php } ?>
+        sHtml+= '<div class="AddressFieldsDivWithSingle" id="1_AddressFieldsDivWithSingle" Style="display:block">'+
+ 	'<div class="row-fluid">'+
+            '<div class=" span4">'+
+                '<label><abbr title="required">*</abbr> Address Line1</label>'+
+                '<input type="text" class="span12" id="11_Address1" value="" maxLength="100" placeholder="Address Line1…">'+
+                '<div id="11_Address1_em" class="errorMessage" style="display:none"></div>'+
+             '</div>'+ 
+             '<div class=" span4">'+
+                '<label> Address Line2</label>'+
+                '<input type="text" class="span12" id="11_Address2" value="" maxLength="100" placeholder="Address Line2…">'+
+             '</div>'+
+             '<div class=" span4">'+
+                '<label> Alternate Phone</label>'+
+                '<input type="text" class="span12" id="11_AlternatePhone" value="" maxLength="10" placeholder="Alternate Phone…">'+
+                '<div id="11_AlternatePhone_em" class="errorMessage" style="display:none"></div>'+
+             '</div> '+
+        '</div>'+
+        '<div class="row-fluid">'+
+            '<div class=" span4">'+
+                '<label><abbr title="required">*</abbr> State</label>'+
+                '<select name="11_State" id="11_State" class="span12" >'+
+                    '<option value="">Select State</option>'+
+                    '<?php foreach ($States as $course) { ?>'+
+                    '<option  value="<?php echo $course['Id']; ?>"><?php echo $course['StateName']; ?></option>'+
+
+                    '<?php } ?>'+
+                    '</select>'+
+                    '<div id="11_State_em" class="errorMessage" style="display:none"></div>'+
+             '</div>'+
+             '<div class=" span4">'+
+                '<label><abbr title="required">*</abbr> City</label>'+
+                '<input type="text" class="span12" id="11_City" value="" maxLength="25" placeholder="City…">'+
+                '<div id="11_City_em" class="errorMessage" style="display:none"></div>'+
+           '</div>'+
+           '<div class=" span4">'+
+                '<label><abbr title="required">*</abbr> Pin Code</label>'+
+                '<input type="text" class="span12" id="11_PinCode" value="" maxLength="6" placeholder="Pin Code…">'+
+                '<div id="11_PinCode_em" class="errorMessage" style="display:none"></div>'+
+           '</div>'+
+           '</div>'+
+        '</div>'+
+    '</div>';
+        
+        
+        <?php  }else {?>
+            
+            sHtml+= '<div class="cardetails" >'+
         '<div class=" row-fluid">'+
             '<div class="span12 ">'+
-                '<h5 class="toggles"># details</h5>'+
+                '<h5 class="toggles">#1 details</h5>'+
             '</div> '+   
         '</div><hr style="margin: 0;" />'+
         '<div class="row-fluid">'+
             '<div class=" span4">'+
                 '<label><abbr title="required">*</abbr> Make / Model of the Car</label>'+
-                '<input type="text" class="span12" maxLength="25" value="" placeholder="Make of the car..." id="1_MakeOfCar">'+
+                '<input type="text" class="span12" maxLength="25" placeholder="Make of the car..." id="1_MakeOfCar">'+
                 '<div id="1_MakeOfCar_em" class="errorMessage" style="display:none"></div>'+
             '</div>'+
             '<div class=" span4">'+
                 '<label> Exterior Color</label>'+
-                '<input type="text" class="span12" maxLength="25" value="" placeholder="Exterior Color..." id="1_ExteriorColor">'+
+                '<input type="text" class="span12" maxLength="25" placeholder="Exterior Color..." id="1_ExteriorColor">'+
                 '<div id="1_ExteriorColor_em" class="errorMessage" style="display:none"></div>'+
             '</div>'+
-            '<div class=" span4">'+
-                '<label> Different Address</label>'+
-                '<div class="switch switch-large DifferentAddress" data-on-label="Yes" data-off-label="No" id="1_DifferentAddress">'+
-                    '<input type="checkbox" >'+
-                '</div>'+
-            '</div>'+
+
         '</div>'+
         '<div class="row-fluid">'+
             '<div class="span4">'+
@@ -250,328 +288,127 @@ $form = $this->beginWidget('CActiveForm', array(
                         '<input type="checkbox">'+
                     '</div>'+
                 '</div>'+
-            '<div class="interiorDiv" id="1_interiorDiv" style="display:none">'+
+            '<div class="interiorDiv" id="_interiorDiv" style="display:none">'+
             '<div class=" span4" >'+
                 '<label> Shampoo Seats</label>'+
                     '<div class="switch switch-large ShampooSeats" data-id="1" id="1_ShampooSeats" data-on-label="Yes" data-off-label="No">'+
                         '<input type="checkbox">'+
                     '</div>'+
-                    '<div id="1_ShampooSeatsTooltip" class="Additional_S_price" style="display:none">Cost of Services is <b>Rs.<label>400</label>/-</b></div>'+
              '</div>'+
         '</div>'+
         '</div>'+
-        '<div class="AddressFieldsDiv" id="1_AddressFieldsDiv" Style="display:none">'+
+        '<div class="AddressFieldsDiv" id="1_AddressFieldsDiv" Style="display:block">'+
  	'<div class="row-fluid">'+
             '<div class=" span4">'+
                 '<label><abbr title="required">*</abbr> Address Line1</label>'+
-                '<input type="text" class="span12" id="1_Address1" value="" maxLength="100" placeholder="Address Line1…">'+
-                '<div id="1_Address1_em" class="errorMessage" style="display:none"></div>'+
+                '<input type="text" class="span12" id="11_Address1" maxLength="100" placeholder="Address Line 1…">'+
+                '<div id="11_Address1_em" class="errorMessage" style="display:none"></div>'+
              '</div>'+ 
              '<div class=" span4">'+
                 '<label> Address Line2</label>'+
-                '<input type="text" class="span12" id="1_Address2" value="" maxLength="100" placeholder="Address Line2…">'+
+                '<input type="text" class="span12" id="11_Address2" maxLength="100" placeholder="Address Line 1…">'+
              '</div>'+
              '<div class=" span4">'+
                 '<label> Alternate Phone</label>'+
-                '<input type="text" class="span12" id="1_AlternatePhone" value="" maxLength="10" placeholder="Alternate Phone…">'+
-                '<div id="1_AlternatePhone_em" class="errorMessage" style="display:none"></div>'+
+                '<input type="text" class="span12" id="11_AlternatePhone" maxLength="10" placeholder="Alternate Phone…">'+
              '</div> '+
         '</div>'+
         '<div class="row-fluid">'+
             '<div class=" span4">'+
                 '<label><abbr title="required">*</abbr> State</label>'+
-                '<select name="1_State" id="1_State" class="span12" >'+
+                '<select name="11_State" id="11_State" class="span12" >'+
                     '<option value="">Select State</option>'+
                     '<?php foreach ($States as $course) { ?>'+
                     '<option  value="<?php echo $course['Id']; ?>"><?php echo $course['StateName']; ?></option>'+
 
                     '<?php } ?>'+
                     '</select>'+
-                    '<div id="1_State_em" class="errorMessage" style="display:none"></div>'+
              '</div>'+
              '<div class=" span4">'+
                 '<label><abbr title="required">*</abbr> City</label>'+
-                '<input type="text" class="span12" id="1_City" value="" maxLength="25" placeholder="City…">'+
-                '<div id="1_City_em" class="errorMessage" style="display:none"></div>'+
+                '<input type="text" class="span12" id="11_City" maxLength="25" placeholder="City…">'+
            '</div>'+
            '<div class=" span4">'+
                 '<label><abbr title="required">*</abbr> Pin Code</label>'+
-                '<input type="text" class="span12" id="1_PinCode" value="" maxLength="6" placeholder="Pin Code…">'+
-                '<div id="1_PinCode_em" class="errorMessage" style="display:none"></div>'+
+                '<input type="text" class="span12" id="11_PinCode" maxLength="6" placeholder="Pin Code…">'+
            '</div>'+
            '</div>'+
         '</div>'+
     '</div>';
-    
-    
-    
-    //$('#CarWashForm_DifferentLocation').val('0');
-    
-    
-        <?php } ?>
+            
+        <?php }?>    
           
     //alert(sHtml);
     $(".newcars").html(sHtml).show();
+    //var ssa =$(".newcars").html(sHtml); 
+              //alert("====html con==="+$(".newcars").html())
+             //$(ssa).append('<div>ffff</div>').show;
+             //alert(sHtml);
     var totalcars1 =  $('#CarWashForm_TotalCars').val();   
     bindDiffEdit(totalcars1);
+    //if(totalcars1>1){alert("noummmmm");}
     $('#DifferentLocation').on('switch-change', function (e, data) {
             html='';
             var $el = $(data.el),
             value = data.value;
-            if(value == true){//alert("yes");
-                $('#CarWashForm_DifferentLocation').val('1');
-              //3alert($('#CarWashForm_TotalCars').val()+"===="+$('#CarWashForm_DifferentLocation').val());
-                   var totalcars =  $('#CarWashForm_TotalCars').val();                                                                                                            
-              for(var i=1;i<=totalcars;i++){
-                  
-                  html += '<div class="cardetails" >'+
-        '<div class=" row-fluid">'+
-            '<div class="span12 ">'+
-                '<h5 class="toggles">#'+i+' details</h5>'+
-            '</div> '+   
-        '</div><hr style="margin: 0;" />'+
-        '<div class="row-fluid">'+
-            '<div class=" span4">'+
-                '<label><abbr title="required">*</abbr> Make / Model of the Car</label>'+
-                '<input type="text" class="span12" maxLength="25" placeholder="Make of the car..." id="'+i+'_MakeOfCar">'+
-                '<div id="'+i+'_MakeOfCar_em" class="errorMessage" style="display:none"></div>'+
-            '</div>'+
-            '<div class=" span4">'+
-                '<label> Exterior Color</label>'+
-                '<input type="text" class="span12" maxLength="25" placeholder="Exterior Color..." id="'+i+'_ExteriorColor">'+
-                '<div id="'+i+'_ExteriorColor_em" class="errorMessage" style="display:none"></div>'+
-            '</div>'+
-            '<div class=" span4">'+
-                '<label> Different Address</label>'+
-                '<div class="switch switch-large DifferentAddress" data-on-label="Yes" data-off-label="No" data-id="'+i+'" id="'+i+'_DifferentAddress">'+
-                    '<input type="checkbox" >'+
-                '</div>'+
-            '</div>'+
-        '</div>'+
-        '<div class="row-fluid">'+
-            '<div class="span4">'+
-                '<label> Interior Cleaning</label>'+
-                    '<div class="switch switch-large InteriorCleaning" data-id="'+i+'" id="'+i+'_InteriorCleaning" data-on-label="Yes" data-off-label="No">'+
-                        '<input type="checkbox">'+
-                    '</div>'+
-                '</div>'+
-            '<div class="interiorDiv" id="'+i+'_interiorDiv" style="display:none">'+
-            '<div class=" span4" >'+
-                '<label> Shampoo Seats</label>'+
-                    '<div class="switch switch-large ShampooSeats" data-id="'+i+'" id="'+i+'_ShampooSeats" data-on-label="Yes" data-off-label="No">'+
-                        '<input type="checkbox">'+
-                    '</div>'+
-             '</div>'+
-        '</div>'+
-        '</div>'+
-        '<div class="AddressFieldsDiv" id="'+i+'_AddressFieldsDiv" Style="display:none">'+
- 	'<div class="row-fluid">'+
-            '<div class=" span4">'+
-                '<label><abbr title="required">*</abbr> Address Line1</label>'+
-                '<input type="text" class="span12" id="'+i+'_Address1" maxLength="100" placeholder="Address Line 1…">'+
-                '<div id="'+i+'_Address1_em" class="errorMessage" style="display:none"></div>'+
-             '</div>'+ 
-             '<div class=" span4">'+
-                '<label> Address Line2</label>'+
-                '<input type="text" class="span12" id="'+i+'_Address2" maxLength="100" placeholder="Address Line 1…">'+
-             '</div>'+
-             '<div class=" span4">'+
-                '<label> Alternate Phone</label>'+
-                '<input type="text" class="span12" id="'+i+'_AlternatePhone" maxLength="10" placeholder="Alternate Phone…">'+
-             '</div> '+
-        '</div>'+
-        '<div class="row-fluid">'+
-            '<div class=" span4">'+
-                '<label><abbr title="required">*</abbr> State</label>'+
-                '<select name="'+i+'_State" id="'+i+'_State" class="span12" >'+
-                    '<option value="">Select State</option>'+
-                    '<?php foreach ($States as $course) { ?>'+
-                    '<option  value="<?php echo $course['Id']; ?>"><?php echo $course['StateName']; ?></option>'+
-
-                    '<?php } ?>'+
-                    '</select>'+
-             '</div>'+
-             '<div class=" span4">'+
-                '<label><abbr title="required">*</abbr> City</label>'+
-                '<input type="text" class="span12" id="'+i+'_City" maxLength="25" placeholder="City…">'+
-           '</div>'+
-           '<div class=" span4">'+
-                '<label><abbr title="required">*</abbr> Pin Code</label>'+
-                '<input type="text" class="span12" id="'+i+'_PinCode" maxLength="6" placeholder="Pin Code…">'+
-           '</div>'+
-           '</div>'+
-        '</div>'+
-    '</div>';
-              }
-              //alert(html);
-             
-              $(".newcars").html(html).show(); 
-              //alert("====html con==="+$(".newcars").html())
-             
-                bindDiff(totalcars);
-            }else{//alert("no diff location===========");
-            $('#CarWashForm_DifferentLocation').val('0');
-            var changeTheCarsHtml = '<div class="cardetails" >'+
-        '<div class=" row-fluid">'+
-            '<div class="span12 ">'+
-                '<h5 class="toggles"># details</h5>'+
-            '</div> '+   
-        '</div><hr style="margin: 0;" />'+
-        '<div class="row-fluid">'+
-            '<div class=" span4">'+
-                '<label><abbr title="required">*</abbr> Make / Model of the Car</label>'+
-                '<input type="text" class="span12" maxLength="25" value="" placeholder="Make of the car..." id="1_MakeOfCar">'+
-                '<div id="1_MakeOfCar_em" class="errorMessage" style="display:none"></div>'+
-            '</div>'+
-            '<div class=" span4">'+
-                '<label> Exterior Color</label>'+
-                '<input type="text" class="span12" maxLength="25" value="" placeholder="Exterior Color..." id="1_ExteriorColor">'+
-                '<div id="1_ExteriorColor_em" class="errorMessage" style="display:none"></div>'+
-            '</div>'+
-            '<div class=" span4">'+
-                '<label> Different Address</label>'+
-                '<div class="switch switch-large DifferentAddress" data-on-label="Yes" data-off-label="No" id="1_DifferentAddress">'+
-                    '<input type="checkbox" >'+
-                '</div>'+
-            '</div>'+
-        '</div>'+
-        '<div class="row-fluid">'+
-            '<div class="span4">'+
-                '<label> Interior Cleaning</label>'+
-                    '<div class="switch switch-large InteriorCleaning" data-id="1" id="1_InteriorCleaning" data-on-label="Yes" data-off-label="No">'+
-                        '<input type="checkbox">'+
-                    '</div>'+
-                '</div>'+
-            '<div class="interiorDiv" id="1_interiorDiv" style="display:none">'+
-            '<div class=" span4" >'+
-                '<label> Shampoo Seats</label>'+
-                    '<div class="switch switch-large ShampooSeats" data-id="1" id="1_ShampooSeats" data-on-label="Yes" data-off-label="No">'+
-                        '<input type="checkbox">'+
-                    '</div>'+
-                    '<div id="1_ShampooSeatsTooltip" class="Additional_S_price" style="display:none">Cost of Services is <b>Rs.<label>400</label>/-</b></div>'+
-             '</div>'+
-        '</div>'+
-        '</div>'+
-        '<div class="AddressFieldsDiv" id="1_AddressFieldsDiv" Style="display:none">'+
- 	'<div class="row-fluid">'+
-            '<div class=" span4">'+
-                '<label><abbr title="required">*</abbr> Address Line1</label>'+
-                '<input type="text" class="span12" id="1_Address1" value="" maxLength="100" placeholder="Address Line1…">'+
-                '<div id="1_Address1_em" class="errorMessage" style="display:none"></div>'+
-             '</div>'+ 
-             '<div class=" span4">'+
-                '<label> Address Line2</label>'+
-                '<input type="text" class="span12" id="1_Address2" value="" maxLength="100" placeholder="Address Line2…">'+
-             '</div>'+
-             '<div class=" span4">'+
-                '<label> Alternate Phone</label>'+
-                '<input type="text" class="span12" id="1_AlternatePhone" value="" maxLength="10" placeholder="Alternate Phone…">'+
-                '<div id="1_AlternatePhone_em" class="errorMessage" style="display:none"></div>'+
-             '</div> '+
-        '</div>'+
-        '<div class="row-fluid">'+
-            '<div class=" span4">'+
-                '<label><abbr title="required">*</abbr> State</label>'+
-                '<select name="1_State" id="1_State" class="span12" >'+
-                    '<option value="">Select State</option>'+
-                    '<?php foreach ($States as $course) { ?>'+
-                    '<option  value="<?php echo $course['Id']; ?>"><?php echo $course['StateName']; ?></option>'+
-
-                    '<?php } ?>'+
-                    '</select>'+
-                    '<div id="1_State_em" class="errorMessage" style="display:none"></div>'+
-             '</div>'+
-             '<div class=" span4">'+
-                '<label><abbr title="required">*</abbr> City</label>'+
-                '<input type="text" class="span12" id="1_City" value="" maxLength="25" placeholder="City…">'+
-                '<div id="1_City_em" class="errorMessage" style="display:none"></div>'+
-           '</div>'+
-           '<div class=" span4">'+
-                '<label><abbr title="required">*</abbr> Pin Code</label>'+
-                '<input type="text" class="span12" id="1_PinCode" value="" maxLength="6" placeholder="Pin Code…">'+
-                '<div id="1_PinCode_em" class="errorMessage" style="display:none"></div>'+
-           '</div>'+
-           '</div>'+
-        '</div>'+
-    '</div>';
-            //alert(changeTheCarsHtml);
-$(".newcars").html(changeTheCarsHtml).show(); 
-$('#1_DifferentAddress').bootstrapSwitch();
-              $('#1_InteriorCleaning').bootstrapSwitch();
-              $('#1_InteriorCleaning').val('0');
-              $('#1_DifferentAddress').val('0');
-        //$('#ExteriorCleaning').bootstrapSwitch();
-        
-        $('#1_ShampooSeats').bootstrapSwitch();
-        $('#1_DifferentAddress').on('switch-change', function (e, data) {
-            var $el = $(data.el),
-            value = data.value;
             if(value == true){
-               $('#1_AddressFieldsDiv').show();
-            }
-            else{
-               $('#1_AddressFieldsDiv').hide();
-           }
-        });
-        $('#1_InteriorCleaning').on('switch-change', function (e, data) {
-            var $el = $(data.el),
-            value = data.value;
-            if(value == true){//2alert("default form-----")
-                $('#1_InteriorCleaning').val('1');
-               $('#1_interiorDiv').show();
-               $('#1_ShampooSeats').bootstrapSwitch('setState', true);
-            }
-            else{
-                 $('#1_InteriorCleaning').val('0');
-                $('#1_interiorDiv').hide();
-                $('#1_ShampooSeats').bootstrapSwitch('setState', false);
-            }
-        });
+                $('#CarWashForm_DifferentLocation').val('1');
+                $('.AddressFieldsDivWithSingle').hide();
+                $( ".AddressFieldsDivWithSingle" ).empty();
+                $('.AddressFieldsDiv').show();
+              //3alert($('#CarWashForm_TotalCars').val()+"===="+$('#CarWashForm_DifferentLocation').val());
+                   
+            }else{
+            $('#CarWashForm_DifferentLocation').val('0');
+            $('.AddressFieldsDiv').hide();
+            $('.AddressFieldsDivWithSingle').show();
+            var singleAddress1= '<div class="row-fluid">yes'+
+            '<div class=" span4">'+
+                '<label><abbr title="required">*</abbr> Address Line1</label>'+
+                '<input type="text" class="span12" id="11_Address1" value="" maxLength="100" placeholder="Address Line1…">'+
+                '<div id="11_Address1_em" class="errorMessage" style="display:none"></div>'+
+             '</div>'+ 
+             '<div class=" span4">'+
+                '<label> Address Line2</label>'+
+                '<input type="text" class="span12" id="11_Address2" value="" maxLength="100" placeholder="Address Line2…">'+
+             '</div>'+
+             '<div class=" span4">'+
+                '<label> Alternate Phone</label>'+
+                '<input type="text" class="span12" id="11_AlternatePhone" value="" maxLength="10" placeholder="Alternate Phone…">'+
+                '<div id="11_AlternatePhone_em" class="errorMessage" style="display:none"></div>'+
+             '</div> '+
+        '</div>'+
+        '<div class="row-fluid">'+
+            '<div class=" span4">'+
+                '<label><abbr title="required">*</abbr> State</label>'+
+                '<select name="11_State" id="11_State" class="span12" >'+
+                    '<option value="">Select State</option>'+
+                    '<?php foreach ($States as $course) { ?>'+
+                    '<option  value="<?php echo $course['Id']; ?>"><?php echo $course['StateName']; ?></option>'+
+
+                    '<?php } ?>'+
+                    '</select>'+
+                    '<div id="11_State_em" class="errorMessage" style="display:none"></div>'+
+             '</div>'+
+             '<div class=" span4">'+
+                '<label><abbr title="required">*</abbr> City</label>'+
+                '<input type="text" class="span12" id="11_City" value="" maxLength="25" placeholder="City…">'+
+                '<div id="11_City_em" class="errorMessage" style="display:none"></div>'+
+           '</div>'+
+           '<div class=" span4">'+
+                '<label><abbr title="required">*</abbr> Pin Code</label>'+
+                '<input type="text" class="span12" id="11_PinCode" value="" maxLength="6" placeholder="Pin Code…">'+
+                '<div id="11_PinCode_em" class="errorMessage" style="display:none"></div>'+
+           '</div>'+
+           '</div>'+
+        '</div>';  
+            $(".AddressFieldsDivWithSingle").append(singleAddress1).show;
+            
+
 }
 
 
-            /*else{
-                 html='';
-               //alert("no"); 
-           var totalcars = $('#CarWashForm_TotalCars').val();
-           alert("car----"+totalcars);
-                  for(var i=0;i<totalcars;i++){
-                  if(i==0){alert("else000000000000");
-                     html = $(".cardetails").html();
-                  }
-              }
-              //$(".newcars").html(html).show(); 
-              $(".newcars").html(sHtml).show(); 
-              $('#1_DifferentAddress').bootstrapSwitch();
-              $('#1_InteriorCleaning').bootstrapSwitch();
-        //$('#ExteriorCleaning').bootstrapSwitch();
-        $('#1_ShampooSeats').bootstrapSwitch();
-       
-        $('#1_InteriorCleaning').on('switch-change', function (e, data) {
-            var $el = $(data.el),
-            value = data.value;
-            if(value == true){
-                $('#1_InteriorCleaning').val('1');
-               $('#1_interiorDiv').show();
-               $('#1_ShampooSeats').bootstrapSwitch('setState', true);
-            }
-            else{
-                 $('#1_InteriorCleaning').val('0');
-                $('#1_interiorDiv').hide();
-                $('#1_ShampooSeats').bootstrapSwitch('setState', false);
-            }
-        });
-        $('#1_DifferentAddress').on('switch-change', function (e, data) {
-            var $el = $(data.el),
-            value = data.value;
-            if(value == true){
-               $('#1_AddressFieldsDiv').show();
-            }
-            else{
-               $('#1_AddressFieldsDiv').hide();
-           }
-        });
-          }*/
+            
         });
         
         <?php //if($getCarWashServiceDetails['total_cars']>1){ ?>
@@ -635,10 +472,136 @@ $('#1_DifferentAddress').bootstrapSwitch();
         
     });
     function onTotalcars(obj){
-        
+        $('#CarWashForm_DifferentLocation').val('0');
+        alert(obj.value);
+        var html2='';
         if(obj.value>1){
             $('#DifferentLocationDiv').show();
-            
+            for(var i=1;i<=obj.value;i++){
+                  
+                  html2 += '<div class="cardetails" >'+
+        '<div class=" row-fluid">'+
+            '<div class="span12 ">'+
+                '<h5 class="toggles">#'+i+' details</h5>'+
+            '</div> '+   
+        '</div><hr style="margin: 0;" />'+
+        '<div class="row-fluid">'+
+            '<div class=" span4">'+
+                '<label><abbr title="required">*</abbr> Make / Model of the Car</label>'+
+                '<input type="text" class="span12" maxLength="25" placeholder="Make of the car..." id="'+i+'_MakeOfCar">'+
+                '<div id="'+i+'_MakeOfCar_em" class="errorMessage" style="display:none"></div>'+
+            '</div>'+
+            '<div class=" span4">'+
+                '<label> Exterior Color</label>'+
+                '<input type="text" class="span12" maxLength="25" placeholder="Exterior Color..." id="'+i+'_ExteriorColor">'+
+                '<div id="'+i+'_ExteriorColor_em" class="errorMessage" style="display:none"></div>'+
+            '</div>'+
+
+        '</div>'+
+        '<div class="row-fluid">'+
+            '<div class="span4">'+
+                '<label> Interior Cleaning</label>'+
+                    '<div class="switch switch-large InteriorCleaning" data-id="'+i+'" id="'+i+'_InteriorCleaning" data-on-label="Yes" data-off-label="No">'+
+                        '<input type="checkbox">'+
+                    '</div>'+
+                '</div>'+
+            '<div class="interiorDiv" id="'+i+'_interiorDiv" style="display:none">'+
+            '<div class=" span4" >'+
+                '<label> Shampoo Seats</label>'+
+                    '<div class="switch switch-large ShampooSeats" data-id="'+i+'" id="'+i+'_ShampooSeats" data-on-label="Yes" data-off-label="No">'+
+                        '<input type="checkbox">'+
+                    '</div>'+
+             '</div>'+
+        '</div>'+
+        '</div>'+
+        '<div class="AddressFieldsDiv" id="'+i+'_AddressFieldsDiv" Style="display:none">'+
+ 	'<div class="row-fluid">'+
+            '<div class=" span4">'+
+                '<label><abbr title="required">*</abbr> Address Line1</label>'+
+                '<input type="text" class="span12" id="'+i+'_Address1" maxLength="100" placeholder="Address Line 1…">'+
+                '<div id="'+i+'_Address1_em" class="errorMessage" style="display:none"></div>'+
+             '</div>'+ 
+             '<div class=" span4">'+
+                '<label> Address Line2</label>'+
+                '<input type="text" class="span12" id="'+i+'_Address2" maxLength="100" placeholder="Address Line 1…">'+
+             '</div>'+
+             '<div class=" span4">'+
+                '<label> Alternate Phone</label>'+
+                '<input type="text" class="span12" id="'+i+'_AlternatePhone" maxLength="10" placeholder="Alternate Phone…">'+
+             '</div> '+
+        '</div>'+
+        '<div class="row-fluid">'+
+            '<div class=" span4">'+
+                '<label><abbr title="required">*</abbr> State</label>'+
+                '<select name="'+i+'_State" id="'+i+'_State" class="span12" >'+
+                    '<option value="">Select State</option>'+
+                    '<?php foreach ($States as $course) { ?>'+
+                    '<option  value="<?php echo $course['Id']; ?>"><?php echo $course['StateName']; ?></option>'+
+
+                    '<?php } ?>'+
+                    '</select>'+
+             '</div>'+
+             '<div class=" span4">'+
+                '<label><abbr title="required">*</abbr> City</label>'+
+                '<input type="text" class="span12" id="'+i+'_City" maxLength="25" placeholder="City…">'+
+           '</div>'+
+           '<div class=" span4">'+
+                '<label><abbr title="required">*</abbr> Pin Code</label>'+
+                '<input type="text" class="span12" id="'+i+'_PinCode" maxLength="6" placeholder="Pin Code…">'+
+           '</div>'+
+           '</div>'+
+        '</div>'+
+    '</div>';
+    
+              }
+              //alert(html);
+         var singleAddress= '<div class="AddressFieldsDivWithSingle" id="1_AddressFieldsDivWithSingle" Style="display:block">'+
+ 	'<div class="row-fluid">'+
+            '<div class=" span4">'+
+                '<label><abbr title="required">*</abbr> ;;Address Line1</label>'+
+                '<input type="text" class="span12" id="11_Address1" value="" maxLength="100" placeholder="Address Line1…">'+
+                '<div id="11_Address1_em" class="errorMessage" style="display:none"></div>'+
+             '</div>'+ 
+             '<div class=" span4">'+
+                '<label> Address Line2</label>'+
+                '<input type="text" class="span12" id="11_Address2" value="" maxLength="100" placeholder="Address Line2…">'+
+             '</div>'+
+             '<div class=" span4">'+
+                '<label> Alternate Phone</label>'+
+                '<input type="text" class="span12" id="11_AlternatePhone" value="" maxLength="10" placeholder="Alternate Phone…">'+
+                '<div id="11_AlternatePhone_em" class="errorMessage" style="display:none"></div>'+
+             '</div> '+
+        '</div>'+
+        '<div class="row-fluid">'+
+            '<div class=" span4">'+
+                '<label><abbr title="required">*</abbr> State</label>'+
+                '<select name="11_State" id="11_State" class="span12" >'+
+                    '<option value="">Select State</option>'+
+                    '<?php foreach ($States as $course) { ?>'+
+                    '<option  value="<?php echo $course['Id']; ?>"><?php echo $course['StateName']; ?></option>'+
+
+                    '<?php } ?>'+
+                    '</select>'+
+                    '<div id="11_State_em" class="errorMessage" style="display:none"></div>'+
+             '</div>'+
+             '<div class=" span4">'+
+                '<label><abbr title="required">*</abbr> City</label>'+
+                '<input type="text" class="span12" id="11_City" value="" maxLength="25" placeholder="City…">'+
+                '<div id="11_City_em" class="errorMessage" style="display:none"></div>'+
+           '</div>'+
+           '<div class=" span4">'+
+                '<label><abbr title="required">*</abbr> Pin Code</label>'+
+                '<input type="text" class="span12" id="11_PinCode" value="" maxLength="6" placeholder="Pin Code…">'+
+                '<div id="11_PinCode_em" class="errorMessage" style="display:none"></div>'+
+           '</div>'+
+           '</div>'+
+        '</div>'+
+    '</div>';  
+              var ss =$(".newcars").html(html2);
+              //$(".newcars").html(html2).show();
+              //alert("====html con==="+$(".newcars").html())
+             $(ss).append(singleAddress).show;
+                bindDiff(obj.value);
             
         }else{
             $('#DifferentLocationDiv').hide();
@@ -659,12 +622,7 @@ $('#1_DifferentAddress').bootstrapSwitch();
                 '<input type="text" class="span12" maxLength="25" value="" placeholder="Exterior Color..." id="1_ExteriorColor">'+
                 '<div id="1_ExteriorColor_em" class="errorMessage" style="display:none"></div>'+
             '</div>'+
-            '<div class=" span4">'+
-                '<label> Different Address</label>'+
-                '<div class="switch switch-large DifferentAddress" data-on-label="Yes" data-off-label="No" id="1_DifferentAddress">'+
-                    '<input type="checkbox" >'+
-                '</div>'+
-            '</div>'+
+
         '</div>'+
         '<div class="row-fluid">'+
             '<div class="span4">'+
@@ -683,44 +641,44 @@ $('#1_DifferentAddress').bootstrapSwitch();
              '</div>'+
         '</div>'+
         '</div>'+
-        '<div class="AddressFieldsDiv" id="1_AddressFieldsDiv" Style="display:none">'+
+        '<div class="AddressFieldsDiv" id="1_AddressFieldsDiv" Style="display:block">'+
  	'<div class="row-fluid">'+
             '<div class=" span4">'+
                 '<label><abbr title="required">*</abbr> Address Line1</label>'+
-                '<input type="text" class="span12" id="1_Address1" value="" maxLength="100" placeholder="Address Line1…">'+
-                '<div id="1_Address1_em" class="errorMessage" style="display:none"></div>'+
+                '<input type="text" class="span12" id="11_Address1" value="" maxLength="100" placeholder="Address Line1…">'+
+                '<div id="11_Address1_em" class="errorMessage" style="display:none"></div>'+
              '</div>'+ 
              '<div class=" span4">'+
                 '<label> Address Line2</label>'+
-                '<input type="text" class="span12" id="1_Address2" value="" maxLength="100" placeholder="Address Line2…">'+
+                '<input type="text" class="span12" id="11_Address2" value="" maxLength="100" placeholder="Address Line2…">'+
              '</div>'+
              '<div class=" span4">'+
                 '<label> Alternate Phone</label>'+
-                '<input type="text" class="span12" id="1_AlternatePhone" value="" maxLength="10" placeholder="Alternate Phone…">'+
-                '<div id="1_AlternatePhone_em" class="errorMessage" style="display:none"></div>'+
+                '<input type="text" class="span12" id="11_AlternatePhone" value="" maxLength="10" placeholder="Alternate Phone…">'+
+                '<div id="11_AlternatePhone_em" class="errorMessage" style="display:none"></div>'+
              '</div> '+
         '</div>'+
         '<div class="row-fluid">'+
             '<div class=" span4">'+
                 '<label><abbr title="required">*</abbr> State</label>'+
-                '<select name="1_State" id="1_State" class="span12" >'+
+                '<select name="11_State" id="11_State" class="span12" >'+
                     '<option value="">Select State</option>'+
                     '<?php foreach ($States as $course) { ?>'+
                     '<option  value="<?php echo $course['Id']; ?>"><?php echo $course['StateName']; ?></option>'+
 
                     '<?php } ?>'+
                     '</select>'+
-                    '<div id="1_State_em" class="errorMessage" style="display:none"></div>'+
+                    '<div id="11_State_em" class="errorMessage" style="display:none"></div>'+
              '</div>'+
              '<div class=" span4">'+
                 '<label><abbr title="required">*</abbr> City</label>'+
-                '<input type="text" class="span12" id="1_City" value="" maxLength="25" placeholder="City…">'+
-                '<div id="1_City_em" class="errorMessage" style="display:none"></div>'+
+                '<input type="text" class="span12" id="11_City" value="" maxLength="25" placeholder="City…">'+
+                '<div id="11_City_em" class="errorMessage" style="display:none"></div>'+
            '</div>'+
            '<div class=" span4">'+
                 '<label><abbr title="required">*</abbr> Pin Code</label>'+
-                '<input type="text" class="span12" id="1_PinCode" value="" maxLength="6" placeholder="Pin Code…">'+
-                '<div id="1_PinCode_em" class="errorMessage" style="display:none"></div>'+
+                '<input type="text" class="span12" id="11_PinCode" value="" maxLength="6" placeholder="Pin Code…">'+
+                '<div id="11_PinCode_em" class="errorMessage" style="display:none"></div>'+
            '</div>'+
            '</div>'+
         '</div>'+
@@ -844,7 +802,10 @@ function bindDiffEdit(nValue){
    
         if($('#CarWashForm_TotalCars').val()=='1'){
   
-   $('#CarWashForm_DifferentLocation').val('0');}//else{ $('#DifferentLocation').bootstrapSwitch();}
+   $('#CarWashForm_DifferentLocation').val('0');}else{ $('.AddressFieldsDiv').show();
+   $('.AddressFieldsDivWithSingle').hide();
+   //$('#DifferentLocation').bootstrapSwitch();
+   }
    //alert("DL==1=="+$("#CarWashForm_DifferentLocation").val());
     //if($('#CarWashForm_TotalCars').val()>1){$("#CarWashForm_DifferentLocation").val("1");}else{$("#CarWashForm_DifferentLocation").val("0");}
      // alert("DL=2==="+$("#CarWashForm_DifferentLocation").val());
@@ -907,9 +868,19 @@ $(".DifferentAddress").live('mouseenter',function(){
     $j=1; foreach($getCarWashServiceDetails as $rw){ error_log("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjj====".$j);?>
          <?php if($rw['different_location']==1){?>
            $('#CarWashForm_DifferentLocation').val('1');  
+           $('.AddressFieldsDiv').show();
+   $('.AddressFieldsDivWithSingle').hide();
            //alert("for cond in=="+$('#CarWashForm_DifferentLocation').val());
          <?}else{?>
               $('#CarWashForm_DifferentLocation').val('0');  
+              $('.AddressFieldsDiv').hide();
+   $('.AddressFieldsDivWithSingle').show();
+    $('#11_Address1').val("<?php echo $rw['address_line1'];?>");
+    $('#11_Address2').val("<?php echo $rw['address_line2'];?>");
+    $('#11_AlternatePhone').val("<?php echo $rw['alternate_phone'];?>");
+    $('#11_State').val("<?php echo $rw['address_state'];?>");
+    $('#11_City').val("<?php echo $rw['address_city'];?>");
+    $('#11_PinCode').val("<?php echo $rw['address_pin_code'];?>");
            //alert("for else cond in=="+$('#CarWashForm_DifferentLocation').val());
          <?php }?>
          <?php if($rw['different_number'] == 1){ error_log("iiiiiiiiiiiiiiiiiiiddddddddddddddddddddd====");?>

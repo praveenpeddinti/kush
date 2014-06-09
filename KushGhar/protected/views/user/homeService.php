@@ -167,29 +167,59 @@
 <script type="text/javascript">
 $(document).ready(function() {
         var radio1 = $('input[name="HomeServiceForm[HouseCleaning]"]');
+        <?php if($HouseService=='Yes Service'){?>
         for (var i = 0; i < radio1.length; i++) {
+            
             if (radio1[i].value == 1) {
                 radio1[i].checked = true;
                 $(".house_cleaning").addClass('select');
             }
         }
-        
+        <?php  }else {?>
+            for (var i = 0; i < radio1.length; i++) {
+            
+            if (radio1[i].value == 0) {
+                radio1[i].checked = true;
+                $(".house_cleaning").addClass('not_required');
+            }
+        }
+      <?php }?>
         var radio2 = $('input[name="HomeServiceForm[CarCleaning]"]');
+        <?php if($CarService=='Yes Service'){?>
         for (var i = 0; i < radio2.length; i++) {
+            if (radio2[i].value == 1) {
+                radio2[i].checked = true;
+                $(".car_wash").addClass('select');
+            }
+        }
+        <?php  }else {?>
+            for (var i = 0; i < radio2.length; i++) {
+            
             if (radio2[i].value == 0) {
                 radio2[i].checked = true;
                 $(".car_wash").addClass('not_required');
             }
         }
-        
+      <?php }?>
         var radio3 = $('input[name="HomeServiceForm[StewardCleaning]"]');
+        <?php if($StewardsService=='Yes Service'){?>
+              
         for (var i = 0; i < radio3.length; i++) {
+            
+            if (radio3[i].value == 1) {
+                radio3[i].checked = true;
+                $(".stewards").addClass('select');
+            }
+        }
+      <?php  }else {?>
+          for (var i = 0; i < radio3.length; i++) {
+            
             if (radio3[i].value == 0) {
                 radio3[i].checked = true;
                 $(".stewards").addClass('not_required');
             }
         }
-
+      <?php }?>
         $('#HomeServiceForm_HouseCleaning').live('click', function() {
             var radiosH = $('input[name="HomeServiceForm[HouseCleaning]"]:checked').val();
             if (radiosH == "1") {
@@ -358,6 +388,8 @@ $(document).ready(function() {
 
         var dd='';
         var DL = $("#CarWashForm_DifferentLocation").val();
+        alert("===TC==="+$("#CarWashForm_TotalCars").val()+"==DL==="+$("#CarWashForm_DifferentLocation").val());
+           // alert("DLasvar====="+DL);
         if ($("#CarWashForm_ServiceStartTime").val() == "") {
                 $("#CarWashForm_ServiceStartTime_em_").show();
                 $("#CarWashForm_ServiceStartTime_em_").addClass('errorMessage');
@@ -366,10 +398,11 @@ $(document).ready(function() {
             }else{
               $("#CarWashForm_ServiceStartTime_em_").hide();  
             }
-            alert($("#CarWashForm_DifferentLocation").val());
-        if($("#CarWashForm_DifferentLocation").val()=='0'){ dumpcars='1';}else{dumpcars=$('#CarWashForm_TotalCars').val();};
+            dumpcars=$('#CarWashForm_TotalCars').val();
+        //if($("#CarWashForm_DifferentLocation").val()=='0'){ dumpcars='1';}else{dumpcars=$('#CarWashForm_TotalCars').val();};
+        if($("#CarWashForm_DifferentLocation").val()=='1'){alert("1111111111111111111111111111");
         for (var i = 1; i <= dumpcars; i++) {
-            
+            //alert("================for loop====="+dumpcars+"======="+i);
             if ($("#" + i + "_MakeOfCar").val() == "") {
                 $("#" + i + "_MakeOfCar_em").show();
                 $("#" + i + "_MakeOfCar_em").addClass('errorMessage');
@@ -377,12 +410,7 @@ $(document).ready(function() {
                 return false;
             } else {
                 $("#" + i + "_MakeOfCar_em").hide();
-                if (makeofcar == "") {
-                    makeofcar = $("#" + i + "_MakeOfCar").val();
-                } else if (makeofcar != "") {
-                    makeofcar = makeofcar + "," + $("#" + i + "_MakeOfCar").val();
-                }
-                $('#CarWashForm_MakeOfCar').val(makeofcar);
+                
             }
 
             if (($("#" + i + "_ExteriorColor").val() != "") && (!$("#" + i + "_ExteriorColor").val().match(/^[a-zA-Z]+$/))) {
@@ -395,6 +423,8 @@ $(document).ready(function() {
                 
             }
              
+             
+            
             if (interiorCleaning == "") {
                 interiorCleaning = $("#" + i + "_InteriorCleaning").val();
             } else if (interiorCleaning != "") {
@@ -417,8 +447,7 @@ $(document).ready(function() {
             }
             $('#CarWashForm_WaxCar').val(shampooMats);*/
             
-            if($("#" + i + "_DifferentAddress").val()=='0'){
-            }else{
+            alert("different add===");
                 
                 //address line1 start
                 if ( ($("#" + i + "_Address1").val() == "") ) {
@@ -474,12 +503,20 @@ $(document).ready(function() {
                 $("#" + i + "_PinCode_em").hide();
             }
             //Pin Code validation end
-        }
-              if (color == "") {
+        
+              if (makeofcar == "") {
+                    makeofcar = $("#" + i + "_MakeOfCar").val();
+                } else if (makeofcar != "") {
+                    makeofcar = makeofcar+"," + $("#" + i + "_MakeOfCar").val();
+                }
+                $('#CarWashForm_MakeOfCar').val(makeofcar); 
+                
+                if (color == "") {
                     color = $("#" + i + "_ExteriorColor").val()+",";
                 } else if (color != "") {
-                    color = color + "," + $("#" + i + "_ExteriorColor").val();
+                    color =  color + $("#" + i + "_ExteriorColor").val();
                 }
+                alert("ma===="+color);
                 $('#CarWashForm_ExteriorColor').val(color); 
               if (differentAddress == "") {
                     differentAddress = $("#" + i + "_DifferentAddress").val();
@@ -492,7 +529,7 @@ $(document).ready(function() {
                     address1 = $("#" + i + "_Address1").val()+",";
                     
                 } else if (address1 != "") {
-                  address1 = address1 +","+ $("#" + i + "_Address1").val();
+                  address1 = address1 + $("#" + i + "_Address1").val();
                 }
                 
                 $('#CarWashForm_Address1').val(address1);
@@ -500,39 +537,219 @@ $(document).ready(function() {
                if (address2 == "") {
                     address2 = $("#" + i + "_Address2").val()+",";
                 } else if (address2 != "") {
-                    address2 = address2 +","+ $("#" + i + "_Address2").val();
+                    address2 = address2 + $("#" + i + "_Address2").val();
                 }
                 $('#CarWashForm_Address2').val(address2);
                 
                 if (alternate_phone == "") {
                     alternate_phone = $("#" + i + "_AlternatePhone").val()+",";
                 } else if (alternate_phone != "") {
-                    alternate_phone = alternate_phone +","+ $("#" + i + "_AlternatePhone").val();
+                    alternate_phone = alternate_phone + $("#" + i + "_AlternatePhone").val();
                 }
                 $('#CarWashForm_AlternatePhone').val(alternate_phone);
                 
                 if (state == "") {
                     state = $("#" + i + "_State").val()+",";
                 } else if (state != "") {
-                    state = state  +","+ $("#" + i + "_State").val();
+                    state = state  + $("#" + i + "_State").val();
                 }
                 $('#CarWashForm_State').val(state);
                 
                 if (city == "") {
                     city = $("#" + i + "_City").val()+ ",";
                 } else if (city != "") {
-                    city = city  +","+ $("#" + i + "_City").val();
+                    city = city  + $("#" + i + "_City").val();
                 }
                 $('#CarWashForm_City').val(city);
                 
                 if (pin_code == "") {
                     pin_code = $("#" + i + "_PinCode").val()+",";
                 } else if (pin_code != "") {
-                    pin_code = pin_code  +","+ $("#" + i + "_PinCode").val();
+                    pin_code = pin_code  + $("#" + i + "_PinCode").val();
                 }
                 $('#CarWashForm_PinCode').val(pin_code);
         }
+        
+        
+        }
+        
+        
+        if($("#CarWashForm_DifferentLocation").val()=='0'){alert("000000000000000000000000000000");
+        for (var i = 1; i <= dumpcars; i++) {
+            //alert("================for loop====="+dumpcars+"======="+i);
+            if ($("#" + i + "_MakeOfCar").val() == "") {
+                $("#" + i + "_MakeOfCar_em").show();
+                $("#" + i + "_MakeOfCar_em").addClass('errorMessage');
+                $("#" + i + "_MakeOfCar_em").text("Please Enter Make / Model of the Car");
+                return false;
+            } else {
+                $("#" + i + "_MakeOfCar_em").hide();
+                
+            }
+
+            if (($("#" + i + "_ExteriorColor").val() != "") && (!$("#" + i + "_ExteriorColor").val().match(/^[a-zA-Z]+$/))) {
+                $("#" + i + "_ExteriorColor_em").show();
+                $("#" + i + "_ExteriorColor_em").addClass('errorMessage');
+                $("#" + i + "_ExteriorColor_em").text("Please Enter only alphabets ");
+                return false;
+            } else {
+                $("#" + i + "_ExteriorColor_em").hide();
+                
+            }
+             
+             
+            
+            if (interiorCleaning == "") {
+                interiorCleaning = $("#" + i + "_InteriorCleaning").val();
+            } else if (interiorCleaning != "") {
+                interiorCleaning = interiorCleaning + "," + $("#" + i + "_InteriorCleaning").val();
+            }
+            
+            $('#CarWashForm_InteriorCleaning').val(interiorCleaning);
+            if (shampooSeats == "") {
+                shampooSeats = $("#" + i + "_ShampooSeats").val();
+            } else if (shampooSeats != "") {
+                shampooSeats = shampooSeats + "," + $("#" + i + "_ShampooSeats").val();
+
+            }
+            $('#CarWashForm_ShampooSeats').val(shampooSeats);
+            /*if (shampooMats == "") {
+                shampooMats = $("#" + i + "_WaxCar").val();
+            } else if (shampooMats != "") {
+                shampooMats = shampooMats + "," + $("#" + i + "_WaxCar").val();
+
+            }
+            $('#CarWashForm_WaxCar').val(shampooMats);*/
+            
+            
+                
+                //address line1 start
+                if ( ($("11_Address1").val() == "") ) {
+                //alert("====ec==");
+                $("#11_Address1_em").show();
+                $("#11_Address1_em").addClass('errorMessage');
+                $("#11_Address1_em").text("Please Enter Address Line1 ");
+                return false;
+            } else {
+                $("#11_Address1_em").hide();
+            }
+            //address line1 end
+            //phone validation start
+            /*if ( ($("#11_AlternatePhone").val() != "") && (!$("11_AlternatePhone").val().match(/^[0-9]+$/)) ) {
+                //alert("====phone==");
+                $("#11_AlternatePhone_em").show();
+                $("#11_AlternatePhone_em").addClass('errorMessage');
+                $("#11_AlternatePhone_em").text("Please Enter only numbers ");
+                //alert("=phone=" + i);
+                return false;
+            } else {
+                $("#11_AlternatePhone_em").hide();
+            }*/
+            //phone validation end
+            //State validation start
+            if ( ($("#11_State").val()=='') ) {
+                $("#11_State_em").show();
+                $("#11_State_em").addClass('errorMessage');
+                $("#11_State_em").text("Please Select State ");
+                return false;
+            } else {
+                $("#11_State_em").hide();
+            }
+            //State validation end
+            //City validation start
+            if ( (!$("#11_City").val().match(/[A-Za-z0-9]$/)) ) {
+                $("#11_City_em").show();
+                $("#11_City_em").addClass('errorMessage');
+                $("#11_City_em").text("Please Enter City ");
+                return false;
+            } else {
+                $("#11_City_em").hide();
+            }
+            //City validation end
+            //Pin code validation start
+            if ( (!$("#11_PinCode").val().match(/^[0-9]+$/)) ) {
+                
+                $("#11_PinCode_em").show();
+                $("#11_PinCode_em").addClass('errorMessage');
+                $("#11_PinCode_em").text("Please Enter only numbers ");
+                return false;
+            } else {
+                $("#11_PinCode_em").hide();
+            }
+        
+              if (makeofcar == "") {
+                    makeofcar = $("#" + i + "_MakeOfCar").val()+",";
+                } else if (makeofcar != "") {
+                    makeofcar = makeofcar + $("#" + i + "_MakeOfCar").val();
+                }
+                $('#CarWashForm_MakeOfCar').val(makeofcar); 
+                
+              if (color == "") {
+                    color = $("#" + i + "_ExteriorColor").val()+",";
+                } else if (color != "") {
+                    color = color  + $("#" + i + "_ExteriorColor").val();
+                }
+                $('#CarWashForm_ExteriorColor').val(color); 
+              
+               if (address1 == "") {
+                        
+                    address1 = $("#11_Address1").val()+",";
+                    
+                } else if (address1 != "") {
+                  address1 = address1 + $("#11_Address1").val();
+                }
+                
+                $('#CarWashForm_Address1').val(address1);
+
+               if (address2 == "") {
+                    address2 = $("#11_Address2").val()+",";
+                } else if (address2 != "") {
+                    address2 = address2 + $("#11_Address2").val();
+                }
+                $('#CarWashForm_Address2').val(address2);
+                
+                if (alternate_phone == "") {
+                    alternate_phone = $("#11_AlternatePhone").val()+",";
+                } else if (alternate_phone != "") {
+                    alternate_phone = alternate_phone + $("#11_AlternatePhone").val();
+                }
+                $('#CarWashForm_AlternatePhone').val(alternate_phone);
+                
+                if (state == "") {
+                    state = $("#11_State").val()+",";
+                } else if (state != "") {
+                    state = state  + $("#11_State").val();
+                }
+                $('#CarWashForm_State').val(state);
+                
+                if (city == "") {
+                    city = $("#11_City").val()+ ",";
+                } else if (city != "") {
+                    city = city  + $("#11_City").val();
+                }
+                $('#CarWashForm_City').val(city);
+                
+                if (pin_code == "") {
+                    pin_code = $("#11_PinCode").val()+",";
+                } else if (pin_code != "") {
+                    pin_code = pin_code  + $("#11_PinCode").val();
+                }
+                $('#CarWashForm_PinCode').val(pin_code);
+        }
+        
+        
+        }alert("maafterfor===="+pin_code);
+         /*if ( ($("#11_Address1").val() == "") ) {alert("differ=1===");
+                alert("====ec=="+($("#11_Address1").val()));
+                $("#11_Address1_em").show();
+                $("#11_Address1_em").addClass('errorMessage');
+                $("#11_Address1_em").text("Please Enter oooAddress Line1 ");
+                return false;
+            } else {
+                $("#11_Address1_em").hide();
+            }*/
         //alert("===color==="+color);
+       //alert("===interior==="+interiorCleaning);
         var type = '';
         if ($('#CarWashCleaningSubmit').val() == 'Submit') {
             type = 'submit';
@@ -542,7 +759,7 @@ $(document).ready(function() {
         }
         var queryString = $('#carwash-form').serialize();
         queryString += '&Type=' + type+'&DL='+DL;
-        //alert("car wash Form Details=="+queryString);
+        alert("car wash Form Details=="+queryString);
        ajaxRequest('/user/carwash', queryString, addCarWashCleaningServicehandler);
     }
    

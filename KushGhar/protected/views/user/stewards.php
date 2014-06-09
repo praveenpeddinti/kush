@@ -170,7 +170,7 @@ $form = $this->beginWidget('CActiveForm', array(
                     theme: 'android', // for android set theme:'android'
                     display: 'modal',
                     mode: 'scroller',
-                    dateFormat:'yyyy-mm-dd',
+                    dateFormat:'dd-mm-yyyy',
                     dateOrder: 'Md ddyy',
                     timeWheels:'HHii',
                     minDate:  new Date()

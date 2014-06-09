@@ -50,6 +50,7 @@ class HouseCleaningService extends CActiveRecord {
             $servicesDetails->microwave_oven_interior = $model->MicroWaveOven;
             $servicesDetails->pooja_room_cleaning = $model->PoojaRoom;
             $servicesDetails->service_no_of_times = $model->NumberOfTimesServices;
+            $servicesDetails->status = 1;
             $servicesDetails->create_timestamp = gmdate("Y-m-d H:i:s", time());
             $servicesDetails->update_timestamp = gmdate("Y-m-d H:i:s", time());
             
@@ -87,6 +88,7 @@ class HouseCleaningService extends CActiveRecord {
             $servicesDetails->microwave_oven_interior = $model->MicroWaveOven;
             $servicesDetails->pooja_room_cleaning = $model->PoojaRoom;
             $servicesDetails->service_no_of_times = $model->NumberOfTimesServices;
+            $servicesDetails->status = 1;
             //$servicesDetails->create_timestamp = gmdate("Y-m-d H:i:s", time());
             $servicesDetails->update_timestamp = gmdate("Y-m-d H:i:s", time());
             
@@ -129,6 +131,43 @@ class HouseCleaningService extends CActiveRecord {
             }
         } catch (Exception $ex) {
             error_log("############Error Occurred= in usergetDetails= #############" . $ex->getMessage());
+        }
+        return $result;
+    }
+    
+    public function getcustomerServicesHouse($Id) {
+        try {
+            
+            $customer = HouseCleaningService::model()->findByAttributes(array(), 'CustId=:CustId AND status=:status', array(':CustId' => $Id, ':status' => '1'));
+            
+            if (empty($customer)) {
+                $result = "No Service";
+                return $result;
+            } else {
+                $result = "Yes Service";
+                return $result;
+            }
+        } catch (Exception $ex) {
+            error_log("############Error Occurred= in usergetDetails= #############" . $ex->getMessage());
+        }
+        return $result;
+    }
+    
+    
+    public function getcustomerServicesHouseStatus($cId) {
+        try { 
+            $servicesDetails = HouseCleaningService::model()->findByAttributes(array('CustId' => $cId));
+            $servicesDetails->status = 0;
+            $servicesDetails->update_timestamp = gmdate("Y-m-d H:i:s", time());
+            if ($servicesDetails->update()) {
+                    $result = "success";
+                } else {
+                    $result = "failed";
+                }
+                         
+            
+        } catch (Exception $ex) {
+            error_log("##########Exception Occurred saveData#############" . $ex->getMessage());
         }
         return $result;
     }

@@ -50,6 +50,7 @@ class StewardsCleaningService extends CActiveRecord {
             $servicesDetails->post_dinner = $model->PostDinner;
             $servicesDetails->service_hours = $model->DurationHours;
             $servicesDetails->no_of_stewards = $model->totalStewards;
+            $servicesDetails->status = 1;
             $servicesDetails->create_timestamp = gmdate("Y-m-d H:i:s", time());
             $servicesDetails->update_timestamp = gmdate("Y-m-d H:i:s", time());
             if ($servicesDetails->save()) {
@@ -86,6 +87,7 @@ class StewardsCleaningService extends CActiveRecord {
             $servicesDetails->post_dinner = $model->PostDinner;
             $servicesDetails->service_hours = $model->DurationHours;
             $servicesDetails->no_of_stewards = $model->totalStewards;
+            $servicesDetails->status = 1;
             //$servicesDetails->create_timestamp = gmdate("Y-m-d H:i:s", time());
             $servicesDetails->update_timestamp = gmdate("Y-m-d H:i:s", time());
             if ($servicesDetails->update()) {
@@ -125,6 +127,42 @@ class StewardsCleaningService extends CActiveRecord {
             }
         } catch (Exception $ex) {
             error_log("############Error Occurred= in usergetDetails= #############" . $ex->getMessage());
+        }
+        return $result;
+    }
+    
+    public function getcustomerServicesStewards($Id) {
+        try {
+            
+            $customer = StewardsCleaningService::model()->findByAttributes(array(), 'CustId=:CustId AND status=:status', array(':CustId' => $Id, ':status' => '1'));
+            
+            if (empty($customer)) {
+                $result = "No Service";
+                return $result;
+            } else {
+                $result = "Yes Service";
+                return $result;
+            }
+        } catch (Exception $ex) {
+            error_log("############Error Occurred= in usergetDetails= #############" . $ex->getMessage());
+        }
+        return $result;
+    }
+    
+    public function getcustomerServicesStewardsStatus($cId) {error_log("gggggggggggggggggggggggggg");
+        try { 
+            $servicesDetails = StewardsCleaningService::model()->findByAttributes(array('CustId' => $cId));
+            $servicesDetails->status = '0';
+            $servicesDetails->update_timestamp = gmdate("Y-m-d H:i:s", time());
+            if ($servicesDetails->update()) {
+                    $result = "success";
+                } else {
+                    $result = "failed";
+                }
+                         
+            
+        } catch (Exception $ex) {
+            error_log("##########Exception Occurred saveData#############" . $ex->getMessage());
         }
         return $result;
     }

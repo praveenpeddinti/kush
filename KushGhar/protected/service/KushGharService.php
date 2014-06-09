@@ -425,7 +425,59 @@ class KushGharService {
     }
     
     // Kushghar Services end code
-
+   
+    
+    public function getcustomerServicesHouse($cId) {
+        try{
+        $result = HouseCleaningService::model()->getcustomerServicesHouse($cId);
+        }catch (Exception $ex) {
+            error_log("=============exception occurred in login=============" . $ex->getMessage());
+        }
+        return $result;
+    }
+    public function getcustomerServicesCar($cId) {
+        try{
+            $result =  CarWashService::model()->getcustomerServicesCar($cId);
+        }catch (Exception $ex) {
+            error_log("=============exception occurred in login=============" . $ex->getMessage());
+        }
+        return $result;
+    }
+    public function getcustomerServicesStewards($cId) {
+        try{
+            $result = StewardsCleaningService::model()->getcustomerServicesStewards($cId);
+        }catch (Exception $ex) {
+            error_log("=============exception occurred in login=============" . $ex->getMessage());
+        }
+        return $result;
+        } 
+        
+        
+        public function getcustomerServicesHouseStatus($cId) {
+        try{
+            $result = HouseCleaningService::model()->getcustomerServicesHouseStatus($cId);
+        }catch (Exception $ex) {
+            error_log("=============exception occurred in login=============" . $ex->getMessage());
+        }
+        return $result;
+    }
+    public function getcustomerServicesCarStatus($cId) {error_log("modelservicedfffffffffffffffffffffffffff");
+        try{
+            $result = CarWashService::model()->getcustomerServicesCarStatus($cId);
+        }catch (Exception $ex) {
+            error_log("=============exception occurred in login=============" . $ex->getMessage());
+        }
+        return $result;
+    }
+    public function getcustomerServicesStewardsStatus($cId) {
+        try{
+            $result = StewardsCleaningService::model()->getcustomerServicesStewardsStatus($cId);
+            }catch (Exception $ex) {
+            error_log("=============exception occurred in login=============" . $ex->getMessage());
+        }
+        return $result;
+    }
+    
 }
 
 ?>

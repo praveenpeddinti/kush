@@ -1,4 +1,4 @@
-
+<div class="mainSoon">We are currently available in Hyderabad. We plan be nation wide soon.</div>
 <div>
     <section class="slidersection">
    <div class="container">
@@ -91,6 +91,7 @@ one home at a time</div>
   </div>
      </section>
     <script type="text/javascript">
+        
     $(function () {
     var showPopover = function () {
         $(this).popover('show');

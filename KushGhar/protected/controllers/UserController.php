@@ -955,6 +955,13 @@ class UserController extends Controller {
         //$this->session['firstName'] = $customerDetails->first_name;
         //$data = "praveen";
         //$obj = array('status' => 'success', 'data' => $data, 'error' => '');
+        $customerServicesHouse = $this->kushGharService->getcustomerServicesHouse($cId);
+        $customerServicesCar = $this->kushGharService->getcustomerServicesCar($cId);
+        $customerServicesStewards = $this->kushGharService->getcustomerServicesStewards($cId);
+        error_log("size price of House===".$customerServicesHouse."===".$customerServicesCar."===".$customerServicesStewards);
+        if($customerServicesHouse=='Yes Service'){$HCleaning='1';}else{$HCleaning='0';}
+        if($customerServicesCar=='Yes Service'){$CCleaning='1';}else{$CCleaning='0';}
+        if($customerServicesStewards=='Yes Service'){$SCleaning='1';}else{$SCleaning='0';}
         //$renderScript = $this->rendering($obj);
         //echo $renderScript;
         $request = yii::app()->getRequest();
@@ -973,7 +980,7 @@ class UserController extends Controller {
             $renderScript = $this->rendering($obj);
             echo $renderScript;
         } else {
-            $this->render('priceQuote', array("customerDetails" => $customerDetails, "getServiceDetails" => $getServiceDetails, 'getStewardsServiceDetails'=>$getStewardsServiceDetails, 'getCarWashServiceDetails'=>$getCarWashServiceDetails, 'HouseCleaning'=>'1', 'CarCleaning'=>'1', 'StewardsCleaning'=>'1','PriceFlag'=>'1'));
+            $this->render('priceQuote', array("customerDetails" => $customerDetails, "getServiceDetails" => $getServiceDetails, 'getStewardsServiceDetails'=>$getStewardsServiceDetails, 'getCarWashServiceDetails'=>$getCarWashServiceDetails, 'HouseCleaning'=>$HCleaning, 'CarCleaning'=>$CCleaning, 'StewardsCleaning'=>$SCleaning,'PriceFlag'=>'1'));
         }
         //$this->render('priceQuote', array("customerDetails" => $customerDetails, "getServiceDetails" => $getServiceDetails));
     }

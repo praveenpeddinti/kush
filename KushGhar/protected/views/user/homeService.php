@@ -388,7 +388,7 @@ $(document).ready(function() {
 
         var dd='';
         var DL = $("#CarWashForm_DifferentLocation").val();
-        alert("===TC==="+$("#CarWashForm_TotalCars").val()+"==DL==="+$("#CarWashForm_DifferentLocation").val());
+        //alert("===TC==="+$("#CarWashForm_TotalCars").val()+"==DL==="+$("#CarWashForm_DifferentLocation").val());
            // alert("DLasvar====="+DL);
         if ($("#CarWashForm_ServiceStartTime").val() == "") {
                 $("#CarWashForm_ServiceStartTime_em_").show();
@@ -400,7 +400,7 @@ $(document).ready(function() {
             }
             dumpcars=$('#CarWashForm_TotalCars').val();
         //if($("#CarWashForm_DifferentLocation").val()=='0'){ dumpcars='1';}else{dumpcars=$('#CarWashForm_TotalCars').val();};
-        if($("#CarWashForm_DifferentLocation").val()=='1'){alert("1111111111111111111111111111");
+        if($("#CarWashForm_DifferentLocation").val()=='1'){//alert("1111111111111111111111111111");
         for (var i = 1; i <= dumpcars; i++) {
             //alert("================for loop====="+dumpcars+"======="+i);
             if ($("#" + i + "_MakeOfCar").val() == "") {
@@ -447,7 +447,7 @@ $(document).ready(function() {
             }
             $('#CarWashForm_WaxCar').val(shampooMats);*/
             
-            alert("different add===");
+            //alert("different add===");
                 
                 //address line1 start
                 if ( ($("#" + i + "_Address1").val() == "") ) {
@@ -516,7 +516,7 @@ $(document).ready(function() {
                 } else if (color != "") {
                     color =  color + $("#" + i + "_ExteriorColor").val();
                 }
-                alert("ma===="+color);
+                //alert("ma===="+color);
                 $('#CarWashForm_ExteriorColor').val(color); 
               if (differentAddress == "") {
                     differentAddress = $("#" + i + "_DifferentAddress").val();
@@ -574,7 +574,7 @@ $(document).ready(function() {
         }
         
         
-        if($("#CarWashForm_DifferentLocation").val()=='0'){alert("000000000000000000000000000000");
+        if($("#CarWashForm_DifferentLocation").val()=='0'){//alert("000000000000000000000000000000");
         for (var i = 1; i <= dumpcars; i++) {
             //alert("================for loop====="+dumpcars+"======="+i);
             if ($("#" + i + "_MakeOfCar").val() == "") {
@@ -738,7 +738,7 @@ $(document).ready(function() {
         }
         
         
-        }alert("maafterfor===="+pin_code);
+        }//alert("maafterfor===="+pin_code);
          /*if ( ($("#11_Address1").val() == "") ) {alert("differ=1===");
                 alert("====ec=="+($("#11_Address1").val()));
                 $("#11_Address1_em").show();
@@ -759,7 +759,7 @@ $(document).ready(function() {
         }
         var queryString = $('#carwash-form').serialize();
         queryString += '&Type=' + type+'&DL='+DL;
-        alert("car wash Form Details=="+queryString);
+        //alert("car wash Form Details=="+queryString);
        ajaxRequest('/user/carwash', queryString, addCarWashCleaningServicehandler);
     }
    
@@ -827,10 +827,15 @@ $(document).ready(function() {
         var EndTimes = $("#StewardCleaningForm_EndTime").val();
         if ((StartTimes != '') && (EndTimes != '')) {
             var totalHours1 = '';
-            var stDateres = StartTimes.split(" ");
-            var enDateres = EndTimes.split(" ");
-            var stDate1 = new Date(stDateres[0]);
-            var enDate1 = new Date(enDateres[0]);
+            var stDateres1 = StartTimes.split(" ");
+            var enDateres1 = EndTimes.split(" ");
+            
+            var sTime = stDateres1[0].split("-");
+            var stDateres = sTime[2]+"-"+sTime[1]+"-"+sTime[0];
+            var eTime = enDateres1[0].split("-");
+            var enDateres = eTime[2]+"-"+eTime[1]+"-"+eTime[0];
+            var stDate1 = new Date(stDateres);
+            var enDate1 = new Date(enDateres);
 
             var compDate = stDate1 - enDate1;
 
@@ -838,8 +843,8 @@ $(document).ready(function() {
             var endDateValuecmp = enDate1.getTime();
             if (compDate == 0) {
 
-                var stTimeres = stDateres[1].split(":");
-                var enTimeres = enDateres[1].split(":");
+                var stTimeres = stDateres1[1].split(":");
+                var enTimeres = enDateres1[1].split(":");
                 if (Math.round(stTimeres[0]) < Math.round(enTimeres[0])) {
 
                     totalHours1 = Math.round(enTimeres[0]) - Math.round(stTimeres[0]);
@@ -849,8 +854,8 @@ $(document).ready(function() {
             }
             if (startDateValuecmp < endDateValuecmp) {
                 var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
-                var STime = stDateres[0].replace(/-/g, ",");
-                var ETime = enDateres[0].replace(/-/g, ",");
+                var STime = stDateres.replace(/-/g, ",");
+                var ETime = enDateres.replace(/-/g, ",");
                 var firstDate = new Date(STime);
                 var secondDate = new Date(ETime);
 
@@ -874,13 +879,26 @@ $(document).ready(function() {
         var totalHours = '';
         var stDate = $('#StewardCleaningForm_StartTime').val();
         var enDate = $('#StewardCleaningForm_EndTime').val();
-        var stDateres = stDate.split(" ");
+        /*var stDateres = stDate.split(" ");
         var enDateres = enDate.split(" ");
         var stDate1 = new Date(stDateres[0]);
         var enDate1 = new Date(enDateres[0]);
         var compDate = stDate1 - enDate1;
         var startDateValuecmp = stDate1.getTime();
-        var endDateValuecmp = enDate1.getTime();
+        var endDateValuecmp = enDate1.getTime();*/
+            var stDateres1 = stDate.split(" ");
+            var enDateres1 = enDate.split(" ");
+           var sTime = stDateres1[0].split("-");
+            var stDateres = sTime[2]+"-"+sTime[1]+"-"+sTime[0];
+            var eTime = enDateres1[0].split("-");
+            var enDateres = eTime[2]+"-"+eTime[1]+"-"+eTime[0];
+            var stDate1 = new Date(stDateres);
+            var enDate1 = new Date(enDateres);
+
+            var compDate = stDate1 - enDate1;
+
+            var startDateValuecmp = stDate1.getTime();
+            var endDateValuecmp = enDate1.getTime();
 
         if ($('#StewardCleaningForm_EventType').val() == '') {
             $("#StewardCleaningForm_EventType_em_").show();
@@ -913,8 +931,8 @@ $(document).ready(function() {
         }
         if (compDate == 0) {
 
-            var stTimeres = stDateres[1].split(":");
-            var enTimeres = enDateres[1].split(":");
+            var stTimeres = stDateres1[1].split(":");
+            var enTimeres = enDateres1[1].split(":");
             if (Math.round(stTimeres[0]) > Math.round(enTimeres[0])) {
                 $("#StewardCleaningForm_EndTime_em_").show();
                 $("#StewardCleaningForm_EndTime_em_").addClass('errorMessage');

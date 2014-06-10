@@ -5,6 +5,7 @@ class HouseCleaningService extends CActiveRecord {
     public $CustId;
     public $order_number;
     public $squarefeets;
+    public $week_days;
     public $houseservice_start_time;
     public $total_livingRooms;
     public $total_bedRooms;
@@ -40,6 +41,7 @@ class HouseCleaningService extends CActiveRecord {
             $servicesDetails->CustId = $cId;
             $servicesDetails->order_number = $orderNo;
             $servicesDetails->squarefeets = $model->SquareFeets;
+            $servicesDetails->week_days = $model->WeekDays;
             $servicesDetails->houseservice_start_time = $model->ServiceStartTime;
             $servicesDetails->total_livingRooms = $model->LivingRooms;
             $servicesDetails->total_bedRooms = $model->BedRooms;
@@ -78,6 +80,7 @@ class HouseCleaningService extends CActiveRecord {
             $servicesDetails->CustId = $cId;
             $servicesDetails->order_number = $orderNo;
             $servicesDetails->squarefeets = $model->SquareFeets;
+            $servicesDetails->week_days = $model->WeekDays;
             $servicesDetails->houseservice_start_time = $model->ServiceStartTime;
             $servicesDetails->total_livingRooms = $model->LivingRooms;
             $servicesDetails->total_bedRooms = $model->BedRooms;

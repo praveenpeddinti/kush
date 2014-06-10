@@ -778,13 +778,29 @@ $(document).ready(function() {
             }
         }
     }
-    function buttonCarWashCleaningPrevious() {
+    /*function buttonCarWashCleaningPrevious() {
         var queryString = $('#carwash-form').serialize();
+        //var queryString = '';
         var type='previous';
         queryString += '&Type=' + type;
         alert("privous---"+queryString);
-        ajaxRequest('/user/carwash', queryString, addHouseCleaningServicehandler);
+        ajaxRequest('/user/carwash', queryString, previousHouseCleaningServicehandler);
     }
+    
+    function previousHouseCleaningServicehandler(data) {alert("previous button hand==="+data.status());
+        //scrollPleaseWaitClose('serviceSpinLoader');
+
+        if (data.status == 'success') {
+            //alert("Added successfully");
+            globalspace.HouseCleaning = Number(data.HouseCleaning);
+            globalspace.CarCleaning = Number(data.CarCleaning);
+            globalspace.StewardCleaning = Number(data.StewardCleaning);
+            $('#homeServicesMainDiv').hide();
+            $('#ServiceMainDiv').show();
+            $('#ServiceMainDiv').html(data.data);
+
+        }
+    }*/
     function addPricehandler(data) {
         if (data.status == 'success') {
             globalspace.HouseCleaning = Number(data.HouseCleaning);

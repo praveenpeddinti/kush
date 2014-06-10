@@ -1,12 +1,13 @@
 <?php error_log(sizeof($getCarWashServiceDetails)."======11111111111111111111111111111111====");
-$NOCars ='';$CarServiceTime ='';$TCars='';
-
+$NOCars ='';$CarServiceTime ='';$TCars='';$WeekDays='';
+        if((sizeof($getCarWashServiceDetails)>0)){ 
         foreach($getCarWashServiceDetails as $ee){
         
         $CarServiceTime = $ee['carservice_start_time'];
         $TCars = $ee['total_cars'];
+        $WeekDays = $ee['week_days'];
         }
-        
+        }
     
  if(sizeof($getCarWashServiceDetails)==0){$NOCars =1;}else{
         //$NOCars=sizeof($getCarWashServiceDetails);
@@ -57,21 +58,28 @@ $form = $this->beginWidget('CActiveForm', array(
     </div>
     
     <div class="row-fluid">
-        <div class=" span2">
+        <div class=" span4">
             <label><abbr title="required">*</abbr> # of Cars</label>
             
             <?php echo $form->textField($model, 'TotalCars', array('value'=>$NOCars, 'maxLength' => 3, 'class' => 'span6', 'placeholder' => '','onblur' => 'javascript:onTotalcars(this);')); ?>
             <?php echo $form->error($model, 'TotalCars'); ?>
         </div>
         
-        <div class=" span5" id="DifferentLocationDiv" style="display:none">
+        <div class=" span8" id="DifferentLocationDiv" style="display:none">
             <label>Are they at different Address</label>
             <div class="switch switch-large DifferentLocation" id="DifferentLocation" data-on-label="Yes" data-off-label="No">
                 <?php echo $form->checkBox($model, 'DifferentLocation'); ?>
             </div>
         </div>
-        <div class=" span5">
+    </div>
+    <div class="row-fluid">
+       <div class="span5">
             <label><abbr title="required">*</abbr> When do you want service</label>
+            <?php echo $form->dropDownList($model,'WeekDays', array('Sunday'=>'Sunday', 'Monday'=>'Monday', 'Tuesday' => 'Tuesday', 'Wednesday' => 'Wednesday', 'Thursday'=>'Thursday', 'Friday'=>'Friday', 'Saturday'=>'Saturday'), array('options' => array($WeekDays => array('selected' => 'selected')), 'class' => 'span12'));?>
+            <?php echo $form->error($model, 'WeekDays'); ?>
+        </div> 
+        <div class=" span7">
+            <label>&nbsp;</label>
             <?php echo $form->textField($model, 'ServiceStartTime', array('value'=>$CarServiceTime, 'class' => 'span8', 'placeholder' => '')); ?>
             <?php echo $form->error($model, 'ServiceStartTime'); ?>
         </div> 
@@ -109,17 +117,11 @@ $form = $this->beginWidget('CActiveForm', array(
                 mindate.setDate(currentDate.getDate()+1);
                 
                 $('#CarWashForm_ServiceStartTime').scroller({
-                    preset: 'datetime',
-                    //timeFormat:'hh:ii A ',
-                    timeFormat:'HH:ii',
+                    preset: 'time',
+                    timeFormat:'hh:ii A ',
                     theme: 'android', // for android set theme:'android'
                     display: 'modal',
-                    mode: 'scroller',
-                    //dateFormat:'yyyy-mm-dd',
-                    dateFormat:'dd-mm-yyyy',
-                    dateOrder: 'Md ddyy',
-                    timeWheels:'HHii',
-                    minDate:  mindate
+                    mode: 'scroller'
                 });
         $('#DifferentLocation').bootstrapSwitch();
         var html = "";
@@ -294,6 +296,7 @@ $form = $this->beginWidget('CActiveForm', array(
                     '<div class="switch switch-large ShampooSeats" data-id="1" id="1_ShampooSeats" data-on-label="Yes" data-off-label="No">'+
                         '<input type="checkbox">'+
                     '</div>'+
+                    '<div id="1_ShampooSeatsTooltip" class="Additional_S_price" style="display:none">Cost of Services is <b>Rs.<label>400</label>/-</b></div>'+
              '</div>'+
         '</div>'+
         '</div>'+
@@ -428,36 +431,25 @@ $form = $this->beginWidget('CActiveForm', array(
         //$('#AlternatePhone').bootstrapSwitch();
         $('#1_InteriorCleaning').bootstrapSwitch();
         //$('#ExteriorCleaning').bootstrapSwitch();
-        $('#1_ShampooSeats').bootstrapSwitch();
+        $('#1_ShampooSeats').bootstrapSwitch();*/
        
         $('#1_InteriorCleaning').on('switch-change', function (e, data) {
             var $el = $(data.el),
             value = data.value;
             if(value == true){
                  $('#1_InteriorCleaning').val('1');
-               $('#1_interiorDiv').show();
+               $('.interiorDiv').show();
                $('#1_ShampooSeats').bootstrapSwitch('setState', true);
                $('#1_ShampooSeats').val('1');
             }
             else{
                  $('#1_InteriorCleaning').val('0');
-                $('#1_interiorDiv').hide();
+                $('.interiorDiv').hide();
                 $('#1_ShampooSeats').bootstrapSwitch('setState', false);
                 $('#1_ShampooSeats').val('0');
             }
         });
-        $('#1_DifferentAddress').on('switch-change', function (e, data) {
-            var $el = $(data.el),
-            value = data.value;
-            if(value == true){
-               $('#1_AddressFieldsDiv').show();
-               $('#1_DifferentAddress').val('1');
-            }
-            else{
-               $('#1_AddressFieldsDiv').hide();
-               $('#1_DifferentAddress').val('0');
-           }
-        });
+        
         
         $('#1_ShampooSeats').on('switch-change', function (e, data) {
             var $el = $(data.el),
@@ -468,12 +460,12 @@ $form = $this->beginWidget('CActiveForm', array(
             else{
                $('#1_ShampooSeats').val('0');
            }
-        });*/
+        });
         
     });
     function onTotalcars(obj){
         $('#CarWashForm_DifferentLocation').val('0');
-        alert(obj.value);
+        //alert(obj.value);
         var html2='';
         if(obj.value>1){
             $('#DifferentLocationDiv').show();
@@ -511,6 +503,7 @@ $form = $this->beginWidget('CActiveForm', array(
                     '<div class="switch switch-large ShampooSeats" data-id="'+i+'" id="'+i+'_ShampooSeats" data-on-label="Yes" data-off-label="No">'+
                         '<input type="checkbox">'+
                     '</div>'+
+                    '<div id="'+i+'_ShampooSeatsTooltip" class="Additional_S_price" style="display:none">Cost of Services is <b>Rs.<label>400</label>/-</b></div>'+
              '</div>'+
         '</div>'+
         '</div>'+
@@ -558,7 +551,7 @@ $form = $this->beginWidget('CActiveForm', array(
          var singleAddress= '<div class="AddressFieldsDivWithSingle" id="1_AddressFieldsDivWithSingle" Style="display:block">'+
  	'<div class="row-fluid">'+
             '<div class=" span4">'+
-                '<label><abbr title="required">*</abbr> ;;Address Line1</label>'+
+                '<label><abbr title="required">*</abbr> Address Line1</label>'+
                 '<input type="text" class="span12" id="11_Address1" value="" maxLength="100" placeholder="Address Line1…">'+
                 '<div id="11_Address1_em" class="errorMessage" style="display:none"></div>'+
              '</div>'+ 
@@ -842,26 +835,48 @@ $(".DifferentAddress").live('mouseenter',function(){
         });
     });
 
-/*$(".InteriorCleaning").live('mouseenter',function(){alert("defult form in in 2edit duff funtion ");
+/*$(".InteriorCleaning").live('mouseenter',function(){
         var id = $(this).data('id');
         $("#1_InteriorCleaning").on('switch-change', function (e, data) {
             var $el = $(data.el),
-            value = data.value;//alert(value);
-            if(value == true){
+            value = data.value;
+            if(value == true){alert("true");
                $("#1_InteriorCleaning").val('1');
-               $("#1_interiorDiv").show();
+               $(".interiorDiv").show();
+               //$("#1_interiorDiv").show();
                $("#1_ShampooSeats").bootstrapSwitch('setState', true);
                $("#1_ShampooSeats").val('1');
             }
             else{//alert("No"+id)
                $("#1_InteriorCleaning").val('0');
-               $("#1_interiorDiv").hide();
+               $(".interiorDiv").hide();
                $("#1_ShampooSeats").bootstrapSwitch('setState', false);
                $("#1_ShampooSeats").val('0');
             }
         });
-    });*/
+    });
     
+    $(".ShampooSeats").live('mouseenter',function(){
+        var id = $(this).data('id');
+        $("#"+id+"_ShampooSeats").on('switch-change', function (e, data) {
+            var $el = $(data.el),
+            value = data.value;
+            if(value == true){alert("fddd==="+id);
+              
+               $("#"+id+"_ShampooSeats").bootstrapSwitch('setState', true);
+               
+               $("#"+id+"_ShampooSeats").val('1');
+               $("#"+id+"_ShampooSeatsTooltip").show();
+            }
+            else{//alert("No"+id)
+               
+               $("#"+id+"_ShampooSeats").bootstrapSwitch('setState', false);
+               
+               $("#"+id+"_ShampooSeats").val('0');
+               $("#"+id+"_ShampooSeatsTooltip").hide();
+            }
+        });
+    });*/
 
 <?php if(isset($getCarWashServiceDetails) && sizeof($getCarWashServiceDetails)>0){ 
     error_log("==00000000000000======sdfasdfsdfsdf11111111111111111");

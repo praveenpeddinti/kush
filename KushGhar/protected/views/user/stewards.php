@@ -26,7 +26,7 @@ $form = $this->beginWidget('CActiveForm', array(
     <div class="row-fluid">
         <div class=" span4">
             <?php echo $form->label($model1, '<abbr title="required">*</abbr> Event Type'); ?>
-            <?php echo $form->dropDownList($model1, 'EventType', array('' => 'Select Event', '1' => 'Formal Party', '2' => 'Casual Party', '3' => 'Birthday Party', '4' => 'Anniversary', '5' => 'Funeral', '6' => 'Sporting Event', '7' => 'Other'), array('options' => array($getServiceDetails['event_type'] => array('selected' => 'selected')),'onchange' => 'javascript:onChangeProduto(this.value);', 'class' => 'span8')); ?>
+            <?php echo $form->dropDownList($model1, 'EventType', array('' => 'Select Event', '1' => 'Formal Party', '2' => 'Casual Party', '3' => 'Birthday Party', '4' => 'Anniversary', '5' => 'Funeral', '6' => 'Sporting Event', '7' => 'Other'), array('options' => array($getServiceDetails['event_type'] => array('selected' => 'selected')),'onchange' => 'javascript:onChangeProduto(this.value);', 'class' => 'span10')); ?>
 <?php echo $form->error($model1, 'EventType'); ?>
         </div>
         <div class=" span4" id='otherDiv' style="display:none">

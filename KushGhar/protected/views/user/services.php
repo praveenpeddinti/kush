@@ -23,18 +23,35 @@
                                         </div>
                                     </div>                                    
                                 </div>
-       
+                                
                                 <div class="row-fluid">
-                                    <div class=" span3">
+                                      <div class="span10">
+                                    <div class=" span5">
                                         <?php echo $form->label($model, 'Square Feets'); ?>
                                         <?php if($getServiceDetails['squarefeets']=='0') {$squareFeetsValue='';}else{ $squareFeetsValue=$getServiceDetails['squarefeets'];} echo $form->textField($model, 'SquareFeets', array('value'=>$squareFeetsValue,'maxLength' => 5, 'class' => 'span12', 'placeholder' => 'Square Feets…')); ?>
                                         <?php echo $form->error($model, 'SquareFeets'); ?>
                                     </div> 
-                                    <div class=" span9">
-                                        <label><abbr title="required">*</abbr> When do you want service</label>
-                                        <?php echo $form->textField($model, 'ServiceStartTime', array('value'=>$getServiceDetails['houseservice_start_time'], 'onchange' => 'javascript:onChangeTime();', 'class' => 'span6', 'placeholder' => '')); ?>
-                                        <?php echo $form->error($model, 'ServiceStartTime'); ?>
+                                    <div class="span5">
+                                        <label>Frequency of cleaning</label>
+                                        <?php echo $form->dropDownList($model,'NumberOfTimesServices', array('2'=>'Twice a Month', '5'=>'Onetime', '1' => 'Once a Month', '2' => 'Twice a Month', '3'=>'Every 3 Months', '4'=>'Every 6 Months'), array('options' => array($getServiceDetails['service_no_of_times'] => array('selected' => 'selected')), 'class' => 'span12'));?>
+                                        <?php echo $form->error($model, 'NumberOfTimesServices'); ?>
+                                     </div>
+                                </div>
+                                     </div>
+                                <div class="row-fluid">
+                                    <div class="span10">
+                                    <div class="span5">
+                                        <label> When do you want service</label>
+                                        <?php echo $form->dropDownList($model,'WeekDays', array('Sunday'=>'Sunday', 'Monday'=>'Monday', 'Tuesday' => 'Tuesday', 'Wednesday' => 'Wednesday', 'Thursday'=>'Thursday', 'Friday'=>'Friday', 'Saturday'=>'Saturday'), array('options' => array($getServiceDetails['week_days'] => array('selected' => 'selected')), 'class' => 'span12'));?>
+                                        <?php echo $form->error($model, 'WeekDays'); ?>
+                                       
                                     </div> 
+                                    <div class=" span5">
+                                        <label>&nbsp</label>
+                                        <?php echo $form->textField($model, 'ServiceStartTime', array('value'=>$getServiceDetails['houseservice_start_time'], 'onchange' => 'javascript:onChangeTime();', 'class' => 'span8', 'placeholder' => '')); ?>
+                                        <?php echo $form->error($model, 'ServiceStartTime'); ?>
+                                       
+                                    </div> </div> 
                                 </div>
                                 <div class="row-fluid">
                                     <div class=" span3">
@@ -89,19 +106,19 @@
                                 <hr>
                                     <h4 class="paddingTop0 ">Additional Services</h4>
                                     <div class="Additional_S"> <div class="row-fluid">
-                                            <div class="span4 window_cleaning  "><?php echo $form->label($model, 'Window Grills Cleaning'); ?>
+                                            <div class="span4 window_cleaning" style="min-height: 121px"><?php echo $form->label($model, 'Window Grills Cleaning'); ?>
                                             <div class="switch switch-large" id="WindowGrills" data-on-label="Yes" data-off-label="No">
                                                 <?php echo $form->checkBox($model, 'WindowGrills', array('id' => 'HouseCleaningForm_WindowGrills')); ?>
                                             </div>
                                                 <div id="WindowGrillsTooltip" class="Additional_S_price" style="display:none">Cost of Services is<br/> <b>Rs.<label>250</label>/-</b></div>
                                             </div>
-                                            <div class="span4 fridge dashed_left_border  "><?php echo $form->label($model, 'Fridge Interior Cleaning'); ?>
+                                            <div class="span4 fridge dashed_left_border" style="min-height: 121px"><?php echo $form->label($model, 'Fridge Interior Cleaning'); ?>
                                             <div class="switch switch-large" id="FridgeInterior" data-on-label="Yes" data-off-label="No">
                                                 <?php echo $form->checkBox($model, 'FridgeInterior', array('id' => 'HouseCleaningForm_FridgeInterior')); ?>
                                             </div>
                                             <div id="FridgeInteriorTooltip" class="Additional_S_price" style="display:none">Cost of Services is <br/> <b>Rs.<label>250</label>/-</b></div>    
                                             </div>
-                                            <div class="span4 woven dashed_left_border "><?php echo $form->label($model, 'Microwave Oven Interior'); ?>
+                                            <div class="span4 woven dashed_left_border" style="min-height: 121px"><?php echo $form->label($model, 'Microwave Oven Interior'); ?>
                                              <div class="switch switch-large" id="MicroWaveOven" data-on-label="Yes" data-off-label="No">
                                                 <?php echo $form->checkBox($model, 'MicroWaveOven', array('id' => 'HouseCleaningForm_MicroWaveOven')); ?>
                                                 </div>
@@ -114,14 +131,7 @@
                                    
                                 
 
-                                 <div class="row-fluid">
-                                            <div class="span8">
-                                                <label>Frequence of cleaning</label>
-                                                <?php echo $form->dropDownList($model,'NumberOfTimesServices', array('2'=>'Twice a Month', '5'=>'Onetime', '1' => 'Once a Month', '2' => 'Twice a Month', '3'=>'Every 3 Months', '4'=>'Every 6 Months'), array('options' => array($getServiceDetails['service_no_of_times'] => array('selected' => 'selected')), 'class' => 'span12'));?>
-                                                <?php echo $form->error($model, 'NumberOfTimesServices'); ?>
-                                            </div>
-                                            
-                                    </div>                                    
+                                                                    
                                 
                                 <div class="row-fluid">
                                 <div class=" span12">
@@ -156,16 +166,16 @@
                 mindate.setDate(currentDate.getDate()+1);
                 
                 $('#HouseCleaningForm_ServiceStartTime').scroller({
-                    preset: 'datetime',
-                    //timeFormat:'hh:ii A ',
-                    timeFormat:'HH:ii',
+                    preset: 'time',
+                    timeFormat:'hh:ii A ',
+                    //timeFormat:'HH:ii',
                     theme: 'android', // for android set theme:'android'
                     display: 'modal',
-                    mode: 'scroller',
-                    dateFormat:'dd-mm-yyyy',
-                    dateOrder: 'Md ddyy',
-                    timeWheels:'HHii',
-                    minDate:  mindate
+                    mode: 'scroller'
+                    //dateFormat:'dd-mm-yyyy',
+                    //dateOrder: 'Md ddyy',
+                    //timeWheels:'HHii',
+                    //minDate:  mindate
                 });
          
          

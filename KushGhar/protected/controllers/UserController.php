@@ -557,6 +557,11 @@ class UserController extends Controller {
         $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($cId);
         $customerPaymentDetails = $this->kushGharService->getCustomerPaymentDetails($cId);
         
+        $customerServicesHouse = $this->kushGharService->getcustomerServicesHouse($cId);
+        $customerServicesCar = $this->kushGharService->getcustomerServicesCar($cId);
+        $customerServicesStewards = $this->kushGharService->getcustomerServicesStewards($cId);
+        error_log("size of House=sub==".$customerServicesHouse."===".$customerServicesCar."===".$customerServicesStewards);
+        
         $request = yii::app()->getRequest();
         $formName = $request->getParam('HouseCleaningForm');
         if ($formName != '') {
@@ -627,10 +632,10 @@ class UserController extends Controller {
                 $priceModel = new PriceQuoteForm;
                 $cId = $this->session['UserId'];
                 $customerDetails = $this->kushGharService->getCustomerDetails($cId);
-                if($houseModel->CarCleaning=='0'){error_log("enter car====".$houseModel->CarCleaning);
+                if( ($customerServicesCar=='Yes Service') && ($houseModel->CarCleaning=='0')){error_log("enter car====".$houseModel->CarCleaning);
                  $rr=$this->kushGharService->getcustomerServicesCarStatus($cId); 
                 }
-                if($houseModel->StewardCleaning=='0'){error_log("enter Stewards====".$houseModel->StewardCleaning);
+                if( ($customerServicesStewards=='Yes Service') && ($houseModel->StewardCleaning=='0')){error_log("enter Stewards====".$houseModel->StewardCleaning);
                 $dd=$this->kushGharService->getcustomerServicesStewardsStatus($cId); 
                 error_log($dd."======enter Stewards====".$houseModel->StewardCleaning);
                 
@@ -694,6 +699,11 @@ class UserController extends Controller {
         $customerDetails = $this->kushGharService->getCustomerDetails($cId);
         $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($cId);
         $customerPaymentDetails = $this->kushGharService->getCustomerPaymentDetails($cId);
+        
+        $customerServicesHouse = $this->kushGharService->getcustomerServicesHouse($cId);
+        $customerServicesCar = $this->kushGharService->getcustomerServicesCar($cId);
+        $customerServicesStewards = $this->kushGharService->getcustomerServicesStewards($cId);
+        
         $this->session['firstName'] = $customerDetails->first_name;
         $request = yii::app()->getRequest();
         $formName = $request->getParam('CarWashForm');
@@ -764,10 +774,10 @@ class UserController extends Controller {
                 $getServiceDetails = $this->kushGharService->getDetails($cId);
                 $getStewardsServiceDetails = $this->kushGharService->getStewardsDetails($cId);
                 $getCarWashServiceDetails = $this->kushGharService->getCarWashDetails($cId);
-                if($houseModel->HouseCleaning=='0'){
+                if( ($customerServicesHouse=='Yes Service') && ($houseModel->HouseCleaning=='0') ){
                  $rr=$this->kushGharService->getcustomerServicesHouseStatus($cId); 
                 }
-                if($houseModel->StewardCleaning=='0'){
+                if( ($customerServicesStewards=='Yes Service') && ($houseModel->StewardCleaning=='0')){
                 $dd=$this->kushGharService->getcustomerServicesStewardsStatus($cId); 
                
                 }
@@ -800,6 +810,10 @@ class UserController extends Controller {
         $customerDetails = $this->kushGharService->getCustomerDetails($cId);
         $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($cId);
         $customerPaymentDetails = $this->kushGharService->getCustomerPaymentDetails($cId);
+        
+        $customerServicesHouse = $this->kushGharService->getcustomerServicesHouse($cId);
+        $customerServicesCar = $this->kushGharService->getcustomerServicesCar($cId);
+        $customerServicesStewards = $this->kushGharService->getcustomerServicesStewards($cId);
         $request = yii::app()->getRequest();
         $formName = $request->getParam('StewardCleaningForm');
         $data='';
@@ -872,14 +886,13 @@ class UserController extends Controller {
                 $getServiceDetails = $this->kushGharService->getDetails($cId);
                 $getStewardsServiceDetails = $this->kushGharService->getStewardsDetails($cId);
                 $getCarWashServiceDetails = $this->kushGharService->getCarWashDetails($cId);
-                if($stewardModel->CarCleaning=='0'){
+                if( ($customerServicesHouse=='Yes Service') && ($stewardModel->HouseCleaning=='0') ){
+                $dd=$this->kushGharService->getcustomerServicesHouseStatus($cId); 
+                }
+                if( ($customerServicesCar=='Yes Service') && ($stewardModel->CarCleaning=='0') ){
                  $rr=$this->kushGharService->getcustomerServicesCarStatus($cId); 
                 }
-                if($stewardModel->HouseCleaning=='0'){
-                $dd=$this->kushGharService->getcustomerServicesHouseStatus($cId); 
                 
-                
-                }
                 
                 
                 //$data=$this->renderPartial('priceQuote', array("customerDetails" => $customerDetails, 'getStewardsServiceDetails'=>$getStewardsServiceDetails, 'HouseCleaning'=>$stewardModel->HouseCleaning, 'CarCleaning'=>$stewardModel->CarCleaning,'PriceFlag'=>'0'), true);
@@ -991,6 +1004,18 @@ class UserController extends Controller {
         error_log("enter service order controller=====");
         $cId = $this->session['UserId'];
         $customerDetails = $this->kushGharService->getCustomerDetails($cId);
+        $customerServicesHouse = $this->kushGharService->getcustomerServicesHouse($cId);
+        $customerServicesCar = $this->kushGharService->getcustomerServicesCar($cId);
+        $customerServicesStewards = $this->kushGharService->getcustomerServicesStewards($cId);
+        if($customerServicesHouse=='Yes Service') {
+            $getServiceDetails = $this->kushGharService->getDetails($cId);
+        }
+        if($customerServicesCar=='Yes Service') {
+            $getCarWashServiceDetails = $this->kushGharService->getCarWashDetails($cId);
+        }
+        if($customerServicesStewards=='Yes Service'){
+            $getStewardsServiceDetails = $this->kushGharService->getStewardsDetails($cId);
+        }
         
         $subject = "Place Order";
         $messages = $customerDetails;

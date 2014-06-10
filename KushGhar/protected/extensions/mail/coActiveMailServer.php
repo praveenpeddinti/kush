@@ -299,6 +299,7 @@ class coActiveMailServer {
         $handle2 = fopen($temp2, "r");
         $data2 = file_get_contents($temp2);
         $addAddress = $obj['toAddress'];
+        $subject = $obj['subject'];
         $userName = $obj['userName'];
         $message = $obj['message'];
         $Kushmessage2 = "KushGhar - Making people's lives better, one home at a time.";
@@ -333,7 +334,7 @@ class coActiveMailServer {
                      $template2 = str_replace('{--TOADDRESS--}',stripslashes($addAddress),$template2);
                     $mail->AddAddress($addAddress, $userName);
                     
-                    $mail->Subject =  "Price Quote";
+                    $mail->Subject =  $subject;
                     $mail->Body = $template2;                    
                     $mail->AltBody = 'This is a plain-text message body';
                     if (!$mail->Send()) {
@@ -360,6 +361,7 @@ class coActiveMailServer {
         $handle2 = fopen($temp2, "r");
         $data2 = file_get_contents($temp2);
         $addAddress = $obj['toAddress'];
+        $subject = $obj['subject'];
         $userName = $obj['userName'];
         $message = $obj['message'];
         $Kushmessage2 = "KushGhar - Making people's lives better, one home at a time.";
@@ -394,7 +396,7 @@ class coActiveMailServer {
                      $template2 = str_replace('{--TOADDRESS--}',stripslashes($addAddress),$template2);
                     $mail->AddAddress($addAddress, $userName);
                     
-                    $mail->Subject =  "Price Quote";
+                    $mail->Subject =  $subject;
                     $mail->Body = $template2;                    
                     $mail->AltBody = 'This is a plain-text message body';
                     if (!$mail->Send()) {

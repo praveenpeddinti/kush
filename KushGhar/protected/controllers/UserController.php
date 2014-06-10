@@ -971,7 +971,6 @@ class UserController extends Controller {
         $customerServicesHouse = $this->kushGharService->getcustomerServicesHouse($cId);
         $customerServicesCar = $this->kushGharService->getcustomerServicesCar($cId);
         $customerServicesStewards = $this->kushGharService->getcustomerServicesStewards($cId);
-        error_log("size price of House===".$customerServicesHouse."===".$customerServicesCar."===".$customerServicesStewards);
         if($customerServicesHouse=='Yes Service'){$HCleaning='1';}else{$HCleaning='0';}
         if($customerServicesCar=='Yes Service'){$CCleaning='1';}else{$CCleaning='0';}
         if($customerServicesStewards=='Yes Service'){$SCleaning='1';}else{$SCleaning='0';}
@@ -1007,20 +1006,29 @@ class UserController extends Controller {
         $customerServicesHouse = $this->kushGharService->getcustomerServicesHouse($cId);
         $customerServicesCar = $this->kushGharService->getcustomerServicesCar($cId);
         $customerServicesStewards = $this->kushGharService->getcustomerServicesStewards($cId);
+        error_log("size price of House===".$customerServicesHouse."===".$customerServicesCar."===".$customerServicesStewards);
+        
+        $getOrderNumber='';
         if($customerServicesHouse=='Yes Service') {
             $getServiceDetails = $this->kushGharService->getDetails($cId);
+            $getOrderNumber = $getServiceDetails['order_number'];
         }
         if($customerServicesCar=='Yes Service') {
             $getCarWashServiceDetails = $this->kushGharService->getCarWashDetails($cId);
+            foreach($getCarWashServiceDetails as $ee){        
+                $getOrderNumber = $ee['order_number'];
+                
+                }
         }
         if($customerServicesStewards=='Yes Service'){
             $getStewardsServiceDetails = $this->kushGharService->getStewardsDetails($cId);
+            $getOrderNumber = $getStewardsServiceDetails['order_number'];
         }
-        
+        error_log("====getOrder====".$getOrderNumber);
         $subject = "Place Order";
         $messages = $customerDetails;
         //$this->sendMailToUser('praveen.peddinti@gmail.com', '', $subject, $messages, 'KushGhar', 'no-reply@kushghar.com', 'OrderPlace');
-        $data=$this->renderPartial('serviceOrder', array("customerDetails" => $customerDetails), true);
+        $data=$this->renderPartial('serviceOrder', array("customerDetails" => $customerDetails, "orderNumber" => $getOrderNumber), true);
         $obj = array('status' => 'success', 'data' => $data, 'error' => '');
         $renderScript = $this->rendering($obj);
         echo $renderScript;

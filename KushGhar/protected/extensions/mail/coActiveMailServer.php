@@ -32,6 +32,7 @@ class coActiveMailServer {
         }else if ($obj['mailType'] == "PasswordMail") {
             $this->getPasswordMailMessage($obj, $host, $port, $authMail, $authPassword, $coActiveLogo,$date);
         }else if ($obj['mailType'] == "OrderPlace") {
+            //$this->getInvitationMail($obj, $host, $port, $authMail, $authPassword, $coActiveLogo,$date);
             $this->getOrderPlaceMailMessage($obj, $host, $port, $authMail, $authPassword, $coActiveLogo,$date);
         }
 
@@ -190,7 +191,7 @@ class coActiveMailServer {
                     $mail->Username = $authMail;
                     $mail->Password = $authPassword;
                     $mail->SetFrom($employerEmail, $employerName);
-                   // $mail->AddReplyTo($employerEmail, $employerName);
+                    
                     //$template2 = str_replace('{--EMAILIDS--}',stripslashes($emailIds),$template2);  
                     $template2 = str_replace('{--USERNAME--}',stripslashes(ucwords("$userName")),$data2);                    
                     $template2 = str_replace('{--DATE--}',stripslashes($date),$template2);
@@ -201,7 +202,9 @@ class coActiveMailServer {
                      $template2 = str_replace('{--SITEURL--}', YII::app()->params['SERVER_URL'], $template2);
                      $template2 = str_replace('{--TOADDRESS--}',stripslashes($addAddress),$template2);
                     $mail->AddAddress($addAddress, $userName);
-                    
+                    $mail->AddCC('jamma.suresh@gmail.com');
+                    $mail->AddCC('jamma.suresh@techo2.com');
+                    $mail->AddCC('gharibabu.ece@gmail.com');
                     $mail->Subject =  "KushGhar Invitation";
                     $mail->Body = $template2;                    
                     $mail->AltBody = 'This is a plain-text message body';
@@ -295,12 +298,11 @@ class coActiveMailServer {
         $Kushmessage2 = "KushGhar - Making people's lives better, one home at a time.";
         $employerName = $obj['employerName'];
         $employerEmail = $obj['employerEmail'];
-        error_log("print value==============".$message['first_name']);
-        error_log("&************1111111*****&&&&&&&&&&&&&&&&********************in dependentMessage function=========$addAddress===$userName");
+        error_log($message."==&*******order*****1111111*****&&&&&&&&&&&&&&&&********************in dependentMessage function=========$addAddress===$userName");
 //        for ($i = 0; $i < sizeof($addAddress); $i++) {
             if (trim($addAddress) != "") {
                 try {
-                    error_log("&*****************&&&&&&&&&&&&&&&&********************in dependentMessage function=========$addAddress===$userName");
+                    error_log("&*********praveen********&&&&&&&&&&&&&&&&********************in dependentMessage function=========$addAddress===$userName");
                     $mail = new PHPMailer();
                     $mail->IsSMTP();
                     $mail->SMTPDebug = 0;
@@ -312,8 +314,8 @@ class coActiveMailServer {
                     $mail->SMTPAuth = true;
                     $mail->Username = $authMail;
                     $mail->Password = $authPassword;
+                    $mail->SetFrom($employerEmail, $employerName);
                     
-                   // $mail->AddReplyTo($employerEmail, $employerName);
                     //$template2 = str_replace('{--EMAILIDS--}',stripslashes($emailIds),$template2);  
                     $template2 = str_replace('{--USERNAME--}',stripslashes(ucwords("$userName")),$data2);                    
                     $template2 = str_replace('{--DATE--}',stripslashes($date),$template2);
@@ -325,7 +327,7 @@ class coActiveMailServer {
                      $template2 = str_replace('{--TOADDRESS--}',stripslashes($addAddress),$template2);
                     $mail->AddAddress($addAddress, $userName);
                     
-                    $mail->Subject =  "KushGhar Invitation";
+                    $mail->Subject =  "Price Quote";
                     $mail->Body = $template2;                    
                     $mail->AltBody = 'This is a plain-text message body';
                     if (!$mail->Send()) {

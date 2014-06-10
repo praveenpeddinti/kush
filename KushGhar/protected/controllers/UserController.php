@@ -1028,8 +1028,8 @@ class UserController extends Controller {
         //$subject = "Place Order";
         $messages = "The Order Number is <b>".$getOrderNumber."</b>";
         $mess = "The Order Number is <b>".$getOrderNumber."</b>\r\n\n";
-        $mess = $mess."Customer Name is ".$customerDetails['first_name']."<br/>\r\n\n";
-        $mess = $mess."Phone Number is ".$customerDetails['address_phone']."<br/>\r\n\n";
+        $mess = $mess."Customer Name is ".$customerDetails['first_name']."\r\n\n";
+        $mess = $mess."Phone Number is ".$customerDetails['phone']."\r\n\n";
          $subject1 =$getOrderNumber." Order placed";
         $messKG = $mess;
         $this->sendMailToUser($customerDetails['email_address'], '', $subject1, $messages, 'KushGhar', 'no-reply@kushghar.com', 'OrderPlace');

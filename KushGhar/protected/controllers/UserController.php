@@ -1026,8 +1026,13 @@ class UserController extends Controller {
         }
         error_log("====getOrder====".$getOrderNumber);
         $subject = "Place Order";
-        $messages = $customerDetails;
-        //$this->sendMailToUser('praveen.peddinti@gmail.com', '', $subject, $messages, 'KushGhar', 'no-reply@kushghar.com', 'OrderPlace');
+        $messages = "The Order Number is <b>".$getOrderNumber."</b>";
+        $mess = "The Order Number is <b>".$getOrderNumber."</b>\r\n\n";
+        $mess = $mess."Customer Name is ".$customerDetails['email_address']."\r\n\n";
+        $messKG = $mess;
+        $this->sendMailToUser($customerDetails['email_address'], '', $subject, $messages, 'KushGhar', 'no-reply@kushghar.com', 'OrderPlace');
+        $this->sendMailToUser('praveen.peddinti@gmail.com', '', $subject, $messKG, 'KushGhar', 'no-reply@kushghar.com', 'OrderPlaceToKGTeam');
+        
         $data=$this->renderPartial('serviceOrder', array("customerDetails" => $customerDetails, "orderNumber" => $getOrderNumber), true);
         $obj = array('status' => 'success', 'data' => $data, 'error' => '');
         $renderScript = $this->rendering($obj);

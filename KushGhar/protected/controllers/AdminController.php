@@ -163,8 +163,8 @@ class AdminController extends Controller {
         $subject = 'KushGhar Invitation';
         $email = $_POST['email'];
         
-        //$mess1 = 'http://www.kushghar.com/site/invite?uname=' . $email . "\r\n\n";
-        $mess1 = 'http://115.248.17.88:6060/site/invite?uname=' . $email . "\r\n\n";
+        $mess1 = 'http://www.kushghar.com/site/invite?uname=' . $email . "\r\n\n";
+        //$mess1 = 'http://115.248.17.88:6060/site/invite?uname=' . $email . "\r\n\n";
         $messages = $mess1;
         $changeUserStatus = $this->kushGharService->sendInviteMailToUser($_POST['Id'], $_POST['status']);
         $this->sendMailToUser($_POST['email'], '', $subject, $messages, 'KushGhar', 'no-reply@kushghar.com', 'InvitationMail');

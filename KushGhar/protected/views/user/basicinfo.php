@@ -84,7 +84,7 @@
                                  }
                                  ?>
                                 <li><a href="homeService"> <i class="fa fa-user"></i> Service Details</a></li>
-                                <li><a href="#"> <i class="fa fa-user"></i> Price Quote</a></li>
+                                <li><a href="priceQuote"> <i class="fa fa-user"></i> Price Quote</a></li>
                                 <li><a href="paymentInfo"> <i class="fa fa-credit-card"></i> Payment Info</a>
                                     <div class="<?php echo $statusClassForPayment;?>"> </div>
                                 </li>

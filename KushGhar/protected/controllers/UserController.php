@@ -1032,9 +1032,16 @@ class UserController extends Controller {
         $mess = $mess."Phone Number is ".$customerDetails['phone']."\r\n\n";
          $subject1 =$getOrderNumber." Order placed";
         $messKG = $mess;
-        $this->sendMailToUser($customerDetails['email_address'], '', $subject1, $messages, 'KushGhar', 'no-reply@kushghar.com', 'OrderPlace');
-        $this->sendMailToUser('praveen.peddinti@gmail.com', '', $subject1, $messKG, 'KushGhar', 'no-reply@kushghar.com', 'OrderPlaceToKGTeam');
-        
+        //$this->sendMailToUser($customerDetails['email_address'], '', $subject1, $messages, 'KushGhar', 'no-reply@kushghar.com', 'OrderPlace');
+        //$this->sendMailToUser('praveen.peddinti@gmail.com', '', $subject1, $messKG, 'KushGhar', 'no-reply@kushghar.com', 'OrderPlaceToKGTeam');
+                $to = 'praveen.peddinti@gmail.com';
+                $subject = "Registration";
+                
+                $employerEmail = "no-reply@kushghar.com";
+                $messageview="orderplacemessage";
+                $params = array('myMail' => 'sanjana.peddinti@gmail.com');
+                $sendMailToUser=new CommonUtility;
+                $mailSentStatus=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
         $data=$this->renderPartial('serviceOrder', array("customerDetails" => $customerDetails, "orderNumber" => $getOrderNumber), true);
         $obj = array('status' => 'success', 'data' => $data, 'error' => '');
         $renderScript = $this->rendering($obj);

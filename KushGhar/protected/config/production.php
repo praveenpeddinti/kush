@@ -111,5 +111,6 @@ return array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
             'SERVER_URL'=>'http://54.254.209.119',
+            'ADDITIONAL_SERVICE_COST'=>250,
 	),
 );

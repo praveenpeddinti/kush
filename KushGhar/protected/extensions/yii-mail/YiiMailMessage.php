@@ -125,8 +125,9 @@ class YiiMailMessage extends CComponent {
 	* @param string content type optional. For html, set to 'html/text'
 	* @param string charset optional
 	*/
-	public function setBody($body = '', $contentType = null, $charset = null) {
-		if ($this->view !== null) {
+	public function setBody($body = '', $contentType = null, $charset = null) {error_log("dfdfdf=====");
+        $returnValue='failure';
+		if ($this->view !== null) {error_log("dfdfdf===1==".Yii::app()->mail->viewPath.'.'.$this->view);
 			if (!is_array($body)) $body = array('body'=>$body);
 			
 			// if Yii::app()->controller doesn't exist create a dummy 
@@ -140,8 +141,12 @@ class YiiMailMessage extends CComponent {
 			// renderInternal - this requires that we use an actual path to the 
 			// view rather than the usual alias
 			$viewPath = Yii::getPathOfAlias(Yii::app()->mail->viewPath.'.'.$this->view).'.php';
-			$body = $controller->renderInternal($viewPath, array_merge($body, array('mail'=>$this)), true);	
-		}
-		return $this->message->setBody($body, $contentType, $charset);
+                        error_log("veiwpath====".$viewPath);
+			$body = $controller->renderInternal($viewPath, array_merge($body, array('mail'=>$this)), true);
+                        error_log("veiwpath==2==".$viewPath);
+                        $returnValue = $this->message->setBody($body, $contentType, $charset);
+			}
+                        error_log("before return========".$returnValue);
+		return $returnValue;
 	}
 }

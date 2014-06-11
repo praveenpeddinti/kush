@@ -1039,9 +1039,11 @@ class UserController extends Controller {
                 
                 $employerEmail = "no-reply@kushghar.com";
                 $messageview="orderplacemessage";
-                $params = array('myMail' => 'sanjana.peddinti@gmail.com');
+                //$params = array('myMail' => 'sanjana.peddinti@gmail.com');
+                $params = '';
                 $sendMailToUser=new CommonUtility;
                 $mailSentStatus=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
+                error_log("mail senf==========");
         $data=$this->renderPartial('serviceOrder', array("customerDetails" => $customerDetails, "orderNumber" => $getOrderNumber), true);
         $obj = array('status' => 'success', 'data' => $data, 'error' => '');
         $renderScript = $this->rendering($obj);

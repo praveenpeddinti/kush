@@ -35,12 +35,17 @@ public function actionSendmail($view, $params, $subject, $toAddress, $fromAddres
             $message = new YiiMailMessage;
             $message->view = $view;
             $message->setBody($params, 'text/html');
+            error_log("enter Comm---------1-------");
             $message->subject = $subject;
             $message->addTo($toAddress);
+            error_log("enter Comm-----------2-----");
             $message->from = $fromAddress;
+            error_log("enter Comm------------3----");
         if (Yii::app()->mail->send($message)) {
+            error_log("enter Comm---------if-------");
             return true;
         } else {
+            error_log("enter Comm----------else------");
             return false;
         }
     }

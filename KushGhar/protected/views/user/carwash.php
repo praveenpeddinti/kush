@@ -326,14 +326,17 @@ $form = $this->beginWidget('CActiveForm', array(
 
                     '<?php } ?>'+
                     '</select>'+
+                    '<div id="11_State_em" class="errorMessage" style="display:none"></div>'+
              '</div>'+
              '<div class=" span4">'+
                 '<label><abbr title="required">*</abbr> City</label>'+
                 '<input type="text" class="span12" id="11_City" maxLength="25" placeholder="City…">'+
+                '<div id="11_City_em" class="errorMessage" style="display:none"></div>'+
            '</div>'+
            '<div class=" span4">'+
                 '<label><abbr title="required">*</abbr> Pin Code</label>'+
                 '<input type="text" class="span12" id="11_PinCode" maxLength="6" placeholder="Pin Code…">'+
+                '<div id="11_PinCode_em" class="errorMessage" style="display:none"></div>'+
            '</div>'+
            '</div>'+
         '</div>'+
@@ -533,14 +536,17 @@ $form = $this->beginWidget('CActiveForm', array(
 
                     '<?php } ?>'+
                     '</select>'+
+                    '<div id="'+i+'_State_em" class="errorMessage" style="display:none"></div>'+
              '</div>'+
              '<div class=" span4">'+
                 '<label><abbr title="required">*</abbr> City</label>'+
                 '<input type="text" class="span12" id="'+i+'_City" maxLength="25" placeholder="City…">'+
+                '<div id="'+i+'_City_em" class="errorMessage" style="display:none"></div>'+
            '</div>'+
            '<div class=" span4">'+
                 '<label><abbr title="required">*</abbr> Pin Code</label>'+
                 '<input type="text" class="span12" id="'+i+'_PinCode" maxLength="6" placeholder="Pin Code…">'+
+                '<div id="'+i+'_PinCode_em" class="errorMessage" style="display:none"></div>'+
            '</div>'+
            '</div>'+
         '</div>'+

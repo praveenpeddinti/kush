@@ -624,8 +624,8 @@ $(document).ready(function() {
             
                 
                 //address line1 start
-                if ( ($("11_Address1").val() == "") ) {
-                //alert("====ec==");
+                if ( ($("#11_Address1").val() == "") ) {
+                
                 $("#11_Address1_em").show();
                 $("#11_Address1_em").addClass('errorMessage');
                 $("#11_Address1_em").text("Please Enter Address Line1 ");

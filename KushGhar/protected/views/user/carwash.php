@@ -365,7 +365,7 @@ $form = $this->beginWidget('CActiveForm', array(
             $('#CarWashForm_DifferentLocation').val('0');
             $('.AddressFieldsDiv').hide();
             $('.AddressFieldsDivWithSingle').show();
-            var singleAddress1= '<div class="row-fluid">yes'+
+            var singleAddress1= '<div class="row-fluid">'+
             '<div class=" span4">'+
                 '<label><abbr title="required">*</abbr> Address Line1</label>'+
                 '<input type="text" class="span12" id="11_Address1" value="" maxLength="100" placeholder="Address Line1…">'+

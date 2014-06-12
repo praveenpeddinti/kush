@@ -1,10 +1,6 @@
+
 <html>
     <body>
-      <img alt="KushGhar" style="float:left" src="<?php echo $params->Logo;?>"/>
-    </body>
-</html>
-
-
 <table width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#262626" align="center">
     <tbody>
         <tr>
@@ -86,3 +82,5 @@
 </td>
 </tr>
 </tbody></table>
+ </body>
+</html>

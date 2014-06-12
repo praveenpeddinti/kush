@@ -1036,11 +1036,11 @@ class UserController extends Controller {
         //$this->sendMailToUser('praveen.peddinti@gmail.com', '', $subject1, $messKG, 'KushGhar', 'no-reply@kushghar.com', 'OrderPlaceToKGTeam');
                 $to = 'praveen.peddinti@gmail.com';
                 $subject = "Registration";
-                
+                $Logo = YII::app()->params['SERVER_URL'] . "/images/color_logo.png";
                 $employerEmail = "no-reply@kushghar.com";
                 $messageview="orderplacemessage";
-                //$params = array('myMail' => 'sanjana.peddinti@gmail.com');
-                $params = '';
+                $params = array('Logo' => $Logo, 'Message' =>$messKG);
+                //$params = '';
                 $sendMailToUser=new CommonUtility;
                 $mailSentStatus=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
                 error_log("mail senf==========");

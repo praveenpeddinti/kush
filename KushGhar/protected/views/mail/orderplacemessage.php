@@ -72,9 +72,6 @@
                     </tbody></table>
                 <!-- END OF FOOTER TABLE -->
 
-
-
-
             </td>
         </tr>
     </tbody></table><!-- END OF EMAIL WRAPPER -->

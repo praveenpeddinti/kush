@@ -29,7 +29,7 @@ public function actionSendmail($view, $params, $subject, $toAddress, $fromAddres
            'username' => 'no-reply@kushghar.com',
            'password' => 'Kush1029',
            'port' => 25,
-           'encryption' => 'ssl'
+         
            );
             Yii::app()->mail->transportType = 'smtp';// Uncomment these when email is configured in admin section for Template management
             $message = new YiiMailMessage;

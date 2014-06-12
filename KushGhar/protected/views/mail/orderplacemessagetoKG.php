@@ -1,6 +1,10 @@
-
 <html>
     <body>
+      <img alt="KushGhar" style="float:left" src="<?php echo $params->Logo;?>"/>
+    </body>
+</html>
+
+
 <table width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#262626" align="center">
     <tbody>
         <tr>
@@ -20,7 +24,7 @@
                                                 <a href="<?php echo YII::app()->params['SERVER_URL'];?>" target="_blank"><img alt="KushGhar" style="float:left" src="<?php echo $Logo;?>"/></a>
                                                 
                                             </td>
-                                            <td bgcolor="#fffff" valign="center" ><h3>nwWelcome to KushGhar</h3><br/><b>Phone:</b> 1-800-3070-6959</td>
+                                            <td bgcolor="#fffff" valign="center" ><h3>NEWWelcome to KushGhar</h3><br/><b>Phone:</b> 1-800-3070-6959</td>
                                         </tr>
                                         <tr><td colspan='2'>&nbsp;</td></tr>
                                     </tbody></table>
@@ -72,6 +76,9 @@
                     </tbody></table>
                 <!-- END OF FOOTER TABLE -->
 
+
+
+
             </td>
         </tr>
     </tbody></table><!-- END OF EMAIL WRAPPER -->
@@ -79,5 +86,3 @@
 </td>
 </tr>
 </tbody></table>
- </body>
-</html>

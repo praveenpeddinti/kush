@@ -1030,20 +1030,32 @@ class UserController extends Controller {
         $mess = "The Order Number is <b>".$getOrderNumber."</b>\r\n\n";
         $mess = $mess."Customer Name is ".$customerDetails['first_name']."\r\n\n";
         $mess = $mess."Phone Number is ".$customerDetails['phone']."\r\n\n";
-         $subject1 =$getOrderNumber." Order placed";
         $messKG = $mess;
         //$this->sendMailToUser($customerDetails['email_address'], '', $subject1, $messages, 'KushGhar', 'no-reply@kushghar.com', 'OrderPlace');
         //$this->sendMailToUser('praveen.peddinti@gmail.com', '', $subject1, $messKG, 'KushGhar', 'no-reply@kushghar.com', 'OrderPlaceToKGTeam');
-                $to = 'praveen.peddinti@gmail.com';
-                $subject = "Registration";
+                 /*
+                  * Customer Mail Details
+                  */
+                $to1 = $customerDetails['email_address'];
+                $subject =$getOrderNumber." Order placed";
                 $Logo = YII::app()->params['SERVER_URL'] . "/images/color_logo.png";
                 $employerEmail = "no-reply@kushghar.com";
-                $messageview="orderplacemessage";
+                $messageview1="orderplacemessage";
+                $params1 = array('Logo' => $Logo, 'Message' =>$messages);
+                 /*
+                 * KG Team mail details
+                 */
+                $to = 'praveen.peddinti@gmail.com';
+                $employerEmail = "no-reply@kushghar.com";
+                $messageview="orderplacemessagetoKG";
                 $params = array('Logo' => $Logo, 'Message' =>$messKG);
+                
                 //$params = '';
                 $sendMailToUser=new CommonUtility;
-                $mailSentStatus=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
-                error_log("mail senf==========");
+                $sendMailToUser->actionSendmail($messageview1,$params1, $subject, $to1,$employerEmail);
+                error_log("mail senf===1=======");
+                $sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
+                error_log("mail senf====2======");
         $data=$this->renderPartial('serviceOrder', array("customerDetails" => $customerDetails, "orderNumber" => $getOrderNumber), true);
         $obj = array('status' => 'success', 'data' => $data, 'error' => '');
         $renderScript = $this->rendering($obj);

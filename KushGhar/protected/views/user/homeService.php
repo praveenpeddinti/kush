@@ -493,6 +493,14 @@ $(document).ready(function() {
             }
             //City validation end
             //Pin code validation start
+            if ( ($("#" + i + "_PinCode").val()=='') ) {
+                $("#" + i + "_PinCode_em").show();
+                $("#" + i + "_PinCode_em").addClass('errorMessage');
+                $("#" + i + "_PinCode_em").text("Please Pin Code ");
+                return false;
+            } else {
+                $("#" + i + "_PinCode_em").hide();
+            }
             if ( (!$("#" + i + "_PinCode").val().match(/^[0-9]+$/)) ) {
                 
                 $("#" + i + "_PinCode_em").show();
@@ -667,6 +675,14 @@ $(document).ready(function() {
             }
             //City validation end
             //Pin code validation start
+            if ( ($("#11_PinCode").val()=='') ) {
+                $("#11_PinCode_em").show();
+                $("#11_PinCode_em").addClass('errorMessage');
+                $("#11_PinCode_em").text("Please Pin Code ");
+                return false;
+            } else {
+                $("#11_PinCode_em").hide();
+            }
             if ( (!$("#11_PinCode").val().match(/^[0-9]+$/)) ) {
                 
                 $("#11_PinCode_em").show();

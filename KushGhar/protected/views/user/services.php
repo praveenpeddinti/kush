@@ -19,7 +19,7 @@
                                 <div class=" row-fluid borderB">
                                     <div class="span12 ">
                                         <div class="housecleaning_title">
-                                            House Cleaning Service <a class="details has-popover" target="_blank" title="" data-toggle="popover" data-placement="bottom" data-content="<ul><li>Kitchen room</li><li>Bed room</li><li>Living room</li><li>Bath room</li><li>Common areas</li></ul>" data-original-title="Cleaning" href="/site/cleaning">(What is Included <b>?</b>)</a>
+                                            House Cleaning Service <a class="details has-popover" target="_blank" title="" data-toggle="popover" data-placement="bottom" data-content="<ul><li>Kitchen room</li><li>Bed room&nbsp;&nbsp;</li><li>Living room</li><li>Bath room</li><li>Common areas</li></ul>" data-original-title="Cleaning" href="/site/cleaning">(What is included <b>?</b>)</a>
                                         </div>
                                     </div>                                    
                                 </div>
@@ -27,8 +27,8 @@
                                 <div class="row-fluid">
                                       <div class="span10">
                                     <div class=" span5">
-                                        <?php echo $form->label($model, 'Square Feets'); ?>
-                                        <?php if($getServiceDetails['squarefeets']=='0') {$squareFeetsValue='';}else{ $squareFeetsValue=$getServiceDetails['squarefeets'];} echo $form->textField($model, 'SquareFeets', array('value'=>$squareFeetsValue,'maxLength' => 5, 'class' => 'span12', 'placeholder' => 'Square Feets…')); ?>
+                                        <?php echo $form->label($model, 'Square Feet'); ?>
+                                        <?php if($getServiceDetails['squarefeets']=='0') {$squareFeetsValue='';}else{ $squareFeetsValue=$getServiceDetails['squarefeets'];} echo $form->textField($model, 'SquareFeets', array('value'=>$squareFeetsValue,'maxLength' => 5, 'class' => 'span12', 'placeholder' => 'Square Feet…')); ?>
                                         <?php echo $form->error($model, 'SquareFeets'); ?>
                                     </div> 
                                     <div class="span5">
@@ -40,13 +40,13 @@
                                      </div>
                                 <div class="row-fluid">
                                     <div class="span10">
-                                    <div class="span5">
-                                        <label> When do you want service</label>
+                                    <div class="span6">
+                                        <label> When do you want service?</label>
                                         <?php echo $form->dropDownList($model,'WeekDays', array('Sunday'=>'Sunday', 'Monday'=>'Monday', 'Tuesday' => 'Tuesday', 'Wednesday' => 'Wednesday', 'Thursday'=>'Thursday', 'Friday'=>'Friday', 'Saturday'=>'Saturday'), array('options' => array($getServiceDetails['week_days'] => array('selected' => 'selected')), 'class' => 'span12'));?>
                                         <?php echo $form->error($model, 'WeekDays'); ?>
                                        
                                     </div> 
-                                    <div class=" span5">
+                                    <div class=" span4">
                                         <label>&nbsp</label>
                                         <?php echo $form->textField($model, 'ServiceStartTime', array('value'=>$getServiceDetails['houseservice_start_time'], 'onchange' => 'javascript:onChangeTime();', 'class' => 'span8', 'placeholder' => '')); ?>
                                         <?php echo $form->error($model, 'ServiceStartTime'); ?>

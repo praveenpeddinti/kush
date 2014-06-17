@@ -51,7 +51,7 @@ $form = $this->beginWidget('CActiveForm', array(
     <div class=" row-fluid borderB">
         <div class="span12 ">
             <div class="carwash_title">
-                Car Wash Service <a class="details has-popover" target="_blank" title="" data-toggle="popover" data-placement="bottom" data-content="<ul><li>Brush, vacuum, and clean the interior</li><li>Clean wheels and tires</li><li>Wash exterior</li><li>Apply tire dressing</li><li>Polish wheels</li><li>Rinsing and drying</li></ul>" data-original-title="Car Wash" href="/site/carwash">(What is Included <b>?</b>)</a>
+                Car Wash Service <a class="details has-popover" target="_blank" title="" data-toggle="popover" data-placement="bottom" data-content="<ul><li>Brush, vacuum, and clean the interior</li><li>Clean wheels and tires</li><li>Wash exterior</li><li>Apply tire dressing</li><li>Polish wheels</li><li>Rinsing and drying</li></ul>" data-original-title="Car Wash" href="/site/carwash">(What is included <b>?</b>)</a>
             </div>
         </div>
 
@@ -74,7 +74,7 @@ $form = $this->beginWidget('CActiveForm', array(
     </div>
     <div class="row-fluid">
        <div class="span5">
-            <label><abbr title="required">*</abbr> When do you want service</label>
+            <label><abbr title="required">*</abbr> When do you want service?</label>
             <?php echo $form->dropDownList($model,'WeekDays', array('Sunday'=>'Sunday', 'Monday'=>'Monday', 'Tuesday' => 'Tuesday', 'Wednesday' => 'Wednesday', 'Thursday'=>'Thursday', 'Friday'=>'Friday', 'Saturday'=>'Saturday'), array('options' => array($WeekDays => array('selected' => 'selected')), 'class' => 'span12'));?>
             <?php echo $form->error($model, 'WeekDays'); ?>
         </div> 

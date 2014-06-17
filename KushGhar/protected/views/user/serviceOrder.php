@@ -6,8 +6,8 @@
             </div>            
             <div class="row-fluid">
                 <div class="span12">
-                    <h2 class="paddingL20"> Your Order is successfully added. We Will contact you shortly.</h2> 
-                    <h3 class="paddingL20">Order Number is : <?php echo $orderNumber;?></h3>
+                    <h2 class="paddingL20"> Thank you for your order, your order number is <b><?php echo $orderNumber;?></b>, for any future communication. Please quote your order number (or) our executive will contact you shortly.</h2> 
+                    
                 </div>
             </div>
             

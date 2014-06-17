@@ -124,7 +124,7 @@
                                                     </li>
                                                     <li class="car_wash">
                                                         <div class="row-fluid">
-                                                            <?php echo $form->radioButtonList($homeModel, 'CarCleaning', array('1' => 'I want my car to be wash', '0' => 'No car wash need'), array('uncheckValue' => null, 'separator' => '&nbsp; &nbsp; &nbsp;', 'class' => 'styled', 'id' => 'HomeServiceForm_CarCleaning')); ?>
+                                                            <?php echo $form->radioButtonList($homeModel, 'CarCleaning', array('1' => 'I want my car to be washed', '0' => 'No car wash needed'), array('uncheckValue' => null, 'separator' => '&nbsp; &nbsp; &nbsp;', 'class' => 'styled', 'id' => 'HomeServiceForm_CarCleaning')); ?>
                                                         </div>
                                                     </li>
                                                     <li class="stewards">

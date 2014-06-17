@@ -40,7 +40,7 @@
                         Get in touch
                         <p style=" margin-top:5px">1-800-3070-6959</p>
                         <p>helpme@kushghar.com</p>
-                        <p style="font-family: MuseoSlab500;font-size:10px;color:#FFF;font-weight: normal">We are currently available in Hyderabad. We plan be nation wide soon.</p>
+                        <p style="font-family: MuseoSlab500;font-size:10px;color:#FFF;font-weight: normal">We are currently available in Hyderabad. We plan to be nation wide soon.</p>
                     </div>
                 </div>
             </div>

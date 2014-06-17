@@ -122,7 +122,7 @@
         <div class="paddinground">
         <div class="row-fluid">
             <div class=" span12">
-                <h4 class="paddingL20">Currently payment only received by check / cash</h4>
+                <h4 class="paddingL20">Currently payment only received by cheque / cash</h4>
             </div>
         </div>  
         </div>

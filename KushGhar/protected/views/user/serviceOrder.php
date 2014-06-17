@@ -1,7 +1,7 @@
      
             <div class="row-fluid">
                 <div class="span12">
-                    <h4 class="paddingL20">Order Conformation</h4> <hr>
+                    <h4 class="paddingL20">Order Confirmation</h4> <hr>
                 </div>
             </div>            
             <div class="row-fluid">

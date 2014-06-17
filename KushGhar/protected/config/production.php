@@ -46,6 +46,12 @@ return array(
             'simpleImage'=>array(
                         'class' => 'application.extensions.simpleImage.CSimpleImage',
                 ),
+            'mail' => array(
+             'class' => 'ext.yii-mail.YiiMail',
+             'viewPath' => 'application.views.mail',
+             'logging' => true,
+             'dryRun' => false
+             ),
              // uncomment the following to use a MySQL database
 		'theme'=>'bootstrap', // requires you to copy the theme under your themes directory
     'modules'=>array(
@@ -100,9 +106,9 @@ return array(
 			),
                 
 		),
-            'mail'=>array(
+            /*'mail'=>array(
                         'class' => 'application.extensions.mail.Mail',
-                ),
+                ),*/
       
             ),
 // application-level parameters that can be accessed

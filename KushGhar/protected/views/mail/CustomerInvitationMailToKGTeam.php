@@ -1,53 +1,63 @@
-
 <html><body>
+
 <table width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#262626" align="center">
-   <tr>
+    <tbody><tr>
             <td valign="top">
                 <!-- START OF EMAIL WRAPPER -->
                 <table width="650" cellspacing="0" cellpadding="0" border="0" bgcolor="#fcfcfc" align="center">
-                    <tr>
+                    <tbody><tr>
                             <td>
 
                                 <!-- START OF Header Table -->
                                 <table width="650" cellspacing="0" cellpadding="0" border="0" bgcolor="#6CA050" >
-                                 
+                                    <tbody>
                                         <tr><td colspan='2'>&nbsp;</td></tr>
                                         <tr>
                                             <td valign="top" bgcolor="#fffff" align="left" >
                                                 
-                                                <a href="#" target="_blank"><img alt="KushGhar" style="float:left" src="<?php echo $Logo;?>"/></a>
+                                                <a href="<?php echo YII::app()->params['SERVER_URL'];?>" target="_blank"><img alt="KushGhar" style="float:left" src="<?php echo $Logo;?>"/></a>
                                                 
                                             </td>
                                             <td bgcolor="#fffff" valign="center" ><h3>Welcome to KushGhar</h3><br/><b>Phone:</b> 1-800-3070-6959</td>
                                         </tr>
                                         <tr><td colspan='2'>&nbsp;</td></tr>
-                                   </table>
+                                    </tbody></table>
                                 <!-- END OF Header Table -->
                                 <!-- START OF full width Table --> 
-                                <table width="650" cellspacing="0" cellpadding="0" border="0" align="center">
-                                    <tr><td width="630" valign="top" align="left" style="font-family: Helvetica, Arial, sans-serif; font-size: 12px; line-height: 18px;">
-                                            <table>
-                                                 <tr><td colspan="2">Hi,</td></tr>
-                                    <tr><td colspan="2"><?php echo $Message?></td></tr>
-                                    <tr><td colspan="2">
-                                                     <p style="font-size:14px;line-height:1.7;">We will contact as soon as possible</p>
-                                        <p style="font-size:16px;line-height:1.7;">
-                                            Regards,<br>
-                                            KushGhar.</p>
-                                                 </td></tr>
-                                        </table>
-                                        </td></tr> 
-                                </table>
+                                <table width="630" cellspacing="0" cellpadding="0" border="0" align="center">
+                                    <tbody>
+                                    <td width="630" valign="top" align="left" style="font-family: Helvetica, Arial, sans-serif; font-size: 12px; line-height: 18px;">
+                                       <p style="font-size:14px;line-height:1.7;color:#666;font-weight:bold">Hi, </p>  
+                                        <p style="font-size:14px;line-height:1.7;">
+                                            New customer invitated details as follows
+                                        </p>
+                                        <p style="font-size:14px;line-height:1.7;">
+                                            Customer Name: <?php echo $Name;?>
+                                        </p>
+                                        <p style="font-size:14px;line-height:1.7;">
+                                            Email: <?php echo $Email;?>
+                                        </p>
                                         
-                                       
+                                        <p style="font-size:14px;line-height:1.7;">
+                                            Customer is waiting for your approval.
+                                        </p>
+                                        
+                                        <p style="font-size:16px;line-height:1.7;">
+                                            Thank you,<br/>
+                                            KushGhar.    
+                                        </p>
 
                                     </td>
                         </tr>
                         <tr>
                             <td style="font-family: Helvetica, sans-serif; font-size: 13px; color: #373737; line-height: 16px;">&nbsp;</td>
                         </tr>
-                    </table>
+                    </tbody></table>
                 <!-- END OF full width Table -->
+
+
+
+
 
                 <!-- START OF FOOTER TABLE -->
                 <table width="650" cellspacing="0" align="center" cellpadding="0" border="0" bgcolor="#fcfcfc">
@@ -59,7 +69,7 @@
 
                         <tr>
                             <td width="10" valign="top" bgcolor="#ededed" align="left" height="58">&nbsp;</td>
-                            <td  bgcolor="#ededed" align="left" style="font-family: Helvetica, sans-serif; font-size: 11px; color: #757887; line-height: 16px;">Copyright &copy; 2014 <a href="{--SITEURL--}" target="_blank" style="text-decoration: none;"> KushGhar</a> All Rights Reserved.
+                            <td  bgcolor="#ededed" align="left" style="font-family: Helvetica, sans-serif; font-size: 11px; color: #757887; line-height: 16px;">Copyright &copy; 2014 <a href="<?php echo YII::app()->params['SERVER_URL'];?>" target="_blank" style="text-decoration: none;"> KushGhar</a> All Rights Reserved.
                             </td>
 
                         </tr>
@@ -69,21 +79,11 @@
 
 
 
-               
-
-
-
 
             </td>
         </tr>
-   </table><!-- END OF EMAIL WRAPPER -->
-
-
+    </tbody></table><!-- END OF EMAIL WRAPPER -->
     </body></html>
-
-
-
-
 
 
 

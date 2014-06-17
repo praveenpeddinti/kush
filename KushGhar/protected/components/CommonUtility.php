@@ -21,31 +21,39 @@ class CommonUtility
 
 // this is local variable, which can accessiable in any function
 public function actionSendmail($view, $params, $subject, $toAddress, $fromAddress) {
-  error_log("enter Comm----------------");
         try {
             Yii::import('ext.yii-mail.YiiMailMessage');               
             Yii::app()->mail->transportOptions = array(
+           /*'host' => 'smtp.gmail.com',
+           'username' => 'praveen.peddinti@gmail.com',
+           'password' =>'9986531867',
+           'port' => 465,
+           'encryption' => 'ssl',*/
            'host' => 'webmail.kushghar.com',
            'username' => 'no-reply@kushghar.com',
-           'password' => 'Kush1029',
+           'password' =>'Kush1029',
            'port' => 25,
+           'encryption' => '',
          
            );
             Yii::app()->mail->transportType = 'smtp';// Uncomment these when email is configured in admin section for Template management
             $message = new YiiMailMessage;
             $message->view = $view;
             $message->setBody($params, 'text/html');
-            error_log("enter Comm---------1-------");
             $message->subject = $subject;
             $message->addTo($toAddress);
-            error_log("enter Comm-----------2-----");
+            /*if(($message->view=='CustomerInvitationMailToKGTeam') ||($message->view=='orderplacemessagetoKG')){
+            $message->addCC('rtummala1@yahoo.com');
+            $message->addCC('swamy.deva@gmail.com');
+            $message->addCC('satyalika@gmail.com');
+            $message->addCC('jamma.suresh@gmail.com');
+            $message->addCC('admin@kushghar.com');
+            $message->addCC('helpme@kushghar.com');
+            }*/
             $message->from = $fromAddress;
-            error_log("enter Comm------------3----");
         if (Yii::app()->mail->send($message)) {
-            error_log("enter Comm---------if-------");
             return true;
         } else {
-            error_log("enter Comm----------else------");
             return false;
         }
     }

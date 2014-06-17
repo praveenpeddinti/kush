@@ -1,62 +1,93 @@
-<html>
-    <body>
-      <img alt="KushGhar" style="float:left" src="<?php echo $params->Logo;?>"/>
-    </body>
-</html>
 
-
+<html><body>
 <table width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#262626" align="center">
-    <tbody>
-        <tr>
+   <tr>
             <td valign="top">
                 <!-- START OF EMAIL WRAPPER -->
                 <table width="650" cellspacing="0" cellpadding="0" border="0" bgcolor="#fcfcfc" align="center">
-                    <tbody><tr>
+                    <tr>
                             <td>
 
                                 <!-- START OF Header Table -->
                                 <table width="650" cellspacing="0" cellpadding="0" border="0" bgcolor="#6CA050" >
-                                    <tbody>
+                                 
                                         <tr><td colspan='2'>&nbsp;</td></tr>
                                         <tr>
                                             <td valign="top" bgcolor="#fffff" align="left" >
                                                 
-                                                <a href="<?php echo YII::app()->params['SERVER_URL'];?>" target="_blank"><img alt="KushGhar" style="float:left" src="<?php echo $Logo;?>"/></a>
+                                                <a href="#" target="_blank"><img alt="KushGhar" style="float:left" src="<?php echo $Logo;?>"/></a>
                                                 
                                             </td>
-                                            <td bgcolor="#fffff" valign="center" ><h3>NEWWelcome to KushGhar</h3><br/><b>Phone:</b> 1-800-3070-6959</td>
+                                            <td bgcolor="#fffff" valign="center" ><h3>Welcome to KushGhar</h3><br/><b>Phone:</b> 1-800-3070-6959</td>
                                         </tr>
                                         <tr><td colspan='2'>&nbsp;</td></tr>
-                                    </tbody></table>
+                                   </table>
                                 <!-- END OF Header Table -->
                                 <!-- START OF full width Table --> 
-                                <table width="630" cellspacing="0" cellpadding="0" border="0" align="center">
-                                    <tbody>
-                                    <td width="630" valign="top" align="left" style="font-family: Helvetica, Arial, sans-serif; font-size: 12px; line-height: 18px;">
-                                        <!--                <p style="font-size:16px;line-height:1.7;color:#666;padding:5px;font-weight:bold">{--COMPANYLOGO--}</p>color: #757887;-->
-                                        <!--<p style="font-size:14px;line-height:1.7;color:#666;font-weight:bold">Date: {--DATE--}</p>-->
-                                        <p style="font-size:14px;line-height:1.7;color:#666;font-weight:bold">Hi , </p>  
-
-                                        <p style="font-size:14px;line-height:1.7;">
-                                            <?php echo $Message;?>
-                                        </p>
-                                        
-                                       <p style="font-size:14px;line-height:1.7;">We will contact as soon as possible</p>
+                                <table width="650" cellspacing="0" cellpadding="0" border="0" align="center">
+                                    <tr><td width="630" valign="top" align="left" style="font-family: Helvetica, Arial, sans-serif; font-size: 12px; line-height: 18px;">
+                                            <table><?php $totalRoomsPrice='0';$totalcarPrice='0';$Stotal='0';?>
+                                                 <tr><td colspan="2">Hi,</td></tr>
+                                                 <tr><td colspan="2">&nbsp;</td></tr>
+                                    <tr><td colspan="2">Customer Order details as follows:</td></tr>
+                                    <tr><td><b>Customer :</b></td><td><?php echo $Message['first_name'];?></td></tr>
+                                    <tr><td><b>Phone :</b></td><td><?php echo $Message['phone'];?></td></tr>
+                                    <tr><td><b>Email :</b></td><td><?php echo $Message['email_address'];?></td></tr>
+                                    <tr><td><b>Services :</b></td><td><?php if($HouseService!=0){echo "House cleaning, ";}?><?php if($CarService!=0){echo "Car wash, ";}?><?php if($StewardService!=0){echo "Stewards";}?></td></tr>
+                                    <tr><td colspan="2">&nbsp;</td></tr>
+                                    <?php if($HouseService!=0){?>
+                                    <tr><td><b>House cleaning service cost :</b>  </td>
+                                    <td><?php 
+                                                    $priceRoom1 = (($HouseService['total_livingRooms'] + $HouseService['total_bedRooms']) * 125);
+                                                    $priceRoom2 = (($HouseService['total_bathRooms'] + $HouseService['total_kitchens']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
+                                                    $priceAddServices = (($HouseService['window_grills'] + $HouseService['fridge_interior'] + $HouseService['microwave_oven_interior']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
+                    //$serviceTaxPrice = (($priceRoom1+$priceRoom2+$priceAddServices)*12.36)/100;
+                                                    $totalRoomsPrice = 750+$priceRoom1 + $priceRoom2 + $priceAddServices;
+                                                    echo $totalRoomsPrice; ?>
+                                            
+                                                    <?php }?>
+                                                </td>
+                                            </tr>
+                                            <?php if($CarService!=0){?>
+                                            <tr><td><b>Car wash service cost :</b>  </td>
+                                                <td><?php $totalcarPrice = 500*$getCars;;
+                                                    echo $totalcarPrice; ?>
+                                            
+                                                    <?php }?>
+                                                </td>
+                                            </tr>
+                                            <?php if($StewardService!=0){?>
+                                            <tr><td><b>Stewards service cost :</b>  </td>
+                                                <td><?php 
+                                                    $Stotal = ($StewardService['service_hours'] * $StewardService['no_of_stewards'] * 200);
+                                                    echo $Stotal; ?>
+                                            
+                                                    <?php }?>
+                                                </td>
+                                            </tr>
+                                            <tr><td><b>Total Cost(Service Tax Included) :</b></td><td><b>
+                                                <?php $serviceTax = ((($totalRoomsPrice + $totalcarPrice + $Stotal) * 12.36) / 100); 
+                                                echo $totalRoomsPrice + $totalcarPrice + $Stotal + $serviceTax;?>
+                                                    </b></td></tr>
+                                             <tr><td colspan="2">
+                                                     <p style="font-size:14px;line-height:1.7;">We will contact you as soon as possible.</p>
                                         <p style="font-size:16px;line-height:1.7;">
                                             Regards,<br>
                                             KushGhar.</p>
+                                                 </td></tr>
+                                        </table>
+                                        </td></tr> 
+                                </table>
+                                        
+                                       
 
                                     </td>
                         </tr>
                         <tr>
                             <td style="font-family: Helvetica, sans-serif; font-size: 13px; color: #373737; line-height: 16px;">&nbsp;</td>
                         </tr>
-                    </tbody></table>
+                    </table>
                 <!-- END OF full width Table -->
-
-
-
-
 
                 <!-- START OF FOOTER TABLE -->
                 <table width="650" cellspacing="0" align="center" cellpadding="0" border="0" bgcolor="#fcfcfc">
@@ -68,7 +99,7 @@
 
                         <tr>
                             <td width="10" valign="top" bgcolor="#ededed" align="left" height="58">&nbsp;</td>
-                            <td  bgcolor="#ededed" align="left" style="font-family: Helvetica, sans-serif; font-size: 11px; color: #757887; line-height: 16px;">Copyright &copy; 2014 <a href="<?php echo YII::app()->params['SERVER_URL'];?>" target="_blank" style="text-decoration: none;"> KushGhar</a> All Rights Reserved.
+                            <td  bgcolor="#ededed" align="left" style="font-family: Helvetica, sans-serif; font-size: 11px; color: #757887; line-height: 16px;">Copyright &copy; 2014 <a href="{--SITEURL--}" target="_blank" style="text-decoration: none;"> KushGhar</a> All Rights Reserved.
                             </td>
 
                         </tr>
@@ -78,11 +109,21 @@
 
 
 
+               
+
+
+
 
             </td>
         </tr>
-    </tbody></table><!-- END OF EMAIL WRAPPER -->
+   </table><!-- END OF EMAIL WRAPPER -->
 
-</td>
-</tr>
-</tbody></table>
+
+    </body></html>
+
+
+
+
+
+
+

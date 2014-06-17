@@ -447,10 +447,41 @@ class UserController extends Controller {
 
                     if ($result == "success") {
 
-                        $to = $inviteForm->Email;
-                        $name = $inviteForm->FirstName . ' ' . $inviteForm->LastName;
-                        $subject = 'KushGhar Invitation';
-                        $this->sendMailToUser($to, $name, $subject, '', 'KushGhar', 'no-reply@kushghar.com', 'sendInvitationMailToUser');
+                        //$to = $inviteForm->Email;
+                        //$name = $inviteForm->FirstName . ' ' . $inviteForm->LastName;
+                        //$name1 = $inviteForm->Email;
+                        //$subject = 'KushGhar Invitation';
+                        //$this->sendMailToUser($to, $name, $subject, '', 'KushGhar', 'no-reply@kushghar.com', 'sendInvitationMailToUser');
+                        //$this->sendMailToUser('no-reply@kushghar.com', $name, $name1, '', 'KushGhar', 'no-reply@kushghar.com', 'CustomerInvitationMailToKGTeam');
+                        
+                        
+                        
+                         /*
+                  * Customer Mail Details
+                  */
+                $to1 = $inviteForm->Email;
+                $name = $inviteForm->FirstName . ' ' . $inviteForm->LastName;
+                $subject ='KushGhar Invitation';
+                $Logo = YII::app()->params['SERVER_URL'] . "/images/color_logo.png";
+                $employerEmail = "no-reply@kushghar.com";
+                $messageview1="sendInvitationMailToUser";
+                $params1 = array('Logo' => $Logo, 'Name' =>$name);
+                 /*
+                 * KG Team mail details
+                 */
+                $to = 'praveen.peddinti@gmail.com';
+                //$subject ="Order placed";
+                //$Logo = YII::app()->params['SERVER_URL'] . "/images/color_logo.png";
+                //$employerEmail = "no-reply@kushghar.com";
+                $messageview="CustomerInvitationMailToKGTeam";
+                $params = array('Logo' => $Logo, 'Name' =>$name, 'Email' =>$to1);
+                
+                //$params = '';
+                $sendMailToUser=new CommonUtility;
+                $sendMailToUser->actionSendmail($messageview1,$params1, $subject, $to1,$employerEmail);
+                $mailSendStatusw=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
+                         
+                        
                         $obj = array('status' => 'success', 'data' => $result, 'error' => 'Invitation sent Successfully.');
                     } else {
                         $errors = array("InviteForm_error" => 'User already Invited.');
@@ -879,7 +910,6 @@ class UserController extends Controller {
                 }
                 $obj = array('status' => 'success', 'data' => $data, 'error' => '','HouseCleaning'=>$HouseCleaning,'CarCleaning'=>$CarCleaning,'StewardCleaning'=>$StewardCleaning);
             }else{error_log("type====".$_REQUEST['Type']);
-            error_log("stewards clean 2yes====".$stewardModel->StewardCleaning);
                 $priceModel = new PriceQuoteForm;
                 $cId = $this->session['UserId'];
                 $customerDetails = $this->kushGharService->getCustomerDetails($cId);
@@ -962,7 +992,6 @@ class UserController extends Controller {
          $cId = $this->session['UserId'];
         $customerDetails = $this->kushGharService->getCustomerDetails($cId);
         $getServiceDetails = $this->kushGharService->getDetails($cId);
-        error_log("------------ccccc---------".$getServiceDetails['Id']);
         $getStewardsServiceDetails = $this->kushGharService->getStewardsDetails($cId);
         $getCarWashServiceDetails = $this->kushGharService->getCarWashDetails($cId);
         //$this->session['firstName'] = $customerDetails->first_name;
@@ -978,14 +1007,13 @@ class UserController extends Controller {
         //echo $renderScript;
         $request = yii::app()->getRequest();
         $formName = $request->getParam('PriceQuoteForm');
-        if ($formName != '') {error_log("dfdfddfdfsd====");
+        if ($formName != '') {
             $basicForm->attributes = $request->getParam('PriceQuoteForm');
             $errors = CActiveForm::validate($basicForm);
             if ($errors != '[]') {
                 $obj = array('status' => 'error', 'message' => '', 'error' => $errors);
             } else {
-                error_log("else====");
-               $data = "Praveen";
+                $data = "Praveen";
                 $obj = array('status' => 'success', 'data' => $data, 'error' => '');
                 
             }
@@ -1000,32 +1028,33 @@ class UserController extends Controller {
     
     
     public function actionServiceOrder(){
-        error_log("enter service order controller=====");
         $cId = $this->session['UserId'];
         $customerDetails = $this->kushGharService->getCustomerDetails($cId);
         $customerServicesHouse = $this->kushGharService->getcustomerServicesHouse($cId);
         $customerServicesCar = $this->kushGharService->getcustomerServicesCar($cId);
         $customerServicesStewards = $this->kushGharService->getcustomerServicesStewards($cId);
-        error_log("size price of House===".$customerServicesHouse."===".$customerServicesCar."===".$customerServicesStewards);
         
         $getOrderNumber='';
+        $getServiceDetails='0';
+        $getStewardsServiceDetails='0';
+        $getCarWashServiceDetails='0';
+        $getTotalCars ='';
         if($customerServicesHouse=='Yes Service') {
             $getServiceDetails = $this->kushGharService->getDetails($cId);
             $getOrderNumber = $getServiceDetails['order_number'];
-        }
+        }else{$getServiceDetails='0';}
         if($customerServicesCar=='Yes Service') {
             $getCarWashServiceDetails = $this->kushGharService->getCarWashDetails($cId);
             foreach($getCarWashServiceDetails as $ee){        
                 $getOrderNumber = $ee['order_number'];
-                
+                $getTotalCars = $ee['total_cars'];
                 }
-        }
+        }else{$getCarWashServiceDetails='0';}
         if($customerServicesStewards=='Yes Service'){
             $getStewardsServiceDetails = $this->kushGharService->getStewardsDetails($cId);
             $getOrderNumber = $getStewardsServiceDetails['order_number'];
-        }
-        error_log("====getOrder====".$getOrderNumber);
-        //$subject = "Place Order";
+        }else{$getStewardsServiceDetails='0';}
+       //$subject = "Place Order";
         $messages = "The Order Number is <b>".$getOrderNumber."</b>";
         $mess = "The Order Number is <b>".$getOrderNumber."</b>\r\n\n";
         $mess = $mess."Customer Name is ".$customerDetails['first_name']."\r\n\n";
@@ -1037,7 +1066,7 @@ class UserController extends Controller {
                   * Customer Mail Details
                   */
                 $to1 = $customerDetails['email_address'];
-                $subject =$getOrderNumber." Order placed";
+                $subject1 =$getOrderNumber." Order placed";
                 $Logo = YII::app()->params['SERVER_URL'] . "/images/color_logo.png";
                 $employerEmail = "no-reply@kushghar.com";
                 $messageview1="orderplacemessage";
@@ -1046,16 +1075,16 @@ class UserController extends Controller {
                  * KG Team mail details
                  */
                 $to = 'praveen.peddinti@gmail.com';
-                $employerEmail = "no-reply@kushghar.com";
+                $subject ="Order placed";
+                //$Logo = YII::app()->params['SERVER_URL'] . "/images/color_logo.png";
+                //$employerEmail = "no-reply@kushghar.com";
                 $messageview="orderplacemessagetoKG";
-                $params = array('Logo' => $Logo, 'Message' =>$messKG);
+                $params = array('Logo' => $Logo, 'Message' =>$customerDetails, 'HouseService'=>$getServiceDetails,'CarService'=>$getCarWashServiceDetails,'StewardService'=>$getStewardsServiceDetails,'getCars'=>$getTotalCars);
                 
                 //$params = '';
                 $sendMailToUser=new CommonUtility;
-                $sendMailToUser->actionSendmail($messageview1,$params1, $subject, $to1,$employerEmail);
-                error_log("mail senf===1=======");
-                $sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
-                error_log("mail senf====2======");
+                $sendMailToUser->actionSendmail($messageview1,$params1, $subject1, $to1,$employerEmail);
+                $mailSendStatus=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
         $data=$this->renderPartial('serviceOrder', array("customerDetails" => $customerDetails, "orderNumber" => $getOrderNumber), true);
         $obj = array('status' => 'success', 'data' => $data, 'error' => '');
         $renderScript = $this->rendering($obj);

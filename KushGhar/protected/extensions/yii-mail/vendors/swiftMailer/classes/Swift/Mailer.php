@@ -66,7 +66,7 @@ class Swift_Mailer
    * @see batchSend()
    */
   public function send(Swift_Mime_Message $message, &$failedRecipients = null)
-  {
+  {error_log("hi mail-----");
     $failedRecipients = (array) $failedRecipients;
     
     if (!$this->_transport->isStarted())

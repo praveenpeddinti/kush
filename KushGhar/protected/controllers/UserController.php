@@ -447,19 +447,19 @@ class UserController extends Controller {
 
                     if ($result == "success") {
 
-                        //$to = $inviteForm->Email;
-                        //$name = $inviteForm->FirstName . ' ' . $inviteForm->LastName;
-                        //$name1 = $inviteForm->Email;
-                        //$subject = 'KushGhar Invitation';
-                        //$this->sendMailToUser($to, $name, $subject, '', 'KushGhar', 'no-reply@kushghar.com', 'sendInvitationMailToUser');
-                        //$this->sendMailToUser('no-reply@kushghar.com', $name, $name1, '', 'KushGhar', 'no-reply@kushghar.com', 'CustomerInvitationMailToKGTeam');
+                        $to = $inviteForm->Email;
+                        $name = $inviteForm->FirstName . ' ' . $inviteForm->LastName;
+                        $name1 = $inviteForm->Email;
+                        $subject = 'KushGhar Invitation';
+                        $this->sendMailToUser($to, $name, $subject, '', 'KushGhar', 'no-reply@kushghar.com', 'sendInvitationMailToUser');
+                        $this->sendMailToUser('no-reply@kushghar.com', $name, $name1, '', 'KushGhar', 'no-reply@kushghar.com', 'CustomerInvitationMailToKGTeam');
                         
                         
                         
                          /*
                   * Customer Mail Details
                   */
-                $to1 = $inviteForm->Email;
+                /*1$to1 = $inviteForm->Email;
                 $name = $inviteForm->FirstName . ' ' . $inviteForm->LastName;
                 $subject ='KushGhar Invitation';
                 $Logo = YII::app()->params['SERVER_URL'] . "/images/color_logo.png";
@@ -469,18 +469,18 @@ class UserController extends Controller {
                  /*
                  * KG Team mail details
                  */
-                $to = 'praveen.peddinti@gmail.com';
+                //1$to = 'praveen.peddinti@gmail.com';
                 //$subject ="Order placed";
                 //$Logo = YII::app()->params['SERVER_URL'] . "/images/color_logo.png";
                 //$employerEmail = "no-reply@kushghar.com";
-                $messageview="CustomerInvitationMailToKGTeam";
-                $params = array('Logo' => $Logo, 'Name' =>$name, 'Email' =>$to1);
+                //1$messageview="CustomerInvitationMailToKGTeam";
+                //1$params = array('Logo' => $Logo, 'Name' =>$name, 'Email' =>$to1);
                 
                 //$params = '';
-                $sendMailToUser=new CommonUtility;
+                /*$sendMailToUser=new CommonUtility;
                 $sendMailToUser->actionSendmail($messageview1,$params1, $subject, $to1,$employerEmail);
                 $mailSendStatusw=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
-                         
+                 */        
                         
                         $obj = array('status' => 'success', 'data' => $result, 'error' => 'Invitation sent Successfully.');
                     } else {
@@ -805,9 +805,9 @@ class UserController extends Controller {
                 $getServiceDetails = $this->kushGharService->getDetails($cId);
                 $getStewardsServiceDetails = $this->kushGharService->getStewardsDetails($cId);
                 $getCarWashServiceDetails = $this->kushGharService->getCarWashDetails($cId);
-                if( ($customerServicesHouse=='Yes Service') && ($houseModel->HouseCleaning=='0') ){
+                /*if( ($customerServicesHouse=='Yes Service') && ($houseModel->HouseCleaning=='0') ){
                  $rr=$this->kushGharService->getcustomerServicesHouseStatus($cId); 
-                }
+                }*/
                 if( ($customerServicesStewards=='Yes Service') && ($houseModel->StewardCleaning=='0')){
                 $dd=$this->kushGharService->getcustomerServicesStewardsStatus($cId); 
                
@@ -1033,15 +1033,29 @@ class UserController extends Controller {
         $customerServicesHouse = $this->kushGharService->getcustomerServicesHouse($cId);
         $customerServicesCar = $this->kushGharService->getcustomerServicesCar($cId);
         $customerServicesStewards = $this->kushGharService->getcustomerServicesStewards($cId);
-        
+        $getOrderDetailsMaxParentId = $this->kushGharService->getOrderDetailsMaxParentId();
+        error_log("parentId====".$getOrderDetailsMaxParentId['id']);
+        $storeOrderDetailsOfParent = $this->kushGharService->storeOrderDetailsOfParent($cId,$getOrderDetailsMaxParentId['id']);
         $getOrderNumber='';
         $getServiceDetails='0';
         $getStewardsServiceDetails='0';
         $getCarWashServiceDetails='0';
         $getTotalCars ='';
-        if($customerServicesHouse=='Yes Service') {
+        if($customerServicesHouse=='Yes Service') {error_log("dfdfdfsd==hh===");
             $getServiceDetails = $this->kushGharService->getDetails($cId);
+            $priceRoom1 = (($getServiceDetails['total_livingRooms'] + $getServiceDetails['total_bedRooms']) * 125);
+            $priceRoom2 = (($getServiceDetails['total_bathRooms'] + $getServiceDetails['total_kitchens']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
+            $priceAddServices = (($getServiceDetails['window_grills'] + $getServiceDetails['fridge_interior'] + $getServiceDetails['microwave_oven_interior']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
+            $serviceTaxPrice = (($priceRoom1+$priceRoom2+$priceAddServices)*12.36)/100;
+            $totalRoomsPrice = 750+$priceRoom1 + $priceRoom2 + $priceAddServices+$serviceTaxPrice;
+            error_log("dfdfdfsd=====".$totalRoomsPrice);
+            $storeOrderDetailsOfHouse = $this->kushGharService->storeOrderDetailsOfHouse($cId,$getOrderDetailsMaxParentId['id'],$getServiceDetails['CustId'],$getOrderDetailsMaxParentId['parent_id'],$totalRoomsPrice);
+            error_log("dfdfdfsd===2==".$totalRoomsPrice);
+            $getOrderDetailsMaxParentIdH = $this->kushGharService->getOrderDetailsMaxParentId();
+            error_log("parentId====".$getOrderDetailsMaxParentIdH['id']);
+            $storeOrdernumberofHouse = $this->kushGharService->storeOrdernumberofHouse($cId,$getOrderDetailsMaxParentIdH['id'],$getOrderDetailsMaxParentIdH['order_number']);
             $getOrderNumber = $getServiceDetails['order_number'];
+            error_log("dfdfdfsd===3==".$totalRoomsPrice);
         }else{$getServiceDetails='0';}
         if($customerServicesCar=='Yes Service') {
             $getCarWashServiceDetails = $this->kushGharService->getCarWashDetails($cId);
@@ -1083,8 +1097,8 @@ class UserController extends Controller {
                 
                 //$params = '';
                 $sendMailToUser=new CommonUtility;
-                $sendMailToUser->actionSendmail($messageview1,$params1, $subject1, $to1,$employerEmail);
-                $mailSendStatus=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
+                //$sendMailToUser->actionSendmail($messageview1,$params1, $subject1, $to1,$employerEmail);
+                //$mailSendStatus=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
         $data=$this->renderPartial('serviceOrder', array("customerDetails" => $customerDetails, "orderNumber" => $getOrderNumber), true);
         $obj = array('status' => 'success', 'data' => $data, 'error' => '');
         $renderScript = $this->rendering($obj);

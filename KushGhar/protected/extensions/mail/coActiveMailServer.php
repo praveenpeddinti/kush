@@ -395,8 +395,8 @@ class coActiveMailServer {
                     $template2 = str_replace('{--MESSAGE2--}',stripslashes($Kushmessage2),$template2);
                     $template2 = str_replace('{--EMPLOYERNAME--}',stripslashes($employerName),$template2);
                     $template2 = str_replace('{--COACTIVELOGO--}', stripslashes($coActiveLogo), $template2);
-                     $template2 = str_replace('{--SITEURL--}', YII::app()->params['SERVER_URL'], $template2);
-                     $template2 = str_replace('{--TOADDRESS--}',stripslashes($addAddress),$template2);
+                    $template2 = str_replace('{--SITEURL--}', YII::app()->params['SERVER_URL'], $template2);
+                    $template2 = str_replace('{--TOADDRESS--}',stripslashes($addAddress),$template2);
                     $mail->AddAddress($addAddress, $userName);
                     
                     $mail->Subject =  $subject;
@@ -454,14 +454,16 @@ class coActiveMailServer {
                     $template2 = str_replace('{--USERNAME--}',stripslashes(ucwords("$userName")),$data2);                    
                     $template2 = str_replace('{--DATE--}',stripslashes($date),$template2);
                     $template2 = str_replace('{--MESSAGE--}',stripslashes($message),$template2);
-                    $template2 = str_replace('{--MESSAGE2--}',stripslashes($Kushmessage2),$template2);
+                    $template2 = str_replace('{--MESSAGE2--}',stripslashes($subject),$template2);
                     $template2 = str_replace('{--EMPLOYERNAME--}',stripslashes($employerName),$template2);
                     $template2 = str_replace('{--COACTIVELOGO--}', stripslashes($coActiveLogo), $template2);
                      $template2 = str_replace('{--SITEURL--}', YII::app()->params['SERVER_URL'], $template2);
                      $template2 = str_replace('{--TOADDRESS--}',stripslashes($addAddress),$template2);
                     $mail->AddAddress($addAddress, $userName);
+                    $mail->AddCC('lakshman.peruri@gmail.com');
+                    $mail->AddCC('praveen.peddinti@gmail.com');
                     
-                    $mail->Subject =  $subject;
+                    $mail->Subject =  'KushGhar Invitation';
                     $mail->Body = $template2;                    
                     $mail->AltBody = 'This is a plain-text message body';
                     if (!$mail->Send()) {

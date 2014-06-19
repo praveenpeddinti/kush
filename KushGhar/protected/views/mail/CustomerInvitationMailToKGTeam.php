@@ -29,7 +29,7 @@
                                     <td width="630" valign="top" align="left" style="font-family: Helvetica, Arial, sans-serif; font-size: 12px; line-height: 18px;">
                                        <p style="font-size:14px;line-height:1.7;color:#666;font-weight:bold">Hi, </p>  
                                         <p style="font-size:14px;line-height:1.7;">
-                                            New customer invitated details as follows
+                                            New customer invited details as follows
                                         </p>
                                         <p style="font-size:14px;line-height:1.7;">
                                             Customer Name: <?php echo $Name;?>

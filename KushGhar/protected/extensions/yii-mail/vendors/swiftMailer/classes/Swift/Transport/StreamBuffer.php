@@ -32,7 +32,7 @@ class Swift_Transport_StreamBuffer
   
   /** The output stream */
   private $_out;
-  
+  private $_sequence;
   /** Buffer initialization parameters */
   private $_params = array();
   

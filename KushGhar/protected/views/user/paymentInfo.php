@@ -122,7 +122,7 @@
         <div class="paddinground">
         <div class="row-fluid">
             <div class=" span12">
-                <h4 class="paddingL20">Currently payment only received by cheque / cash</h4>
+                <h4 class="paddingL20">We will contact you to schedule and complete the payment detail within the next business day.</h4>
             </div>
         </div>  
         </div>

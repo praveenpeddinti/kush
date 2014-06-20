@@ -41,8 +41,8 @@
                         <div class="paddinground">    
                             <div id="InviteInfoSpinLoader"></div>
                             <div id="tablewidget"  style="margin: auto;"><div id="message" style="display:none"></div>
-                                <label>Service name:</label><input type="text" id="serviceType" />
-                                <input type="button" class="btn btn-primary" name="Search" value="Serach" onclick="search();"/>
+                                <!--<label>Service name:</label><input type="text" id="serviceType" />
+                                <input type="button" class="btn btn-primary" name="Search" value="Serach" onclick="search();"/>-->
                                 <table id="userTable" class="table table-hover">
 
                                     <thead><tr><th>Service Name</th><th><center>Order Number</center></th><th>Status</th><th><center>Amount</center></th></tr></thead>

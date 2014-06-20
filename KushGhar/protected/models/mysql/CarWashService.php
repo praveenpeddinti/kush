@@ -7,6 +7,7 @@ class CarWashService extends CActiveRecord {
     public $total_cars;
     public $make_of_car;
     public $order_number;
+    public $order_id;
     public $different_location;
     public $week_days;
     public $carservice_start_time;
@@ -36,22 +37,12 @@ class CarWashService extends CActiveRecord {
 
     
     //New Services
-    public function addCarWashService($model,$cId,$DL) {error_log("-----New car wash Service fields in model--------");
+    public function addCarWashService($model,$cId,$DL) {
         try {
             $servicesDetails = new CarWashService();
             $orderNo="KG000".$cId.gmdate("Y-m-d", time());
-            error_log("cartime====".$model->ServiceStartTime);
-            error_log("tCars==".$model->TotalCars."======".$DL."=====".json_encode($model->DifferentAddress));
-            error_log("tCars==".$model->TotalCars."======".$DL."=====".json_encode($model->Address1));
-            error_log("tCars==".$model->TotalCars."======".$DL."=====".json_encode($model->Address2));
-            error_log("tCars==".$model->TotalCars."======".$DL."=====".json_encode($model->AlternatePhone));
-            error_log("tCars==".$model->TotalCars."======".$DL."=====".json_encode($model->State));
-            error_log("tCars==".$model->TotalCars."======".$DL."=====".json_encode($model->City));
-            error_log("tCars==".$model->TotalCars."======".$DL."=====".json_encode($model->PinCode));
-            error_log("tCars==".$model->TotalCars."======".$DL."=====".json_encode($model->InteriorCleaning));
-            //error_log("tCars==".$model->TotalCars."===========".json_encode($model->WaxCar));
-            //if($DL==0){$dumpCars = 1;}else{$dumpCars = $model->TotalCars;}
-            if($model->TotalCars>1){error_log("enter save=====");
+            
+            if($model->TotalCars>1){
             $make_of_car = explode(',', $model->MakeOfCar);
             $exterior_color = explode(',', $model->ExteriorColor);
             $interior_cleaning = explode(',', $model->InteriorCleaning);
@@ -67,9 +58,9 @@ class CarWashService extends CActiveRecord {
             $pin_code = explode(',', $model->PinCode);
             $create_timestamp = gmdate("Y-m-d H:i:s", time());
             $update_timestamp = gmdate("Y-m-d H:i:s", time());
-            error_log("-----".$address1[0]."==1==".$address1[1]);
+            
             //if(empty($address1)){error_log("yes empty address");}else{error_log("no empty address1");}
-            for($i=0;$i<$model->TotalCars;$i++){error_log("enter save==1===".$i);
+            for($i=0;$i<$model->TotalCars;$i++){
                 /*if($different_address[$i]=='0'){error_log("enter save==2===");
                     $address1[$i]='';
                     $address2[$i]='';
@@ -85,22 +76,18 @@ class CarWashService extends CActiveRecord {
                     $city[$i];
                     $pin_code[$i];
                 }*/
-                error_log("enter save==3===");
-                //error_log("==ADD==".$different_address[$i]."==add1==".$address1[$i]."==add2==".$address2[$i]."==phone==".$alternate_phone[$i]."==Sate==".$state[$i]."==CITY==".$city[$i]."==PINCODE==".$pin_code[$i]);
-                error_log("==add1==".$address1[$i]."==add2==".$address2[$i]."==phone==".$alternate_phone[$i]."==Sate==".$state[$i]."==CITY==".$city[$i]."==PINCODE==".$pin_code[$i]);
-            //$query = "insert into  KG_Car_cleaning_service(ServiceId,CustId,total_cars,different_location,carservice_start_time,make_of_car,order_number,exterior_color,interior_cleaning,shampoo_seats,different_number,address_line1,address_line2,alternate_phone,address_state,address_city,address_pin_code,status,create_timestamp,update_timestamp) values(2,$cId,$model->TotalCars,$DL,'$model->ServiceStartTime','$make_of_car[$i]','$orderNo','$exterior_color[$i]',$interior_cleaning[$i],$shampoo_seats[$i],$different_address[$i],'$address1[$i]','$address2[$i]','$alternate_phone[$i]','$state[$i]','$city[$i]','$pin_code[$i]','1','$create_timestamp','$update_timestamp')";
-            $query = "insert into  KG_Car_cleaning_service(ServiceId,CustId,total_cars,different_location,week_days,carservice_start_time,make_of_car,order_number,exterior_color,interior_cleaning,shampoo_seats,address_line1,address_line2,alternate_phone,address_state,address_city,address_pin_code,status,create_timestamp,update_timestamp) values(2,$cId,$model->TotalCars,$DL,'$model->WeekDays','$model->ServiceStartTime','$make_of_car[$i]','$orderNo','$exterior_color[$i]',$interior_cleaning[$i],$shampoo_seats[$i],'$address1[$i]','$address2[$i]','$alternate_phone[$i]','$state[$i]','$city[$i]','$pin_code[$i]','1','$create_timestamp','$update_timestamp')";
+                
+                $query = "insert into  KG_Car_cleaning_service(ServiceId,CustId,total_cars,different_location,week_days,carservice_start_time,make_of_car,order_number,exterior_color,interior_cleaning,shampoo_seats,address_line1,address_line2,alternate_phone,address_state,address_city,address_pin_code,status,create_timestamp,update_timestamp) values(2,$cId,$model->TotalCars,$DL,'$model->WeekDays','$model->ServiceStartTime','$make_of_car[$i]','$orderNo','$exterior_color[$i]',$interior_cleaning[$i],$shampoo_seats[$i],'$address1[$i]','$address2[$i]','$alternate_phone[$i]','$state[$i]','$city[$i]','$pin_code[$i]','0','$create_timestamp','$update_timestamp')";
             
-            //error_log($i."urrrrpdate profile in user profile pageeeeeeeeeee". $query);
-            //$query = "insert into  KG_Car_cleaning_service(ServiceId,CustId,total_cars,make_of_car,exterior_color,different_number,interior_cleaning,shampoo_seats,wax_car,address_line1,address_line2,alternate_phone,address_state,address_city,address_pin_code,create_timestamp,update_timestamp) values(2,$cId,$model->TotalCars,'$make_of_car[$i]','$exterior_color[$i]',$different_address[$i],$interior_cleaning[$i],$shampoo_seats[$i],$shampoo_mats[$i],'$address1[$i]','$address2[$i]','$alternate_phone[$i]','$state[$i]','$city[$i]','$pin_code[$i]','$create_timestamp','$update_timestamp')";
             $result1 = YII::app()->db->createCommand($query)->execute();
-            error_log($i."update profile in user profile pageeeeeeeeeee". $query);
+           
             
             }
            
-            }else{error_log("else---------");
+            }else{
             $orderNo="KG000".$cId.gmdate("Y-m-d", time());
             $servicesDetails->CustId = $cId;
+            $servicesDetails->ServiceId = 2;
             $servicesDetails->total_cars = $model->TotalCars;
             $servicesDetails->make_of_car = rtrim($model->MakeOfCar,",");
             $servicesDetails->order_number = $orderNo;
@@ -118,7 +105,7 @@ class CarWashService extends CActiveRecord {
             $servicesDetails->address_city = rtrim($model->City,",");
             $servicesDetails->address_state = rtrim($model->State,",");
             $servicesDetails->address_pin_code = rtrim($model->PinCode,",");
-            $servicesDetails->status = 1;
+            $servicesDetails->status = 0;
             $servicesDetails->create_timestamp = gmdate("Y-m-d H:i:s", time());
             $servicesDetails->update_timestamp = gmdate("Y-m-d H:i:s", time());
             $servicesDetails->save();
@@ -126,7 +113,7 @@ class CarWashService extends CActiveRecord {
             }
             $result = "success";
             
-            error_log("-ok-------".$result);
+            
             //$cookie_domain = explode(',', $model->MakeOfCar);
             //error_log("count======".count($cookie_domain));
             
@@ -161,9 +148,8 @@ class CarWashService extends CActiveRecord {
     
     public function getServicesDetails($Id) {
         try {
-            $query = "SELECT * FROM KG_Car_cleaning_service WHERE CustId = $Id ORDER BY Id ASC";
-            error_log("query=====car details=====".$query);
-//            $result = YII::app()->db->createCommand($query)->queryRow();
+            $query = "SELECT * FROM KG_Car_cleaning_service WHERE CustId = $Id AND status=0 ORDER BY Id ASC";
+            
             $result = YII::app()->db->createCommand($query)->queryAll();
             
         } catch (Exception $ex) {
@@ -174,7 +160,7 @@ class CarWashService extends CActiveRecord {
 
     public function checkingCarService($cId) {
         try {
-            $service = CarWashService::model()->findByAttributes(array(), 'CustId=:CustId', array(':CustId' => $cId));
+            $service = CarWashService::model()->findByAttributes(array(), 'CustId=:CustId AND status=:status', array(':CustId' => $cId, ':status' => '0'));
             if (empty($service)) {
                 $result = "No Service";
                 return $result;
@@ -193,7 +179,7 @@ class CarWashService extends CActiveRecord {
     public function getcustomerServicesCar($Id) {
         try {
             
-            $customer = CarWashService::model()->findByAttributes(array(), 'CustId=:CustId AND status=:status', array(':CustId' => $Id, ':status' => '1'));
+            $customer = CarWashService::model()->findByAttributes(array(), 'CustId=:CustId AND status=:status', array(':CustId' => $Id, ':status' => '0'));
             
             if (empty($customer)) {
                 $result = "No Service";
@@ -208,10 +194,30 @@ class CarWashService extends CActiveRecord {
         return $result;
     }
     
-    public function getcustomerServicesCarStatus($cId) {error_log("dfffffffffffffffffffffffffff");
+    public function getcustomerServicesCarStatus($cId) {
         try { 
-            $servicesDetails = CarWashService::model()->findByAttributes(array('CustId' => $cId));
+            $servicesDetails = CarWashService::model()->findByAttributes(array(), 'CustId=:CustId AND status=:status', array(':CustId' => $cId, ':status' => '0'));
             $servicesDetails->status = 0;
+            $servicesDetails->update_timestamp = gmdate("Y-m-d H:i:s", time());
+            if ($servicesDetails->update()) {
+                    $result = "success";
+                } else {
+                    $result = "failed";
+                }
+                         
+            
+        } catch (Exception $ex) {
+            error_log("##########Exception Occurred saveData#############" . $ex->getMessage());
+        }
+        return $result;
+    }
+    
+    public function storeOrdernumberofCar($cId,$orderId,$orderNo) {
+        try { 
+            $servicesDetails = CarWashService::model()->findByAttributes(array(), 'CustId=:CustId AND status=:status', array(':CustId' => $cId, ':status' => '0'));
+            $servicesDetails->order_id = $orderId;
+            $servicesDetails->order_number = $orderNo;
+            $servicesDetails->status = 1;
             $servicesDetails->update_timestamp = gmdate("Y-m-d H:i:s", time());
             if ($servicesDetails->update()) {
                     $result = "success";

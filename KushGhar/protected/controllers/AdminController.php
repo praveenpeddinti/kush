@@ -167,7 +167,7 @@ class AdminController extends Controller {
         echo CJSON::encode($obj);
     }
 
-    public function actionInviteStatus() {error_log("enter invite mode====");
+    public function actionInviteStatus() {
         $subject = 'KushGhar Invitation';
         $email = $_POST['email'];
         
@@ -196,6 +196,34 @@ class AdminController extends Controller {
             $this->redirect("/user/basicinfo");
         } catch (Exception $ex) {
             error_log("#########Exception Occurred########$ex->getMessage()");
+        }
+    }
+    
+    public function actionOrder() {
+        try {
+            
+            //$orderDetails = $this->kushGharService->getOrderDetailsinAdmin();
+        $this->render("order");
+            //$this->render("order", array("orderDetails" => $orderDetails));
+        } catch (Exception $ex) {
+            error_log("#########Exception Occurred########" . $ex->getMessage());
+        }
+    }
+    
+    public function actionNewOrder() {
+        try {
+            if (isset($_GET['userDetails_page'])) {
+                $totaluser = $this->kushGharService->getTotalOrders($_GET['serviceType']);
+                $startLimit = ((int) $_GET['userDetails_page'] - 1) * (int) $_GET['pageSize'];
+                $endLimit = $_GET['pageSize'];
+                $userDetails = $this->kushGharService->getOrderDetailsinAdmin($startLimit, $endLimit,$_GET['serviceType']);
+                $renderHtml = $this->renderPartial('newOrder', array('userDetails' => $userDetails, 'totalCount' => $totaluser), true);
+                $obj = array('status' => 'success', 'html' => $renderHtml, 'totalCount' => $totaluser);
+                $renderScript = $this->rendering($obj);
+                echo $renderScript;
+            }
+        } catch (Exception $ex) {
+            error_log("#########Exception Occurred########" . $ex->getMessage());
         }
     }
 

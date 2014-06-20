@@ -171,7 +171,8 @@
                                 <li  class="active"><a href="/admin/manage"> <i class="fa fa-phone"></i> Invite Management</a>
 
                                 </li>
-
+                                <li><a href="/admin/order"> <i class="fa fa-phone"></i> Orders</a>
+                                </li>
                             </ul>
                         </div>
 

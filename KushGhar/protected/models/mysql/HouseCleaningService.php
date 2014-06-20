@@ -4,6 +4,7 @@ class HouseCleaningService extends CActiveRecord {
 
     public $CustId;
     public $order_number;
+    public $order_id;
     public $squarefeets;
     public $week_days;
     public $houseservice_start_time;
@@ -32,14 +33,12 @@ class HouseCleaningService extends CActiveRecord {
     
     //New Services
     public function addHouseCleaningService($model,$cId,$haveService) {
-        try { error_log("have a service==============".$model->ServiceStartTime);
-            //$user = HouseCleaningService::model()->findByAttributes(array('CustId' => $cId));
-            //error_log("uuuuuuuuuuuuuuu=============");
-            //if($user==false){eror_log("falseeeeeeeeeeeeeeeeee");}else{error_log("yessssssssss");}
+        try { 
+            
             $orderNo="KG000".$cId.gmdate("Y-m-d", time());
             $servicesDetails = new HouseCleaningService();
             $servicesDetails->CustId = $cId;
-            $servicesDetails->order_number = $orderNo;
+            //$servicesDetails->order_number = $orderNo;
             $servicesDetails->squarefeets = $model->SquareFeets;
             $servicesDetails->week_days = $model->WeekDays;
             $servicesDetails->houseservice_start_time = $model->ServiceStartTime;
@@ -52,7 +51,7 @@ class HouseCleaningService extends CActiveRecord {
             $servicesDetails->microwave_oven_interior = $model->MicroWaveOven;
             $servicesDetails->pooja_room_cleaning = $model->PoojaRoom;
             $servicesDetails->service_no_of_times = $model->NumberOfTimesServices;
-            $servicesDetails->status = 1;
+            $servicesDetails->status = 0;
             $servicesDetails->create_timestamp = gmdate("Y-m-d H:i:s", time());
             $servicesDetails->update_timestamp = gmdate("Y-m-d H:i:s", time());
             
@@ -61,9 +60,7 @@ class HouseCleaningService extends CActiveRecord {
                 } else {
                     $result = "failed";
                 }
-                error_log("have a service==============".$haveService."===".$result);
-           
-            
+                
             
         } catch (Exception $ex) {
             error_log("##########Exception Occurred saveData#############" . $ex->getMessage());
@@ -72,13 +69,13 @@ class HouseCleaningService extends CActiveRecord {
     }
     
     public function updateHouseCleaningService($model,$cId,$haveService) {
-        try { error_log("have a service=======update=======".$model->ServiceStartTime);
-            $servicesDetails = HouseCleaningService::model()->findByAttributes(array('CustId' => $cId));
+        try { 
+            $servicesDetails = HouseCleaningService::model()->findByAttributes(array(), 'CustId=:CustId AND status=:status', array(':CustId' => $cId, ':status' => '0'));
             
         
             $orderNo="KG000".$cId.gmdate("Y-m-d", time());
             $servicesDetails->CustId = $cId;
-            $servicesDetails->order_number = $orderNo;
+            //$servicesDetails->order_number = $orderNo;
             $servicesDetails->squarefeets = $model->SquareFeets;
             $servicesDetails->week_days = $model->WeekDays;
             $servicesDetails->houseservice_start_time = $model->ServiceStartTime;
@@ -91,7 +88,7 @@ class HouseCleaningService extends CActiveRecord {
             $servicesDetails->microwave_oven_interior = $model->MicroWaveOven;
             $servicesDetails->pooja_room_cleaning = $model->PoojaRoom;
             $servicesDetails->service_no_of_times = $model->NumberOfTimesServices;
-            $servicesDetails->status = 1;
+            $servicesDetails->status = 0;
             //$servicesDetails->create_timestamp = gmdate("Y-m-d H:i:s", time());
             $servicesDetails->update_timestamp = gmdate("Y-m-d H:i:s", time());
             
@@ -100,9 +97,7 @@ class HouseCleaningService extends CActiveRecord {
                 } else {
                     $result = "failed";
                 }
-                error_log("have a service==============".$haveService."===".$result);
-           
-            
+                
             
         } catch (Exception $ex) {
             error_log("##########Exception Occurred saveData#############" . $ex->getMessage());
@@ -113,8 +108,7 @@ class HouseCleaningService extends CActiveRecord {
     
     public function getServicesDetails($Id) {
         try {
-            $query = "SELECT * FROM KG_House_cleaning_service WHERE CustId = $Id ORDER BY Id DESC LIMIT 1";
-            error_log("query==========".$query);
+            $query = "SELECT * FROM KG_House_cleaning_service WHERE CustId = $Id AND status = 0 ORDER BY Id DESC LIMIT 1";
             $result = YII::app()->db->createCommand($query)->queryRow();
         } catch (Exception $ex) {
             error_log("getServiceDetailsById Exception occured==" . $ex->getMessage());
@@ -124,7 +118,7 @@ class HouseCleaningService extends CActiveRecord {
 
     public function checkingHouseService($cId) {
         try {
-            $service = HouseCleaningService::model()->findByAttributes(array(), 'CustId=:CustId', array(':CustId' => $cId));
+            $service = HouseCleaningService::model()->findByAttributes(array(), 'CustId=:CustId AND status=:status', array(':CustId' => $cId, ':status' => '0'));
             if (empty($service)) {
                 $result = "No Service";
                 return $result;
@@ -141,7 +135,7 @@ class HouseCleaningService extends CActiveRecord {
     public function getcustomerServicesHouse($Id) {
         try {
             
-            $customer = HouseCleaningService::model()->findByAttributes(array(), 'CustId=:CustId AND status=:status', array(':CustId' => $Id, ':status' => '1'));
+            $customer = HouseCleaningService::model()->findByAttributes(array(), 'CustId=:CustId AND status=:status', array(':CustId' => $Id, ':status' => '0'));
             
             if (empty($customer)) {
                 $result = "No Service";
@@ -159,7 +153,7 @@ class HouseCleaningService extends CActiveRecord {
     
     public function getcustomerServicesHouseStatus($cId) {
         try { 
-            $servicesDetails = HouseCleaningService::model()->findByAttributes(array('CustId' => $cId));
+            $servicesDetails = HouseCleaningService::model()->findByAttributes(array(), 'CustId=:CustId AND status=:status', array(':CustId' => $cId, ':status' => '0'));
             $servicesDetails->status = 0;
             $servicesDetails->update_timestamp = gmdate("Y-m-d H:i:s", time());
             if ($servicesDetails->update()) {
@@ -171,6 +165,56 @@ class HouseCleaningService extends CActiveRecord {
             
         } catch (Exception $ex) {
             error_log("##########Exception Occurred saveData#############" . $ex->getMessage());
+        }
+        return $result;
+    }
+    
+    
+    public function storeOrdernumberofHouse($cId,$orderId,$orderNo) {
+        try { 
+            $servicesDetails = HouseCleaningService::model()->findByAttributes(array(), 'CustId=:CustId AND status=:status', array(':CustId' => $cId, ':status' => '0'));
+            $servicesDetails->order_id = $orderId;
+            $servicesDetails->order_number = $orderNo;
+            $servicesDetails->status = 1;
+            $servicesDetails->update_timestamp = gmdate("Y-m-d H:i:s", time());
+            if ($servicesDetails->update()) {
+                    $result = "success";
+                } else {
+                    $result = "failed";
+                }
+                         
+            
+        } catch (Exception $ex) {
+            error_log("##########Exception Occurred saveData#############" . $ex->getMessage());
+        }
+        return $result;
+    }
+    
+    
+    public function getOrderDetails($Id) {
+        try {
+            $query = "SELECT * FROM KG_Order_details WHERE CustId = $Id and ServiceId!='' ORDER BY Id ASC";
+            $result = YII::app()->db->createCommand($query)->queryAll();
+            
+        } catch (Exception $ex) {
+            error_log("getOrderDetails Exception occured==" . $ex->getMessage());
+        }
+        return $result;
+    }
+    
+    public function getOrderDetailsinAdmin($start,$end,$type) {
+        try {//$query = "SELECT * FROM KG_InvitationUsers where status =1 limit ".$start. ",".$end;
+            if($type=='0'){
+             $query = "SELECT * FROM KG_Order_details WHERE ServiceId!='' limit ".$start. ",".$end;   
+            }else if($type=='1'){
+             $query = "SELECT * FROM KG_Order_details WHERE ServiceId=$type limit ".$start. ",".$end;     
+            }else{
+               $query = "SELECT * FROM KG_Order_details WHERE ServiceId=$type limit ".$start. ",".$end;  
+            }
+           $result = YII::app()->db->createCommand($query)->queryAll();
+            
+        } catch (Exception $ex) {
+            error_log("getOrderDetails Exception occured==" . $ex->getMessage());
         }
         return $result;
     }

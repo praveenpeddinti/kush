@@ -383,7 +383,7 @@ class KushGharService {
     }
     
     // add new Car wash Service
-    public function addCarWashService($model, $cId,$DL) {error_log("----enter model service---");
+    public function addCarWashService($model, $cId,$DL) {
         return CarWashService::model()->addCarWashService($model, $cId,$DL);
     }
     
@@ -461,7 +461,7 @@ class KushGharService {
         }
         return $result;
     }
-    public function getcustomerServicesCarStatus($cId) {error_log("modelservicedfffffffffffffffffffffffffff");
+    public function getcustomerServicesCarStatus($cId) {
         try{
             $result = CarWashService::model()->getcustomerServicesCarStatus($cId);
         }catch (Exception $ex) {
@@ -477,6 +477,52 @@ class KushGharService {
         }
         return $result;
     }
+    
+    /*
+     * Order Details queries start
+     */
+     
+    public function getOrderDetailsMaxParentId() {
+        return OrderDetails::model()->getOrderDetailsMaxParentId();
+    }
+    // add new Order Parent 
+    public function storeOrderDetailsOfParent($cId) {
+        return OrderDetails::model()->storeOrderDetailsOfParent($cId);
+    }
+    
+    //add House Service with parent id
+    public function storeOrderDetailsOfHouse($cId,$parentId,$CustId,$orderNo,$serviceId,$amount) {
+        return OrderDetails::model()->storeOrderDetailsOfHouse($cId,$parentId,$CustId,$orderNo,$serviceId,$amount);
+    }
+      //Order Details queries end   
+    
+    
+    //update Services in Order palced--------------------
+    public function storeOrdernumberofHouse($cId,$orderId,$orderNo) {
+        return HouseCleaningService::model()->storeOrdernumberofHouse($cId,$orderId,$orderNo);
+    }
+    public function storeOrdernumberofStewards($cId,$orderId,$orderNo) {
+        return StewardsCleaningService::model()->storeOrdernumberofStewards($cId,$orderId,$orderNo);
+    }
+    public function storeOrdernumberofCar($cId,$orderId,$orderNo) {
+        return CarWashService::model()->storeOrdernumberofCar($cId,$orderId,$orderNo);
+    }
+    
+    //////////Order details start////////////
+    public function getOrderDetails($cId) {
+        return HouseCleaningService::model()->getOrderDetails($cId);
+    }
+    /////////////////////////////////////////
+    
+    public function getOrderDetailsinAdmin($start,$end,$type) {
+        return HouseCleaningService::model()->getOrderDetailsinAdmin($start,$end,$type);
+    }
+    
+    
+    public function getTotalOrders($stype) {
+        return OrderDetails::model()->getTotalOrders($stype);
+    }
+
     
 }
 

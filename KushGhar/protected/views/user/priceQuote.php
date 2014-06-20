@@ -549,6 +549,12 @@ $Stotal = 0; ?>
 
                                     </div>
                                 </div>
+                       <?php if( ($HouseCleaning == 0) && ($CarCleaning == 0) && ($StewardsCleaning == 0) ){?>
+                           <div class="row-fluid">
+    
+                               <div class="span12"><label>No Services.</label></div>
+                           </div>       
+                       <?php }else{?>         
                                 <div class="row-fluid">
     <?php $serviceTax = ((($totalRoomsPrice + $Ctotal + $Stotal) * 12.36) / 100); ?>
                                     <div class="span6"><label>Total Price (Service Tax Included)</label><input type="text" value="<?php echo $totalRoomsPrice + $Ctotal + $Stotal + $serviceTax; ?>" id="price" readonly="true"/></div>
@@ -566,7 +572,7 @@ $Stotal = 0; ?>
                                         </div>
                                     </div>
                                 </div> 
-
+                       <?php }?>      
                             </div>
                         </div>
                     </div>

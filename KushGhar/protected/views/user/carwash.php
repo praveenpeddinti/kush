@@ -141,7 +141,7 @@ $form = $this->beginWidget('CActiveForm', array(
         '<div class="row-fluid">'+
             '<div class=" span4">'+
                 '<label><abbr title="required">*</abbr> Make / Model of the Car</label>'+
-                '<input type="text" class="span12" maxLength="25" value="<?php echo $rw['make_of_car'] ?>" placeholder="Make of the car..." id="<?php echo $j; ?>_MakeOfCar">'+
+                '<input type="text" class="span12" maxLength="25" value="<?php echo $rw['make_of_car'] ?>" placeholder="Make of the Car..." id="<?php echo $j; ?>_MakeOfCar">'+
                 '<div id="<?php echo $j; ?>_MakeOfCar_em" class="errorMessage" style="display:none"></div>'+
             '</div>'+
             '<div class=" span4">'+
@@ -273,7 +273,7 @@ $form = $this->beginWidget('CActiveForm', array(
         '<div class="row-fluid">'+
             '<div class=" span4">'+
                 '<label><abbr title="required">*</abbr> Make / Model of the Car</label>'+
-                '<input type="text" class="span12" maxLength="25" placeholder="Make of the car..." id="1_MakeOfCar">'+
+                '<input type="text" class="span12" maxLength="25" placeholder="Make of the Car..." id="1_MakeOfCar">'+
                 '<div id="1_MakeOfCar_em" class="errorMessage" style="display:none"></div>'+
             '</div>'+
             '<div class=" span4">'+
@@ -309,7 +309,7 @@ $form = $this->beginWidget('CActiveForm', array(
              '</div>'+ 
              '<div class=" span4">'+
                 '<label> Address Line2</label>'+
-                '<input type="text" class="span12" id="11_Address2" maxLength="100" placeholder="Address Line 1…">'+
+                '<input type="text" class="span12" id="11_Address2" maxLength="100" placeholder="Address Line 2…">'+
              '</div>'+
              '<div class=" span4">'+
                 '<label> Alternate Phone</label>'+
@@ -483,7 +483,7 @@ $form = $this->beginWidget('CActiveForm', array(
         '<div class="row-fluid">'+
             '<div class=" span4">'+
                 '<label><abbr title="required">*</abbr> Make / Model of the Car</label>'+
-                '<input type="text" class="span12" maxLength="25" placeholder="Make of the car..." id="'+i+'_MakeOfCar">'+
+                '<input type="text" class="span12" maxLength="25" placeholder="Make of the Car..." id="'+i+'_MakeOfCar">'+
                 '<div id="'+i+'_MakeOfCar_em" class="errorMessage" style="display:none"></div>'+
             '</div>'+
             '<div class=" span4">'+
@@ -613,7 +613,7 @@ $form = $this->beginWidget('CActiveForm', array(
         '<div class="row-fluid">'+
             '<div class=" span4">'+
                 '<label><abbr title="required">*</abbr> Make / Model of the Car</label>'+
-                '<input type="text" class="span12" maxLength="25" value="" placeholder="Make of the car..." id="1_MakeOfCar">'+
+                '<input type="text" class="span12" maxLength="25" value="" placeholder="Make of the Car..." id="1_MakeOfCar">'+
                 '<div id="1_MakeOfCar_em" class="errorMessage" style="display:none"></div>'+
             '</div>'+
             '<div class=" span4">'+

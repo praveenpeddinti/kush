@@ -142,10 +142,18 @@ class AdminController extends Controller {
                 $totaluser = $this->kushGharService->getTotalUsers();
                 $startLimit = ((int) $_GET['userDetails_page'] - 1) * (int) $_GET['pageSize'];
                 $endLimit = $_GET['pageSize'];
+                if(count($totaluser)==0)
+                {
+                 $obj=  array('status' => 'success', 'html' => 0, 'totalCount' => $totaluser);
+                }
+                else
+                {
                 $userDetails = $this->kushGharService->getAllUsers($startLimit, $endLimit);
                 $renderHtml = $this->renderPartial('newManage', array('userDetails' => $userDetails, 'totalCount' => $totaluser), true);
                 $obj = array('status' => 'success', 'html' => $renderHtml, 'totalCount' => $totaluser);
-                $renderScript = $this->rendering($obj);
+               
+                }
+                 $renderScript = $this->rendering($obj);
                 echo $renderScript;
             }
         } catch (Exception $ex) {

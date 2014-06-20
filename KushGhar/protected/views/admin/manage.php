@@ -1,4 +1,5 @@
 <script type="text/javascript">
+    var pageno;
     function adminloginhandler(data) {
         if (data.status == 'success') {
             //alert("sucesss===========");
@@ -83,7 +84,8 @@
                     $("#message").addClass('alert alert-success');
                     $("#message").text('Delete user Successfully.');
                     $("#message").fadeOut(6000, "");
-                    $('#row_' + rowNos).remove();
+                    //$('#row_' + rowNos).remove();
+                    getCollectionDataWithPagination('/admin/newManage','userDetails', 'abusedWords_tbody',pageno,5, '');
                 },
                 error: function(data) { // if error occured
                     //alert("Error occured.please try again");
@@ -233,7 +235,7 @@
     
     
     
-    function ajaxRequest(url, queryString,callback,dataType,beforeSendCallback) { 
+function ajaxRequest(url, queryString,callback,dataType,beforeSendCallback) { 
     var data = queryString;
     if(dataType==null || dataType==undefined){
         dataType = "json";
@@ -263,27 +265,27 @@
     });
 }
 function getCollectionDataWithPagination(URL,CollectionName, MainDiv, CurrentPage, PageSize, callback){
-   //alert("URL===="+URL+"==CollectionName==="+CollectionName+"==MainDiv==="+MainDiv+"==CurrentPage==="+CurrentPage+"==PageSize==="+PageSize);
-    globalspace[MainDiv+'_page'] = Number(CurrentPage);
-        globalspace[MainDiv+'_pageSize']=Number(PageSize);
-
-        var newURL =  URL+"?"+CollectionName+"_page="+globalspace[MainDiv+'_page']+"&pageSize="+globalspace[MainDiv+'_pageSize'];
-    var data = "";  
-    
-    ajaxRequest(newURL,data,function(data){getCollectionDataWithPaginationHandler(data,URL,CollectionName,MainDiv,callback)});
+globalspace[MainDiv+'_page'] = Number(CurrentPage);
+globalspace[MainDiv+'_pageSize']=Number(PageSize);
+var newURL =  URL+"?"+CollectionName+"_page="+globalspace[MainDiv+'_page']+"&pageSize="+globalspace[MainDiv+'_pageSize'];
+var data = "";  
+ajaxRequest(newURL,data,function(data){getCollectionDataWithPaginationHandler(data,URL,CollectionName,MainDiv,callback)});
 }
-    function getCollectionDataWithPaginationHandler(data,URL,CollectionName,MainDiv,callback){
-          //scrollPleaseWaitClose('spinner_admin');
+function getCollectionDataWithPaginationHandler(data,URL,CollectionName,MainDiv,callback){
+      if(data.html==0)
+      {
+         $("#"+MainDiv).html("No data found");  
+      }else
+      {
         $("#"+MainDiv).html(data.html);
-                    
-                //$('#'+MainDiv+'_count').text(data.totalCount);
-                $("#pagination").pagination({
+        $("#pagination").pagination({
                     currentPage: globalspace[MainDiv+'_page'],
                     items: data.totalCount,
                     itemsOnPage: globalspace[MainDiv+'_pageSize'],
                     cssStyle: 'light-theme',
                     onPageClick: function(pageNumber, event) {
                         globalspace[MainDiv+'_page'] = pageNumber;
+                        pageno=pageNumber;
                         getCollectionDataWithPagination(URL,CollectionName, MainDiv, globalspace[MainDiv+'_page'], globalspace[MainDiv+'_pageSize'], callback)
                     }
 
@@ -291,5 +293,6 @@ function getCollectionDataWithPagination(URL,CollectionName, MainDiv, CurrentPag
                 if(callback!=''){
                     callback();
                 }
+            }
     }
 </script>

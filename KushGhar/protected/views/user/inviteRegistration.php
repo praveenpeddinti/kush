@@ -10,7 +10,7 @@
                                                         )); ?>
                                                         
                                             <?php echo $inviteform->error($inviteModel, 'error'); ?>
-             
+            
              <?php echo $inviteform->hiddenField($inviteModel,'InviteType', array('value'=>'0')); ?>
              <div class='row-fluid'>
                  <div class='span6'>
@@ -34,7 +34,8 @@
              <div class='row-fluid'>
                  <div class='span6'>
                     <?php echo $inviteform->label($inviteModel,'Select Services of Interest'); ?>
-                    <?php echo $inviteform->dropDownList($inviteModel, 'Services', CHtml::listData($getServices,'Id','name'), array('multiple'=>'true','options'=>'','class'=>'span12')); ?>                                          
+                    <?php echo $inviteform->checkBoxList($inviteModel, 'Services', CHtml::listData($getServices,'Id','name'), array('multiple'=>'true','options'=>'','data-on-label'=>'Yes', 'data-off-label'=>'No')); ?>
+                    <?php //echo $inviteform->dropDownList($inviteModel, 'Services', CHtml::listData($getServices,'Id','name'), array('multiple'=>'true','options'=>'','class'=>'span12' data-on-label="Yes" data-off-label="No")); ?>                                          
                     <?php echo $inviteform->error($inviteModel,'Services'); ?>     
                  </div>
                  <div class='span6'>
@@ -48,11 +49,23 @@
                     <?php echo $inviteform->error($inviteModel,'Location'); ?> 
                  </div>
              </div>
-        
+<div class='row-fluid'>
+    <div class="span12" style="min-height: 121px"><label>House</label>
+                                            <div class="switch switch-large" id="Services" data-on-label="Yes" data-off-label="No">
+                                                <?php echo $inviteform->checkBox($inviteModel, 'Services', array('id' => 'InviteForm_Services')); ?>
+                                            </div>
+                                                
+                                            </div>
+</div>
          
 <?php $this->endWidget(); ?>
          <div style="text-align: right">
              <?php echo CHtml::Button('Request Invite',array('id' => 'inviteButton','class' => 'btn btn-primary','onclick'=>'inviteMail();')); ?>
+             <?php echo CHtml::Button('SignIn',array('id' => 'SignInButton','class' => 'btn btn-primary','onclick'=>'signIn();')); ?>
              <button class='btn btn-primary' onclick='homePage();'>Home</button>
          </div>
-         
+<script type="text/javascript">
+    function signIn(){
+    window.location.href='<?php echo Yii::app()->request->baseUrl; ?>/user/registration?ClickBy=SignIn';
+}
+</script>

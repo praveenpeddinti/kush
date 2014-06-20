@@ -1,16 +1,36 @@
+<script src="../../../js/common.js" type="text/javascript"></script>
 <script type="text/javascript">
         $( document ).ready(function() {
-            $("#myModal").modal({ backdrop: 'static', keyboard: false,show:false });
-//alert("enter site index==="+document.getElementById('VV').value);
- //alert(document.getElementById('VV').value);
- if(document.getElementById('VV').value!='inviteToEmail'){
-        //ajaxRequest("/user/inviteregistration", "",loginPopupCallback,'html');
-        $("#modelBodyDiv").load("/user/inviteregistration",{},""); 
-            $('#myModal').modal('show');
-    }
-        
-
-});
+            Custom.init();
+            $('#Services').bootstrapSwitch();
+            $('#Services').bootstrapSwitch('setState', true);
+            var qString= '<?php echo empty($_REQUEST['ClickBy'])? NULL : $_REQUEST['ClickBy'];?>';
+            if(readCookie("Invited")==null && qString=='')
+            {
+                $("#myModal").modal({ backdrop: 'static', keyboard: false,show:false });
+                //alert("enter site index==="+document.getElementById('VV').value);
+                //alert(document.getElementById('VV').value);
+                if(document.getElementById('VV').value!='inviteToEmail'){
+                //ajaxRequest("/user/inviteregistration", "",loginPopupCallback,'html');
+                $("#modelBodyDiv").load("/user/inviteregistration",{},""); 
+                $('#myModal').modal('show');
+                }
+            }
+            if(qString!="SignIn")
+            {
+                document.getElementById("ModalDiv").style.display = "none";
+            }
+        });
+        function readCookie(name) {
+	var nameEQ = name + "=";
+	var ca = document.cookie.split(';');
+	for(var i=0;i < ca.length;i++) {
+		var c = ca[i];
+		while (c.charAt(0)==' ') c = c.substring(1,c.length);
+		if (c.indexOf(nameEQ) == 0)  return c.substring(nameEQ.length,c.length);
+	}
+	return null;
+}
 /*$(function(){alert("ffdf");
         getCollectionDataWithPagination('/user/registration','inviteModel', 'modelBodyDiv', '');
     });
@@ -177,7 +197,7 @@ function getCollectionDataWithPagination(URL,CollectionName, MainDiv,callback){
         }
     }
     
-   
+//$("#reg_div").attr('disabled','disabled');   
 </script>
 
 
@@ -186,9 +206,12 @@ function getCollectionDataWithPagination(URL,CollectionName, MainDiv,callback){
         <div class="span12">
             <div class="paddinground">
                 <div class="span6 paddingB20">
-                    <div class="reg_div">
+                    
+                    <div class="reg_div" id="RegDiv">
                         <div class="paddinground">
                             <h2 class="reg_title">New User Registration</h2>
+                            <div id="ModalDiv" style="position: absolute;left:0;right: 0;top:0;bottom: 0;background: #fff;opacity: 0.5;"></div>
+                            
                             <div id="registrationSpinLoader" style="top:26px"></div>
                             <?php
                             $form = $this->beginWidget('CActiveForm', array(

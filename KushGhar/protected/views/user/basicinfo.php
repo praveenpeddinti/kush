@@ -6,9 +6,9 @@
                 <div class="asideBG">
                     <div class="left_nav">
                         <ul class="main">
-                            <li class="active"><a href="/user/basicinfo" ><span class="KGaccounts"> </span></a></li>
-                            <li class=""><a href="/site/cleaning"  ><span class="KGservices"> </span></a></li>
-                            <li class=""><a href="/user/paymentinfo" ><span class="KGpayment"> </span></a></li>
+                            <li class="active"><a href="/user/basicinfo" ><span class="KGaccounts" title="Account"> </span></a></li>
+                            <li class=""><a href="/site/cleaning"  ><span class="KGservices" title="Services"> </span></a></li>
+                            <li class=""><a href="/user/paymentinfo" ><span class="KGpayment" title="Payment"> </span></a></li>
                             
                         </ul>
 
@@ -185,7 +185,7 @@
                                                     } else {
                                                         echo '/images/profile/none.jpg';
                                                     } ?>"  id="profilePicPreviewId"/></div>
-                                                    <?
+                                                    <?php
                                                     $this->widget('ext.EAjaxUpload.EAjaxUpload', array(
                                                         'id' => 'BasicinfoForm_profilePicture',
                                                         'config' => array(
@@ -222,15 +222,20 @@
                                     </div>
                                 </div>
                                <div class="row-fluid">
-                                <div class=" span6">
+                                <div class=" span5">
                                     <label>How do you know KushGhar?</label>
                                 <?php //echo $form->label($model, 'How do you know KushGhar ?'); ?>
-                                    <?php echo $form->dropDownList($model,'foundKushgharBy', array(''=>'Select One','friend' => 'Friend', 'mail' => 'Mail'), array('options' => array($customerDetails->found_kushghar_by => array('selected' => 'selected')), 'class' => 'span12'));?>
+                                    <?php echo $form->dropDownList($model,'foundKushgharBy', array(''=>'Select One','friend' => 'Friend', 'mail' => 'Mail','Other'=>'Other'), array('options' => array($customerDetails->found_kushghar_by => array('selected' => 'selected')),'onchange' => 'javascript:onChangeProduto(this.value);', 'class' => 'span12'));?>
                                     <?php echo $form->error($model,'foundKushgharBy'); ?>
                                     <?php //echo $form->dropDownList($model, 'cardType', CHtml::listData(array('prompt'=>'Select Card Type','options' => ('Visa''Visa', 'Master' => 'Master')), 'Id', 'identifiability'), array('options' => array($customerPaymentDetails->card_type => array('selected' => 'selected')), 'class' => 'span12')); ?>
                                 </div>
+                                <div class=" span5" id='otherDiv' style="display:none">
+                                    <?php echo $form->label($model, '<abbr title="required">*</abbr> Specify Other Source'); ?>
+                                    <?php echo $form->textField($model, 'foundKushgharByOther', array('maxLength' => 20, 'class' => 'span8', 'placeholder' => 'Other…')); ?>
+                                    <?php echo $form->error($model, 'foundKushgharByOther'); ?>
+                                </div>
                                 
-                                    <div class="span6 ">
+                                    <div class="span2">
                                         <div class="pull-right paddingT30">
                                         <?php   echo CHtml::ajaxButton('Continue', array('user/basicinfo'), array(
                                                         'type' => 'POST',
@@ -259,18 +264,18 @@
                             <fieldset>
                                 <div class="row-fluid">
                                     <div class=" span4">
-                                       <?php echo $form->label($updatedPassword, 'Update Password'); ?>
-                                <?php echo $form->passwordField($updatedPassword, 'Password', array('maxLength' => 50, 'class' => 'span12', 'placeholder' => 'Update Password…')); ?>
+                                       <?php echo $form->label($updatedPassword, 'Password'); ?>
+                                <?php echo $form->passwordField($updatedPassword, 'Password', array('maxLength' => 50, 'class' => 'span12', 'placeholder' => 'Password…')); ?>
                                 <?php echo $form->error($updatedPassword, 'Password'); ?>
                                     </div>
                                     <div class=" span4">
-                                        <?php echo $form->label($updatedPassword, 'Repeat Password'); ?>
-                                        <?php echo $form->passwordField($updatedPassword, 'RepeatPassword', array('maxLength' => 50, 'class' => 'span12', 'placeholder' => 'Repeat Password…')); ?>
+                                        <?php echo $form->label($updatedPassword, 'Confirm Password'); ?>
+                                        <?php echo $form->passwordField($updatedPassword, 'RepeatPassword', array('maxLength' => 50, 'class' => 'span12', 'placeholder' => 'Confirm Password…')); ?>
                                         <?php echo $form->error($updatedPassword, 'RepeatPassword'); ?>
                                     </div>
                                     <div class=" span4">
                                         <div  class=" paddingT30">
-                                       <?php echo CHtml::ajaxButton('Update Password', array('user/updatedPsw'), array(
+                                       <?php echo CHtml::ajaxButton('Change Password', array('user/updatedPsw'), array(
                                             'type' => 'POST',
                                             'dataType' => 'json',
                                             
@@ -405,7 +410,13 @@ return false;
             }); 
         }
     }
-
+    function onChangeProduto(value) {
+        if (value == "Other") {
+            $("#otherDiv").show();
+        } else {
+            $("#otherDiv").hide();
+        }
+    }
     function updatePasswordhandler(data){
         if(data.status=='success'){
             $("#updatedPasswordForm_error_em_").show();

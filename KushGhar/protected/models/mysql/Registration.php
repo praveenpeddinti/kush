@@ -126,7 +126,7 @@ class Registration extends CActiveRecord {
             //$RegObj->birth_date = $model->dateOfBirth;
             $RegObj->birth_date = date('Y-m-d', strtotime($model->dateOfBirth));
             $RegObj->found_kushghar_by = $model->foundKushgharBy;
-            
+            $RegObj->found_kushghar_by_other=$model->foundKushgharByOther;
 
             $RegObj->profilePicture = $model->profilePicture;
             $RegObj->update_timestamp = gmdate("Y-m-d H:i:s", time());

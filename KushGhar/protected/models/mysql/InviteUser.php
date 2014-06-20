@@ -45,6 +45,7 @@ class InviteUser extends CActiveRecord {
         $selectedOptions='';    
         for($i=0;$i<sizeof($model->Services);$i++)
             $selectedOptions = $selectedOptions.$model->Services[$i].',';
+        error_log("Selected options................".$selectedOptions);
         $user = InviteUser::model()->findByAttributes(array('email_address' => $model->Email));
         
         if (!isset($user)) {

@@ -1,7 +1,8 @@
 
     
 
-function ajaxRequest(url, queryString,callback,dataType,beforeSendCallback) { 
+function ajaxRequest(url, queryString,callback,dataType,beforeSendCallback) {
+    
     var data = queryString;
     if(dataType==null || dataType==undefined){
         dataType = "json";
@@ -33,7 +34,7 @@ function ajaxRequest(url, queryString,callback,dataType,beforeSendCallback) {
 
 
 function inviteMail() {
-    scrollPleaseWait("inviteSpinLoader","invite-form")
+        scrollPleaseWait("inviteSpinLoader","invite-form")
          var data = $("#invite-form").serialize();
          ajaxRequest('/user/inviteregistration', data, inviteMailHandler)
         
@@ -46,11 +47,12 @@ function inviteMail() {
 function inviteMailHandler(data)
     { scrollPleaseWaitClose('inviteSpinLoader');
         if(data.status =='success'){
-            $("#InviteForm_error_em_").show();
+            document.cookie="Invited=Invite";
+            $("#InviteForm_error_em_").show(1000);
                     $("#InviteForm_error_em_").removeClass('errorMessage');
                     $("#InviteForm_error_em_").addClass('alert alert-success');
                     $("#InviteForm_error_em_").text(data.error);
-                    $("#InviteForm_error_em_").fadeOut(6000, "");
+                    $("#InviteForm_error_em_").fadeOut(20000, "");
                     window.location.href = '/';
         }
         if(data.status == 'error'){

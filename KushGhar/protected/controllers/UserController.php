@@ -451,7 +451,7 @@ class UserController extends Controller {
                         $name = $inviteForm->FirstName . ' ' . $inviteForm->LastName;
                         $name1 = $inviteForm->Email;
                         $subject = 'KushGhar Invitation';
-                        $this->sendMailToUser($to, $name, $subject, '', 'KushGhar', 'no-reply@kushghar.com', 'sendInvitationMailToUser');
+                        //$this->sendMailToUser($to, $name, $subject, '', 'KushGhar', 'no-reply@kushghar.com', 'sendInvitationMailToUser');
                         $this->sendMailToUser('no-reply@kushghar.com', $name, $name1, '', 'KushGhar', 'no-reply@kushghar.com', 'CustomerInvitationMailToKGTeam');
                         
                         

@@ -1,4 +1,4 @@
-<div class="mainSoon">We are currently available in Hyderabad. We plan to be nation wide soon.</div>
+<div class="mainSoon"><marquee>Our services are currently available in Hyderabad. Launching Nationwide soon.</marquee></div>
 <div>
     <section class="slidersection">
    <div class="container">
@@ -78,7 +78,7 @@ one home at a time</div>
    <div class="row-fluid paddingT10" >
    <div class="services span12 paddingl20p">
    <ul>
-       <li><a href="/site/cleaning" class="housecleaning has-popover" title="" data-toggle="popover" data-placement="top" data-content="<ul><li>Kitchen room</li><li>Bed room&nbsp;&nbsp;&nbsp;&nbsp;</li><li>Living room</li><li>Bath room&nbsp;&nbsp;&nbsp;</li><li>Common areas</li></ul>" data-original-title="Cleaning" > <span>Home <br/>Cleaning</span> </a></li>
+       <li><a href="/site/cleaning" class="housecleaning has-popover" title="" data-toggle="popover" data-placement="top" data-content="<ul><li>Kitchen room</li><li>Bed room&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li><li>Living room&nbsp;&nbsp;&nbsp;&nbsp;</li><li>Bath room&nbsp;&nbsp;&nbsp;</li><li>Common areas</li></ul>" data-original-title="House Cleaning" > <span>House <br/>Cleaning</span> </a></li>
        <li><a href="/site/carwash" class="driver has-popover" title="" data-toggle="popover" data-placement="top" data-content="<ul><li>Brush, vacuum, and clean the interior</li><li>Clean wheels and tires</li><li>Wash exterior</li><li>Apply tire dressing</li><li>Polish wheels</li><li>Rinsing and drying</li></ul>" data-original-title="Car Wash" ><span>Car <br/> Wash</span></a></li>
         <li><a href="/site/stewards" class="laundry has-popover" title="" data-toggle="popover" data-placement="top" data-content="<ul><li>Supplies of food</li><li>Supplies of Wine / liquor</li><li>Assisting in seating the Guests</li><li>Re- filling of Food and Liquor</li><li>Garbage emptying</li></ul>" data-original-title="Stewards/Stewardesses" ><span>Stewards/<br/>Stewardesses</span></a></li>
         <!--<li>Drive vehicles locally or out of area as needed</li><li>Deliver vehicles to appropriate destination in a safe and courteous manner</li><li>Perform miscellaneous job-related duties as assigned</li><li>Follw the traffic rules</li> -->

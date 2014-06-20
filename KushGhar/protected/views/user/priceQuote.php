@@ -332,7 +332,7 @@ $Stotal = 0; ?>
                     <div id="orderPlaceDiv" style="display:none">
                         <div class="row-fluid">
                             <div class="span12">
-                                <h2 class="paddingL20">Order Place</h2> <hr>
+                                <h2 class="paddingL20">Place order</h2> <hr>
                             </div>
                         </div>
                     </div>               
@@ -555,14 +555,14 @@ $Stotal = 0; ?>
                                     <div class="span6">
                                         <div class="pull-right paddingT30">
     <?php
-    //echo CHtml::ajaxButton('Order Place', array('user/serviceOrder'), array(
+    //echo CHtml::ajaxButton('Place Order', array('user/serviceOrder'), array(
     //       'type' => 'POST',
     //       'dataType' => 'json',
     //'beforeSend' => 'function(){
     //        scrollPleaseWait("serviceSpinLoader","services-form");}',
     //       'success' => 'function(data,status,xhr) { addServiceOrderhandler(data,status,xhr);}'), array('class' => 'btn btn-primary','id'=>'HouseCleaningSubmit'));
     ?>
-                                            <input type="button" class="btn btn-primary" value="Order Place" onclick="submitServiceOrder()">
+                                            <input type="button" class="btn btn-primary" value="Place Order" onclick="submitServiceOrder()">
                                         </div>
                                     </div>
                                 </div> 

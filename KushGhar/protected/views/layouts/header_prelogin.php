@@ -73,8 +73,14 @@
                                 <li class="dropdown ">
                                     <div class="btn-group">
                                         <button class="btn btn-large dropdown-toggle Login_button" data-toggle="dropdown" onclick="loginpopup();">
-                                            Login <span class="caret">&nbsp;</span>
-                                        </button>
+                                            Login 
+                                            <span class="caret">&nbsp;</span>
+                                        </button></div>
+                                    <div class="btn-group">
+                                        <button class="btn btn-large dropdown-toggle Login_button" data-toggle="dropdown" onclick="SignInpopup();">
+                                            SignIn 
+                                            <span class="caret">&nbsp;</span>
+                                        </button></div>
                                         <!--<div class="dropdown-menu Login_dd_div " role="menu" aria-labelledby="dLabel">
                             <form style="margin: 0px" accept-charset="UTF-8" action="/sessions" method="post">
                             <div class="headerpoptitle">Login</div>
@@ -126,7 +132,7 @@
                     <?php if($this->session['Type']=='Admin'){?>
                     <a href="/admin/dashboard"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/inner_top_logo.png" alt="logo" class="logo"></a>
                     <?php }?>
-                    <div class="comesoon">We are currently available in Hyderabad. We plan to be nation wide soon.</div>
+                    <div class="comesoon">Our services are currently available in Hyderabad. Launching Nationwide soon.</div>
                 </div>
 
                 <div class="pull-right">
@@ -178,16 +184,14 @@
     
     
     function loginpopup(){
-        
         window.location.href='<?php echo Yii::app()->request->baseUrl; ?>/user/registration';
-        //getCollectionDataWithPagination('/user/inviteRegistration','my', 'modelBodyDiv', '');
         
+        //getCollectionDataWithPagination('/user/inviteRegistration','my', 'modelBodyDiv', '');
     }
     function adminLoginpopup(){
         window.location.href='<?php echo Yii::app()->request->baseUrl; ?>/admin/login';
     }
-    
-    
-    
-    
+    function SignInpopup(){
+        window.location.href='<?php echo Yii::app()->request->baseUrl; ?>/user/registration?ClickBy=SignIn';
+    }
 </script>

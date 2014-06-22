@@ -25,18 +25,46 @@
                  </div>
              </div>
               <div class='row-fluid'>
-                 <div class='span12'>
+                 <div class='span6'>
                     <?php echo $inviteform->label($inviteModel,'<abbr title="required">*</abbr> Email'); ?>
                     <?php echo $inviteform->textField($inviteModel,'Email', array( 'class'=>'span12','placeholder'=>'Email…', 'maxLength' => 100)); ?>
                     <?php echo $inviteform->error($inviteModel,'Email'); ?>
                  </div>
+                  <div class='span6'>
+                    <?php echo $inviteform->label($inviteModel,'Location'); ?>
+                    <?php echo $inviteform->dropDownList($inviteModel,'Location', array(''=>'Select Location','AG Colony'=>'AG Colony','Ameerpet'=>'Ameerpet','Banjara Hills'=>'Banjara Hills','Begumpet'=>'Begumpet','Bharath Nagar'=>'Bharath Nagar','Chikalguda'=>'Chikalguda','Domalguda'=>'Domalguda',
+                        'Gachibowli'=>'Gachibowli','Hitech City'=>'Hitech City','JNTU'=>'JNTU','Jubilee Hills'=>'Jubilee Hills','Kalyan Nagar'=>'Kalyan Nagar','Khairatabad'=>'Khairatabad','Kondapur'=>'Kondapur',
+                        'KPHB'=>'KPHB','Kukatpally'=>'Kukatpally','Lingampally'=>'Lingampally','Madhapur'=>'Madhapur','Madinaguda'=>'Madinaguda','Malaysian Town Ship'=>'Malaysian Town Ship','Mehdipatnam'=>'Mehdipatnam',
+                        'Miyapur'=>'Miyapur','Moosapet'=>'Moosapet','Musheerabad'=>'Musheerabad','Nizampet'=>'Nizampet','Padmarao Nagar'=>'Padmarao Nagar','Panjagutta'=>'Panjagutta','Ram Nagar'=>'Ram Nagar',
+                        'Rasoolpura'=>'Rasoolpura','RTC X Roads'=>'RTC X Roads','Sanath Nagar'=>'Sanath Nagar','Tarnaka'=>'Tarnaka','Tolichowki'=>'Tolichowki','Vengal Rao Nagar'=>'Vengal Rao Nagar',
+                        'Vivekananda Nagar'=>'Vivekananda Nagar','Warasiguda'=>'Warasiguda','Yousufguda'=>'Yousufguda'), array('options' => '', 'class' => 'span12'));?>
+                    <?php echo $inviteform->error($inviteModel,'Location'); ?> 
+                 </div>
               </div>
-             <div class='row-fluid'>
+              <div class='row-fluid'>
+                <div class="span4" style="min-height: 121px"><label>House Cleaning</label>
+                    <div class="switch switch-large" id="HServices" data-on-label="Yes" data-off-label="No">
+                        <?php echo $inviteform->checkBox($inviteModel, 'HServices', array('id' => 'InviteForm_HServices')); ?>
+                    </div>
+                </div>
+                <div class="span4" style="min-height: 121px"><label>Car Wash</label>
+                    <div class="switch switch-large" id="CServices" data-on-label="Yes" data-off-label="No">
+                        <?php echo $inviteform->checkBox($inviteModel, 'CServices', array('id' => 'InviteForm_CServices')); ?>
+                   </div>
+                </div>
+                <div class="span4" style="min-height: 121px"><label>Stewards / Stewardesses</label>
+                    <div class="switch switch-large" id="SServices" data-on-label="Yes" data-off-label="No">
+                        <?php echo $inviteform->checkBox($inviteModel, 'SServices', array('id' => 'InviteForm_SServices')); ?>
+                   </div>
+                </div>  
+            </div>
+ 
+             <!--<div class='row-fluid'>
                  <div class='span6'>
-                    <?php echo $inviteform->label($inviteModel,'Select Services of Interest'); ?>
-                    <?php echo $inviteform->checkBoxList($inviteModel, 'Services', CHtml::listData($getServices,'Id','name'), array('multiple'=>'true','options'=>'','data-on-label'=>'Yes', 'data-off-label'=>'No')); ?>
+                    <?php //echo $inviteform->label($inviteModel,'Select Services of Interest'); ?>
+                    <?php //echo $inviteform->checkBoxList($inviteModel, 'Services', CHtml::listData($getServices,'Id','name'), array('multiple'=>'true','options'=>'','data-on-label'=>'Yes', 'data-off-label'=>'No')); ?>
                     <?php //echo $inviteform->dropDownList($inviteModel, 'Services', CHtml::listData($getServices,'Id','name'), array('multiple'=>'true','options'=>'','class'=>'span12' data-on-label="Yes" data-off-label="No")); ?>                                          
-                    <?php echo $inviteform->error($inviteModel,'Services'); ?>     
+                    <?php //echo $inviteform->error($inviteModel,'Services'); ?>     
                  </div>
                  <div class='span6'>
                     <?php echo $inviteform->label($inviteModel,'Location'); ?>
@@ -48,16 +76,7 @@
                         'Vivekananda Nagar'=>'Vivekananda Nagar','Warasiguda'=>'Warasiguda','Yousufguda'=>'Yousufguda'), array('options' => '', 'class' => 'span12'));?>
                     <?php echo $inviteform->error($inviteModel,'Location'); ?> 
                  </div>
-             </div>
-<div class='row-fluid'>
-    <div class="span12" style="min-height: 121px"><label>House</label>
-                                            <div class="switch switch-large" id="Services" data-on-label="Yes" data-off-label="No">
-                                                <?php echo $inviteform->checkBox($inviteModel, 'Services', array('id' => 'InviteForm_Services')); ?>
-                                            </div>
-                                                
-                                            </div>
-</div>
-         
+             </div>-->
 <?php $this->endWidget(); ?>
          <div style="text-align: right">
              <?php echo CHtml::Button('Request Invite',array('id' => 'inviteButton','class' => 'btn btn-primary','onclick'=>'inviteMail();')); ?>
@@ -65,6 +84,13 @@
              <button class='btn btn-primary' onclick='homePage();'>Home</button>
          </div>
 <script type="text/javascript">
+    Custom.init();
+            $('#HServices').bootstrapSwitch();
+            $('#HServices').bootstrapSwitch('setState', true);
+            $('#CServices').bootstrapSwitch();
+            $('#CServices').bootstrapSwitch('setState', true);
+            $('#SServices').bootstrapSwitch();
+            $('#SServices').bootstrapSwitch('setState', true);
     function signIn(){
     window.location.href='<?php echo Yii::app()->request->baseUrl; ?>/user/registration?ClickBy=SignIn';
 }

@@ -13,7 +13,9 @@ class InviteForm extends CFormModel
         public $EmailIds;
         public $FirstName;
         public $LastName;
-        public $Services;
+        public $HServices;
+        public $CServices;
+        public $SServices;
         public $Location;
 	
 
@@ -50,7 +52,7 @@ class InviteForm extends CFormModel
                 //array('EmailIds', 'required','message'=>'Please enter a value for {attribute}.'),
                 // Email has to be a valid email address
                 
-                array(' FirstName,LastName,Services,Email,EmailIds,Location', 'safe'),
+                array(' FirstName,LastName,HServices,CServices,SServices,Email,EmailIds,Location', 'safe'),
                        
 		
 		);

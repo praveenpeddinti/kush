@@ -1,9 +1,6 @@
 <script src="../../../js/common.js" type="text/javascript"></script>
 <script type="text/javascript">
         $( document ).ready(function() {
-            Custom.init();
-            $('#Services').bootstrapSwitch();
-            $('#Services').bootstrapSwitch('setState', true);
             var qString= '<?php echo empty($_REQUEST['ClickBy'])? NULL : $_REQUEST['ClickBy'];?>';
             if(readCookie("Invited")==null && qString=='')
             {

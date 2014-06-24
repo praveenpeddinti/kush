@@ -168,14 +168,26 @@ class AdminController extends Controller {
     }
 
     public function actionInviteStatus() {
-        $subject = 'KushGhar Invitation';
         $email = $_POST['email'];
         
         $mess1 = 'http://www.kushghar.com/site/invite?uname=' . $email . "\r\n\n";
         //$mess1 = 'http://115.248.17.88:6060/site/invite?uname=' . $email . "\r\n\n";
-        $messages = $mess1;
+        /*$messages = $mess1;
         $changeUserStatus = $this->kushGharService->sendInviteMailToUser($_POST['Id'], $_POST['status']);
-        $this->sendMailToUser($_POST['email'], '', $subject, $messages, 'KushGhar', 'no-reply@kushghar.com', 'InvitationMail');
+        $this->sendMailToUser($_POST['email'], '', $subject, $messages, 'KushGhar', 'no-reply@kushghar.com', 'InvitationMail');*/
+        $to = $_POST['email'];
+        $subject ="KushGhar Invitation";
+        $Logo = YII::app()->params['SERVER_URL'] . "/images/color_logo.png";
+        $employerEmail = "no-reply@kushghar.com";
+        $messageview="InvitationMail";
+        $params = array('Logo' => $Logo, 'Message' =>$mess1);
+                
+                //$params = '';
+                 $sendMailToUser=new CommonUtility;
+                 $sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
+                
+        
+        
         $obj = array('status' => 'error', 'data' => '', 'error' => $changeUserStatus);
         echo CJSON::encode($obj);
     }
@@ -213,10 +225,11 @@ class AdminController extends Controller {
     public function actionNewOrder() {
         try {
             if (isset($_GET['userDetails_page'])) {
-                $totaluser = $this->kushGharService->getTotalOrders($_GET['serviceType']);
+                $totaluser = $this->kushGharService->getTotalOrders($_GET['serviceType'],$_GET['orderNo']);
+                error_log("--------------------------------".$_GET['serviceType']."-------".$_GET['orderNo']);
                 $startLimit = ((int) $_GET['userDetails_page'] - 1) * (int) $_GET['pageSize'];
                 $endLimit = $_GET['pageSize'];
-                $userDetails = $this->kushGharService->getOrderDetailsinAdmin($startLimit, $endLimit,$_GET['serviceType']);
+                $userDetails = $this->kushGharService->getOrderDetailsinAdmin($startLimit, $endLimit,$_GET['serviceType'],$_GET['orderNo']);
                 $renderHtml = $this->renderPartial('newOrder', array('userDetails' => $userDetails, 'totalCount' => $totaluser), true);
                 $obj = array('status' => 'success', 'html' => $renderHtml, 'totalCount' => $totaluser);
                 $renderScript = $this->rendering($obj);
@@ -225,6 +238,13 @@ class AdminController extends Controller {
         } catch (Exception $ex) {
             error_log("#########Exception Occurred########" . $ex->getMessage());
         }
+    }
+    
+    public function actionOrderStatus() {
+        
+        $changeUserStatus = $this->kushGharService->sendorderStatus($_POST['Id'], $_POST['status']);
+        $obj = array('status' => 'error', 'data' => '', 'error' => $changeUserStatus);
+        echo CJSON::encode($obj);
     }
 
 }

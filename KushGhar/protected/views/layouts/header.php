@@ -130,7 +130,7 @@ ga('send', 'pageview');
                          <a href='/'><img src='<?php echo Yii::app()->request->baseUrl; ?>/images/color_logo.png' alt='logo' class='logo' /></a>
                      </div>
                      <div class="span10">
-                         <h3>NDTV published below article about KushGhar on 18<sup>th</sup> June 2014</h3>
+                         <h3>NDTV published below article about KushGhar on 24<sup>th</sup> June 2014</h3>
                      </div>
                       
                  </div></div>
@@ -139,7 +139,7 @@ ga('send', 'pageview');
         <div class="paddinground">
              
              <div id='modelBodyDiv' >
-                 <iframe src="http://gadgets.ndtv.com/internet/news/a-crowdfunding-project-to-make-domestic-chores-simple-and-help-the-underprivileged-543598" style="width:100%;height:600px;border:0"></iframe>
+                 <iframe src="http://gadgets.ndtv.com/internet/features/kushghar-household-help-is-only-a-click-away-547111" style="width:100%;height:600px;border:0"></iframe>
              </div>
              </div>
       </div>

@@ -42,9 +42,15 @@ class InviteUser extends CActiveRecord {
 
     public function saveInvitationUser($model,$type) {
         $result = "false";
-        $selectedOptions='';    
-        for($i=0;$i<sizeof($model->Services);$i++)
-            $selectedOptions = $selectedOptions.$model->Services[$i].',';
+        $selectedOptions='';
+        if($model->HServices==1)
+            $selectedOptions = $selectedOptions.'1'.',';
+        if($model->CServices==1)
+            $selectedOptions = $selectedOptions.'2'.',';
+        if($model->SServices==1)
+            $selectedOptions = $selectedOptions.'3'.',';
+//        for($i=0;$i<sizeof($model->Services);$i++)
+//            $selectedOptions = $selectedOptions.$model->Services[$i].',';
         error_log("Selected options................".$selectedOptions);
         $user = InviteUser::model()->findByAttributes(array('email_address' => $model->Email));
         

@@ -118,3 +118,37 @@ ga('send', 'pageview');
 </div><!-- /.modal -->
 
 
+
+<div class="modal fade" id='myModalnews'>
+  <div class="modal-dialog" style="width:70%">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+         <div class='row-fluid'>
+                 <div class='span12'>
+                     <div class="span2">
+                         <a href='/'><img src='<?php echo Yii::app()->request->baseUrl; ?>/images/color_logo.png' alt='logo' class='logo' /></a>
+                     </div>
+                     <div class="span10">
+                         <h3>NDTV published below article about KushGhar on 18<sup>th</sup> June 2014</h3>
+                     </div>
+                      
+                 </div></div>
+      </div>
+      <div class="modal-body">
+        <div class="paddinground">
+             
+             <div id='modelBodyDiv' >
+                 <iframe src="http://gadgets.ndtv.com/internet/news/a-crowdfunding-project-to-make-domestic-chores-simple-and-help-the-underprivileged-543598" style="width:100%;height:600px;border:0"></iframe>
+             </div>
+             </div>
+      </div>
+      <div class="modal-footer" style="display:none">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+

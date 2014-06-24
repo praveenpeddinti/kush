@@ -112,6 +112,7 @@ one home at a time</div>
     .focus(showPopover)
     .blur(hidePopover)
     .hover(showPopover, hidePopover);
+    $('#myModalnews').modal('show');
 });
 
 

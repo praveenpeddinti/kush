@@ -304,12 +304,12 @@ $form = $this->beginWidget('CActiveForm', array(
  	'<div class="row-fluid">'+
             '<div class=" span4">'+
                 '<label><abbr title="required">*</abbr> Address Line1</label>'+
-                '<input type="text" class="span12" id="11_Address1" maxLength="100" placeholder="Address Line 1…">'+
+                '<input type="text" class="span12" id="11_Address1" maxLength="100" placeholder="Address Line1…">'+
                 '<div id="11_Address1_em" class="errorMessage" style="display:none"></div>'+
              '</div>'+ 
              '<div class=" span4">'+
                 '<label> Address Line2</label>'+
-                '<input type="text" class="span12" id="11_Address2" maxLength="100" placeholder="Address Line 2…">'+
+                '<input type="text" class="span12" id="11_Address2" maxLength="100" placeholder="Address Line2…">'+
              '</div>'+
              '<div class=" span4">'+
                 '<label> Alternate Phone</label>'+'<input type="text" value="+91" disabled="disabled" class="span3"/>'+' '+
@@ -514,12 +514,12 @@ $form = $this->beginWidget('CActiveForm', array(
  	'<div class="row-fluid">'+
             '<div class=" span4">'+
                 '<label><abbr title="required">*</abbr> Address Line1</label>'+
-                '<input type="text" class="span12" id="'+i+'_Address1" maxLength="100" placeholder="Address Line 1…">'+
+                '<input type="text" class="span12" id="'+i+'_Address1" maxLength="100" placeholder="Address Line1…">'+
                 '<div id="'+i+'_Address1_em" class="errorMessage" style="display:none"></div>'+
              '</div>'+ 
              '<div class=" span4">'+
                 '<label> Address Line2</label>'+
-                '<input type="text" class="span12" id="'+i+'_Address2" maxLength="100" placeholder="Address Line 1…">'+
+                '<input type="text" class="span12" id="'+i+'_Address2" maxLength="100" placeholder="Address Line2…">'+
              '</div>'+
              '<div class=" span4">'+
                 '<label> Alternate Phone</label>'+'<input type="text" value="+91" disabled="disabled" class="span3"/>'+' '+

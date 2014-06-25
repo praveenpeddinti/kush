@@ -5,9 +5,9 @@
     	<div class="asideBG">
         	<div class="left_nav">
             	<ul class="main">
-                    <li class="active"><a href="/user/basicinfo" ><span class="KGaccounts"> </span></a></li>
-                            <li class=""><a href="/site/cleaning"  ><span class="KGservices"> </span></a></li>
-                            <li class=""><a href="/user/paymentinfo" ><span class="KGpayment"> </span></a></li>
+                    <li class="active" title="Account"><a href="/user/basicinfo" ><span class="KGaccounts"> </span></a></li>
+                            <li class="" title="Services"><a href="/site/cleaning"  ><span class="KGservices"> </span></a></li>
+                            <li class="" title="Payment"><a href="/user/paymentinfo" ><span class="KGpayment"> </span></a></li>
                     
                 </ul>
 

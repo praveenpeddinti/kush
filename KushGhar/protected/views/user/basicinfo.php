@@ -6,9 +6,9 @@
                 <div class="asideBG">
                     <div class="left_nav">
                         <ul class="main">
-                            <li class="active"><a href="/user/basicinfo" ><span class="KGaccounts" title="Account"> </span></a></li>
-                            <li class=""><a href="/site/cleaning"  ><span class="KGservices" title="Services"> </span></a></li>
-                            <li class=""><a href="/user/paymentinfo" ><span class="KGpayment" title="Payment"> </span></a></li>
+                            <li class="active" title="Account"><a href="/user/basicinfo" ><span class="KGaccounts" > </span></a></li>
+                            <li class="" title="Services"><a href="/site/cleaning"  ><span class="KGservices" > </span></a></li>
+                            <li class="" title="Payment"><a href="/user/paymentinfo" ><span class="KGpayment" > </span></a></li>
                             
                         </ul>
 
@@ -225,13 +225,13 @@
                                 <div class=" span5">
                                     <label>How do you know KushGhar?</label>
                                 <?php //echo $form->label($model, 'How do you know KushGhar ?'); ?>
-                                    <?php echo $form->dropDownList($model,'foundKushgharBy', array(''=>'Select One','friend' => 'Friend', 'mail' => 'Mail','Other'=>'Other'), array('options' => array($customerDetails->found_kushghar_by => array('selected' => 'selected')),'onchange' => 'javascript:onChangeProduto(this.value);', 'class' => 'span12'));?>
+                                    <?php echo $form->dropDownList($model,'foundKushgharBy', array(''=>'Select One','friend' => 'Friend', 'mail' => 'Mail','Other'=>'Other'), array('options' => array($customerDetails->found_kushghar_by => array('selected' => 'selected')),'onchange' => 'javascript:onChangeProduto(this.value);','id'=>'KnowKgByddl', 'class' => 'span12'));?>
                                     <?php echo $form->error($model,'foundKushgharBy'); ?>
                                     <?php //echo $form->dropDownList($model, 'cardType', CHtml::listData(array('prompt'=>'Select Card Type','options' => ('Visa''Visa', 'Master' => 'Master')), 'Id', 'identifiability'), array('options' => array($customerPaymentDetails->card_type => array('selected' => 'selected')), 'class' => 'span12')); ?>
                                 </div>
                                 <div class=" span5" id='otherDiv' style="display:none">
-                                    <?php echo $form->label($model, '<abbr title="required">*</abbr> Specify Other Source'); ?>
-                                    <?php echo $form->textField($model, 'foundKushgharByOther', array('maxLength' => 20, 'class' => 'span8', 'placeholder' => 'Other…')); ?>
+                                    <?php echo $form->label($model, 'Specify Other Source'); ?>
+                                    <?php echo $form->textField($model, 'foundKushgharByOther', array('value'=>$customerDetails->found_kushghar_by_other ,'maxLength' => 20, 'class' => 'span8', 'placeholder' => 'Other…')); ?>
                                     <?php echo $form->error($model, 'foundKushgharByOther'); ?>
                                 </div>
                                 
@@ -348,6 +348,13 @@
         $("[rel=tooltip]").tooltip();
 
     });
+    $(document).ready(function(){
+        var w = document.getElementById('KnowKgByddl').value;
+        if(w=="Other")
+           $("#otherDiv").show(); 
+        else
+            $("#otherDiv").hide();
+    });
 
 /*dropdown box */
 /*$('#BasicinfoForm_IdentityProof').change(function(){alert("change1");
@@ -412,9 +419,11 @@ return false;
     }
     function onChangeProduto(value) {
         if (value == "Other") {
-            $("#otherDiv").show();
+//            $("#otherDiv").disabled=false;
+            document.getElementById('otherDiv').style.display='block';
         } else {
-            $("#otherDiv").hide();
+//            $("#otherDiv").disabled=true;
+            document.getElementById('otherDiv').style.display='none';
         }
     }
     function updatePasswordhandler(data){

@@ -137,7 +137,7 @@ header .container .nav > li .dropdown-menu li .headerpoptitle, header .container
 	.btn-large{ font-size:20px;font-family:MuseoSlab700 }
 	.header_menu_items ul li label{text-align:left}
 .btn-group > .btn-large {
-    font-size: 20px;
+    font-size: 18px;
 }
 	
 textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input, .serachInput{padding: 0px 6px; font-size:16px;}

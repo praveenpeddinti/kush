@@ -73,7 +73,7 @@
                                 <li class="dropdown ">
                                     <div class="btn-group">
                                         <button class="btn btn-large dropdown-toggle Login_button" data-toggle="dropdown" onclick="loginpopup();">
-                                            Login 
+                                            Request Invite 
                                             <span class="caret">&nbsp;</span>
                                         </button></div>
                                     <div class="btn-group">

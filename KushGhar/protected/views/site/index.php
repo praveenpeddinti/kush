@@ -1,4 +1,4 @@
-<div class="mainSoon"><marquee>Our services are currently available in Hyderabad. Launching Nationwide soon.</marquee></div>
+<div class="mainSoon">Our services are currently available in Hyderabad. Launching Nationwide soon.</div>
 <div>
     <section class="slidersection">
    <div class="container">
@@ -82,7 +82,7 @@ one home at a time</div>
        <li><a href="/site/carwash" class="driver has-popover" title="" data-toggle="popover" data-placement="top" data-content="<ul><li>Brush, vacuum, and clean the interior</li><li>Clean wheels and tires</li><li>Wash exterior</li><li>Apply tire dressing</li><li>Polish wheels</li><li>Rinsing and drying</li></ul>" data-original-title="Car Wash" ><span>Car <br/> Wash</span></a></li>
         <li><a href="/site/stewards" class="laundry has-popover" title="" data-toggle="popover" data-placement="top" data-content="<ul><li>Supplies of food</li><li>Supplies of Wine / liquor</li><li>Assisting in seating the Guests</li><li>Re- filling of Food and Liquor</li><li>Garbage emptying</li></ul>" data-original-title="Stewards/Stewardesses" ><span>Stewards/<br/>Stewardesses</span></a></li>
         <!--<li>Drive vehicles locally or out of area as needed</li><li>Deliver vehicles to appropriate destination in a safe and courteous manner</li><li>Perform miscellaneous job-related duties as assigned</li><li>Follw the traffic rules</li> -->
-        <li><a href="/site/moreservices" class="more has-popover" title="" data-toggle="popover" data-placement="top" data-content="<ul><li>Drivers Service</li><li>Gardener&nbsp;&nbsp;&nbsp;&nbsp;</li><li>Plumber&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li><li>Electrician&nbsp;&nbsp;&nbsp;&nbsp;</li><li>Nurse&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li><li>Baby sitting</li></ul>" data-original-title="More Services" ></a></li>
+        <li><a href="/site/moreservices" class="more has-popover" title="" data-toggle="popover" data-placement="top" data-content="<ul><li>Drivers Service</li><li>Gardener&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li><li>Plumber&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li><li>Electrician&nbsp;&nbsp;&nbsp;&nbsp;</li><li>Nurse&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li><li>Baby sitting&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li></ul>" data-original-title="More Services" ></a></li>
    </ul>
    </div>
    </div>

@@ -180,8 +180,8 @@ $form = $this->beginWidget('CActiveForm', array(
                 '<input type="text" class="span12" id="<?php echo $j;?>_Address2" value="<?php echo $rw['address_line2']?>" maxLength="100" placeholder="Address Line2…">'+
              '</div>'+
              '<div class=" span4">'+
-                '<label> Alternate Phone</label>'+
-                '<input type="text" class="span12" id="<?php echo $j; ?>_AlternatePhone" value="<?php echo $rw['alternate_phone']?>" maxLength="10" placeholder="Alternate Phone…">'+
+                '<label> Alternate Phone</label>'+'<input type="text" value="+91" disabled="disabled" class="span3"/>'+' '+
+                '<input type="text" class="span9" id="<?php echo $j; ?>_AlternatePhone" value="<?php echo $rw['alternate_phone']?>" maxLength="10" placeholder="Alternate Phone…">'+
                 '<div id="<?php echo $j; ?>_AlternatePhone_em" class="errorMessage" style="display:none"></div>'+
              '</div> '+
         '</div>'+
@@ -230,8 +230,8 @@ $form = $this->beginWidget('CActiveForm', array(
                 '<input type="text" class="span12" id="11_Address2" value="" maxLength="100" placeholder="Address Line2…">'+
              '</div>'+
              '<div class=" span4">'+
-                '<label> Alternate Phone</label>'+
-                '<input type="text" class="span12" id="11_AlternatePhone" value="" maxLength="10" placeholder="Alternate Phone…">'+
+                '<label> Alternate Phone</label>'+'<input type="text" value="+91" disabled="disabled" class="span3"/>'+' '+
+                '<input type="text" class="span9" id="11_AlternatePhone" value="" maxLength="10" placeholder="Alternate Phone…">'+
                 '<div id="11_AlternatePhone_em" class="errorMessage" style="display:none"></div>'+
              '</div> '+
         '</div>'+
@@ -312,8 +312,8 @@ $form = $this->beginWidget('CActiveForm', array(
                 '<input type="text" class="span12" id="11_Address2" maxLength="100" placeholder="Address Line 2…">'+
              '</div>'+
              '<div class=" span4">'+
-                '<label> Alternate Phone</label>'+
-                '<input type="text" class="span12" id="11_AlternatePhone" maxLength="10" placeholder="Alternate Phone…">'+
+                '<label> Alternate Phone</label>'+'<input type="text" value="+91" disabled="disabled" class="span3"/>'+' '+
+                '<input type="text" class="span9" id="11_AlternatePhone" maxLength="10" placeholder="Alternate Phone…">'+
              '</div> '+
         '</div>'+
         '<div class="row-fluid">'+
@@ -379,8 +379,8 @@ $form = $this->beginWidget('CActiveForm', array(
                 '<input type="text" class="span12" id="11_Address2" value="" maxLength="100" placeholder="Address Line2…">'+
              '</div>'+
              '<div class=" span4">'+
-                '<label> Alternate Phone</label>'+
-                '<input type="text" class="span12" id="11_AlternatePhone" value="" maxLength="10" placeholder="Alternate Phone…">'+
+                '<label> Alternate Phone</label>'+'<input type="text" value="+91" disabled="disabled" class="span3"/>'+' '+
+                '<input type="text" class="span9" id="11_AlternatePhone" value="" maxLength="10" placeholder="Alternate Phone…">'+
                 '<div id="11_AlternatePhone_em" class="errorMessage" style="display:none"></div>'+
              '</div> '+
         '</div>'+
@@ -522,8 +522,8 @@ $form = $this->beginWidget('CActiveForm', array(
                 '<input type="text" class="span12" id="'+i+'_Address2" maxLength="100" placeholder="Address Line 1…">'+
              '</div>'+
              '<div class=" span4">'+
-                '<label> Alternate Phone</label>'+
-                '<input type="text" class="span12" id="'+i+'_AlternatePhone" maxLength="10" placeholder="Alternate Phone…">'+
+                '<label> Alternate Phone</label>'+'<input type="text" value="+91" disabled="disabled" class="span3"/>'+' '+
+                '<input type="text" class="span9" id="'+i+'_AlternatePhone" maxLength="10" placeholder="Alternate Phone…">'+
              '</div> '+
         '</div>'+
         '<div class="row-fluid">'+
@@ -566,7 +566,7 @@ $form = $this->beginWidget('CActiveForm', array(
                 '<input type="text" class="span12" id="11_Address2" value="" maxLength="100" placeholder="Address Line2…">'+
              '</div>'+
              '<div class=" span4">'+
-                '<label> Alternate Phone</label>'+
+                '<label> Alternate Phone</label>'+'<input type="text" value="+91" disabled="disabled" class="span3"/>'+' '+
                 '<input type="text" class="span12" id="11_AlternatePhone" value="" maxLength="10" placeholder="Alternate Phone…">'+
                 '<div id="11_AlternatePhone_em" class="errorMessage" style="display:none"></div>'+
              '</div> '+
@@ -652,8 +652,8 @@ $form = $this->beginWidget('CActiveForm', array(
                 '<input type="text" class="span12" id="11_Address2" value="" maxLength="100" placeholder="Address Line2…">'+
              '</div>'+
              '<div class=" span4">'+
-                '<label> Alternate Phone</label>'+
-                '<input type="text" class="span12" id="11_AlternatePhone" value="" maxLength="10" placeholder="Alternate Phone…">'+
+                '<label> Alternate Phone</label>'+'<input type="text" value="+91" disabled="disabled" class="span3"/>'+' '+
+                '<input type="text" class="span9" id="11_AlternatePhone" value="" maxLength="10" placeholder="Alternate Phone…">'+
                 '<div id="11_AlternatePhone_em" class="errorMessage" style="display:none"></div>'+
              '</div> '+
         '</div>'+

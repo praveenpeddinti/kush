@@ -229,8 +229,8 @@
     </div>
     <div class=" span4">
          <?php if(($customerPaymentDetails->phone=='0') || (empty($customerPaymentDetails->phone))){ $Phone ='';}else{$Phone =$customerPaymentDetails->phone;}?>
-         <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> Phone'); ?>
-         <?php echo $form->textField($model,'Phone',array('value'=>$Phone, 'placeholder'=>'Phone…','maxlength'=>10, 'class'=>'span12')); ?>
+         <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> Phone'); ?><input type="text" value="+91" disabled="disabled" class="span2"/>
+         <?php echo $form->textField($model,'Phone',array('value'=>$Phone, 'placeholder'=>'Phone…','maxlength'=>10, 'class'=>'span10')); ?>
          <?php echo $form->error($model,'Phone'); ?>
     </div>
     </div>

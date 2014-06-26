@@ -41,7 +41,7 @@
                                 <div class="row-fluid" id="otherFreqDiv">
                                     <div class="span10">
                                     <div class="span6">
-                                        <label> When do you want service?</label>
+                                        <label><abbr title="required">*</abbr> When do you want service?</label>
                                         <?php echo $form->dropDownList($model,'WeekDays', array(''=>'Please Select Day','Sunday'=>'Sunday', 'Monday'=>'Monday', 'Tuesday' => 'Tuesday', 'Wednesday' => 'Wednesday', 'Thursday'=>'Thursday', 'Friday'=>'Friday', 'Saturday'=>'Saturday'), array('class' => 'span12'));?>
                                         <?php echo $form->error($model, 'WeekDays'); ?>
                                        

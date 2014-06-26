@@ -185,6 +185,7 @@ $form = $this->beginWidget('CActiveForm', array(
                 mindate.setFullYear(mindate.getFullYear()-100);
                 mindate.setMonth(currentDate.getMonth()+2);
                 mindate.setDate(currentDate.getDate()+2);
+                $('#StewardCleaningForm_EndTime').scroller('setDate', $("#StewardCleaningForm_StartTime").val(), true);
                 $('#StewardCleaningForm_EndTime').scroller({
                     preset: 'datetime',
                     timeFormat:'HH:ii',

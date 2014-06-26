@@ -223,7 +223,7 @@
                                     <?php //echo $form->dropDownList($model, 'cardType', CHtml::listData(array('prompt'=>'Select Card Type','options' => ('Visa''Visa', 'Master' => 'Master')), 'Id', 'identifiability'), array('options' => array($customerPaymentDetails->card_type => array('selected' => 'selected')), 'class' => 'span12')); ?>
                                 </div>
                                 <div class=" span5" id='otherDiv' style="display:none">
-                                    <?php echo $form->label($model, 'Specify Other Source'); ?>
+                                    <?php echo $form->label($model,'<abbr title="required">*</abbr>Specify Other Source'); ?>
                                     <?php echo $form->textField($model, 'foundKushgharByOther', array('value'=>$customerDetails->found_kushghar_by_other ,'maxLength' => 20, 'class' => 'span8', 'placeholder' => 'Other…')); ?>
                                     <?php echo $form->error($model, 'foundKushgharByOther'); ?>
                                 </div>

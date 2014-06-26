@@ -33,25 +33,35 @@
                                     </div> 
                                     <div class="span5">
                                         <label>Frequency of cleaning</label>
-                                        <?php echo $form->dropDownList($model,'NumberOfTimesServices', array('2'=>'Twice a Month', '5'=>'Onetime', '1' => 'Once a Month', '2' => 'Twice a Month', '3'=>'Every 3 Months', '4'=>'Every 6 Months'), array('options' => array($getServiceDetails['service_no_of_times'] => array('selected' => 'selected')), 'class' => 'span12'));?>
+                                        <?php echo $form->dropDownList($model,'NumberOfTimesServices', array('2'=>'Twice a Month', '5'=>'Onetime', '1' => 'Once a Month', '2' => 'Twice a Month', '3'=>'Every 3 Months', '4'=>'Every 6 Months'), array('options' => array($getServiceDetails['service_no_of_times'] => array('selected' => 'selected')),'onchange' => 'javascript:onChangeFrequencyto(this.value);', 'class' => 'span12'));?>
                                         <?php echo $form->error($model, 'NumberOfTimesServices'); ?>
                                      </div>
                                 </div>
                                      </div>
-                                <div class="row-fluid">
+                                <div class="row-fluid" id="otherFreqDiv">
                                     <div class="span10">
                                     <div class="span6">
                                         <label> When do you want service?</label>
-                                        <?php echo $form->dropDownList($model,'WeekDays', array('Sunday'=>'Sunday', 'Monday'=>'Monday', 'Tuesday' => 'Tuesday', 'Wednesday' => 'Wednesday', 'Thursday'=>'Thursday', 'Friday'=>'Friday', 'Saturday'=>'Saturday'), array('options' => array($getServiceDetails['week_days'] => array('selected' => 'selected')), 'class' => 'span12'));?>
+                                        <?php echo $form->dropDownList($model,'WeekDays', array(''=>'Please Select Day','Sunday'=>'Sunday', 'Monday'=>'Monday', 'Tuesday' => 'Tuesday', 'Wednesday' => 'Wednesday', 'Thursday'=>'Thursday', 'Friday'=>'Friday', 'Saturday'=>'Saturday'), array('class' => 'span12'));?>
                                         <?php echo $form->error($model, 'WeekDays'); ?>
                                        
                                     </div> 
-                                    <div class=" span4">
+<!--                                    <div class=" span4">
                                         <label>&nbsp</label>
-                                        <?php echo $form->textField($model, 'ServiceStartTime', array('value'=>$getServiceDetails['houseservice_start_time'], 'onchange' => 'javascript:onChangeTime();', 'class' => 'span8', 'placeholder' => '')); ?>
+                                        <?php // echo $form->textField($model, 'ServiceStartTime', array('value'=>$getServiceDetails['houseservice_start_time'], 'onchange' => 'javascript:onChangeTime();', 'class' => 'span8', 'placeholder' => 'Time...')); ?>
+                                        <?php // echo $form->error($model, 'ServiceStartTime'); ?>
+                                       
+                                    </div>--> </div> 
+                                </div>
+                                <div class="row-fluid" id="oneTimeDiv" style="display:none;">
+                                    <div class="span10">
+                                    <div class="span6">
+                                        <label>Select The Date</label>
+                                        <?php echo $form->textField($model, 'ServiceStartTime', array('class' => 'span10', 'placeholder' => 'Select Date…')); ?>
                                         <?php echo $form->error($model, 'ServiceStartTime'); ?>
                                        
-                                    </div> </div> 
+                                    </div> 
+                                </div> 
                                 </div>
                                 <div class="row-fluid">
                                     <div class=" span3">
@@ -166,18 +176,14 @@
                 mindate.setDate(currentDate.getDate()+1);
                 
                 $('#HouseCleaningForm_ServiceStartTime').scroller({
-                    preset: 'time',
-                    timeFormat:'hh:ii A ',
-                    //timeFormat:'HH:ii',
+                    preset: 'date',
                     theme: 'android', // for android set theme:'android'
                     display: 'modal',
-                    mode: 'scroller'
-                    //dateFormat:'dd-mm-yyyy',
-                    //dateOrder: 'Md ddyy',
-                    //timeWheels:'HHii',
-                    //minDate:  mindate
+                    mode: 'scroller',
+                    dateFormat:'dd-mm-yyyy',
+                    dateOrder: 'Md ddyy',
+                    minDate:  mindate
                 });
-         
          
         $('#WindowGrills').bootstrapSwitch();
         $('#FridgeInterior').bootstrapSwitch();
@@ -272,4 +278,13 @@
     .blur(hidePopover)
     .hover(showPopover, hidePopover);
 });
+function onChangeFrequencyto(value) {
+        if (value == '5') {
+            document.getElementById('otherFreqDiv').style.display='none';
+            document.getElementById('oneTimeDiv').style.display='block';
+        } else {
+            document.getElementById('oneTimeDiv').style.display='none';
+            document.getElementById('otherFreqDiv').style.display='block';
+        }
+    }
     </script>

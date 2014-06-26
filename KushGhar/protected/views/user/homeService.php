@@ -317,15 +317,30 @@ $(document).ready(function() {
             $("#HouseCleaningForm_SquareFeets_em_").text("Please Enter Numbers only");
             return false;
         }
-        if ($('#HouseCleaningForm_ServiceStartTime').val() == '') {
-            $("#HouseCleaningForm_SquareFeets_em_").hide();
-            $("#HouseCleaningForm_ServiceStartTime_em_").show();
-            $("#HouseCleaningForm_ServiceStartTime_em_").addClass('errorMessage');
-            $("#HouseCleaningForm_ServiceStartTime_em_").text("Please Select When do you want service");
-            return false;
+        if($('#HouseCleaningForm_NumberOfTimesServices').val()=='5')
+        {
+            if ($('#HouseCleaningForm_ServiceStartTime').val() == '') {
+                $("#HouseCleaningForm_SquareFeets_em_").hide();
+                $("#HouseCleaningForm_ServiceStartTime_em_").show();
+                $("#HouseCleaningForm_ServiceStartTime_em_").addClass('errorMessage');
+                $("#HouseCleaningForm_ServiceStartTime_em_").text("Please Select When do you want service");
+                return false;
+            }
+        }
+        else
+        {
+            if($('#HouseCleaningForm_WeekDays').val()=='')
+            {
+                $("#HouseCleaningForm_SquareFeets_em_").hide();
+                $("#HouseCleaningForm_WeekDays_em_").show();
+                $("#HouseCleaningForm_WeekDays_em_").addClass('errorMessage');
+                $("#HouseCleaningForm_WeekDays_em_").text("Please Select The Day to Service");
+                return false;
+            }
         }
         if (($('#HouseCleaningForm_LivingRooms').val() == '0') && ($('#HouseCleaningForm_BedRooms').val() == '0') && ($('#HouseCleaningForm_Kitchens').val() == '0') && ($('#HouseCleaningForm_BathRooms').val() == '0')) {
             $("#HouseCleaningForm_ServiceStartTime_em_").hide();
+            $("#HouseCleaningForm_WeekDays_em_").hide();
             $("#HouseCleaningForm_LivingRooms_em_").show();
             $("#HouseCleaningForm_LivingRooms_em_").addClass('errorMessage');
             $("#HouseCleaningForm_LivingRooms_em_").text("Please Select Any One");
@@ -859,11 +874,20 @@ $(document).ready(function() {
 
         var StartTimes = $("#StewardCleaningForm_StartTime").val();
         var EndTimes = $("#StewardCleaningForm_EndTime").val();
+        $('#StewardCleaningForm_EndTime').scroller('option', 'minDate', $('#StewardCleaningForm_StartTime').scroller('getDate'));
         if ((StartTimes != '') && (EndTimes != '')) {
+            if(StartTimes>EndTimes)
+            {
+                $("#StewardCleaningForm_EndTime").val(StartTimes); 
+                $("#StewardCleaningForm_DurationHours").val("1");
+            }
+        }
+        if ((StartTimes != '') && (EndTimes != '')) {
+            
             var totalHours1 = '';
             var stDateres1 = StartTimes.split(" ");
             var enDateres1 = EndTimes.split(" ");
-            
+
             var sTime = stDateres1[0].split("-");
             var stDateres = sTime[2]+"-"+sTime[1]+"-"+sTime[0];
             var eTime = enDateres1[0].split("-");
@@ -885,6 +909,10 @@ $(document).ready(function() {
                     $("#StewardCleaningForm_DurationHours").val(totalHours1);
 
                 }
+                else
+                {
+                    $("#StewardCleaningForm_DurationHours").val("1");
+                }
             }
             if (startDateValuecmp < endDateValuecmp) {
                 var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
@@ -896,7 +924,7 @@ $(document).ready(function() {
                 var diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime()) / (oneDay)));
                  var stTimeres = stDateres[1].split(":");
                 var enTimeres = enDateres[1].split(":");
-                totalHours1 = ((diffDays * 24) + (Math.abs((Math.round(enTimeres[0]) - Math.round(stTimeres[0])))));
+                 totalHours1 = ((diffDays * 24) + (Math.abs((Math.round(enTimeres[0]) - Math.round(stTimeres[0])))));
                 $("#StewardCleaningForm_DurationHours").val(totalHours1);
                 
             }

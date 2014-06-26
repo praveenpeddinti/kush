@@ -271,7 +271,7 @@ function totalCustomerDetailshandler(data){
      $("#CustomerDetailsForm_error_em_").fadeOut(6000, "");
      window.location.href='basicinfo';
     }else{
-        alert("No");
+        //alert("No");
          var error=[];
             if(typeof(data.error)=='string'){
                 var error=eval("("+data.error.toString()+")");

@@ -90,7 +90,7 @@ class CarWashService extends CActiveRecord {
             $servicesDetails->ServiceId = 2;
             $servicesDetails->total_cars = $model->TotalCars;
             $servicesDetails->make_of_car = rtrim($model->MakeOfCar,",");
-            $servicesDetails->order_number = $orderNo;
+            //$servicesDetails->order_number = $orderNo;
             $servicesDetails->different_location = $DL;
             $servicesDetails->week_days = $model->WeekDays;
             $servicesDetails->carservice_start_time = $model->ServiceStartTime;

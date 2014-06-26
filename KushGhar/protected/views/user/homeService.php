@@ -73,7 +73,7 @@
                                 <li><a href="<?php echo YII::app()->params['SERVER_URL'];?>/user/contactInfo"> <i class="fa fa-phone"></i> Contact Info</a>
                                     <div class="<?php echo $statusClassForContact; ?>"> </div>
                                 </li>
-                                <li><a href="<?php echo YII::app()->params['SERVER_URL'];?>/order/order"> <i class="fa fa-phone"></i> Orders</a>
+                                <li><a href="<?php echo YII::app()->params['SERVER_URL'];?>/user/order"> <i class="fa fa-phone"></i> Orders</a>
                                 </li>
                             </ul>
                         </div>
@@ -1036,7 +1036,7 @@ $(document).ready(function() {
      }
      function addOrderhandler(data) {
         if (data.status == 'success') {
-            alert("Added successfully");
+            //alert("Added successfully");
             
             $('#homeServiceWithOrderDiv').hide();
             $('#ServiceMainDiv').hide();

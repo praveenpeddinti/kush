@@ -37,6 +37,12 @@
                                         <p style="font-size:14px;line-height:1.7;">
                                             Email: <?php echo $Email;?>
                                         </p>
+                                        <p style="font-size:14px;line-height:1.7;">
+                                            Phone: <?php echo $Phone;?>
+                                        </p>
+                                        <p style="font-size:14px;line-height:1.7;">
+                                            Location: <?php echo $Location;?>
+                                        </p>
                                         
                                         <p style="font-size:14px;line-height:1.7;">
                                             Customer is waiting for your approval.
@@ -84,6 +90,5 @@
         </tr>
     </tbody></table><!-- END OF EMAIL WRAPPER -->
     </body></html>
-
 
 

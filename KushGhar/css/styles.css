@@ -681,3 +681,5 @@ input.serachInput::-ms-reveal { width : 0; height: 0;}
 .serviceprice{ position:absolute; right:10p; top:30px; right:5px; padding-right:40px; height:32px; padding-top:3px;color:#F60  }
 .comesoon{margin:-73px 0 0px 73px;color: #FFFFFF;font-size: 18px;}
 .mainSoon{text-align:center;color: #F58220;font-size: 18px;}
+.icon_active{background:url(../images/active_user.png) no-repeat left top; width:16px; height:16px; border:0; cursor:pointer}
+.icon_view{background:url(../images/view.png) no-repeat left top; width:16px; height:16px; border:0; cursor:pointer}

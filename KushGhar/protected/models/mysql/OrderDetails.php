@@ -78,17 +78,25 @@ class OrderDetails extends CActiveRecord {
     
     
     
-    public function getTotalOrders($stype){
+    public function getTotalOrders($type,$orderNo,$status){
         try{ 
-            if($stype=='0'){
-             $query = "SELECT count(*) as count FROM KG_Order_details where ServiceId!='' ";
-            }else {
-               $query = "SELECT count(*) as count FROM KG_Order_details WHERE ServiceId=$stype";  
+            if(($type=='0') && ($orderNo=='0') && ($status=='20')){
+             $query = "SELECT count(*) as count FROM KG_Order_details WHERE ServiceId!=''";   
+            }else if(($type!='0') && ($orderNo=='0') && ($status=='20')){
+             $query = "SELECT count(*) as count FROM KG_Order_details WHERE ServiceId=$type";     
+            }else if(($type=='0') && ($orderNo!='0') && ($status=='20')){
+             $query = "SELECT count(*) as count FROM KG_Order_details WHERE order_number=$orderNo";     
+            }else if(($type=='0') && ($orderNo=='0') && ($status!='20')){
+             $query = "SELECT count(*) as count FROM KG_Order_details WHERE ServiceId!='' and status=$status";     
+            }else if(($type!='0') && ($orderNo!='0') && ($status=='20')){
+             $query = "SELECT count(*) as count FROM KG_Order_details WHERE ServiceId=$type and order_number=$orderNo";     
+            }else if(($type!='0') && ($orderNo=='0') && ($status!=='20')){
+             $query = "SELECT count(*) as count FROM KG_Order_details WHERE ServiceId=$type and status=$status";     
+            }else if(($type=='0') && ($orderNo!='0') && ($status!=='20')){
+             $query = "SELECT count(*) as count FROM KG_Order_details WHERE order_number=$orderNo and status=$status";     
+            }else{
+               $query = "SELECT count(*) as count FROM KG_Order_details WHERE ServiceId=$type and order_number=$orderNo and status=$status";  
             }
-            
-            
-            //$query = "SELECT count(*) as count FROM KG_Order_details where ServiceId!='' ";
-                 
             $result = Yii::app()->db->createCommand($query)->queryRow();
         
         }catch(Exception $ex){
@@ -96,71 +104,32 @@ class OrderDetails extends CActiveRecord {
         }
         return $result['count'];
     } 
-
-   /*public function getTotalUsers(){
-        try{            
-            $query = "SELECT count(*) as count FROM KG_InvitationUsers";
-                   
-            $result = Yii::app()->db->createCommand($query)->queryRow();
-        
-        }catch(Exception $ex){
-            error_log("################Exception Occurred  getAllContacts##############".$ex->getMessage());
-        }
-        return $result['count'];
-    } 
-   public function getAllUsers($start,$end){
-        try{            
-            $query = "SELECT * FROM KG_InvitationUsers where status =1 limit ".$start. ",".$end;
-                
-            $result = Yii::app()->db->createCommand($query)->queryAll();
-        
-        }catch(Exception $ex){
-            error_log("################Exception Occurred  getAllContacts##############".$ex->getMessage());
-        }
-        return $result;
-    }
-    public function getStatusUser($id,$val){
-        //if($val==0){$status=1;}
-        //if($val==1){$status=0;}
-        $result = "failed";
-        try{
-            $InviteObj = InviteUser::model()->findByAttributes(array('Id'=>$id));
-            //$InviteObj->status = $status;
-            if($InviteObj->delete())
-            //if($InviteObj->update())
-                $result = "success";
-        }catch(Exception $ex){
-             error_log("################Exception Occurred  changeContactStatus##############".$ex->getMessage());
-        }
-        return $result;
-    }
-    public function sendInviteMailToUser($id,$val){error_log("------".$id."------".$val);
+public function sendorderStatus($id,$val){
         if($val==0){$status=1;}
         if($val==1){$status=2;}
         if($val==2){$status=2;}
         $result = "failed";
         try{
-            $InviteObj = InviteUser::model()->findByAttributes(array('Id'=>$id));
-            $InviteObj->invite = $status;
+            $InviteObj = OrderDetails::model()->findByAttributes(array('id'=>$id));
+            $InviteObj->status = $status;
             if($InviteObj->update())
                 $result = "success";
         }catch(Exception $ex){
              error_log("################Exception Occurred  changeContactStatus##############".$ex->getMessage());
         }
         return $result;
-    }*/
+    }
     
-
-
     
-
-    
-
-    
-
-     
-
-    
+    public function getOrderHServicesDetails($oId) {
+        try {
+            $query = "SELECT * FROM KG_House_cleaning_service WHERE order_id = $oId ORDER BY Id DESC LIMIT 1";
+            $result = YII::app()->db->createCommand($query)->queryRow();
+        } catch (Exception $ex) {
+            error_log("getServiceDetailsById Exception occured==" . $ex->getMessage());
+        }
+        return $result;
+    }
 
 }
 

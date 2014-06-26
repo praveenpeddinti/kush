@@ -514,15 +514,23 @@ class KushGharService {
     }
     /////////////////////////////////////////
     
-    public function getOrderDetailsinAdmin($start,$end,$type) {
-        return HouseCleaningService::model()->getOrderDetailsinAdmin($start,$end,$type);
+    public function getOrderDetailsinAdmin($start,$end,$type,$orderNo,$status) {
+        return HouseCleaningService::model()->getOrderDetailsinAdmin($start,$end,$type,$orderNo,$status);
     }
     
     
-    public function getTotalOrders($stype) {
-        return OrderDetails::model()->getTotalOrders($stype);
+    public function getTotalOrders($stype,$orderNo,$status) {
+        return OrderDetails::model()->getTotalOrders($stype,$orderNo,$status);
     }
-
+    
+    public function sendorderStatus($id, $val) {
+        return OrderDetails::model()->sendorderStatus($id, $val);
+    }
+    
+    //View the Service details for Customer
+    public function getOrderHServicesDetails($oId) {
+        return OrderDetails::model()->getOrderHServicesDetails($oId);
+    }
     
 }
 

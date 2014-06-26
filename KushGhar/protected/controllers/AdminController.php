@@ -171,10 +171,7 @@ class AdminController extends Controller {
         $email = $_POST['email'];
         
         $mess1 = 'http://www.kushghar.com/site/invite?uname=' . $email . "\r\n\n";
-        //$mess1 = 'http://115.248.17.88:6060/site/invite?uname=' . $email . "\r\n\n";
-        /*$messages = $mess1;
         $changeUserStatus = $this->kushGharService->sendInviteMailToUser($_POST['Id'], $_POST['status']);
-        $this->sendMailToUser($_POST['email'], '', $subject, $messages, 'KushGhar', 'no-reply@kushghar.com', 'InvitationMail');*/
         $to = $_POST['email'];
         $subject ="KushGhar Invitation";
         $Logo = YII::app()->params['SERVER_URL'] . "/images/color_logo.png";
@@ -225,11 +222,11 @@ class AdminController extends Controller {
     public function actionNewOrder() {
         try {
             if (isset($_GET['userDetails_page'])) {
-                $totaluser = $this->kushGharService->getTotalOrders($_GET['serviceType'],$_GET['orderNo']);
-                error_log("--------------------------------".$_GET['serviceType']."-------".$_GET['orderNo']);
+                $totaluser = $this->kushGharService->getTotalOrders($_GET['serviceType'],$_GET['orderNo'],$_GET['status']);
+                //error_log("--------------------------------".$_GET['serviceType']."-------".$_GET['orderNo']."====".$_GET['status']);
                 $startLimit = ((int) $_GET['userDetails_page'] - 1) * (int) $_GET['pageSize'];
                 $endLimit = $_GET['pageSize'];
-                $userDetails = $this->kushGharService->getOrderDetailsinAdmin($startLimit, $endLimit,$_GET['serviceType'],$_GET['orderNo']);
+                $userDetails = $this->kushGharService->getOrderDetailsinAdmin($startLimit, $endLimit,$_GET['serviceType'],$_GET['orderNo'],$_GET['status']);
                 $renderHtml = $this->renderPartial('newOrder', array('userDetails' => $userDetails, 'totalCount' => $totaluser), true);
                 $obj = array('status' => 'success', 'html' => $renderHtml, 'totalCount' => $totaluser);
                 $renderScript = $this->rendering($obj);
@@ -246,5 +243,24 @@ class AdminController extends Controller {
         $obj = array('status' => 'error', 'data' => '', 'error' => $changeUserStatus);
         echo CJSON::encode($obj);
     }
+    public function actionViewData() {//error_log("enter view---------");
+        try {
+            if (isset($_GET['userDetails1_page'])) {
+                
+                $servicedetails = $this->kushGharService->getOrderHServicesDetails($_GET['rowNos']);
+                $customerDetails = $this->kushGharService->getCustomerDetails($servicedetails['CustId']);
+                $renderHtml = $this->renderPartial('viewData', array('userDetails1' => $customerDetails,'serviceId'=>$_GET['ServiceId']), true);
+                $obj = array('status' => 'success', 'html' => $renderHtml);
+                $renderScript = $this->rendering($obj);
+                echo $renderScript;
+            }
+        } catch (Exception $ex) {
+            error_log("#########Exception Occurred########" . $ex->getMessage());
+        }
+    }
+    
+    
+    
+    
 
 }

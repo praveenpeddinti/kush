@@ -24,35 +24,28 @@
                                  if((!empty($customerDetails->first_name)) && (!empty($customerDetails->middle_name)) && (!empty($customerDetails->last_name)) && (!empty($customerDetails->birth_date)) && (!empty($customerDetails->profilePicture)) && (!empty($customerDetails->found_kushghar_by))){
                                      $statusClassForBasic = 'status_info2';
                                      $basicPercent = 35;
-                                     error_log("1point----".$basicPercent);
                                  }else if((empty($customerDetails->middle_name)) && (empty($customerDetails->found_kushghar_by)) && (empty($customerDetails->profilePicture)) && (empty($customerDetails->birth_date))){
                                      $statusClassForBasic = 'status_info1';
                                      $basicPercent = 15;
-                                     error_log("2point----".$basicPercent);
                                  }else if((empty($customerDetails->middle_name)) && (empty($customerDetails->found_kushghar_by)) && (empty($customerDetails->profilePicture))){
                                      
                                      $statusClassForBasic = 'status_info1';
                                      $basicPercent = 20;
-                                     error_log("3point----".$basicPercent);
                                  }else if((empty($customerDetails->found_kushghar_by)) && (empty($customerDetails->profilePicture))){
                                      
                                      $statusClassForBasic = 'status_info1';
                                      $basicPercent = 25;
-                                     error_log("5point----".$basicPercent);
                                  }else if((empty($customerDetails->profilePicture))){
                                      
                                      $statusClassForBasic = 'status_info1';
                                      $basicPercent = 30;
-                                     error_log("6point----".$basicPercent);
                                  }else if((empty($customerDetails->found_kushghar_by))){
                                      
                                      $statusClassForBasic = 'status_info1';
                                      $basicPercent = 30;
-                                     error_log("6point----".$basicPercent);
                                  }else {
                                      $statusClassForBasic = 'status_info1';
                                      $basicPercent = 10;
-                                     error_log("4point----".$basicPercent);
                                      
                                  }
                                  if((!empty($customerAddressDetails->alternate_phone)) && (!empty($customerAddressDetails->address_line1)) && (!empty($customerAddressDetails->address_line2)) && (!empty($customerAddressDetails->address_state)) && (!empty($customerAddressDetails->address_city)) && (!empty($customerAddressDetails->address_pin_code)) && (!empty($customerAddressDetails->address_landmark))){
@@ -63,12 +56,10 @@
                                      
                                      $statusClassForContact = 'status_info1';
                                      $contactPercent = 20;
-                                     error_log("6point----".$contactPercent);
                                  }else{
                                      
                                      $statusClassForContact = 'status_info1';
                                      $contactPercent = 10;
-                                     error_log("elsepoint----".$contactPercent);
                                  }
                                  if((!empty($customerPaymentDetails->card_type)) && (!empty($customerPaymentDetails->card_holder_name)) && (!empty($customerPaymentDetails->card_number)) && (!empty($customerPaymentDetails->card_expiry_month)) && (!empty($customerPaymentDetails->card_expiry_year)) && (!empty($customerPaymentDetails->first_name)) && (!empty($customerPaymentDetails->last_name))&& (!empty($customerPaymentDetails->phone)) && (!empty($customerPaymentDetails->address1)) && (!empty($customerPaymentDetails->address2))){
                                      $statusClassForPayment = 'status_info2';
@@ -92,7 +83,8 @@
                     <li><a href="contactInfo"> <i class="fa fa-phone"></i> Contact Info</a>
                         <div class="<?php echo $statusClassForContact;?>"> </div>
                     </li>
-                    
+                    <li><a href="order"> <i class="fa fa-phone"></i> Orders</a>
+                                </li>
                 </ul>
             </div>
             <div id="payment" class="collapse">

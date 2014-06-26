@@ -444,20 +444,22 @@ class UserController extends Controller {
 
                     if ($result == "success") {
 
-                        $to = $inviteForm->Email;
-                        $name = $inviteForm->FirstName . ' ' . $inviteForm->LastName;
-                        $name1 = $inviteForm->Email;
-                        $subject = 'KushGhar Invitation';
+                        //$to = $inviteForm->Email;
+                        //$name = $inviteForm->FirstName . ' ' . $inviteForm->LastName;
+                        //$name1 = $inviteForm->Email;
+                        //$subject = 'KushGhar Invitation';
                         //$this->sendMailToUser($to, $name, $subject, '', 'KushGhar', 'no-reply@kushghar.com', 'sendInvitationMailToUser');
-                        $this->sendMailToUser('no-reply@kushghar.com', $name, $name1, '', 'KushGhar', 'no-reply@kushghar.com', 'CustomerInvitationMailToKGTeam');
+                        //$this->sendMailToUser('no-reply@kushghar.com', $name, $name1, '', 'KushGhar', 'no-reply@kushghar.com', 'CustomerInvitationMailToKGTeam');
                         
                         
                         
                          /*
                   * Customer Mail Details
                   */
-                /*1$to1 = $inviteForm->Email;
+                $to1 = $inviteForm->Email;
                 $name = $inviteForm->FirstName . ' ' . $inviteForm->LastName;
+                $phone = $inviteForm->Phone;
+                $location = $inviteForm->Location;
                 $subject ='KushGhar Invitation';
                 $Logo = YII::app()->params['SERVER_URL'] . "/images/color_logo.png";
                 $employerEmail = "no-reply@kushghar.com";
@@ -466,18 +468,18 @@ class UserController extends Controller {
                  /*
                  * KG Team mail details
                  */
-                //1$to = 'praveen.peddinti@gmail.com';
+                $to = 'praveen.peddinti@gmail.com';
                 //$subject ="Order placed";
                 //$Logo = YII::app()->params['SERVER_URL'] . "/images/color_logo.png";
                 //$employerEmail = "no-reply@kushghar.com";
-                //1$messageview="CustomerInvitationMailToKGTeam";
-                //1$params = array('Logo' => $Logo, 'Name' =>$name, 'Email' =>$to1);
+                $messageview="CustomerInvitationMailToKGTeam";
+                $params = array('Logo' => $Logo, 'Name' =>$name, 'Email' =>$to1, 'Phone'=>$phone, 'Location'=>$location);
                 
                 //$params = '';
-                /*$sendMailToUser=new CommonUtility;
+                $sendMailToUser=new CommonUtility;
                 $sendMailToUser->actionSendmail($messageview1,$params1, $subject, $to1,$employerEmail);
                 $mailSendStatusw=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
-                 */        
+                         
                         
                         $obj = array('status' => 'success', 'data' => $result, 'error' => 'Invitation sent Successfully.');
                     } else {
@@ -594,9 +596,9 @@ class UserController extends Controller {
             
             //Saving Logic
             $rows = $this->kushGharService->checkingHouseService($cId);
-            if($rows=='No Service'){error_log("-----------no service----");
+            if($rows=='No Service'){
             $result = $this->kushGharService->addHouseCleaningService($houseModel, $cId,$rows);
-            }else{error_log("-----------Yes service----");
+            }else{
             $result = $this->kushGharService->updateHouseCleaningService($houseModel, $cId,$rows);
             }
             $HouseCleaning = 0;
@@ -1014,12 +1016,14 @@ class UserController extends Controller {
             $getOrderDetailsMaxParentIdH = $this->kushGharService->getOrderDetailsMaxParentId();
             $storeOrdernumberofHouse = $this->kushGharService->storeOrdernumberofHouse($cId,$getOrderDetailsMaxParentIdH['id'],$getOrderDetailsMaxParentIdH['order_number']);
             $getOrderNumber = $getOrderDetailsMaxParentIdH['order_number'];
+            error_log("-------".$getOrderDetailsMaxParentIdH);
             $genOrderNo = $genOrderNo+1;
         }else{$getServiceDetails='0';}
         
         if($customerServicesCar=='Yes Service') {
-            foreach($getCarWashServiceDetails as $ee){$getTotalCars = $ee['total_cars'];}
+            
             $getCarWashServiceDetails = $this->kushGharService->getCarWashDetails($cId);
+            foreach($getCarWashServiceDetails as $ee){$getTotalCars = $ee['total_cars'];}
             $totalCPrice=$getTotalCars*500;
             $storeOrderDetailsOfHouses = $this->kushGharService->storeOrderDetailsOfHouse($cId,$getOrderDetailsMaxParentId['id'],$getStewardsServiceDetails['CustId'],$genOrderNo,'2',$totalCPrice);
             $getOrderDetailsMaxParentIdC = $this->kushGharService->getOrderDetailsMaxParentId();
@@ -1073,11 +1077,60 @@ class UserController extends Controller {
                 
                 //$params = '';
                 $sendMailToUser=new CommonUtility;
-                //$sendMailToUser->actionSendmail($messageview1,$params1, $subject1, $to1,$employerEmail);
-                //$mailSendStatus=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
+                $sendMailToUser->actionSendmail($messageview1,$params1, $subject1, $to1,$employerEmail);
+                $mailSendStatus=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
         $data=$this->renderPartial('serviceOrder', array("customerDetails" => $customerDetails, "orderNumber" => $getOrderNumber), true);
         $obj = array('status' => 'success', 'data' => $data, 'error' => '');
         $renderScript = $this->rendering($obj);
         echo $renderScript;
     }
+    
+    
+    
+    /*public function actionOrder() {
+        try {
+            $cId = $this->session['UserId'];
+            $orderDetails = $this->kushGharService->getOrderDetails($cId);
+        $customerDetails = $this->kushGharService->getCustomerDetails($cId);
+        $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($cId);
+        $customerPaymentDetails = $this->kushGharService->getCustomerPaymentDetails($cId);
+            $this->render("order", array("orderDetails" => $orderDetails, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails));
+        } catch (Exception $ex) {
+            error_log("#########Exception Occurred########" . $ex->getMessage());
+        }
+    }*/
+    
+    public function actionOrder() {
+        try {
+          $cId = $this->session['UserId'];
+          $orderDetails = $this->kushGharService->getOrderDetails($cId);
+        $customerDetails = $this->kushGharService->getCustomerDetails($cId);
+        $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($cId);
+        $customerPaymentDetails = $this->kushGharService->getCustomerPaymentDetails($cId);  
+            //$orderDetails = $this->kushGharService->getOrderDetailsinAdmin();
+        $this->render("order", array("orderDetails" => $orderDetails, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails));
+            //$this->render("order", array("orderDetails" => $orderDetails));
+        } catch (Exception $ex) {
+            error_log("#########Exception Occurred########" . $ex->getMessage());
+        }
+    }
+    
+    public function actionNewOrder() {
+        try {
+            if (isset($_GET['userDetails_page'])) {
+                $totaluser = $this->kushGharService->getTotalOrders($_GET['serviceType'],$_GET['orderNo']);
+                //error_log("--------------------------------".$_GET['serviceType']."-------".$_GET['orderNo']);
+                $startLimit = ((int) $_GET['userDetails_page'] - 1) * (int) $_GET['pageSize'];
+                $endLimit = $_GET['pageSize'];
+                $userDetails = $this->kushGharService->getOrderDetailsinAdmin($startLimit, $endLimit,$_GET['serviceType'],$_GET['orderNo']);
+                $renderHtml = $this->renderPartial('newOrder', array('userDetails' => $userDetails, 'totalCount' => $totaluser), true);
+                $obj = array('status' => 'success', 'html' => $renderHtml, 'totalCount' => $totaluser);
+                $renderScript = $this->rendering($obj);
+                echo $renderScript;
+            }
+        } catch (Exception $ex) {
+            error_log("#########Exception Occurred########" . $ex->getMessage());
+        }
+    }
+    
 }

@@ -22,14 +22,11 @@
                                         <td id="status_<?php echo $row['id']; ?>">
                                                 <?php 
                                                 if($row['status']==0){$status = 'Open';} 
-                                                if($row['status']==1){$status = 'Schedule';} 
-                                                if($row['status']==2){$status = 'Close';} 
+                                                if($row['status']==1){$status = 'Close';} 
+                                                if($row['status']==2){$status = 'Cancel';} 
                                             echo $status; ?></td>
                                         <td><center><?php echo $row['amount'];?></center></td>
-                                        <td>
-                                        <input id="usera_<?php echo $row['id']; ?>" invite-id="<?php echo $row['id']; ?>" invite-status="<?php echo $row['status']; ?>"  type="button" value=" " class="<? if ($row['status'] == '0') echo 'icon_active'; if ($row['status'] == '1') echo 'icon_inactive'; if ($row['status'] == '2') echo 'icon_delete';?>" alt="Status" title="Status"/>
-                                        <!--<input id="user_<?php echo $row['id']; ?>" data-id="<?php echo $row['id']; ?>" service-id="<?php echo $row['ServiceId']; ?>" type="button" value=" " class="icon_view" alt="View" title="View"/>-->
-                                        </td>
+                                        
                                             
                                                     </tr>
         <?php }

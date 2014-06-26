@@ -5,6 +5,7 @@ class InviteUser extends CActiveRecord {
     public $first_name;
     public $last_name;
     public $email_address;
+    public $phone;
     public $status;
     public $invite;
     public $services;
@@ -20,7 +21,7 @@ class InviteUser extends CActiveRecord {
     }
 
     public function checkNewUserExist($emailId) {
-        try {error_log("bluk uploaded---------------------");
+        try {
             $result='';
             $newDetails = new InviteUser();
             $user = InviteUser::model()->findByAttributes(array(), 'email_address=:email_address', array(':email_address' => $emailId));
@@ -49,19 +50,16 @@ class InviteUser extends CActiveRecord {
             $selectedOptions = $selectedOptions.'2'.',';
         if($model->SServices==1)
             $selectedOptions = $selectedOptions.'3'.',';
-//        for($i=0;$i<sizeof($model->Services);$i++)
-//            $selectedOptions = $selectedOptions.$model->Services[$i].',';
-        error_log("Selected options................".$selectedOptions);
         $user = InviteUser::model()->findByAttributes(array('email_address' => $model->Email));
         
         if (!isset($user)) {
             try {
                 $user = new InviteUser();
-                
-                
+                              
                 $user->first_name = stripcslashes($model->FirstName);
                 $user->last_name = stripcslashes($model->LastName);
                 $user->email_address = stripcslashes($model->Email);
+                $user->phone = stripcslashes($model->Phone);
                 $user->type = stripcslashes($type);
                 $user->services = $selectedOptions;
                 $user->invite = 0;
@@ -116,7 +114,7 @@ class InviteUser extends CActiveRecord {
         }
         return $result;
     }
-    public function sendInviteMailToUser($id,$val){error_log("------".$id."------".$val);
+    public function sendInviteMailToUser($id,$val){
         if($val==0){$status=1;}
         if($val==1){$status=2;}
         if($val==2){$status=2;}
@@ -131,18 +129,6 @@ class InviteUser extends CActiveRecord {
         }
         return $result;
     }
-    
-
-
-    
-
-    
-
-    
-
-     
-
-    
 
 }
 

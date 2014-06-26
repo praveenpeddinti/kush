@@ -13,6 +13,7 @@ class InviteForm extends CFormModel
         public $EmailIds;
         public $FirstName;
         public $LastName;
+        public $Phone;
         public $HServices;
         public $CServices;
         public $SServices;
@@ -31,11 +32,12 @@ class InviteForm extends CFormModel
                 'if' => array(
                 array('InviteType', 'compare', 'compareValue'=>"0")),
                 'then' => array(
-                 array('FirstName,LastName,Email', 'required','message'=>'Please enter a value for {attribute}.'),
+                 array('FirstName,LastName,Email,Phone', 'required','message'=>'Please enter a value for {attribute}.'),
                     array('FirstName, LastName', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain Alphabet and space'),
                  array('Email', 'email'),),
                 ),
-                
+                array('Phone', 'numerical', 'integerOnly'=>true),
+                array('Phone', 'length', "min" => "10"),
                 array('InviteType', 'ext.YiiConditionalValidator.YiiConditionalValidator',
                 'if' => array(
                 array('InviteType', 'compare', 'compareValue'=>"1")),
@@ -52,7 +54,7 @@ class InviteForm extends CFormModel
                 //array('EmailIds', 'required','message'=>'Please enter a value for {attribute}.'),
                 // Email has to be a valid email address
                 
-                array(' FirstName,LastName,HServices,CServices,SServices,Email,EmailIds,Location', 'safe'),
+                array(' FirstName,LastName,Phone,HServices,CServices,SServices,Email,EmailIds,Location', 'safe'),
                        
 		
 		);

@@ -190,7 +190,7 @@
                             <div id="tablewidget"  style="margin: auto;"><div id="message" style="display:none"></div>
                                 <table id="userTable" class="table table-hover">
 
-                                    <thead><tr><th>Email Address</th><th>Status</th><th>Actions</th></tr></thead>
+                                    <thead><tr><th>Email Address</th><th>Phone</th><th>Location</th><th>Status</th><th>Actions</th></tr></thead>
                                     <tbody id="abusedWords_tbody">
                                         
                                     </tbody>

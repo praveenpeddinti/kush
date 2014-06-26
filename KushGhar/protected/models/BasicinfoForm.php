@@ -29,8 +29,16 @@ class BasicinfoForm extends CFormModel {
     public function rules() {
         return array(
             // name, email, subject and body are required
-            array('FirstName, LastName', 'required', 'message' => 'Please enter a value for {attribute}.'),
+            array('FirstName, LastName','required', 'message' => 'Please enter a value for {attribute}.'),
             //array('foundKushgharBy', 'required', 'message' => 'Please Select one.'),
+            array('foundKushgharBy', 'ext.YiiConditionalValidator.YiiConditionalValidator',
+                'if' => array(
+                array('foundKushgharBy', 'compare', 'compareValue'=>"Other")),
+                'then' => array(
+                array('foundKushgharByOther', 'required','message' => 'Please enter a value for Other source.'),
+                array('foundKushgharByOther', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => 'Other Source can only contain Alphabet and space'),),
+            ),
+//            array('foundKushgharByOther','required','message'=>'Other source is required '),
             // password needs to be authenticated
             //array('Password', 'authenticate'),
             //array('Password', 'required', 'on' => 'insert'),

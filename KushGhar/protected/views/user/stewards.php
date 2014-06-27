@@ -36,7 +36,7 @@ $form = $this->beginWidget('CActiveForm', array(
         </div>
         <div class=" span4">
             <?php echo $form->label($model1, '<abbr title="required">*</abbr> People Attending'); ?>
-            <?php echo $form->textField($model1, 'AttendPeople', array('value'=>$getServiceDetails['attend_people'], 'onblur' => 'javascript:onTotalStewards(this);','maxLength' => 5, 'class' => 'span6')); ?>
+            <?php echo $form->textField($model1, 'AttendPeople', array('value'=>$getServiceDetails['attend_people'], 'onblur' => 'javascript:onTotalStewards(this);','maxLength' => 5, 'onkeypress' => 'return isNumberKey(event);', 'class' => 'span6')); ?>
             <?php echo $form->error($model1, 'AttendPeople'); ?>
         </div> 
 

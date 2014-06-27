@@ -17,7 +17,7 @@
                                                 <a href="<?php echo YII::app()->params['SERVER_URL'];?>" target="_blank"><img alt="KushGhar" style="float:left" src="<?php echo $Logo;?>"/></a>
                                                 
                                             </td>
-                                            <td bgcolor="#fffff" valign="center" ><h3>Welcome to KushGhar</h3><br/><b>Phone:</b> 1-800-3070-6959</td>
+                                            <td bgcolor="#fffff" valign="center" ><h3>Welcome to KushGhar</h3><br/><b>Toll Free Number:</b> 1-800-3070-6959</td>
                                         </tr>
                                         <tr><td colspan='2'>&nbsp;</td></tr>
                                     </tbody></table>

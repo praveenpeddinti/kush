@@ -35,6 +35,7 @@ class CarWashForm extends CFormModel {
     public $CarCleaning;
     public $StewardCleaning;
     public $PriceFlag;
+    public $NumberOfTimesServices;
     
     
     /**
@@ -45,7 +46,7 @@ class CarWashForm extends CFormModel {
              
             array('PriceFlag, HouseCleaning, CarCleaning, StewardCleaning, TotalCars, WeekDays, DifferentLocation, ServiceStartTime, MakeOfCar, DifferentAddress,
                   AlternatePhone, ExteriorCleaning, ExteriorColor, InteriorCleaning, ShampooSeats, 
-                  Address1, Address2, State, City, PinCode, Status, ServicesId, Id', 'safe'),
+                  Address1, Address2, State, City, PinCode, Status, ServicesId,NumberOfTimesServices, Id', 'safe'),
             //array('HouseCleaning, CarCleaning, StewardCleaning, TotalCars, DifferentLocation, CompanyName, LicenseNumber, MakeOfCar, ModelOfCar, CallMe, DifferentAddress,
             //      AlternatePhone, InteriorCleaning, InteriorColor, ExteriorCleaning, ExteriorColor, WaxCar, ShampooSeats, 
              //     Address1, Address2, State, City, PinCode, Status, ServicesId, Id', 'safe'),

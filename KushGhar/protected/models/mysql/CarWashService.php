@@ -25,6 +25,7 @@ class CarWashService extends CActiveRecord {
     public $address_pin_code;
     public $create_timestamp;
     public $update_timestamp;
+    public $service_no_of_times;
   
  
     public static function model($className=__CLASS__) {
@@ -108,6 +109,7 @@ class CarWashService extends CActiveRecord {
             $servicesDetails->status = 0;
             $servicesDetails->create_timestamp = gmdate("Y-m-d H:i:s", time());
             $servicesDetails->update_timestamp = gmdate("Y-m-d H:i:s", time());
+            $servicesDetails->service_no_of_times = $model->NumberOfTimesServices;
             $servicesDetails->save();
             
             }

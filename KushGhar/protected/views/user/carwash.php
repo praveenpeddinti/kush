@@ -73,17 +73,35 @@ $form = $this->beginWidget('CActiveForm', array(
         </div>
     </div>
     <div class="row-fluid">
+        <div class="span5">
+             <label>Frequency of cleaning</label>
+             <?php echo $form->dropDownList($model,'NumberOfTimesServices', array('2'=>'Twice a Month', '5'=>'One time', '1' => 'Once a Month', '2' => 'Twice a Month', '3'=>'Every 3 Months', '4'=>'Every 6 Months'), array('onchange' => 'javascript:onChangeFrequencyto(this.value);', 'class' => 'span12'));?>
+             <?php echo $form->error($model, 'NumberOfTimesServices'); ?>
+        </div>
+        <div class="span5" id="otherFreqDiv">
+             <label> When do you want service?</label>
+             <?php echo $form->dropDownList($model,'WeekDays', array(''=>'Please Select Day','Sunday'=>'Sunday', 'Monday'=>'Monday', 'Tuesday' => 'Tuesday', 'Wednesday' => 'Wednesday', 'Thursday'=>'Thursday', 'Friday'=>'Friday', 'Saturday'=>'Saturday'), array('class' => 'span12'));?>
+             <?php echo $form->error($model, 'WeekDays'); ?>
+        </div>
+        <div class="span5" id="oneTimeDiv" style="display:none;">
+             <label>Select Date</label>
+             <?php echo $form->textField($model, 'ServiceStartTime', array('class' => 'span10', 'placeholder' => 'Select Date...')); ?>
+             <?php echo $form->error($model, 'ServiceStartTimee'); ?>
+        </div>
+    </div>
+    
+<!--    <div class="row-fluid">
        <div class="span5">
             <label><abbr title="required">*</abbr> When do you want service?</label>
-            <?php echo $form->dropDownList($model,'WeekDays', array('Sunday'=>'Sunday', 'Monday'=>'Monday', 'Tuesday' => 'Tuesday', 'Wednesday' => 'Wednesday', 'Thursday'=>'Thursday', 'Friday'=>'Friday', 'Saturday'=>'Saturday'), array('options' => array($WeekDays => array('selected' => 'selected')), 'class' => 'span12'));?>
-            <?php echo $form->error($model, 'WeekDays'); ?>
+            <?php //echo $form->dropDownList($model,'WeekDays', array('Sunday'=>'Sunday', 'Monday'=>'Monday', 'Tuesday' => 'Tuesday', 'Wednesday' => 'Wednesday', 'Thursday'=>'Thursday', 'Friday'=>'Friday', 'Saturday'=>'Saturday'), array('options' => array($WeekDays => array('selected' => 'selected')), 'class' => 'span12'));?>
+            <?php //echo $form->error($model, 'WeekDays'); ?>
         </div> 
         <div class=" span7">
             <label>&nbsp;</label>
-            <?php echo $form->textField($model, 'ServiceStartTime', array('value'=>$CarServiceTime, 'class' => 'span8', 'placeholder' => '')); ?>
-            <?php echo $form->error($model, 'ServiceStartTime'); ?>
+            <?php //echo $form->textField($model, 'ServiceStartTime', array('value'=>$CarServiceTime, 'class' => 'span8', 'placeholder' => '')); ?>
+            <?php //echo $form->error($model, 'ServiceStartTime'); ?>
         </div> 
-    </div>
+    </div>-->
     <div class="newcars" id="newcars" style="display: none;">
         
     </div>
@@ -107,22 +125,38 @@ $form = $this->beginWidget('CActiveForm', array(
     
     
     $(document).ready(function() {
-        
-        var currentDate=new Date();
-                var maxdate=new Date();
-                maxdate.setFullYear(maxdate.getFullYear()-19);
-                var mindate=new Date();
-                mindate.setFullYear(mindate.getFullYear());
-                mindate.setMonth(currentDate.getMonth());
-                mindate.setDate(currentDate.getDate()+1);
-                
-                $('#CarWashForm_ServiceStartTime').scroller({
-                    preset: 'time',
-                    timeFormat:'hh:ii A ',
-                    theme: 'android', // for android set theme:'android'
-                    display: 'modal',
-                    mode: 'scroller'
-                });
+         var currentDate=new Date();
+               var maxdate=new Date();
+               maxdate.setFullYear(maxdate.getFullYear()-19);
+               var mindate=new Date();
+               mindate.setFullYear(mindate.getFullYear());
+               mindate.setMonth(currentDate.getMonth());
+               mindate.setDate(currentDate.getDate()+1);
+
+               $('#CarWashForm_ServiceStartTime').scroller({
+                   preset: 'date',
+                   theme: 'android', // for android set theme:'android'
+                   display: 'modal',
+                   mode: 'scroller',
+                   dateFormat:'dd-mm-yyyy',
+                   dateOrder: 'Md ddyy',
+                   minDate:  mindate
+               });
+//        var currentDate=new Date();
+//                var maxdate=new Date();
+//                maxdate.setFullYear(maxdate.getFullYear()-19);
+//                var mindate=new Date();
+//                mindate.setFullYear(mindate.getFullYear());
+//                mindate.setMonth(currentDate.getMonth());
+//                mindate.setDate(currentDate.getDate()+1);
+//
+//                $('#CarWashForm_ServiceStartTime').scroller({
+//                    preset: 'time',
+//                    timeFormat:'hh:ii A ',
+//                    theme: 'android', // for android set theme:'android'
+//                    display: 'modal',
+//                    mode: 'scroller'
+//                });
         $('#DifferentLocation').bootstrapSwitch();
         var html = "";
         var sHtml = "";
@@ -567,7 +601,7 @@ $form = $this->beginWidget('CActiveForm', array(
              '</div>'+
              '<div class=" span4">'+
                 '<label> Alternate Phone</label>'+'<input type="text" value="+91" disabled="disabled" class="span3"/>'+' '+
-                '<input type="text" class="span12" id="11_AlternatePhone" value="" maxLength="10" placeholder="Alternate Phone…">'+
+                '<input type="text" class="span9" id="11_AlternatePhone" value="" maxLength="10" placeholder="Alternate Phone…">'+
                 '<div id="11_AlternatePhone_em" class="errorMessage" style="display:none"></div>'+
              '</div> '+
         '</div>'+
@@ -947,6 +981,14 @@ $(".DifferentAddress").live('mouseenter',function(){
             <?php $j++;?>
     <?php }?>
 <?php }?>    
-
+function onChangeFrequencyto(value) {
+       if (value == '5') {
+           document.getElementById('otherFreqDiv').style.display='none';
+           document.getElementById('oneTimeDiv').style.display='block';
+       } else {
+           document.getElementById('oneTimeDiv').style.display='none';
+           document.getElementById('otherFreqDiv').style.display='block';
+       }
+   }
 
 </script>

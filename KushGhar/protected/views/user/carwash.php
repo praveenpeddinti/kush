@@ -86,7 +86,7 @@ $form = $this->beginWidget('CActiveForm', array(
         <div class="span5" id="oneTimeDiv" style="display:none;">
              <label>Select Date</label>
              <?php echo $form->textField($model, 'ServiceStartTime', array('class' => 'span10', 'placeholder' => 'Select Date...')); ?>
-             <?php echo $form->error($model, 'ServiceStartTimee'); ?>
+             <?php echo $form->error($model, 'ServiceStartTime'); ?>
         </div>
     </div>
     

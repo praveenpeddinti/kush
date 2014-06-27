@@ -928,6 +928,7 @@ class UserController extends Controller {
         $getOrderDetailsMaxParentId = $this->kushGharService->getOrderDetailsMaxParentId();
         $genOrderNo = $getOrderDetailsMaxParentId['id'];
         $storeOrderDetailsOfParent = $this->kushGharService->storeOrderDetailsOfParent($cId);
+        error_log("--------Parent--------".$getOrderDetailsMaxParent['id']);
         $getOrderNumber='';
         $getServiceDetails='0';
         $getStewardsServiceDetails='0';
@@ -942,6 +943,7 @@ class UserController extends Controller {
             $totalRoomsPrice = 750+$priceRoom1 + $priceRoom2 + $priceAddServices+$serviceTaxPrice;
             $storeOrderDetailsOfHouse = $this->kushGharService->storeOrderDetailsOfHouse($cId,$getOrderDetailsMaxParentId['id'],$getServiceDetails['CustId'],$genOrderNo,'1',$totalRoomsPrice);
             $getOrderDetailsMaxParentIdH = $this->kushGharService->getOrderDetailsMaxParentId();
+            error_log("--------House--------".$getOrderDetailsMaxParentIdH['id']);
             $storeOrdernumberofHouse = $this->kushGharService->storeOrdernumberofHouse($cId,$getOrderDetailsMaxParentIdH['id'],$getOrderDetailsMaxParentIdH['order_number']);
             $getOrderNumber = $getOrderDetailsMaxParentIdH['order_number'];
             //error_log("-------".$getOrderDetailsMaxParentIdH);
@@ -955,7 +957,7 @@ class UserController extends Controller {
             $totalCPrice=$getTotalCars*500;
             $storeOrderDetailsOfHouses = $this->kushGharService->storeOrderDetailsOfHouse($cId,$getOrderDetailsMaxParentId['id'],$getStewardsServiceDetails['CustId'],$genOrderNo,'2',$totalCPrice);
             $getOrderDetailsMaxParentIdC = $this->kushGharService->getOrderDetailsMaxParentId();
-            
+            error_log("--------Car--------".$getOrderDetailsMaxParentIdC['id']);
             //$getOrderNumber = $getStewardsServiceDetails['order_number'];
             foreach($getCarWashServiceDetails as $ee){
                 $storeOrdernumberofHouse = $this->kushGharService->storeOrdernumberofCar($cId,$getOrderDetailsMaxParentIdC['id'],$getOrderDetailsMaxParentIdC['order_number']);
@@ -963,6 +965,7 @@ class UserController extends Controller {
                 //$getOrderNumber = $ee['order_number'];
                 
                 }
+                $genOrderNo = $genOrderNo+1;
         }else{$getCarWashServiceDetails='0';}
         
         if($customerServicesStewards=='Yes Service'){
@@ -971,6 +974,7 @@ class UserController extends Controller {
             
             $storeOrderDetailsOfHouses = $this->kushGharService->storeOrderDetailsOfHouse($cId,$getOrderDetailsMaxParentId['id'],$getStewardsServiceDetails['CustId'],$genOrderNo,'3',$totalSPrice);
             $getOrderDetailsMaxParentIdS = $this->kushGharService->getOrderDetailsMaxParentId();
+            error_log("--------Stewards--------".$getOrderDetailsMaxParentIdS['id']);
             $storeOrdernumberofHouse = $this->kushGharService->storeOrdernumberofStewards($cId,$getOrderDetailsMaxParentIdS['id'],$getOrderDetailsMaxParentIdS['order_number']);
             $getOrderNumber = $getOrderDetailsMaxParentIdS['order_number'];
             //$getOrderNumber = $getStewardsServiceDetails['order_number'];

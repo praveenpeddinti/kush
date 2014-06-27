@@ -100,7 +100,7 @@ class InviteUser extends CActiveRecord {
     } 
    public function getAllUsers($start,$end){
         try{            
-            $query = "SELECT * FROM KG_InvitationUsers where status =1 limit ".$start. ",".$end;
+            $query = "SELECT * FROM KG_InvitationUsers where status =1 ORDER BY id DESC limit ".$start. ",".$end;
                 
             $result = Yii::app()->db->createCommand($query)->queryAll();
         

@@ -951,8 +951,8 @@ $(document).ready(function() {
                 var secondDate = new Date(ETime);
 
                 var diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime()) / (oneDay)));
-                 var stTimeres = stDateres[1].split(":");
-                var enTimeres = enDateres[1].split(":");
+                 var stTimeres = stDateres1[1].split(":");
+                var enTimeres = enDateres1[1].split(":");
                  totalHours1 = ((diffDays * 24) + (Math.abs((Math.round(enTimeres[0]) - Math.round(stTimeres[0])))));
                 $("#StewardCleaningForm_DurationHours").val(totalHours1);
                 

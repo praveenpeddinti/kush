@@ -1,13 +1,12 @@
-<?php 
-$NOCars ='';$CarServiceTime ='';$TCars='';$WeekDays='';
+<?php error_log(sizeof($getCarWashServiceDetails)."======11111111111111111111111111111111====");
+$NOCars ='';$CarServiceTime ='';$TCars='';$WeekDays='';$NOfServiceTime='';
         if((sizeof($getCarWashServiceDetails)>0)){ 
         foreach($getCarWashServiceDetails as $ee){
         
         $CarServiceTime = $ee['carservice_start_time'];
         $TCars = $ee['total_cars'];
         $WeekDays = $ee['week_days'];
-        $NOfTimesServices = $ee['service_no_of_times'];
-
+        $NOfServiceTime = $ee['service_no_of_times'];
         }
         }
     
@@ -15,8 +14,10 @@ $NOCars ='';$CarServiceTime ='';$TCars='';$WeekDays='';
         //$NOCars=sizeof($getCarWashServiceDetails);
          $NOCars = $TCars;
     }
-    
-
+    error_log("---NOC--------".$NOCars."======".$CarServiceTime."===========".$WeekDays);
+//foreach($getCarWashServiceDetails as $rw){
+//    error_log("===make_of_car==".$rw['make_of_car']);foreach($getCarWashServiceDetails as $dd){$totalCars =$dd['total_cars'];}
+//}
 
 
 ?>
@@ -75,17 +76,17 @@ $form = $this->beginWidget('CActiveForm', array(
     <div class="row-fluid">
         <div class="span5">
              <label>Frequency of cleaning</label>
-             <?php echo $form->dropDownList($model,'NumberOfTimesServices', array('2'=>'Twice a Month', '5'=>'One time', '1' => 'Once a Month', '2' => 'Twice a Month', '3'=>'Every 3 Months', '4'=>'Every 6 Months'), array('options' => array($NOfTimesServices => array('selected' => 'selected')),'onchange' => 'javascript:onChangeFrequencyto(this.value);', 'class' => 'span12'));?>
+             <?php echo $form->dropDownList($model,'NumberOfTimesServices', array('2'=>'Twice a Month', '5'=>'One time', '1' => 'Once a Month', '2' => 'Twice a Month', '3'=>'Every 3 Months', '4'=>'Every 6 Months'), array('options' => array($NOfServiceTime => array('selected' => 'selected')),'onchange' => 'javascript:onChangeFrequencyto(this.value);', 'class' => 'span12'));?>
              <?php echo $form->error($model, 'NumberOfTimesServices'); ?>
         </div>
         <div class="span5" id="otherFreqDiv">
              <label> When do you want service?</label>
-             <?php echo $form->dropDownList($model,'WeekDays', array(''=>'Please Select Day','Sunday'=>'Sunday', 'Monday'=>'Monday', 'Tuesday' => 'Tuesday', 'Wednesday' => 'Wednesday', 'Thursday'=>'Thursday', 'Friday'=>'Friday', 'Saturday'=>'Saturday'), array('options' => array($WeekDays => array('selected' => 'selected')), 'class' => 'span12'));?>
+             <?php echo $form->dropDownList($model,'WeekDays', array(''=>'Please Select Day','Sunday'=>'Sunday', 'Monday'=>'Monday', 'Tuesday' => 'Tuesday', 'Wednesday' => 'Wednesday', 'Thursday'=>'Thursday', 'Friday'=>'Friday', 'Saturday'=>'Saturday'), array('options' => array($WeekDays => array('selected' => 'selected')),'class' => 'span12'));?>
              <?php echo $form->error($model, 'WeekDays'); ?>
         </div>
         <div class="span5" id="oneTimeDiv" style="display:none;">
              <label>Select Date</label>
-             <?php echo $form->textField($model, 'ServiceStartTime', array('value'=>$CarServiceTime,'class' => 'span10', 'placeholder' => 'Select Date...')); ?>
+             <?php echo $form->textField($model, 'ServiceStartTime', array('value'=>$CarServiceTime, 'class' => 'span10', 'placeholder' => 'Select Date...')); ?>
              <?php echo $form->error($model, 'ServiceStartTime'); ?>
         </div>
     </div>
@@ -122,8 +123,8 @@ $form = $this->beginWidget('CActiveForm', array(
     var MakeOC = new Array();
     var ExtClr = new Array();
     var mc = 0;
-
-    $(document).ready(function(){
+    
+     $(document).ready(function(){
        var w = $('#CarWashForm_NumberOfTimesServices').val();
        if(w==5)
        {
@@ -136,7 +137,6 @@ $form = $this->beginWidget('CActiveForm', array(
            document.getElementById('otherFreqDiv').style.display='block';
        }
    });
-
     $(document).ready(function() {
          var currentDate=new Date();
                var maxdate=new Date();
@@ -176,7 +176,7 @@ $form = $this->beginWidget('CActiveForm', array(
         
         
         <?php if(isset($getCarWashServiceDetails) && sizeof($getCarWashServiceDetails)>0){ 
-            $j=1; foreach($getCarWashServiceDetails as $rw){ ?>
+            error_log("==00000000000000======sdfasdfsdfsdf11111111111111111");$j=1; foreach($getCarWashServiceDetails as $rw){ ?>
         
     //alert("edit form starting=====");
         sHtml +='<div class="cardetails" >'+
@@ -932,7 +932,9 @@ $(".DifferentAddress").live('mouseenter',function(){
     });*/
 
 <?php if(isset($getCarWashServiceDetails) && sizeof($getCarWashServiceDetails)>0){ 
-    $j=1; foreach($getCarWashServiceDetails as $rw){ ?>
+    error_log("==00000000000000======sdfasdfsdfsdf11111111111111111");
+    
+    $j=1; foreach($getCarWashServiceDetails as $rw){ error_log("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjj====".$j);?>
          <?php if($rw['different_location']==1){?>
            $('#CarWashForm_DifferentLocation').val('1');  
            $('.AddressFieldsDiv').show();
@@ -950,7 +952,7 @@ $(".DifferentAddress").live('mouseenter',function(){
     $('#11_PinCode').val("<?php echo $rw['address_pin_code'];?>");
            //alert("for else cond in=="+$('#CarWashForm_DifferentLocation').val());
          <?php }?>
-         <?php if($rw['different_number'] == 1){ ?>
+         <?php if($rw['different_number'] == 1){ error_log("iiiiiiiiiiiiiiiiiiiddddddddddddddddddddd====");?>
           
         //$('#DifferentLocationDiv').show();
         //$('#DifferentLocation').bootstrapSwitch();
@@ -959,13 +961,13 @@ $(".DifferentAddress").live('mouseenter',function(){
         $('#<?php echo $j; ?>_DifferentAddress').bootstrapSwitch('setState', true);
         $('#<?php echo $j; ?>_AddressFieldsDiv').show();
         $('#<?php echo $j; ?>_DifferentAddress').val('1');
-        <?php } else {   ?>
+        <?php } else { error_log("eeeeeeeeeeeeeeeeeeeeeeddddddddddddddddddddd====");  ?>
            
         //$('#<?php echo $j; ?>_DifferentAddress').bootstrapSwitch();
         $('#<?php echo $j; ?>_DifferentAddress').bootstrapSwitch('setState', false);
         $('#<?php echo $j; ?>_DifferentAddress').val('0');
         <?php } ?> 
-        
+            <?php  error_log("iiiiiiiiijjjjjjjjjjjjjjjjjjjiiiiiiiiiiddddddddddddddddddddd====".$j);?>
         <?php if($rw['interior_cleaning'] == 1){ ?>
         $('#<?php echo $j; ?>_InteriorCleaning').bootstrapSwitch('setState', true);
         $('#<?php echo $j; ?>_interiorDiv').show();

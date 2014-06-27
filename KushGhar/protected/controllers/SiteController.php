@@ -77,6 +77,7 @@ class SiteController extends Controller {
        // 
         }else{
             $this->session->destroy();
+            $this->redirect("/site/index");
             
         }
         $this->render('index');

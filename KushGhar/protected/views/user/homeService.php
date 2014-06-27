@@ -929,7 +929,7 @@ $(document).ready(function() {
             var startDateValuecmp = stDate1.getTime();
             var endDateValuecmp = enDate1.getTime();
             if (compDate == 0) {
-                           alert(compDate);
+                           
                 var stTimeres = stDateres1[1].split(":");
                 var enTimeres = enDateres1[1].split(":");
                 if (Math.round(stTimeres[0]) < Math.round(enTimeres[0])) {
@@ -987,7 +987,7 @@ $(document).ready(function() {
             var enDate1 = new Date(enDateres);
 
             var compDate = stDate1 - enDate1;
-            alert(compDate);
+            
             var startDateValuecmp = stDate1.getTime();
             var endDateValuecmp = enDate1.getTime();
 

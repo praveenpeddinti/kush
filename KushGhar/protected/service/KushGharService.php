@@ -531,6 +531,17 @@ class KushGharService {
     public function getOrderHServicesDetails($oId) {
         return OrderDetails::model()->getOrderHServicesDetails($oId);
     }
+    // Customer Side Order details
+    public function getTotalOrdersForCustomer($stype,$orderNo,$cId) {
+        return OrderDetails::model()->getTotalOrdersForCustomer($stype,$orderNo,$cId);
+    }
+    public function getOrderDetailsForCustomer($start,$end,$type,$orderNo,$cId) {
+        return HouseCleaningService::model()->getOrderDetailsForCustomer($start,$end,$type,$orderNo,$cId);
+    }
+
+
+
+
     
 }
 

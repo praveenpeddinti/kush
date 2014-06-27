@@ -152,7 +152,7 @@
 
 $(function(){
         
-        getCollectionDataWithPagination('/user/newOrder','userDetails', 'abusedWords_tbody',1,5,'','','20', '');
+        getCollectionDataWithPagination('/user/newOrder','userDetails', 'abusedWords_tbody',1,5,'','', '');
     });
     
     
@@ -186,15 +186,15 @@ $(function(){
         
     });
 }
-function getCollectionDataWithPagination(URL,CollectionName, MainDiv, CurrentPage, PageSize,s,orderNo,status, callback){
+function getCollectionDataWithPagination(URL,CollectionName, MainDiv, CurrentPage, PageSize,s,orderNo, callback){
    //alert("URL===="+URL+"==CollectionName==="+CollectionName+"==MainDiv==="+MainDiv+"==CurrentPage==="+CurrentPage+"==PageSize==="+PageSize);
     globalspace[MainDiv+'_page'] = Number(CurrentPage);
         globalspace[MainDiv+'_pageSize']=Number(PageSize);
         globalspace[MainDiv+'_serviceType']=Number(s);
         globalspace[MainDiv+'_orderNo']=Number(orderNo);
-        globalspace[MainDiv+'_status']=Number(status);
+        
 
-        var newURL =  URL+"?"+CollectionName+"_page="+globalspace[MainDiv+'_page']+"&pageSize="+globalspace[MainDiv+'_pageSize']+"&serviceType="+globalspace[MainDiv+'_serviceType']+"&orderNo="+globalspace[MainDiv+'_orderNo']+"&status="+globalspace[MainDiv+'_status'];
+        var newURL =  URL+"?"+CollectionName+"_page="+globalspace[MainDiv+'_page']+"&pageSize="+globalspace[MainDiv+'_pageSize']+"&serviceType="+globalspace[MainDiv+'_serviceType']+"&orderNo="+globalspace[MainDiv+'_orderNo'];
     var data = "";  
     //alert(newURL);
         ajaxRequest(newURL,data,function(data){getCollectionDataWithPaginationHandler(data,URL,CollectionName,MainDiv,callback)});
@@ -211,7 +211,7 @@ function getCollectionDataWithPagination(URL,CollectionName, MainDiv, CurrentPag
                     cssStyle: 'light-theme',
                     onPageClick: function(pageNumber, event) {
                         globalspace[MainDiv+'_page'] = pageNumber;
-                        getCollectionDataWithPagination(URL,CollectionName, MainDiv, globalspace[MainDiv+'_page'], globalspace[MainDiv+'_pageSize'],globalspace[MainDiv+'_serviceType'],globalspace[MainDiv+'_orderNo'],globalspace[MainDiv+'_status'], callback)
+                        getCollectionDataWithPagination(URL,CollectionName, MainDiv, globalspace[MainDiv+'_page'], globalspace[MainDiv+'_pageSize'],globalspace[MainDiv+'_serviceType'],globalspace[MainDiv+'_orderNo'], callback)
                     }
 
                 });

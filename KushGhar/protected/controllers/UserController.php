@@ -1116,13 +1116,14 @@ class UserController extends Controller {
     }
     
     public function actionNewOrder() {
-        try {
+        try {$cId = $this->session['UserId'];error_log("---------------".$cId);
             if (isset($_GET['userDetails_page'])) {
-                $totaluser = $this->kushGharService->getTotalOrders($_GET['serviceType'],$_GET['orderNo'],$_GET['status']);
+                
+                $totaluser = $this->kushGharService->getTotalOrdersForCustomer($_GET['serviceType'],$_GET['orderNo'],$cId);
                 //error_log("--------------------------------".$_GET['serviceType']."-------".$_GET['orderNo']);
                 $startLimit = ((int) $_GET['userDetails_page'] - 1) * (int) $_GET['pageSize'];
                 $endLimit = $_GET['pageSize'];
-                $userDetails = $this->kushGharService->getOrderDetailsinAdmin($startLimit, $endLimit,$_GET['serviceType'],$_GET['orderNo'],$_GET['status']);
+                $userDetails = $this->kushGharService->getOrderDetailsForCustomer($startLimit, $endLimit,$_GET['serviceType'],$_GET['orderNo'],$cId);
                 $renderHtml = $this->renderPartial('newOrder', array('userDetails' => $userDetails, 'totalCount' => $totaluser), true);
                 $obj = array('status' => 'success', 'html' => $renderHtml, 'totalCount' => $totaluser);
                 $renderScript = $this->rendering($obj);

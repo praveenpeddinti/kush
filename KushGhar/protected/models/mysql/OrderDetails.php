@@ -75,7 +75,18 @@ class OrderDetails extends CActiveRecord {
        
         return $result;
     }
-    
+    public function getTotalOrdersForCustomer($type,$orderNo,$cId){
+        try{
+            
+             $query = "SELECT count(*) as count FROM KG_Order_details WHERE ServiceId!='' and CustId = $cId";
+            error_log("total customer oD-----".$query);
+            $result = Yii::app()->db->createCommand($query)->queryRow();
+
+        }catch(Exception $ex){
+            error_log("################Exception Occurred  getAllContacts##############".$ex->getMessage());
+        }
+        return $result['count'];
+    }
     
     
     public function getTotalOrders($type,$orderNo,$status){

@@ -90,7 +90,7 @@ box-shadow: 0 4px #196E9B;border:0px;
 
 /* Login */
 .header_profile_settings .getStarted_dd_div:before{
-    border-bottom: 10px solid rgba(0, 0, 0, 0.5);
+    border-bottom: 10px solid #94CA52;
     border-left: 10px solid rgba(0, 0, 0, 0);
     border-right: 10px solid rgba(0, 0, 0, 0);
     content: "";

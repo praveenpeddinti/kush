@@ -201,7 +201,21 @@ class HouseCleaningService extends CActiveRecord {
         }
         return $result;
     }
-    
+
+    public function getOrderDetailsForCustomer($start,$end,$type,$orderNo,$cId) {
+        try {//$query = "SELECT * FROM KG_InvitationUsers where status =1 limit ".$start. ",".$end;
+             $query = "SELECT * FROM KG_Order_details WHERE ServiceId!='' and CustId = $cId limit ".$start. ",".$end;
+            error_log("total details 2customer oD-----".$query);
+
+
+           $result = YII::app()->db->createCommand($query)->queryAll();
+
+        } catch (Exception $ex) {
+            error_log("getOrderDetails Exception occured==" . $ex->getMessage());
+        }
+        return $result;
+    }
+
     public function getOrderDetailsinAdmin($start,$end,$type,$orderNo,$status) {
         try {//$query = "SELECT * FROM KG_InvitationUsers where status =1 limit ".$start. ",".$end;
             if(($type=='0') && ($orderNo=='0') && ($status=='20')){

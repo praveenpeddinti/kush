@@ -41,7 +41,6 @@ class UserController extends Controller {
      */
     public function actionForgot() {
         $modelSample = new SampleForm;
-        // if it is ajax validation request
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'forgot-form') {
             echo CActiveForm::validate($modelSample);
             Yii::app()->end();
@@ -120,8 +119,9 @@ class UserController extends Controller {
         //$inviteForm = new InviteForm;\
         
         $this->session['Type'] = 'Customer';
-
-        $model = new RegistrationForm;
+        
+                $getInviteUserDetail = $this->kushGharService->getInviteUserDetailWithEmail($this->session['InviteEmailId']);
+                $model = new RegistrationForm;
         $modelLogin = new LoginForm;
         $modelSample = new SampleForm;
         $request = yii::app()->getRequest();
@@ -157,7 +157,7 @@ class UserController extends Controller {
             $renderScript = $this->rendering($obj);
             echo $renderScript;
         } else {
-            $this->render('registration', array('model' => $model, 'modelLogin' => $modelLogin, 'modelSample' => $modelSample, 'one' => $_REQUEST['uname']));
+            $this->render('registration', array('model' => $model, 'modelLogin' => $modelLogin, 'modelSample' => $modelSample, 'one' => $_REQUEST['uname'], 'getInviteUserDetail'=>$getInviteUserDetail));
         }
     }
 
@@ -667,40 +667,7 @@ class UserController extends Controller {
         
     
     }
-    /*public function actionServices(){error_log("enter services controller---------");
-        $houseModel = new HouseCleaningForm;
-        $cId = $this->session['UserId'];
-        $customerDetails = $this->kushGharService->getCustomerDetails($cId);
-        $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($cId);
-        $customerPaymentDetails = $this->kushGharService->getCustomerPaymentDetails($cId);
-        $this->session['firstName'] = $customerDetails->first_name;
-        $request = yii::app()->getRequest();
-        $formName = $request->getParam('HouseCleaningForm');
-       
-        if ($formName != '') {
-            $houseModel->attributes = $request->getParam('HouseCleaningForm');
-            $errors = CActiveForm::validate($houseModel);
-            if ($errors != '[]') {
-                $obj = array('status' => 'error', 'message' => '', 'error' => $errors);
-            } else {
-                $result = $this->kushGharService->addHouseCleaningService($houseModel, $cId);
-                error_log("results==========".$result);
-                if ($result == "success") {
-                    $message = Yii::t('translation', 'Thank you for contacting us. We will respond to you as soon as possible');
-                    $obj = array('status' => 'success', 'message' => $message, 'error' => '');
-                } else {
-                    $message = Yii::t('translation', 'Already User Existed');
-                    $obj = array('status' => 'error', 'message' => '', 'error' => $message);
-                }
-            }
-           
-           $renderScript = $this->rendering($obj);
-            echo $renderScript;
-        } else {
-          $this->render('services', array("model"=>$houseModel,"customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails));
-            }
-        
-    }*/
+    
     
     
     public function actionCarwash(){
@@ -908,45 +875,6 @@ class UserController extends Controller {
     
     }
     
-    /*public function actionStewards(){error_log("enter stewards services controller---------");
-        $stewardModel = new StewardCleaningForm;
-        $cId = $this->session['UserId'];
-        $customerDetails = $this->kushGharService->getCustomerDetails($cId);
-        $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($cId);
-        $customerPaymentDetails = $this->kushGharService->getCustomerPaymentDetails($cId);
-        $this->session['firstName'] = $customerDetails->first_name;
-        /*$request = yii::app()->getRequest();
-        $formName = $request->getParam('BasicinfoForm');
-        if ($formName != '') {
-            $basicForm->attributes = $request->getParam('BasicinfoForm');
-            $errors = CActiveForm::validate($basicForm);
-            if ($errors != '[]') {
-                $obj = array('status' => 'error', 'message' => '', 'error' => $errors);
-            } else {
-                if ($this->session['fileName'] == '') {
-                    $basicForm->profilePicture = $customerDetails->profilePicture;
-                } else {
-                    $basicForm->profilePicture = $this->session['fileName'];
-                }
-               
-                $this->session['LoginPic'] = $this->session['fileName'];
-                $result = $this->kushGharService->updateRegistrationData($basicForm, $cId);
-                if ($result == "success") {
-                    $message = Yii::t('translation', 'Thank you for contacting us. We will respond to you as soon as possible');
-                    $obj = array('status' => 'success', 'message' => $message, 'error' => '');
-                } else {
-                    $message = Yii::t('translation', 'Already User Existed');
-                    $obj = array('status' => 'error', 'message' => '', 'error' => $message);
-                }
-            }
-            $renderScript = $this->rendering($obj);
-            echo $renderScript;
-        } else {
-            $this->render('basicinfo', array("model" => $basicForm, "IdentityProof" => $Identity, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails, "updatedPassword" => $updatedPasswordForm));
-        }*/
-        //$this->render('stewards', array("model"=>$stewardModel, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails));
-    //}
-    
     /*
      * Services control actions end
      */
@@ -1016,7 +944,7 @@ class UserController extends Controller {
             $getOrderDetailsMaxParentIdH = $this->kushGharService->getOrderDetailsMaxParentId();
             $storeOrdernumberofHouse = $this->kushGharService->storeOrdernumberofHouse($cId,$getOrderDetailsMaxParentIdH['id'],$getOrderDetailsMaxParentIdH['order_number']);
             $getOrderNumber = $getOrderDetailsMaxParentIdH['order_number'];
-            error_log("-------".$getOrderDetailsMaxParentIdH);
+            //error_log("-------".$getOrderDetailsMaxParentIdH);
             $genOrderNo = $genOrderNo+1;
         }else{$getServiceDetails='0';}
         
@@ -1116,7 +1044,7 @@ class UserController extends Controller {
     }
     
     public function actionNewOrder() {
-        try {$cId = $this->session['UserId'];error_log("---------------".$cId);
+        try {$cId = $this->session['UserId'];
             if (isset($_GET['userDetails_page'])) {
                 
                 $totaluser = $this->kushGharService->getTotalOrdersForCustomer($_GET['serviceType'],$_GET['orderNo'],$cId);

@@ -350,6 +350,10 @@ class KushGharService {
     public function sendInviteMailToUser($id, $val) {
         return InviteUser::model()->sendInviteMailToUser($id, $val);
     }
+    
+    public function getInviteUserDetailWithEmail($email) {
+        return InviteUser::model()->getInviteUserDetailWithEmail($email);
+    }
 
     /*
      * KushGhar Services start code

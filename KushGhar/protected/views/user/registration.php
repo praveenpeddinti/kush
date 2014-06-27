@@ -143,19 +143,19 @@
                                 <input type="hidden" id="VV" value="<?php echo $one;?>" >
 
                                 <?php echo $form->label($model, '<abbr title="required">*</abbr> first name'); ?>
-                                <?php echo $form->textField($model, 'FirstName', array('class' => 'span12', 'placeholder' => 'First Name…', 'maxLength' => 50)); ?>
+                                <?php echo $form->textField($model, 'FirstName', array('value'=>$getInviteUserDetail['first_name'], 'class' => 'span12', 'placeholder' => 'First Name…', 'maxLength' => 50)); ?>
                                 <?php echo $form->error($model, 'FirstName'); ?>
 
                                 <?php echo $form->label($model, '<abbr title="required">*</abbr> last name') ?>
-                                <?php echo $form->textField($model, 'LastName', array('class' => 'span12', 'placeholder' => 'Last Name…', 'maxLength' => 50)); ?>
+                                <?php echo $form->textField($model, 'LastName', array('value'=>$getInviteUserDetail['last_name'], 'class' => 'span12', 'placeholder' => 'Last Name…', 'maxLength' => 50)); ?>
                                 <?php echo $form->error($model, 'LastName'); ?>
 
                                 <label><?php echo $form->labelEx($model, '<abbr title="required">*</abbr> email'); ?></label>
-                                <?php echo $form->textField($model, 'Email', array('class' => 'span12', 'placeholder' => 'Email…', 'maxLength' => 100)); ?>
+                                <?php echo $form->textField($model, 'Email', array('value'=>$getInviteUserDetail['email_address'], 'class' => 'span12', 'placeholder' => 'Email…', 'maxLength' => 100)); ?>
                                 <?php echo $form->error($model, 'Email'); ?>
 
                                 <label><?php echo $form->labelEx($model, '<abbr title="required">*</abbr> phone'); ?></label><input type="text" value="+91" disabled="disabled" class="span2"/>
-                                <?php echo $form->textField($model, 'Phone', array('id' => 'RegistrationForm_Phone', 'class' => 'span10', 'placeholder' => 'Phone…', 'maxLength' => 10, 'onkeypress' => 'return isNumberKey(event);')); ?>
+                                <?php echo $form->textField($model, 'Phone', array('value'=>$getInviteUserDetail['phone'], 'id' => 'RegistrationForm_Phone', 'class' => 'span10', 'placeholder' => 'Phone…', 'maxLength' => 10, 'onkeypress' => 'return isNumberKey(event);')); ?>
                                 <?php echo $form->error($model, 'Phone'); ?>
 
                                 <label><?php echo $form->labelEx($model, '<abbr title="required">*</abbr> password'); ?></label>

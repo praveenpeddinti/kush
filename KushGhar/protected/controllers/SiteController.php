@@ -72,7 +72,8 @@ class SiteController extends Controller {
     public function actionInvite() {
         if(isset($_REQUEST['uname'])){
         $this->session['UserType'] = "inviteToEmail";
-        error_log("enter splash page======".$this->session['UserType']);
+        $this->session['InviteEmailId'] = $_REQUEST['uname'];
+        //error_log("enter splash page======".$this->session['UserType']);
        // 
         }else{
             $this->session->destroy();
@@ -96,7 +97,6 @@ class SiteController extends Controller {
     
     /* Cleaning Page */
     public function actionCleaning() {
-        error_log("============================".$this->session['UserType']);
         $inviteForm = new InviteForm;
         $getServices = $this->kushGharService->getServices();
         $this->render('cleaning',array("inviteModel" => $inviteForm, "getServices"=>$getServices));

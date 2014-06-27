@@ -77,6 +77,16 @@ class InviteUser extends CActiveRecord {
         return $result;
     }
 
+    public function getInviteUserDetailWithEmail($email) {
+
+        try {
+            $InviteUserDetailsWithEmail = InviteUser::model()->findByAttributes(array('email_address' => $email));
+        } catch (Exception $ex) {
+            error_log("############Error Occurred= in usergetDetails= #############" . $ex->getMessage());
+        }
+        return $InviteUserDetailsWithEmail;
+    }
+    
    public function getTotalUsers(){
         try{            
             $query = "SELECT count(*) as count FROM KG_InvitationUsers";

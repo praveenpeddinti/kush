@@ -1,6 +1,6 @@
 <?php if ($totalCount <= 0) { ?>
                                         <tr id="noRecordsTR">
-                                            <td colspan="2">
+                                            <td colspan="4">
                                                 <span class="text-error"> <b>No records found</b></span>
                                             </td>
                                         </tr>

@@ -945,16 +945,19 @@ $(document).ready(function() {
             }
             if (startDateValuecmp < endDateValuecmp) {
                 var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
-                var STime = stDateres.replace(/-/g, ",");
-                var ETime = enDateres.replace(/-/g, ",");
+                var STime = stDateres.replace(/\//g, ",");
+                var ETime = enDateres.replace(/\//g, ",");
                 var firstDate = new Date(STime);
                 var secondDate = new Date(ETime);
-
                 var diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime()) / (oneDay)));
-                 var stTimeres = stDateres1[1].split(":");
+                var stTimeres = stDateres1[1].split(":");
                 var enTimeres = enDateres1[1].split(":");
-                 totalHours1 = ((diffDays * 24) + (Math.abs((Math.round(enTimeres[0]) - Math.round(stTimeres[0])))));
-                $("#StewardCleaningForm_DurationHours").val(totalHours1);
+                var a = new Date(sTime[2], sTime[1], sTime[0], stTimeres[0], stTimeres[1], 0, 0); // Now
+                var b = new Date(eTime[2], eTime[1], eTime[0], enTimeres[0], enTimeres[1], 0, 0);
+                var seconds = Math.round((b-a)/1000);
+                var mm = Math.round(seconds/60)
+                var hr = Math.round(mm/60)
+               $("#StewardCleaningForm_DurationHours").val(hr);
                 
             }
 

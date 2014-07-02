@@ -1,8 +1,10 @@
 <script src="../../../js/common.js" type="text/javascript"></script>
 <script type="text/javascript">
         $( document ).ready(function() {
+            var qStringInt='<?php echo empty($_REQUEST['Uname'])?NULL : $_REQUEST['Uname'];?>';
             var qString= '<?php echo empty($_REQUEST['ClickBy'])? NULL : $_REQUEST['ClickBy'];?>';
-            if(readCookie("Invited")==null && qString=='')
+
+            if((readCookie("Invited")==null) && (qString=='') && (qStringInt==''))
             {
                 $("#myModal").modal({ backdrop: 'static', keyboard: false,show:false });
                 //alert("enter site index==="+document.getElementById('VV').value);
@@ -13,9 +15,15 @@
                 $('#myModal').modal('show');
                 }
             }
-            if(qString!="SignIn")
+            if(qString=="SignIn")
+            {
+                document.getElementById("ModalDivLogin").style.display = "none";
+                document.getElementById("ModalDiv").style.display = "block";
+            }
+            if(qStringInt!='')
             {
                 document.getElementById("ModalDiv").style.display = "none";
+                document.getElementById("ModalDivLogin").style.display = "block";
             }
         });
         function readCookie(name) {
@@ -188,6 +196,7 @@
                     <div class="reg_div ">
                         <div class="paddinground">
                             <h2 class="reg_title">Existing User Login</h2>
+                            <div id="ModalDivLogin" style="position: absolute;left:0;right: 0;top:0;bottom: 0;background: #fff;opacity: 0.5;"></div>
                             <?php $form1 = $this->beginWidget('CActiveForm', array(
                                   'id' => 'login-form',
                                   'enableClientValidation' => true,

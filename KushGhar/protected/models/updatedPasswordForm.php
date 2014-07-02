@@ -19,7 +19,7 @@ class updatedPasswordForm extends CFormModel {
              array('Password, RepeatPassword', 'required', 'message' => 'Please enter a value for {attribute}.'),
             array('Password', 'required', 'on' => 'insert'),
             array('RepeatPassword', 'compare', 'compareAttribute' => 'Password',
-                'message' => 'Password  and Repeat Password must be match'
+                'message' => ' Password  and Repeat Password must be match'
             ),
             
             array('Password,RepeatPassword', 'safe'),

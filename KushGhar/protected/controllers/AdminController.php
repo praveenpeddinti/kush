@@ -100,7 +100,7 @@ class AdminController extends Controller {
                         if ($details == 'No user') {
                             $to = $email[$i];
                             $subject = 'KushGhar Invitation';
-                            $mess1 = 'http://www.kushghar.com/site/invite?uname=' . $email[$i] . "\r\n\n";
+                            $mess1 = 'http://www.kushghar.com/user/registration?Uname=' . $email[$i] . "\r\n\n";
                             //$mess1 = 'http://115.248.17.88:6060/site/invite?uname=' . $email[$i] . "\r\n\n";
                             $messages = $mess1;
                             $this->sendMailToUser($to, '', $subject, $messages, 'KushGhar', 'no-reply@kushghar.com', 'InvitationMail');
@@ -170,7 +170,7 @@ class AdminController extends Controller {
     public function actionInviteStatus() {
         $email = $_POST['email'];
         
-        $mess1 = 'http://www.kushghar.com/site/invite?uname=' . $email . "\r\n\n";
+        $mess1 = 'http://www.kushghar.com/user/registration?Uname=' . $email . "\r\n\n";
         $changeUserStatus = $this->kushGharService->sendInviteMailToUser($_POST['Id'], $_POST['status']);
         $to = $_POST['email'];
         $subject ="KushGhar Invitation";

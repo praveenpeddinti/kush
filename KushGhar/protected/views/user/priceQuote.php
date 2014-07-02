@@ -11,7 +11,7 @@ $Stotal = 0; ?>
                     $priceRoom2 = (($getServiceDetails['total_bathRooms'] + $getServiceDetails['total_kitchens']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
                     $priceAddServices = (($getServiceDetails['window_grills'] + $getServiceDetails['fridge_interior'] + $getServiceDetails['microwave_oven_interior']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
                     //$serviceTaxPrice = (($priceRoom1+$priceRoom2+$priceAddServices)*12.36)/100;
-                    $totalRoomsPrice = 750+$priceRoom1 + $priceRoom2 + $priceAddServices;
+                    $totalRoomsPrice = $priceRoom1 + $priceRoom2 + $priceAddServices;
                 ?>
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -200,7 +200,9 @@ $Stotal = 0; ?>
         </div>
     </div>
     <div class="row-fluid">
-    <?php $serviceTax = ((($totalRoomsPrice + $Ctotal + $Stotal) * 12.36) / 100); ?>
+    <?php //$serviceTax = ((($totalRoomsPrice + $Ctotal + $Stotal) * 12.36) / 100); 
+    $serviceTax=0;
+    ?>
         <div class="span6"><label>Total Price (Service Tax Included)</label><input type="text" value="<?php echo $totalRoomsPrice + $Ctotal + $Stotal + $serviceTax; ?>" id="price" readonly="true" /></div>
         <div class="span6">
             <div class="pull-right paddingT30">
@@ -346,7 +348,7 @@ $Stotal = 0; ?>
         $priceRoom2 = (($getServiceDetails['total_bathRooms'] + $getServiceDetails['total_kitchens']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
         $priceAddServices = (($getServiceDetails['window_grills'] + $getServiceDetails['fridge_interior'] + $getServiceDetails['microwave_oven_interior']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
         //$serviceTaxPrice = (($priceRoom1+$priceRoom2+$priceAddServices)*12.36)/100;
-        $totalRoomsPrice = 750+$priceRoom1 + $priceRoom2 + $priceAddServices;
+        $totalRoomsPrice = $priceRoom1 + $priceRoom2 + $priceAddServices;
 
         ?>
 
@@ -546,9 +548,21 @@ $Stotal = 0; ?>
     
                                <div class="span12"><label>No Services.</label></div>
                            </div>       
-                       <?php }else{?>         
+                       <?php }else{?> 
+                                 <div class="panel panel-default">
+                                                    <div class="panel-heading">
+                                                        <div class="panel-title stewards_title2">
+                                                            <a data-toggle="collapse" data-parent="#" href="#" class="collapsed" style="display:block">
+                                                                <span class="pull-left">Service Tax</span>
+                                                                <span class="serviceprice">Rs. 0</span>
+                                                                <div class="count"></div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
                                 <div class="row-fluid">
-    <?php $serviceTax = ((($totalRoomsPrice + $Ctotal + $Stotal) * 12.36) / 100); ?>
+    <?php //$serviceTax = ((($totalRoomsPrice + $Ctotal + $Stotal) * 12.36) / 100);
+    $serviceTax=0;
+    ?>
                                     <div class="span6"><label>Total Price (Service Tax Included)</label><input type="text" value="<?php echo $totalRoomsPrice + $Ctotal + $Stotal + $serviceTax; ?>" id="price" readonly="true"/></div>
                                     <div class="span6">
                                         <div class="pull-right paddingT30">

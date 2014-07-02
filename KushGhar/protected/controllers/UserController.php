@@ -939,8 +939,10 @@ class UserController extends Controller {
             $priceRoom1 = (($getServiceDetails['total_livingRooms'] + $getServiceDetails['total_bedRooms']) * 125);
             $priceRoom2 = (($getServiceDetails['total_bathRooms'] + $getServiceDetails['total_kitchens']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
             $priceAddServices = (($getServiceDetails['window_grills'] + $getServiceDetails['fridge_interior'] + $getServiceDetails['microwave_oven_interior']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
-            $serviceTaxPrice = (($priceRoom1+$priceRoom2+$priceAddServices)*12.36)/100;
-            $totalRoomsPrice = 750+$priceRoom1 + $priceRoom2 + $priceAddServices+$serviceTaxPrice;
+//            $serviceTaxPrice = (($priceRoom1+$priceRoom2+$priceAddServices)*12.36)/100;
+            $serviceTaxPrice=0;
+            $totalRoomsPrice = $priceRoom1 + $priceRoom2 + $priceAddServices+$serviceTaxPrice;
+            error_log("price================"+$totalRoomsPrice);
             $storeOrderDetailsOfHouse = $this->kushGharService->storeOrderDetailsOfHouse($cId,$getOrderDetailsMaxParentId['id'],$getServiceDetails['CustId'],$genOrderNo,'1',$totalRoomsPrice);
             $getOrderDetailsMaxParentIdH = $this->kushGharService->getOrderDetailsMaxParentId();
             error_log("--------House--------".$getOrderDetailsMaxParentIdH['id']);

@@ -46,7 +46,9 @@
                                         <?php echo $form->error($model, 'WeekDays'); ?>
                                       </div>
                                       <div class="span6" id="oneTimeDiv" style="display:none;">
+
                                         <label><abbr title="required">*</abbr> Select Date</label>
+
                                         <?php  echo $form->textField($model, 'ServiceStartTime', array('value'=>$getServiceDetails['houseservice_start_time'] ,'class' => 'span10', 'placeholder' => 'Select Date…')); ?>
                                         <?php echo $form->error($model, 'ServiceStartTime'); ?>
 
@@ -157,14 +159,14 @@
     $(document).ready(function() {
          Custom.init();
          //Date and Time start
-        var currentDate=new Date();
+        var currentDate=new Date.today().addDays(1);
                 var maxdate=new Date();
                 maxdate.setFullYear(maxdate.getFullYear()-19);
                 var mindate=new Date();
-                mindate.setFullYear(mindate.getFullYear());
+                mindate.setFullYear(currentDate.getFullYear());
                 mindate.setMonth(currentDate.getMonth());
-                mindate.setDate(currentDate.getDate()+1);
-                
+                mindate.setDate(currentDate.getDate());
+               
                 $('#HouseCleaningForm_ServiceStartTime').scroller({
                     preset: 'date',
                     theme: 'android', // for android set theme:'android'
@@ -174,7 +176,7 @@
                     dateOrder: 'Md ddyy',
                     minDate:  mindate
                 });
-         
+                $('#HouseCleaningForm_ServiceStartTime').scroller('setDate', mindate, true);
         $('#WindowGrills').bootstrapSwitch();
         $('#FridgeInterior').bootstrapSwitch();
         $('#MicroWaveOven').bootstrapSwitch();

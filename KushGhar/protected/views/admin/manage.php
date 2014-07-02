@@ -84,7 +84,7 @@
                     $("#message").addClass('alert alert-success');
                     $("#message").text('Delete user Successfully.');
                     $("#message").fadeOut(6000, "");
-                    //$('#row_' + rowNos).remove();
+                    $('#row_' + rowNos).remove();
                     getCollectionDataWithPagination('/admin/newManage','userDetails', 'abusedWords_tbody',pageno,5, '');
                 },
                 error: function(data) { // if error occured
@@ -269,7 +269,7 @@ function getCollectionDataWithPagination(URL,CollectionName, MainDiv, CurrentPag
 globalspace[MainDiv+'_page'] = Number(CurrentPage);
 globalspace[MainDiv+'_pageSize']=Number(PageSize);
 var newURL =  URL+"?"+CollectionName+"_page="+globalspace[MainDiv+'_page']+"&pageSize="+globalspace[MainDiv+'_pageSize'];
-var data = "";  
+var data = ""; 
 ajaxRequest(newURL,data,function(data){getCollectionDataWithPaginationHandler(data,URL,CollectionName,MainDiv,callback)});
 }
 function getCollectionDataWithPaginationHandler(data,URL,CollectionName,MainDiv,callback){

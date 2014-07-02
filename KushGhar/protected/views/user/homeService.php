@@ -1,3 +1,4 @@
+<script src="../../../js/date.js" type="text/javascript"></script>
 <div class="container">
     <!--<div id="instant_notifications" class="instant_notification">Basic Information</div>-->
     <section>
@@ -898,88 +899,137 @@ $(document).ready(function() {
         }
     }
     function onChangeTime() {
-
+        
         var StartTimes = $("#StewardCleaningForm_StartTime").val();
         var EndTimes = $("#StewardCleaningForm_EndTime").val();
 
         $('#StewardCleaningForm_EndTime').scroller('option', 'minDate', $('#StewardCleaningForm_StartTime').scroller('getDate'));
 
-        if ((StartTimes != '') && (EndTimes != '')) {
-            if(StartTimes>EndTimes)
+        if ((StartTimes != '') && (EndTimes != '')){
+        var first=StartTimes.split(" ");
+        var STimefirst=first[1].split(":");
+        var SDate=first[0].split("-");
+        var last=EndTimes.split(" ");
+        var eTimeLast=last[1].split(":");
+        var EDate=last[0].split("-");
+        var sDateFinal=SDate[2]+"/"+SDate[1]+"/"+SDate[0];
+        var eDateFinal=EDate[2]+"/"+EDate[1]+"/"+EDate[0];
+        var sdate=new Date(sDateFinal);
+        var edate=new Date(eDateFinal);
+        var diffdays=sdate-edate; 
+        var scmp=sdate.getTime();
+        var ecmp=edate.getTime();
+        if(scmp > ecmp)
+        {
+            $("#StewardCleaningForm_EndTime").val(StartTimes); 
+            $("#StewardCleaningForm_DurationHours").val("1");
+        }
+        if(diffdays==0)
+        {
+            if (STimefirst[0] < eTimeLast[0])
             {
-                $("#StewardCleaningForm_EndTime").val(StartTimes); 
+                var hrs=eTimeLast[0]-STimefirst[0];
+                $("#StewardCleaningForm_DurationHours").val(hrs);
+            }
+            else
+            {
                 $("#StewardCleaningForm_DurationHours").val("1");
             }
         }
-        if ((StartTimes != '') && (EndTimes != '')) {
-            
-            var totalHours1 = '';
-            var stDateres1 = StartTimes.split(" ");
-            var enDateres1 = EndTimes.split(" ");
 
-            var sTime = stDateres1[0].split("-");
-            var stDateres = sTime[2]+"/"+sTime[1]+"/"+sTime[0];
-            var eTime = enDateres1[0].split("-");
-            var enDateres = eTime[2]+"/"+eTime[1]+"/"+eTime[0];
-            var stDate1 = new Date(stDateres);
-            var enDate1 = new Date(enDateres);
-
-            var compDate = stDate1 - enDate1;
-
-            var startDateValuecmp = stDate1.getTime();
-            var endDateValuecmp = enDate1.getTime();
-            if (compDate == 0) {
-                           
-                var stTimeres = stDateres1[1].split(":");
-                var enTimeres = enDateres1[1].split(":");
-                if (Math.round(stTimeres[0]) < Math.round(enTimeres[0])) {
-
-                    totalHours1 = Math.round(enTimeres[0]) - Math.round(stTimeres[0]);
-                    $("#StewardCleaningForm_DurationHours").val(totalHours1);
-
-                }
-                else
-                {
-                    $("#StewardCleaningForm_DurationHours").val("1");
-                }
-            }
-            if (startDateValuecmp < endDateValuecmp) {
-                var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
-                var STime = stDateres.replace(/\//g, ",");
-                var ETime = enDateres.replace(/\//g, ",");
-                var firstDate = new Date(STime);
-                var secondDate = new Date(ETime);
-                var diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime()) / (oneDay)));
-                var stTimeres = stDateres1[1].split(":");
-                var enTimeres = enDateres1[1].split(":");
-                var a = new Date(sTime[2], sTime[1], sTime[0], stTimeres[0], stTimeres[1], 0, 0); // Now
-                var b = new Date(eTime[2], eTime[1], eTime[0], enTimeres[0], enTimeres[1], 0, 0);
-                var seconds = Math.round((b-a)/1000);
-                var mm = Math.round(seconds/60)
-                var hr = Math.round(mm/60)
-               $("#StewardCleaningForm_DurationHours").val(hr);
-                
-            }
+        if (scmp < ecmp)
+        {
+            var f=new Date(SDate[2], SDate[1]-1, SDate[0], STimefirst[0], STimefirst[1], 0, 0);
+            var e=new Date(EDate[2], EDate[1]-1, EDate[0], eTimeLast[0], eTimeLast[1], 0, 0);
+            var thrs=Math.abs(e - f) / 36e5;
+            $("#StewardCleaningForm_DurationHours").val(thrs);
 
         }
     }
+
+//        if ((StartTimes != '') && (EndTimes != '')) {
+//            if(StartTimes>EndTimes)
+//            {
+//                $("#StewardCleaningForm_EndTime").val(StartTimes); 
+//                $("#StewardCleaningForm_DurationHours").val("1");
+//            }
+//        }
+//        if ((StartTimes != '') && (EndTimes != '')) {
+//            
+//            var totalHours1 = '';
+//            var stDateres1 = StartTimes.split(" ");
+//            var enDateres1 = EndTimes.split(" ");
+//
+//            var sTime = stDateres1[0].split("-");
+//            var stDateres = sTime[2]+"/"+sTime[1]+"/"+sTime[0];
+//            var eTime = enDateres1[0].split("-");
+//            var enDateres = eTime[2]+"/"+eTime[1]+"/"+eTime[0];
+//            var stDate1 = new Date(stDateres);
+//            var enDate1 = new Date(enDateres);
+//             
+//            var compDate = stDate1 - enDate1;
+//
+//            var startDateValuecmp = stDate1.getTime();
+//            var endDateValuecmp = enDate1.getTime();
+//            if (compDate == 0) {
+//                           
+//                var stTimeres = stDateres1[1].split(":");
+//                var enTimeres = enDateres1[1].split(":");
+//                if (Math.round(stTimeres[0]) < Math.round(enTimeres[0])) {
+//
+//                    totalHours1 = Math.round(enTimeres[0]) - Math.round(stTimeres[0]);
+//                    $("#StewardCleaningForm_DurationHours").val(totalHours1);
+//
+//                }
+//                else
+//                {
+//                    $("#StewardCleaningForm_DurationHours").val("1");
+//                }
+//            }
+//            if (startDateValuecmp < endDateValuecmp) {
+//                var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+//                var STime = stDateres.replace(/\//g, ",");
+//                var ETime = enDateres.replace(/\//g, ",");
+//                var firstDate = new Date(STime);
+//                var secondDate = new Date(ETime);
+//
+//                var diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime()) / (oneDay)));
+//                var stTimeres = stDateres1[1].split(":");
+//                var enTimeres = enDateres1[1].split(":");
+//                var a = new Date(sTime[2], sTime[1]-1, sTime[0], stTimeres[0], stTimeres[1], 0, 0); // Now
+//                var b = new Date(eTime[2], eTime[1]-1, eTime[0], enTimeres[0], enTimeres[1], 0, 0);
+//                var seconds = Math.round((b-a)/1000);
+//                var mm = Math.round(seconds/60);
+//                var hr = Math.round(mm/60);
+//                var hr1=Math.abs(b - a) / 36e5;
+//                $("#StewardCleaningForm_DurationHours").val(hr1);
+//            }
+//
+//        }
+    }
+    var noOfStewards;
+//    $(document).ready(function() {
+//        noOfStewards=($('#StewardCleaningForm_AttendPeople').val())/15;
+//    });
     function onTotalStewards(obj) {
        
-        $("#StewardCleaningForm_totalStewards").val(Math.round(obj.value / 15));
-
+        if(obj.value<15)
+        {
+            $("#StewardCleaningForm_totalStewards").val("1");
+            noOfStewards=1;
+        }
+        else
+        {
+            var stewards=Math.round(obj.value / 15);
+            $("#StewardCleaningForm_totalStewards").val(stewards);
+            noOfStewards=stewards;
+        }
     }
     function submitStewardsCleaning() {
         var queryString = $('#steward-form').serialize();
         var totalHours = '';
         var stDate = $('#StewardCleaningForm_StartTime').val();
         var enDate = $('#StewardCleaningForm_EndTime').val();
-        /*var stDateres = stDate.split(" ");
-        var enDateres = enDate.split(" ");
-        var stDate1 = new Date(stDateres[0]);
-        var enDate1 = new Date(enDateres[0]);
-        var compDate = stDate1 - enDate1;
-        var startDateValuecmp = stDate1.getTime();
-        var endDateValuecmp = enDate1.getTime();*/
             var stDateres1 = stDate.split(" ");
             var enDateres1 = enDate.split(" ");
            var sTime = stDateres1[0].split("-");
@@ -1048,6 +1098,13 @@ $(document).ready(function() {
                 $("#StewardCleaningForm_EndTime_em_").text("End Time cannot be less than Start Time");
                 return false;
             }
+        }
+        if($("#StewardCleaningForm_totalStewards").val()<noOfStewards)
+        {
+            $("#StewardCleaningForm_totalStewards_em_").show();
+            $("#StewardCleaningForm_totalStewards_em_").addClass('errorMessage');
+            $("#StewardCleaningForm_totalStewards_em_").text("# of Stewards should not be less than "+noOfStewards+" as recommended");
+            return false;
         }
         if (startDateValuecmp > endDateValuecmp) {
             $("#StewardCleaningForm_EndTime_em_").show();

@@ -150,24 +150,24 @@ $form = $this->beginWidget('CActiveForm', array(
        }
    });
 
-    $(document).ready(function() {
-         var currentDate=new Date();
-               var maxdate=new Date();
-               maxdate.setFullYear(maxdate.getFullYear()-19);
-               var mindate=new Date();
-               mindate.setFullYear(mindate.getFullYear());
-               mindate.setMonth(currentDate.getMonth());
-               mindate.setDate(currentDate.getDate()+1);
-
-               $('#CarWashForm_ServiceStartTime').scroller({
-                   preset: 'date',
-                   theme: 'android', // for android set theme:'android'
-                   display: 'modal',
-                   mode: 'scroller',
-                   dateFormat:'dd-mm-yyyy',
-                   dateOrder: 'Md ddyy',
-                   minDate:  mindate
-               });
+   $(document).ready(function() {
+var currentDate=new Date.today().addDays(1);
+var maxdate=new Date();
+maxdate.setFullYear(maxdate.getFullYear()-19);
+var mindate=new Date();
+mindate.setFullYear(currentDate.getFullYear());
+mindate.setMonth(currentDate.getMonth());
+mindate.setDate(currentDate.getDate());
+$('#CarWashForm_ServiceStartTime').scroller({
+preset: 'date',
+theme: 'android', // for android set theme:'android'
+display: 'modal',
+mode: 'scroller',
+dateFormat:'dd-mm-yyyy',
+dateOrder: 'Md ddyy',
+minDate: mindate
+});
+$('#CarWashForm_ServiceStartTime').scroller('setDate', mindate, true);
 //        var currentDate=new Date();
 //                var maxdate=new Date();
 //                maxdate.setFullYear(maxdate.getFullYear()-19);

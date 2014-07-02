@@ -136,7 +136,7 @@
                                         <td>
                                             <?php if($orderDetails[$i]['ServiceId']=='1'){$serviceName='House Cleaning';}
                                             if($orderDetails[$i]['ServiceId']=='2'){$serviceName='Car Wash';}
-                                            if($orderDetails[$i]['ServiceId']=='3'){$serviceName='Stewards Cleaning';}
+                                            if($orderDetails[$i]['ServiceId']=='3'){$serviceName='Stewards Services';}
                                             echo $serviceName;
                                            ?>
                                         </td>

@@ -25,7 +25,7 @@
                  </div>
                  <div class=" span4">
                     <?php echo $inviteform->labelEx($inviteModel,'<abbr title="required">*</abbr> phone'); ?>
-                     <input type="text" value="+91" disabled="true" style="width:40px" class="span2" />&nbsp;<?php echo $inviteform->textField($inviteModel,'Phone',array('class'=>'span9', 'maxLength' => 10, 'onkeypress' => 'return isNumberKey(event);')); ?>
+                     <input type="text" value="+91" disabled="true" style="width:40px" class="span2" />&nbsp;<?php echo $inviteform->textField($inviteModel,'Phone',array('class'=>'span9','placeholder'=>'Phone…', 'maxLength' => 10, 'onkeypress' => 'return isNumberKey(event);')); ?>
                     <?php echo $inviteform->error($inviteModel,'Phone'); ?>
                     </div>
              </div>

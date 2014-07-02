@@ -540,7 +540,7 @@ $(document).ready(function() {
             if ( ($("#" + i + "_PinCode").val()=='') ) {
                 $("#" + i + "_PinCode_em").show();
                 $("#" + i + "_PinCode_em").addClass('errorMessage');
-                $("#" + i + "_PinCode_em").text("Please Pin Code ");
+                $("#" + i + "_PinCode_em").text("Please Enter Pin Code ");
                 return false;
             } else {
                 $("#" + i + "_PinCode_em").hide();
@@ -722,7 +722,7 @@ $(document).ready(function() {
             if ( ($("#11_PinCode").val()=='') ) {
                 $("#11_PinCode_em").show();
                 $("#11_PinCode_em").addClass('errorMessage');
-                $("#11_PinCode_em").text("Please Pin Code ");
+                $("#11_PinCode_em").text("Please Enter Pin Code ");
                 return false;
             } else {
                 $("#11_PinCode_em").hide();

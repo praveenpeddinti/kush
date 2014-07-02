@@ -58,7 +58,7 @@ class BasicinfoForm extends CFormModel {
             //),
             //array('IdentityProof','compare','compareAttribute'=>'Select Proof of Identify','operator'=>'<', 'operator'=>'=','allowEmpty'=>false,'message'=>'{attribute} must be greater than "{compareValue}".')
             // First Name, Last Name must be Alphabet and space
-            array('FirstName, LastName', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain Alphabet and space'),
+            array('FirstName, MiddleName, LastName', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain Alphabet and space'),
             array('FirstName, MiddleName, LastName,Password,RepeatPassword,IdentityProof,Number,Gender,profilePicture,uIdDocument,dateOfBirth,foundKushgharBy,foundKushgharByOther,Id', 'safe'),
         );
     }

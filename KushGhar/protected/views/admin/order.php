@@ -49,7 +49,7 @@
                                             <option value="">Select Service</option>
                                             <option value="1">House Cleaning</option>
                                             <option value="2">Car Wash</option>
-                                            <option value="3">Stewards</option>
+                                            <option value="3">Stewards Services</option>
                                         </select>
                                     </div>
                                     <div class="span3">
@@ -84,7 +84,7 @@
                                         <td>
                                             <?php //if($orderDetails[$i]['ServiceId']=='1'){$serviceName='House Cleaning';}
                                            // if($orderDetails[$i]['ServiceId']=='2'){$serviceName='Car Wash';}
-                                           // if($orderDetails[$i]['ServiceId']=='3'){$serviceName='Stewards Cleaning';}
+                                           // if($orderDetails[$i]['ServiceId']=='3'){$serviceName='Stewards Services';}
                                            // echo $serviceName;
                                            ?>
                                         </td>

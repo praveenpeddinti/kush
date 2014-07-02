@@ -80,12 +80,12 @@ $form = $this->beginWidget('CActiveForm', array(
              <?php echo $form->error($model, 'NumberOfTimesServices'); ?>
         </div>
         <div class="span5" id="otherFreqDiv">
-             <label> When do you want service?</label>
+             <label><abbr title="required">*</abbr> When do you want service?</label>
              <?php echo $form->dropDownList($model,'WeekDays', array(''=>'Please Select Day','Sunday'=>'Sunday', 'Monday'=>'Monday', 'Tuesday' => 'Tuesday', 'Wednesday' => 'Wednesday', 'Thursday'=>'Thursday', 'Friday'=>'Friday', 'Saturday'=>'Saturday'), array('options' => array($WeekDays => array('selected' => 'selected')),'class' => 'span12'));?>
              <?php echo $form->error($model, 'WeekDays'); ?>
         </div>
         <div class="span5" id="oneTimeDiv" style="display:none;">
-             <label>Select Date</label>
+             <label><abbr title="required">*</abbr> Select Date</label>
              <?php echo $form->textField($model, 'ServiceStartTime', array('value'=>$CarServiceTime, 'class' => 'span10', 'placeholder' => 'Select Date...')); ?>
              <?php echo $form->error($model, 'ServiceStartTime'); ?>
         </div>
@@ -137,6 +137,19 @@ $form = $this->beginWidget('CActiveForm', array(
            document.getElementById('otherFreqDiv').style.display='block';
        }
    });
+
+   $(document).ready(function(){
+       var cars = $('#TotalCars').val();
+       if(cars > 1)
+       {
+           document.getElementById('DifferentLocationDiv').style.display = 'none';
+       }
+       else
+       {
+           document.getElementById('DifferentLocationDiv').style.display = 'block';
+       }
+   });
+
     $(document).ready(function() {
          var currentDate=new Date();
                var maxdate=new Date();
@@ -228,7 +241,7 @@ $form = $this->beginWidget('CActiveForm', array(
              '</div>'+
              '<div class=" span4">'+
                 '<label> Alternate Phone</label>'+'<input type="text" value="+91" disabled="disabled" class="span3"/>'+' '+
-                '<input type="text" class="span9" id="<?php echo $j; ?>_AlternatePhone" value="<?php echo $rw['alternate_phone']?>" maxLength="10" placeholder="Alternate Phone…">'+
+                '<input type="text" class="span9" id="<?php echo $j; ?>_AlternatePhone" value="<?php echo $rw['alternate_phone']?>" maxLength="10" placeholder="Alternate Phone…" onkeypress="return isNumberKey(event);">'+
                 '<div id="<?php echo $j; ?>_AlternatePhone_em" class="errorMessage" style="display:none"></div>'+
              '</div> '+
         '</div>'+
@@ -278,7 +291,7 @@ $form = $this->beginWidget('CActiveForm', array(
              '</div>'+
              '<div class=" span4">'+
                 '<label> Alternate Phone</label>'+'<input type="text" value="+91" disabled="disabled" class="span3"/>'+' '+
-                '<input type="text" class="span9" id="11_AlternatePhone" value="" maxLength="10" placeholder="Alternate Phone…">'+
+                '<input type="text" class="span9" id="11_AlternatePhone" value="" maxLength="10" placeholder="Alternate Phone…" onkeypress="return isNumberKey(event);">'+
                 '<div id="11_AlternatePhone_em" class="errorMessage" style="display:none"></div>'+
              '</div> '+
         '</div>'+
@@ -360,7 +373,7 @@ $form = $this->beginWidget('CActiveForm', array(
              '</div>'+
              '<div class=" span4">'+
                 '<label> Alternate Phone</label>'+'<input type="text" value="+91" disabled="disabled" class="span3"/>'+' '+
-                '<input type="text" class="span9" id="11_AlternatePhone" maxLength="10" placeholder="Alternate Phone…">'+
+                '<input type="text" class="span9" id="11_AlternatePhone" maxLength="10" placeholder="Alternate Phone…" onkeypress="return isNumberKey(event);">'+
              '</div> '+
         '</div>'+
         '<div class="row-fluid">'+
@@ -427,7 +440,7 @@ $form = $this->beginWidget('CActiveForm', array(
              '</div>'+
              '<div class=" span4">'+
                 '<label> Alternate Phone</label>'+'<input type="text" value="+91" disabled="disabled" class="span3"/>'+' '+
-                '<input type="text" class="span9" id="11_AlternatePhone" value="" maxLength="10" placeholder="Alternate Phone…">'+
+                '<input type="text" class="span9" id="11_AlternatePhone" value="" maxLength="10" placeholder="Alternate Phone…" onkeypress="return isNumberKey(event);">'+
                 '<div id="11_AlternatePhone_em" class="errorMessage" style="display:none"></div>'+
              '</div> '+
         '</div>'+
@@ -570,7 +583,7 @@ $form = $this->beginWidget('CActiveForm', array(
              '</div>'+
              '<div class=" span4">'+
                 '<label> Alternate Phone</label>'+'<input type="text" value="+91" disabled="disabled" class="span3"/>'+' '+
-                '<input type="text" class="span9" id="'+i+'_AlternatePhone" maxLength="10" placeholder="Alternate Phone…">'+
+                '<input type="text" class="span9" id="'+i+'_AlternatePhone" maxLength="10" placeholder="Alternate Phone…" onkeypress="return isNumberKey(event);">'+
              '</div> '+
         '</div>'+
         '<div class="row-fluid">'+
@@ -614,7 +627,7 @@ $form = $this->beginWidget('CActiveForm', array(
              '</div>'+
              '<div class=" span4">'+
                 '<label> Alternate Phone</label>'+'<input type="text" value="+91" disabled="disabled" class="span3"/>'+' '+
-                '<input type="text" class="span9" id="11_AlternatePhone" value="" maxLength="10" placeholder="Alternate Phone…">'+
+                '<input type="text" class="span9" id="11_AlternatePhone" value="" maxLength="10" placeholder="Alternate Phone…" onkeypress="return isNumberKey(event);">'+
                 '<div id="11_AlternatePhone_em" class="errorMessage" style="display:none"></div>'+
              '</div> '+
         '</div>'+
@@ -700,7 +713,7 @@ $form = $this->beginWidget('CActiveForm', array(
              '</div>'+
              '<div class=" span4">'+
                 '<label> Alternate Phone</label>'+'<input type="text" value="+91" disabled="disabled" class="span3"/>'+' '+
-                '<input type="text" class="span9" id="11_AlternatePhone" value="" maxLength="10" placeholder="Alternate Phone…">'+
+                '<input type="text" class="span9" id="11_AlternatePhone" value="" maxLength="10" placeholder="Alternate Phone…" onkeypress="return isNumberKey(event);">'+
                 '<div id="11_AlternatePhone_em" class="errorMessage" style="display:none"></div>'+
              '</div> '+
         '</div>'+

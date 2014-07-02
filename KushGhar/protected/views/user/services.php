@@ -37,7 +37,7 @@
                                       <div class="span10">
                                     <div class="span5">
                                         <label>Frequency of cleaning</label>
-                                        <?php echo $form->dropDownList($model,'NumberOfTimesServices', array('2'=>'Twice a Month', '5'=>'Onetime', '1' => 'Once a Month', '2' => 'Twice a Month', '3'=>'Every 3 Months', '4'=>'Every 6 Months'), array('options' => array($getServiceDetails['service_no_of_times'] => array('selected' => 'selected')), 'onchange' => 'javascript:onChangeFrequencyto(this.value);', 'class' => 'span12'));?>
+                                        <?php echo $form->dropDownList($model,'NumberOfTimesServices', array('2'=>'Twice a Month', '5'=>'One time', '1' => 'Once a Month', '2' => 'Twice a Month', '3'=>'Every 3 Months', '4'=>'Every 6 Months'), array('options' => array($getServiceDetails['service_no_of_times'] => array('selected' => 'selected')), 'onchange' => 'javascript:onChangeFrequencyto(this.value);', 'class' => 'span12'));?>
                                         <?php echo $form->error($model, 'NumberOfTimesServices'); ?>
                                      </div>
                                       <div class="span6" id="otherFreqDiv" >
@@ -46,7 +46,7 @@
                                         <?php echo $form->error($model, 'WeekDays'); ?>
                                       </div>
                                       <div class="span6" id="oneTimeDiv" style="display:none;">
-                                        <label>Select The Date</label>
+                                        <label><abbr title="required">*</abbr> Select Date</label>
                                         <?php  echo $form->textField($model, 'ServiceStartTime', array('value'=>$getServiceDetails['houseservice_start_time'] ,'class' => 'span10', 'placeholder' => 'Select Date…')); ?>
                                         <?php echo $form->error($model, 'ServiceStartTime'); ?>
 

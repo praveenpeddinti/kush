@@ -53,7 +53,7 @@
        
      
         if(data.status=='success'){
-            window.location.href='basicinfo';
+            window.location.href='homeService';
         }else{
             var error=[];
         

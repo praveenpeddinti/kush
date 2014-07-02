@@ -948,7 +948,7 @@ $(".DifferentAddress").live('mouseenter',function(){
     error_log("==00000000000000======sdfasdfsdfsdf11111111111111111");
     
     $j=1; foreach($getCarWashServiceDetails as $rw){ error_log("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjj====".$j);?>
-         <?php if($rw['different_location']==1){?>alert("ffdfdsfsdfds");
+         <?php if($rw['different_location']==1){?>
            $('#CarWashForm_DifferentLocation').val('1');
            $('#DifferentLocation').bootstrapSwitch('setState', true);
            $('.AddressFieldsDiv').show();

@@ -616,7 +616,7 @@ $Stotal = 0; ?>
             $("#progressbar").progressbar({value: <?php echo $totalPercent; ?>});
 
         });
-        function submitServiceOrder() {alert("enter2=======");
+        function submitServiceOrder() {
             
             
             var queryString = '';
@@ -626,7 +626,7 @@ $Stotal = 0; ?>
             scrollPleaseWait("mailSpinLoader","");
             
         }
-        function addServiceOrderhandler(data) {alert("enter1=======");
+        function addServiceOrderhandler(data) {
            
             scrollPleaseWaitClose('mailSpinLoader');
             if (data.status == 'success') {

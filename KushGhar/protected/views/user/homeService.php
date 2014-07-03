@@ -1151,7 +1151,7 @@ $(document).ready(function() {
 
         }
     }
-     function submitServiceOrder(){alert("enter-----1");
+     function submitServiceOrder(){
          $('#homeServiceWithOrderDiv').hide();
           $('#ServiceMainDiv2').show();
           scrollPleaseWait("mailSpinLoader","");
@@ -1161,7 +1161,7 @@ $(document).ready(function() {
            
             
      }
-     function addOrderhandler(data) {alert("enter------------2");scrollPleaseWaitClose('mailSpinLoader');
+     function addOrderhandler(data) {scrollPleaseWaitClose('mailSpinLoader');
         if (data.status == 'success') {
             //alert("Added successfully");
             

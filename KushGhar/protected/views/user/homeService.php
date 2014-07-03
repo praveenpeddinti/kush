@@ -408,27 +408,30 @@ $(document).ready(function() {
 
         var dd='';
         var DL = $("#CarWashForm_DifferentLocation").val();
-                if ($("#CarWashForm_ServiceStartTime").val() == "") {
-                $("#CarWashForm_ServiceStartTime_em_").show();
-                $("#CarWashForm_ServiceStartTime_em_").addClass('errorMessage');
-                $("#CarWashForm_ServiceStartTime_em_").text("Please Select When do you want service");
-                return false;
-            }else{
-              $("#CarWashForm_ServiceStartTime_em_").hide();
-            }
-        //alert("===TC==="+$("#CarWashForm_TotalCars").val()+"==DL==="+$("#CarWashForm_DifferentLocation").val());
-           // alert("DLasvar====="+DL);
-        if($('#CarWashForm_TotalCars').val()>3)
-        {
-            if ($('#CarWashForm_TotalCars').val() == '') {
+        if($('#CarWashForm_TotalCars').val()>3) {
                 $("#CarWashForm_TotalCars_em_").show();
                 $("#CarWashForm_TotalCars_em_").addClass('errorMessage');
                 $("#CarWashForm_TotalCars_em_").text("Only 2 cars serving for each order as of now.");
                 return false;
             }
-            else
+           else
                 {
                     $("#CarWashForm_TotalCars_em_").hide();
+                }
+        
+        //alert("===TC==="+$("#CarWashForm_TotalCars").val()+"==DL==="+$("#CarWashForm_DifferentLocation").val());
+           // alert("DLasvar====="+DL);
+        if($('#CarWashForm_NumberOfTimesServices').val()=='5')
+        {
+            if ($('#CarWashForm_ServiceStartTime').val() == '') {
+                $("#CarWashForm_ServiceStartTime_em_").show();
+                $("#CarWashForm_ServiceStartTime_em_").addClass('errorMessage');
+                $("#CarWashForm_ServiceStartTime_em_").text("Please Select When do you want service");
+                return false;
+            }
+            else
+                {
+                    $("#CarWashForm_ServiceStartTime_em_").hide();
                 }
         }
         else

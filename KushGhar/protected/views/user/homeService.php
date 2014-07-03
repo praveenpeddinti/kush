@@ -408,19 +408,27 @@ $(document).ready(function() {
 
         var dd='';
         var DL = $("#CarWashForm_DifferentLocation").val();
-        //alert("===TC==="+$("#CarWashForm_TotalCars").val()+"==DL==="+$("#CarWashForm_DifferentLocation").val());
-           // alert("DLasvar====="+DL);
-        if($('#CarWashForm_NumberOfTimesServices').val()=='5')
-        {
-            if ($('#CarWashForm_ServiceStartTime').val() == '') {
+                if ($("#CarWashForm_ServiceStartTime").val() == "") {
                 $("#CarWashForm_ServiceStartTime_em_").show();
                 $("#CarWashForm_ServiceStartTime_em_").addClass('errorMessage');
                 $("#CarWashForm_ServiceStartTime_em_").text("Please Select When do you want service");
                 return false;
+            }else{
+              $("#CarWashForm_ServiceStartTime_em_").hide();
+            }
+        //alert("===TC==="+$("#CarWashForm_TotalCars").val()+"==DL==="+$("#CarWashForm_DifferentLocation").val());
+           // alert("DLasvar====="+DL);
+        if($('#CarWashForm_TotalCars').val()>3)
+        {
+            if ($('#CarWashForm_TotalCars').val() == '') {
+                $("#CarWashForm_TotalCars_em_").show();
+                $("#CarWashForm_TotalCars_em_").addClass('errorMessage');
+                $("#CarWashForm_TotalCars_em_").text("Only 2 cars serving for each order as of now.");
+                return false;
             }
             else
                 {
-                    $("#CarWashForm_ServiceStartTime_em_").hide();
+                    $("#CarWashForm_TotalCars_em_").hide();
                 }
         }
         else
@@ -447,7 +455,7 @@ $(document).ready(function() {
 //            }
             dumpcars=$('#CarWashForm_TotalCars').val();
         //if($("#CarWashForm_DifferentLocation").val()=='0'){ dumpcars='1';}else{dumpcars=$('#CarWashForm_TotalCars').val();};
-        if($("#CarWashForm_DifferentLocation").val()=='1'){//alert("1111111111111111111111111111");
+        if($("#CarWashForm_DifferentLocation").val()=='1'){
         for (var i = 1; i <= dumpcars; i++) {
             //alert("================for loop====="+dumpcars+"======="+i);
             if ($("#" + i + "_MakeOfCar").val() == "") {
@@ -629,7 +637,7 @@ $(document).ready(function() {
         }
         
         
-        if($("#CarWashForm_DifferentLocation").val()=='0'){//alert("000000000000000000000000000000");
+        if($("#CarWashForm_DifferentLocation").val()=='0'){
         for (var i = 1; i <= dumpcars; i++) {
             //alert("================for loop====="+dumpcars+"======="+i);
             if ($("#" + i + "_MakeOfCar").val() == "") {
@@ -770,7 +778,7 @@ $(document).ready(function() {
                     address2 = address2 + $("#11_Address2").val();
                 }
                 $('#CarWashForm_Address2').val(address2);
-                
+               
                 if (alternate_phone == "") {
                     alternate_phone = $("#11_AlternatePhone").val()+",";
                 } else if (alternate_phone != "") {
@@ -822,7 +830,7 @@ $(document).ready(function() {
         }
         var queryString = $('#carwash-form').serialize();
         queryString += '&Type=' + type+'&DL='+DL;
-        alert("car wash Form Details=="+queryString);
+        //alert("car wash Form Details=="+queryString);
        ajaxRequest('/user/carwash', queryString, addCarWashCleaningServicehandler);
     }
    

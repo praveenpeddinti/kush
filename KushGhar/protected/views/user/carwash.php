@@ -72,6 +72,7 @@ $form = $this->beginWidget('CActiveForm', array(
                 <?php echo $form->checkBox($model, 'DifferentLocation'); ?>
             </div>
         </div>
+        
     </div>
     <div class="row-fluid">
         <div class="span5">
@@ -536,6 +537,13 @@ minDate: mindate
     function onTotalcars(obj){
         $('#CarWashForm_DifferentLocation').val('0');
         //alert(obj.value);
+        if(obj.value>=3){
+            $("#CarWashForm_TotalCars_em_").show();
+                $("#CarWashForm_TotalCars_em_").addClass('errorMessage');
+                $("#CarWashForm_TotalCars_em_").text("Only 2 cars serving for each order as of now.");
+            return false;
+        }
+        $("#CarWashForm_TotalCars_em_").hide();
         var html2='';
         if(obj.value>1){
             $('#DifferentLocationDiv').show();

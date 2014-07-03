@@ -11,7 +11,14 @@ $Stotal = 0; ?>
                     $priceRoom2 = (($getServiceDetails['total_bathRooms'] + $getServiceDetails['total_kitchens']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
                     $priceAddServices = (($getServiceDetails['window_grills'] + $getServiceDetails['fridge_interior'] + $getServiceDetails['microwave_oven_interior']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
                     //$serviceTaxPrice = (($priceRoom1+$priceRoom2+$priceAddServices)*12.36)/100;
-                    $totalRoomsPrice = $priceRoom1 + $priceRoom2 + $priceAddServices;
+                     $totalRoomsPrice = $priceRoom1 + $priceRoom2 ;
+         if($totalRoomsPrice < 750)
+                    {
+                        $totalRoomsPrice = 750;
+                    }
+                    $totalRoomsPrice+= $priceAddServices;
+
+
                 ?>
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -348,7 +355,12 @@ $Stotal = 0; ?>
         $priceRoom2 = (($getServiceDetails['total_bathRooms'] + $getServiceDetails['total_kitchens']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
         $priceAddServices = (($getServiceDetails['window_grills'] + $getServiceDetails['fridge_interior'] + $getServiceDetails['microwave_oven_interior']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
         //$serviceTaxPrice = (($priceRoom1+$priceRoom2+$priceAddServices)*12.36)/100;
-        $totalRoomsPrice = $priceRoom1 + $priceRoom2 + $priceAddServices;
+        $totalRoomsPrice = $priceRoom1 + $priceRoom2 ;
+         if($totalRoomsPrice < 750)
+                    {
+                        $totalRoomsPrice = 750;
+                    }
+                    $totalRoomsPrice+= $priceAddServices;
 
         ?>
 

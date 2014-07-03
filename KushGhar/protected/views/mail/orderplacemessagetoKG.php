@@ -42,7 +42,12 @@
                                                     $priceRoom2 = (($HouseService['total_bathRooms'] + $HouseService['total_kitchens']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
                                                     $priceAddServices = (($HouseService['window_grills'] + $HouseService['fridge_interior'] + $HouseService['microwave_oven_interior']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
                     //$serviceTaxPrice = (($priceRoom1+$priceRoom2+$priceAddServices)*12.36)/100;
-                                                    $totalRoomsPrice = $priceRoom1 + $priceRoom2 + $priceAddServices;
+                                                 $totalRoomsPrice = $priceRoom1 + $priceRoom2 ;
+         if($totalRoomsPrice < 750)
+                    {
+                        $totalRoomsPrice = 750;
+                    }
+                    $totalRoomsPrice+= $priceAddServices;
                                                     echo $totalRoomsPrice; ?>
                                             
                                                     <?php }?>

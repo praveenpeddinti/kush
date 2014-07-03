@@ -85,6 +85,7 @@ $Stotal = 0; ?>
                 <?php } ?>
     <?php if ($CarCleaning == 1) {
         $Ctotal = $Ctotal = (count($getCarWashServiceDetails) * 500);
+        
         ?>
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -185,7 +186,7 @@ $Stotal = 0; ?>
                                         <td><?php echo "<b>" . $getStewardsServiceDetails['service_hours'] . "</b>"; ?></td>
                                     </tr>
                                     <tr>
-                                        <td>Recommanded Stewards</td>
+                                        <td>Recommanded # of Stewards</td>
                                         <td><?php echo "<b>" . $getStewardsServiceDetails['no_of_stewards'] . "</b>"; ?></td>
                                     </tr>
                                     <?php if( ($getStewardsServiceDetails['appetizers'] == 1) || ($getStewardsServiceDetails['dinner'] == 1) || ($getStewardsServiceDetails['dessert'] == 1) || ($getStewardsServiceDetails['alcoholic'] == 1) || ($getStewardsServiceDetails['post_dinner'] == 1) ) {?>
@@ -445,6 +446,7 @@ $Stotal = 0; ?>
                                                             <?php } ?>
                                                             <?php if ($CarCleaning == 1) {
                                                                 $Ctotal = (count($getCarWashServiceDetails) * 500);
+                                                                $seats ='';
                                                                 ?>
                                                 <div class="panel panel-default">
                                                     <div class="panel-heading">
@@ -454,7 +456,7 @@ $Stotal = 0; ?>
                                                                 <span class="serviceprice">Rs. <?php echo $Ctotal; ?></span>
                                                                 <div class="count"></div>
                                                             </a>
-                                                        </div>
+                                                        </div><?php echo "=========".$seats;?>
                                                     </div>
                                                     <div id="collapseTwo" class="panel-collapse collapse">
                                                         <div class="panel-body paddinground">
@@ -477,7 +479,7 @@ $Stotal = 0; ?>
                                                     <?php } ?>
 
                                                     
-            <?php if ($cw['shampoo_seats'] != 0) { ?>
+            <?php if ($cw['shampoo_seats'] != 0) { $seats+1;?>
                                                                         <tr>
                                                                             <td>Shampoo Seats</td>
                                                                             <td><?php echo "<b>Yes</b>"; ?></td>
@@ -545,7 +547,7 @@ $Stotal = 0; ?>
                                                                     <td><?php echo "<b>" . $getStewardsServiceDetails['service_hours'] . "</b>"; ?></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td>Recommanded Stewards</td>
+                                                                    <td>Recommanded # of Stewards</td>
                                                                     <td><?php echo "<b>" . $getStewardsServiceDetails['no_of_stewards'] . "</b>"; ?></td>
                                                                 </tr>
  <?php if( ($getStewardsServiceDetails['appetizers'] == 1) || ($getStewardsServiceDetails['dinner'] == 1) || ($getStewardsServiceDetails['dessert'] == 1) || ($getStewardsServiceDetails['alcoholic'] == 1) || ($getStewardsServiceDetails['post_dinner'] == 1) ) {?>

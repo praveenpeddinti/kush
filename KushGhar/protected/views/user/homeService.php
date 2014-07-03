@@ -1116,7 +1116,7 @@ $(document).ready(function() {
         {
             $("#StewardCleaningForm_totalStewards_em_").show();
             $("#StewardCleaningForm_totalStewards_em_").addClass('errorMessage');
-            $("#StewardCleaningForm_totalStewards_em_").text("Recommanded Stewards should not be less than "+noOfStewards);
+            $("#StewardCleaningForm_totalStewards_em_").text("Recommanded # of Stewards should not be less than "+noOfStewards);
             return false;
         }
         if (startDateValuecmp > endDateValuecmp) {

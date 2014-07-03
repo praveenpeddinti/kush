@@ -48,8 +48,7 @@
                                       <div class="span6" id="oneTimeDiv" style="display:none;">
 
                                         <label><abbr title="required">*</abbr> Select Date</label>
-
-                                        <?php  echo $form->textField($model, 'ServiceStartTime', array('value'=>$getServiceDetails['houseservice_start_time'] ,'class' => 'span10', 'placeholder' => 'Select Date…')); ?>
+                                        <?php  echo $form->textField($model, 'ServiceStartTime', array('value'=>$getServiceDetails['houseservice_start_time'], 'class' => 'span10', 'placeholder' => 'Select Date…')); ?>
                                         <?php echo $form->error($model, 'ServiceStartTime'); ?>
 
                                     </div>
@@ -176,7 +175,9 @@
                     dateOrder: 'Md ddyy',
                     minDate:  mindate
                 });
+                <?php if(empty($getServiceDetails['houseservice_start_time']) ){ ?>
                 $('#HouseCleaningForm_ServiceStartTime').scroller('setDate', mindate, true);
+                <?php }?>
         $('#WindowGrills').bootstrapSwitch();
         $('#FridgeInterior').bootstrapSwitch();
         $('#MicroWaveOven').bootstrapSwitch();

@@ -50,8 +50,9 @@ class InviteUser extends CActiveRecord {
             $selectedOptions = $selectedOptions.'2'.',';
         if($model->SServices==1)
             $selectedOptions = $selectedOptions.'3'.',';
-        $user = InviteUser::model()->findByAttributes(array('email_address' => $model->Email));
-        
+        //$user = InviteUser::model()->findByAttributes(array('email_address' => $model->Email));
+        $user = InviteUser::model()->findByAttributes(array(), 'email_address=:email_address  OR phone=:phone', array(':email_address' => $model->Email, ':phone' => $model->Phone));
+                
         if (!isset($user)) {
             try {
                 $user = new InviteUser();

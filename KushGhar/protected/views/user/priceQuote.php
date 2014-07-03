@@ -204,6 +204,15 @@ $Stotal = 0; ?>
                         </div>
                     </div>
     <?php }?>
+                <div class="panel-heading">
+                                                        <div class="panel-title stewards_title2">
+                                                            <a data-toggle="collapse" data-parent="#" href="#" class="collapsed" style="display:block">
+                                                                <span class="pull-left">Service Tax</span>
+                                                                <span class="serviceprice">Rs. 0</span>
+<!--                                                                <div class="count"></div>-->
+                                                            </a>
+                                                        </div>
+                                                    </div>
             </div>
 
         </div>
@@ -212,7 +221,7 @@ $Stotal = 0; ?>
     <?php //$serviceTax = ((($totalRoomsPrice + $Ctotal + $Stotal) * 12.36) / 100); 
     $serviceTax=0;
     ?>
-        <div class="span6"><label>Total Price (Service Tax Included)</label><input type="text" value="<?php echo $totalRoomsPrice + $Ctotal + $Stotal + $serviceTax; ?>" id="price" readonly="true" /></div>
+        <div class="span6"><label>Total Price (<b>0%</b> Service Tax)</label><input type="text" value="<?php echo $totalRoomsPrice + $Ctotal + $Stotal + $serviceTax; ?>" id="price" readonly="true" /></div>
         <div class="span6">
             <div class="pull-right paddingT30">
                 <input type="button" class="btn btn-primary" value="Place Order" onclick="submitServiceOrder();">
@@ -569,7 +578,7 @@ $Stotal = 0; ?>
                                                             <a data-toggle="collapse" data-parent="#" href="#" class="collapsed" style="display:block">
                                                                 <span class="pull-left">Service Tax</span>
                                                                 <span class="serviceprice">Rs. 0</span>
-                                                                <div class="count"></div>
+<!--                                                                <div class="count"></div>-->
                                                             </a>
                                                         </div>
                                                     </div>
@@ -577,7 +586,7 @@ $Stotal = 0; ?>
     <?php //$serviceTax = ((($totalRoomsPrice + $Ctotal + $Stotal) * 12.36) / 100);
     $serviceTax=0;
     ?>
-                                    <div class="span6"><label>Total Price (Service Tax Included)</label><input type="text" value="<?php echo $totalRoomsPrice + $Ctotal + $Stotal + $serviceTax; ?>" id="price" readonly="true"/></div>
+                                    <div class="span6"><label>Total Price (<b>0%</b> Service Tax)</label><input type="text" value="<?php echo $totalRoomsPrice + $Ctotal + $Stotal + $serviceTax; ?>" id="price" readonly="true"/></div>
                                     <div class="span6">
                                         <div class="pull-right paddingT30">
     <?php

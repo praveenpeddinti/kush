@@ -160,7 +160,9 @@
                         </div>
                     </div>
                 </div>
-                <div id="ServiceMainDiv2" class="services" style="display: none"></div>
+                <div id="ServiceMainDiv2" class="services" style="display: none">
+                    <div id="mailSpinLoader" ></div>
+                </div>
             </article>
         </div>
     </section>
@@ -1149,13 +1151,17 @@ $(document).ready(function() {
 
         }
     }
-     function submitServiceOrder(){
+     function submitServiceOrder(){alert("enter-----1");
          $('#homeServiceWithOrderDiv').hide();
+          $('#ServiceMainDiv2').show();
+          scrollPleaseWait("mailSpinLoader","");
         var queryString = '';
 
             ajaxRequest('/user/serviceOrder',queryString, addOrderhandler);
+           
+            
      }
-     function addOrderhandler(data) {
+     function addOrderhandler(data) {alert("enter------------2");scrollPleaseWaitClose('mailSpinLoader');
         if (data.status == 'success') {
             //alert("Added successfully");
             

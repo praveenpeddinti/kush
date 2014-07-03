@@ -1,8 +1,10 @@
+
 <?php $totalRoomsPrice = 0;
 $Htotal = 0;
 $Ctotal = 0;
 $Stotal = 0; ?>
 <?php if ($PriceFlag == '0') { ?>
+     
     <div class="row-fluid">
         <div class="span12">
             <div class="panel-group" id="accordion">
@@ -330,6 +332,7 @@ $Stotal = 0; ?>
                 </aside>
                 <article>
                     <div id="orderPlaceDiv" style="display:none">
+                        
                         <div class="row-fluid">
                             <div class="span12">
                                 <h2 class="paddingL20">Place order</h2> <hr>
@@ -339,7 +342,7 @@ $Stotal = 0; ?>
                     <div id="priceQuoteDiv" class="row-fluid">
                         <div class="span12">
                             <h2 class="paddingL20">Price Quote </h2> <hr>
-
+                            <div id="mailSpinLoader" ></div>
                             <div class="paddinground paddingTop0">
 
                                 <div id="serviceSpinLoader"></div>
@@ -604,15 +607,22 @@ $Stotal = 0; ?>
             $("#progressbar").progressbar({value: <?php echo $totalPercent; ?>});
 
         });
-        function submitServiceOrder() {
+        function submitServiceOrder() {alert("enter2=======");
+            
+            
             var queryString = '';
 
             ajaxRequest('/user/serviceOrder', queryString, addServiceOrderhandler);
+            
+            scrollPleaseWait("mailSpinLoader","");
+            
         }
-        function addServiceOrderhandler(data) {
+        function addServiceOrderhandler(data) {alert("enter1=======");
+           
+            scrollPleaseWaitClose('mailSpinLoader');
             if (data.status == 'success') {
                 $('#priceQuoteDiv').hide();
-                $('#orderPlaceDiv').show();
+                 $('#orderPlaceDiv').show();
                 $('#orderPlaceDiv').html(data.data);
             }
         }

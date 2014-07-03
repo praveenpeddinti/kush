@@ -69,10 +69,10 @@ class SiteController extends Controller {
         }
     }
     
-    public function actionInvite() {
+    /*public function actionInvite() {
         if(isset($_REQUEST['uname'])){
-        $this->session['UserType'] = "inviteToEmail";
-        $this->session['InviteEmailId'] = $_REQUEST['uname'];
+        //$this->session['UserType'] = "inviteToEmail";
+        //$this->session['InviteEmailId'] = $_REQUEST['uname'];
         //error_log("enter splash page======".$this->session['UserType']);
        // 
         }else{
@@ -81,7 +81,7 @@ class SiteController extends Controller {
             
         }
         $this->render('index');
-    }
+    }*/
     public function actionInviteCust() {
         
         /*if(empty($_REQUEST['uname'])){

@@ -1,4 +1,4 @@
-<?php error_log(sizeof($getCarWashServiceDetails)."======11111111111111111111111111111111====");
+<?php 
 $NOCars ='';$CarServiceTime ='';$TCars='';$WeekDays='';$NOfServiceTime='';
         if((sizeof($getCarWashServiceDetails)>0)){ 
         foreach($getCarWashServiceDetails as $ee){
@@ -14,7 +14,7 @@ $NOCars ='';$CarServiceTime ='';$TCars='';$WeekDays='';$NOfServiceTime='';
         //$NOCars=sizeof($getCarWashServiceDetails);
          $NOCars = $TCars;
     }
-    error_log("---NOC--------".$NOCars."======".$CarServiceTime."===========".$WeekDays);
+    
 //foreach($getCarWashServiceDetails as $rw){
 //    error_log("===make_of_car==".$rw['make_of_car']);foreach($getCarWashServiceDetails as $dd){$totalCars =$dd['total_cars'];}
 //}
@@ -110,7 +110,7 @@ $form = $this->beginWidget('CActiveForm', array(
     <div class="row-fluid">
         <div class=" span12">
             <div class="pull-right paddingT30">
-                <!--<input type="button" value="Previous" id="CarWashCleaningPrevious" class="btn btn-primary" onclick="buttonCarWashCleaningPrevious()" />-->
+                <input type="button" value="Previous" id="CarWashCleaningPrevious" class="btn btn-primary" onclick="previousCarWashCleaning()" style="display:none;"/>
                 <input type="button" value="Next" id="CarWashCleaningSubmit" class="btn btn-primary" onclick="submitCarWashCleaning()" />
             </div>
         </div>
@@ -151,6 +151,10 @@ $form = $this->beginWidget('CActiveForm', array(
    });
 
    $(document).ready(function() {
+       CarWashForm_HouseCleaning
+       if( ($('#CarWashForm_HouseCleaning').val()==1) ){
+            $('#CarWashCleaningPrevious').show();
+        }
 var currentDate=new Date.today().addDays(1);
 var maxdate=new Date();
 maxdate.setFullYear(maxdate.getFullYear()-19);
@@ -189,7 +193,7 @@ $('#CarWashForm_ServiceStartTime').scroller('setDate', mindate, true);
         
         
         <?php if(isset($getCarWashServiceDetails) && sizeof($getCarWashServiceDetails)>0){ 
-            error_log("==00000000000000======sdfasdfsdfsdf11111111111111111");$j=1; foreach($getCarWashServiceDetails as $rw){ ?>
+         $j=1; foreach($getCarWashServiceDetails as $rw){ ?>
         
     //alert("edit form starting=====");
         sHtml +='<div class="cardetails" >'+
@@ -870,10 +874,8 @@ function bindDiffEdit(nValue){
      // alert("DL=2==="+$("#CarWashForm_DifferentLocation").val());
         for(var k=1; k<=nValue; k++){
         
-        //alert("for1----kkkkkkkkkkkkkkk---"+k+"===="+h);
-       $("#"+k+"_DifferentAddress").bootstrapSwitch();
-       $("#"+k+"_InteriorCleaning").bootstrapSwitch();
-        //$('#ExteriorCleaning').bootstrapSwitch();
+        $("#"+k+"_DifferentAddress").bootstrapSwitch();
+        $("#"+k+"_InteriorCleaning").bootstrapSwitch();
         $("#"+k+"_ShampooSeats").bootstrapSwitch();
         $("#"+k+"_DifferentAddress").val('0');
         $("#"+k+"_InteriorCleaning").val('0');
@@ -886,15 +888,15 @@ function bindDiffEdit(nValue){
 }
 
 $(".DifferentAddress").live('mouseenter',function(){
-        //var id = $(this).data('id');alert("default 1==="+id);
+        
         $("#1_DifferentAddress").on('switch-change', function (e, data) {
             var $el = $(data.el),
             value = data.value;
-            if(value == true){//alert("yes"+id)
+            if(value == true){
                  $("#1_DifferentAddress").val('1');
                 $("#1_AddressFieldsDiv").show();
             }
-            else{//alert("No"+id)
+            else{
                  $("#1_DifferentAddress").val('0');
                 $("#1_AddressFieldsDiv").hide();
             }
@@ -945,15 +947,13 @@ $(".DifferentAddress").live('mouseenter',function(){
     });*/
 
 <?php if(isset($getCarWashServiceDetails) && sizeof($getCarWashServiceDetails)>0){ 
-    error_log("==00000000000000======sdfasdfsdfsdf11111111111111111");
-    
-    $j=1; foreach($getCarWashServiceDetails as $rw){ error_log("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjj====".$j);?>
+    $j=1; foreach($getCarWashServiceDetails as $rw){ ?>
          <?php if($rw['different_location']==1){?>
            $('#CarWashForm_DifferentLocation').val('1');
            $('#DifferentLocation').bootstrapSwitch('setState', true);
            $('.AddressFieldsDiv').show();
    $('.AddressFieldsDivWithSingle').hide();
-           //alert("for cond in=="+$('#CarWashForm_DifferentLocation').val());
+           
          <?}else{?>
               $('#CarWashForm_DifferentLocation').val('0');  
               $('.AddressFieldsDiv').hide();
@@ -964,9 +964,8 @@ $(".DifferentAddress").live('mouseenter',function(){
     $('#11_State').val("<?php echo $rw['address_state'];?>");
     $('#11_City').val("<?php echo $rw['address_city'];?>");
     $('#11_PinCode').val("<?php echo $rw['address_pin_code'];?>");
-           //alert("for else cond in=="+$('#CarWashForm_DifferentLocation').val());
-         <?php }?>
-         <?php if($rw['different_number'] == 1){ error_log("iiiiiiiiiiiiiiiiiiiddddddddddddddddddddd====");?>
+           <?php }?>
+         <?php if($rw['different_number'] == 1){ ?>
           
         //$('#DifferentLocationDiv').show();
         //$('#DifferentLocation').bootstrapSwitch();
@@ -975,13 +974,11 @@ $(".DifferentAddress").live('mouseenter',function(){
         $('#<?php echo $j; ?>_DifferentAddress').bootstrapSwitch('setState', true);
         $('#<?php echo $j; ?>_AddressFieldsDiv').show();
         $('#<?php echo $j; ?>_DifferentAddress').val('1');
-        <?php } else { error_log("eeeeeeeeeeeeeeeeeeeeeeddddddddddddddddddddd====");  ?>
+        <?php } else { ?>
            
-        //$('#<?php echo $j; ?>_DifferentAddress').bootstrapSwitch();
         $('#<?php echo $j; ?>_DifferentAddress').bootstrapSwitch('setState', false);
         $('#<?php echo $j; ?>_DifferentAddress').val('0');
         <?php } ?> 
-            <?php  error_log("iiiiiiiiijjjjjjjjjjjjjjjjjjjiiiiiiiiiiddddddddddddddddddddd====".$j);?>
         <?php if($rw['interior_cleaning'] == 1){ ?>
         $('#<?php echo $j; ?>_InteriorCleaning').bootstrapSwitch('setState', true);
         $('#<?php echo $j; ?>_interiorDiv').show();

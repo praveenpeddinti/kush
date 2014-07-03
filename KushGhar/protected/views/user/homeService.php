@@ -1,4 +1,3 @@
-<script src="../../../js/date.js" type="text/javascript"></script>
 <div class="container">
     <!--<div id="instant_notifications" class="instant_notification">Basic Information</div>-->
     <section>
@@ -16,9 +15,9 @@
                         <div id="accounts" class="collapse in">
                             <div class="selected_tab">Account</div>
                             <ul class="l_menu_sub_menu">
-                                <li>
+                                <!--<li>                                    
                                     <div id="progressbar"></div>
-                                </li>
+                                </li>-->
                                 <?php
                                 if ((!empty($customerDetails->first_name)) && (!empty($customerDetails->middle_name)) && (!empty($customerDetails->last_name)) && (!empty($customerDetails->birth_date)) && (!empty($customerDetails->profilePicture)) && (!empty($customerDetails->found_kushghar_by))) {
                                     $statusClassForBasic = 'status_info2';
@@ -66,13 +65,13 @@
                                 <li  class="active"><a href="homeService"> <i class="fa fa-user"></i> Service Details</a></li>
                                 <li><a href="priceQuote"> <i class="fa fa-user"></i> Price Quote</a></li>
                                 <li><a href="paymentInfo"> <i class="fa fa-credit-card"></i> Payment Info</a>
-                                    <div class="<?php echo $statusClassForPayment; ?>"> </div>
+<!--                                    <div class="<?php echo $statusClassForPayment; ?>"> </div>-->
                                 </li>
                                 <li><a href="basicinfo"> <i class="fa fa-user"></i> Basic Info</a>
-                                    <div class=<?php echo '"' . $statusClassForBasic . '"' ?>></div>
+<!--                                    <div class=<?php echo '"' . $statusClassForBasic . '"' ?>></div>-->
                                 </li>
                                 <li><a href="contactInfo"> <i class="fa fa-phone"></i> Contact Info</a>
-                                    <div class="<?php echo $statusClassForContact; ?>"> </div>
+<!--                                    <div class="<?php echo $statusClassForContact; ?>"> </div>-->
                                 </li>
                                 <li><a href="order"> <i class="fa fa-phone"></i> Orders</a>
                                 </li>
@@ -283,6 +282,7 @@ $(document).ready(function() {
             if (globalspace.HouseCleaning == 0 && globalspace.StewardCleaning == 0) {
                 $('#CarWashCleaningSubmit').val('Submit');
             }
+            
         } else {
             var error = [];
             if (typeof (data.error) == 'string') {
@@ -1165,5 +1165,54 @@ $(document).ready(function() {
             $('#ServiceMainDiv2').html(data.data);
             
         } 
+    }
+    
+    
+    
+    //Previous button purpose----------------------------
+    function previousStewardsCleaning(){
+        var queryString = $('#steward-form').serialize();
+        type = 'Previous';
+        queryString += '&Type=' + type;
+        //alert("============"+queryString);
+        ajaxRequest('/user/stewards', queryString, previousStewardsCleaningehandler);
+    }
+    
+    function previousStewardsCleaningehandler(data) {
+        
+
+        if (data.status == 'success') {
+            //alert("Added successfully");
+            globalspace.HouseCleaning = Number(data.HouseCleaning);
+            globalspace.CarCleaning = Number(data.CarCleaning);
+            globalspace.StewardCleaning = Number(data.StewardCleaning);
+            $('#homeServicesMainDiv').hide();
+            $('#ServiceMainDiv').show();
+            $('#ServiceMainDiv').html(data.data);
+
+        }
+    }
+    
+    
+    function previousCarWashCleaning(){
+        var queryString = $('#carwash-form').serialize();
+        var DL = $("#CarWashForm_DifferentLocation").val();
+        type = 'Previous';
+        queryString += '&Type=' + type+'&DL='+DL;
+        ajaxRequest('/user/carwash', queryString, previousCarWashCleaninghandler);
+        
+    }
+    
+    function previousCarWashCleaninghandler(data) {
+        if (data.status == 'success') {
+            //alert("Added successfully");
+            globalspace.HouseCleaning = Number(data.HouseCleaning);
+            globalspace.CarCleaning = Number(data.CarCleaning);
+            globalspace.StewardCleaning = Number(data.StewardCleaning);
+            $('#homeServicesMainDiv').hide();
+            $('#ServiceMainDiv').show();
+            $('#ServiceMainDiv').html(data.data);
+
+        }
     }
 </script>

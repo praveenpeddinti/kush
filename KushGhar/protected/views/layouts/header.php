@@ -29,7 +29,8 @@
          <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrapSwitch.js"> </script>
          <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.simplePagination.js"> </script>
          <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/mobiscroll.custom-2.4.4.min.js"> </script>
-        <script>
+        <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/date.js"></script>
+         <script>
             // tooltip demo
             $('.tooltiplink').tooltip({
 

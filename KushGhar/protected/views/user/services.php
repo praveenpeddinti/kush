@@ -247,7 +247,7 @@
                     //$("#modelBodyDiv").load("/user/inviteregistration",{},""); 
   //         $('#myModalService').modal('show');
   //}
-  $(document).ready(function(){//alert("enter");
+  $(document).ready(function(){
        var w = $('#HouseCleaningForm_NumberOfTimesServices').val();
        if(w==5)
        {

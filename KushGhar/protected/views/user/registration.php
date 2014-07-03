@@ -7,10 +7,7 @@
             if((readCookie("Invited")==null) && (qString=='') && (qStringInt==''))
             {
                 $("#myModal").modal({ backdrop: 'static', keyboard: false,show:false });
-                //alert("enter site index==="+document.getElementById('VV').value);
-                //alert(document.getElementById('VV').value);
                 if(document.getElementById('VV').value!='inviteToEmail'){
-                //ajaxRequest("/user/inviteregistration", "",loginPopupCallback,'html');
                 $("#modelBodyDiv").load("/user/inviteregistration",{},""); 
                 $('#myModal').modal('show');
                 }
@@ -134,7 +131,7 @@
                     <div class="reg_div" id="RegDiv">
                         <div class="paddinground">
                             <h2 class="reg_title">New User Registration</h2>
-                            <div id="ModalDiv" style="position: absolute;left:0;right: 0;top:0;bottom: 0;background: #fff;opacity: 0.5;"></div>
+                            <div id="ModalDiv" style="position: absolute;left:0;right: 0;top:0;bottom: 0;background: #fff;opacity: 0.5;display:none;"></div>
                             
                             <div id="registrationSpinLoader" style="top:26px"></div>
                             <?php
@@ -196,7 +193,7 @@
                     <div class="reg_div ">
                         <div class="paddinground">
                             <h2 class="reg_title">Existing User Login</h2>
-                            <div id="ModalDivLogin" style="position: absolute;left:0;right: 0;top:0;bottom: 0;background: #fff;opacity: 0.5;"></div>
+                            <div id="ModalDivLogin" style="position: absolute;left:0;right: 0;top:0;bottom: 0;background: #fff;opacity: 0.5;display:none;"></div>
                             <?php $form1 = $this->beginWidget('CActiveForm', array(
                                   'id' => 'login-form',
                                   'enableClientValidation' => true,

@@ -16,10 +16,9 @@
             <div id="accounts" class="collapse in">
             	<div class="selected_tab">Account</div>
             	<ul class="l_menu_sub_menu">
-                <li>
-                                    
-                                    <div id="progressbar"></div>
-                                </li>
+                <!--<li>
+                <div id="progressbar"></div>
+                </li>-->
                                 <?php
                                  if((!empty($customerDetails->first_name)) && (!empty($customerDetails->middle_name)) && (!empty($customerDetails->last_name)) && (!empty($customerDetails->birth_date)) && (!empty($customerDetails->profilePicture)) && (!empty($customerDetails->found_kushghar_by))){
                                      $statusClassForBasic = 'status_info2';
@@ -75,13 +74,13 @@
                     <li><a href="homeService"> <i class="fa fa-user"></i> Service Details</a></li>
                     <li><a href="priceQuote"> <i class="fa fa-user"></i> Price Quote</a></li>
                     <li><a href="paymentInfo"> <i class="fa fa-credit-card"></i> Payment Info</a>
-                       <div class="<?php echo $statusClassForPayment;?>"> </div>
+<!--                       <div class="<?php echo $statusClassForPayment;?>"> </div>-->
                     </li>
                     <li><a href="basicinfo"> <i class="fa fa-user"></i> Basic Info</a>
-                        <div class=<?php echo '"'.$statusClassForBasic.'"' ?>></div>
+<!--                        <div class=<?php echo '"'.$statusClassForBasic.'"' ?>></div>-->
                     </li>
                     <li  class="active"><a href="contactInfo"> <i class="fa fa-phone"></i> Contact Info</a>
-                        <div class="<?php echo $statusClassForContact;?>"> </div>
+<!--                        <div class="<?php echo $statusClassForContact;?>"> </div>-->
                     </li>
                     <li><a href="order"> <i class="fa fa-phone"></i> Orders</a>
                                 </li>
@@ -239,7 +238,6 @@
      
 window.location.href='paymentInfo';
     }else{
-        //alert("No");
          var error=[];
             if(typeof(data.error)=='string'){
                 var error=eval("("+data.error.toString()+")");

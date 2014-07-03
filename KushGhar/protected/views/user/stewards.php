@@ -110,6 +110,7 @@ $form = $this->beginWidget('CActiveForm', array(
     <div class="row-fluid">
         <div class=" span12">
             <div class="pull-right paddingT30">
+                <input type="button" value="Previous" id="StewardsCleaningPrevious" class="btn btn-primary" onclick="previousStewardsCleaning()" style="display:none;"/>
                 <input type="button" value="Submit" id="StewardsCleaningSubmit" class="btn btn-primary" onclick="submitStewardsCleaning()" />
                 <?php
                 //echo CHtml::ajaxButton('Submit', array('user/stewards'), array(
@@ -126,7 +127,16 @@ $form = $this->beginWidget('CActiveForm', array(
 <?php $this->endWidget(); ?>
 <script type="text/javascript">
     $(document).ready(function() {
-        <?php if($getServiceDetails['appetizers'] == 1){ ?>
+        Custom.init();
+        $('#Appetizers').bootstrapSwitch();
+        $('#Dinner').bootstrapSwitch();
+        $('#Dessert').bootstrapSwitch();
+        $('#Beverage').bootstrapSwitch();
+        $('#PostDinner').bootstrapSwitch();
+        if( ($('#StewardCleaningForm_HouseCleaning').val()==1) ||($('#StewardCleaningForm_CarCleaning').val()==1)){
+            $('#StewardsCleaningPrevious').show();
+        }
+        <?php if($getServiceDetails['appetizers'] == 1){ ?>alert("------------------");
         $('#Appetizers').bootstrapSwitch('setState', true);
         <?php } else {?>
         $('#Appetizers').bootstrapSwitch('setState', false);
@@ -199,11 +209,7 @@ $form = $this->beginWidget('CActiveForm', array(
                 });   
         
         //Date and Time end
-        $('#Appetizers').bootstrapSwitch();
-        $('#Dinner').bootstrapSwitch();
-        $('#Dessert').bootstrapSwitch();
-        $('#Beverage').bootstrapSwitch();
-        $('#PostDinner').bootstrapSwitch();
+        
         
     });
     $(function () {

@@ -740,6 +740,10 @@ class UserController extends Controller {
                         $obj = array('status' => 'success', 'data' => $data, 'error' => '','HouseCleaning'=>$HouseCleaning,'CarCleaning'=>$CarCleaning,'StewardCleaning'=>$StewardCleaning);
     
                         }else{
+                            $rows = $this->kushGharService->checkingCarService($cId);
+                        if(($rows=="No Service") || ($rows=="Yes Service")){
+                        $result = $this->kushGharService->addCarWashService($houseModel, $cId,$_REQUEST['DL']);
+                        }
                 $data='';
                         $priceModel = new PriceQuoteForm;
                 $cId = $this->session['UserId'];

@@ -975,6 +975,7 @@ $(".DifferentAddress").live('mouseenter',function(){
         $('#<?php echo $j; ?>_AddressFieldsDiv').show();
         $('#<?php echo $j; ?>_DifferentAddress').val('1');
         <?php } else { ?>
+           $('#DifferentLocationDiv').hide();
            
         $('#<?php echo $j; ?>_DifferentAddress').bootstrapSwitch('setState', false);
         $('#<?php echo $j; ?>_DifferentAddress').val('0');

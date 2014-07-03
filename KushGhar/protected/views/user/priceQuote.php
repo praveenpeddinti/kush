@@ -446,7 +446,7 @@ $Stotal = 0; ?>
                                                             <?php } ?>
                                                             <?php if ($CarCleaning == 1) {
                                                                 $Ctotal = (count($getCarWashServiceDetails) * 500);
-                                                                $seats ='';
+                                                                
                                                                 ?>
                                                 <div class="panel panel-default">
                                                     <div class="panel-heading">
@@ -456,7 +456,7 @@ $Stotal = 0; ?>
                                                                 <span class="serviceprice">Rs. <?php echo $Ctotal; ?></span>
                                                                 <div class="count"></div>
                                                             </a>
-                                                        </div><?php echo "=========".$seats;?>
+                                                        </div>
                                                     </div>
                                                     <div id="collapseTwo" class="panel-collapse collapse">
                                                         <div class="panel-body paddinground">
@@ -479,7 +479,7 @@ $Stotal = 0; ?>
                                                     <?php } ?>
 
                                                     
-            <?php if ($cw['shampoo_seats'] != 0) { $seats+1;?>
+            <?php if ($cw['shampoo_seats'] != 0) { ?>
                                                                         <tr>
                                                                             <td>Shampoo Seats</td>
                                                                             <td><?php echo "<b>Yes</b>"; ?></td>

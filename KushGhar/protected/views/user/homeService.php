@@ -346,7 +346,7 @@ $(document).ready(function() {
             $("#HouseCleaningForm_WeekDays_em_").hide();
             $("#HouseCleaningForm_LivingRooms_em_").show();
             $("#HouseCleaningForm_LivingRooms_em_").addClass('errorMessage');
-            $("#HouseCleaningForm_LivingRooms_em_").text("Please Select Any One");
+            $("#HouseCleaningForm_LivingRooms_em_").text("You chose as 0 Rooms at your house, Please choose atleast one kind of room.");
             return false;
         }
         if (($('#HouseCleaningForm_NumberOfTimesServices').val() == '')) {
@@ -822,7 +822,7 @@ $(document).ready(function() {
         }
         var queryString = $('#carwash-form').serialize();
         queryString += '&Type=' + type+'&DL='+DL;
-        //alert("car wash Form Details=="+queryString);
+        alert("car wash Form Details=="+queryString);
        ajaxRequest('/user/carwash', queryString, addCarWashCleaningServicehandler);
     }
    
@@ -1105,7 +1105,7 @@ $(document).ready(function() {
         {
             $("#StewardCleaningForm_totalStewards_em_").show();
             $("#StewardCleaningForm_totalStewards_em_").addClass('errorMessage');
-            $("#StewardCleaningForm_totalStewards_em_").text("# of Stewards should not be less than "+noOfStewards+" as recommended");
+            $("#StewardCleaningForm_totalStewards_em_").text("Recommanded Stewards should not be less than "+noOfStewards);
             return false;
         }
         if (startDateValuecmp > endDateValuecmp) {

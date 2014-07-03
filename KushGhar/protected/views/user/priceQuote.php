@@ -185,19 +185,21 @@ $Stotal = 0; ?>
                                         <td><?php echo "<b>" . $getStewardsServiceDetails['service_hours'] . "</b>"; ?></td>
                                     </tr>
                                     <tr>
-                                        <td># of Stewards</td>
+                                        <td>Recommanded Stewards</td>
                                         <td><?php echo "<b>" . $getStewardsServiceDetails['no_of_stewards'] . "</b>"; ?></td>
                                     </tr>
-                                    <tr>
-                                        <td valign='top'>Services Required</td>
-                                        <td>
+                                    <?php if( ($getStewardsServiceDetails['appetizers'] == 1) || ($getStewardsServiceDetails['dinner'] == 1) || ($getStewardsServiceDetails['dessert'] == 1) || ($getStewardsServiceDetails['alcoholic'] == 1) || ($getStewardsServiceDetails['post_dinner'] == 1) ) {?>
+                                                                <tr>
+                                                                    <td valign='top'>Services Required</td>
+                                                                    <td>
         <?php if ($getStewardsServiceDetails['appetizers'] == 1) echo "Appetizers</br>"; ?>
         <?php if ($getStewardsServiceDetails['dinner'] == 1) echo "Dinner</br>"; ?>
         <?php if ($getStewardsServiceDetails['dessert'] == 1) echo "Dessert</br>"; ?>
         <?php if ($getStewardsServiceDetails['alcoholic'] == 1) echo "Beverage</br>"; ?>
         <?php if ($getStewardsServiceDetails['post_dinner'] == 1) echo "Coffee / Tea</br>"; ?>
-                                        </td>
-                                    </tr>
+                                                                    </td>
+                                                                </tr>
+ <?php }?>
 
                                 </table>    
                             </div>
@@ -221,7 +223,7 @@ $Stotal = 0; ?>
     <?php //$serviceTax = ((($totalRoomsPrice + $Ctotal + $Stotal) * 12.36) / 100); 
     $serviceTax=0;
     ?>
-        <div class="span6"><label>Total Price (<b>0%</b> Service Tax)</label><input type="text" value="<?php echo $totalRoomsPrice + $Ctotal + $Stotal + $serviceTax; ?>" id="price" readonly="true" /></div>
+        <div class="span6"><label>Total Price (Service Tax Included)</label><input type="text" value="<?php echo $totalRoomsPrice + $Ctotal + $Stotal + $serviceTax; ?>" id="price" readonly="true" /></div>
         <div class="span6">
             <div class="pull-right paddingT30">
                 <input type="button" class="btn btn-primary" value="Place Order" onclick="submitServiceOrder();">
@@ -543,9 +545,10 @@ $Stotal = 0; ?>
                                                                     <td><?php echo "<b>" . $getStewardsServiceDetails['service_hours'] . "</b>"; ?></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td># of Stewards</td>
+                                                                    <td>Recommanded Stewards</td>
                                                                     <td><?php echo "<b>" . $getStewardsServiceDetails['no_of_stewards'] . "</b>"; ?></td>
                                                                 </tr>
+ <?php if( ($getStewardsServiceDetails['appetizers'] == 1) || ($getStewardsServiceDetails['dinner'] == 1) || ($getStewardsServiceDetails['dessert'] == 1) || ($getStewardsServiceDetails['alcoholic'] == 1) || ($getStewardsServiceDetails['post_dinner'] == 1) ) {?>
                                                                 <tr>
                                                                     <td valign='top'>Services Required</td>
                                                                     <td>
@@ -556,7 +559,7 @@ $Stotal = 0; ?>
         <?php if ($getStewardsServiceDetails['post_dinner'] == 1) echo "Coffee / Tea</br>"; ?>
                                                                     </td>
                                                                 </tr>
-
+ <?php }?>
                                                             </table>    
                                                         </div>
                                                     </div>
@@ -569,7 +572,7 @@ $Stotal = 0; ?>
                        <?php if( ($HouseCleaning == 0) && ($CarCleaning == 0) && ($StewardsCleaning == 0) ){?>
                            <div class="row-fluid">
     
-                               <div class="span12"><label>No Services.</label></div>
+                               <div class="span12"><label>No Orders Found.</label></div>
                            </div>       
                        <?php }else{?> 
                                  <div class="panel panel-default">
@@ -586,7 +589,7 @@ $Stotal = 0; ?>
     <?php //$serviceTax = ((($totalRoomsPrice + $Ctotal + $Stotal) * 12.36) / 100);
     $serviceTax=0;
     ?>
-                                    <div class="span6"><label>Total Price (<b>0%</b> Service Tax)</label><input type="text" value="<?php echo $totalRoomsPrice + $Ctotal + $Stotal + $serviceTax; ?>" id="price" readonly="true"/></div>
+                                    <div class="span6"><label>Total Price (Service Tax Included)</label><input type="text" value="<?php echo $totalRoomsPrice + $Ctotal + $Stotal + $serviceTax; ?>" id="price" readonly="true"/></div>
                                     <div class="span6">
                                         <div class="pull-right paddingT30">
     <?php

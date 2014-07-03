@@ -65,7 +65,7 @@
                                         <?php //echo $form->dropDownList($model,'LivingRooms', $Rooms, array('options' => array($getServiceDetails['total_livingRooms'] => array('selected' => 'selected')), 'class' => 'span12'));?>
 
                                         <?php echo $form->dropDownList($model,'LivingRooms', array('1' => '1', '0'=>'0','2' => '2', '3'=>'3', '4'=>'4', '5'=>'5'), array('class' => 'span12','options' => array($getServiceDetails['total_livingRooms'] => array('selected' => 'selected'))));?>
-                                        <?php echo $form->error($model, 'LivingRooms'); ?>
+                                        
                                     </div>
                                     <div class=" span3">
 
@@ -91,7 +91,7 @@
                                             <?php echo $form->dropDownList($model,'BathRooms', array('1' => '1', '0'=>'0','2' => '2', '3'=>'3', '4'=>'4', '5'=>'5'), array('class' => 'span12','options' => array($getServiceDetails['total_bathRooms'] => array('selected' => 'selected'))));?>
                                         
                                     </div>
-                                    
+                                    <?php echo $form->error($model, 'LivingRooms'); ?>
                                     
 
                                 </div>

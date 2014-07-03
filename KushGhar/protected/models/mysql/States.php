@@ -15,7 +15,9 @@ class States extends CActiveRecord {
 
     public function getAllStates() {
         try {
-            $statesData = States::model()->findAll();
+            $Criteria = new CDbCriteria();
+            $Criteria->order = 'StateName ASC';
+            $statesData = States::model()->findAll($Criteria);
         } catch (Exception $ex) {
             
         }

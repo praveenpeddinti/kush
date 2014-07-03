@@ -171,7 +171,10 @@ dateFormat:'dd-mm-yyyy',
 dateOrder: 'Md ddyy',
 minDate: mindate
 });
-$('#CarWashForm_ServiceStartTime').scroller('setDate', mindate, true);
+<?php if(empty($NOfServiceTime) ){ ?>
+                $('#CarWashForm_ServiceStartTime').scroller('setDate', mindate, true);
+                <?php }?>
+
 //        var currentDate=new Date();
 //                var maxdate=new Date();
 //                maxdate.setFullYear(maxdate.getFullYear()-19);
@@ -975,7 +978,7 @@ $(".DifferentAddress").live('mouseenter',function(){
         $('#<?php echo $j; ?>_AddressFieldsDiv').show();
         $('#<?php echo $j; ?>_DifferentAddress').val('1');
         <?php } else { ?>
-           $('#DifferentLocationDiv').hide();
+           //$('#DifferentLocationDiv').hide();
            
         $('#<?php echo $j; ?>_DifferentAddress').bootstrapSwitch('setState', false);
         $('#<?php echo $j; ?>_DifferentAddress').val('0');

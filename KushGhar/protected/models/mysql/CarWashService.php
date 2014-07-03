@@ -78,7 +78,7 @@ class CarWashService extends CActiveRecord {
                     $pin_code[$i];
                 }*/
                 
-                $query = "insert into  KG_Car_cleaning_service(ServiceId,CustId,total_cars,different_location,week_days,carservice_start_time,make_of_car,order_number,exterior_color,interior_cleaning,shampoo_seats,address_line1,address_line2,alternate_phone,address_state,address_city,address_pin_code,status,create_timestamp,update_timestamp) values(2,$cId,$model->TotalCars,$DL,'$model->WeekDays','$model->ServiceStartTime','$make_of_car[$i]','$orderNo','$exterior_color[$i]',$interior_cleaning[$i],$shampoo_seats[$i],'$address1[$i]','$address2[$i]','$alternate_phone[$i]','$state[$i]','$city[$i]','$pin_code[$i]','0','$create_timestamp','$update_timestamp')";
+                $query = "insert into  KG_Car_cleaning_service(ServiceId,CustId,total_cars,different_location,week_days,carservice_start_time,service_no_of_times,make_of_car,order_number,exterior_color,interior_cleaning,shampoo_seats,address_line1,address_line2,alternate_phone,address_state,address_city,address_pin_code,status,create_timestamp,update_timestamp) values(2,$cId,$model->TotalCars,$DL,'$model->WeekDays','$model->ServiceStartTime','$model->NumberOfTimesServices','$make_of_car[$i]','$orderNo','$exterior_color[$i]',$interior_cleaning[$i],$shampoo_seats[$i],'$address1[$i]','$address2[$i]','$alternate_phone[$i]','$state[$i]','$city[$i]','$pin_code[$i]','0','$create_timestamp','$update_timestamp')";
             
             $result1 = YII::app()->db->createCommand($query)->execute();
            

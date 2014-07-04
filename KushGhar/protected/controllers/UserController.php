@@ -758,8 +758,11 @@ class UserController extends Controller {
                 $dd=$this->kushGharService->getcustomerServicesStewardsStatus($cId); 
                
                 }
-                
-                $data=$this->renderPartial('priceQuote', array("customerDetails" => $customerDetails, 'getServiceDetails'=>$getServiceDetails, 'getCarWashServiceDetails'=>$getCarWashServiceDetails,'getStewardsServiceDetails'=>$getStewardsServiceDetails, 'HouseCleaning'=>$houseModel->HouseCleaning, 'CarCleaning'=>$houseModel->CarCleaning, 'StewardsCleaning'=>$houseModel->StewardCleaning,'PriceFlag'=>'0'), true);
+                $totalSeats=0;
+                foreach($getCarWashServiceDetails as $shampooseats){
+                    $totalSeats= $totalSeats+$shampooseats['shampoo_seats'];
+                }
+                $data=$this->renderPartial('priceQuote', array("customerDetails" => $customerDetails, 'getServiceDetails'=>$getServiceDetails, 'getCarWashServiceDetails'=>$getCarWashServiceDetails,'getStewardsServiceDetails'=>$getStewardsServiceDetails, 'HouseCleaning'=>$houseModel->HouseCleaning, 'CarCleaning'=>$houseModel->CarCleaning, 'StewardsCleaning'=>$houseModel->StewardCleaning,'PriceFlag'=>'0','totalSeats'=>$totalSeats), true);
                 
                 //$data=$this->renderPartial('priceQuote', array("customerDetails" => $customerDetails, "getCarWashServiceDetails" => $getCarWashServiceDetails, 'HouseCleaning'=>$houseModel->HouseCleaning, 'CarCleaning'=>$houseModel->CarCleaning,'StewardsCleaning'=>$houseModel->StewardCleaning,'PriceFlag'=>'0'), true);
                 $obj = array('status' => 'success', 'data' => $data, 'error' => '');
@@ -878,12 +881,15 @@ class UserController extends Controller {
                 if( ($customerServicesCar=='Yes Service') && ($stewardModel->CarCleaning=='0') ){
                  $rr=$this->kushGharService->getcustomerServicesCarStatus($cId); 
                 }
-                
+                $totalSeats=0;
+                foreach($getCarWashServiceDetails as $shampooseats){
+                    $totalSeats= $totalSeats+$shampooseats['shampoo_seats'];
+                }
                 
                 
                 //$data=$this->renderPartial('priceQuote', array("customerDetails" => $customerDetails, 'getStewardsServiceDetails'=>$getStewardsServiceDetails, 'HouseCleaning'=>$stewardModel->HouseCleaning, 'CarCleaning'=>$stewardModel->CarCleaning,'PriceFlag'=>'0'), true);
                 
-                $data=$this->renderPartial('priceQuote', array("customerDetails" => $customerDetails, 'getServiceDetails'=>$getServiceDetails, 'getCarWashServiceDetails'=>$getCarWashServiceDetails,'getStewardsServiceDetails'=>$getStewardsServiceDetails, 'HouseCleaning'=>$stewardModel->HouseCleaning, 'CarCleaning'=>$stewardModel->CarCleaning, 'StewardsCleaning'=>$stewardModel->StewardCleaning,'PriceFlag'=>'0'), true);
+                $data=$this->renderPartial('priceQuote', array("customerDetails" => $customerDetails, 'getServiceDetails'=>$getServiceDetails, 'getCarWashServiceDetails'=>$getCarWashServiceDetails,'getStewardsServiceDetails'=>$getStewardsServiceDetails, 'HouseCleaning'=>$stewardModel->HouseCleaning, 'CarCleaning'=>$stewardModel->CarCleaning, 'StewardsCleaning'=>$stewardModel->StewardCleaning,'PriceFlag'=>'0','totalSeats'=>$totalSeats), true);
                 //$data=$this->renderPartial('priceQuote', array("customerDetails" => $customerDetails, 'getStewardsServiceDetails'=>$getStewardsServiceDetails, 'HouseCleaning'=>1, 'CarCleaning'=>1, 'StewardsCleaning'=>1,'PriceFlag'=>'0'), true);
                 $obj = array('status' => 'success', 'data' => $data, 'error' => '');
                 
@@ -908,6 +914,12 @@ class UserController extends Controller {
         $getServiceDetails = $this->kushGharService->getDetails($cId);
         $getStewardsServiceDetails = $this->kushGharService->getStewardsDetails($cId);
         $getCarWashServiceDetails = $this->kushGharService->getCarWashDetails($cId);
+        $totalSeats=0;
+        foreach($getCarWashServiceDetails as $shampooseats){
+            
+             $totalSeats= $totalSeats+$shampooseats['shampoo_seats'];
+            
+        }
         //$this->session['firstName'] = $customerDetails->first_name;
         //$data = "praveen";
         //$obj = array('status' => 'success', 'data' => $data, 'error' => '');
@@ -934,7 +946,7 @@ class UserController extends Controller {
             $renderScript = $this->rendering($obj);
             echo $renderScript;
         } else {
-            $this->render('priceQuote', array("customerDetails" => $customerDetails, "getServiceDetails" => $getServiceDetails, 'getStewardsServiceDetails'=>$getStewardsServiceDetails, 'getCarWashServiceDetails'=>$getCarWashServiceDetails, 'HouseCleaning'=>$HCleaning, 'CarCleaning'=>$CCleaning, 'StewardsCleaning'=>$SCleaning,'PriceFlag'=>'1'));
+            $this->render('priceQuote', array("customerDetails" => $customerDetails, "getServiceDetails" => $getServiceDetails, 'getStewardsServiceDetails'=>$getStewardsServiceDetails, 'getCarWashServiceDetails'=>$getCarWashServiceDetails, 'HouseCleaning'=>$HCleaning, 'CarCleaning'=>$CCleaning, 'StewardsCleaning'=>$SCleaning,'PriceFlag'=>'1','totalSeats'=>$totalSeats));
         }
         //$this->render('priceQuote', array("customerDetails" => $customerDetails, "getServiceDetails" => $getServiceDetails));
     }

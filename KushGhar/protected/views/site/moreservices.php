@@ -18,9 +18,9 @@
                                 $payment = '<span class="KGpayment"> </span>';
                             }
 ?>
-                            <li class="" ><?php echo $accout;?></li>
-                            <li class="active"><a href="#"  ><span class="KGservices"> </span></a></li>
-                            <li class="" ><?php echo $payment;?></li>
+                            <li class="" title="Account" ><?php echo $accout;?></li>
+                            <li class="active" title="Services"><a href="#"  ><span class="KGservices"> </span></a></li>
+                            <li class="" title="Payment" ><?php echo $payment;?></li>
 
                         </ul>
 

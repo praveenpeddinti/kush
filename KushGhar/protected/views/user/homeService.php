@@ -346,7 +346,7 @@ $(document).ready(function() {
             $("#HouseCleaningForm_WeekDays_em_").hide();
             $("#HouseCleaningForm_LivingRooms_em_").show();
             $("#HouseCleaningForm_LivingRooms_em_").addClass('errorMessage');
-            $("#HouseCleaningForm_LivingRooms_em_").text("You chose as 0 Rooms at your house, Please choose atleast one kind of room.");
+            $("#HouseCleaningForm_LivingRooms_em_").text("You have choosen 0 Rooms at your house, Please choose atleast one kind of room.");
             return false;
         }
         if (($('#HouseCleaningForm_NumberOfTimesServices').val() == '')) {
@@ -568,6 +568,14 @@ $(document).ready(function() {
             } else {
                 $("#" + i + "_PinCode_em").hide();
             }
+            if ( ($("#" + i + "_PinCode").val().length<='5') ) {
+                $("#" + i + "_PinCode_em").show();
+                $("#" + i + "_PinCode_em").addClass('errorMessage');
+                $("#" + i + "_PinCode_em").text("Pin Code too short (minimum is 6 numbers).");
+                return false;
+            } else {
+                $("#" + i + "_PinCode_em").hide();
+            }
             //Pin Code validation end
         
               if (makeofcar == "") {
@@ -701,8 +709,7 @@ $(document).ready(function() {
             }
             //address line1 end
             //phone validation start
-            /*if ( ($("#11_AlternatePhone").val() != "") && (!$("11_AlternatePhone").val().match(/^[0-9]+$/)) ) {
-                //alert("====phone==");
+            if ( ($("#11_AlternatePhone").val() != "") && (!$("11_AlternatePhone").val().match(/^[0-9]+$/)) ) {
                 $("#11_AlternatePhone_em").show();
                 $("#11_AlternatePhone_em").addClass('errorMessage');
                 $("#11_AlternatePhone_em").text("Please Enter only numbers ");
@@ -710,7 +717,7 @@ $(document).ready(function() {
                 return false;
             } else {
                 $("#11_AlternatePhone_em").hide();
-            }*/
+            }
             //phone validation end
             //State validation start
             if ( ($("#11_State").val()=='') ) {
@@ -731,6 +738,7 @@ $(document).ready(function() {
             } else {
                 $("#11_City_em").hide();
             }
+           
             //City validation end
             //Pin code validation start
             if ( ($("#11_PinCode").val()=='') ) {
@@ -750,6 +758,15 @@ $(document).ready(function() {
             } else {
                 $("#11_PinCode_em").hide();
             }
+            if ( ($("#11_PinCode").val().length<='5') ) {
+                $("#11_PinCode_em").show();
+                $("#11_PinCode_em").addClass('errorMessage');
+                $("#11_PinCode_em").text("Pin Code too short (minimum is 6 numbers).");
+                return false;
+            } else {
+                $("#11_PinCode_em").hide();
+            }
+            
         
               if (makeofcar == "") {
                     makeofcar = $("#" + i + "_MakeOfCar").val()+",";

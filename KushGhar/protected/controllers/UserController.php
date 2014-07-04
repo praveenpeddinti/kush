@@ -956,6 +956,7 @@ class UserController extends Controller {
     public function actionServiceOrder(){
         $cId = $this->session['UserId'];
         $genOrderNo = '';
+        $HOrder='';$COrder='';$SOrder='';
         $customerDetails = $this->kushGharService->getCustomerDetails($cId);
         $customerServicesHouse = $this->kushGharService->getcustomerServicesHouse($cId);
         $customerServicesCar = $this->kushGharService->getcustomerServicesCar($cId);
@@ -969,27 +970,40 @@ class UserController extends Controller {
         $getStewardsServiceDetails='0';
         $getCarWashServiceDetails='0';
         $getTotalCars ='';
+        $totalSeats=0;
         if($customerServicesHouse=='Yes Service') {
             $getServiceDetails = $this->kushGharService->getDetails($cId);
             $priceRoom1 = (($getServiceDetails['total_livingRooms'] + $getServiceDetails['total_bedRooms']) * 125);
             $priceRoom2 = (($getServiceDetails['total_bathRooms'] + $getServiceDetails['total_kitchens']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
             $priceAddServices = (($getServiceDetails['window_grills'] + $getServiceDetails['fridge_interior'] + $getServiceDetails['microwave_oven_interior']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
 //            $serviceTaxPrice = (($priceRoom1+$priceRoom2+$priceAddServices)*12.36)/100;
+            $totalRoomsPrice = $priceRoom1 + $priceRoom2 ;
+            error_log($priceAddServices."------------1----".$totalRoomsPrice);
+            if($totalRoomsPrice < 750)
+                    {
+                        $totalRoomsPrice = 750;
+                    }
+                    //$totalRoomsPrice+= $priceAddServices;
             $serviceTaxPrice=0;
-            $totalRoomsPrice = $priceRoom1 + $priceRoom2 + $priceAddServices+$serviceTaxPrice;
+            $totalRoomsPrice = $totalRoomsPrice + $priceAddServices+$serviceTaxPrice;
+            error_log("---------2-------".$totalRoomsPrice);
             $storeOrderDetailsOfHouse = $this->kushGharService->storeOrderDetailsOfHouse($cId,$getOrderDetailsMaxParentId['id'],$getServiceDetails['CustId'],$genOrderNo,'1',$totalRoomsPrice);
             $getOrderDetailsMaxParentIdH = $this->kushGharService->getOrderDetailsMaxParentId();
             $storeOrdernumberofHouse = $this->kushGharService->storeOrdernumberofHouse($cId,$getOrderDetailsMaxParentIdH['id'],$getOrderDetailsMaxParentIdH['order_number']);
             $getOrderNumber = $getOrderDetailsMaxParentIdH['order_number'];
             //error_log("-------".$getOrderDetailsMaxParentIdH);
             $genOrderNo = $genOrderNo+1;
+            $HOrder = $genOrderNo;
         }else{$getServiceDetails='0';}
         
         if($customerServicesCar=='Yes Service') {
             
             $getCarWashServiceDetails = $this->kushGharService->getCarWashDetails($cId);
-            foreach($getCarWashServiceDetails as $ee){$getTotalCars = $ee['total_cars'];}
-            $totalCPrice=$getTotalCars*500;
+            foreach($getCarWashServiceDetails as $ee){
+                $getTotalCars = $ee['total_cars'];
+                $totalSeats= $totalSeats+$ee['shampoo_seats'];
+            }
+            $totalCPrice=$getTotalCars*500+$totalSeats;
             $storeOrderDetailsOfHouses = $this->kushGharService->storeOrderDetailsOfHouse($cId,$getOrderDetailsMaxParentId['id'],$getStewardsServiceDetails['CustId'],$genOrderNo,'2',$totalCPrice);
             $getOrderDetailsMaxParentIdC = $this->kushGharService->getOrderDetailsMaxParentId();
             
@@ -1001,6 +1015,7 @@ class UserController extends Controller {
                 
                 }
                 $genOrderNo = $genOrderNo+1;
+                $COrder = $genOrderNo;
         }else{$getCarWashServiceDetails='0';}
         
         if($customerServicesStewards=='Yes Service'){
@@ -1012,9 +1027,11 @@ class UserController extends Controller {
             $storeOrdernumberofHouse = $this->kushGharService->storeOrdernumberofStewards($cId,$getOrderDetailsMaxParentIdS['id'],$getOrderDetailsMaxParentIdS['order_number']);
             $getOrderNumber = $getOrderDetailsMaxParentIdS['order_number'];
             //$getOrderNumber = $getStewardsServiceDetails['order_number'];
-            
+            $genOrderNo = $genOrderNo+1;
+            $SOrder = $genOrderNo;
         }else{$getStewardsServiceDetails='0';}
-       //$subject = "Place Order";
+        error_log("HO====".$HOrder."==CO====".$COrder."==SO===".$SOrder);
+        //$subject = "Place Order";
         $messages = "The Order Number is <b>".$getOrderNumber."</b>";
         $mess = "The Order Number is <b>".$getOrderNumber."</b>\r\n\n";
         $mess = $mess."Customer Name is ".$customerDetails['first_name']."\r\n\n";
@@ -1043,9 +1060,9 @@ class UserController extends Controller {
                 
                 //$params = '';
                 $sendMailToUser=new CommonUtility;
-                $sendMailToUser->actionSendmail($messageview1,$params1, $subject1, $to1,$employerEmail);
-                $mailSendStatus=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
-        $data=$this->renderPartial('serviceOrder', array("customerDetails" => $customerDetails, "orderNumber" => $getOrderNumber), true);
+                //$sendMailToUser->actionSendmail($messageview1,$params1, $subject1, $to1,$employerEmail);
+                //$mailSendStatus=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
+        $data=$this->renderPartial('serviceOrder', array("customerDetails" => $customerDetails, 'HouseService'=>$getServiceDetails,'CarService'=>$getCarWashServiceDetails,'StewardService'=>$getStewardsServiceDetails,'getCars'=>$getTotalCars,'HO'=>$HOrder,'CO'=>$COrder,'SO'=>$SOrder), true);
         $obj = array('status' => 'success', 'data' => $data, 'error' => '');
         $renderScript = $this->rendering($obj);
         echo $renderScript;

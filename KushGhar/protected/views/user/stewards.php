@@ -17,7 +17,7 @@ $form = $this->beginWidget('CActiveForm', array(
     <div class=" row-fluid borderB">
         <div class="span12 ">
             <div class="stewards_title">
-                Stewards / Stewardess Service <a class="details has-popover" target="_blank" title="" data-toggle="popover" data-placement="bottom" data-content="<ul><li>Supplies of food</li><li>Supplies of Wine / liquor</li><li>Assisting in seating the Guests</li><li>Re- filling of Food and Liquor</li><li>Garbage emptying</li></ul>" data-original-title="Stewards/Stewardesses" href="/site/stewards">(What is included<b>?</b>)</a>
+                Stewards / Stewardesses Service <a class="details has-popover" target="_blank" title="" data-toggle="popover" data-placement="bottom" data-content="<ul><li>Supplies of food</li><li>Supplies of Wine / liquor</li><li>Assisting in seating the Guests</li><li>Re- filling of Food and Liquor</li><li>Garbage emptying</li></ul>" data-original-title="Stewards/Stewardesses" href="/site/stewards">(What is included<b>?</b>)</a>
             </div>
         </div>        
     </div>
@@ -195,7 +195,7 @@ $form = $this->beginWidget('CActiveForm', array(
                 mindate.setFullYear(mindate.getFullYear()-100);
                 mindate.setMonth(currentDate.getMonth()+2);
                 mindate.setDate(currentDate.getDate()+2);
-                $('#StewardCleaningForm_EndTime').scroller('setDate', $("#StewardCleaningForm_StartTime").val(), true);
+                $('#StewardCleaningForm_EndTime').scroller('minDate', $("#StewardCleaningForm_StartTime").val(), true);
                 $('#StewardCleaningForm_EndTime').scroller({
                     preset: 'datetime',
                     timeFormat:'HH:ii',

@@ -175,9 +175,9 @@
                     dateOrder: 'Md ddyy',
                     minDate:  mindate
                 });
-                <?php if(empty($getServiceDetails['houseservice_start_time']) ){ ?>
-                $('#HouseCleaningForm_ServiceStartTime').scroller('setDate', mindate, true);
-                <?php }?>
+                <?php //if(empty($getServiceDetails['houseservice_start_time']) ){ ?>
+                //$('#HouseCleaningForm_ServiceStartTime').scroller('setDate', mindate, true);
+                <?php //}?>
         $('#WindowGrills').bootstrapSwitch();
         $('#FridgeInterior').bootstrapSwitch();
         $('#MicroWaveOven').bootstrapSwitch();

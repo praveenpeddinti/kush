@@ -1,29 +1,17 @@
 <?php 
-$NOCars ='';$CarServiceTime ='';$TCars='';$WeekDays='';$NOfServiceTime='';
-        if((sizeof($getCarWashServiceDetails)>0)){ 
+    $NOCars ='';$CarServiceTime ='';$TCars='';$WeekDays='';$NOfServiceTime='';
+    if((sizeof($getCarWashServiceDetails)>0)){ 
         foreach($getCarWashServiceDetails as $ee){
-        
-        $CarServiceTime = $ee['carservice_start_time'];
-        $TCars = $ee['total_cars'];
-        $WeekDays = $ee['week_days'];
-        $NOfServiceTime = $ee['service_no_of_times'];
+            $CarServiceTime = $ee['carservice_start_time'];
+            $TCars = $ee['total_cars'];
+            $WeekDays = $ee['week_days'];
+            $NOfServiceTime = $ee['service_no_of_times'];
         }
-        }
-    
- if(sizeof($getCarWashServiceDetails)==0){$NOCars =1;}else{
-        //$NOCars=sizeof($getCarWashServiceDetails);
-         $NOCars = $TCars;
     }
-    
-//foreach($getCarWashServiceDetails as $rw){
-//    error_log("===make_of_car==".$rw['make_of_car']);foreach($getCarWashServiceDetails as $dd){$totalCars =$dd['total_cars'];}
-//}
-
-
-?>
-<?php //if(count($getCarWashServiceDetails)=='1'){$totalCars =1;}else if(count($getCarWashServiceDetails)=='0'){$totalCars =1;}else{$totalCars=count($getCarWashServiceDetails);};?>
-<?php
-$form = $this->beginWidget('CActiveForm', array(
+    if(sizeof($getCarWashServiceDetails)==0){$NOCars =1;}else{
+        $NOCars = $TCars;
+    }
+    $form = $this->beginWidget('CActiveForm', array(
     'id' => 'carwash-form',
     'enableClientValidation' => true,
     'clientOptions' => array('validateOnSubmit' => true),
@@ -91,19 +79,6 @@ $form = $this->beginWidget('CActiveForm', array(
              <?php echo $form->error($model, 'ServiceStartTime'); ?>
         </div>
     </div>
-    
-<!--    <div class="row-fluid">
-       <div class="span5">
-            <label><abbr title="required">*</abbr> When do you want service?</label>
-            <?php //echo $form->dropDownList($model,'WeekDays', array('Sunday'=>'Sunday', 'Monday'=>'Monday', 'Tuesday' => 'Tuesday', 'Wednesday' => 'Wednesday', 'Thursday'=>'Thursday', 'Friday'=>'Friday', 'Saturday'=>'Saturday'), array('options' => array($WeekDays => array('selected' => 'selected')), 'class' => 'span12'));?>
-            <?php //echo $form->error($model, 'WeekDays'); ?>
-        </div> 
-        <div class=" span7">
-            <label>&nbsp;</label>
-            <?php //echo $form->textField($model, 'ServiceStartTime', array('value'=>$CarServiceTime, 'class' => 'span8', 'placeholder' => '')); ?>
-            <?php //echo $form->error($model, 'ServiceStartTime'); ?>
-        </div> 
-    </div>-->
     <div class="newcars" id="newcars" style="display: none;">
         
     </div>
@@ -121,11 +96,7 @@ $form = $this->beginWidget('CActiveForm', array(
 
 
 <script type="text/javascript">
-    var MakeOC = new Array();
-    var ExtClr = new Array();
-    var mc = 0;
-    
-     $(document).ready(function(){
+    $(document).ready(function(){
        var w = $('#CarWashForm_NumberOfTimesServices').val();
        if(w==5)
        {
@@ -172,9 +143,9 @@ dateFormat:'dd-mm-yyyy',
 dateOrder: 'Md ddyy',
 minDate: mindate
 });
-<?php if(empty($NOfServiceTime) ){ ?>
-                $('#CarWashForm_ServiceStartTime').scroller('setDate', mindate, true);
-                <?php }?>
+<?php //if(empty($NOfServiceTime) ){ ?>
+               // $('#CarWashForm_ServiceStartTime').scroller('setDate', mindate, true);
+                <?php //}?>
 
 //        var currentDate=new Date();
 //                var maxdate=new Date();
@@ -382,6 +353,7 @@ minDate: mindate
              '<div class=" span4">'+
                 '<label> Alternate Phone</label>'+'<input type="text" value="+91" disabled="disabled" class="span3"/>'+' '+
                 '<input type="text" class="span9" id="11_AlternatePhone" maxLength="10" placeholder="Alternate Phone…" onkeypress="return isNumberKey(event);">'+
+                '<div id="11_AlternatePhone_em" class="errorMessage" style="display:none"></div>'+
              '</div> '+
         '</div>'+
         '<div class="row-fluid">'+
@@ -530,6 +502,9 @@ minDate: mindate
             }
             else{
                $('#1_ShampooSeats').val('0');
+               $('.interiorDiv').hide();
+               $('#1_InteriorCleaning').bootstrapSwitch('setState', false);
+               $('#1_InteriorCleaning').val('0');
            }
         });
         
@@ -866,6 +841,9 @@ function bindDiff(nValue){
                
                $("#"+id+"_ShampooSeats").val('0');
                $("#"+id+"_ShampooSeatsTooltip").hide();
+               $("#"+id+"_interiorDiv").hide();
+               $("#"+id+"_InteriorCleaning").bootstrapSwitch('setState', false);
+               $("#"+id+"_InteriorCleaning").val('0');
             }
         });
     });

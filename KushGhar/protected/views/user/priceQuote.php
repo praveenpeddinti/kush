@@ -84,7 +84,8 @@ $Stotal = 0; ?>
                 </div>
                 <?php } ?>
     <?php if ($CarCleaning == 1) {
-        $Ctotal = $Ctotal = (count($getCarWashServiceDetails) * 500);
+        $seatAmt = $totalSeats*400;
+        $Ctotal = (count($getCarWashServiceDetails) * 500)+$seatAmt;
         
         ?>
                     <div class="panel panel-default">
@@ -445,8 +446,8 @@ $Stotal = 0; ?>
                                                 </div>
                                                             <?php } ?>
                                                             <?php if ($CarCleaning == 1) {
-                                                                $Ctotal = (count($getCarWashServiceDetails) * 500);
-                                                                
+                                                                $seatAmt = $totalSeats*400;
+                                                                $Ctotal = (count($getCarWashServiceDetails) * 500)+$seatAmt;
                                                                 ?>
                                                 <div class="panel panel-default">
                                                     <div class="panel-heading">

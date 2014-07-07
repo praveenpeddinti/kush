@@ -50,26 +50,29 @@
                     $totalRoomsPrice+= $priceAddServices;
                                                     echo $totalRoomsPrice; ?>
                                             
-                                                    <?php }?>
+                                                    
                                                 </td>
                                             </tr>
+                                            <?php }?>
                                             <?php if($CarService!=0){?>
                                             <tr><td><b>Car wash service cost :</b>  </td>
                                                 <td><?php $totalcarPrice = 500*$getCars;;
                                                     echo $totalcarPrice; ?>
                                             
-                                                    <?php }?>
+                                                    
                                                 </td>
                                             </tr>
+                                            <?php }?>
                                             <?php if($StewardService!=0){?>
                                             <tr><td><b>Stewards service cost :</b>  </td>
                                                 <td><?php 
                                                     $Stotal = ($StewardService['service_hours'] * $StewardService['no_of_stewards'] * 200);
                                                     echo $Stotal; ?>
                                             
-                                                    <?php }?>
+                                                    
                                                 </td>
                                             </tr>
+                                            <?php }?>
                                             <tr><td><b>Total Cost(Service Tax Included) :</b></td><td><b>
                                                 <?php // $serviceTax = ((($totalRoomsPrice + $totalcarPrice + $Stotal) * 12.36) / 100); 
                                                 echo $serviceTax=0;

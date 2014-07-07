@@ -25,11 +25,12 @@
                                 <!-- END OF Header Table -->
                                 <!-- START OF full width Table --> 
                                 <table width="650" cellspacing="0" cellpadding="0" border="0" align="center">
+                                   <tr><td colspan="2">Hi,</td></tr> 
                                     <?php $totalRoomsPrice='0';$totalcarPrice='0';$Stotal='0';?>
             
             <?php if($HO!=0){?>
             <tr>
-                <td>
+                <td colspan="2">
                      Your House cleaning service order number is <b><?php echo $HO;?></b>
                 </td>
             </tr>

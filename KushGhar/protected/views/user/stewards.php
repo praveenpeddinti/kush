@@ -101,7 +101,7 @@ $form = $this->beginWidget('CActiveForm', array(
         
         
         <div class="span6">
-            <label>Recommanded # of Stewards</label>
+            <label>Recommended # of Stewards</label>
             <?php echo $form->textField($model1, 'totalStewards', array('value'=>$getServiceDetails['no_of_stewards'], 'class' => 'span6')); ?>
             <?php echo $form->error($model1, 'totalStewards'); ?>
         </div>

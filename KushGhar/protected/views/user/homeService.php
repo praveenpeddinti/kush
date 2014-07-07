@@ -709,7 +709,7 @@ $(document).ready(function() {
             }
             //address line1 end
             //phone validation start
-            if ( (!$("#11_AlternatePhone").val().match(/[0-9]$/)) ) {
+            if ( ($("#11_AlternatePhone").val()!='') && (!$("#11_AlternatePhone").val().match(/[0-9]$/)) ) {
                 $("#11_AlternatePhone_em").show();
                 $("#11_AlternatePhone_em").addClass('errorMessage');
                 $("#11_AlternatePhone_em").text("Please Enter only numbers ");

@@ -1047,7 +1047,7 @@ class UserController extends Controller {
                 $Logo = YII::app()->params['SERVER_URL'] . "/images/color_logo.png";
                 $employerEmail = "no-reply@kushghar.com";
                 $messageview1="orderplacemessage";
-                $params1 = array('Logo' => $Logo, 'Message' =>$messages);
+                $params1 = array('Logo' => $Logo, "customerDetails" => $customerDetails, 'HouseService'=>$getServiceDetails,'CarService'=>$getCarWashServiceDetails,'StewardService'=>$getStewardsServiceDetails,'getCars'=>$getTotalCars,'HO'=>$HOrder,'CO'=>$COrder,'SO'=>$SOrder);
                  /*
                  * KG Team mail details
                  */

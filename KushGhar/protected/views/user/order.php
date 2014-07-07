@@ -74,18 +74,18 @@
                                      $payPercent = 0;
                                  }
                                  ?>
-                                <li><a href="homeService"> <i class="fa fa-user"></i> Service Details</a></li>
+                                <li><a href="homeService"> <i class="fa fa-wrench"></i> Service Details</a></li>
                                 <li><a href="priceQuote"> <i class="fa fa-user"></i> Price Quote</a></li>
                                 <li><a href="paymentInfo"> <i class="fa fa-credit-card"></i> Payment Info</a>
 <!--                                    <div class="<?php echo $statusClassForPayment;?>"> </div>-->
                                 </li>
-                                <li><a href="basicinfo"> <i class="fa fa-user"></i> Basic Info</a>
+                                <li><a href="basicinfo"> <i class="fa fa-file-text-o"></i> Basic Info</a>
 <!--                                    <div class=<?php echo '"'.$statusClassForBasic.'"' ?>></div>-->
                                 </li>
                                 <li><a href="contactInfo"> <i class="fa fa-phone"></i> Contact Info</a>
 <!--                                    <div class="<?php echo $statusClassForContact;?>"> </div>-->
                                 </li>
-                                <li class="active"><a href="#"> <i class="fa fa-phone"></i> Orders</a>
+                                <li class="active"><a href="#"> <i class="fa fa-file-text"></i> Orders</a>
                                 </li>
                             </ul>
                         </div>

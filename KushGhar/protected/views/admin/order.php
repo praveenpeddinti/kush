@@ -113,15 +113,24 @@
 </div>
 
 <script type="text/javascript">
-    $(document).ready(function() {
-        $('#userTable tr td input').live('click', function() {
-            var id = $(this).attr('data-id');
-            var ServiceId = $(this).attr('service-id');
-            var id2 = $(this).attr('invite-id');
-            var inviteStatus = $(this).attr('invite-status');
+    function ss(id2,inviteStatus,obj){alert("---------"+obj.value+"=========="+obj.id)
+    inviteUser(Number(id2), Number(inviteStatus),obj.value);}
+     /*$(document).ready(function() {
+       $('.action').live('change',function() {alert("enter===");
+             var str = "";
+        $( "select option:selected" ).each(function() {
+        str = $( this ).text();
+        });
+        alert(str);
+        //$('#userTable tr td select').live('click', function() {
+        //$('#userTable tr td input').live('click', function() {
+            //var id = $(this).attr('data-id');
+            //var ServiceId = $(this).attr('service-id');
+            var id2 = $(this).attr('data-inviteid');
+            var inviteStatus = $(this).attr('data-invitestatus');
             //var inviteEmail = $(this).attr('invite-email');
            
-    //    alert("gggggg===="+id2);
+        alert("gggggg===="+id2+"===="+inviteStatus);return;
            if(id>0){
                 statusChangeUser(Number(id), Number(ServiceId));
             }
@@ -129,7 +138,7 @@
                 inviteUser(Number(id2), Number(inviteStatus));
             //}
         });
-    });
+    });*/
     function statusChangeUser(rowNos, ServiceId) {
         getCollectionDataWithPagination1('/admin/viewData','userDetails1', 'modelBodyDivuu',rowNos,ServiceId,'');
     }
@@ -163,11 +172,11 @@
 
         }
     }
-    function inviteUser(rowNos, status) {//alert("enter=====");
+    function inviteUser(rowNos, status,value) {//alert("enter=====");
         //scrollPleaseWait("InviteInfoSpinLoader","contactInfo-form");
         
         var data = "Id=" + rowNos + "&status=" + status;
-  //          alert("fu==="+data);
+            //alert("fu==="+data);
             $.ajax({
                 type: 'POST',
                 dataType: 'json',
@@ -180,7 +189,7 @@
                     $("#message").text('Service Status is changed Successfully.');
                     $("#message").fadeOut(6000, "");
                     //$('#usera_' + rowNos).remove();
-                    activeFormHandler2(data, status, rowNos);
+                    activeFormHandler2(data, status, rowNos,value);
                     
                 },
                 error: function(data) { // if error occured
@@ -192,24 +201,25 @@
 
     
     
-    function activeFormHandler2(data, status, rowNos) {
+    function activeFormHandler2(data, status, rowNos,value) {
         
-//alert("order_number---------"+status+"==="+rowNos);
-        if (status == 0) {
-            $('#usera_' + rowNos).attr('class', 'icon_inactive');
-            $('#usera_' + rowNos).attr('invite-status', '1');
+//alert(value+"==order_number---------"+status+"==="+rowNos);
+        if (value == 'Schedule') {
+            
             $('#status_' + rowNos).text('Schedule');
-        } else if (status == 1) {
-            $('#usera_' + rowNos).attr('class', 'icon_delete');
-            $('#usera_' + rowNos).attr('invite-status', '2');
+        } else if (value == 'Cancel') {
+            
+            $('#status_' + rowNos).text('Cancel');
+        }else if (value == 'Close') {
+            
             $('#status_' + rowNos).text('Close');
         }else {
-            $('#usera_' + rowNos).attr('class', 'icon_delete');
-            $('#usera_' + rowNos).attr('invite-status', '2');
-            $('#status_' + rowNos).text('Close');
+            
+            $('#status_' + rowNos).text('Open');
         }
 
         if (data.status == 'success') {
+            
             //alert("ok");
         } else {
 

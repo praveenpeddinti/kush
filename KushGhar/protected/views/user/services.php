@@ -19,7 +19,7 @@
                                 <div class=" row-fluid borderB">
                                     <div class="span12 ">
                                         <div class="housecleaning_title">
-                                            House Cleaning Service <a class="details has-popover" target="_blank" title="" data-toggle="popover" data-placement="bottom" data-content="<ul><li>Kitchen room</li><li>Bed room&nbsp;&nbsp;</li><li>Living room</li><li>Bath room</li><li>Common areas</li></ul>" data-original-title="Cleaning" href="/site/cleaning">(What is included <b>?</b>)</a>
+                                            House Cleaning Service <a class="details has-popover" target="_blank" title="" data-toggle="popover" data-placement="bottom" data-content="<ul><li>Kitchen room</li><li>Bed room&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li><li>Living room&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li><li>Bath room</li><li>Common areas</li></ul>" data-original-title="House Cleaning" href="/site/cleaning">(What is included <b>?</b>)</a>
                                         </div>
                                     </div>                                    
                                 </div>

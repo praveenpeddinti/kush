@@ -1060,8 +1060,8 @@ class UserController extends Controller {
                 
                 //$params = '';
                 $sendMailToUser=new CommonUtility;
-                //$sendMailToUser->actionSendmail($messageview1,$params1, $subject1, $to1,$employerEmail);
-                //$mailSendStatus=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
+                $sendMailToUser->actionSendmail($messageview1,$params1, $subject1, $to1,$employerEmail);
+                $mailSendStatus=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
         $data=$this->renderPartial('serviceOrder', array("customerDetails" => $customerDetails, 'HouseService'=>$getServiceDetails,'CarService'=>$getCarWashServiceDetails,'StewardService'=>$getStewardsServiceDetails,'getCars'=>$getTotalCars,'HO'=>$HOrder,'CO'=>$COrder,'SO'=>$SOrder), true);
         $obj = array('status' => 'success', 'data' => $data, 'error' => '');
         $renderScript = $this->rendering($obj);

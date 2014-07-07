@@ -139,7 +139,7 @@ $Stotal = 0; ?>
                         <div class="panel-heading">
                             <div class="panel-title stewards_title2">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed" style="display:block">
-                                    <span class="pull-left">Stewards /Stewardess Service</span>
+                                    <span class="pull-left">Stewards / Stewardesses Service</span>
                                     <span class="serviceprice"> Rs. <?php echo $Stotal; ?></span>
                                     <div class="count"></div>          
                                 </a>
@@ -500,7 +500,7 @@ $Stotal = 0; ?>
                                                     <div class="panel-heading">
                                                         <div class="panel-title stewards_title2">
                                                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed" style="display:block">
-                                                                <span class="pull-left">Stewards /Stewardess Service</span>
+                                                                <span class="pull-left">Stewards / Stewardesses Service</span>
                                                                 <span class="serviceprice">Rs. <?php echo $Stotal; ?></span>
                                                                 <div class="count"></div>
                                                             </a>

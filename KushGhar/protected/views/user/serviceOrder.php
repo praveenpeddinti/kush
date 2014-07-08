@@ -155,7 +155,7 @@
                 <td><?php echo "<b>" . $StewardService['service_hours'] . "</b>"; ?></td>
             </tr>
             <tr>
-                <td>Recommanded # of Stewards</td>
+                <td>Recommended # of Stewards</td>
                 <td><?php echo "<b>" . $StewardService['no_of_stewards'] . "</b>"; ?></td>
             </tr>
             <?php if( ($StewardService['appetizers'] == 1) || ($StewardService['dinner'] == 1) || ($StewardService['dessert'] == 1) || ($StewardService['alcoholic'] == 1) || ($StewardService['post_dinner'] == 1) ) {?>

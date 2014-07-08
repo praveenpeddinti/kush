@@ -187,7 +187,7 @@ $Stotal = 0; ?>
                                         <td><?php echo "<b>" . $getStewardsServiceDetails['service_hours'] . "</b>"; ?></td>
                                     </tr>
                                     <tr>
-                                        <td>Recommanded # of Stewards</td>
+                                        <td>Recommended # of Stewards</td>
                                         <td><?php echo "<b>" . $getStewardsServiceDetails['no_of_stewards'] . "</b>"; ?></td>
                                     </tr>
                                     <?php if( ($getStewardsServiceDetails['appetizers'] == 1) || ($getStewardsServiceDetails['dinner'] == 1) || ($getStewardsServiceDetails['dessert'] == 1) || ($getStewardsServiceDetails['alcoholic'] == 1) || ($getStewardsServiceDetails['post_dinner'] == 1) ) {?>
@@ -548,7 +548,7 @@ $Stotal = 0; ?>
                                                                     <td><?php echo "<b>" . $getStewardsServiceDetails['service_hours'] . "</b>"; ?></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td>Recommanded # of Stewards</td>
+                                                                    <td>Recommended # of Stewards</td>
                                                                     <td><?php echo "<b>" . $getStewardsServiceDetails['no_of_stewards'] . "</b>"; ?></td>
                                                                 </tr>
  <?php if( ($getStewardsServiceDetails['appetizers'] == 1) || ($getStewardsServiceDetails['dinner'] == 1) || ($getStewardsServiceDetails['dessert'] == 1) || ($getStewardsServiceDetails['alcoholic'] == 1) || ($getStewardsServiceDetails['post_dinner'] == 1) ) {?>

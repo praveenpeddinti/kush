@@ -1038,10 +1038,8 @@ $(document).ready(function() {
 //        }
     }
     var noOfStewards;
-//    $(document).ready(function() {
-//        noOfStewards=($('#StewardCleaningForm_AttendPeople').val())/15;
-//    });
-    function onTotalStewards(obj) {
+
+function onTotalStewards(obj) {
        
         if(obj.value<15)
         {
@@ -1056,6 +1054,7 @@ $(document).ready(function() {
         }
     }
     function submitStewardsCleaning() {
+        noOfStewards=($('#StewardCleaningForm_AttendPeople').val())/15;
         var queryString = $('#steward-form').serialize();
         var totalHours = '';
         var stDate = $('#StewardCleaningForm_StartTime').val();
@@ -1133,7 +1132,7 @@ $(document).ready(function() {
         {
             $("#StewardCleaningForm_totalStewards_em_").show();
             $("#StewardCleaningForm_totalStewards_em_").addClass('errorMessage');
-            $("#StewardCleaningForm_totalStewards_em_").text("Recommanded # of Stewards should not be less than "+noOfStewards);
+            $("#StewardCleaningForm_totalStewards_em_").text("Recommended # of Stewards should not be less than "+noOfStewards);
             return false;
         }
         if (startDateValuecmp > endDateValuecmp) {

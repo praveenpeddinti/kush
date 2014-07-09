@@ -162,21 +162,20 @@
     </div>
 
     <div class="row-fluid">
-    <div class=" span6">
+    <div class=" span4">
     <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> state'); ?>
         <?php //echo $form->textField($model,'State',array('value'=>$customerAddressDetails->address_state,'class'=>'span12')); ?>
         
         <?php echo $form->dropDownList($model, 'State', CHtml::listData($States, 'Id', 'StateName'), array('prompt'=>'Select State','options' => array($customerAddressDetails->address_state => array('selected' => 'selected')), 'class' => 'span12')); ?>
         <?php echo $form->error($model,'State'); ?>
    </div>
-      <div class=" span6">
+      <div class=" span4">
     <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> city'); ?>
         <?php echo $form->textField($model,'City',array('value'=>$customerAddressDetails->address_city, 'maxLength' => 25, 'class'=>'span12', 'placeholder'=>'City…')); ?>
         <?php echo $form->error($model,'City'); ?>
    </div>
-   </div>
-   <div class="row-fluid">
-    <div class=" span12">
+   
+    <div class=" span4">
     <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> pin code'); ?>
         <?php echo $form->textField($model,'PinCode',array('value'=>$customerAddressDetails->address_pin_code,'placeholder'=>'Pin Code…', 'class'=>'span12', 'maxLength' => 6, 'onkeypress' => 'return isNumberKey(event);')); ?>
         <?php echo $form->error($model,'PinCode'); ?>

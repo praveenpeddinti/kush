@@ -1097,7 +1097,7 @@ function onTotalStewards(obj) {
         if (($('#StewardCleaningForm_AttendPeople').val() == '0') || ($('#StewardCleaningForm_AttendPeople').val() == '00')) {
             $("#StewardCleaningForm_AttendPeople_em_").show();
             $("#StewardCleaningForm_AttendPeople_em_").addClass('errorMessage');
-            $("#StewardCleaningForm_AttendPeople_em_").text("Please Enter Numbers only");
+            $("#StewardCleaningForm_AttendPeople_em_").text("You have entered '0' please enter the people attending the event");
             return false;
         }
         

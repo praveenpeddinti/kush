@@ -1054,7 +1054,7 @@ function onTotalStewards(obj) {
         }
     }
     function submitStewardsCleaning() {
-        noOfStewards=($('#StewardCleaningForm_AttendPeople').val())/15;
+        noOfStewards=Math.round(($('#StewardCleaningForm_AttendPeople').val())/15);
         var queryString = $('#steward-form').serialize();
         var totalHours = '';
         var stDate = $('#StewardCleaningForm_StartTime').val();

@@ -173,6 +173,12 @@
                                 </li>
                                 <li><a href="/admin/order"> <i class="fa fa-file-text"></i> Orders</a>
                                 </li>
+                                <li>
+                                    <a href="/admin/usermanagement"><i class="fa fa-users"></i> User Management</a>
+                                </li>
+                                 <li>
+                                    <a href="/admin/vendormanagement"><i class="fa fa-users"></i> Vendor Management</a>
+                                </li>
                             </ul>
                         </div>
 

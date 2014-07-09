@@ -25,7 +25,12 @@
                                 </li>
                                 <li class="active"><a href="/admin/order"> <i class="fa fa-phone"></i> Orders</a>
                                 </li>
-                                
+                                <li>
+                                    <a href="/admin/usermanagement"><i class="fa fa-users"></i> User Management</a>
+                                </li>
+                                 <li>
+                                    <a href="/admin/vendormanagement"><i class="fa fa-users"></i> Vendor Management</a>
+                                </li>
                             </ul>
                         </div>
                         

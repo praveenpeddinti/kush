@@ -134,7 +134,7 @@ class AdminController extends Controller {
             error_log("#########Exception Occurred########" . $ex->getMessage());
         }
     }
-
+    
     public function actionNewManage() {
         try {
             if (isset($_GET['userDetails_page'])) {
@@ -258,9 +258,94 @@ class AdminController extends Controller {
             error_log("#########Exception Occurred########" . $ex->getMessage());
         }
     }
-    
-    
-    
-    
+   public function actionUserManagement(){
+        try{
+            $this->render("usermanagement");
+        } catch (Exception $ex) {
+            error_log("#######Exception Occured#######". $ex->getMessage());
+        }
+    }
+    public function actionNewUserManage(){
+        try {           
+                if (isset($_GET['userDetails_page'])) {
+                $totaluser = $this->kushGharService->getRegisteredUser($_GET['uname'],$_GET['location'],$_GET['status']);
+                $startLimit = ((int) $_GET['userDetails_page'] - 1) * (int) $_GET['pageSize'];
+                $endLimit = $_GET['pageSize'];
+                $userDetails = $this->kushGharService->getAllRegisteredUsers($startLimit, $endLimit,$_GET['uname'],$_GET['location'],$_GET['status']);
+                $renderHtml = $this->renderPartial('newusermanage', array('userDetails' => $userDetails, 'totalCount' => $totaluser), true);
+                $obj = array('status' => 'success', 'html' => $renderHtml, 'totalCount' => $totaluser);
+                $renderScript = $this->rendering($obj);
+                echo $renderScript;
+            }
+        } catch (Exception $ex) {
+            error_log("######### Exception Occurred##########".$ex->getMessage());
+        }
+    }
+    public function actionChangeStatus() {
+        $changeUserStatus = $this->kushGharService->ChangeStatusUser($_POST['Id'], $_POST['status']);
+        $obj = array('status' => 'error', 'data' => '', 'error' => $changeUserStatus);
+        echo CJSON::encode($obj);
+    }
+    public function actionGetFullDetails(){
+        try{
+            $id=$_POST['Id'];
+            $userAllDetails=$this->kushGharService->getFullUserDetails($id);
+            $renderHtml=  $this->renderPartial('getfulldetails',array('userAllDetails'=> $userAllDetails),true);
+            $obj=array('status'=>'success','html'=>$renderHtml);
+            $renderScript=  $this->rendering($obj);
+            echo $renderScript;
+        } catch (Exception $ex) {
+            error_log("####### Exception Occurred in fetching full details ##########".$ex->getMessage());
+        }
+    }
 
-}
+    public function actionVendorManagement(){
+        try{
+            $this->render("vendormanagement");
+        } catch (Exception $ex) {
+            error_log("#######Exception Occured#######". $ex->getMessage());
+        }
+    }
+ public function  actionNewVendorManage(){
+     try{
+         if (isset($_GET['userDetails_page'])) {
+                $totaluser = $this->kushGharService->getRegisteredVendorUser($_GET['uname'],$_GET['location'],$_GET['status']);
+                $startLimit = ((int) $_GET['userDetails_page'] - 1) * (int) $_GET['pageSize'];
+                $endLimit = $_GET['pageSize'];
+                $userDetails = $this->kushGharService->getAllRegisteredVendorUsers($startLimit, $endLimit,$_GET['uname'],$_GET['location'],$_GET['status']);
+                $renderHtml = $this->renderPartial('newvendormanage', array('userDetails' => $userDetails, 'totalCount' => $totaluser), true);
+                $obj = array('status' => 'success', 'html' => $renderHtml, 'totalCount' => $totaluser);
+                $renderScript = $this->rendering($obj);
+                echo $renderScript;
+         }
+     } catch (Exception $ex) {
+         error_log("######### Exception Occurred##########".$ex->getMessage());
+     }
+ }
+ public function actionChangeVendorStatus() {
+        $changeUserStatus = $this->kushGharService->ChangeVendorStatus($_POST['Id'], $_POST['status']);
+        $obj = array('status' => 'error', 'data' => '', 'error' => $changeUserStatus);
+        echo CJSON::encode($obj);
+    }
+ public function actionVendorAgencyManage(){
+     try{
+         if (isset($_GET['userDetails_page'])) {
+                $totaluser = $this->kushGharService->getRegisteredAgencyVendorUser($_GET['uname'],$_GET['location'],$_GET['status']);
+                $startLimit = ((int) $_GET['userDetails_page'] - 1) * (int) $_GET['pageSize'];
+                $endLimit = $_GET['pageSize'];
+                $userDetails = $this->kushGharService->getAllRegisteredAgencyVendorUsers($startLimit, $endLimit,$_GET['uname'],$_GET['location'],$_GET['status']);
+                $renderHtml = $this->renderPartial('vendoragencymanage', array('userDetails' => $userDetails, 'totalCount' => $totaluser), true);
+                $obj = array('status' => 'success', 'html' => $renderHtml, 'totalCount' => $totaluser);
+                $renderScript = $this->rendering($obj);
+                echo $renderScript;
+         }
+        } catch (Exception $ex) {
+            error_log("######### Exception Occurred##########".$ex->getMessage());
+        }
+    }
+    public function actionChangeAgencyStatus() {
+        $changeUserStatus = $this->kushGharService->ChangeAgencyStatus($_POST['Id'], $_POST['status']);
+        $obj = array('status' => 'error', 'data' => '', 'error' => $changeUserStatus);
+        echo CJSON::encode($obj);
+    }
+ }

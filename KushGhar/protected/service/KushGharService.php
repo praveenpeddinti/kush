@@ -542,10 +542,38 @@ class KushGharService {
     public function getOrderDetailsForCustomer($start,$end,$type,$orderNo,$cId) {
         return HouseCleaningService::model()->getOrderDetailsForCustomer($start,$end,$type,$orderNo,$cId);
     }
+    public function getRegisteredUser($uname,$location,$status){
+        return InviteUser::model()->getRegisteredUser($uname,$location,$status);
+    }
+    public function getAllRegisteredUsers($startLimit, $endLimit,$uname,$location,$status) {
+        return InviteUser::model()->getAllRegisteredUsers($startLimit, $endLimit,$uname,$location,$status);
+    }
+    public function ChangeStatusUser($id, $val) {
+        return InviteUser::model()->ChangeStatusUser($id, $val);
+    }
+    public function getFullUserDetails($id){
+        return InviteUser::model()->getFullUserDetails($id);
+    } 
+    public function getRegisteredVendorUser($uname,$location,$status){
+        return InviteUser::model()->getRegisteredVendorUser($uname,$location,$status);
+    }
+    public function getAllRegisteredVendorUsers($startLimit, $endLimit,$uname,$location,$status){
+        return InviteUser::model()->getAllRegisteredVendorUsers($startLimit, $endLimit,$uname,$location,$status);
+    }
+    public function ChangeVendorStatus($id, $val) {
+        return InviteUser::model()->ChangeVendorStatus($id, $val);
+    }
+    public function getRegisteredAgencyVendorUser($uname,$location,$status){
+        return InviteUser::model()->getRegisteredAgencyVendorUser($uname,$location,$status);
+    }
+    public  function getAllRegisteredAgencyVendorUsers($startLimit, $endLimit,$uname,$location,$status){
+        return InviteUser::model()->getAllRegisteredAgencyVendorUsers($startLimit, $endLimit,$uname,$location,$status);
+    }
+    public function ChangeAgencyStatus($id, $val) {
+        return InviteUser::model()->ChangeAgencyStatus($id, $val);
+    }
 
-
-
-
+    
     
 }
 

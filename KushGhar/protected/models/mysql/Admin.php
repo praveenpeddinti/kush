@@ -27,10 +27,10 @@ class Admin extends CActiveRecord {
         try {
             if(!is_numeric($model->UserId)){
                 $user = Admin::model()->findByAttributes(array(), 'email_address=:email_address  AND password_hash=:password_hash', array(':email_address' => $model->UserId, ':password_hash' => md5($model->Password)));
-                error_log("login----is not numeric-----".$model->UserId."------2-----".$model->Password);
+                
             }else{
                 $user = Admin::model()->findByAttributes(array(), 'phone=:phone AND password_hash=:password_hash', array(':phone' => $model->UserId, ':password_hash' => md5($model->Password)));
-                error_log("login---is numeric------".$model->UserId."------2-----".$model->Password);
+                
             }
             if (isset($user)) {
                 $user->update_timestamp = gmdate("Y-m-d H:i:s", time());

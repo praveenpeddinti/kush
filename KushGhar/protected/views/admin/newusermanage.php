@@ -20,7 +20,7 @@
                                                 if($row['status']==0){$status = 'InActive';} 
                                             echo $status; ?></td>
                                             <td>
-                                             <input id="usera_<?php echo $row['cid']; ?>" data-id="<?php echo $row['cid']; ?>" invite-status="<?php echo $row['status']; ?>" type="button" value=" " class="<? if ($row['status'] == '0') echo 'icon_active'; if ($row['status'] == '1') echo 'icon_inactive';?>" alt="Status" title="Change Status"/>
+                                             <input id="usera_<?php echo $row['cid']; ?>" data-id="<?php echo $row['cid']; ?>" invite-status="<?php echo $row['status']; ?>" type="button" value=" " class="<? if ($row['status'] == '0') echo 'icon_inactive'; if ($row['status'] == '1') echo 'icon_active';?>" alt="Status" title="Change Status"/>
                                              <input id="userview_<?php echo $row['cid']; ?>" data-id="<?php echo $row['cid']; ?>"  type="button" value=" " class="icon_view" alt="View" title="View"/>
                                         
                                         </td>

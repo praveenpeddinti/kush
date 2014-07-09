@@ -33,10 +33,8 @@ class Registration extends CActiveRecord {
         try {
             if(!is_numeric($model->UserId)){
                 $user = Registration::model()->findByAttributes(array(), 'email_address=:email_address  AND password_hash=:password_hash', array(':email_address' => $model->UserId, ':password_hash' => md5($model->Password)));
-                error_log("login----is not numeric-----".$model->UserId."------2-----".$model->Password);
             }else{
                 $user = Registration::model()->findByAttributes(array(), 'phone=:phone AND password_hash=:password_hash', array(':phone' => $model->UserId, ':password_hash' => md5($model->Password)));
-                error_log("login---is numeric------".$model->UserId."------2-----".$model->Password);
             }
             if (isset($user)) {
                 $user->update_timestamp = gmdate("Y-m-d H:i:s", time());
@@ -130,7 +128,6 @@ class Registration extends CActiveRecord {
 
             $RegObj->profilePicture = $model->profilePicture;
             $RegObj->update_timestamp = gmdate("Y-m-d H:i:s", time());
-            error_log("enter customerDetails Model======================");
             if ($RegObj->update()) {
                 $result = "success";
             } else {

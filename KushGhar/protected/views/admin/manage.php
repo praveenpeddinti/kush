@@ -165,19 +165,19 @@
                             <div class="selected_tab">Dashboard</div>
                             <ul class="l_menu_sub_menu">
 
-                                <li><a href="/admin/dashboard"> <i class="fa fa-user"></i> Invite Friends</a>
+                                <li><a href="/admin/dashboard"> <i class="fa fa-users"></i> Invite Friends</a>
 
                                 </li>
-                                <li  class="active"><a href="/admin/manage"> <i class="fa fa-phone"></i> Invite Management</a>
+                                <li  class="active"><a href="/admin/manage"> <i class="fa fa-users"></i> Invite Management</a>
 
                                 </li>
                                 <li><a href="/admin/order"> <i class="fa fa-file-text"></i> Orders</a>
                                 </li>
                                 <li>
-                                    <a href="/admin/usermanagement"><i class="fa fa-users"></i> User Management</a>
+                                    <a href="/admin/usermanagement"><i class="fa fa-user"></i> User Management</a>
                                 </li>
                                  <li>
-                                    <a href="/admin/vendormanagement"><i class="fa fa-users"></i> Vendor Management</a>
+                                    <a href="/admin/vendormanagement"><i class="fa fa-user"></i> Vendor Management</a>
                                 </li>
                             </ul>
                         </div>

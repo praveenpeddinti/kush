@@ -33,7 +33,7 @@ class VendorAddress extends CActiveRecord {
 
      //New Vendor Agency Registration
     public function saveVendorAddressDumpInfo($vendorIndividualId,$vTypeId) {
-    try {error_log("viID==".$vendorIndividualId."==TypevID===".$vTypeId);
+    try {
             $vendorDetails = new VendorAddress();
             $vendorDetails->vendor_id = $vTypeId;
             if($vTypeId == 1){
@@ -72,7 +72,7 @@ class VendorAddress extends CActiveRecord {
 
      //Update Vendor Address Details from contact Information Controller action4
     public function updateVendorAddressDetails($model, $vId,$vTypeId) {
-        try {error_log("1enter VendorDetails Model======================");
+        try {
 
             if($vTypeId==1){
             $VendorObj = VendorAddress::model()->findByAttributes(array('vendor_individual_id' => $vId));
@@ -88,7 +88,6 @@ class VendorAddress extends CActiveRecord {
             $VendorObj->address_pin_code = $model->PinCode;
             $VendorObj->address_landmark = $model->Landmark;
             $VendorObj->update_timestamp = gmdate("Y-m-d H:i:s", time());
-            error_log("enter VendorAddressDetails Model======================");
             if ($VendorObj->update()) {
                 $result = "success";
             } else {

@@ -79,7 +79,6 @@ class OrderDetails extends CActiveRecord {
         try{
             
              $query = "SELECT count(*) as count FROM KG_Order_details WHERE ServiceId!='' and CustId = $cId";
-            error_log("total customer oD-----".$query);
             $result = Yii::app()->db->createCommand($query)->queryRow();
 
         }catch(Exception $ex){
@@ -116,8 +115,8 @@ class OrderDetails extends CActiveRecord {
         return $result['count'];
     } 
 public function sendorderStatus($id,$val){
-        if($val==0){$status=1;}
-        if($val==1){$status=2;}
+        if($val==0){$status=0;}
+        if($val==1){$status=1;}
         if($val==2){$status=2;}
         $result = "failed";
         try{
@@ -136,6 +135,28 @@ public function sendorderStatus($id,$val){
         try {
             $query = "SELECT * FROM KG_House_cleaning_service WHERE order_id = $oId ORDER BY Id DESC LIMIT 1";
             $result = YII::app()->db->createCommand($query)->queryRow();
+        } catch (Exception $ex) {
+            error_log("getServiceDetailsById Exception occured==" . $ex->getMessage());
+        }
+        return $result;
+    }
+    
+    public function getOrderSServicesDetails($oId) {
+        try {
+            $query = "SELECT * FROM KG_Stewards_cleaning_service WHERE order_id = $oId ORDER BY Id DESC LIMIT 1";
+            $result = YII::app()->db->createCommand($query)->queryRow();
+        } catch (Exception $ex) {
+            error_log("getServiceDetailsById Exception occured==" . $ex->getMessage());
+        }
+        return $result;
+    }
+    
+    public function getOrderCServicesDetails($oId) {
+        try {
+            $query = "SELECT * FROM KG_Car_cleaning_service WHERE order_id = $oId ORDER BY Id ASC";
+            
+            $result = YII::app()->db->createCommand($query)->queryAll();
+            
         } catch (Exception $ex) {
             error_log("getServiceDetailsById Exception occured==" . $ex->getMessage());
         }

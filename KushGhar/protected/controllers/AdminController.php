@@ -223,7 +223,6 @@ class AdminController extends Controller {
         try {
             if (isset($_GET['userDetails_page'])) {
                 $totaluser = $this->kushGharService->getTotalOrders($_GET['serviceType'],$_GET['orderNo'],$_GET['status']);
-                //error_log("--------------------------------".$_GET['serviceType']."-------".$_GET['orderNo']."====".$_GET['status']);
                 $startLimit = ((int) $_GET['userDetails_page'] - 1) * (int) $_GET['pageSize'];
                 $endLimit = $_GET['pageSize'];
                 $userDetails = $this->kushGharService->getOrderDetailsinAdmin($startLimit, $endLimit,$_GET['serviceType'],$_GET['orderNo'],$_GET['status']);
@@ -238,22 +237,40 @@ class AdminController extends Controller {
     }
     
     public function actionOrderStatus() {
-        
-        $changeUserStatus = $this->kushGharService->sendorderStatus($_POST['Id'], $_POST['status']);
+        if($_POST['value']=='Open'){$status = 0;}
+        if($_POST['value']=='Schedule'){$status = 1;}
+        if($_POST['value']=='Cancel'){$status = 2;}
+        $changeUserStatus = $this->kushGharService->sendorderStatus($_POST['Id'], $status);
         $obj = array('status' => 'error', 'data' => '', 'error' => $changeUserStatus);
         echo CJSON::encode($obj);
     }
-    public function actionViewData() {//error_log("enter view---------");
+    
+        
+    
+    public function actionViewData() {
         try {
-            if (isset($_GET['userDetails1_page'])) {
+                         
+                if($_POST['ServiceId']==1){
+                $servicedetails = $this->kushGharService->getOrderHServicesDetails($_POST['Id']);
+                $CustId = $servicedetails['CustId'];
+                }
+                if($_POST['ServiceId']==2){
+                $servicedetails = $this->kushGharService->getOrderCServicesDetails($_POST['Id']);
+                foreach($servicedetails as $ee){
+                $CustId = $ee['CustId'];
                 
-                $servicedetails = $this->kushGharService->getOrderHServicesDetails($_GET['rowNos']);
-                $customerDetails = $this->kushGharService->getCustomerDetails($servicedetails['CustId']);
-                $renderHtml = $this->renderPartial('viewData', array('userDetails1' => $customerDetails,'serviceId'=>$_GET['ServiceId']), true);
+            }
+                }
+                if($_POST['ServiceId']==3){
+                $servicedetails = $this->kushGharService->getOrderSServicesDetails($_POST['Id']);
+                $CustId = $servicedetails['CustId'];
+                }
+                $customerDetails = $this->kushGharService->getCustomerDetails($CustId);
+                $renderHtml = $this->renderPartial('viewData', array('userDetails1' => $customerDetails,'services'=>$servicedetails,'serviceId'=>$_POST['ServiceId']), true);
                 $obj = array('status' => 'success', 'html' => $renderHtml);
                 $renderScript = $this->rendering($obj);
                 echo $renderScript;
-            }
+            
         } catch (Exception $ex) {
             error_log("#########Exception Occurred########" . $ex->getMessage());
         }

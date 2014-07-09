@@ -9,15 +9,41 @@ $Stotal = 0; ?>
         <div class="span12">
             <div class="panel-group" id="accordion">
                 <?php if ($HouseCleaning == 1) {
+                    
+                    if( ($getServiceDetails['total_livingRooms']==1) && ($getServiceDetails['total_bedRooms']==1) && ($getServiceDetails['total_bathRooms']==1) || ($getServiceDetails['total_kitchens']==1))
+                    {error_log("----if-----");
                     $priceRoom1 = (($getServiceDetails['total_livingRooms'] + $getServiceDetails['total_bedRooms']) * 125);
                     $priceRoom2 = (($getServiceDetails['total_bathRooms'] + $getServiceDetails['total_kitchens']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
+                    //$totalRoomsPrice = $priceRoom1 + $priceRoom2 ;
+                    error_log("----if-----".$priceRoom1."----".$priceRoom2);
+                    $totalRoomsPrice = $priceRoom1 + $priceRoom2 ;
+                    }else{$LR='';$BedR='';$BathR='';$KR='';
+                         if($getServiceDetails['total_livingRooms']>1){
+                             $LR = (($getServiceDetails['total_livingRooms']-1)*125);
+                         }
+                         if($getServiceDetails['total_bedRooms']>1){
+                             $BedR = (($getServiceDetails['total_bedRooms']-1)*125);
+                         }
+                         if($getServiceDetails['total_bathRooms']>1){
+                             $BathR = (($getServiceDetails['total_bathRooms']-1)*250);
+                         }
+                         if($getServiceDetails['total_kitchens']>1){
+                             $KR = (($getServiceDetails['total_kitchens']-1)*250);
+                         }
+                    
+                    $priceRoom1  = $LR+$BedR;
+                    $priceRoom2 = $BathR+$KR;
+                    $totalRoomsPrice = $priceRoom1 + $priceRoom2 +750;
+                    error_log("----else-----".$priceRoom1."----".$priceRoom2);
+                    //$totalRoomsPrice = 0 ;  
+                    }
                     $priceAddServices = (($getServiceDetails['window_grills'] + $getServiceDetails['fridge_interior'] + $getServiceDetails['microwave_oven_interior']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
                     //$serviceTaxPrice = (($priceRoom1+$priceRoom2+$priceAddServices)*12.36)/100;
-                     $totalRoomsPrice = $priceRoom1 + $priceRoom2 ;
-         if($totalRoomsPrice < 750)
+                     
+                    /*if($totalRoomsPrice < 750)
                     {
                         $totalRoomsPrice = 750;
-                    }
+                    }*/
                     $totalRoomsPrice+= $priceAddServices;
 
 
@@ -37,7 +63,7 @@ $Stotal = 0; ?>
                             <table class="table price">
                                 <?php if ($getServiceDetails['squarefeets'] != 0) { ?>
                                 <tr>
-                                    <td>Square Feets </td>
+                                    <td>Square Feet </td>
                                     <td><?php echo "<b>" . $getServiceDetails['squarefeets'] . "</b>"; ?></td>
                                 </tr>
                                 <?php } ?>
@@ -209,7 +235,7 @@ $Stotal = 0; ?>
                     </div>
     <?php }?>
                 <div class="panel-heading">
-                                                        <div class="panel-title stewards_title2">
+                                                        <div class="panel-title servicetax_title2">
                                                             <a data-toggle="collapse" data-parent="#" href="#" class="collapsed" style="display:block">
                                                                 <span class="pull-left">Service Tax</span>
                                                                 <span class="serviceprice">Rs. 0</span>
@@ -365,16 +391,40 @@ $Stotal = 0; ?>
                                         <div class="panel-group" id="accordion">
     <?php
     if ($HouseCleaning == 1) {
-        //$Htotal = 500;
-        $priceRoom1 = (($getServiceDetails['total_livingRooms'] + $getServiceDetails['total_bedRooms']) * 125);
-        $priceRoom2 = (($getServiceDetails['total_bathRooms'] + $getServiceDetails['total_kitchens']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
-        $priceAddServices = (($getServiceDetails['window_grills'] + $getServiceDetails['fridge_interior'] + $getServiceDetails['microwave_oven_interior']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
-        //$serviceTaxPrice = (($priceRoom1+$priceRoom2+$priceAddServices)*12.36)/100;
-        $totalRoomsPrice = $priceRoom1 + $priceRoom2 ;
-         if($totalRoomsPrice < 750)
+        if( ($getServiceDetails['total_livingRooms']==1) && ($getServiceDetails['total_bedRooms']==1) && ($getServiceDetails['total_bathRooms']==1) || ($getServiceDetails['total_kitchens']==1))
+                    {error_log("----if-----");
+                    $priceRoom1 = (($getServiceDetails['total_livingRooms'] + $getServiceDetails['total_bedRooms']) * 125);
+                    $priceRoom2 = (($getServiceDetails['total_bathRooms'] + $getServiceDetails['total_kitchens']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
+                    //$totalRoomsPrice = $priceRoom1 + $priceRoom2 ;
+                    error_log("----if-----".$priceRoom1."----".$priceRoom2);
+                    $totalRoomsPrice = $priceRoom1 + $priceRoom2 ;
+                    }else{$LR='';$BedR='';$BathR='';$KR='';
+                         if($getServiceDetails['total_livingRooms']>1){
+                             $LR = (($getServiceDetails['total_livingRooms']-1)*125);
+                         }
+                         if($getServiceDetails['total_bedRooms']>1){
+                             $BedR = (($getServiceDetails['total_bedRooms']-1)*125);
+                         }
+                         if($getServiceDetails['total_bathRooms']>1){
+                             $BathR = (($getServiceDetails['total_bathRooms']-1)*250);
+                         }
+                         if($getServiceDetails['total_kitchens']>1){
+                             $KR = (($getServiceDetails['total_kitchens']-1)*250);
+                         }
+                    
+                    $priceRoom1  = $LR+$BedR;
+                    $priceRoom2 = $BathR+$KR;
+                    $totalRoomsPrice = $priceRoom1 + $priceRoom2 +750;
+                    error_log("----else-----".$priceRoom1."----".$priceRoom2);
+                    //$totalRoomsPrice = 0 ;  
+                    }
+                    $priceAddServices = (($getServiceDetails['window_grills'] + $getServiceDetails['fridge_interior'] + $getServiceDetails['microwave_oven_interior']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
+                    //$serviceTaxPrice = (($priceRoom1+$priceRoom2+$priceAddServices)*12.36)/100;
+                     
+                    /*if($totalRoomsPrice < 750)
                     {
                         $totalRoomsPrice = 750;
-                    }
+                    }*/
                     $totalRoomsPrice+= $priceAddServices;
 
         ?>
@@ -568,10 +618,12 @@ $Stotal = 0; ?>
                                                     </div>
                                                 </div>
     <?php } ?>
+                                              
                                         </div>
 
                                     </div>
                                 </div>
+                                
                        <?php if( ($HouseCleaning == 0) && ($CarCleaning == 0) && ($StewardsCleaning == 0) ){?>
                            <div class="row-fluid">
     
@@ -580,7 +632,7 @@ $Stotal = 0; ?>
                        <?php }else{?> 
                                  <div class="panel panel-default">
                                                     <div class="panel-heading">
-                                                        <div class="panel-title stewards_title2">
+                                                        <div class="panel-title servicetax_title2">
                                                             <a data-toggle="collapse" data-parent="#" href="#" class="collapsed" style="display:block">
                                                                 <span class="pull-left">Service Tax</span>
                                                                 <span class="serviceprice">Rs. 0</span>

@@ -17,19 +17,19 @@
                             <div class="selected_tab">Dashboard</div>
                             <ul class="l_menu_sub_menu">
                                
-                                <li><a href="/admin/dashboard"> <i class="fa fa-user"></i> Invite Friends</a>
+                                <li><a href="/admin/dashboard"> <i class="fa fa-users"></i> Invite Friends</a>
                                     
                                 </li>
-                                <li><a href="/admin/manage"> <i class="fa fa-phone"></i> Invite Management</a>
+                                <li><a href="/admin/manage"> <i class="fa fa-users"></i> Invite Management</a>
                                     
                                 </li>
-                                <li class="active"><a href="/admin/order"> <i class="fa fa-phone"></i> Orders</a>
+                                <li class="active"><a href="/admin/order"> <i class="fa fa-file-text"></i> Orders</a>
                                 </li>
                                 <li>
-                                    <a href="/admin/usermanagement"><i class="fa fa-users"></i> User Management</a>
+                                    <a href="/admin/usermanagement"><i class="fa fa-user"></i> User Management</a>
                                 </li>
                                  <li>
-                                    <a href="/admin/vendormanagement"><i class="fa fa-users"></i> Vendor Management</a>
+                                    <a href="/admin/vendormanagement"><i class="fa fa-user"></i> Vendor Management</a>
                                 </li>
                             </ul>
                         </div>
@@ -43,7 +43,7 @@
                     <div class="span12">
                         <h4 class="paddingL20">Customer Order Details</h4>
                         
-                        <div id="TC" style="display:none"></div>                       
+                        <!--<div id="TC" style="display:none"></div>-->                       
                         <div class="paddinground">    
                             <div id="InviteInfoSpinLoader"></div>
                             <div id="tablewidget"  style="margin: auto;"><div id="message" style="display:none"></div>
@@ -67,7 +67,7 @@
                                             <option value="20">Select Status</option>
                                             <option value="0">Open</option>
                                             <option value="1">Schedule</option>
-                                            <option value="2">Close</option>
+                                            <option value="2">Cancel</option>
                                         </select>
                                     </div>
                                     <div class="span2">
@@ -112,76 +112,64 @@
                         </div>
                     </div>    
                 </div>
+                <div id="myModalOrder" class="modal fade" >
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h3 id="myModalLabel">View Details for Order</h3>
+                            </div>
+                            <div class="modal-body" id="myModalOrderDiv" style="padding:15px;">
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
             </article>
         </div>
     </section>
 </div>
 
 <script type="text/javascript">
-    function ss(id2,inviteStatus,obj){alert("---------"+obj.value+"=========="+obj.id)
-    inviteUser(Number(id2), Number(inviteStatus),obj.value);}
-     /*$(document).ready(function() {
-       $('.action').live('change',function() {alert("enter===");
-             var str = "";
-        $( "select option:selected" ).each(function() {
-        str = $( this ).text();
-        });
-        alert(str);
-        //$('#userTable tr td select').live('click', function() {
-        //$('#userTable tr td input').live('click', function() {
-            //var id = $(this).attr('data-id');
-            //var ServiceId = $(this).attr('service-id');
-            var id2 = $(this).attr('data-inviteid');
-            var inviteStatus = $(this).attr('data-invitestatus');
-            //var inviteEmail = $(this).attr('invite-email');
-           
-        alert("gggggg===="+id2+"===="+inviteStatus);return;
-           if(id>0){
+    function orderAction(id2,inviteStatus,obj){
+    inviteUser(Number(id2), Number(inviteStatus),obj.value);
+    }
+     $(document).ready(function() {
+       $('#userTable tr td input').live('click', function() {
+            var id = $(this).attr('data-id');
+            var ServiceId = $(this).attr('service-id');
+            if(id>0){
                 statusChangeUser(Number(id), Number(ServiceId));
             }
-            //if(id2>0){
-                inviteUser(Number(id2), Number(inviteStatus));
-            //}
-        });
-    });*/
-    function statusChangeUser(rowNos, ServiceId) {
-        getCollectionDataWithPagination1('/admin/viewData','userDetails1', 'modelBodyDivuu',rowNos,ServiceId,'');
-    }
-    
-    function getCollectionDataWithPagination1(URL,CollectionName, MainDiv,rowNos,ServiceId, callback){
-    globalspace[MainDiv+'_page'] = 1;
-
-        var newURL =  URL+"?"+CollectionName+"_page="+globalspace[MainDiv+'_page']+"&rowNos="+rowNos+"&ServiceId="+ServiceId;
-    var data = "";  
-    
-        ajaxRequest(newURL,data,function(data){getCollectionDataWithPaginationHandler1(data,URL,CollectionName,MainDiv,callback)});
-}
-    function getCollectionDataWithPaginationHandler1(data,URL,CollectionName,MainDiv,rowNos,ServiceId,callback){
-        
-        
-        $("#TC").show();
-          //scrollPleaseWaitClose('spinner_admin');
-        $("#TC").html(data.html);
-        //$("#"+MainDiv).text("praveen");
-                
-              
-                if(callback!=''){
-                    callback();
-                }
-    }
-    function addSsServicehandler(data) {
-        if (data.status == 'success') {
-            $('#myModalView').modal('show');
             
-            //$('#modelBodyDiv').html(data.data);
+        });
+    });
+    function statusChangeUser(rowNos, ServiceId) {
+        
+        
+        var data = "Id=" + rowNos + "&ServiceId=" + ServiceId;
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: '<?php echo Yii::app()->createAbsoluteUrl("/admin/viewData"); ?>',
+                data: data,
+                success: function(data) {
+                    $("#myModalOrder").modal({ backdrop: 'static', keyboard: false,show:false });
+                    $("#myModalOrderDiv").html(data.html);
+                    $('#myModalOrder').modal('show');
+                },
+                error: function(data) { 
+                   alert("Error occured.please try again");
 
-        }
+                }
+            });
+        
     }
+    
+    
+    
     function inviteUser(rowNos, status,value) {//alert("enter=====");
         //scrollPleaseWait("InviteInfoSpinLoader","contactInfo-form");
-        
-        var data = "Id=" + rowNos + "&status=" + status;
-            //alert("fu==="+data);
+        var data = "Id=" + rowNos + "&status=" + status+"&value="+value;
             $.ajax({
                 type: 'POST',
                 dataType: 'json',
@@ -215,9 +203,6 @@
         } else if (value == 'Cancel') {
             
             $('#status_' + rowNos).text('Cancel');
-        }else if (value == 'Close') {
-            
-            $('#status_' + rowNos).text('Close');
         }else {
             
             $('#status_' + rowNos).text('Open');

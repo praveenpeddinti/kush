@@ -973,20 +973,40 @@ class UserController extends Controller {
         $totalSeats=0;
         if($customerServicesHouse=='Yes Service') {
             $getServiceDetails = $this->kushGharService->getDetails($cId);
-            $priceRoom1 = (($getServiceDetails['total_livingRooms'] + $getServiceDetails['total_bedRooms']) * 125);
-            $priceRoom2 = (($getServiceDetails['total_bathRooms'] + $getServiceDetails['total_kitchens']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
+            //$priceRoom1 = (($getServiceDetails['total_livingRooms'] + $getServiceDetails['total_bedRooms']) * 125);
+            //$priceRoom2 = (($getServiceDetails['total_bathRooms'] + $getServiceDetails['total_kitchens']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
             $priceAddServices = (($getServiceDetails['window_grills'] + $getServiceDetails['fridge_interior'] + $getServiceDetails['microwave_oven_interior']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
-//            $serviceTaxPrice = (($priceRoom1+$priceRoom2+$priceAddServices)*12.36)/100;
-            $totalRoomsPrice = $priceRoom1 + $priceRoom2 ;
-            error_log($priceAddServices."------------1----".$totalRoomsPrice);
-            if($totalRoomsPrice < 750)
+            if( ($getServiceDetails['total_livingRooms']==1) && ($getServiceDetails['total_bedRooms']==1) && ($getServiceDetails['total_bathRooms']==1) || ($getServiceDetails['total_kitchens']==1))
                     {
-                        $totalRoomsPrice = 750;
+                    $priceRoom1 = (($getServiceDetails['total_livingRooms'] + $getServiceDetails['total_bedRooms']) * 125);
+                    $priceRoom2 = (($getServiceDetails['total_bathRooms'] + $getServiceDetails['total_kitchens']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
+                    //$totalRoomsPrice = $priceRoom1 + $priceRoom2 ;
+                    $totalRoomsPrice = $priceRoom1 + $priceRoom2 ;
+                    }else{$LR='';$BedR='';$BathR='';$KR='';
+                         if($getServiceDetails['total_livingRooms']>1){
+                             $LR = (($getServiceDetails['total_livingRooms']-1)*125);
+                         }
+                         if($getServiceDetails['total_bedRooms']>1){
+                             $BedR = (($getServiceDetails['total_bedRooms']-1)*125);
+                         }
+                         if($getServiceDetails['total_bathRooms']>1){
+                             $BathR = (($getServiceDetails['total_bathRooms']-1)*250);
+                         }
+                         if($getServiceDetails['total_kitchens']>1){
+                             $KR = (($getServiceDetails['total_kitchens']-1)*250);
+                         }
+                    
+                    $priceRoom1  = $LR+$BedR;
+                    $priceRoom2 = $BathR+$KR;
+                    $totalRoomsPrice = $priceRoom1 + $priceRoom2 +750;
+                    //$totalRoomsPrice = 0 ;  
                     }
-                    //$totalRoomsPrice+= $priceAddServices;
-            $serviceTaxPrice=0;
-            $totalRoomsPrice = $totalRoomsPrice + $priceAddServices+$serviceTaxPrice;
-            error_log("---------2-------".$totalRoomsPrice);
+                    
+                    $totalRoomsPrice+= $priceAddServices;
+
+
+//            $serviceTaxPrice = (($priceRoom1+$priceRoom2+$priceAddServices)*12.36)/100;
+            
             $storeOrderDetailsOfHouse = $this->kushGharService->storeOrderDetailsOfHouse($cId,$getOrderDetailsMaxParentId['id'],$getServiceDetails['CustId'],$genOrderNo,'1',$totalRoomsPrice);
             $getOrderDetailsMaxParentIdH = $this->kushGharService->getOrderDetailsMaxParentId();
             $storeOrdernumberofHouse = $this->kushGharService->storeOrdernumberofHouse($cId,$getOrderDetailsMaxParentIdH['id'],$getOrderDetailsMaxParentIdH['order_number']);
@@ -1030,7 +1050,6 @@ class UserController extends Controller {
             $genOrderNo = $genOrderNo+1;
             $SOrder = $genOrderNo;
         }else{$getStewardsServiceDetails='0';}
-        error_log("HO====".$HOrder."==CO====".$COrder."==SO===".$SOrder);
         //$subject = "Place Order";
         $messages = "The Order Number is <b>".$getOrderNumber."</b>";
         $mess = "The Order Number is <b>".$getOrderNumber."</b>\r\n\n";

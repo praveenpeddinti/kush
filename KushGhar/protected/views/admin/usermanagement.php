@@ -13,13 +13,13 @@
                             <div class="selected_tab">Dashboard</div>
                             <ul class="l_menu_sub_menu">
 
-                                <li><a href="/admin/dashboard"> <i class="fa fa-user"></i> Invite Friends</a>
+                                <li><a href="/admin/dashboard"> <i class="fa fa-users"></i> Invite Friends</a>
 
                                 </li>
-                                <li><a href="/admin/manage"> <i class="fa fa-phone"></i> Invite Management</a>
+                                <li><a href="/admin/manage"> <i class="fa fa-users"></i> Invite Management</a>
 
                                 </li>
-                                <li><a href="/admin/order"> <i class="fa fa-phone"></i> Orders</a>
+                                <li><a href="/admin/order"> <i class="fa fa-file-text"></i> Orders</a>
                                 </li>
                                 <li class="active">
                                     <a href="/admin/usermanagement"><i class="fa fa-user"></i> User Management</a>
@@ -64,7 +64,7 @@
                                 </div>
                                <div class="table-responsive"> <table id="userTable" class="table table-hover usermanagement_table">
 
-                                    <thead><tr><th>Name</th><th>Email-ID</th><th>Phone No.</th><th>Location</th><th>Status</th><th>Actions</th></tr></thead>
+                                    <thead><tr><th>Name</th><th>Email Address</th><th>Phone</th><th>Location</th><th>Status</th><th>Actions</th></tr></thead>
                                     <tbody id="abusedWords_tbody">
 
                                     </tbody>
@@ -83,7 +83,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h3 id="myModalLabel">View Full Details</h3>
+                                <h3 id="myModalLabel">View Details for Customer</h3>
                             </div>
                             <div class="modal-body" id="modelBodyDiv1" style="padding:15px;">
                             </div>

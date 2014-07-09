@@ -574,7 +574,8 @@ minDate: mindate
              '<div class=" span4">'+
                 '<label> Alternate Phone</label>'+'<input type="text" value="+91" disabled="disabled" class="span3"/>'+' '+
                 '<input type="text" class="span9" id="'+i+'_AlternatePhone" maxLength="10" placeholder="Alternate Phone…" onkeypress="return isNumberKey(event);">'+
-             '</div> '+
+                '<div id="'+i+'_AlternatePhone_em" class="errorMessage" style="display:none"></div>'+
+            '</div> '+
         '</div>'+
         '<div class="row-fluid">'+
             '<div class=" span4">'+

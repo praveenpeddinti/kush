@@ -99,11 +99,21 @@ class AdminController extends Controller {
                         $details = $this->kushGharService->getcheckNewUserExist($email[$i]);
                         if ($details == 'No user') {
                             $to = $email[$i];
-                            $subject = 'KushGhar Invitation';
+                            $mess1 = 'http://115.248.17.88:6060/user/registration?Uname=' . $to . "\r\n\n";
+                            $subject ="KushGhar Invitation";
+                            $Logo = YII::app()->params['SERVER_URL'] . "/images/color_logo.png";
+                            $employerEmail = "no-reply@kushghar.com";
+                            $messageview="InvitationMail";
+                            $params = array('Logo' => $Logo, 'Message' =>$mess1);
+
+                            //$params = '';
+                             $sendMailToUser=new CommonUtility;
+                             $sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
+                            /*$subject = 'KushGhar Invitation';
                             $mess1 = 'http://www.kushghar.com/user/registration?Uname=' . $email[$i] . "\r\n\n";
-                            //$mess1 = 'http://115.248.17.88:6060/site/invite?uname=' . $email[$i] . "\r\n\n";
                             $messages = $mess1;
                             $this->sendMailToUser($to, '', $subject, $messages, 'KushGhar', 'no-reply@kushghar.com', 'InvitationMail');
+                            */
                         }
                         $flag++;
                     }
@@ -170,7 +180,8 @@ class AdminController extends Controller {
     public function actionInviteStatus() {
         $email = $_POST['email'];
         
-        $mess1 = 'http://www.kushghar.com/user/registration?Uname=' . $email . "\r\n\n";
+        //$mess1 = 'http://www.kushghar.com/user/registration?Uname=' . $email . "\r\n\n";
+        $mess1 = 'http://115.248.17.88:6060/user/registration?Uname=' . $email . "\r\n\n";
         $changeUserStatus = $this->kushGharService->sendInviteMailToUser($_POST['Id'], $_POST['status']);
         $to = $_POST['email'];
         $subject ="KushGhar Invitation";

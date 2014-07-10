@@ -1,5 +1,6 @@
 <script type="text/javascript">
     function bulkuploadhandler(data){
+        scrollPleaseWaitClose('inviteFriendsSpinLoader');
         if(data.status=='success'){
             $("#BulkForm_error_em_").show();
             $("#BulkForm_error_em_").removeClass('errorMessage');
@@ -79,7 +80,7 @@
                         <h4 class="paddingL20">Invite Friends</h4>
                         <hr>
                         <div class="paddinground">
-                       
+                        <div id="inviteFriendsSpinLoader"></div>
     <?php $form = $this->beginWidget('CActiveForm', array(
                                   'id' => 'Bulk-form',
                                   'enableClientValidation' => true,
@@ -104,7 +105,8 @@
                                        <?php echo CHtml::ajaxButton('Invite', array('admin/dashboard'), array(
                                             'type' => 'POST',
                                             'dataType' => 'json',
-                                            
+                                            'beforeSend' => 'function(){
+                                                                scrollPleaseWait("inviteFriendsSpinLoader","Bulk-form");}',
                                             'success' => 'function(data,status,xhr) { bulkuploadhandler(data,status,xhr);}'), array('class' => 'btn btn-primary', 'type' => 'submit'));
                                     ?></div>
                                     </div>

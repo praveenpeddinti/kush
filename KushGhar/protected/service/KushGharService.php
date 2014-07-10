@@ -11,11 +11,11 @@ class KushGharService {
             if ($role == 'Admin') {
                 $user = Admin::model()->checkAuthentication($model);
             }
-            if (!empty($user)) {
+            //if (!empty($user)) {
                 return $user;
-            } else {
-                return "false";
-            }
+            //} else {
+            //    return "false";
+            //}
         } catch (Exception $ex) {
             error_log("=============exception occurred in login=============" . $ex->getMessage());
         }

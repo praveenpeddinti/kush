@@ -100,7 +100,7 @@
                                 </div>
                                 <div class="row-fluid">
                                     <div class="span12">
-                                    <label>Do you want clean pooja room</label>
+                                    <label>Do you want us to clean pooja room</label>
                                     <div class="switch switch-large" id="PoojaRoom" data-on-label="Yes" data-off-label="No">
                                     <?php echo $form->checkBox($model, 'PoojaRoom', array('id' => 'HouseCleaningForm_PoojaRoom')); ?>
                                     </div>

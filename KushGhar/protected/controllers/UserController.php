@@ -72,6 +72,30 @@ class UserController extends Controller {
             echo $renderScript;
         }
     }
+    
+    
+    
+    /*if(isset ($userObj)) {
+                   if($userObj['active']==1)
+                   {
+                              $_SESSION['userName']=$userObj['name'];
+                              $_SESSION['email']=$userName;
+                              $_SESSION['userId']=$userObj['id'];
+                              $_SESSION['login']='passed';
+                              //$_SESSION['roleId']=$userObj['roleId'];
+                              $_SESSION['permissions']=$userMapper->getUsersPermissions($userObj['id']);
+                              $_SESSION['roleId']=$userObj['roleId'];
+                              $_SESSION['printOption']=$userObj['printOption'];
+                              $this->_redirect("/home/index");
+                   }
+                   else if ($userObj['active']==0)
+                   {
+                          $this->view->assign ("iuap","Your acount has been blocked. Contact your administrator");
+                   }
+               }
+               else{
+                   $this->view->assign ("iuap","Login failed. Enter correct Login Id and Password");
+               }*/
 
     /**
      * Displays the login page
@@ -92,7 +116,30 @@ class UserController extends Controller {
                 $obj = array('status' => '', 'data' => '', 'error' => $errors);
             } else {
                 $result = $this->kushGharService->login($model, 'User');
-                if ($result == "false") {
+                
+                if(isset ($result)) {
+                   if($result->status==1)
+                   {
+                    $ppp = md5($result->password_hash);
+                    $this->session['UserId'] = $result->customer_id;
+                    $this->session['email'] = $result->email_address;
+                    $this->session['firstName'] = $result->first_name;
+                    $this->session['LoginPic'] = $result->profilePicture;
+                    $this->session['Type'] = 'Customer';
+                    $obj = array('status' => 'success', 'data' => $result, 'error' => '');
+                   }
+                   else if ($result->status==0)
+                   {
+                          $errors = array("LoginForm_error" => 'Your acount is Inactive. Contact your administrator.');
+                    $obj = array('status' => '', 'data' => '', 'error' => $errors);
+                   }
+               }
+               else{
+                   $errors = array("LoginForm_error" => 'Invalid User Id or Password.');
+                    $obj = array('status' => '', 'data' => '', 'error' => $errors);
+               }
+                
+                /*if ($result == "false") {
                     $errors = array("LoginForm_error" => 'Invalid User Id or Password.');
                     $obj = array('status' => '', 'data' => '', 'error' => $errors);
                 } else {
@@ -103,7 +150,7 @@ class UserController extends Controller {
                     $this->session['LoginPic'] = $result->profilePicture;
                     $this->session['Type'] = 'Customer';
                     $obj = array('status' => 'success', 'data' => $result, 'error' => '');
-                }
+                }*/
             }
             $renderScript = $this->rendering($obj);
             echo $renderScript;

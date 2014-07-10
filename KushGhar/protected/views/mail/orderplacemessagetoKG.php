@@ -37,8 +37,36 @@
                                     <tr><td colspan="2">&nbsp;</td></tr>
                                     <?php if($HouseService!=0){?>
                                     <tr><td><b>House cleaning service cost :</b>  </td>
-                                    <td><?php 
-                                                    $priceRoom1 = (($HouseService['total_livingRooms'] + $HouseService['total_bedRooms']) * 125);
+                                    <td><?php $totalRoomsPrice='';
+                                    if( ($HouseService['total_livingRooms']==1) && ($HouseService['total_bedRooms']==1) && ($HouseService['total_bathRooms']==1) && ($HouseService['total_kitchens']==1))
+                                    {
+                                    $priceRoom1 = (($HouseService['total_livingRooms'] + $HouseService['total_bedRooms']) * 125);
+                                    $priceRoom2 = (($HouseService['total_bathRooms'] + $HouseService['total_kitchens']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
+                                    //$totalRoomsPrice = $priceRoom1 + $priceRoom2 ;
+                                    $totalRoomsPrice = $priceRoom1 + $priceRoom2 ;
+                                    }else{$LR='';$BedR='';$BathR='';$KR='';
+                                         if($HouseService['total_livingRooms']>1){
+                                             $LR = (($HouseService['total_livingRooms']-1)*125);
+                                         }
+                                         if($HouseService['total_bedRooms']>1){
+                                             $BedR = (($HouseService['total_bedRooms']-1)*125);
+                                         }
+                                         if($HouseService['total_bathRooms']>1){
+                                             $BathR = (($HouseService['total_bathRooms']-1)*250);
+                                         }
+                                         if($HouseService['total_kitchens']>1){
+                                             $KR = (($HouseService['total_kitchens']-1)*250);
+                                         }
+
+                                    $priceRoom1  = $LR+$BedR;
+                                    $priceRoom2 = $BathR+$KR;
+                                    $totalRoomsPrice = $priceRoom1 + $priceRoom2 +750;
+                                    //$totalRoomsPrice = 0 ;  
+                                    }
+                                    $priceAddServices = (($HouseService['window_grills'] + $HouseService['fridge_interior'] + $HouseService['microwave_oven_interior']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
+                                    $totalRoomsPrice+= $priceAddServices;
+                                    echo $totalRoomsPrice; ?>
+                                     <!--               $priceRoom1 = (($HouseService['total_livingRooms'] + $HouseService['total_bedRooms']) * 125);
                                                     $priceRoom2 = (($HouseService['total_bathRooms'] + $HouseService['total_kitchens']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
                                                     $priceAddServices = (($HouseService['window_grills'] + $HouseService['fridge_interior'] + $HouseService['microwave_oven_interior']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
                     //$serviceTaxPrice = (($priceRoom1+$priceRoom2+$priceAddServices)*12.36)/100;
@@ -48,7 +76,7 @@
                         $totalRoomsPrice = 750;
                     }
                     $totalRoomsPrice+= $priceAddServices;
-                                                    echo $totalRoomsPrice; ?>
+                                                    echo $totalRoomsPrice; ?>-->
                                             
                                                     
                                                 </td>
@@ -75,7 +103,7 @@
                                             <?php }?>
                                             <tr><td><b>Total Cost(Service Tax Included) :</b></td><td><b>
                                                 <?php // $serviceTax = ((($totalRoomsPrice + $totalcarPrice + $Stotal) * 12.36) / 100); 
-                                                echo $serviceTax=0;
+                                                $serviceTax = 0;
                                                 echo $totalRoomsPrice + $totalcarPrice + $Stotal + $serviceTax;?>
                                                     </b></td></tr>
                                              <tr><td colspan="2">

@@ -10,12 +10,11 @@ $Stotal = 0; ?>
             <div class="panel-group" id="accordion">
                 <?php if ($HouseCleaning == 1) {
                     
-                    if( ($getServiceDetails['total_livingRooms']==1) && ($getServiceDetails['total_bedRooms']==1) && ($getServiceDetails['total_bathRooms']==1) || ($getServiceDetails['total_kitchens']==1))
-                    {error_log("----if-----");
+                    if( ($getServiceDetails['total_livingRooms']==1) && ($getServiceDetails['total_bedRooms']==1) && ($getServiceDetails['total_bathRooms']==1) && ($getServiceDetails['total_kitchens']==1))
+                    {
                     $priceRoom1 = (($getServiceDetails['total_livingRooms'] + $getServiceDetails['total_bedRooms']) * 125);
                     $priceRoom2 = (($getServiceDetails['total_bathRooms'] + $getServiceDetails['total_kitchens']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
                     //$totalRoomsPrice = $priceRoom1 + $priceRoom2 ;
-                    error_log("----if-----".$priceRoom1."----".$priceRoom2);
                     $totalRoomsPrice = $priceRoom1 + $priceRoom2 ;
                     }else{$LR='';$BedR='';$BathR='';$KR='';
                          if($getServiceDetails['total_livingRooms']>1){
@@ -34,7 +33,6 @@ $Stotal = 0; ?>
                     $priceRoom1  = $LR+$BedR;
                     $priceRoom2 = $BathR+$KR;
                     $totalRoomsPrice = $priceRoom1 + $priceRoom2 +750;
-                    error_log("----else-----".$priceRoom1."----".$priceRoom2);
                     //$totalRoomsPrice = 0 ;  
                     }
                     $priceAddServices = (($getServiceDetails['window_grills'] + $getServiceDetails['fridge_interior'] + $getServiceDetails['microwave_oven_interior']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
@@ -391,12 +389,11 @@ $Stotal = 0; ?>
                                         <div class="panel-group" id="accordion">
     <?php
     if ($HouseCleaning == 1) {
-        if( ($getServiceDetails['total_livingRooms']==1) && ($getServiceDetails['total_bedRooms']==1) && ($getServiceDetails['total_bathRooms']==1) || ($getServiceDetails['total_kitchens']==1))
-                    {error_log("----if-----");
+        if( ($getServiceDetails['total_livingRooms']==1) && ($getServiceDetails['total_bedRooms']==1) && ($getServiceDetails['total_bathRooms']==1) && ($getServiceDetails['total_kitchens']==1))
+                    {
                     $priceRoom1 = (($getServiceDetails['total_livingRooms'] + $getServiceDetails['total_bedRooms']) * 125);
                     $priceRoom2 = (($getServiceDetails['total_bathRooms'] + $getServiceDetails['total_kitchens']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
                     //$totalRoomsPrice = $priceRoom1 + $priceRoom2 ;
-                    error_log("----if-----".$priceRoom1."----".$priceRoom2);
                     $totalRoomsPrice = $priceRoom1 + $priceRoom2 ;
                     }else{$LR='';$BedR='';$BathR='';$KR='';
                          if($getServiceDetails['total_livingRooms']>1){
@@ -415,7 +412,6 @@ $Stotal = 0; ?>
                     $priceRoom1  = $LR+$BedR;
                     $priceRoom2 = $BathR+$KR;
                     $totalRoomsPrice = $priceRoom1 + $priceRoom2 +750;
-                    error_log("----else-----".$priceRoom1."----".$priceRoom2);
                     //$totalRoomsPrice = 0 ;  
                     }
                     $priceAddServices = (($getServiceDetails['window_grills'] + $getServiceDetails['fridge_interior'] + $getServiceDetails['microwave_oven_interior']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);

@@ -1135,6 +1135,13 @@ function onTotalStewards(obj) {
             $("#StewardCleaningForm_totalStewards_em_").text("Recommended # of Stewards should not be less than "+noOfStewards);
             return false;
         }
+        if(isNaN($("#StewardCleaningForm_totalStewards").val()))
+        {
+            $("#StewardCleaningForm_totalStewards_em_").show();
+            $("#StewardCleaningForm_totalStewards_em_").addClass('errorMessage');
+            $("#StewardCleaningForm_totalStewards_em_").text("Recommended # of Stewards should be Number ");
+            return false;
+        }
         if (startDateValuecmp > endDateValuecmp) {
             $("#StewardCleaningForm_EndTime_em_").show();
             $("#StewardCleaningForm_EndTime_em_").addClass('errorMessage');

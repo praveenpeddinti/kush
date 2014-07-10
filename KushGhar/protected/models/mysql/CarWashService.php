@@ -167,7 +167,7 @@ class CarWashService extends CActiveRecord {
                 $result = "No Service";
                 return $result;
             } else {
-                $query = "DELETE FROM KG_Car_cleaning_service WHERE CustId = $cId";
+                $query = "DELETE FROM KG_Car_cleaning_service WHERE CustId = $cId and status=0";
                 YII::app()->db->createCommand($query)->execute();
                 $result = "Yes Service";
                 return $result;

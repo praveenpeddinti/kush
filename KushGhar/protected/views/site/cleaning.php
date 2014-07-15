@@ -6,20 +6,23 @@
                 <div class="asideBG">
                     <div class="left_nav">
                         <ul class="main">
-                            <?php 
+                           <?php 
                             if(!empty($this->session['UserId']) && ($this->session['Type']=='Vendor')){
                                 $accout = '<a href="/vendor/vendorBasicinformation" ><span class="KGaccounts"> </span></a>';
+                                $service = '<span class="KGservices"> </span>';
                                 $payment = '<a href="#" ><span class="KGpayment"> </span></a>';
                             }else if(!empty($this->session['UserId']) && ($this->session['Type']=='Customer')){
                                 $accout = '<a href="/user/basicinfo" ><span class="KGaccounts"> </span></a>';
+                                $service = '<a href="/user/homeservice" ><span class="KGaccounts"> </span></a>';
                                 $payment = '<a href="/user/paymentInfo" ><span class="KGpayment"> </span></a>';
                             }else{
                                 $accout = '<span class="KGaccounts"> </span>';
+                                $service = '<a href="#"><span class="KGservices"> </span></a>';
                                 $payment = '<span class="KGpayment"> </span>';
                             }
 ?>
                             <li class="" title="Account" ><?php echo $accout;?></li>
-                            <li class="active" title="Services"><a href="#"  ><span class="KGservices"> </span></a></li>
+                            <li class="active" title="Services"><?php echo $service;?></li>
                             <li class="" title="Payment" ><?php echo $payment;?></li>
 
                         </ul>

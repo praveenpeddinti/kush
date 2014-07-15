@@ -268,7 +268,7 @@ $Stotal = 0; ?>
                         <div class="left_nav">
                             <ul class="main">
                                 <li class="active" title="Account"><a href="/user/basicinfo" ><span class="KGaccounts"> </span></a></li>
-                                <li class="" title="Services"><a href="/site/cleaning"  ><span class="KGservices"> </span></a></li>
+                                <li class="" title="Services"><a href="/user/homeservice"  ><span class="KGservices"> </span></a></li>
                                 <li class="" title="Payment"><a href="/user/paymentinfo" ><span class="KGpayment"> </span></a></li>
 
                             </ul>
@@ -333,7 +333,7 @@ $Stotal = 0; ?>
                                         $payPercent = 0;
                                     }
                                     ?>
-                                    <li><a href="homeService"> <i class="fa fa-wrench"></i> Service Details</a></li>
+                                    <li><a href="homeService"> <i class="fa fa-wrench"></i> Services</a></li>
                                     <li class="active"><a href="priceQuote"> <i class="fa fa-user"></i> Price Quote</a></li>
                                     <li><a href="paymentInfo"> <i class="fa fa-credit-card"></i> Payment Info</a>
 <!--                                        <div class="<?php echo $statusClassForPayment; ?>"> </div>-->

@@ -24,7 +24,7 @@ class ContactInfoForm extends CFormModel {
     public function rules() {
         return array(
             // name, email, subject and body are required
-            array('Email, Phone, Address1, City, PinCode, Landmark', 'required', 'message' => 'Please enter a value for {attribute}.'),
+            array('Phone, Address1, City, PinCode, Landmark', 'required', 'message' => 'Please enter a value for {attribute}.'),
             // email has to be a valid email address
             array('Email', 'email'),
             array('Phone, AlternatePhone', 'numerical', 'integerOnly'=>true),

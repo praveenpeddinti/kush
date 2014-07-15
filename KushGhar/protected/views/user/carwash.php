@@ -47,7 +47,7 @@
             <?php echo $form->error($model, 'TotalCars'); ?>
         </div>
         <div class="span4" >
-             <label><abbr title="required">*</abbr> Select Date</label>
+             <label><abbr title="required">*</abbr> Service Date</label>
              <?php echo $form->textField($model, 'ServiceStartTime', array('value'=>$CarServiceTime, 'class' => 'span8')); ?>
              <?php echo $form->error($model, 'ServiceStartTime'); ?>
         </div>

@@ -32,7 +32,7 @@
                                         <?php echo $form->error($model, 'SquareFeets'); ?>
                                     </div>
                                       <div class="span8">
-                                        <label><abbr title="required">*</abbr> Select Date</label>
+                                        <label><abbr title="required">*</abbr> Service Date</label>
                                         <?php  echo $form->textField($model, 'ServiceStartTime', array('value'=>$getServiceDetails['houseservice_start_time'], 'class' => 'span5')); ?>
                                         <?php echo $form->error($model, 'ServiceStartTime'); ?>
 

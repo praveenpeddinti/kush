@@ -35,7 +35,7 @@ class StewardCleaningForm extends CFormModel {
     public function rules() {
         return array(
              
-            array('EventType, StartTime, EndTime', 'required', 'message' => 'Please Select {attribute}.'),
+            /*array('EventType, StartTime, EndTime', 'required', 'message' => 'Please Select {attribute}.'),
             array('EventType', 'ext.YiiConditionalValidator.YiiConditionalValidator',
                 'if' => array(
                 array('EventType', 'compare', 'compareValue'=>"7")),
@@ -44,7 +44,7 @@ class StewardCleaningForm extends CFormModel {
                 array('EventName', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain Alphabet and space'),),
             ),
             //array('AttendPeople', 'numerical', 'integerOnly'=>true),
-            //array('AttendPeople', 'length', 'min'=>5),
+            //array('AttendPeople', 'length', 'min'=>5),*/
             array('PriceFlag, HouseCleaning, CarCleaning, StewardCleaning, EventType, EventName, ServiceStartTime, totalStewards,StartTime, EndTime, AttendPeople, Appetizers, Dinner, Dessert, Beverage, PostDinner, DurationHours, ServiceHours, totalStewards,  Status, ServicesId, Id', 'safe'),
         );
     }

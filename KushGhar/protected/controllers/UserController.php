@@ -856,13 +856,12 @@ class UserController extends Controller {
         $formName = $request->getParam('StewardCleaningForm');
         $data='';
         if ($formName != '') {
-        $stewardModel->attributes = $request->getParam('StewardCleaningForm');
+            $stewardModel->attributes = $request->getParam('StewardCleaningForm');
             
             $errors = CActiveForm::validate($stewardModel);
             if ($errors != '[]') {
                 $obj = array('status' => 'error', 'message' => '', 'error' => $errors);
         }else{
-        
         $date_a = new DateTime($stewardModel->StartTime);
         $date_b = new DateTime($stewardModel->EndTime);
         
@@ -898,7 +897,7 @@ class UserController extends Controller {
                             if(count($getCarWashServiceDetails)==0){$countCars = 1;}else{$countCars = count($getCarWashServiceDetails);}
                             $renderHtml = $this->renderPartial('sample1', array('States' => $States, 'totalCount' => $countCars, "getCarWashServiceDetails" => $getCarWashServiceDetails,), true);
                             $data=$this->renderPartial('carwash', array('model'=>$carModel, "States" => $States, "html" => $renderHtml, "customerDetails" => $customerDetails, "getCarWashServiceDetails" => $getCarWashServiceDetails, 'States' => $States, 'HouseCleaning'=>$HouseCleaning,'CarCleaning'=>$CarCleaning,'StewardCleaning'=>$StewardCleaning,'PriceFlag'=>'0'), true);
-                            }else{
+                            }else{error_log("-------------------contr2----");
                             $houseModel = new HouseCleaningForm;;
                             $getServiceDetails = $this->kushGharService->getDetails($cId);
                             $data=$this->renderPartial('services', array('model'=>$houseModel,'getServiceDetails'=>$getServiceDetails, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails,'HouseCleaning'=>$HouseCleaning,'CarCleaning'=>$CarCleaning,'StewardCleaning'=>$StewardCleaning,'PriceFlag'=>'0'), true);

@@ -325,8 +325,16 @@ $(document).ready(function() {
             $("#HouseCleaningForm_SquareFeets_em_").text("Please Enter Numbers only");
             return false;
         }
-       
-        if (($('#HouseCleaningForm_LivingRooms').val() == '0') && ($('#HouseCleaningForm_BedRooms').val() == '0') && ($('#HouseCleaningForm_Kitchens').val() == '0') && ($('#HouseCleaningForm_BathRooms').val() == '0')) {
+       if ($("#HouseCleaningForm_ServiceStartTime").val() == "") {
+           $("#HouseCleaningForm_SquareFeets_em_").hide();
+                $("#HouseCleaningForm_ServiceStartTime_em_").show();
+                $("#HouseCleaningForm_ServiceStartTime_em_").addClass('errorMessage');
+                $("#HouseCleaningForm_ServiceStartTime_em_").text("Please Select Service Date.");
+                return false;
+       }else{
+              $("#HouseCleaningForm_ServiceStartTime_em_").hide();
+       }
+       if (($('#HouseCleaningForm_LivingRooms').val() == '0') && ($('#HouseCleaningForm_BedRooms').val() == '0') && ($('#HouseCleaningForm_Kitchens').val() == '0') && ($('#HouseCleaningForm_BathRooms').val() == '0')) {
             $("#HouseCleaningForm_ServiceStartTime_em_").hide();
             $("#HouseCleaningForm_WeekDays_em_").hide();
             $("#HouseCleaningForm_LivingRooms_em_").show();
@@ -334,13 +342,7 @@ $(document).ready(function() {
             $("#HouseCleaningForm_LivingRooms_em_").text("You have choosen 0 Rooms at your house, Please choose atleast one kind of room.");
             return false;
         }
-        if (($('#HouseCleaningForm_NumberOfTimesServices').val() == '')) {
-            $("#HouseCleaningForm_LivingRooms_em_").hide();
-            $("#HouseCleaningForm_NumberOfTimesServices_em_").show();
-            $("#HouseCleaningForm_NumberOfTimesServices_em_").addClass('errorMessage');
-            $("#HouseCleaningForm_NumberOfTimesServices_em_").text("Please Select Services in Number Of Times");
-            return false;
-        } else {
+         else {
             $("#HouseCleaningForm_LivingRooms_em_").hide();
             $("#HouseCleaningForm_NumberOfTimesServices_em_").hide();
             var type = '';
@@ -412,7 +414,7 @@ $(document).ready(function() {
         if ($("#CarWashForm_ServiceStartTime").val() == "") {
                 $("#CarWashForm_ServiceStartTime_em_").show();
                 $("#CarWashForm_ServiceStartTime_em_").addClass('errorMessage');
-                $("#CarWashForm_ServiceStartTime_em_").text("Please Select Date.");
+                $("#CarWashForm_ServiceStartTime_em_").text("Please Select Service Date.");
                 return false;
             }else{
               $("#CarWashForm_ServiceStartTime_em_").hide();
@@ -1128,10 +1130,10 @@ function onTotalStewards(obj) {
     
     
     //Previous button purpose----------------------------
-    function previousStewardsCleaning(){
+    function previousStewardsCleaning(){alert("-------------------");
         var queryString = $('#steward-form').serialize();
         type = 'Previous';
-        queryString += '&Type=' + type;
+        queryString +='&Type='+type;
         //alert("============"+queryString);
         ajaxRequest('/user/stewards', queryString, previousStewardsCleaningehandler);
     }

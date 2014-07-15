@@ -102,7 +102,7 @@ $form = $this->beginWidget('CActiveForm', array(
         
         <div class="span6">
             <label>Recommended # of Stewards</label>
-            <?php echo $form->textField($model1, 'totalStewards', array('value'=>$getServiceDetails['no_of_stewards'], 'class' => 'span6','onkeypress' => 'return isNumberKey(event);')); ?>
+            <?php echo $form->textField($model1, 'totalStewards', array('value'=>$getServiceDetails['no_of_stewards'],'maxLength' => 4, 'class' => 'span6','onkeypress' => 'return isNumberKey(event);')); ?>
             <?php echo $form->error($model1, 'totalStewards'); ?>
         </div>
         

@@ -91,11 +91,18 @@
 <script type="text/javascript">
     
     function cleaning(){
-    var sess= '<?php echo $this->session['UserId']; ?>';
-        if(sess!=0){
-            window.location.href =<?php echo Yii::app()->request->baseUrl; ?>'/user/homeService';
-        }else{
-            window.location.href =<?php echo Yii::app()->request->baseUrl; ?>'/user/registration';
+    var sess= '<?php echo $this->session['Type']; ?>';
+        if(sess=='Customer'){
+            window.location.href ='<?php echo Yii::app()->request->baseUrl; ?>/user/homeService';
+        }
+        else if(sess=='Admin'){
+            window.location.href ='<?php echo Yii::app()->request->baseUrl; ?>/admin/dashboard';
+        }
+        else if(sess=='Vendor'){
+            window.location.href ='<?php echo Yii::app()->request->baseUrl; ?>/vendor/vendorBasicInformation';
+        }
+        else{
+            window.location.href ='<?php echo Yii::app()->request->baseUrl; ?>/site/index';
         }
     }
     </script>

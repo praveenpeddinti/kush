@@ -84,6 +84,7 @@
                     </li>
                     <li><a href="order"> <i class="fa fa-file-text"></i> Orders</a>
                                 </li>
+                                <li><a href="invitefriends"><i class="fa fa-users"></i> Invite Friends</a></li>
                 </ul>
             </div>
             <div id="payment" class="collapse">
@@ -126,7 +127,7 @@
     <div class="row-fluid">
     <div class=" span6">
     <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> email'); ?>
-	<?php echo $form->textField($model,'Email',array('value'=>$customerDetails->email_address, 'maxLength' => 100, 'class'=>'span12', 'placeholder'=>'Email…' )); ?>
+	<?php echo $form->textField($model,'Email',array('value'=>$customerDetails->email_address,'disabled'=>'disabled', 'maxLength' => 100, 'class'=>'span12', 'placeholder'=>'Email…' )); ?>
 	<?php echo $form->error($model,'Email'); ?>
     </div>
     </div>

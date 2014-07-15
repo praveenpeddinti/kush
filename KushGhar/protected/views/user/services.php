@@ -25,34 +25,20 @@
                                 </div>
                                 
                                 <div class="row-fluid">
-                                      <div class="span10">
-                                    <div class=" span5">
+                                      
+                                    <div class=" span4">
                                         <?php echo $form->label($model, 'Square Feet'); ?>
-                                        <?php if($getServiceDetails['squarefeets']=='0') {$squareFeetsValue='';}else{ $squareFeetsValue=$getServiceDetails['squarefeets'];} echo $form->textField($model, 'SquareFeets', array('value'=>$squareFeetsValue,'maxLength' => 5, 'class' => 'span12', 'placeholder' => 'Square Feet…')); ?>
+                                        <?php if($getServiceDetails['squarefeets']=='0') {$squareFeetsValue='';}else{ $squareFeetsValue=$getServiceDetails['squarefeets'];} echo $form->textField($model, 'SquareFeets', array('value'=>$squareFeetsValue,'maxLength' => 5, 'class' => 'span12')); ?>
                                         <?php echo $form->error($model, 'SquareFeets'); ?>
                                     </div>
-                                      </div>
-                                </div>
-                                <div class="row-fluid">
-                                      <div class="span10">
-                                    <div class="span5">
-                                        <label>Frequency of cleaning</label>
-                                        <?php echo $form->dropDownList($model,'NumberOfTimesServices', array('2'=>'Twice a Month', '5'=>'One time', '1' => 'Once a Month', '2' => 'Twice a Month', '3'=>'Every 3 Months', '4'=>'Every 6 Months'), array('options' => array($getServiceDetails['service_no_of_times'] => array('selected' => 'selected')), 'onchange' => 'javascript:onChangeFrequencyto(this.value);', 'class' => 'span12'));?>
-                                        <?php echo $form->error($model, 'NumberOfTimesServices'); ?>
-                                     </div>
-                                      <div class="span6" id="otherFreqDiv" >
-                                        <label><abbr title="required">*</abbr> When do you want service?</label>
-                                        <?php echo $form->dropDownList($model,'WeekDays', array(''=>'Please Select Day','Sunday'=>'Sunday', 'Monday'=>'Monday', 'Tuesday' => 'Tuesday', 'Wednesday' => 'Wednesday', 'Thursday'=>'Thursday', 'Friday'=>'Friday', 'Saturday'=>'Saturday'), array('options' => array($getServiceDetails['week_days'] => array('selected' => 'selected')), 'class' => 'span12'));?>
-                                        <?php echo $form->error($model, 'WeekDays'); ?>
-                                      </div>
-                                      <div class="span6" id="oneTimeDiv" style="display:none;">
-
+                                      <div class="span8">
                                         <label><abbr title="required">*</abbr> Select Date</label>
-                                        <?php  echo $form->textField($model, 'ServiceStartTime', array('value'=>$getServiceDetails['houseservice_start_time'], 'class' => 'span10', 'placeholder' => 'Select Date…')); ?>
+                                        <?php  echo $form->textField($model, 'ServiceStartTime', array('value'=>$getServiceDetails['houseservice_start_time'], 'class' => 'span5')); ?>
                                         <?php echo $form->error($model, 'ServiceStartTime'); ?>
 
                                     </div>
                                 </div>
+                                
                                 </div>
                                 <div class="row-fluid">
                                     <div class=" span3">
@@ -251,19 +237,7 @@
                     //$("#modelBodyDiv").load("/user/inviteregistration",{},""); 
   //         $('#myModalService').modal('show');
   //}
-  $(document).ready(function(){
-       var w = $('#HouseCleaningForm_NumberOfTimesServices').val();
-       if(w==5)
-       {
-           document.getElementById('otherFreqDiv').style.display='none';
-           document.getElementById('oneTimeDiv').style.display='block';
-       }
-       else
-       {
-           document.getElementById('oneTimeDiv').style.display='none';
-           document.getElementById('otherFreqDiv').style.display='block';
-       }
-   });
+  
   
 
   $(function () {
@@ -287,13 +261,5 @@
     .blur(hidePopover)
     .hover(showPopover, hidePopover);
 });
-function onChangeFrequencyto(value) {
-        if (value == '5') {
-            document.getElementById('otherFreqDiv').style.display='none';
-            document.getElementById('oneTimeDiv').style.display='block';
-        } else {
-            document.getElementById('oneTimeDiv').style.display='none';
-            document.getElementById('otherFreqDiv').style.display='block';
-        }
-    }
+
     </script>

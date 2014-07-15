@@ -31,7 +31,7 @@ $form = $this->beginWidget('CActiveForm', array(
         </div>
         <div class=" span4" id='otherDiv' style="display:none">
             <?php echo $form->label($model1, '<abbr title="required">*</abbr> Event Name'); ?>
-            <?php echo $form->textField($model1, 'EventName', array('maxLength' => 10, 'class' => 'span8', 'placeholder' => 'Event Name…')); ?>
+            <?php echo $form->textField($model1, 'EventName', array('maxLength' => 10, 'class' => 'span8')); ?>
 <?php echo $form->error($model1, 'EventName'); ?>
         </div>
         <div class=" span4">
@@ -44,12 +44,12 @@ $form = $this->beginWidget('CActiveForm', array(
     <div class="row-fluid">
         <div class=" span4">
             <?php echo $form->label($model1, '<abbr title="required">*</abbr> Event Start Time'); ?>
-            <?php echo $form->textField($model1, 'StartTime', array('value'=>$getServiceDetails['start_time'], 'onchange' => 'javascript:onChangeTime();', 'class' => 'span10', 'placeholder' => 'Start Time…')); ?>
+            <?php echo $form->textField($model1, 'StartTime', array('value'=>$getServiceDetails['start_time'], 'onchange' => 'javascript:onChangeTime();', 'class' => 'span10')); ?>
 <?php echo $form->error($model1, 'StartTime'); ?>
         </div>
         <div class=" span4">
             <?php echo $form->label($model1, '<abbr title="required">*</abbr> Event End Time'); ?>
-            <?php echo $form->textField($model1, 'EndTime', array('value'=>$getServiceDetails['end_time'], 'onchange' => 'javascript:onChangeTime();','class' => 'span10', 'placeholder' => 'End Time…')); ?>
+            <?php echo $form->textField($model1, 'EndTime', array('value'=>$getServiceDetails['end_time'], 'onchange' => 'javascript:onChangeTime();','class' => 'span10')); ?>
 <?php echo $form->error($model1, 'EndTime'); ?>
         </div>
         <div class=" span4">

@@ -120,7 +120,7 @@
                 </td>
             </tr>
             <tr><td>Scheduled time</td>
-                <td><?php if($HouseService['service_no_of_times']=='5'){echo $HouseService['week_days'];}else{echo $HouseService['houseservice_start_time'];}?></td>
+                <td><?php echo $HouseService['houseservice_start_time'];?></td>
             </tr>
             <?php }?>
             <?php if($CO!=0){?>
@@ -141,7 +141,7 @@
                 <td><?php echo "<b>" . $getCars . "</b>"; ?></td>
             </tr>
             <?php $serviceTimes='';$weekdays='';$startTime='';foreach ($CarService as $cw) { 
-                 $serviceTimes=$cw['service_no_of_times'];$weekdays=$cw['week_days'];$startTime=$cw['carservice_start_time'];             
+                 $startTime=$cw['carservice_start_time'];             
                 ?>
             <tr>
                 <td>Make / Model of the Car</td>
@@ -161,7 +161,7 @@
             <?php } ?>
             <?php } ?>
             <tr><td>Scheduled time</td>
-                <td><?php if($serviceTimes=='5'){echo $weekdays;}else{echo $startTime;}?></td>
+                <td><?php echo $startTime;?></td>
             </tr>
             <?php }?>
             <?php if($SO!=0){?>

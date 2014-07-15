@@ -87,12 +87,10 @@
 
 <script type="text/javascript">
     
-    function cleaning(type){
-    $("#myModal").modal({ backdrop: 'static', keyboard: false, show:false });
-            if (document.getElementById('VV').value != 'inviteToEmail'){
-            //$('#myModal').modal('show');
-            $("#modelBodyDiv").load("/user/inviteregistration",{},""); 
-            $('#myModal').modal('show');
+    function cleaning(){
+    var sess= '<?php echo $this->session['UserId']; ?>';
+        if(sess!=0){
+            window.location.href =<?php echo Yii::app()->request->baseUrl; ?>'/user/homeService';
         }else{
             window.location.href =<?php echo Yii::app()->request->baseUrl; ?>'/user/registration';
         }

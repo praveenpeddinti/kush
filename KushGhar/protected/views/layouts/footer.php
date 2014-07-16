@@ -136,7 +136,6 @@ input.gsc-input {
     function HomeClick()
     {
         var sess= '<?php echo $this->session['Type']; ?>';
-        alert("sess--------------"+sess);
         if(sess=='Customer'){
             window.location.href ='<?php echo Yii::app()->request->baseUrl; ?>/user/homeService';
         }

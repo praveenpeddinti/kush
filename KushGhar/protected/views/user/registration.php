@@ -148,27 +148,27 @@
                                 <input type="hidden" id="VV" value="<?php echo $one;?>" >
 
                                 <?php echo $form->label($model, '<abbr title="required">*</abbr> first name'); ?>
-                                <?php echo $form->textField($model, 'FirstName', array('value'=>$getInviteUserDetail['first_name'], 'class' => 'span12', 'placeholder' => 'First Name…', 'maxLength' => 50)); ?>
+                                <?php echo $form->textField($model, 'FirstName', array('value'=>$getInviteUserDetail['first_name'], 'class' => 'span12', 'maxLength' => 50)); ?>
                                 <?php echo $form->error($model, 'FirstName'); ?>
 
                                 <?php echo $form->label($model, '<abbr title="required">*</abbr> last name') ?>
-                                <?php echo $form->textField($model, 'LastName', array('value'=>$getInviteUserDetail['last_name'], 'class' => 'span12', 'placeholder' => 'Last Name…', 'maxLength' => 50)); ?>
+                                <?php echo $form->textField($model, 'LastName', array('value'=>$getInviteUserDetail['last_name'], 'class' => 'span12', 'maxLength' => 50)); ?>
                                 <?php echo $form->error($model, 'LastName'); ?>
 
                                 <label><?php echo $form->labelEx($model, '<abbr title="required">*</abbr> email'); ?></label>
-                                <?php echo $form->textField($model, 'Email', array('value'=>$getInviteUserDetail['email_address'], 'class' => 'span12', 'placeholder' => 'Email…', 'maxLength' => 100)); ?>
+                                <?php echo $form->textField($model, 'Email', array('value'=>$getInviteUserDetail['email_address'], 'class' => 'span12', 'maxLength' => 100)); ?>
                                 <?php echo $form->error($model, 'Email'); ?>
 
                                 <label><?php echo $form->labelEx($model, '<abbr title="required">*</abbr> phone'); ?></label><input type="text" value="+91" disabled="disabled" class="span2"/>
-                                <?php echo $form->textField($model, 'Phone', array('value'=>$getInviteUserDetail['phone'], 'id' => 'RegistrationForm_Phone', 'class' => 'span10', 'placeholder' => 'Phone…', 'maxLength' => 10, 'onkeypress' => 'return isNumberKey(event);')); ?>
+                                <?php echo $form->textField($model, 'Phone', array('value'=>$getInviteUserDetail['phone'], 'id' => 'RegistrationForm_Phone', 'class' => 'span10', 'maxLength' => 10, 'onkeypress' => 'return isNumberKey(event);')); ?>
                                 <?php echo $form->error($model, 'Phone'); ?>
 
                                 <label><?php echo $form->labelEx($model, '<abbr title="required">*</abbr> password'); ?></label>
-                                <?php echo $form->passwordField($model, 'Password', array('class' => 'span12', 'placeholder' => 'Password…', 'maxLength' => 100)); ?>
+                                <?php echo $form->passwordField($model, 'Password', array('class' => 'span12', 'maxLength' => 100)); ?>
                                 <?php echo $form->error($model, 'Password'); ?>
 
-                                <label> <?php echo $form->labelEx($model, '<abbr title="required">*</abbr> Repeat Password'); ?></label>
-                                <?php echo $form->passwordField($model, 'RepeatPassword', array('class' => 'span12', 'placeholder' => 'Repeat Password…', 'maxLength' => 100)); ?>
+                                <label> <?php echo $form->labelEx($model, '<abbr title="required">*</abbr> Confirm Password'); ?></label>
+                                <?php echo $form->passwordField($model, 'RepeatPassword', array('class' => 'span12', 'maxLength' => 100)); ?>
                                 <?php echo $form->error($model, 'RepeatPassword'); ?>
                                 <center>
                                    
@@ -204,11 +204,11 @@
                             <?php echo $form1->error($modelLogin, 'error', array('class'=>'errorMessageFont')); ?>
                             <fieldset>
                                 <?php echo $form1->label($modelLogin, '<abbr title="required">*</abbr> user ID'); ?>
-                                <?php echo $form1->textField($modelLogin, 'UserId', array('class' => 'span12', 'placeholder' => 'Email / Phone Number…', 'maxLength' => 100)); ?>
+                                <?php echo $form1->textField($modelLogin, 'UserId', array('class' => 'span12', 'maxLength' => 100)); ?>
                                 <?php echo $form1->error($modelLogin, 'UserId'); ?>
 
                                 <?php echo $form1->labelEx($modelLogin, '<abbr title="required">*</abbr> password'); ?>
-                                <?php echo $form1->passwordField($modelLogin, 'Password', array('class' => 'span12', 'placeholder' => 'Password…', 'maxLength' => 100)); ?>
+                                <?php echo $form1->passwordField($modelLogin, 'Password', array('class' => 'span12', 'maxLength' => 100)); ?>
                                 <?php echo $form1->error($modelLogin, 'Password'); ?>
                                 <center>
                                     

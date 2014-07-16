@@ -145,7 +145,7 @@
     <?php }?>  
        
     $('#DifferentLocation').bootstrapSwitch();
-       //$("#DifferentLocation").val('0');
+       $("#DifferentLocation").val('0');
     var currentDate=new Date.today().addDays(1);
     var maxdate=new Date();
     maxdate.setFullYear(maxdate.getFullYear()-19);

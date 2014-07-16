@@ -15,24 +15,24 @@
              <div class='row-fluid'>
                  <div class='span4'>
                     <?php echo $inviteform->label($inviteModel,'<abbr title="required">*</abbr> First Name'); ?>
-                    <?php echo $inviteform->textField($inviteModel,'FirstName', array( 'class'=>'span12','placeholder'=>'First Name…', 'maxLength' => 50)); ?>
+                    <?php echo $inviteform->textField($inviteModel,'FirstName', array( 'class'=>'span12', 'maxLength' => 50)); ?>
                     <?php echo $inviteform->error($inviteModel,'FirstName'); ?>
                  </div>
                  <div class='span4'>
                     <?php echo $inviteform->label($inviteModel,'<abbr title="required">*</abbr> Last Name'); ?>
-                    <?php echo $inviteform->textField($inviteModel,'LastName', array( 'class'=>'span12','placeholder'=>'Last Name…', 'maxLength' => 50)); ?>
+                    <?php echo $inviteform->textField($inviteModel,'LastName', array( 'class'=>'span12', 'maxLength' => 50)); ?>
                     <?php echo $inviteform->error($inviteModel,'LastName'); ?>
                  </div>
                  <div class=" span4">
                     <?php echo $inviteform->labelEx($inviteModel,'<abbr title="required">*</abbr> phone'); ?>
-                     <input type="text" value="+91" disabled="true" style="width:40px" class="span2" />&nbsp;<?php echo $inviteform->textField($inviteModel,'Phone',array('class'=>'span9','placeholder'=>'Phone…', 'maxLength' => 10, 'onkeypress' => 'return isNumberKey(event);')); ?>
+                     <input type="text" value="+91" disabled="true" style="width:40px" class="span2" />&nbsp;<?php echo $inviteform->textField($inviteModel,'Phone',array('class'=>'span9', 'maxLength' => 10, 'onkeypress' => 'return isNumberKey(event);')); ?>
                     <?php echo $inviteform->error($inviteModel,'Phone'); ?>
                     </div>
              </div>
               <div class='row-fluid'>
                  <div class='span6'>
                     <?php echo $inviteform->label($inviteModel,'<abbr title="required">*</abbr> Email'); ?>
-                    <?php echo $inviteform->textField($inviteModel,'Email', array( 'class'=>'span12','placeholder'=>'Email…', 'maxLength' => 100)); ?>
+                    <?php echo $inviteform->textField($inviteModel,'Email', array( 'class'=>'span12', 'maxLength' => 100)); ?>
                     <?php echo $inviteform->error($inviteModel,'Email'); ?>
                  </div>
                   

@@ -31,7 +31,7 @@ class RegistrationForm extends CFormModel {
             //array('Password', 'authenticate'),
             array('Password', 'required', 'on' => 'insert'),
             array('RepeatPassword', 'compare', 'compareAttribute' => 'Password',
-                'message' => 'Password  and Repeat Password must be match'
+                'message' => 'Password and Confirm Password need to be same'
             ),
             // First Name, Last Name must be Alphabet and space
             array('FirstName, LastName', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain Alphabet and space'),

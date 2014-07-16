@@ -126,8 +126,9 @@
     <?php echo $form->hiddenField($model,'Id'); ?>
     <div class="row-fluid">
     <div class=" span6">
-    <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> email'); ?>
-	<?php echo $form->textField($model,'Email',array('value'=>$customerDetails->email_address,'disabled'=>'disabled', 'maxLength' => 100, 'class'=>'span12')); ?>
+
+    <?php echo $form->labelEx($model,'email'); ?>
+	<?php echo $form->textField($model,'Email',array('value'=>$customerDetails->email_address,'readOnly'=>'true', 'maxLength' => 100, 'class'=>'span12', 'placeholder'=>'Email…' )); ?>
 	<?php echo $form->error($model,'Email'); ?>
     </div>
     </div>

@@ -867,13 +867,7 @@ class UserController extends Controller {
         
         $interval = date_diff($date_a,$date_b);
 
-            //Saving Logic
-            $rows = $this->kushGharService->checkingStewardService($cId);
-            if($rows=='No Service'){
-            $result = $this->kushGharService->addStewardsCleaningService($stewardModel, $cId);
-            }else{
-            $result = $this->kushGharService->updateStewardsCleaningService($stewardModel, $cId);
-            }
+            
             
             $HouseCleaning = 0;
             $CarCleaning=0;
@@ -910,7 +904,13 @@ class UserController extends Controller {
     
                             
             }else if($_REQUEST['Type']=='next'){
-                
+                //Saving Logic
+            $rows = $this->kushGharService->checkingStewardService($cId);
+            if($rows=='No Service'){
+            $result = $this->kushGharService->addStewardsCleaningService($stewardModel, $cId);
+            }else{
+            $result = $this->kushGharService->updateStewardsCleaningService($stewardModel, $cId);
+            }
                 /*if((!empty($houseModel->HouseCleaning))   ){
                     error_log("-----------------------aaaa---1-");
                     $houseModel = new HouseCleaningForm;

@@ -53,8 +53,9 @@ $form = $this->beginWidget('CActiveForm', array(
 <?php echo $form->error($model1, 'EndTime'); ?>
         </div>
         <div class=" span4">
+            <?php if($getServiceDetails['service_hours']==0){ $serviceHours='';}else{$serviceHours=$getServiceDetails['service_hours'];}?>
             <?php echo $form->label($model1, 'DurationHour(s)'); ?>
-            <?php echo $form->textField($model1, 'DurationHours', array('value'=>$getServiceDetails['service_hours'], 'class' => 'span4', 'readonly'=>'true')); ?>
+            <?php echo $form->textField($model1, 'DurationHours', array('value'=>$serviceHours, 'class' => 'span4', 'readonly'=>'true')); ?>
 
         </div> 
         
@@ -102,7 +103,8 @@ $form = $this->beginWidget('CActiveForm', array(
         
         <div class="span6">
             <label>Recommended # of Stewards</label>
-            <?php echo $form->textField($model1, 'totalStewards', array('value'=>$getServiceDetails['no_of_stewards'],'maxLength' => 4, 'class' => 'span6','onkeypress' => 'return isNumberKey(event);')); ?>
+            <?php if($getServiceDetails['no_of_stewards']==0){ $TotalStewards='';}else{$TotalStewards=$getServiceDetails['no_of_stewards'];}?>
+            <?php echo $form->textField($model1, 'totalStewards', array('value'=>$TotalStewards,'maxLength' => 4, 'class' => 'span6','onkeypress' => 'return isNumberKey(event);')); ?>
             <?php echo $form->error($model1, 'totalStewards'); ?>
         </div>
         

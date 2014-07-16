@@ -1,56 +1,49 @@
-
-<?php $totalRoomsPrice = 0;
-$Htotal = 0;
-$Ctotal = 0;
-$Stotal = 0; ?>
-<?php if ($PriceFlag == '0') { ?>
-     
+<?php
+    $totalRoomsPrice = 0;
+    $Htotal = 0;
+    $Ctotal = 0;
+    $Stotal = 0;
+    if ($PriceFlag == '0') { ?>
     <div class="row-fluid">
         <div class="span12">
             <div class="panel-group" id="accordion">
-                <?php if ($HouseCleaning == 1) {
-                    
-                    if( ($getServiceDetails['total_livingRooms']==1) && ($getServiceDetails['total_bedRooms']==1) && ($getServiceDetails['total_bathRooms']==1) && ($getServiceDetails['total_kitchens']==1))
-                    {
-                    $priceRoom1 = (($getServiceDetails['total_livingRooms'] + $getServiceDetails['total_bedRooms']) * 125);
-                    $priceRoom2 = (($getServiceDetails['total_bathRooms'] + $getServiceDetails['total_kitchens']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
-                    //$totalRoomsPrice = $priceRoom1 + $priceRoom2 ;
-                    $totalRoomsPrice = $priceRoom1 + $priceRoom2 ;
-                    }else{$LR='';$BedR='';$BathR='';$KR='';
-                         if($getServiceDetails['total_livingRooms']>1){
-                             $LR = (($getServiceDetails['total_livingRooms']-1)*125);
-                         }
-                         if($getServiceDetails['total_bedRooms']>1){
-                             $BedR = (($getServiceDetails['total_bedRooms']-1)*125);
-                         }
-                         if($getServiceDetails['total_bathRooms']>1){
-                             $BathR = (($getServiceDetails['total_bathRooms']-1)*250);
-                         }
-                         if($getServiceDetails['total_kitchens']>1){
-                             $KR = (($getServiceDetails['total_kitchens']-1)*250);
-                         }
-                    
-                    $priceRoom1  = $LR+$BedR;
-                    $priceRoom2 = $BathR+$KR;
-                    $totalRoomsPrice = $priceRoom1 + $priceRoom2 +750;
-                    //$totalRoomsPrice = 0 ;  
-                    }
-                    $priceAddServices = (($getServiceDetails['window_grills'] + $getServiceDetails['fridge_interior'] + $getServiceDetails['microwave_oven_interior']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
-                    //$serviceTaxPrice = (($priceRoom1+$priceRoom2+$priceAddServices)*12.36)/100;
-                     
-                    /*if($totalRoomsPrice < 750)
-                    {
-                        $totalRoomsPrice = 750;
-                    }*/
-                    $totalRoomsPrice+= $priceAddServices;
+                <?php
+                    if ($HouseCleaning == 1) {
+                        if (($getServiceDetails['total_livingRooms'] == 1) && ($getServiceDetails['total_bedRooms'] == 1) && ($getServiceDetails['total_bathRooms'] == 1) && ($getServiceDetails['total_kitchens'] == 1)) {
+                            $priceRoom1 = (($getServiceDetails['total_livingRooms'] + $getServiceDetails['total_bedRooms']) * 125);
+                            $priceRoom2 = (($getServiceDetails['total_bathRooms'] + $getServiceDetails['total_kitchens']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
+                            //$totalRoomsPrice = $priceRoom1 + $priceRoom2 ;
+                            $totalRoomsPrice = $priceRoom1 + $priceRoom2;
+                        } else {
+                            $LR = '';
+                            $BedR = '';
+                            $BathR = '';
+                            $KR = '';
+                            if ($getServiceDetails['total_livingRooms'] > 1) {
+                                $LR = (($getServiceDetails['total_livingRooms'] - 1) * 125);
+                            }
+                            if ($getServiceDetails['total_bedRooms'] > 1) {
+                                $BedR = (($getServiceDetails['total_bedRooms'] - 1) * 125);
+                            }
+                            if ($getServiceDetails['total_bathRooms'] > 1) {
+                                $BathR = (($getServiceDetails['total_bathRooms'] - 1) * 250);
+                            }
+                            if ($getServiceDetails['total_kitchens'] > 1) {
+                                $KR = (($getServiceDetails['total_kitchens'] - 1) * 250);
+                            }
 
-
-                ?>
+                            $priceRoom1 = $LR + $BedR;
+                            $priceRoom2 = $BathR + $KR;
+                            $totalRoomsPrice = $priceRoom1 + $priceRoom2 + 750;
+                            //$totalRoomsPrice = 0 ;  
+                        }
+                        $priceAddServices = (($getServiceDetails['window_grills'] + $getServiceDetails['fridge_interior'] + $getServiceDetails['microwave_oven_interior']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
+                        $totalRoomsPrice+= $priceAddServices;?>
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div class="panel-title housecleaning_title2">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed" style="display:block">
-                                <span class="pull-left">House Cleaning Service</span>
+                                <span class="pull-left">Housecleaning Service</span>
                                 <span class="serviceprice"> Rs. <?php echo $totalRoomsPrice; ?></span>
                                 <div class="count"></div>           
                             </a>
@@ -73,7 +66,7 @@ $Stotal = 0; ?>
                                 <?php } ?>
                                 <?php if (!empty($getServiceDetails['total_bedRooms'])) { ?>
                                 <tr>
-                                    <td>Total Bed Room(s)</td>
+                                    <td>Total Bedroom(s)</td>
                                     <td><?php echo "<b>" . $getServiceDetails['total_bedRooms'] . "</b>"; ?></td>
                                 </tr>
                                 <?php } ?>
@@ -85,7 +78,7 @@ $Stotal = 0; ?>
                                 <?php } ?>
                                 <?php if (!empty($getServiceDetails['total_bathRooms'])) { ?>
                                 <tr>
-                                    <td>Total Bath Room(s)</td>
+                                    <td>Total Bathroom(s)</td>
                                     <td><?php echo "<b>" . $getServiceDetails['total_bathRooms'] . "</b>"; ?></td>
                                 </tr>
                                 <?php } ?>
@@ -97,9 +90,9 @@ $Stotal = 0; ?>
                                 <?php } ?>
                                 <tr>
                                     <td valign='top'>Additional Services are</td>
-                                    <td><?php if ($getServiceDetails['window_grills'] == 1) echo "Window grills cleaning</br>"; ?>
-                                        <?php if ($getServiceDetails['fridge_interior'] == 1) echo "Fridge interior cleaning</br>"; ?>
-                                        <?php if ($getServiceDetails['microwave_oven_interior'] == 1) echo "Micro wave oven interior cleaning</br>"; ?>
+                                    <td><?php if ($getServiceDetails['window_grills'] == 1) echo "Window grills cleaning</br>"; 
+                                              if ($getServiceDetails['fridge_interior'] == 1) echo "Fridge interior cleaning</br>"; 
+                                              if ($getServiceDetails['microwave_oven_interior'] == 1) echo "Micro wave oven interior cleaning</br>"; ?>
                                     </td>
                                 </tr>
                             </table>
@@ -107,101 +100,88 @@ $Stotal = 0; ?>
                     </div>
                 </div>
                 <?php } ?>
-    <?php if ($CarCleaning == 1) {
-        $seatAmt = $totalSeats*400;
-        $Ctotal = (count($getCarWashServiceDetails) * 500)+$seatAmt;
-        
-        ?>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <div class="panel-title carwash_title2">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed" style="display:block">
-                                    <span class="pull-left">Car Wash Service</span>
-                                    <span class="serviceprice"> Rs. <?php echo $Ctotal; ?></span>
-                                    <div class="count"></div>          
-                                </a>
-                            </div>
-                        </div>
-                        <div id="collapseTwo" class="panel-collapse collapse">
-                            <div class="panel-body paddinground">
-                                <table class="table price">
-                                    <tr>
-                                        <td>Total Cars</td>
-                                        <td><?php echo "<b>" . count($getCarWashServiceDetails) . "</b>"; ?></td>
-                                    </tr>
-        <?php foreach ($getCarWashServiceDetails as $cw) { ?>
-
-                                        <tr>
-                                            <td>Make / Model of the Car</td>
-                                            <td><?php echo "<b>" . $cw['make_of_car'] . "</b>"; ?></td>
-                                        </tr>
-                                        <?php if ($cw['exterior_cleaning'] != 0) { ?>
-                                            <tr>
-                                                <td>Exterior Color</td>
-                                                <td><?php echo "<b>" . $cw['exterior_color'] . "</b>"; ?></td>
-                                            </tr>
-            <?php } ?>
-
-                                        
-                                        <?php if ($cw['shampoo_seats'] != 0) { ?>
-                                            <tr>
-                                                <td>Shampoo Seats</td>
-                                                <td><?php echo "<b>Yes</b>"; ?></td>
-                                            </tr>
-            <?php } ?>
-                    <?php } ?>
-                                </table>
-                            </div>
+                <?php
+                    if ($CarCleaning == 1) {
+                        $seatAmt = $totalSeats * 400;
+                        $Ctotal = (count($getCarWashServiceDetails) * 500) + $seatAmt; ?>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="panel-title carwash_title2">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed" style="display:block">
+                                <span class="pull-left">Car cleaning Service</span>
+                                <span class="serviceprice"> Rs. <?php echo $Ctotal; ?></span>
+                                <div class="count"></div>          
+                            </a>
                         </div>
                     </div>
-                <?php } ?>
-    <?php
-    if ($StewardsCleaning == 1) {
-        $Stotal = ($getStewardsServiceDetails['service_hours'] * $getStewardsServiceDetails['no_of_stewards'] * 200);
-        ?>          
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <div class="panel-title stewards_title2">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed" style="display:block">
-                                    <span class="pull-left">Stewards / Stewardesses Service</span>
-                                    <span class="serviceprice"> Rs. <?php echo $Stotal; ?></span>
-                                    <div class="count"></div>          
-                                </a>
-                            </div>
+                    <div id="collapseTwo" class="panel-collapse collapse">
+                        <div class="panel-body paddinground">
+                            <table class="table price">
+                                <tr>
+                                    <td>Total Cars</td>
+                                    <td><?php echo "<b>" . count($getCarWashServiceDetails) . "</b>"; ?></td>
+                                </tr>
+                                <?php foreach ($getCarWashServiceDetails as $cw) { ?>
+                                <tr>
+                                    <td>Make / Model of the Car</td>
+                                    <td><?php echo "<b>" . $cw['make_of_car'] . "</b>"; ?></td>
+                                </tr>
+                                <?php if ($cw['exterior_cleaning'] != 0) { ?>
+                                <tr>
+                                    <td>Exterior Color</td>
+                                    <td><?php echo "<b>" . $cw['exterior_color'] . "</b>"; ?></td>
+                                </tr>
+                                <?php } ?>
+                                <?php } ?>
+                            </table>
                         </div>
-                        <div id="collapseThree" class="panel-collapse collapse">
-                            <div class="panel-body paddinground">
-                                <table class="table price">
-                                    <tr>
-                                        <td>Event Name </td>
-                                        <td>
-                                            <?php
-                                            if ($getStewardsServiceDetails['event_type'] == 1) {
+                    </div>
+                </div>
+                <?php } ?>
+                <?php
+                if ($StewardsCleaning == 1) {
+                    $Stotal = ($getStewardsServiceDetails['service_hours'] * $getStewardsServiceDetails['no_of_stewards'] * 200);
+                    ?>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="panel-title stewards_title2">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed" style="display:block">
+                                <span class="pull-left">Stewards / Stewardesses Service</span>
+                                <span class="serviceprice"> Rs. <?php echo $Stotal; ?></span>
+                                <div class="count"></div>          
+                            </a>
+                        </div>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse">
+                        <div class="panel-body paddinground">
+                            <table class="table price">
+                                <tr>
+                                    <td>Event Name </td>
+                                    <td><?php if ($getStewardsServiceDetails['event_type'] == 1) {
                                                 $EventName = 'Formal Party';
-                                            }
-                                            if ($getStewardsServiceDetails['event_type'] == 2) {
+                                              }
+                                              if ($getStewardsServiceDetails['event_type'] == 2) {
                                                 $EventName = 'Casual Party';
-                                            }
-                                            if ($getStewardsServiceDetails['event_type'] == 3) {
+                                              }
+                                              if ($getStewardsServiceDetails['event_type'] == 3) {
                                                 $EventName = 'Birthday Party';
-                                            }
-                                            if ($getStewardsServiceDetails['event_type'] == 4) {
+                                              }
+                                              if ($getStewardsServiceDetails['event_type'] == 4) {
                                                 $EventName = 'Anniversary';
-                                            }
-                                            if ($getStewardsServiceDetails['event_type'] == 5) {
+                                             }
+                                             if ($getStewardsServiceDetails['event_type'] == 5) {
                                                 $EventName = 'Funeral';
-                                            }
-                                            if ($getStewardsServiceDetails['event_type'] == 6) {
+                                             }
+                                             if ($getStewardsServiceDetails['event_type'] == 6) {
                                                 $EventName = 'Sporting Event';
-                                            }
-                                            if ($getStewardsServiceDetails['event_type'] == 7) {
+                                             }
+                                             if ($getStewardsServiceDetails['event_type'] == 7) {
                                                 $EventName = $getStewardsServiceDetails['event_name'];
-                                            }
-
+                                             }
                                             echo "<b>" . $EventName . "</b>";
                                             ?>
-                                    </tr>
-
+                                    </td>
+                                </tr>
                                     <tr>
                                         <td>People Attending</td>
                                         <td><?php echo "<b>" . $getStewardsServiceDetails['attend_people'] . "</b>"; ?></td>
@@ -214,40 +194,41 @@ $Stotal = 0; ?>
                                         <td>Recommended # of Stewards</td>
                                         <td><?php echo "<b>" . $getStewardsServiceDetails['no_of_stewards'] . "</b>"; ?></td>
                                     </tr>
-                                    <?php if( ($getStewardsServiceDetails['appetizers'] == 1) || ($getStewardsServiceDetails['dinner'] == 1) || ($getStewardsServiceDetails['dessert'] == 1) || ($getStewardsServiceDetails['alcoholic'] == 1) || ($getStewardsServiceDetails['post_dinner'] == 1) ) {?>
-                                                                <tr>
-                                                                    <td valign='top'>Services Required</td>
-                                                                    <td>
-        <?php if ($getStewardsServiceDetails['appetizers'] == 1) echo "Appetizers</br>"; ?>
-        <?php if ($getStewardsServiceDetails['dinner'] == 1) echo "Dinner</br>"; ?>
-        <?php if ($getStewardsServiceDetails['dessert'] == 1) echo "Dessert</br>"; ?>
-        <?php if ($getStewardsServiceDetails['alcoholic'] == 1) echo "Beverage</br>"; ?>
-        <?php if ($getStewardsServiceDetails['post_dinner'] == 1) echo "Coffee / Tea</br>"; ?>
-                                                                    </td>
-                                                                </tr>
- <?php }?>
+                                            <?php if (($getStewardsServiceDetails['appetizers'] == 1) || ($getStewardsServiceDetails['dinner'] == 1) || ($getStewardsServiceDetails['dessert'] == 1) || ($getStewardsServiceDetails['alcoholic'] == 1) || ($getStewardsServiceDetails['post_dinner'] == 1)) { ?>
+                                        <tr>
+                                            <td valign='top'>Services Required</td>
+                                            <td>
+                                                <?php if ($getStewardsServiceDetails['appetizers'] == 1) echo "Appetizers</br>"; ?>
+                                                <?php if ($getStewardsServiceDetails['dinner'] == 1) echo "Dinner</br>"; ?>
+            <?php if ($getStewardsServiceDetails['dessert'] == 1) echo "Dessert</br>"; ?>
+                                        <?php if ($getStewardsServiceDetails['alcoholic'] == 1) echo "Beverage</br>"; ?>
+                                        <?php if ($getStewardsServiceDetails['post_dinner'] == 1) echo "Coffee / Tea</br>"; ?>
+                                            </td>
+                                        </tr>
+        <?php } ?>
 
                                 </table>    
                             </div>
                         </div>
                     </div>
-    <?php }?>
+    <?php } ?>
                 <div class="panel-heading">
-                                                        <div class="panel-title servicetax_title2">
-                                                            <a data-toggle="collapse" data-parent="#" href="#" class="collapsed" style="display:block">
-                                                                <span class="pull-left">Service Tax</span>
-                                                                <span class="serviceprice">Rs. 0</span>
-<!--                                                                <div class="count"></div>-->
-                                                            </a>
-                                                        </div>
-                                                    </div>
+                    <div class="panel-title servicetax_title2">
+                        <a data-toggle="collapse" data-parent="#" href="#" class="collapsed" style="display:block">
+                            <span class="pull-left">Service Tax</span>
+                            <span class="serviceprice">Rs. 0</span>
+                            <!--                                                                <div class="count"></div>-->
+                        </a>
+                    </div>
+                </div>
             </div>
 
         </div>
     </div>
     <div class="row-fluid">
-    <?php //$serviceTax = ((($totalRoomsPrice + $Ctotal + $Stotal) * 12.36) / 100); 
-    $serviceTax=0;
+    <?php
+    //$serviceTax = ((($totalRoomsPrice + $Ctotal + $Stotal) * 12.36) / 100); 
+    $serviceTax = 0;
     ?>
         <div class="span6"><label>Total Price (Service Tax Included)</label><input type="text" value="<?php echo $totalRoomsPrice + $Ctotal + $Stotal + $serviceTax; ?>" id="price" readonly="true" /></div>
         <div class="span6">
@@ -336,16 +317,16 @@ $Stotal = 0; ?>
                                     <li><a href="homeService"> <i class="fa fa-wrench"></i> Services</a></li>
                                     <li class="active"><a href="priceQuote"> <i class="fa fa-user"></i> Price Quote</a></li>
                                     <li><a href="paymentInfo"> <i class="fa fa-credit-card"></i> Payment Info</a>
-<!--                                        <div class="<?php echo $statusClassForPayment; ?>"> </div>-->
+    <!--                                        <div class="<?php echo $statusClassForPayment; ?>"> </div>-->
                                     </li>
                                     <li><a href="basicinfo"> <i class="fa fa-file-text-o"></i> Basic Info</a>
-<!--                                        <div class=<?php echo '"' . $statusClassForBasic . '"' ?>></div>-->
+    <!--                                        <div class=<?php echo '"' . $statusClassForBasic . '"' ?>></div>-->
                                     </li>
                                     <li><a href="contactInfo"> <i class="fa fa-phone"></i> Contact Info</a>
-<!--                                        <div class="<?php echo $statusClassForContact; ?>"> </div>-->
+    <!--                                        <div class="<?php echo $statusClassForContact; ?>"> </div>-->
                                     </li>
                                     <li><a href="order"> <i class="fa fa-file-text"></i> Orders</a>
-                                </li>
+                                    </li>
                                 </ul>
                             </div>
                             <div id="payment" class="collapse">
@@ -369,7 +350,7 @@ $Stotal = 0; ?>
                 </aside>
                 <article>
                     <div id="orderPlaceDiv" style="display:none">
-                        
+
                         <div class="row-fluid">
                             <div class="span12">
                                 <h2 class="paddingL20">Place order</h2> <hr>
@@ -387,49 +368,51 @@ $Stotal = 0; ?>
                                 <div class="row-fluid">
                                     <div class="span12">
                                         <div class="panel-group" id="accordion">
-    <?php
-    if ($HouseCleaning == 1) {
-        if( ($getServiceDetails['total_livingRooms']==1) && ($getServiceDetails['total_bedRooms']==1) && ($getServiceDetails['total_bathRooms']==1) && ($getServiceDetails['total_kitchens']==1))
-                    {
-                    $priceRoom1 = (($getServiceDetails['total_livingRooms'] + $getServiceDetails['total_bedRooms']) * 125);
-                    $priceRoom2 = (($getServiceDetails['total_bathRooms'] + $getServiceDetails['total_kitchens']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
-                    //$totalRoomsPrice = $priceRoom1 + $priceRoom2 ;
-                    $totalRoomsPrice = $priceRoom1 + $priceRoom2 ;
-                    }else{$LR='';$BedR='';$BathR='';$KR='';
-                         if($getServiceDetails['total_livingRooms']>1){
-                             $LR = (($getServiceDetails['total_livingRooms']-1)*125);
-                         }
-                         if($getServiceDetails['total_bedRooms']>1){
-                             $BedR = (($getServiceDetails['total_bedRooms']-1)*125);
-                         }
-                         if($getServiceDetails['total_bathRooms']>1){
-                             $BathR = (($getServiceDetails['total_bathRooms']-1)*250);
-                         }
-                         if($getServiceDetails['total_kitchens']>1){
-                             $KR = (($getServiceDetails['total_kitchens']-1)*250);
-                         }
-                    
-                    $priceRoom1  = $LR+$BedR;
-                    $priceRoom2 = $BathR+$KR;
-                    $totalRoomsPrice = $priceRoom1 + $priceRoom2 +750;
-                    //$totalRoomsPrice = 0 ;  
-                    }
-                    $priceAddServices = (($getServiceDetails['window_grills'] + $getServiceDetails['fridge_interior'] + $getServiceDetails['microwave_oven_interior']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
-                    //$serviceTaxPrice = (($priceRoom1+$priceRoom2+$priceAddServices)*12.36)/100;
-                     
-                    /*if($totalRoomsPrice < 750)
-                    {
-                        $totalRoomsPrice = 750;
-                    }*/
-                    $totalRoomsPrice+= $priceAddServices;
+                                            <?php
+                                            if ($HouseCleaning == 1) {
+                                                if (($getServiceDetails['total_livingRooms'] == 1) && ($getServiceDetails['total_bedRooms'] == 1) && ($getServiceDetails['total_bathRooms'] == 1) && ($getServiceDetails['total_kitchens'] == 1)) {
+                                                    $priceRoom1 = (($getServiceDetails['total_livingRooms'] + $getServiceDetails['total_bedRooms']) * 125);
+                                                    $priceRoom2 = (($getServiceDetails['total_bathRooms'] + $getServiceDetails['total_kitchens']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
+                                                    //$totalRoomsPrice = $priceRoom1 + $priceRoom2 ;
+                                                    $totalRoomsPrice = $priceRoom1 + $priceRoom2;
+                                                } else {
+                                                    $LR = '';
+                                                    $BedR = '';
+                                                    $BathR = '';
+                                                    $KR = '';
+                                                    if ($getServiceDetails['total_livingRooms'] > 1) {
+                                                        $LR = (($getServiceDetails['total_livingRooms'] - 1) * 125);
+                                                    }
+                                                    if ($getServiceDetails['total_bedRooms'] > 1) {
+                                                        $BedR = (($getServiceDetails['total_bedRooms'] - 1) * 125);
+                                                    }
+                                                    if ($getServiceDetails['total_bathRooms'] > 1) {
+                                                        $BathR = (($getServiceDetails['total_bathRooms'] - 1) * 250);
+                                                    }
+                                                    if ($getServiceDetails['total_kitchens'] > 1) {
+                                                        $KR = (($getServiceDetails['total_kitchens'] - 1) * 250);
+                                                    }
 
-        ?>
+                                                    $priceRoom1 = $LR + $BedR;
+                                                    $priceRoom2 = $BathR + $KR;
+                                                    $totalRoomsPrice = $priceRoom1 + $priceRoom2 + 750;
+                                                    //$totalRoomsPrice = 0 ;  
+                                                }
+                                                $priceAddServices = (($getServiceDetails['window_grills'] + $getServiceDetails['fridge_interior'] + $getServiceDetails['microwave_oven_interior']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
+                                                //$serviceTaxPrice = (($priceRoom1+$priceRoom2+$priceAddServices)*12.36)/100;
+
+                                                /* if($totalRoomsPrice < 750)
+                                                  {
+                                                  $totalRoomsPrice = 750;
+                                                  } */
+                                                $totalRoomsPrice+= $priceAddServices;
+                                                ?>
 
                                                 <div class="panel panel-default">
                                                     <div class="panel-heading">
                                                         <div class="panel-title housecleaning_title2">
                                                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed" style="display:block">
-                                                                <span class="pull-left">House Cleaning Service</span>
+                                                                <span class="pull-left">Housecleaning Service</span>
                                                                 <span class="serviceprice">Rs. <?php echo $totalRoomsPrice; ?></span>
                                                                 <div class="count"></div>
                                                             </a>
@@ -439,49 +422,49 @@ $Stotal = 0; ?>
                                                         <div class="panel-body paddinground">
                                                             <table class="table price">
 
-        <?php if ($getServiceDetails['squarefeets'] != 0) { ?>
+                                                                <?php if ($getServiceDetails['squarefeets'] != 0) { ?>
                                                                     <tr>
                                                                         <td>Square Feets </td>
                                                                         <td><?php echo "<b>" . $getServiceDetails['squarefeets'] . "</b>"; ?></td>
                                                                     </tr>
                                                                 <?php } ?>
-        <?php if (!empty($getServiceDetails['total_livingRooms'])) { ?>
+                                                                <?php if (!empty($getServiceDetails['total_livingRooms'])) { ?>
                                                                     <tr>
                                                                         <td>Total Living Room(s) </td>
                                                                         <td><?php echo "<b>" . $getServiceDetails['total_livingRooms'] . "</b>"; ?></td>
                                                                     </tr>
                                                                 <?php } ?>
-        <?php if (!empty($getServiceDetails['total_bedRooms'])) { ?>
+                                                                <?php if (!empty($getServiceDetails['total_bedRooms'])) { ?>
                                                                     <tr>
-                                                                        <td>Total Bed Room(s)</td>
+                                                                        <td>Total Bedroom(s)</td>
                                                                         <td><?php echo "<b>" . $getServiceDetails['total_bedRooms'] . "</b>"; ?></td>
                                                                     </tr>
-        <?php } ?>
-        <?php if (!empty($getServiceDetails['total_kitchens'])) { ?>
+                                                                <?php } ?>
+                                                                <?php if (!empty($getServiceDetails['total_kitchens'])) { ?>
                                                                     <tr>
                                                                         <td>Total Kitchen(s)</td>
                                                                         <td><?php echo "<b>" . $getServiceDetails['total_kitchens'] . "</b>"; ?></td>
                                                                     </tr>
-                                                                        <?php } ?>
-        <?php if (!empty($getServiceDetails['total_bathRooms'])) { ?>
+                                                                <?php } ?>
+                                                                <?php if (!empty($getServiceDetails['total_bathRooms'])) { ?>
                                                                     <tr>
-                                                                        <td>Total Bath Room(s)</td>
+                                                                        <td>Total Bathroom(s)</td>
                                                                         <td><?php echo "<b>" . $getServiceDetails['total_bathRooms'] . "</b>"; ?></td>
                                                                     </tr>
-        <?php } ?>
+                                                                <?php } ?>
         <?php if ($getServiceDetails['pooja_room_cleaning'] != 0) { ?>
                                                                     <tr>
                                                                         <td>Pooja Room</td>
                                                                         <td><?php echo "<b>" . $getServiceDetails['pooja_room_cleaning'] . "</b>"; ?></td>
                                                                     </tr>
-        <?php } ?>
+                                                                        <?php } ?>
                                                                 <tr>
                                                                     <td valign='top'>Additional Services are</td>
                                                                     <td>
         <?php if ($getServiceDetails['window_grills'] == 1) echo "Window grills cleaning</br>"; ?>
         <?php if ($getServiceDetails['fridge_interior'] == 1) echo "Fridge interior cleaning</br>"; ?>
         <?php if ($getServiceDetails['microwave_oven_interior'] == 1) echo "Micro wave oven interior cleaning</br>"; ?>
-        <?php //if($getServiceDetails['pooja_room_cleaning']==1) echo "Pooja room cleaning</br>" ; ?>
+        <?php //if($getServiceDetails['pooja_room_cleaning']==1) echo "Pooja room cleaning</br>" ;  ?>
                                                                     </td>
                                                                 </tr>
 
@@ -490,16 +473,17 @@ $Stotal = 0; ?>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                            <?php } ?>
-                                                            <?php if ($CarCleaning == 1) {
-                                                                $seatAmt = $totalSeats*400;
-                                                                $Ctotal = (count($getCarWashServiceDetails) * 500)+$seatAmt;
-                                                                ?>
+    <?php } ?>
+    <?php
+    if ($CarCleaning == 1) {
+        $seatAmt = $totalSeats * 400;
+        $Ctotal = (count($getCarWashServiceDetails) * 500) + $seatAmt;
+        ?>
                                                 <div class="panel panel-default">
                                                     <div class="panel-heading">
                                                         <div class="panel-title carwash_title2">
                                                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed" style="display:block">
-                                                                <span class="pull-left">Car Wash Service</span>
+                                                                <span class="pull-left">Car Cleaning Service</span>
                                                                 <span class="serviceprice">Rs. <?php echo $Ctotal; ?></span>
                                                                 <div class="count"></div>
                                                             </a>
@@ -518,30 +502,30 @@ $Stotal = 0; ?>
                                                                         <td>Make / Model of the Car</td>
                                                                         <td><?php echo "<b>" . $cw['make_of_car'] . "</b>"; ?></td>
                                                                     </tr>
-            <?php if ($cw['exterior_cleaning'] != 0) { ?>
+                                                                    <?php if ($cw['exterior_cleaning'] != 0) { ?>
                                                                         <tr>
                                                                             <td>Exterior Color</td>
                                                                             <td><?php echo "<b>" . $cw['exterior_color'] . "</b>"; ?></td>
                                                                         </tr>
-                                                    <?php } ?>
+                                                                    <?php } ?>
 
-                                                    
+
             <?php if ($cw['shampoo_seats'] != 0) { ?>
                                                                         <tr>
                                                                             <td>Shampoo Seats</td>
                                                                             <td><?php echo "<b>Yes</b>"; ?></td>
                                                                         </tr>
-            <?php } ?>
-        <?php } ?>
+                                                    <?php } ?>
+                                                <?php } ?>
                                                             </table>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                                    <?php } ?>            
-                                                                    <?php
-                                                                    if ($StewardsCleaning == 1) {
-                                                                        $Stotal = $getStewardsServiceDetails['service_hours'] * $getStewardsServiceDetails['no_of_stewards'] * 200;
-                                                                        ?>          
+    <?php } ?>            
+    <?php
+    if ($StewardsCleaning == 1) {
+        $Stotal = $getStewardsServiceDetails['service_hours'] * $getStewardsServiceDetails['no_of_stewards'] * 200;
+        ?>          
                                                 <div class="panel panel-default">
                                                     <div class="panel-heading">
                                                         <div class="panel-title stewards_title2">
@@ -558,31 +542,31 @@ $Stotal = 0; ?>
                                                                 <tr>
                                                                     <td>Event Name </td>
                                                                     <td>
-        <?php
-        if ($getStewardsServiceDetails['event_type'] == 1) {
-            $EventName = 'Formal Party';
-        }
-        if ($getStewardsServiceDetails['event_type'] == 2) {
-            $EventName = 'Casual Party';
-        }
-        if ($getStewardsServiceDetails['event_type'] == 3) {
-            $EventName = 'Birthday Party';
-        }
-        if ($getStewardsServiceDetails['event_type'] == 4) {
-            $EventName = 'Anniversary';
-        }
-        if ($getStewardsServiceDetails['event_type'] == 5) {
-            $EventName = 'Funeral';
-        }
-        if ($getStewardsServiceDetails['event_type'] == 6) {
-            $EventName = 'Sporting Event';
-        }
-        if ($getStewardsServiceDetails['event_type'] == 7) {
-            $EventName = $getStewardsServiceDetails['event_name'];
-        }
+                                                                        <?php
+                                                                        if ($getStewardsServiceDetails['event_type'] == 1) {
+                                                                            $EventName = 'Formal Party';
+                                                                        }
+                                                                        if ($getStewardsServiceDetails['event_type'] == 2) {
+                                                                            $EventName = 'Casual Party';
+                                                                        }
+                                                                        if ($getStewardsServiceDetails['event_type'] == 3) {
+                                                                            $EventName = 'Birthday Party';
+                                                                        }
+                                                                        if ($getStewardsServiceDetails['event_type'] == 4) {
+                                                                            $EventName = 'Anniversary';
+                                                                        }
+                                                                        if ($getStewardsServiceDetails['event_type'] == 5) {
+                                                                            $EventName = 'Funeral';
+                                                                        }
+                                                                        if ($getStewardsServiceDetails['event_type'] == 6) {
+                                                                            $EventName = 'Sporting Event';
+                                                                        }
+                                                                        if ($getStewardsServiceDetails['event_type'] == 7) {
+                                                                            $EventName = $getStewardsServiceDetails['event_name'];
+                                                                        }
 
-        echo "<b>" . $EventName . "</b>";
-        ?>
+                                                                        echo "<b>" . $EventName . "</b>";
+                                                                        ?>
                                                                 </tr>
 
                                                                 <tr>
@@ -597,68 +581,69 @@ $Stotal = 0; ?>
                                                                     <td>Recommended # of Stewards</td>
                                                                     <td><?php echo "<b>" . $getStewardsServiceDetails['no_of_stewards'] . "</b>"; ?></td>
                                                                 </tr>
- <?php if( ($getStewardsServiceDetails['appetizers'] == 1) || ($getStewardsServiceDetails['dinner'] == 1) || ($getStewardsServiceDetails['dessert'] == 1) || ($getStewardsServiceDetails['alcoholic'] == 1) || ($getStewardsServiceDetails['post_dinner'] == 1) ) {?>
-                                                                <tr>
-                                                                    <td valign='top'>Services Required</td>
-                                                                    <td>
-        <?php if ($getStewardsServiceDetails['appetizers'] == 1) echo "Appetizers</br>"; ?>
-        <?php if ($getStewardsServiceDetails['dinner'] == 1) echo "Dinner</br>"; ?>
-        <?php if ($getStewardsServiceDetails['dessert'] == 1) echo "Dessert</br>"; ?>
-        <?php if ($getStewardsServiceDetails['alcoholic'] == 1) echo "Beverage</br>"; ?>
-        <?php if ($getStewardsServiceDetails['post_dinner'] == 1) echo "Coffee / Tea</br>"; ?>
-                                                                    </td>
-                                                                </tr>
- <?php }?>
+                                                                        <?php if (($getStewardsServiceDetails['appetizers'] == 1) || ($getStewardsServiceDetails['dinner'] == 1) || ($getStewardsServiceDetails['dessert'] == 1) || ($getStewardsServiceDetails['alcoholic'] == 1) || ($getStewardsServiceDetails['post_dinner'] == 1)) { ?>
+                                                                    <tr>
+                                                                        <td valign='top'>Services Required</td>
+                                                                        <td>
+                                                                    <?php if ($getStewardsServiceDetails['appetizers'] == 1) echo "Appetizers</br>"; ?>
+            <?php if ($getStewardsServiceDetails['dinner'] == 1) echo "Dinner</br>"; ?>
+            <?php if ($getStewardsServiceDetails['dessert'] == 1) echo "Dessert</br>"; ?>
+            <?php if ($getStewardsServiceDetails['alcoholic'] == 1) echo "Beverage</br>"; ?>
+                                                    <?php if ($getStewardsServiceDetails['post_dinner'] == 1) echo "Coffee / Tea</br>"; ?>
+                                                                        </td>
+                                                                    </tr>
+        <?php } ?>
                                                             </table>    
                                                         </div>
                                                     </div>
                                                 </div>
-    <?php } ?>
-                                              
+                                <?php } ?>
+
                                         </div>
 
                                     </div>
                                 </div>
-                                
-                       <?php if( ($HouseCleaning == 0) && ($CarCleaning == 0) && ($StewardsCleaning == 0) ){?>
-                           <div class="row-fluid">
-    
-                               <div class="span12"><label>No Orders Found.</label></div>
-                           </div>       
-                       <?php }else{?> 
-                                 <div class="panel panel-default">
-                                                    <div class="panel-heading">
-                                                        <div class="panel-title servicetax_title2">
-                                                            <a data-toggle="collapse" data-parent="#" href="#" class="collapsed" style="display:block">
-                                                                <span class="pull-left">Service Tax</span>
-                                                                <span class="serviceprice">Rs. 0</span>
-<!--                                                                <div class="count"></div>-->
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                <div class="row-fluid">
-    <?php //$serviceTax = ((($totalRoomsPrice + $Ctotal + $Stotal) * 12.36) / 100);
-    $serviceTax=0;
-    ?>
-                                    <div class="span6"><label>Total Price (Service Tax Included)</label><input type="text" value="<?php echo $totalRoomsPrice + $Ctotal + $Stotal + $serviceTax; ?>" id="price" readonly="true"/></div>
-                                    <div class="span6">
-                                        <div class="pull-right paddingT30">
-    <?php
-    //echo CHtml::ajaxButton('Place Order', array('user/serviceOrder'), array(
-    //       'type' => 'POST',
-    //       'dataType' => 'json',
-    //'beforeSend' => 'function(){
-    //        scrollPleaseWait("serviceSpinLoader","services-form");}',
-    //       'success' => 'function(data,status,xhr) { addServiceOrderhandler(data,status,xhr);}'), array('class' => 'btn btn-primary','id'=>'HouseCleaningSubmit'));
-    ?>
-                                            <input type="button" class="btn btn-primary" value="Place Order" onclick="submitServiceOrder()">
+
+    <?php if (($HouseCleaning == 0) && ($CarCleaning == 0) && ($StewardsCleaning == 0)) { ?>
+                                    <div class="row-fluid">
+
+                                        <div class="span12"><label>No Orders Found.</label></div>
+                                    </div>       
+    <?php } else { ?> 
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <div class="panel-title servicetax_title2">
+                                                <a data-toggle="collapse" data-parent="#" href="#" class="collapsed" style="display:block">
+                                                    <span class="pull-left">Service Tax</span>
+                                                    <span class="serviceprice">Rs. 0</span>
+                                                    <!--                                                                <div class="count"></div>-->
+                                                </a>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div> 
-                       <?php }?>      
+                                        <div class="row-fluid">
+                                                    <?php
+                                                    //$serviceTax = ((($totalRoomsPrice + $Ctotal + $Stotal) * 12.36) / 100);
+                                                    $serviceTax = 0;
+                                                    ?>
+                                            <div class="span6"><label>Total Price (Service Tax Included)</label><input type="text" value="<?php echo $totalRoomsPrice + $Ctotal + $Stotal + $serviceTax; ?>" id="price" readonly="true"/></div>
+                                            <div class="span6">
+                                                <div class="pull-right paddingT30">
+        <?php
+        //echo CHtml::ajaxButton('Place Order', array('user/serviceOrder'), array(
+        //       'type' => 'POST',
+        //       'dataType' => 'json',
+        //'beforeSend' => 'function(){
+        //        scrollPleaseWait("serviceSpinLoader","services-form");}',
+        //       'success' => 'function(data,status,xhr) { addServiceOrderhandler(data,status,xhr);}'), array('class' => 'btn btn-primary','id'=>'HouseCleaningSubmit'));
+        ?>
+                                                    <input type="button" class="btn btn-primary" value="Place Order" onclick="submitServiceOrder()">
+                                                </div>
+                                            </div>
+                                        </div> 
+    <?php } ?>      
+                                </div>
                             </div>
                         </div>
-                    </div>
                 </article>
             </div>
         </section>
@@ -671,21 +656,21 @@ $Stotal = 0; ?>
 
         });
         function submitServiceOrder() {
-            
-            
+
+
             var queryString = '';
 
             ajaxRequest('/user/serviceOrder', queryString, addServiceOrderhandler);
-            
-            scrollPleaseWait("mailSpinLoader","");
-            
+
+            scrollPleaseWait("mailSpinLoader", "");
+
         }
         function addServiceOrderhandler(data) {
-           
+
             scrollPleaseWaitClose('mailSpinLoader');
             if (data.status == 'success') {
                 $('#priceQuoteDiv').hide();
-                 $('#orderPlaceDiv').show();
+                $('#orderPlaceDiv').show();
                 $('#orderPlaceDiv').html(data.data);
             }
         }

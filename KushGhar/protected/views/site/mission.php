@@ -2,7 +2,7 @@
 <div class="container">
     <div class="row-fluid">
         <div class="span12">
-            <div class="paddinground"  >
+            <div class="paddinground" style="height:380px">
                 <h2>Mission</h2>
                 <div class="static_page_heading"></div>
                 <div class="page_header_mag"  >
@@ -13,7 +13,7 @@
             
         </div>
     </div>
-    <div class="row-fluid">
+    <!--<div class="row-fluid">
         
         <div class="span12">
           <div class="paddinground">
@@ -49,5 +49,5 @@
                 </div>
 
         </div>
-    </div>
+    </div>-->
 </div>

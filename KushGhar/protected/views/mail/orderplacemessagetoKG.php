@@ -36,7 +36,7 @@
                                     <tr><td><b>Services :</b></td><td><?php if($HouseService!=0){echo "House cleaning, ";}?><?php if($CarService!=0){echo "Car wash, ";}?><?php if($StewardService!=0){echo "Stewards";}?></td></tr>
                                     <tr><td colspan="2">&nbsp;</td></tr>
                                     <?php if($HouseService!=0){?>
-                                    <tr><td><b>House cleaning service cost :</b>  </td>
+                                    <tr><td><b>Housecleaning service cost :</b>  </td>
                                     <td><?php $totalRoomsPrice='';
                                     if( ($HouseService['total_livingRooms']==1) && ($HouseService['total_bedRooms']==1) && ($HouseService['total_bathRooms']==1) && ($HouseService['total_kitchens']==1))
                                     {
@@ -66,24 +66,11 @@
                                     $priceAddServices = (($HouseService['window_grills'] + $HouseService['fridge_interior'] + $HouseService['microwave_oven_interior']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
                                     $totalRoomsPrice+= $priceAddServices;
                                     echo $totalRoomsPrice; ?>
-                                     <!--               $priceRoom1 = (($HouseService['total_livingRooms'] + $HouseService['total_bedRooms']) * 125);
-                                                    $priceRoom2 = (($HouseService['total_bathRooms'] + $HouseService['total_kitchens']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
-                                                    $priceAddServices = (($HouseService['window_grills'] + $HouseService['fridge_interior'] + $HouseService['microwave_oven_interior']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
-                    //$serviceTaxPrice = (($priceRoom1+$priceRoom2+$priceAddServices)*12.36)/100;
-                                                 $totalRoomsPrice = $priceRoom1 + $priceRoom2 ;
-         if($totalRoomsPrice < 750)
-                    {
-                        $totalRoomsPrice = 750;
-                    }
-                    $totalRoomsPrice+= $priceAddServices;
-                                                    echo $totalRoomsPrice; ?>-->
-                                            
-                                                    
                                                 </td>
                                             </tr>
                                             <?php }?>
                                             <?php if($CarService!=0){?>
-                                            <tr><td><b>Car wash service cost :</b>  </td>
+                                            <tr><td><b>Car cleaning service cost :</b>  </td>
                                                 <td><?php $totalcarPrice = 500*$getCars;;
                                                     echo $totalcarPrice; ?>
                                             

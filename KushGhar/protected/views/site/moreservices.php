@@ -40,8 +40,8 @@
                         <div id="services" class="collapse in">
                             <div class="selected_tab">Services</div>
                             <ul class="l_menu_sub_menu">
-                                <li ><a href="/site/cleaning"> Cleaning</a></li>
-                                <li ><a href="/site/carwash"> Car Wash</a> </li>
+                                <li ><a href="/site/cleaning"> Housecleaning</a></li>
+                                <li ><a href="/site/carwash"> Car cleaning</a> </li>
                                 <li ><a href="/site/stewards">  Stewards / Stewardesses</a> </li>
                                 <li class="active"><a href="/site/moreservices">  More ...</a> </li>
                             </ul>
@@ -63,7 +63,7 @@
                                     <div class="paddingL20">
                                         <h3>Future Services</h3>
                                         <ul>
-                                            <li>Drivers Service</li>
+                                            <li>Drivers</li>
                                             <li>Gardener</li>
                                             <li>Plumber</li>
                                             <li>Electrician</li>

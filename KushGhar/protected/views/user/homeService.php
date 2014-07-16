@@ -339,7 +339,7 @@ $(document).ready(function() {
             $("#HouseCleaningForm_WeekDays_em_").hide();
             $("#HouseCleaningForm_LivingRooms_em_").show();
             $("#HouseCleaningForm_LivingRooms_em_").addClass('errorMessage');
-            $("#HouseCleaningForm_LivingRooms_em_").text("You have choosen 0 Rooms at your house, Please choose atleast one kind of room.");
+            $("#HouseCleaningForm_LivingRooms_em_").text("You have choosen 0 rooms at your house, Please choose atleast one kind of room.");
             return false;
         }
          else {

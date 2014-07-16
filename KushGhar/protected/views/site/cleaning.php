@@ -40,8 +40,8 @@
                         <div id="services" class="collapse in">
                             <div class="selected_tab">Services</div>
                             <ul class="l_menu_sub_menu">
-                                <li class="active"><a href="/site/cleaning"> House Cleaning</a></li>
-                                <li ><a href="/site/carwash"> Car Wash</a> </li>
+                                <li class="active"><a href="/site/cleaning"> Housecleaning</a></li>
+                                <li ><a href="/site/carwash"> Car cleaning</a> </li>
                                 <li ><a href="/site/stewards">  Stewards / Stewardesses</a> </li>
                                 <li ><a href="/site/moreservices">  More ...</a> </li>
                             </ul>
@@ -55,24 +55,24 @@
                         <input type="hidden" id="VV" value="<?php echo $this->session['UserType'];?>" >
                         <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/service_banner1.jpg" class="service_banner" />
                         <div class="paddinground">
-                            <h2>What services Kushghar Offer ?</h2>
+                            <h2>What services does Kushghar offer?</h2>
                             <div class="static_page_heading"></div>
                             <div class="row-fluid">
                                 <div class="span12">
 
                                     <div class="paddingL20">
-                                        <h3>House cleaning Service</h3>
-                                        <p>This service includes a very well trained professional cleaning crew and also includes all the cleaning supplies including vacuum cleaners and air fresheners, and when they leave your home it will look and feel like a brand new model house.</p>
+                                        <h3>Housecleaning Service</h3>
+                                        <p>This service is brought to you by a well-trained professional cleaning crew. It includes all the cleaning supplies including vacuum cleaners and air fresheners, and when they leave your house it will look and feel like a brand new home.</p>
                                         <ul>
                                             
-                                            <li>Kitchen room</li>
-                                            <li>Bed room</li>
+                                            <li>Kitchen</li>
+                                            <li>Bedroom</li>
                                             <li>Living room</li>
-                                            <li>Bath room</li>
+                                            <li>Bathroom</li>
                                             <li>Common areas</li>
                                         </ul>
-                                        <p>All of your home will be dusted, vacuumed, cleaned and arranged as a 5 star hotel room is arranged. Satisfaction guaranteed.</p>
-                                        <p>We do provide additional service such as cleaning outside windows, steam cleaning, carpet cleaning and deep stain removal. These services are at an additional fee. </p>
+                                        <p>Your home will be dusted, vacuumed, and cleaned just like a star hotel room is. Satisfaction</p>
+                                        <p>We provide additional service such as cleaning outside windows, cleaning window grills, fridge interiors cleaning, microwave interior cleaning, steam cleaning, carpet cleaning and deep stain removal. These services are available at an additional fee.</p>
                                     </div>
                                 </div>
                             </div>

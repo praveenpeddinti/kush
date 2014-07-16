@@ -6,19 +6,17 @@
 </div>
 <div class="row-fluid paddingL20">
     <div class="span12">
-    <!--<h2 class="paddingL20"> Thank you for your order, your order number is <b><?php //echo $orderNumber;?></b>, for any future communication. Please quote your order number (or) our executive will contact you shortly.</h2> -->
-    <!-- START OF full width Table -->
     <table width="650" cellspacing="0" cellpadding="0" border="0" align="center">
        <?php $totalRoomsPrice='0';$totalcarPrice='0';$Stotal='0';?>
             
             <?php if($HO!=0){?>
             <tr>
                 <td>
-                     Your House cleaning service order number is <b><?php echo $HO;?></b>
+                     Your Housecleaning service order number is <b><?php echo $HO;?></b>
                 </td>
             </tr>
             <tr>
-                <td><b>House cleaning service cost :</b>  </td>
+                <td><b>Housecleaning service cost :</b>  </td>
                 <td><?php
                 $priceRoom1 = (($HouseService['total_livingRooms'] + $HouseService['total_bedRooms']) * 125);
                 $priceRoom2 = (($HouseService['total_bathRooms'] + $HouseService['total_kitchens']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
@@ -44,7 +42,7 @@
             <?php } ?>
             <?php if (!empty($HouseService['total_bedRooms'])) { ?>
             <tr>
-                <td>Total Bed Room(s)</td>
+                <td>Total Bedroom(s)</td>
                 <td><?php echo "<b>" . $HouseService['total_bedRooms'] . "</b>"; ?></td>
             </tr>
             <?php } ?>
@@ -56,7 +54,7 @@
             <?php } ?>
             <?php if (!empty($HouseService['total_bathRooms'])) { ?>
             <tr>
-                <td>Total Bath Room(s)</td>
+                <td>Total Bathroom(s)</td>
                 <td><?php echo "<b>" . $HouseService['total_bathRooms'] . "</b>"; ?></td>
             </tr>
             <?php } ?>
@@ -80,11 +78,11 @@
             <?php if($CO!=0){?>
             <tr>
                 <td>
-                     Your Car wash service order number is <b><?php echo $CO;?></b>
+                     Your Car cleaning service order number is <b><?php echo $CO;?></b>
                 </td>
             </tr>
             <tr>
-                <td><b>Car wash service cost :</b>  </td>
+                <td><b>Car cleaning service cost :</b>  </td>
                 <td><?php $totalcarPrice = 500*$getCars;
                     echo $totalcarPrice; ?>  
                 </td>
@@ -107,12 +105,7 @@
                 <td><?php echo "<b>" . $cw['exterior_color'] . "</b>"; ?></td>
             </tr>
             <?php } ?>
-            <?php if ($cw['shampoo_seats'] != 0) { ?>
-            <tr>
-                <td>Shampoo Seats</td>
-                <td><?php echo "<b>Yes</b>"; ?></td>
-            </tr>
-            <?php } ?>
+            
             <?php } ?>
             <tr><td>Scheduled time</td>
                 <td><?php echo $startTime;?></td>

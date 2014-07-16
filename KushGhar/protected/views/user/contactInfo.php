@@ -84,7 +84,7 @@
                     </li>
                     <li><a href="order"> <i class="fa fa-file-text"></i> Orders</a>
                                 </li>
-                                <li><a href="invitefriends"><i class="fa fa-users"></i> Invite Friends</a></li>
+                                <!--<li><a href="invitefriends"><i class="fa fa-users"></i> Invite Friends</a></li>-->
                 </ul>
             </div>
             <div id="payment" class="collapse">
@@ -127,7 +127,7 @@
     <div class="row-fluid">
     <div class=" span6">
     <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> email'); ?>
-	<?php echo $form->textField($model,'Email',array('value'=>$customerDetails->email_address,'disabled'=>'disabled', 'maxLength' => 100, 'class'=>'span12', 'placeholder'=>'Email…' )); ?>
+	<?php echo $form->textField($model,'Email',array('value'=>$customerDetails->email_address,'disabled'=>'disabled', 'maxLength' => 100, 'class'=>'span12')); ?>
 	<?php echo $form->error($model,'Email'); ?>
     </div>
     </div>
@@ -135,13 +135,13 @@
     <div class=" span12">
     <div class=" span6">
     <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> phone'); ?><input type="text" value="+91" disabled="disabled" class="span2"/>
-        <?php echo $form->textField($model,'Phone',array('value'=>$customerDetails->phone, 'placeholder'=>'Phone…', 'class'=>'span10', 'maxLength' => 10, 'onkeypress' => 'return isNumberKey(event);')); ?>
+        <?php echo $form->textField($model,'Phone',array('value'=>$customerDetails->phone, 'class'=>'span10', 'maxLength' => 10, 'onkeypress' => 'return isNumberKey(event);')); ?>
         <?php echo $form->error($model,'Phone'); ?>
     </div>
     <div class=" span6">
         <?php if(($customerAddressDetails->alternate_phone=='0') || (empty($customerAddressDetails->alternate_phone))){ $alternatePhone ='';}else{$alternatePhone =$customerAddressDetails->alternate_phone;}?>
         <?php echo $form->labelEx($model,'alternate Phone'); ?><input type="text" value="+91" disabled="disabled" class="span2"/>
-        <?php echo $form->textField($model,'AlternatePhone',array('value'=>$alternatePhone,'placeholder'=>'Alternate Phone…', 'class'=>'span10', 'maxLength' => 10, 'onkeypress' => 'return isNumberKey(event);')); ?>
+        <?php echo $form->textField($model,'AlternatePhone',array('value'=>$alternatePhone, 'class'=>'span10', 'maxLength' => 10, 'onkeypress' => 'return isNumberKey(event);')); ?>
         <?php echo $form->error($model,'AlternatePhone'); ?>
     </div>
     </div>
@@ -151,13 +151,13 @@
     <div class="row-fluid">
     <div class=" span6">
     <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> address line1'); ?>
-        <?php echo $form->textField($model,'Address1',array('value'=>$customerAddressDetails->address_line1,'placeholder'=>'Address Line 1…', 'maxLength' => 100, 'class'=>'span12')); ?>
+        <?php echo $form->textField($model,'Address1',array('value'=>$customerAddressDetails->address_line1, 'maxLength' => 100, 'class'=>'span12')); ?>
         <?php echo $form->error($model,'Address1'); ?>
 
    </div>
     <div class=" span6">
         <?php echo $form->labelEx($model,'address Line2'); ?>
-        <?php echo $form->textField($model,'Address2',array('value'=>$customerAddressDetails->address_line2,'placeholder'=>'Address Line 2…', 'maxLength' => 100, 'class'=>'span12')); ?>
+        <?php echo $form->textField($model,'Address2',array('value'=>$customerAddressDetails->address_line2, 'maxLength' => 100, 'class'=>'span12')); ?>
         <?php echo $form->error($model,'Address2'); ?>
     </div>
     </div>
@@ -172,13 +172,13 @@
    </div>
       <div class=" span4">
     <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> city'); ?>
-        <?php echo $form->textField($model,'City',array('value'=>$customerAddressDetails->address_city, 'maxLength' => 25, 'class'=>'span12', 'placeholder'=>'City…')); ?>
+        <?php echo $form->textField($model,'City',array('value'=>$customerAddressDetails->address_city, 'maxLength' => 25, 'class'=>'span12')); ?>
         <?php echo $form->error($model,'City'); ?>
    </div>
    
     <div class=" span4">
     <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> pin code'); ?>
-        <?php echo $form->textField($model,'PinCode',array('value'=>$customerAddressDetails->address_pin_code,'placeholder'=>'Pin Code…', 'class'=>'span12', 'maxLength' => 6, 'onkeypress' => 'return isNumberKey(event);')); ?>
+        <?php echo $form->textField($model,'PinCode',array('value'=>$customerAddressDetails->address_pin_code, 'class'=>'span12', 'maxLength' => 6, 'onkeypress' => 'return isNumberKey(event);')); ?>
         <?php echo $form->error($model,'PinCode'); ?>
    </div>
    </div>
@@ -187,7 +187,7 @@
     <div class=" span12">
         <?php $model->Landmark=$customerAddressDetails->address_landmark;?>
     <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> landmark'); ?>
-        <?php echo $form->textArea($model,'Landmark',array('placeholder'=>'Landmark…', 'maxlength' => 150, 'class' => 'span12')); ?>
+        <?php echo $form->textArea($model,'Landmark',array('maxlength' => 150, 'class' => 'span12')); ?>
         <?php echo $form->error($model,'Landmark'); ?>
 
    </div>

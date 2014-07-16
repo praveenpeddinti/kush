@@ -90,7 +90,7 @@ $form = $this->beginWidget('CActiveForm', array(
                 </div>
             </div>
             <div class="span4">
-                    <?php echo $form->label($model1, 'Coffee/Tea'); ?>
+                    <?php echo $form->label($model1, 'Coffee / Tea'); ?>
                 <div class="switch switch-large" id="PostDinner" data-on-label="Yes" data-off-label="No">
 <?php echo $form->checkBox($model1, 'PostDinner', array('id' => 'StewardCleaningForm_PostDinner')); ?>
                 </div>

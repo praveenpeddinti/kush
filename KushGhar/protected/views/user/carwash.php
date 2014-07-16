@@ -64,7 +64,7 @@
     <div class="AddressFieldsOneCarDiv" style="display:block">
  	<div class="row-fluid">
             <div class=" span4">
-                <label><abbr title="required">*</abbr> Address Line1DF</label>
+                <label><abbr title="required">*</abbr> Address Line1</label>
                 <input type="text" class="span12" id="11_Address1" value="" maxLength="100">
                 <div id="11_Address1_em" class="errorMessage" style="display:none"></div>
              </div>

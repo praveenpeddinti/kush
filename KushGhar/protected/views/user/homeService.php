@@ -1130,7 +1130,7 @@ function onTotalStewards(obj) {
     
     
     //Previous button purpose----------------------------
-    function previousStewardsCleaning(){alert("-------------------");
+    function previousStewardsCleaning(){
         var queryString = $('#steward-form').serialize();
         type = 'Previous';
         queryString +='&Type='+type;

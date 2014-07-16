@@ -22,7 +22,7 @@
         <div class="AddressFieldsMultiCarDiv" id="<?php echo $i+1; ?>_AddressFieldsDiv" Style="display:none">
  	<div class="row-fluid">
             <div class=" span4">
-                <label><abbr title="required">*</abbr> Address Line1db</label>
+                <label><abbr title="required">*</abbr> Address Line1</label>
                 <input type="text" class="span12" value="<?php echo isset($getCarWashServiceDetails[$i])?$getCarWashServiceDetails[$i]['address_line1']:''; ?>" id="<?php echo $i+1; ?>_Address1" maxLength="100">
                 <div id="<?php echo $i+1; ?>_Address1_em" class="errorMessage" style="display:none"></div>
              </div>

@@ -36,7 +36,7 @@
                                     <tr><td><b>Services :</b></td><td><?php if($HouseService!=0){echo "House cleaning, ";}?><?php if($CarService!=0){echo "Car wash, ";}?><?php if($StewardService!=0){echo "Stewards";}?></td></tr>
                                     <tr><td colspan="2">&nbsp;</td></tr>
                                     <?php if($HouseService!=0){?>
-                                    <tr><td><b>Housecleaning service cost :</b>  </td>
+                                    <tr><td><b>House cleaning service cost :</b>  </td>
                                     <td><?php $totalRoomsPrice='';
                                     if( ($HouseService['total_livingRooms']==1) && ($HouseService['total_bedRooms']==1) && ($HouseService['total_bathRooms']==1) && ($HouseService['total_kitchens']==1))
                                     {

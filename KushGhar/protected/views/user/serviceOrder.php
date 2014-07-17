@@ -12,11 +12,11 @@
             <?php if($HO!=0){?>
             <tr>
                 <td>
-                     Your Housecleaning service order number is <b><?php echo $HO;?></b>
+                     Your House cleaning service order number is <b><?php echo $HO;?></b>
                 </td>
             </tr>
             <tr>
-                <td><b>Housecleaning service cost :</b>  </td>
+                <td><b>House cleaning cervice cost :</b>  </td>
                 <td><?php
                 $priceRoom1 = (($HouseService['total_livingRooms'] + $HouseService['total_bedRooms']) * 125);
                 $priceRoom2 = (($HouseService['total_bathRooms'] + $HouseService['total_kitchens']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);

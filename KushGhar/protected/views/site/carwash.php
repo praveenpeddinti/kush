@@ -32,8 +32,8 @@
                        <div id="services" class="collapse in">
                             <div class="selected_tab">Services</div>
                             <ul class="l_menu_sub_menu">
-                                <li><a href="/site/cleaning"> Housecleaning</a></li>
-                                <li class="active"><a href="/site/carwash"> Car cleaning</a> </li>
+                                <li><a href="/site/cleaning"> House Cleaning</a></li>
+                                <li class="active"><a href="/site/carwash"> Car Cleaning</a> </li>
                                 <li><a href="/site/stewards">  Stewards / Stewardesses</a> </li>
                                 <li><a href="/site/moreservices">  More ...</a> </li>
                             </ul>
@@ -53,7 +53,7 @@
                                 <div class="span12">
 
                                     <div class="paddingL20">
-                                        <h3>Car cleaning service</h3>
+                                        <h3>Car Cleaning service</h3>
                                         <p>This service is provided by a professional cleaning crew and includes car interior cleaning and exterior washing, washing wheels, rinsing and drying vehicle. The service covers the following areas:</p>
                                         <ul>
                                             <li>Brush, vacuum, and clean the interior</li>

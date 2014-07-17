@@ -34,11 +34,11 @@
                                     <?php if($HO!=0){?>
                                     <tr>
                                         <td colspan="2">
-                                            Your Housecleaning service order number is <b><?php echo $HO;?></b>
+                                            Your House cleaning service order number is <b><?php echo $HO;?></b>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td><b>Housecleaning service cost :</b>  </td>
+                                        <td><b>House cleaning service cost :</b>  </td>
                                         <td>
                                             <?php $totalRoomsPrice='';
                                             if( ($HouseService['total_livingRooms']==1) && ($HouseService['total_bedRooms']==1) && ($HouseService['total_bathRooms']==1) && ($HouseService['total_kitchens']==1)) {

@@ -43,7 +43,7 @@
                     <div class="panel-heading">
                         <div class="panel-title housecleaning_title2">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed" style="display:block">
-                                <span class="pull-left">Housecleaning Service</span>
+                                <span class="pull-left">House Cleaning Service</span>
                                 <span class="serviceprice"> Rs. <?php echo $totalRoomsPrice; ?></span>
                                 <div class="count"></div>           
                             </a>
@@ -108,7 +108,7 @@
                     <div class="panel-heading">
                         <div class="panel-title carwash_title2">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed" style="display:block">
-                                <span class="pull-left">Car cleaning Service</span>
+                                <span class="pull-left">Car Cleaning Service</span>
                                 <span class="serviceprice"> Rs. <?php echo $Ctotal; ?></span>
                                 <div class="count"></div>          
                             </a>
@@ -412,7 +412,7 @@
                                                     <div class="panel-heading">
                                                         <div class="panel-title housecleaning_title2">
                                                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed" style="display:block">
-                                                                <span class="pull-left">Housecleaning Service</span>
+                                                                <span class="pull-left">House Cleaning Service</span>
                                                                 <span class="serviceprice">Rs. <?php echo $totalRoomsPrice; ?></span>
                                                                 <div class="count"></div>
                                                             </a>

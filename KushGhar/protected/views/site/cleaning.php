@@ -40,8 +40,8 @@
                         <div id="services" class="collapse in">
                             <div class="selected_tab">Services</div>
                             <ul class="l_menu_sub_menu">
-                                <li class="active"><a href="/site/cleaning"> Housecleaning</a></li>
-                                <li ><a href="/site/carwash"> Car cleaning</a> </li>
+                                <li class="active"><a href="/site/cleaning"> House Cleaning</a></li>
+                                <li ><a href="/site/carwash"> Car Cleaning</a> </li>
                                 <li ><a href="/site/stewards">  Stewards / Stewardesses</a> </li>
                                 <li ><a href="/site/moreservices">  More ...</a> </li>
                             </ul>
@@ -61,7 +61,7 @@
                                 <div class="span12">
 
                                     <div class="paddingL20">
-                                        <h3>Housecleaning Service</h3>
+                                        <h3>House Cleaning Service</h3>
                                         <p>This service is brought to you by a well-trained professional cleaning crew. It includes all the cleaning supplies including vacuum cleaners and air fresheners, and when they leave your house it will look and feel like a brand new home.</p>
                                         <ul>
                                             

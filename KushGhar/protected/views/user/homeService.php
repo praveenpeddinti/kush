@@ -146,7 +146,7 @@
                                                     'type' => 'POST',
                                                     'dataType' => 'json',
                                                     'beforeSend' => 'function(){
-                                                                scrollPleaseWait("serviceSpinLoader","homeservices-form");}',
+                                                     scrollPleaseWait("serviceSpinLoader","homeservices-form");}',
                                                     'success' => 'function(data,status,xhr) { addAllServicehandler(data,status,xhr);}'), array('class' => 'btn btn-primary'));
                                                 ?>
                                             </div>

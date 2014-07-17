@@ -150,7 +150,7 @@ input.gsc-input {
         }
     }
     $(document).ready(function() { 
-    var sess= '<?php echo $this->session['Type']; ?>';
+    var sess= '<?php echo $this->session['UserId']; ?>';
     if(sess=='')
     {
         document.getElementById('sitefooter').style.display='block';

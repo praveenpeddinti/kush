@@ -13,7 +13,7 @@
                                 $payment = '<a href="#" ><span class="KGpayment"> </span></a>';
                             }else if(!empty($this->session['UserId']) && ($this->session['Type']=='Customer')){
                                 $accout = '<a href="/user/basicinfo" ><span class="KGaccounts"> </span></a>';
-                                $service = '<a href="/user/homeservice" ><span class="KGaccounts"> </span></a>';
+                                $service = '<a href="/user/homeservice" ><span class="KGservices"> </span></a>';
                                 $payment = '<a href="/user/paymentInfo" ><span class="KGpayment"> </span></a>';
                             }else{
                                 $accout = '<span class="KGaccounts"> </span>';

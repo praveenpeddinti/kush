@@ -19,7 +19,7 @@
                                 <div class=" row-fluid borderB">
                                     <div class="span12 ">
                                         <div class="housecleaning_title">
-                                            Housecleaning Service <a class="details has-popover" target="_blank" title="" data-toggle="popover" data-placement="bottom" data-content="<ul><li>Kitchen</li><li>Bedroom&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li><li>Living room&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li><li>Bathroom</li><li>Common areas</li></ul>" data-original-title="House Cleaning" href="/site/cleaning">(What is included <b>?</b>)</a>
+                                            Housecleaning Service <a class="details has-popover" target="_blank" title="" data-toggle="popover" data-placement="bottom" data-content="<ul><li style='float:none'>Kitchen</li><li style='float:none'>Bedroom</li><li style='float:none'>Living room</li><li style='float:none'>Bathroom</li><li style='float:none'>Common areas</li></ul>" data-original-title="House Cleaning" href="/site/cleaning">(What is included <b>?</b>)</a>
                                         </div>
                                     </div>                                    
                                 </div>
@@ -84,35 +84,41 @@
                                        </div> </div>
 
                                 </div>
-                                <div class="row-fluid">
+                                <!--<div class="row-fluid">
                                     <div class="span12">
-                                    <label>Do you want us to clean pooja room</label>
+                                    <label>Pooja Room Cleaning</label>
                                     <div class="switch switch-large" id="PoojaRoom" data-on-label="Yes" data-off-label="No">
                                     <?php echo $form->checkBox($model, 'PoojaRoom', array('id' => 'HouseCleaningForm_PoojaRoom')); ?>
                                     </div>
                                     </div>
-                                </div>
+                                </div>-->
 
                                 <hr>
                                     <h4 class="paddingTop0 ">Additional Services</h4>
                                     <div class="Additional_S"> <div class="row-fluid">
-                                            <div class="span4 window_cleaning" style="min-height: 121px"><?php echo $form->label($model, 'Window Grills Cleaning'); ?>
+                                            <div class="span3 window_cleaning" style="min-height: 121px"><?php echo $form->label($model, 'Window Grills Cleaning'); ?>
                                             <div class="switch switch-large" id="WindowGrills" data-on-label="Yes" data-off-label="No">
                                                 <?php echo $form->checkBox($model, 'WindowGrills', array('id' => 'HouseCleaningForm_WindowGrills')); ?>
                                             </div>
                                                 <div id="WindowGrillsTooltip" class="Additional_S_price" style="display:none">Cost of Services is<br/> <b>Rs.<label>250</label>/-</b></div>
                                             </div>
-                                            <div class="span4 fridge dashed_left_border" style="min-height: 121px"><?php echo $form->label($model, 'Fridge Interior Cleaning'); ?>
+                                            <div class="span3 fridge dashed_left_border" style="min-height: 121px"><?php echo $form->label($model, 'Fridge Interior Cleaning'); ?>
                                             <div class="switch switch-large" id="FridgeInterior" data-on-label="Yes" data-off-label="No">
                                                 <?php echo $form->checkBox($model, 'FridgeInterior', array('id' => 'HouseCleaningForm_FridgeInterior')); ?>
                                             </div>
                                             <div id="FridgeInteriorTooltip" class="Additional_S_price" style="display:none">Cost of Services is <br/> <b>Rs.<label>250</label>/-</b></div>    
                                             </div>
-                                            <div class="span4 woven dashed_left_border" style="min-height: 121px"><?php echo $form->label($model, 'Microwave Oven Interior'); ?>
+                                            <div class="span3 woven dashed_left_border" style="min-height: 121px"><?php echo $form->label($model, 'Microwave Oven Interior'); ?>
                                              <div class="switch switch-large" id="MicroWaveOven" data-on-label="Yes" data-off-label="No">
                                                 <?php echo $form->checkBox($model, 'MicroWaveOven', array('id' => 'HouseCleaningForm_MicroWaveOven')); ?>
                                                 </div>
                                                 <div id="MicroWaveOvenTooltip" class="Additional_S_price" style="display:none">Cost of Services is<br/> <b>Rs.<label>250</label>/-</b></div>
+                                            </div>
+                                            <div class="span3 pooja">
+                                                <label>Pooja Room Cleaning</label>
+                                                <div class="switch switch-large" id="PoojaRoom" data-on-label="Yes" data-off-label="No">
+                                                <?php echo $form->checkBox($model, 'PoojaRoom', array('id' => 'HouseCleaningForm_PoojaRoom')); ?>
+                                                </div>
                                             </div>
                                         </div>
                                     </div><hr>
@@ -232,15 +238,7 @@
         
     });
     
-    //function ShowServices(){alert("ShowServices popup");
-    //                $("#myModal").modal({ backdrop: 'static', keyboard: false,show:false });
-                    //$("#modelBodyDiv").load("/user/inviteregistration",{},""); 
-  //         $('#myModalService').modal('show');
-  //}
-  
-  
-
-  $(function () {
+   $(function () {
     var showPopover = function () {
         $(this).popover('show');
     }

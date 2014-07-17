@@ -578,7 +578,34 @@ class KushGharService {
     public function ChangeAgencyStatus($id, $val) {
         return InviteUser::model()->ChangeAgencyStatus($id, $val);
     }
-
+    
+    /*
+     * @praveen Delete House cleaning when the service is not selected (i.e once service is selected but not place order again service is not selected).
+     */
+    public function deleteHouseService($cId) {
+        try {
+            $result = HouseCleaningService::model()->deleteHouseService($cId);
+        } catch (Exception $ex) {
+            error_log("=============exception occurred in login=============" . $ex->getMessage());
+        }
+        return $result;
+    }
+    public function deleteCarService($cId) {
+        try {
+            $result = CarWashService::model()->deleteCarService($cId);
+        } catch (Exception $ex) {
+            error_log("=============exception occurred in login=============" . $ex->getMessage());
+        }
+        return $result;
+    }
+    public function deleteStewardService($cId) {
+        try {
+            $result = StewardsCleaningService::model()->deleteStewardService($cId);
+        } catch (Exception $ex) {
+            error_log("=============exception occurred in login=============" . $ex->getMessage());
+        }
+        return $result;
+    }
     
     
 }

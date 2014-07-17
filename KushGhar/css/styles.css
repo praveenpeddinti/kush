@@ -608,10 +608,11 @@ input.serachInput::-ms-reveal { width : 0; height: 0;}
 .paddingTop0{ padding-top:0px;}
 .borderB{border-bottom:2px solid #dddddd;}
 
-.window_cleaning, .fridge, .woven{ background:url(../images/services_img.png) no-repeat left top; padding-top:80px; text-align:center; }
+.window_cleaning, .fridge, .woven, .pooja{ background:url(../images/services_img.png) no-repeat left top; padding-top:80px; text-align:center; }
 .window_cleaning{ background-position: center top;}
 .fridge{background-position: center -535px;}
 .woven{background-position: center -244px;}
+.pooja{background-position: center 5px;}
 .dashed_left_border{ border-left:1px dashed #ccc}
 .window_cleaning  label, .fridge  label, .woven label{ display:inline-block}
 .Additional_S .row-fluid [class*="span"]{ margin-left:0px;}
@@ -677,9 +678,9 @@ input.serachInput::-ms-reveal { width : 0; height: 0;}
 }
 .lineheight26{line-height: 26px}
 
-#HomeServiceForm_HouseCleaning label {float:left;display:inline; padding-right:10px;line-height: 27px;}
-#HomeServiceForm_CarCleaning label {float:left;display:inline; padding-right:10px;line-height: 27px;}
-#HomeServiceForm_StewardCleaning label {float:left;display:inline; padding-right:5px;line-height: 27px;}
+#HomeServiceForm_HouseCleaning label {float:left;display:inline; padding-right:56px;line-height: 27px;}
+#HomeServiceForm_CarCleaning label {float:left;display:inline; padding-right:19px;line-height: 27px;}
+#HomeServiceForm_StewardCleaning label {float:left;display:inline; padding-right:6px;line-height: 27px;}
 .serviceprice{ position:absolute; right:10p; top:30px; right:5px; padding-right:40px; height:32px; padding-top:3px;color:#F60  }
 .comesoon{margin:-73px 0 0px 73px;color: #FFFFFF;font-size: 18px;}
 .mainSoon{text-align:center;color: #F58220;font-size: 18px;}

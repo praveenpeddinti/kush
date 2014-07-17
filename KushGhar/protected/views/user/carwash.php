@@ -36,7 +36,7 @@
     <div class=" row-fluid borderB">
         <div class="span12 ">
             <div class="carwash_title">
-                Car Wash Service <a class="details has-popover" target="_blank" title="" data-toggle="popover" data-placement="bottom" data-content="<ul><li>Brush, vacuum, and clean the interior</li><li>Clean wheels and tires</li><li>Wash exterior</li><li>Apply tire dressing</li><li>Polish wheels</li><li>Rinsing and drying</li></ul>" data-original-title="Car Wash" href="/site/carwash">(What is included <b>?</b>)</a>
+                Car Cleaning Service <a class="details has-popover" target="_blank" title="" data-toggle="popover" data-placement="bottom" data-content="<ul><li style='float:none'>Brush, vacuum, and clean the interior</li><li style='float:none'>Clean wheels and tires</li><li style='float:none'>Wash exterior</li><li style='float:none'>Apply tire dressing</li><li style='float:none'>Polish wheels</li><li style='float:none'>Rinsing and drying</li></ul>" data-original-title="Car Cleaning" href="/site/carwash">(What is included <b>?</b>)</a>
             </div>
         </div>
     </div>
@@ -145,7 +145,7 @@
     <?php }?>  
        
     $('#DifferentLocation').bootstrapSwitch();
-       $("#DifferentLocation").val('0');
+    //   $("#DifferentLocation").val('0');
     var currentDate=new Date.today().addDays(1);
     var maxdate=new Date();
     maxdate.setFullYear(maxdate.getFullYear()-19);
@@ -196,7 +196,7 @@
             $("#DifferentLocation").val('1');
             $(".AddressFieldsMultiCarDiv").show();
             $(".AddressFieldsOneCarDiv").hide();
-        }else {//alert("No"+id)
+        }else {
             $("#DifferentLocation").val('0');
             $(".AddressFieldsMultiCarDiv").hide();
             $(".AddressFieldsOneCarDiv").show();

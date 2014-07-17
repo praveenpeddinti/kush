@@ -186,6 +186,27 @@ class StewardsCleaningService extends CActiveRecord {
         }
         return $result;
     }
+    
+    /*
+     * @praveen Delete House cleaning when the service is not selected (i.e once service is selected but not place order again service is not selected).
+     */
+    public function deleteStewardService($cId) {
+        try {
+            $service = StewardsCleaningService::model()->findByAttributes(array(), 'CustId=:CustId AND status=:status', array(':CustId' => $cId, ':status' => '0'));
+            if (empty($service)) {
+                $result = "No Delete";
+                return $result;
+            } else {
+                $query = "DELETE FROM KG_Stewards_cleaning_service WHERE CustId = $cId and status=0";
+                YII::app()->db->createCommand($query)->execute();
+                $result = "Yes Delete";
+                return $result;
+            }
+        } catch (Exception $ex) {
+            error_log("############Error Occurred= in usergetDetails= #############" . $ex->getMessage());
+        }
+        return $result;
+    }
 
 }
 ?>

@@ -346,14 +346,13 @@ $(document).ready(function() {
             $("#HouseCleaningForm_LivingRooms_em_").hide();
             $("#HouseCleaningForm_NumberOfTimesServices_em_").hide();
             var type = '';
-            if ($('#HouseCleaningSubmit').val() == 'Submit') {//alert($('#HouseCleaningSubmit').val());
+            if ($('#HouseCleaningSubmit').val() == 'Submit') {
                 type = 'submit';
             }
             if ($('#HouseCleaningSubmit').val() == 'Next') {
                 type = 'next';
             }
             queryString += '&Type=' + type;
-            //alert(queryString);
             ajaxRequest('/user/services', queryString, addHouseCleaningServicehandler);
         }
     }
@@ -378,7 +377,7 @@ $(document).ready(function() {
      * @returns Praveen Car Wash Cleaning service button start
      */
 
-    function submitCarWashCleaning() { //alert("=====");
+    function submitCarWashCleaning() { 
         var dumpcars='';
         var makeofcar = "";
         var color = "";
@@ -393,7 +392,6 @@ $(document).ready(function() {
         var dd='';
         var DL = $("#DifferentLocation").val();
         
-        //alert("===DL==="+DL+"====TC==="+$('#CarWashForm_TotalCars').val());
         if ($("#CarWashForm_TotalCars").val() == "") {
                 $("#CarWashForm_TotalCars_em_").show();
                 $("#CarWashForm_TotalCars_em_").addClass('errorMessage');
@@ -420,7 +418,7 @@ $(document).ready(function() {
               $("#CarWashForm_ServiceStartTime_em_").hide();
             }
             dumpcars=$('#CarWashForm_TotalCars').val();
-        if($("#DifferentLocation").val()=='1'){//alert("-----------------111111111111111--");
+        if($("#DifferentLocation").val()=='1'){
         for (var i = 1; i <= dumpcars; i++) {
             if ($("#" + i + "_MakeOfCar").val() == "") {
                 $("#" + i + "_MakeOfCar_em").show();
@@ -453,11 +451,9 @@ $(document).ready(function() {
             //address line1 end
             //phone validation start
             if ( ($("#" + i + "_AlternatePhone").val() != "") && (!$("#" + i + "_AlternatePhone").val().match(/^[0-9]+$/)) ) {
-                //alert("====phone==");
                 $("#" + i + "_AlternatePhone_em").show();
                 $("#" + i + "_AlternatePhone_em").addClass('errorMessage');
                 $("#" + i + "_AlternatePhone_em").text("Please Enter only numbers ");
-                //alert("=phone=" + i);
                 return false;
             } else {
                 $("#" + i + "_AlternatePhone_em").hide();
@@ -525,7 +521,6 @@ $(document).ready(function() {
                     color =  color + $("#" + i + "_ExteriorColor").val();
                 }*/
                 color =  color + $("#" + i + "_ExteriorColor").val()+",";
-                //alert("ma===="+color);
                 $('#CarWashForm_ExteriorColor').val(color); 
                 /*if (differentAddress == "") {
                     differentAddress = $("#" + i + "_DifferentAddress").val();
@@ -591,7 +586,6 @@ $(document).ready(function() {
         
         if($("#DifferentLocation").val()=='0'){
         for (var i = 1; i <= dumpcars; i++) {
-            //alert("================for loop====="+dumpcars+"======="+i);
             if ($("#" + i + "_MakeOfCar").val() == "") {
                 $("#" + i + "_MakeOfCar_em").show();
                 $("#" + i + "_MakeOfCar_em").addClass('errorMessage');
@@ -612,7 +606,7 @@ $(document).ready(function() {
                 
             }
             //address line1 start
-            if ( ($("#11_Address1").val() == "") ) {//alert("-----A1--");
+            if ( ($("#11_Address1").val() == "") ) {
                 $("#11_Address1_em").show();
                 $("#11_Address1_em").addClass('errorMessage');
                 $("#11_Address1_em").text("Please Enter Address Line1 ");
@@ -626,7 +620,6 @@ $(document).ready(function() {
                 $("#11_AlternatePhone_em").show();
                 $("#11_AlternatePhone_em").addClass('errorMessage');
                 $("#11_AlternatePhone_em").text("Please Enter only numbers ");
-                //alert("=phone=" + i);
                 return false;
             } else {
                 $("#11_AlternatePhone_em").hide();
@@ -749,9 +742,8 @@ $(document).ready(function() {
         }
         
         
-        }//alert("maafterfor===="+pin_code);
-         /*if ( ($("#11_Address1").val() == "") ) {alert("differ=1===");
-                alert("====ec=="+($("#11_Address1").val()));
+        }
+         /*if ( ($("#11_Address1").val() == "") ) {
                 $("#11_Address1_em").show();
                 $("#11_Address1_em").addClass('errorMessage');
                 $("#11_Address1_em").text("Please Enter oooAddress Line1 ");
@@ -759,8 +751,6 @@ $(document).ready(function() {
             } else {
                 $("#11_Address1_em").hide();
             }*/
-        //alert("=mc="+makeofcar+"=c="+color+"=AD1="+address1+"=AD2="+address2+"=PNo="+alternate_phone+"=City="+city+"=PC="+pin_code);
-       //alert("===interior==="+interiorCleaning);
         var type = '';
         if ($('#CarWashCleaningSubmit').val() == 'Submit') {
             type = 'submit';
@@ -770,8 +760,7 @@ $(document).ready(function() {
         }
         var queryString = $('#carwash-form').serialize();
         queryString += '&Type=' + type+'&DL='+DL;
-        //alert("car wash Form Details=="+queryString);
-       ajaxRequest('/user/carwash', queryString, addCarWashCleaningServicehandler);
+        ajaxRequest('/user/carwash', queryString, addCarWashCleaningServicehandler);
     }
    
 
@@ -794,15 +783,14 @@ $(document).ready(function() {
         //var queryString = '';
         var type='previous';
         queryString += '&Type=' + type;
-        alert("privous---"+queryString);
         ajaxRequest('/user/carwash', queryString, previousHouseCleaningServicehandler);
     }
     
-    function previousHouseCleaningServicehandler(data) {alert("previous button hand==="+data.status());
+    function previousHouseCleaningServicehandler(data) {
         //scrollPleaseWaitClose('serviceSpinLoader');
 
         if (data.status == 'success') {
-            //alert("Added successfully");
+            
             globalspace.HouseCleaning = Number(data.HouseCleaning);
             globalspace.CarCleaning = Number(data.CarCleaning);
             globalspace.StewardCleaning = Number(data.StewardCleaning);
@@ -1076,15 +1064,14 @@ function onTotalStewards(obj) {
             $("#StewardCleaningForm_EndTime_em_").show();
 
             var type = '';
-            if ($('#StewardsCleaningSubmit').val() == 'Submit') {//alert($('#HouseCleaningSubmit').val());
+            if ($('#StewardsCleaningSubmit').val() == 'Submit') {
                 type = 'submit';
             }
             if ($('#StewardsCleaningSubmit').val() == 'Next') {
                 type = 'next';
             }
             queryString += '&Type=' + type;
-            //alert("StewardsCleaning Form Details=="+queryString);
-
+            
             ajaxRequest('/user/stewards', queryString, addStewardCleaningServicehandler);
         }
     }
@@ -1095,7 +1082,6 @@ function onTotalStewards(obj) {
         scrollPleaseWaitClose('serviceSpinLoader');
 
         if (data.status == 'success') {
-            //alert("Added successfully");
             globalspace.HouseCleaning = Number(data.HouseCleaning);
             globalspace.CarCleaning = Number(data.CarCleaning);
             globalspace.StewardCleaning = Number(data.StewardCleaning);
@@ -1117,8 +1103,6 @@ function onTotalStewards(obj) {
      }
      function addOrderhandler(data) {scrollPleaseWaitClose('mailSpinLoader');
         if (data.status == 'success') {
-            //alert("Added successfully");
-            
             $('#homeServiceWithOrderDiv').hide();
             $('#ServiceMainDiv').hide();
             $('#ServiceMainDiv2').show();
@@ -1134,7 +1118,6 @@ function onTotalStewards(obj) {
         var queryString = $('#steward-form').serialize();
         type = 'Previous';
         queryString +='&Type='+type;
-        //alert("============"+queryString);
         ajaxRequest('/user/stewards', queryString, previousStewardsCleaningehandler);
     }
     
@@ -1142,7 +1125,6 @@ function onTotalStewards(obj) {
         
 
         if (data.status == 'success') {
-            //alert("Added successfully");
             globalspace.HouseCleaning = Number(data.HouseCleaning);
             globalspace.CarCleaning = Number(data.CarCleaning);
             globalspace.StewardCleaning = Number(data.StewardCleaning);
@@ -1165,7 +1147,6 @@ function onTotalStewards(obj) {
     
     function previousCarWashCleaninghandler(data) {
         if (data.status == 'success') {
-            //alert("Added successfully");
             globalspace.HouseCleaning = Number(data.HouseCleaning);
             globalspace.CarCleaning = Number(data.CarCleaning);
             globalspace.StewardCleaning = Number(data.StewardCleaning);

@@ -249,7 +249,7 @@
                                             <div class="row-fluid">
                                             <div class="span12">
                                               <?php echo $form->label($modelSample,'Email'); ?>
-   <?php echo $form->textField($modelSample,'Email', array( 'class'=>'span12','placeholder'=>'Email…')); ?>
+   <?php echo $form->textField($modelSample,'Email', array( 'class'=>'span12')); ?>
    <?php echo $form->error($modelSample,'Email'); ?>
                                              </div>
                                             </div>

@@ -207,7 +207,7 @@ class InviteUser extends CActiveRecord {
     }
     public function getFullUserDetails($id){
         try{
-        $query="select c.customer_id as cid, CONCAT_WS(' ',first_name,middle_name,last_name) as UserName , c.email_address , c.phone , c.create_timestamp , CONCAT_WS(', ',ca.address_line1,ca.address_line2,ca.address_city) as Location , c.status  from KG_Customer c join KG_customer_address ca on ca.customer_id=c.customer_id where c.customer_id=".$id ;
+        $query="select c.customer_id as cid, CONCAT_WS(' ',first_name,middle_name,last_name) as UserName , c.email_address , c.phone , c.create_timestamp , ca.address_line1,ca.address_line2,ca.address_city , c.status  from KG_Customer c join KG_customer_address ca on ca.customer_id=c.customer_id where c.customer_id=".$id ;
         $result = Yii::app()->db->createCommand($query)->queryRow();
         } catch (Exception $ex) {
             error_log("################Exception Occurred  get Full Details Contacts##############".$ex->getMessage());

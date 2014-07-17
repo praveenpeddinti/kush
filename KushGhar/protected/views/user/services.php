@@ -19,7 +19,7 @@
                                 <div class=" row-fluid borderB">
                                     <div class="span12 ">
                                         <div class="housecleaning_title">
-                                            Housecleaning Service <a class="details has-popover" target="_blank" title="" data-toggle="popover" data-placement="bottom" data-content="<ul><li style='float:none'>Kitchen</li><li style='float:none'>Bedroom</li><li style='float:none'>Living room</li><li style='float:none'>Bathroom</li><li style='float:none'>Common areas</li></ul>" data-original-title="House Cleaning" href="/site/cleaning">(What is included <b>?</b>)</a>
+                                            House Cleaning Service <a class="details has-popover" target="_blank" title="" data-toggle="popover" data-placement="bottom" data-content="<ul><li style='float:none'>Kitchen</li><li style='float:none'>Bedroom</li><li style='float:none'>Living room</li><li style='float:none'>Bathroom</li><li style='float:none'>Common areas</li></ul>" data-original-title="House Cleaning" href="/site/cleaning">(What is included <b>?</b>)</a>
                                         </div>
                                     </div>                                    
                                 </div>
@@ -32,8 +32,8 @@
                                         <?php echo $form->error($model, 'SquareFeets'); ?>
                                     </div>
                                       <div class="span8">
-                                        <label><abbr title="required">*</abbr> Service Date</label>
-                                        <?php  echo $form->textField($model, 'ServiceStartTime', array('value'=>$getServiceDetails['houseservice_start_time'], 'class' => 'span5')); ?>
+                                        <label><abbr title="required">*</abbr> Service Date</label><?php echo $getServiceDetails['houseservice_start_time'];?>
+                                        <?php  echo $form->textField($model, 'ServiceStartTime', array('value'=>$getServiceDetails['houseservice_start_time'], 'class' => 'span5','readOnly'=>true)); ?>
                                         <?php echo $form->error($model, 'ServiceStartTime'); ?>
 
                                     </div>
@@ -153,7 +153,7 @@
     $(document).ready(function() {
          Custom.init();
          //Date and Time start
-        var currentDate=new Date.today().addDays(1);
+        /*var currentDate=new Date.today().addDays(1);
                 var maxdate=new Date();
                 maxdate.setFullYear(maxdate.getFullYear()-19);
                 var mindate=new Date();
@@ -169,7 +169,8 @@
                     dateFormat:'dd-mm-yyyy',
                     dateOrder: 'Md ddyy',
                     minDate:  mindate
-                });
+                });*/
+        
                 <?php //if(empty($getServiceDetails['houseservice_start_time']) ){ ?>
                 //$('#HouseCleaningForm_ServiceStartTime').scroller('setDate', mindate, true);
                 <?php //}?>
@@ -239,6 +240,12 @@
     });
     
    $(function () {
+       $('#HouseCleaningForm_ServiceStartTime').appendDtpicker({
+            'dateFormat':'DD-MM-YYYY',
+            'dateOnly':true,
+            //'minuteInterval' : 15,
+            'futureOnly': true
+       });
     var showPopover = function () {
         $(this).popover('show');
     }

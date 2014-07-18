@@ -1068,6 +1068,7 @@ class UserController extends Controller {
         $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($cId);
         $customerPaymentDetails = $this->kushGharService->getCustomerPaymentDetails($cId);  
             //$orderDetails = $this->kushGharService->getOrderDetailsinAdmin();
+        $this->pageTitle="KushGhar-Order";
         $this->render("order", array("orderDetails" => $orderDetails, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails));
             //$this->render("order", array("orderDetails" => $orderDetails));
         } catch (Exception $ex) {
@@ -1167,6 +1168,7 @@ class UserController extends Controller {
         }
         else
         {
+            $this->pageTitle="KushGhar-Invite Friends";
         $this->render('invitefriends', array("inviteModel" => $inviteFriends));
         }
     }

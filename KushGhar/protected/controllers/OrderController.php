@@ -53,6 +53,7 @@ class OrderController extends Controller {
         $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($cId);
 
         $customerPaymentDetails = $this->kushGharService->getCustomerPaymentDetails($cId);
+        $this->pageTitle="KushGhar-Order";
             $this->render("order", array("orderDetails" => $orderDetails, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails));
         } catch (Exception $ex) {
             error_log("#########Exception Occurred########" . $ex->getMessage());

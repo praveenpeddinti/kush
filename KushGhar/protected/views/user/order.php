@@ -6,8 +6,10 @@
                 <div class="asideBG">
                     <div class="left_nav">
                         <ul class="main">
+
                             <li class="active" title="Accounts"><a href="/user/basicinfo" ><span class="KGaccounts"> </span></a></li>
                             <li class="" title="Services"><a href="/user/homeservice"  ><span class="KGservices"> </span></a></li>
+
                             <li class="" title="Payment"><a href="/user/paymentinfo" ><span class="KGpayment"> </span></a></li>
                             
                         </ul>
@@ -87,6 +89,7 @@
                                 </li>
                                 <li class="active"><a href="#"> <i class="fa fa-file-text"></i> Orders</a>
                                 </li>
+                                <li><a href="invitefriends"><i class="fa fa-users"></i> Invite Friends</a></li>
                             </ul>
                         </div>
                         <div id="payment" class="collapse">

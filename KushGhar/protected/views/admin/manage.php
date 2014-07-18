@@ -194,6 +194,29 @@
                         <div class="paddinground">    
                             <div id="InviteInfoSpinLoader"></div>
                             <div id="tablewidget"  style="margin: auto;"><div id="message" style="display:none"></div>
+                                <div class="row-fluid">
+                                    <div class="span4">
+                                        <label>User Name</label>
+                                        <input type="text" id="userName" class="span12"/>
+                                    </div>
+                                    <div class="span3">
+                                        <label>Phone No.</label>
+                                        <input type="text" id="phone" class="span12"/>
+                                    </div>
+                                    <div class="span3">
+                                        <label>Status</label>
+                                        <select id="status" class="span12">
+                                            <option value="20">All</option>
+                                            <option value="1">Invited</option>
+                                            <option value="0">Not Invited</option>
+                                            <option value="2">Re-Invited</option>
+                                        </select>
+                                    </div>
+                                    <div class="span2">
+                                        <label>&nbsp;</label>
+                                        <input type="button" class="btn btn-primary" name="Search" value="Search" onclick="search();"/>
+                                    </div>
+                                </div>
                                 <table id="userTable" class="table table-hover">
 
                                     <thead><tr><th>Name</th><th>Email Address</th><th>Phone</th><th>Location</th><th nowrap>Invited Date</th><th>Status</th><th>Actions</th></tr></thead>
@@ -237,13 +260,13 @@
     });
     
     $(function(){
-        getCollectionDataWithPagination('/admin/newManage','userDetails', 'abusedWords_tbody',1,5, '');
+        getCollectionDataWithPagination('/admin/newManage','userDetails', 'abusedWords_tbody',1,5,'','','20', '');
     });
     
     
     
 function ajaxRequest(url, queryString,callback,dataType,beforeSendCallback) { 
-    var data = queryString;
+        var data = queryString;
     if(dataType==null || dataType==undefined){
         dataType = "json";
     }
@@ -271,12 +294,15 @@ function ajaxRequest(url, queryString,callback,dataType,beforeSendCallback) {
         
     });
 }
-function getCollectionDataWithPagination(URL,CollectionName, MainDiv, CurrentPage, PageSize, callback){
-globalspace[MainDiv+'_page'] = Number(CurrentPage);
-globalspace[MainDiv+'_pageSize']=Number(PageSize);
-var newURL =  URL+"?"+CollectionName+"_page="+globalspace[MainDiv+'_page']+"&pageSize="+globalspace[MainDiv+'_pageSize'];
-var data = ""; 
-ajaxRequest(newURL,data,function(data){getCollectionDataWithPaginationHandler(data,URL,CollectionName,MainDiv,callback)});
+function getCollectionDataWithPagination(URL,CollectionName, MainDiv, CurrentPage, PageSize,uname,phone,status, callback){
+    globalspace[MainDiv+'_page'] = Number(CurrentPage);
+    globalspace[MainDiv+'_pageSize']=Number(PageSize);
+    globalspace[MainDiv+'_uname']=uname;
+    globalspace[MainDiv+'_phone']=phone;
+    globalspace[MainDiv+'_status']=Number(status);
+    var newURL =  URL+"?"+CollectionName+"_page="+globalspace[MainDiv+'_page']+"&pageSize="+globalspace[MainDiv+'_pageSize']+"&uname="+globalspace[MainDiv+'_uname']+"&phone="+globalspace[MainDiv+'_phone']+"&status="+globalspace[MainDiv+'_status'];
+    var data = ""; 
+    ajaxRequest(newURL,data,function(data){getCollectionDataWithPaginationHandler(data,URL,CollectionName,MainDiv,callback)});
 }
 function getCollectionDataWithPaginationHandler(data,URL,CollectionName,MainDiv,callback){
       if(data.html==0)
@@ -293,7 +319,7 @@ function getCollectionDataWithPaginationHandler(data,URL,CollectionName,MainDiv,
                     onPageClick: function(pageNumber, event) {
                         globalspace[MainDiv+'_page'] = pageNumber;
                         pageno=pageNumber;
-                        getCollectionDataWithPagination(URL,CollectionName, MainDiv, globalspace[MainDiv+'_page'], globalspace[MainDiv+'_pageSize'], callback)
+                        getCollectionDataWithPagination(URL,CollectionName, MainDiv, globalspace[MainDiv+'_page'], globalspace[MainDiv+'_pageSize'],globalspace[MainDiv+'_uname'],globalspace[MainDiv+'_phone'],globalspace[MainDiv+'_status'], callback)
                     }
 
                 });
@@ -301,5 +327,13 @@ function getCollectionDataWithPaginationHandler(data,URL,CollectionName,MainDiv,
                     callback();
                 }
             }
+    }
+    function search(){
+       // alert("enter===="+$("#orderNo").val());
+        var uname = $("#userName").val();
+        var phone = $("#phone").val();
+        var status = $("#status").val();
+        getCollectionDataWithPagination('/admin/newManage','userDetails', 'abusedWords_tbody',1,5,uname,phone,status,'');
+   
     }
 </script>

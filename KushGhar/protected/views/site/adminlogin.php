@@ -1,7 +1,7 @@
 <script type="text/javascript">
     function adminloginhandler(data) {
         if (data.status == 'success') {//alert("sucesss===========");
-            window.location.href = 'dashboard';
+            window.location.href='<?php echo Yii::app()->request->baseUrl; ?>/admin/dashboard';
         } else {
             var error = [];
 
@@ -55,14 +55,14 @@
                             <?php echo $form->error($adminLogin, 'error', array('class'=>'errorMessageFont')); ?>
                             <fieldset>
                                 <?php echo $form->label($adminLogin, '<abbr title="required">*</abbr> user ID'); ?>
-                                <?php echo $form->textField($adminLogin, 'UserId', array('class' => 'span12', 'maxLength' => 100)); ?>
+                                <?php echo $form->textField($adminLogin, 'UserId', array('class' => 'span12', 'placeholder' => 'Email…', 'maxLength' => 100)); ?>
                                 <?php echo $form->error($adminLogin, 'UserId'); ?>
                                 <?php echo $form->labelEx($adminLogin, '<abbr title="required">*</abbr> password'); ?>
-                                <?php echo $form->passwordField($adminLogin, 'Password', array('class' => 'span12', 'maxLength' => 100)); ?>
+                                <?php echo $form->passwordField($adminLogin, 'Password', array('class' => 'span12', 'placeholder' => 'Password…', 'maxLength' => 100)); ?>
                                 <?php echo $form->error($adminLogin, 'Password'); ?>
                                 <center>
                                     <?php
-                                    echo CHtml::ajaxButton('Login', array('admin/login'), array(
+                                    echo CHtml::ajaxButton('Login', array('site/adminlogin'), array(
                                         'type' => 'POST',
                                         'dataType' => 'json',
                                         'success' => 'function(data,status,xhr) { adminloginhandler(data,status,xhr);}'), array('class' => 'btn btn-primary', 'type' => 'submit'));

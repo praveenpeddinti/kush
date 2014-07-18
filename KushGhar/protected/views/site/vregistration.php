@@ -30,7 +30,7 @@
     function addNewVendorhandler(data) {
         scrollPleaseWaitClose('vendorRegistrationSpinLoader');
         if (data.status == 'success') {
-            window.location.href = 'vendorBasicInformation';
+            window.location.href='<?php echo Yii::app()->request->baseUrl; ?>/vendor/vendorBasicInformation';
         } else {
             var error = [];
             if (typeof (data.error) == 'string') {
@@ -50,7 +50,8 @@
 
     function vendorloginhandler(data) {
         if (data.status == 'success') {
-            window.location.href = 'vendorBasicInformation';
+            window.location.href='<?php echo Yii::app()->request->baseUrl; ?>/vendor/vendorBasicInformation';
+            
         } else {
             var error = [];
             if (typeof (data.error) == 'string') {
@@ -190,7 +191,7 @@
                                 <?php echo $form->error($model, 'RepeatPassword'); ?>
                                 <center>
                                  <?php
-                                    echo CHtml::ajaxButton('Submit', array('vendor/vregistration'), array(
+                                    echo CHtml::ajaxButton('Submit', array('site/vregistration'), array(
                                         'type' => 'POST',
                                         'dataType' => 'json',
                                         'beforeSend' => 'function(){
@@ -236,7 +237,7 @@
                                 </div>
                                 <center>
                                     <?php
-                                    echo CHtml::ajaxButton('Login', array('vendor/login'), array(
+                                    echo CHtml::ajaxButton('Login', array('site/vendorlogin'), array(
                                         'type' => 'POST',
                                         'dataType' => 'json',
                                         'success' => 'function(data,status,xhr) { vendorloginhandler(data,status,xhr);}'), array('class' => 'btn btn-primary', 'type' => 'submit'));

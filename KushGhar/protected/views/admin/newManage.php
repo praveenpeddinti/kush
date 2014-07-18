@@ -1,6 +1,6 @@
 <?php if ($totalCount <= 0) { ?>
                                         <tr id="noRecordsTR">
-                                            <td colspan="2">
+                                            <td colspan="7">
                                                 <span class="text-error"> <b>No records found</b></span>
                                             </td>
                                         </tr>
@@ -22,9 +22,7 @@
                                                 if($row['invite']==2){$status = 'Re-Invited';} 
                                             echo $status; ?></td>
                                             <td>
-                                            
                                             <input id="usera_<?php echo $row['Id']; ?>" invite-id="<?php echo $row['Id']; ?>" invite-status="<?php echo $row['invite']; ?>" invite-email="<?php echo $row['email_address']; ?>" type="button" value=" " class="<? if ($row['invite'] == '0') echo 'icon_invite'; if ($row['invite'] == '1') echo 'icon_reinvite'; if ($row['invite'] == '2') echo 'icon_reinvite';?>" alt="Invite" title="Invite"/>
-                                            
                                             <input id="user_<?php echo $row['Id']; ?>" data-id="<?php echo $row['Id']; ?>" data-status="<?php echo $row['status']; ?>" type="button" value=" " class="<? if ($row['status'] == '1') echo 'icon_delete'; ?>" alt="Delete" title="Delete"/>
                                             </td>
                                                     </tr>

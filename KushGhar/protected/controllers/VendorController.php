@@ -2,6 +2,14 @@
 
 class VendorController extends Controller {
 
+    public function init(){
+        parent::init();
+        if(!isset(Yii::app()->session['UserId']))
+        {
+            $this->redirect('/');
+        }
+        
+    }
     /**
      * Declares class-based actions.
      */
@@ -24,6 +32,7 @@ class VendorController extends Controller {
         // renders the view file 'protected/views/site/index.php'
         // using the default layout 'protected/views/layouts/main.php'
         //$this->layout = 'layout';
+        $this->pageTitle="KushGhar-Home";
         $this->session['Type']=='Vendor';
         $this->render('index');
     }
@@ -43,117 +52,117 @@ class VendorController extends Controller {
     /**
      * Displays the login page
      */
-    public function actionLogin() {
-        $model = new VendorLoginForm;
-        // if it is ajax validation request
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'vendorlogin-form') {
-            echo CActiveForm::validate($model);
-            Yii::app()->end();
-        }
-        // collect user input data
-        $errors = array();
-        if (isset($_POST['VendorLoginForm'])) {
-            $model->attributes = $_POST['VendorLoginForm'];
-            $errors = CActiveForm::validate($model);
-            if ($errors != '[]') {
-                $obj = array('status' => '', 'data' => '', 'error' => $errors);
-            } else {
-                if($model->VendorType==0){$model->VendorType=2;}
-                $result = $this->kushGharService->vendorLogin($model);
-                if ($result == "false") {
-                    $errors = array("VendorLoginForm_error" => 'Invalid User Id or Password.');
-                    $obj = array('status' => '', 'data' => '', 'error' => $errors);
-                } else {
-                    $this->session['VendorType'] = $model->VendorType;
-                    if($model->VendorType==2){$this->session['UserId'] = $result->vendor_id;}
-                    if($model->VendorType==1){$this->session['UserId'] = $result->vendor_id;}
-                    
-                    $this->session['email'] = $result->email_address;
-                    $this->session['firstName'] = $result->first_name;
-                    $this->session['LoginPic'] = $result->profilePicture;
-                    $this->session['Type'] ='Vendor';
-                    $obj = array('status' => 'success', 'data' => $result, 'error' => '');
-                }
-            }
-            $renderScript = $this->rendering($obj);
-            echo $renderScript;
-        }
-    }
+//    public function actionLogin() {
+//        $model = new VendorLoginForm;
+//        // if it is ajax validation request
+//        if (isset($_POST['ajax']) && $_POST['ajax'] === 'vendorlogin-form') {
+//            echo CActiveForm::validate($model);
+//            Yii::app()->end();
+//        }
+//        // collect user input data
+//        $errors = array();
+//        if (isset($_POST['VendorLoginForm'])) {
+//            $model->attributes = $_POST['VendorLoginForm'];
+//            $errors = CActiveForm::validate($model);
+//            if ($errors != '[]') {
+//                $obj = array('status' => '', 'data' => '', 'error' => $errors);
+//            } else {
+//                if($model->VendorType==0){$model->VendorType=2;}
+//                $result = $this->kushGharService->vendorLogin($model);
+//                if ($result == "false") {
+//                    $errors = array("VendorLoginForm_error" => 'Invalid User Id or Password.');
+//                    $obj = array('status' => '', 'data' => '', 'error' => $errors);
+//                } else {
+//                    $this->session['VendorType'] = $model->VendorType;
+//                    if($model->VendorType==2){$this->session['UserId'] = $result->vendor_id;}
+//                    if($model->VendorType==1){$this->session['UserId'] = $result->vendor_id;}
+//                    
+//                    $this->session['email'] = $result->email_address;
+//                    $this->session['firstName'] = $result->first_name;
+//                    $this->session['LoginPic'] = $result->profilePicture;
+//                    $this->session['Type'] ='Vendor';
+//                    $obj = array('status' => 'success', 'data' => $result, 'error' => '');
+//                }
+//            }
+//            $renderScript = $this->rendering($obj);
+//            echo $renderScript;
+//        }
+//    }
 
         
 
     /**
      * User Registration Form Controller START
      */
-    public function actionVregistration() {
-        $_REQUEST['uname']=$this->session['UserType'];
-        //$uname=$this->session['UserType'];
-        $inviteForm = new InviteForm;
-        $this->session['Type']='Vendor';
-        //error_log("id==con==".$_REQUEST['uname']."====".$this->session['Type']);
-       
-        $model = new VendorRegistrationForm;
-        $modelLogin = new VendorLoginForm;
-        $request = yii::app()->getRequest();
-        $getServices = $this->kushGharService->getServices();
-        $formName = $request->getParam('VendorRegistrationForm');
-        if ($formName != '') {
-            $model->attributes = $request->getParam('VendorRegistrationForm');
-            $errors = CActiveForm::validate($model);
-            if ($errors != '[]') {
-                $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
-            } else {
-                error_log("No errors===" . $model->vendorType);
-                if ($model->vendorType == 1) {
-                    $Dresult = $this->kushGharService->getcheckVendorForIndividual($model);
-                    if ($Dresult == 'No vendor') {error_log("enter controller1======".$model->vendorType);
-                        $result = $this->kushGharService->saveVendorForIndividualData($model);
-                        error_log("enter controller12======".$model->vendorType);
-                        $getVendorDetailsType1 = $this->kushGharService->getVendorDetailsWithEmailIndividual($model->Email);
-                        error_log("enter controller13======".$getVendorDetailsType1->vendor_id."====".$model->vendorType);
-                        $vendorAddressDetails = $this->kushGharService->saveVendorAddressDumpInfo($getVendorDetailsType1->vendor_id, $model->vendorType);
-                        $vendorDocumentsDetails = $this->kushGharService->saveVendorDocumentsDumpInfo($getVendorDetailsType1->vendor_id, $model->vendorType);
-                        error_log("enter controller14======".$model->vendorType);
-                        $this->session['UserId'] = $getVendorDetailsType1->vendor_id;
-                        $this->session['VendorType'] = $model->vendorType;
-                        //$this->session['Type']='Vendor';
-                    }else {
-                         $result="fail";
-                        $message = array("VendorRegistrationForm_error" => 'Vendor Already Exists.');
-                        $obj = array('status' => 'error', 'data' => '', 'error' => $message);
-                }
-
-                }
-                if ($model->vendorType == 2) {error_log("enter controller2======".$model->vendorType);
-                    $Dresult = $this->kushGharService->getcheckVendorForAgency($model);
-                    if ($Dresult == 'No vendor') {
-                        $result = $this->kushGharService->saveVendorForAgencyData($model);
-                        $getVendorDetailsType1 = $this->kushGharService->getVendorDetailsWithEmailAgency($model->Email);
-                        $vendorAddressDetails = $this->kushGharService->saveVendorAddressDumpInfo($getVendorDetailsType1->vendor_id, $model->vendorType);
-                        $vendorDocumentsDetails = $this->kushGharService->saveVendorDocumentsDumpInfo($getVendorDetailsType1->vendor_id, $model->vendorType);
-                        error_log("enter controller24======".$model->vendorType);
-                        $this->session['UserId'] = $getVendorDetailsType1->vendor_id;
-                        $this->session['VendorType'] = $model->vendorType;
-                    }else {error_log("dsfsdfsdd=====".$Dresult);
-                    $result="fail";
-                    $message = array("VendorRegistrationForm_error" => 'Vendor Already Exists.');
-                    $obj = array('status' => 'error', 'data' => '', 'error' => $message);
-                }
-                }
-                if ($result == "success") {
-                    $message = array("VendorRegistrationForm_error" => 'Registration successfully.');
-                    $obj = array('status' => 'success', 'data' => $message, 'error' => '');
-                } else {
-                    $message = array("VendorRegistrationForm_error" => 'Vendor Already Exists.');
-                    $obj = array('status' => 'error', 'data' => '', 'error' => $message);
-                }
-            }
-            $renderScript = $this->rendering($obj);
-            echo $renderScript;
-        } else {
-            $this->render('vregistration', array('model' => $model, 'modelLogin' => $modelLogin,'one'=>$_REQUEST['uname'], "inviteModel" => $inviteForm, "getServices"=>$getServices));
-        }
-    }
+//    public function actionVregistration() {
+//        $_REQUEST['uname']=$this->session['UserType'];
+//        //$uname=$this->session['UserType'];
+//        $inviteForm = new InviteForm;
+//        $this->session['Type']='Vendor';
+//        //error_log("id==con==".$_REQUEST['uname']."====".$this->session['Type']);
+//       
+//        $model = new VendorRegistrationForm;
+//        $modelLogin = new VendorLoginForm;
+//        $request = yii::app()->getRequest();
+//        $getServices = $this->kushGharService->getServices();
+//        $formName = $request->getParam('VendorRegistrationForm');
+//        if ($formName != '') {
+//            $model->attributes = $request->getParam('VendorRegistrationForm');
+//            $errors = CActiveForm::validate($model);
+//            if ($errors != '[]') {
+//                $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
+//            } else {
+//                error_log("No errors===" . $model->vendorType);
+//                if ($model->vendorType == 1) {
+//                    $Dresult = $this->kushGharService->getcheckVendorForIndividual($model);
+//                    if ($Dresult == 'No vendor') {error_log("enter controller1======".$model->vendorType);
+//                        $result = $this->kushGharService->saveVendorForIndividualData($model);
+//                        error_log("enter controller12======".$model->vendorType);
+//                        $getVendorDetailsType1 = $this->kushGharService->getVendorDetailsWithEmailIndividual($model->Email);
+//                        error_log("enter controller13======".$getVendorDetailsType1->vendor_id."====".$model->vendorType);
+//                        $vendorAddressDetails = $this->kushGharService->saveVendorAddressDumpInfo($getVendorDetailsType1->vendor_id, $model->vendorType);
+//                        $vendorDocumentsDetails = $this->kushGharService->saveVendorDocumentsDumpInfo($getVendorDetailsType1->vendor_id, $model->vendorType);
+//                        error_log("enter controller14======".$model->vendorType);
+//                        $this->session['UserId'] = $getVendorDetailsType1->vendor_id;
+//                        $this->session['VendorType'] = $model->vendorType;
+//                        //$this->session['Type']='Vendor';
+//                    }else {
+//                         $result="fail";
+//                        $message = array("VendorRegistrationForm_error" => 'Vendor Already Exists.');
+//                        $obj = array('status' => 'error', 'data' => '', 'error' => $message);
+//                }
+//
+//                }
+//                if ($model->vendorType == 2) {error_log("enter controller2======".$model->vendorType);
+//                    $Dresult = $this->kushGharService->getcheckVendorForAgency($model);
+//                    if ($Dresult == 'No vendor') {
+//                        $result = $this->kushGharService->saveVendorForAgencyData($model);
+//                        $getVendorDetailsType1 = $this->kushGharService->getVendorDetailsWithEmailAgency($model->Email);
+//                        $vendorAddressDetails = $this->kushGharService->saveVendorAddressDumpInfo($getVendorDetailsType1->vendor_id, $model->vendorType);
+//                        $vendorDocumentsDetails = $this->kushGharService->saveVendorDocumentsDumpInfo($getVendorDetailsType1->vendor_id, $model->vendorType);
+//                        error_log("enter controller24======".$model->vendorType);
+//                        $this->session['UserId'] = $getVendorDetailsType1->vendor_id;
+//                        $this->session['VendorType'] = $model->vendorType;
+//                    }else {error_log("dsfsdfsdd=====".$Dresult);
+//                    $result="fail";
+//                    $message = array("VendorRegistrationForm_error" => 'Vendor Already Exists.');
+//                    $obj = array('status' => 'error', 'data' => '', 'error' => $message);
+//                }
+//                }
+//                if ($result == "success") {
+//                    $message = array("VendorRegistrationForm_error" => 'Registration successfully.');
+//                    $obj = array('status' => 'success', 'data' => $message, 'error' => '');
+//                } else {
+//                    $message = array("VendorRegistrationForm_error" => 'Vendor Already Exists.');
+//                    $obj = array('status' => 'error', 'data' => '', 'error' => $message);
+//                }
+//            }
+//            $renderScript = $this->rendering($obj);
+//            echo $renderScript;
+//        } else {
+//            $this->render('vregistration', array('model' => $model, 'modelLogin' => $modelLogin,'one'=>$_REQUEST['uname'], "inviteModel" => $inviteForm, "getServices"=>$getServices));
+//        }
+//    }
 
 
     /**
@@ -231,11 +240,13 @@ class VendorController extends Controller {
                     $obj = array('status' => 'error', 'message' => '', 'error' => $message);
                 }
             }
+            $this->pageTitle="KushGhar-Basic Info";
             $renderScript = $this->rendering($obj);
             echo $renderScript;
         } else {error_log("elsepppppppppp");
             //$this->render('basicinfo', array("model" => $basicForm, "IdentityProof" => $Identity, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails, "updatedPassword"=> $updatedPasswordForm));
         //}
+        $this->pageTitle="KushGhar-Basic Info";
         $this->render('vendorBasicInformation', array("model" => $basicForm, "IdentityProof" => $Identity, "getVendorDocuments" => $getVendorDocuments, "getVendorDetailsType1" => $getVendorDetailsType1, "getVendorAddress" => $getVendorAddress, "updatedPassword"=> $updatedPasswordForm, "getServices"=>$getServices));
         }
     }
@@ -292,9 +303,11 @@ class VendorController extends Controller {
                     $obj = array('status' => 'error', 'message' => '', 'error' => $message);
                 }
             }
+            $this->pageTitle="KushGhar-Contact Info";
             $renderScript = $this->rendering($obj);
             echo $renderScript;
         } else {error_log("elsepppppppppp");
+        $this->pageTitle="KushGhar-Contact Info";
             //$this->render('basicinfo', array("model" => $basicForm, "IdentityProof" => $Identity, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails, "updatedPassword"=> $updatedPasswordForm));
         //}
         $this->render('vendorContactInformation', array("model" => $contactForm, "getVendorAddress" => $getVendorAddress, "getVendorDetailsType1" => $getVendorDetailsType1, "States"=>$States));
@@ -430,6 +443,7 @@ class VendorController extends Controller {
         try {
             $this->session->destroy();
             unset ($_SESSION['UserId']);
+            $this->pageTitle="KushGhar-Home";
             $this->redirect("/site/index");
         } catch (Exception $ex) {
             error_log("#########Exception Occurred########$ex->getMessage()");
@@ -437,7 +451,7 @@ class VendorController extends Controller {
     }
     public function actionAccount() {
         try {
-
+            $this->pageTitle="KushGhar-Basic Info";
             $this->redirect("/vendor/vendorBasicInformation");
         } catch (Exception $ex) {
             error_log("#########Exception Occurred########$ex->getMessage()");

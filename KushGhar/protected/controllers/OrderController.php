@@ -2,6 +2,14 @@
 
 class OrderController extends Controller {
 
+    public function init(){
+        parent::init();
+        if(!isset(Yii::app()->session['UserId']))
+        {
+            $this->redirect('/');
+        }
+        
+    }
     /**
      * Declares class-based actions.
      */
@@ -21,6 +29,7 @@ class OrderController extends Controller {
         // renders the view file 'protected/views/site/index.php'
         // using the default layout 'protected/views/layouts/main.php'
         //$this->layout = 'layout';
+        $this->pageTitle="KushGhar-Home";
         $this->render('index');
     }
 

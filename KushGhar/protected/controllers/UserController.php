@@ -2,6 +2,14 @@
 
 class UserController extends Controller {
 
+    public function init(){
+        parent::init();
+        if(!isset(Yii::app()->session['UserId']))
+        {
+            $this->redirect('/');
+        }
+        
+    }
     /**
      * Declares class-based actions.
      */
@@ -21,6 +29,7 @@ class UserController extends Controller {
         // renders the view file 'protected/views/site/index.php'
         // using the default layout 'protected/views/layouts/main.php'
         //$this->layout = 'layout';
+        $this->pageTitle="KushGhar-Home";
         $this->render('index');
     }
 
@@ -39,40 +48,40 @@ class UserController extends Controller {
     /**
      * Forgot password action method
      */
-    public function actionForgot() {
-        $modelSample = new SampleForm;
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'forgot-form') {
-            echo CActiveForm::validate($modelSample);
-            Yii::app()->end();
-        }
-        // collect user input data
-        $errors = array();
-        if (isset($_POST['SampleForm'])) {
-            $modelSample->attributes = $_POST['SampleForm'];
-            $errors = CActiveForm::validate($modelSample);
-            if ($errors != '[]') {
-                $obj = array('status' => '', 'data' => '', 'error' => $errors);
-            } else {
-                $result = $this->kushGharService->getcheckEmailForPassword($modelSample);
-                if ($result == "false") {
-                    $errors = array("SampleForm_error" => 'Customer does not exist with these details.');
-                    $obj = array('status' => '', 'data' => '', 'error' => $errors);
-                } else {
-                    $mess = 'Welcome to KushGhar. Your new password is ' . $result->password_salt . "\r\n\n";
-                    $to = $result->email_address;
-                    $subject = 'Password details';
-                    $message = $mess;
-
-                    $this->sendMailToUser($to, '', $subject, $message, 'KushGhar', 'no-reply@kushghar.com', 'PasswordMail');
-
-                    $obj = array('status' => 'success', 'data' => $result, 'error' => 'Password is sent to your mail');
-                }
-            }
-            $renderScript = $this->rendering($obj);
-            echo $renderScript;
-        }
-    }
-    
+//    public function actionForgot() {
+//        $modelSample = new SampleForm;
+//        if (isset($_POST['ajax']) && $_POST['ajax'] === 'forgot-form') {
+//            echo CActiveForm::validate($modelSample);
+//            Yii::app()->end();
+//        }
+//        // collect user input data
+//        $errors = array();
+//        if (isset($_POST['SampleForm'])) {
+//            $modelSample->attributes = $_POST['SampleForm'];
+//            $errors = CActiveForm::validate($modelSample);
+//            if ($errors != '[]') {
+//                $obj = array('status' => '', 'data' => '', 'error' => $errors);
+//            } else {
+//                $result = $this->kushGharService->getcheckEmailForPassword($modelSample);
+//                if ($result == "false") {
+//                    $errors = array("SampleForm_error" => 'Customer does not exist with these details.');
+//                    $obj = array('status' => '', 'data' => '', 'error' => $errors);
+//                } else {
+//                    $mess = 'Welcome to KushGhar. Your new password is ' . $result->password_salt . "\r\n\n";
+//                    $to = $result->email_address;
+//                    $subject = 'Password details';
+//                    $message = $mess;
+//
+//                    $this->sendMailToUser($to, '', $subject, $message, 'KushGhar', 'no-reply@kushghar.com', 'PasswordMail');
+//
+//                    $obj = array('status' => 'success', 'data' => $result, 'error' => 'Password is sent to your mail');
+//                }
+//            }
+//            $renderScript = $this->rendering($obj);
+//            echo $renderScript;
+//        }
+//    }
+//    
     
     
     /*if(isset ($userObj)) {
@@ -100,109 +109,109 @@ class UserController extends Controller {
     /**
      * Displays the login page
      */
-    public function actionLogin() {
-        $model = new LoginForm;
-        // if it is ajax validation request
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'login-form') {
-            echo CActiveForm::validate($model);
-            Yii::app()->end();
-        }
-        // collect user input data
-        $errors = array();
-        if (isset($_POST['LoginForm'])) {
-            $model->attributes = $_POST['LoginForm'];
-            $errors = CActiveForm::validate($model);
-            if ($errors != '[]') {
-                $obj = array('status' => '', 'data' => '', 'error' => $errors);
-            } else {
-                $result = $this->kushGharService->login($model, 'User');
-                
-                if(isset ($result)) {
-                   if($result->status==1)
-                   {
-                    $ppp = md5($result->password_hash);
-                    $this->session['UserId'] = $result->customer_id;
-                    $this->session['email'] = $result->email_address;
-                    $this->session['firstName'] = $result->first_name;
-                    $this->session['LoginPic'] = $result->profilePicture;
-                    $this->session['Type'] = 'Customer';
-                    $obj = array('status' => 'success', 'data' => $result, 'error' => '');
-                   }
-                   else if ($result->status==0)
-                   {
-                          $errors = array("LoginForm_error" => 'Your acount is Inactive. Contact your administrator.');
-                    $obj = array('status' => '', 'data' => '', 'error' => $errors);
-                   }
-               }
-               else{
-                   $errors = array("LoginForm_error" => 'Invalid User Id or Password.');
-                    $obj = array('status' => '', 'data' => '', 'error' => $errors);
-               }
-                
-                /*if ($result == "false") {
-                    $errors = array("LoginForm_error" => 'Invalid User Id or Password.');
-                    $obj = array('status' => '', 'data' => '', 'error' => $errors);
-                } else {
-                    $ppp = md5($result->password_hash);
-                    $this->session['UserId'] = $result->customer_id;
-                    $this->session['email'] = $result->email_address;
-                    $this->session['firstName'] = $result->first_name;
-                    $this->session['LoginPic'] = $result->profilePicture;
-                    $this->session['Type'] = 'Customer';
-                    $obj = array('status' => 'success', 'data' => $result, 'error' => '');
-                }*/
-            }
-            $renderScript = $this->rendering($obj);
-            echo $renderScript;
-        }
-    }
+//    public function actionLogin() {
+//        $model = new LoginForm;
+//        // if it is ajax validation request
+//        if (isset($_POST['ajax']) && $_POST['ajax'] === 'login-form') {
+//            echo CActiveForm::validate($model);
+//            Yii::app()->end();
+//        }
+//        // collect user input data
+//        $errors = array();
+//        if (isset($_POST['LoginForm'])) {
+//            $model->attributes = $_POST['LoginForm'];
+//            $errors = CActiveForm::validate($model);
+//            if ($errors != '[]') {
+//                $obj = array('status' => '', 'data' => '', 'error' => $errors);
+//            } else {
+//                $result = $this->kushGharService->login($model, 'User');
+//                
+//                if(isset ($result)) {
+//                   if($result->status==1)
+//                   {
+//                    $ppp = md5($result->password_hash);
+//                    $this->session['UserId'] = $result->customer_id;
+//                    $this->session['email'] = $result->email_address;
+//                    $this->session['firstName'] = $result->first_name;
+//                    $this->session['LoginPic'] = $result->profilePicture;
+//                    $this->session['Type'] = 'Customer';
+//                    $obj = array('status' => 'success', 'data' => $result, 'error' => '');
+//                   }
+//                   else if ($result->status==0)
+//                   {
+//                          $errors = array("LoginForm_error" => 'Your acount is Inactive. Contact your administrator.');
+//                    $obj = array('status' => '', 'data' => '', 'error' => $errors);
+//                   }
+//               }
+//               else{
+//                   $errors = array("LoginForm_error" => 'Invalid User Id or Password.');
+//                    $obj = array('status' => '', 'data' => '', 'error' => $errors);
+//               }
+//                
+//                /*if ($result == "false") {
+//                    $errors = array("LoginForm_error" => 'Invalid User Id or Password.');
+//                    $obj = array('status' => '', 'data' => '', 'error' => $errors);
+//                } else {
+//                    $ppp = md5($result->password_hash);
+//                    $this->session['UserId'] = $result->customer_id;
+//                    $this->session['email'] = $result->email_address;
+//                    $this->session['firstName'] = $result->first_name;
+//                    $this->session['LoginPic'] = $result->profilePicture;
+//                    $this->session['Type'] = 'Customer';
+//                    $obj = array('status' => 'success', 'data' => $result, 'error' => '');
+//                }*/
+//            }
+//            $renderScript = $this->rendering($obj);
+//            echo $renderScript;
+//        }
+//    }
 
     /**
      * User Registration Form Controller START
      */
-    public function actionRegistration() {
-        $this->session['Type'] = 'Customer';
-        $model = new RegistrationForm;
-        $modelLogin = new LoginForm;
-        $modelSample = new SampleForm;
-        $request = yii::app()->getRequest();
-        $formName = $request->getParam('RegistrationForm');
-        //$getServices = $this->kushGharService->getServices();
-
-        if ($formName != '') {
-            $model->attributes = $request->getParam('RegistrationForm');
-            $errors = CActiveForm::validate($model);
-            if ($errors != '[]') {
-                $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
-            } else {
-                $Dresult = $this->kushGharService->getcheckUserExist($model);
-                if ($Dresult == 'No user') {
-                    $result = $this->kushGharService->saveRegistrationData($model);
-                    $getUserDetails = $this->kushGharService->getUserDetailsWithEmail($model->Email);
-                    $custAddressDetails = $this->kushGharService->saveCustomerAddressDumpInfoDetails($getUserDetails->customer_id);
-                    $paymentId = $this->kushGharService->saveCustomerPaymentDumpInfoDetails($getUserDetails->customer_id);
-                    $this->session['UserId'] = $getUserDetails->customer_id;
-                } else {
-                    $result = "failed";
-                    $errors = array("RegistrationForm_error" => 'User Already Exists.');
-                    $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
-                }
-                if ($result == "success") {
-                    $message = array("RegistrationForm_error" => 'Registration successfully.');
-                    $obj = array('status' => 'success', 'data' => $message, 'error' => '');
-                } else {
-                    $message = array("RegistrationForm_error" => 'User Already Exists.');
-                    $obj = array('status' => 'error', 'data' => '', 'error' => $message);
-                }
-            }
-            $renderScript = $this->rendering($obj);
-            echo $renderScript;
-        } else {
-             $qStringInt=  empty($_REQUEST['Uname'])?' ' : $_REQUEST['Uname'];
-             $getInviteUserDetail = $this->kushGharService->getInviteUserDetailWithEmail($qStringInt);
-            $this->render('registration', array('model' => $model, 'modelLogin' => $modelLogin, 'modelSample' => $modelSample, 'one' => $qStringInt, 'getInviteUserDetail'=>$getInviteUserDetail));
-        }
-    }
+//    public function actionRegistration() {
+//        $this->session['Type'] = 'Customer';
+//        $model = new RegistrationForm;
+//        $modelLogin = new LoginForm;
+//        $modelSample = new SampleForm;
+//        $request = yii::app()->getRequest();
+//        $formName = $request->getParam('RegistrationForm');
+//        //$getServices = $this->kushGharService->getServices();
+//
+//        if ($formName != '') {
+//            $model->attributes = $request->getParam('RegistrationForm');
+//            $errors = CActiveForm::validate($model);
+//            if ($errors != '[]') {
+//                $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
+//            } else {
+//                $Dresult = $this->kushGharService->getcheckUserExist($model);
+//                if ($Dresult == 'No user') {
+//                    $result = $this->kushGharService->saveRegistrationData($model);
+//                    $getUserDetails = $this->kushGharService->getUserDetailsWithEmail($model->Email);
+//                    $custAddressDetails = $this->kushGharService->saveCustomerAddressDumpInfoDetails($getUserDetails->customer_id);
+//                    $paymentId = $this->kushGharService->saveCustomerPaymentDumpInfoDetails($getUserDetails->customer_id);
+//                    $this->session['UserId'] = $getUserDetails->customer_id;
+//                } else {
+//                    $result = "failed";
+//                    $errors = array("RegistrationForm_error" => 'User Already Exists.');
+//                    $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
+//                }
+//                if ($result == "success") {
+//                    $message = array("RegistrationForm_error" => 'Registration successfully.');
+//                    $obj = array('status' => 'success', 'data' => $message, 'error' => '');
+//                } else {
+//                    $message = array("RegistrationForm_error" => 'User Already Exists.');
+//                    $obj = array('status' => 'error', 'data' => '', 'error' => $message);
+//                }
+//            }
+//            $renderScript = $this->rendering($obj);
+//            echo $renderScript;
+//        } else {
+//             $qStringInt=  empty($_REQUEST['Uname'])?' ' : $_REQUEST['Uname'];
+//             $getInviteUserDetail = $this->kushGharService->getInviteUserDetailWithEmail($qStringInt);
+//            $this->render('registration', array('model' => $model, 'modelLogin' => $modelLogin, 'modelSample' => $modelSample, 'one' => $qStringInt, 'getInviteUserDetail'=>$getInviteUserDetail));
+//        }
+//    }
 
     /**
      * User BaiscInfo Form Controller END
@@ -249,9 +258,11 @@ class UserController extends Controller {
                     $obj = array('status' => 'error', 'message' => '', 'error' => $message);
                 }
             }
+            $this->pageTitle="KushGhar-Basic Info";
             $renderScript = $this->rendering($obj);
             echo $renderScript;
         } else {
+            $this->pageTitle="KushGhar-Basic Info";
             $this->render('basicinfo', array("model" => $basicForm, "IdentityProof" => $Identity, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails, "updatedPassword" => $updatedPasswordForm));
         }
     }
@@ -287,9 +298,11 @@ class UserController extends Controller {
                     $obj = array('status' => 'error', 'message' => '', 'error' => $message);
                 }
             }
+            $this->pageTitle="KushGhar-Contact Info";
             $renderScript = $this->rendering($obj);
             echo $renderScript;
         } else {
+            $this->pageTitle="KushGhar-Contact Info";
             $this->render('contactInfo', array("model" => $ContactInfoForm, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails, "States" => $States));
         }
     }
@@ -323,8 +336,10 @@ class UserController extends Controller {
                 }
             }
             $renderScript = $this->rendering($obj);
+            $this->pageTitle="KushGhar-Payment Info";
             echo $renderScript;
         } else {
+            $this->pageTitle="KushGhar-Payment Info";
             $this->render('paymentInfo', array("model" => $paymentForm, "customerPaymentDetails" => $customerPaymentDetails, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails));
         }
     }
@@ -405,6 +420,7 @@ class UserController extends Controller {
             $renderScript = $this->rendering($obj);
             echo $renderScript;
         } else {
+            $this->pageTitle="KushGhar-Registration";
             $this->render('registration', array('model' => $model, 'modelLogin' => $modelLogin, 'modelSample' => $modelSample));
         }
     }
@@ -453,6 +469,7 @@ class UserController extends Controller {
         try {
             $this->session->destroy();
             unset($_SESSION['UserId']);
+            $this->pageTitle="KushGhar-Home";
             $this->redirect("/site/index");
         } catch (Exception $ex) {
             error_log("#########Exception Occurred########$ex->getMessage()");
@@ -461,7 +478,7 @@ class UserController extends Controller {
 
     public function actionAccount() {
         try {
-
+            $this->pageTitle="KushGhar-Basic Info";
             $this->redirect("/user/basicinfo");
         } catch (Exception $ex) {
             error_log("#########Exception Occurred########$ex->getMessage()");
@@ -469,80 +486,79 @@ class UserController extends Controller {
     }
 
     public function actionHome() {
+        $this->pageTitle="KushGhar-Home";
         $this->redirect('/site/index');
     }
 
-    public function actionInviteRegistration() {
-        if ($_REQUEST) {
-            $inviteForm = new InviteForm;
-            $request = yii::app()->getRequest();
-            $formName = $request->getParam('InviteForm');
-            if ($formName != '') {
-                $inviteForm->attributes = $request->getParam('InviteForm');
-                $errors = CActiveForm::validate($inviteForm);
-                if ($errors != '[]') {
-                    $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
-                } else {
-                    $result = $this->kushGharService->getInvitationUser($inviteForm, $this->session['Type']);
-
-                    if ($result == "success") {
-
-                        //$to = $inviteForm->Email;
-                        //$name = $inviteForm->FirstName . ' ' . $inviteForm->LastName;
-                        //$name1 = $inviteForm->Email;
-                        //$subject = 'KushGhar Invitation';
-                        //$this->sendMailToUser($to, $name, $subject, '', 'KushGhar', 'no-reply@kushghar.com', 'sendInvitationMailToUser');
-                        //$this->sendMailToUser('no-reply@kushghar.com', $name, $name1, '', 'KushGhar', 'no-reply@kushghar.com', 'CustomerInvitationMailToKGTeam');
-                        
-                        
-                        
-                         /*
-                  * Customer Mail Details
-                  */
-                $to1 = $inviteForm->Email;
-                $name = $inviteForm->FirstName . ' ' . $inviteForm->LastName;
-                $phone = $inviteForm->Phone;
-                $location = $inviteForm->Location;
-                $subject ='KushGhar Invitation';
-                $Logo = YII::app()->params['SERVER_URL'] . "/images/color_logo.png";
-                $employerEmail = "no-reply@kushghar.com";
-                $messageview1="sendInvitationMailToUser";
-                $params1 = array('Logo' => $Logo, 'Name' =>$name);
-                 /*
-                 * KG Team mail details
-                 */
-                $to = 'praveen.peddinti@gmail.com';
-                //$subject ="Order placed";
-                //$Logo = YII::app()->params['SERVER_URL'] . "/images/color_logo.png";
-                //$employerEmail = "no-reply@kushghar.com";
-                $messageview="CustomerInvitationMailToKGTeam";
-                $params = array('Logo' => $Logo, 'Name' =>$name, 'Email' =>$to1, 'Phone'=>$phone, 'Location'=>$location);
-                
-                //$params = '';
-                $sendMailToUser=new CommonUtility;
-                $sendMailToUser->actionSendmail($messageview1,$params1, $subject, $to1,$employerEmail);
-                $mailSendStatusw=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
-                         
-                        
-                        $obj = array('status' => 'success', 'data' => $result, 'error' => 'Invitation sent Successfully.');
-                    } else {
-                        $errors = array("InviteForm_error" => 'User already Invited.');
-                        $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
-                    }
-                }
-                $renderScript = $this->rendering($obj);
-                echo $renderScript;
-            } else {
-                $this->render('invite', array("model" => $inviteForm));
-            }
-        } else {
-            $inviteForm = new InviteForm;
-            $getServices = $this->kushGharService->getServices();
-            $this->renderPartial('inviteRegistration', array("inviteModel" => $inviteForm, "getServices" => $getServices));
-        }
-    }
-    
-    
+//    public function actionInviteRegistration() {
+//        if ($_REQUEST) {
+//            $inviteForm = new InviteForm;
+//            $request = yii::app()->getRequest();
+//            $formName = $request->getParam('InviteForm');
+//            if ($formName != '') {
+//                $inviteForm->attributes = $request->getParam('InviteForm');
+//                $errors = CActiveForm::validate($inviteForm);
+//                if ($errors != '[]') {
+//                    $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
+//                } else {
+//                    $result = $this->kushGharService->getInvitationUser($inviteForm, $this->session['Type']);
+//
+//                    if ($result == "success") {
+//
+//                        //$to = $inviteForm->Email;
+//                        //$name = $inviteForm->FirstName . ' ' . $inviteForm->LastName;
+//                        //$name1 = $inviteForm->Email;
+//                        //$subject = 'KushGhar Invitation';
+//                        //$this->sendMailToUser($to, $name, $subject, '', 'KushGhar', 'no-reply@kushghar.com', 'sendInvitationMailToUser');
+//                        //$this->sendMailToUser('no-reply@kushghar.com', $name, $name1, '', 'KushGhar', 'no-reply@kushghar.com', 'CustomerInvitationMailToKGTeam');
+//                        
+//                        
+//                        
+//                         /*
+//                  * Customer Mail Details
+//                  */
+//                $to1 = $inviteForm->Email;
+//                $name = $inviteForm->FirstName . ' ' . $inviteForm->LastName;
+//                $phone = $inviteForm->Phone;
+//                $location = $inviteForm->Location;
+//                $subject ='KushGhar Invitation';
+//                $Logo = YII::app()->params['SERVER_URL'] . "/images/color_logo.png";
+//                $employerEmail = "no-reply@kushghar.com";
+//                $messageview1="sendInvitationMailToUser";
+//                $params1 = array('Logo' => $Logo, 'Name' =>$name);
+//                 /*
+//                 * KG Team mail details
+//                 */
+//                $to = 'praveen.peddinti@gmail.com';
+//                //$subject ="Order placed";
+//                //$Logo = YII::app()->params['SERVER_URL'] . "/images/color_logo.png";
+//                //$employerEmail = "no-reply@kushghar.com";
+//                $messageview="CustomerInvitationMailToKGTeam";
+//                $params = array('Logo' => $Logo, 'Name' =>$name, 'Email' =>$to1, 'Phone'=>$phone, 'Location'=>$location);
+//                
+//                //$params = '';
+//                $sendMailToUser=new CommonUtility;
+//                $sendMailToUser->actionSendmail($messageview1,$params1, $subject, $to1,$employerEmail);
+//                $mailSendStatusw=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
+//                         
+//                        
+//                        $obj = array('status' => 'success', 'data' => $result, 'error' => 'Invitation sent Successfully.');
+//                    } else {
+//                        $errors = array("InviteForm_error" => 'User already Invited.');
+//                        $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
+//                    }
+//                }
+//                $renderScript = $this->rendering($obj);
+//                echo $renderScript;
+//            } else {
+//                $this->render('invite', array("model" => $inviteForm));
+//            }
+//        } else {
+//            $inviteForm = new InviteForm;
+//            $getServices = $this->kushGharService->getServices();
+//            $this->renderPartial('inviteRegistration', array("inviteModel" => $inviteForm, "getServices" => $getServices));
+//        }
+//    }
     
     /*
      * Services Control actions start
@@ -619,9 +635,11 @@ class UserController extends Controller {
                         $obj = array('status' => 'success', 'data' => $data, 'error' => '','HouseCleaning'=>$HouseCleaning,'CarCleaning'=>$CarCleaning,'StewardCleaning'=>$StewardCleaning);
                     }
             }
+            $this->pageTitle="KushGhar-Services";
             $renderScript = $this->rendering($obj);
             echo $renderScript;
         } else {
+            $this->pageTitle="KushGhar-Services";
             $this->render('homeService', array("homeModel"=>$homeModel,"customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails,"HouseService"=>$customerServicesHouse,"CarService"=>$customerServicesCar,"StewardsService"=>$customerServicesStewards));
     
         }
@@ -722,9 +740,11 @@ class UserController extends Controller {
                 $obj = array('status' => 'success', 'data' => $data, 'error' => '');
             }
         }
+        $this->pageTitle="KushGhar-Services";
         $renderScript = $this->rendering($obj);
         echo $renderScript;
         }else{
+            $this->pageTitle="KushGhar-Services";
         $this->render('services', array("model"=>$houseModel,"model1"=>$stewardModel,"customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails,"HC"=>$HC,"CC"=>$CC,"SC"=>$SC));
         }    
         
@@ -845,9 +865,11 @@ class UserController extends Controller {
                 
             }
         }
+        $this->pageTitle="KushGhar-Services";
         $renderScript = $this->rendering($obj);
         echo $renderScript;
         }else{
+            $this->pageTitle="KushGhar-Services";
         $this->render('stewards', array("model1"=>$stewardModel, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails));
         }    
         
@@ -893,9 +915,11 @@ class UserController extends Controller {
                 $obj = array('status' => 'success', 'data' => $data, 'error' => '');
                 
             }
+            $this->pageTitle="KushGhar-Price Quote";
             $renderScript = $this->rendering($obj);
             echo $renderScript;
         } else {
+            $this->pageTitle="KushGhar-Price Quote";
             $this->render('priceQuote', array("customerDetails" => $customerDetails, "getServiceDetails" => $getServiceDetails, 'getStewardsServiceDetails'=>$getStewardsServiceDetails, 'getCarWashServiceDetails'=>$getCarWashServiceDetails, 'HouseCleaning'=>$HCleaning, 'CarCleaning'=>$CCleaning, 'StewardsCleaning'=>$SCleaning,'PriceFlag'=>'1','totalSeats'=>$totalSeats));
         }
         //$this->render('priceQuote', array("customerDetails" => $customerDetails, "getServiceDetails" => $getServiceDetails));
@@ -1068,7 +1092,84 @@ class UserController extends Controller {
             error_log("#########Exception Occurred########" . $ex->getMessage());
         }
     }
-    
+    public function actionInviteFriends(){
+        error_log("------------".$this->session['email']);
+        $inviteFriends = new InviteForm;
+        if ($_REQUEST){
+           $request = yii::app()->getRequest();
+            $formName = $request->getParam('InviteForm');
+            if ($formName != '') {
+                $inviteFriends->attributes = $request->getParam('InviteForm');
+                $errors = CActiveForm::validate($inviteFriends);
+                if ($errors != '[]') {
+                    $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
+                } else {
+                    $inviteUser = $this->kushGharService->checkNewUserExistInInviteTable($inviteFriends->Email);
+                    $custUser = $this->kushGharService->checkNewUserExistInCustomerTable($inviteFriends->Email);
+                    if( ($inviteUser=='No user') && ($custUser=='No user')){error_log("No USer===========");
+                    $result = $this->kushGharService->getInvitationFriendUser($inviteFriends, $this->session['Type']);
+                    }
+                    else{
+                        error_log("Yes USer===========");
+                        $errors = array("InviteForm_error" => 'User Exist.');
+                        $obj = array('status' => 'error', 'data' => '', 'error' => $errors); 
+                    }
+                    error_log("Result===========".$result);
+                    if ($result == "success") {
+                        //$to = $inviteForm->Email;
+                        //$name = $inviteForm->FirstName . ' ' . $inviteForm->LastName;
+                        //$name1 = $inviteForm->Email;
+                        //$subject = 'KushGhar Invitation';
+                        //$this->sendMailToUser($to, $name, $subject, '', 'KushGhar', 'no-reply@kushghar.com', 'sendInvitationMailToUser');
+                        //$this->sendMailToUser('no-reply@kushghar.com', $name, $name1, '', 'KushGhar', 'no-reply@kushghar.com', 'CustomerInvitationMailToKGTeam');
+                         /*
+                  * Customer Mail Details
+                  */
+                $to1 = $inviteFriends->Email;
+                $name = $inviteFriends->FirstName . ' ' . $inviteFriends->LastName;
+                $phone = $inviteFriends->Phone;
+                $location = $inviteFriends->Location;
+                $referrer=$inviteFriends->Referrer;
+                $subject ='KushGhar Invitation';
+                $Logo = YII::app()->params['SERVER_URL'] . "/images/color_logo.png";
+                $employerEmail = "no-reply@kushghar.com";
+                $messageview1="sendInvitationMailToUser";
+                $params1 = array('Logo' => $Logo, 'Name' =>$name, 'Referrer'=>$referrer);
+                $mess1 = 'http://www.kushghar.com/user/registration?Uname=' . $inviteFriends->Email . "\r\n\n";
+                $this->sendMailToUser($to1, $name, $subject, $mess1, 'KushGhar', 'no-reply@kushghar.com', 'InvitationMail');            
+                /*
+                 * KG Team mail details
+                 */
+                $to = 'praveen.peddinti@gmail.com';
+                //$subject ="Order placed";
+                //$Logo = YII::app()->params['SERVER_URL'] . "/images/color_logo.png";
+                //$employerEmail = "no-reply@kushghar.com";
+                $messageview="InvitationMail";
+                $params = array('Logo' => $Logo, 'Name' =>$name, 'Email' =>$to1, 'Phone'=>$phone, 'Location'=>$location, 'Referrer'=>$referrer);
+                //$params = '';
+                $sendMailToUser=new CommonUtility;
+                $sendMailToUser->actionSendmail($messageview1,$params1, $subject, $to1,$employerEmail);
+                $mailSendStatusw=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
+                        $obj = array('status' => 'success', 'data' => $result, 'error' => 'Invitation sent Successfully.');
+                    } else {
+                        error_log("Referrer started in params=========Userinvited error=============");
+                        $errors = array("InviteForm_error" => 'User already Invited.');
+                        $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
+                    }
+                }
+                $this->pageTitle="KushGhar-Invite Friends";
+                $renderScript = $this->rendering($obj);
+                echo $renderScript;
+            } else {
+                $this->pageTitle="KushGhar-Invite Friends";
+                $this->render('invitefriends', array("inviteModel" => $inviteFriends));
+            }
+        }
+        else
+        {
+        $this->render('invitefriends', array("inviteModel" => $inviteFriends));
+        }
+    }
    public function actionCarwash(){
         $houseModel = new CarWashForm;
         $cId = $this->session['UserId'];

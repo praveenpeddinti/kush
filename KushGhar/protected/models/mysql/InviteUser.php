@@ -348,6 +348,55 @@ class InviteUser extends CActiveRecord {
        }
        return $result;
     }
+    
+    
+    
+    public function checkNewUserExistInInviteTable($emailId) {
+        try {
+            $result='';
+            $newDetails = new InviteUser();
+            $user = InviteUser::model()->findByAttributes(array(), 'email_address=:email_address', array(':email_address' => $emailId));
+            
+            if (empty($user)) {
+               
+                $result = "No user";
+                
+            } else {
+                $result = "yes user";
+                
+            }
+        } catch (Exception $ex) {
+            error_log("############Error Occurred= in usergetDetails= #############" . $ex->getMessage());
+        }
+        return $result;
+    } 
+    public function saveInvitationFriendUser($model,$type) {
+        $result = "false";
+        
+        //$user = InviteUser::model()->findByAttributes(array('email_address' => $model->Email));
+        if (!isset($user)) {
+            try {
+                $user = new InviteUser();
+                              
+                $user->first_name = stripcslashes($model->FirstName);
+                $user->last_name = stripcslashes($model->LastName);
+                $user->email_address = stripcslashes($model->Email);
+                $user->phone = stripcslashes($model->Phone);
+                $user->type = stripcslashes($type);
+                $user->invite = 1;
+                $user->location = $model->Location;
+                $user->create_timestamp = gmdate("Y-m-d H:i:s", time());
+                $user->referrer=$model->Referrer;
+                if (!$user->save())
+                    $result = "false";//return CHtml::errorSummary($this);
+                else
+                    $result = "success";
+            } catch (Exception $ex) {
+                error_log("=====Exception occurred in saveModel====" . $ex->getMessage());
+            }
+        }
+        return $result;
+    }
 }
 
 ?>

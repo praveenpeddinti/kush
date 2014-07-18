@@ -187,6 +187,26 @@ class Registration extends CActiveRecord {
         }
         return $customerDetails;
     }*/
+    
+    public function checkNewUserExistInCustomerTable($emailId) {
+        try {
+            $result='';
+            $newDetails = new Registration();
+            $user = Registration::model()->findByAttributes(array(), 'email_address=:email_address', array(':email_address' => $emailId));
+            
+            if (empty($user)) {
+               
+                $result = "No user";
+                
+            } else {
+                $result = "yes user";
+                
+            }
+        } catch (Exception $ex) {
+            error_log("############Error Occurred= in usergetDetails= #############" . $ex->getMessage());
+        }
+        return $result;
+    }
 
 }
 ?>

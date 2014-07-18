@@ -578,6 +578,20 @@ class KushGharService {
     public function ChangeAgencyStatus($id, $val) {
         return InviteUser::model()->ChangeAgencyStatus($id, $val);
     }
+    public function getInvitationFriendUser($model, $type) {
+        try {
+            $users = array();
+            $users = InviteUser::model()->saveInvitationFriendUser($model, $type);
+            if (!empty($users)) {
+                return $users;
+            } else {
+                return "false";
+            }
+        } catch (Exception $ex) {
+            error_log("=============exception occurred in login=============" . $ex->getMessage());
+        }
+    }
+
     
     /*
      * @praveen Delete House cleaning when the service is not selected (i.e once service is selected but not place order again service is not selected).
@@ -606,7 +620,12 @@ class KushGharService {
         }
         return $result;
     }
-    
+    public function checkNewUserExistInInviteTable($email) {
+        return InviteUser::model()->checkNewUserExistInInviteTable($email);
+    }
+    public function checkNewUserExistInCustomerTable($email) {
+        return Registration::model()->checkNewUserExistInCustomerTable($email);
+    }
     
 }
 

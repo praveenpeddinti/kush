@@ -61,7 +61,7 @@
                                 <div class="span12">
 
                                     <div class="paddingL20">
-                                        <h3>Steward / Stewardesses service</h3>
+                                        <h3>Stewards / Stewardesses service</h3>
                                         <p>Our team of professional stewards / stewardesses will help you serve food, snacks, beverages, desserts as well as take care of the guests / visitors needs during parties and get-togethers.</p>
                                         <ul>
                                             <li>Serving food</li>

@@ -58,19 +58,16 @@
                 <td><?php echo "<b>" . $HouseService['total_bathRooms'] . "</b>"; ?></td>
             </tr>
             <?php } ?>
-            <?php if ($HouseService['pooja_room_cleaning'] != 0) { ?>
-            <tr>
-                <td>Pooja Room</td>
-                <td><?php echo "<b>" . $HouseService['pooja_room_cleaning'] . "</b>"; ?></td>
-            </tr>
-            <?php } ?>
+            
+            <?php if( ($HouseService['window_grills'] != 0) || ($HouseService['fridge_interior'] != 0) || ($HouseService['microwave_oven_interior'] != 0) || ($HouseService['pooja_room_cleaning'] != 0) ){?>
             <tr>
                 <td valign='top'>Additional Services are</td>
-                <td><?php if ($HouseService['window_grills'] == 1) echo "Window grills cleaning</br>"; ?>
-                <?php if ($HouseService['fridge_interior'] == 1) echo "Fridge interior cleaning</br>"; ?>
-                <?php if ($HouseService['microwave_oven_interior'] == 1) echo "Micro wave oven interior cleaning</br>"; ?>
+                <td><?php if ($HouseService['window_grills'] == 1) echo "Window grills cleaning</br>"; 
+                          if ($HouseService['fridge_interior'] == 1) echo "Fridge interior cleaning</br>"; 
+                          if ($HouseService['microwave_oven_interior'] == 1) echo "Micro wave oven interior cleaning</br>"; 
+                          if ($HouseService['pooja_room_cleaning'] == 1) echo "Pooja room cleaning";?>
                 </td>
-            </tr>
+            </tr><?php }?>
             <tr><td>Scheduled time</td>
                 <td><?php echo $HouseService['houseservice_start_time'];?></td>
             </tr>

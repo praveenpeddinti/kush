@@ -313,6 +313,7 @@ $(document).ready(function() {
      * @returns Praveen House Cleaning service button start
      */
     function submitHouseCleaning() {
+        
         var queryString = $('#services-form').serialize();
         if (($('#HouseCleaningForm_SquareFeets').val() == '0') || ($('#HouseCleaningForm_SquareFeets').val() == '00')) {
             $("#HouseCleaningForm_SquareFeets_em_").show();

@@ -60,7 +60,7 @@ class VendorRegistrationForm extends CFormModel {
             //array('Password', 'authenticate'),
             array('Password', 'required', 'on' => 'insert'),
             array('RepeatPassword', 'compare', 'compareAttribute' => 'Password',
-                'message' => 'Password  and Repeat Password must be match'
+                'message' => 'Password  and Confirm Password need to be same'
             ),
             
             array('vendorType,FirstName,LastName,PrimaryContactFirstName,PrimaryContactLastName,AgencyName,Email,Phone,Password,RepeatPassword,Id', 'safe'),

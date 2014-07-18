@@ -82,24 +82,24 @@
              <div class='row-fluid'>
                  <div class='span4'>
                     <?php echo $inviteFriends->labelEx($inviteModel,'<abbr title="required">*</abbr> First Name'); ?>
-                    <?php echo $inviteFriends->textField($inviteModel,'FirstName', array( 'class'=>'span12','placeholder'=>'First Name…', 'maxLength' => 50)); ?>
+                    <?php echo $inviteFriends->textField($inviteModel,'FirstName', array( 'class'=>'span12', 'maxLength' => 50)); ?>
                     <?php echo $inviteFriends->error($inviteModel,'FirstName'); ?>
                  </div>
                  <div class='span4'>
                     <?php echo $inviteFriends->labelEx($inviteModel,'<abbr title="required">*</abbr> Last Name'); ?>
-                    <?php echo $inviteFriends->textField($inviteModel,'LastName', array( 'class'=>'span12','placeholder'=>'Last Name…', 'maxLength' => 50)); ?>
+                    <?php echo $inviteFriends->textField($inviteModel,'LastName', array( 'class'=>'span12', 'maxLength' => 50)); ?>
                     <?php echo $inviteFriends->error($inviteModel,'LastName'); ?>
                  </div>
                  <div class=" span4">
                     <?php echo $inviteFriends->labelEx($inviteModel,'<abbr title="required">*</abbr> phone'); ?>
-                     <input type="text" value="+91" disabled="true" style="width:40px" class="span2" />&nbsp;<?php echo $inviteFriends->textField($inviteModel,'Phone',array('class'=>'span9','placeholder'=>'Phone…', 'maxLength' => 10, 'onkeypress' => 'return isNumberKey(event);')); ?>
+                     <input type="text" value="+91" disabled="true" style="width:40px" class="span2" />&nbsp;<?php echo $inviteFriends->textField($inviteModel,'Phone',array('class'=>'span9', 'maxLength' => 10, 'onkeypress' => 'return isNumberKey(event);')); ?>
                     <?php echo $inviteFriends->error($inviteModel,'Phone'); ?>
                     </div>
              </div>
               <div class='row-fluid'>
                  <div class='span6'>
                     <?php echo $inviteFriends->labelEx($inviteModel,'<abbr title="required">*</abbr> Email'); ?>
-                    <?php echo $inviteFriends->textField($inviteModel,'Email', array( 'class'=>'span12','placeholder'=>'Email…', 'maxLength' => 100)); ?>
+                    <?php echo $inviteFriends->textField($inviteModel,'Email', array( 'class'=>'span12', 'maxLength' => 100)); ?>
                     <?php echo $inviteFriends->error($inviteModel,'Email'); ?>
                  </div>
                   

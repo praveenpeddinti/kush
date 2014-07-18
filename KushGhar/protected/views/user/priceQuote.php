@@ -82,19 +82,16 @@
                                     <td><?php echo "<b>" . $getServiceDetails['total_bathRooms'] . "</b>"; ?></td>
                                 </tr>
                                 <?php } ?>
-                                <?php if ($getServiceDetails['pooja_room_cleaning'] != 0) { ?>
-                                <tr>
-                                    <td>Pooja Room</td>
-                                    <td><?php echo "<b>" . $getServiceDetails['pooja_room_cleaning'] . "</b>"; ?></td>
-                                </tr>
-                                <?php } ?>
+                                
+                                <?php if( ($getServiceDetails['window_grills'] != 0) || ($getServiceDetails['fridge_interior'] != 0) || ($getServiceDetails['microwave_oven_interior'] != 0) || ($getServiceDetails['pooja_room_cleaning'] != 0) ){?>
                                 <tr>
                                     <td valign='top'>Additional Services are</td>
                                     <td><?php if ($getServiceDetails['window_grills'] == 1) echo "Window grills cleaning</br>"; 
                                               if ($getServiceDetails['fridge_interior'] == 1) echo "Fridge interior cleaning</br>"; 
-                                              if ($getServiceDetails['microwave_oven_interior'] == 1) echo "Micro wave oven interior cleaning</br>"; ?>
+                                              if ($getServiceDetails['microwave_oven_interior'] == 1) echo "Micro wave oven interior cleaning</br>"; 
+                                              if ($getServiceDetails['pooja_room_cleaning'] == 1) echo "Pooja room cleaning";?>
                                     </td>
-                                </tr>
+                                </tr><?php }?>
                             </table>
                         </div>
                     </div>
@@ -453,21 +450,16 @@
                                                                         <td><?php echo "<b>" . $getServiceDetails['total_bathRooms'] . "</b>"; ?></td>
                                                                     </tr>
                                                                 <?php } ?>
-        <?php if ($getServiceDetails['pooja_room_cleaning'] != 0) { ?>
-                                                                    <tr>
-                                                                        <td>Pooja Room</td>
-                                                                        <td><?php echo "<b>" . $getServiceDetails['pooja_room_cleaning'] . "</b>"; ?></td>
-                                                                    </tr>
-                                                                        <?php } ?>
-                                                                <tr>
-                                                                    <td valign='top'>Additional Services are</td>
-                                                                    <td>
-        <?php if ($getServiceDetails['window_grills'] == 1) echo "Window grills cleaning</br>"; ?>
-        <?php if ($getServiceDetails['fridge_interior'] == 1) echo "Fridge interior cleaning</br>"; ?>
-        <?php if ($getServiceDetails['microwave_oven_interior'] == 1) echo "Micro wave oven interior cleaning</br>"; ?>
-        <?php //if($getServiceDetails['pooja_room_cleaning']==1) echo "Pooja room cleaning</br>" ;  ?>
-                                                                    </td>
-                                                                </tr>
+        
+                                                                <?php if( ($getServiceDetails['window_grills'] != 0) || ($getServiceDetails['fridge_interior'] != 0) || ($getServiceDetails['microwave_oven_interior'] != 0) || ($getServiceDetails['pooja_room_cleaning'] != 0) ){?>
+                                <tr>
+                                    <td valign='top'>Additional Services are</td>
+                                    <td><?php if ($getServiceDetails['window_grills'] == 1) echo "Window grills cleaning</br>"; 
+                                              if ($getServiceDetails['fridge_interior'] == 1) echo "Fridge interior cleaning</br>"; 
+                                              if ($getServiceDetails['microwave_oven_interior'] == 1) echo "Micro wave oven interior cleaning</br>"; 
+                                              if ($getServiceDetails['pooja_room_cleaning'] == 1) echo "Pooja room cleaning";?>
+                                        </td>
+                                </tr><?php }?>
 
 
                                                             </table>

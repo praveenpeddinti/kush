@@ -160,34 +160,34 @@
                                 <?php echo $form->error($model, 'vendorType'); ?>
                                 <div id="Individual" style="display:block">
                                     <?php echo $form->label($model, '<abbr title="required">*</abbr> first name'); ?>
-                                    <?php echo $form->textField($model, 'FirstName', array('class' => 'span12', 'placeholder' => 'First Name…', 'maxLength' => 50)); ?>
+                                    <?php echo $form->textField($model, 'FirstName', array('class' => 'span12', 'maxLength' => 50)); ?>
                                     <?php echo $form->error($model, 'FirstName'); ?>
                                     <?php echo $form->label($model, '<abbr title="required">*</abbr> last name') ?>
-                                    <?php echo $form->textField($model, 'LastName', array('class' => 'span12', 'placeholder' => 'Last Name…', 'maxLength' => 50)); ?>
+                                    <?php echo $form->textField($model, 'LastName', array('class' => 'span12', 'maxLength' => 50)); ?>
                                     <?php echo $form->error($model, 'LastName'); ?>
                                 </div>
                                 <div id="Agency" style="display:none">
                                     <?php echo $form->label($model, '<abbr title="required">*</abbr> Agency Name'); ?>
-                                    <?php echo $form->textField($model, 'AgencyName', array('class' => 'span12', 'placeholder' => 'Agency Name…', 'maxLength' => 100)); ?>
+                                    <?php echo $form->textField($model, 'AgencyName', array('class' => 'span12', 'maxLength' => 100)); ?>
                                     <?php echo $form->error($model, 'AgencyName'); ?>
                                     <?php echo $form->label($model, '<abbr title="required">*</abbr> Primary Contact First Name') ?>
-                                    <?php echo $form->textField($model, 'PrimaryContactFirstName', array('class' => 'span12', 'placeholder' => 'Primary Contact First Name…', 'maxLength' => 50)); ?>
+                                    <?php echo $form->textField($model, 'PrimaryContactFirstName', array('class' => 'span12', 'maxLength' => 50)); ?>
                                     <?php echo $form->error($model, 'PrimaryContactFirstName'); ?>
                                     <label><?php echo $form->labelEx($model, '<abbr title="required">*</abbr> Primary Contact Last Name'); ?></label>
-                                    <?php echo $form->textField($model, 'PrimaryContactLastName', array('class' => 'span12', 'placeholder' => 'Primary Contact Last Name…', 'maxLength' => 50)); ?>
+                                    <?php echo $form->textField($model, 'PrimaryContactLastName', array('class' => 'span12', 'maxLength' => 50)); ?>
                                     <?php echo $form->error($model, 'PrimaryContactLastName'); ?>
                                 </div>
                                 <label><?php echo $form->labelEx($model, '<abbr title="required">*</abbr> email'); ?></label>
-                                <?php echo $form->textField($model, 'Email', array('class' => 'span12', 'placeholder' => 'Email…', 'maxLength' => 100)); ?>
+                                <?php echo $form->textField($model, 'Email', array('class' => 'span12', 'maxLength' => 100)); ?>
                                 <?php echo $form->error($model, 'Email'); ?>
                                 <label><?php echo $form->labelEx($model, '<abbr title="required">*</abbr> phone'); ?></label><input type="text" value="+91" disabled="disabled" class="span2"/>
-                                <?php echo $form->textField($model, 'Phone', array('class' => 'span10', 'placeholder' => 'Phone…', 'maxLength' => 10, 'onkeypress' => 'return isNumberKey(event);')); ?>
+                                <?php echo $form->textField($model, 'Phone', array('class' => 'span10', 'maxLength' => 10, 'onkeypress' => 'return isNumberKey(event);')); ?>
                                 <?php echo $form->error($model, 'Phone'); ?>
                                 <label><?php echo $form->labelEx($model, '<abbr title="required">*</abbr> password'); ?></label>
-                                <?php echo $form->passwordField($model, 'Password', array('class' => 'span12', 'placeholder' => 'Password…', 'maxLength' => 100)); ?>
+                                <?php echo $form->passwordField($model, 'Password', array('class' => 'span12', 'maxLength' => 100)); ?>
                                 <?php echo $form->error($model, 'Password'); ?>
-                                <label> <?php echo $form->labelEx($model, '<abbr title="required">*</abbr> Repeat Password'); ?></label>
-                                <?php echo $form->passwordField($model, 'RepeatPassword', array('class' => 'span12', 'placeholder' => 'Repeat Password…', 'maxLength' => 100)); ?>
+                                <label> <?php echo $form->labelEx($model, '<abbr title="required">*</abbr> Confirm Password'); ?></label>
+                                <?php echo $form->passwordField($model, 'RepeatPassword', array('class' => 'span12', 'maxLength' => 100)); ?>
                                 <?php echo $form->error($model, 'RepeatPassword'); ?>
                                 <center>
                                  <?php

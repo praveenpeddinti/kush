@@ -32,7 +32,7 @@
                                         <?php echo $form->error($model, 'SquareFeets'); ?>
                                     </div>
                                       <div class="span8">
-                                        <label><abbr title="required">*</abbr> Service Date</label><?php echo $getServiceDetails['houseservice_start_time'];?>
+                                        <label><abbr title="required">*</abbr> Service Date</label>
                                         <?php  echo $form->textField($model, 'ServiceStartTime', array('value'=>$getServiceDetails['houseservice_start_time'], 'class' => 'span5','readOnly'=>true)); ?>
                                         <?php echo $form->error($model, 'ServiceStartTime'); ?>
 
@@ -152,8 +152,9 @@
     
     $(document).ready(function() {
          Custom.init();
+         
          //Date and Time start
-        /*var currentDate=new Date.today().addDays(1);
+        var currentDate=new Date.today().addDays(1);
                 var maxdate=new Date();
                 maxdate.setFullYear(maxdate.getFullYear()-19);
                 var mindate=new Date();
@@ -169,10 +170,10 @@
                     dateFormat:'dd-mm-yyyy',
                     dateOrder: 'Md ddyy',
                     minDate:  mindate
-                });*/
+                });
         
-                <?php //if(empty($getServiceDetails['houseservice_start_time']) ){ ?>
-                //$('#HouseCleaningForm_ServiceStartTime').scroller('setDate', mindate, true);
+                <?php //if(!empty($getServiceDetails['houseservice_start_time']) ){ ?>
+                //$('#HouseCleaningForm_ServiceStartTime').handleDtpicker('setDate', new Date(2014, 04, 25, 0, 0, 0));
                 <?php //}?>
         $('#WindowGrills').bootstrapSwitch();
         $('#FridgeInterior').bootstrapSwitch();
@@ -240,12 +241,33 @@
     });
     
    $(function () {
+                /*var currentDate=new Date();
+                var maxdate=new Date();
+                maxdate.setFullYear(maxdate.getFullYear()-19);
+                var mindate=new Date();
+                mindate.setFullYear(mindate.getFullYear()-100);
+                mindate.setMonth(currentDate.getMonth()+2);
+                mindate.setDate(currentDate.getDate()+2);
+                var currentDate=new Date.today().addDays(2);
+    var maxdate=new Date();
+    maxdate.setFullYear(maxdate.getFullYear()-19);
+    var mindate=new Date();
+    mindate.setFullYear(currentDate.getFullYear());
+    mindate.setMonth(currentDate.getMonth());
+    mindate.setDate(currentDate.getDate());
+            alert(mindate); 
+            //$('#HouseCleaningForm_ServiceStartTime').handleDtpicker('minDate', new Date(2014, 07, 25, 0, 0, 0));
        $('#HouseCleaningForm_ServiceStartTime').appendDtpicker({
-            'dateFormat':'DD-MM-YYYY',
-            'dateOnly':true,
-            //'minuteInterval' : 15,
-            'futureOnly': true
-       });
+            //'dateFormat':'DD-MM-YYYY h:m',
+            //'dateOnly':true,
+            //'minuteInterval' : 30,
+            //'futureOnly': true,
+            //'autodateOnStart':false,
+            //'closeonSelected':true,
+            'minDate':  new Date(2014, 07, 25, 0, 0, 0)
+            
+       });*/
+   
     var showPopover = function () {
         $(this).popover('show');
     }

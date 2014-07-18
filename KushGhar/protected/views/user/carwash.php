@@ -146,7 +146,7 @@
        
     $('#DifferentLocation').bootstrapSwitch();
     //   $("#DifferentLocation").val('0');
-    var currentDate=new Date.today().addDays(1);
+    var currentDate=new Date.today().addDays(2);
     var maxdate=new Date();
     maxdate.setFullYear(maxdate.getFullYear()-19);
     var mindate=new Date();
@@ -210,6 +210,7 @@
     }
     
     $(function () {
+      
     var showPopover = function () {
         $(this).popover('show');
     }

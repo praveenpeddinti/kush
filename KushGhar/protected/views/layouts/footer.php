@@ -7,7 +7,7 @@
                         <a href="#" onclick="HomeClick();">Home</a> | <a href="/site/cleaning">Services</a> | <a href="/site/aboutus">About Us</a> | <a href="/site/press">Press</a> | <a href="/site/careers">Careers</a> | <a href="/site/mission">KushGhar's Mission</a> | <a href="/site/termsofService">Terms of Service </a> | <a href="/site/privacyPolicy">Privacy Notice</a>
                     </div>
                     <div id="sitefooter" style="display:none">
-                      <a href="#" onclick="HomeClick();">Home</a> | <a href="/site/cleaning">Services</a> | <a href="/site/aboutus">About Us</a> | <a href="/site/press">Press</a> | <a href="/site/careers">Careers</a> | <a href="/site/mission">KushGhar's Mission</a> | <a href="/site/termsofService">Terms of Service </a> | <a href="/site/privacyPolicy">Privacy Notice</a> | <a href="<?php echo Yii::app()->request->baseUrl; ?>/admin/login">Admin</a>  
+                      <a href="#" onclick="HomeClick();">Home</a> | <a href="/site/cleaning">Services</a> | <a href="/site/aboutus">About Us</a> | <a href="/site/press">Press</a> | <a href="/site/careers">Careers</a> | <a href="/site/mission">KushGhar's Mission</a> | <a href="/site/termsofService">Terms of Service </a> | <a href="/site/privacyPolicy">Privacy Notice</a> | <a href="<?php echo Yii::app()->request->baseUrl; ?>/site/adminlogin">Admin</a>  
                     </div>
                     
                 </div>

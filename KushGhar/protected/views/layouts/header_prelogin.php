@@ -39,7 +39,7 @@
                                 <li class="dropdown ">
                                    
                                         
-                                        <a class="vendor_b" href="/vendor/vregistration"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/vendor_b.png" class="logo" /></a>
+                                        <a class="vendor_b" href="/site/vregistration"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/vendor_b.png" class="logo" /></a>
 
                                    
                                     
@@ -184,7 +184,7 @@
     
     
     function loginpopup(){
-        window.location.href='<?php echo Yii::app()->request->baseUrl; ?>/user/registration';
+        window.location.href='<?php echo Yii::app()->request->baseUrl; ?>/site/registration';
         
         //getCollectionDataWithPagination('/user/inviteRegistration','my', 'modelBodyDiv', '');
     }
@@ -192,6 +192,6 @@
         window.location.href='<?php echo Yii::app()->request->baseUrl; ?>/admin/login';
     }
     function SignInpopup(){
-        window.location.href='<?php echo Yii::app()->request->baseUrl; ?>/user/registration?ClickBy=SignIn';
+        window.location.href='<?php echo Yii::app()->request->baseUrl; ?>/site/registration?ClickBy=SignIn';
     }
 </script>

@@ -30,12 +30,7 @@
     }
 
 </script>
-
-
-
-
 <div class="container">
-    
     <section>
         <div class="container minHeight">
             <aside>
@@ -46,31 +41,18 @@
                             <li class=""><a href="#" ><span class="KGpayment"> </span></a></li>-->
                             <li class="active" title="Account"><a href="#" ><span class="KGaccounts"> </span></a></li>
                         </ul>
-
                     </div>
                     <div class="sub_menu ">
                         <div id="accounts" class="collapse in">
                             <div class="selected_tab">Dashboard</div>
                             <ul class="l_menu_sub_menu">
-                               
-                                <li class="active"><a href="/admin/dashboard"> <i class="fa fa-users"></i> Invite Friends</a>
-                                    
-                                </li>
-                                <li><a href="/admin/manage"> <i class="fa fa-users"></i> Invite Management</a>
-                                    
-                                </li>
-                                <li><a href="/admin/order"> <i class="fa fa-file-text"></i> Orders</a>
-                                </li>
-                                <li>
-                                    <a href="/admin/usermanagement"><i class="fa fa-user"></i> User Management</a>
-                                </li>
-                                 <li>
-                                    <a href="/admin/vendormanagement"><i class="fa fa-user"></i> Vendor Management</a>
-                                </li>
+                                <li class="active"><a href="/admin/dashboard"> <i class="fa fa-users"></i> Invite Friends</a></li>
+                                <li><a href="/admin/manage"> <i class="fa fa-users"></i> Invite Management</a></li>
+                                <li><a href="/admin/order"> <i class="fa fa-file-text"></i> Orders</a></li>
+                                <li><a href="/admin/usermanagement"><i class="fa fa-user"></i> User Management</a></li>
+                                <li><a href="/admin/vendormanagement"><i class="fa fa-user"></i> Vendor Management</a></li>
                             </ul>
                         </div>
-                        
-                       
                     </div>
                 </div>
             </aside>
@@ -79,55 +61,101 @@
                     <div class="span12">
                         <h4 class="paddingL20">Invite Friends</h4>
                         <hr>
-                        <div class="paddinground">
-                        <div id="inviteFriendsSpinLoader"></div>
-    <?php $form = $this->beginWidget('CActiveForm', array(
-                                  'id' => 'Bulk-form',
-                                  'enableClientValidation' => true,
-                                  'clientOptions' => array(
-                                  'validateOnSubmit' => true,
-                                  )
-                            ));?>
-                            
-                            <?php echo $form->error($model, 'error'); ?>
-                            <?php echo $form->hiddenField($model,'InviteType', array('value'=>'1')); ?>
-                            <fieldset>
-                            <div class="row-fluid">    
-                            <div class=" span8">
-    
-        <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> Email Ids'); ?>
-        <?php echo $form->textArea($model,'EmailIds',array('placeholder'=>'Email Ids…', 'maxlength' => 200, 'cols'=>10, 'rows'=>10, 'class' => 'span12')); ?>
-        <?php echo $form->error($model,'EmailIds'); ?>
+                            <div class="paddinground">
+                                <table style="width:40%">
+                                    <tr style="width:100%">
+                                        <td style="width:50%">
+                                          <input type="radio" name="inviteType" checked="checked" value="single" onchange="onSelectType(this.value);"> Single
+                                        </td>
+                                        <td style="width:50%">
+                                           <input type="radio" name="inviteType" value="multiple" onchange="onSelectType(this.value);"> Multiple
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br>
                                 
-   </div>
-                                <div class=" span4">
-                                        <div  class=" paddingT30">
-                                       <?php echo CHtml::ajaxButton('Invite', array('admin/dashboard'), array(
-                                            'type' => 'POST',
-                                            'dataType' => 'json',
-                                            'beforeSend' => 'function(){
-                                                                scrollPleaseWait("inviteFriendsSpinLoader","Bulk-form");}',
-                                            'success' => 'function(data,status,xhr) { bulkuploadhandler(data,status,xhr);}'), array('class' => 'btn btn-primary', 'type' => 'submit'));
-                                    ?></div>
+                                <div id="inviteFriendsSpinLoader"></div>
+                                <div id="singleInvite">
+                                <?php $inviteFriends=$this->beginWidget('CActiveForm', array(
+                                                                'id'=>'invite-friends',
+                                                                'enableClientValidation'=>true,
+                                                                //'action'=>Yii::app()->createUrl('user/invite'),
+                                                                'clientOptions'=>array(
+                                                                        'validateOnSubmit'=>true,
+                                                                )
+                                )); ?>
+                                                        
+                                <?php echo $inviteFriends->error($inviteModel, 'error'); ?>
+                                <?php echo $inviteFriends->hiddenField($inviteModel,'InviteType', array('value'=>'0')); ?>
+                                <?php echo $inviteFriends->hiddenField($inviteModel,'Referrer',array('value'=>$this->session['email'])); ?>
+                                <div class='row-fluid'>
+                                    <div class='span4'>
+                                        <?php echo $inviteFriends->labelEx($inviteModel,'<abbr title="required">*</abbr> First Name'); ?>
+                                        <?php echo $inviteFriends->textField($inviteModel,'FirstName', array( 'class'=>'span12','placeholder'=>'First Name…', 'maxLength' => 50)); ?>
+                                        <?php echo $inviteFriends->error($inviteModel,'FirstName'); ?>
                                     </div>
-</div>
-                                
-
-
-                                    </fieldset>
-                            <?php $this->endWidget(); ?>
-                                
-   </div>    
-                            
-
-
-                                
+                                    <div class='span4'>
+                                        <?php echo $inviteFriends->labelEx($inviteModel,'<abbr title="required">*</abbr> Last Name'); ?>
+                                        <?php echo $inviteFriends->textField($inviteModel,'LastName', array( 'class'=>'span12','placeholder'=>'Last Name…', 'maxLength' => 50)); ?>
+                                        <?php echo $inviteFriends->error($inviteModel,'LastName'); ?>
+                                    </div>
+                                    <div class=" span4">
+                                        <?php echo $inviteFriends->labelEx($inviteModel,'<abbr title="required">*</abbr> phone'); ?>
+                                        <input type="text" value="+91" disabled="disabled" style="width:40px" class="span2" />&nbsp;<?php echo $inviteFriends->textField($inviteModel,'Phone',array('class'=>'span9','placeholder'=>'Phone…', 'maxLength' => 10, 'onkeypress' => 'return isNumberKey(event);')); ?>
+                                        <?php echo $inviteFriends->error($inviteModel,'Phone'); ?>
+                                    </div>
+                                </div>
+                                <div class='row-fluid'>
+                                    <div class='span6'>
+                                        <?php echo $inviteFriends->labelEx($inviteModel,'<abbr title="required">*</abbr> Email'); ?>
+                                        <?php echo $inviteFriends->textField($inviteModel,'Email', array( 'class'=>'span12','placeholder'=>'Email…', 'maxLength' => 100)); ?>
+                                        <?php echo $inviteFriends->error($inviteModel,'Email'); ?>
+                                    </div>
+                                    <div class='span6'>
+                                        <?php echo $inviteFriends->labelEx($inviteModel,'Location'); ?>
+                                        <?php echo $inviteFriends->dropDownList($inviteModel,'Location', array(''=>'Select Location','AG Colony'=>'AG Colony','Ameerpet'=>'Ameerpet','Banjara Hills'=>'Banjara Hills','Begumpet'=>'Begumpet','Bharath Nagar'=>'Bharath Nagar','Chikalguda'=>'Chikalguda','Domalguda'=>'Domalguda',
+                                            'Gachibowli'=>'Gachibowli','Hitech City'=>'Hitech City','JNTU'=>'JNTU','Jubilee Hills'=>'Jubilee Hills','Kalyan Nagar'=>'Kalyan Nagar','Khairatabad'=>'Khairatabad','Kondapur'=>'Kondapur',
+                                            'KPHB'=>'KPHB','Kukatpally'=>'Kukatpally','Lingampally'=>'Lingampally','Madhapur'=>'Madhapur','Madinaguda'=>'Madinaguda','Malaysian Town Ship'=>'Malaysian Town Ship','Mehdipatnam'=>'Mehdipatnam',
+                                            'Miyapur'=>'Miyapur','Moosapet'=>'Moosapet','Musheerabad'=>'Musheerabad','Nizampet'=>'Nizampet','Padmarao Nagar'=>'Padmarao Nagar','Panjagutta'=>'Panjagutta','Ram Nagar'=>'Ram Nagar',
+                                            'Rasoolpura'=>'Rasoolpura','RTC X Roads'=>'RTC X Roads','Sanath Nagar'=>'Sanath Nagar','Tarnaka'=>'Tarnaka','Tolichowki'=>'Tolichowki','Vengal Rao Nagar'=>'Vengal Rao Nagar',
+                                            'Vivekananda Nagar'=>'Vivekananda Nagar','Warasiguda'=>'Warasiguda','Yousufguda'=>'Yousufguda'), array('options' => '', 'class' => 'span12'));?>
+                                        <?php echo $inviteFriends->error($inviteModel,'Location'); ?> 
+                                    </div>
+                                </div>
+                                <?php $this->endWidget(); ?>
+                                <div style="text-align: right">
+                                    <?php echo CHtml::Button('Invite',array('id' => 'inviteButton','class' => 'btn btn-primary','onclick'=>'inviteClick();')); ?>
+                                </div>
+                           </div>  
+                                <div id="multiple" style="display:none;">
+                                    <label>
+                                        Multiple Invite needs a CSV file and the functionality will be implemented as soon as possible
+                                    </label>
+                                </div>
+                                </div>
                         </div>
                     </div>
                 </article>
-                </div>
-            
-        
-    </section>
-</div>
-
+            </div>
+        </section>
+    </div>
+<script type="text/javascript">
+    function onSelectType(type)
+    {
+        if(type=='single')
+        {
+            document.getElementById('multiple').style.display='none';
+            document.getElementById('singleInvite').style.display='block';
+        }
+        else if(type=='multiple')
+        {
+            document.getElementById('multiple').style.display='block';
+            document.getElementById('singleInvite').style.display='none';
+        }
+    }
+    function inviteClick() {
+        scrollPleaseWait("inviteSpinLoader","invite-form")
+         var data = $("#invite-friends").serialize();
+         ajaxRequest('/admin/dashboard', data)
+}
+    </script>

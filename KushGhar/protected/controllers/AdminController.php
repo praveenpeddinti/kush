@@ -179,7 +179,7 @@ class AdminController extends Controller {
         try {
             if (isset($_GET['userDetails_page'])) {
                 $model = new BulkForm;
-                $totaluser = $this->kushGharService->getTotalUsers();
+                $totaluser = $this->kushGharService->getTotalUsers($_GET['uname'],$_GET['phone'],$_GET['status']);
                 $startLimit = ((int) $_GET['userDetails_page'] - 1) * (int) $_GET['pageSize'];
                 $endLimit = $_GET['pageSize'];
                 if(count($totaluser)==0)
@@ -188,7 +188,7 @@ class AdminController extends Controller {
                 }
                 else
                 {
-                $userDetails = $this->kushGharService->getAllUsers($startLimit, $endLimit);
+                $userDetails = $this->kushGharService->getAllUsers($startLimit, $endLimit,$_GET['uname'],$_GET['phone'],$_GET['status']);
                 $renderHtml = $this->renderPartial('newManage', array('userDetails' => $userDetails, 'totalCount' => $totaluser), true);
                 $obj = array('status' => 'success', 'html' => $renderHtml, 'totalCount' => $totaluser);
                

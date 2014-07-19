@@ -88,9 +88,27 @@ class InviteUser extends CActiveRecord {
         return $InviteUserDetailsWithEmail;
     }
     
-   public function getTotalUsers(){
-        try{            
-            $query = "SELECT count(*) as count FROM KG_InvitationUsers";
+   public function getTotalUsers($uname,$phone,$status){
+        try{
+            
+            if(($uname=='')&&($phone=='')&&($status=='20'))
+                $query = "select count(*) as count from KG_InvitationUsers";
+            else if(($uname=='')&&($phone=='')&&($status!='20'))
+                $query="select count(*) as count from KG_InvitationUsers where invite=".$status;
+            else if(($uname!='')&&($phone=='')&&($status=='20'))
+                $query="select count(*) as count from KG_InvitationUsers where CONCAT_WS(' ',first_name,last_name) like '%".$uname."%'";
+            else if(($uname=='')&&($phone!='')&&($status=='20'))
+                $query="select count(*) as count from KG_InvitationUsers where phone like '%".$phone."%'";
+            else if(($uname=='')&&($phone!='')&&($status!='20'))
+                $query="select count(*) as count from KG_InvitationUsers where invite=".$status." and phone like '%".$phone."%'";
+            else if(($uname!='')&&($phone=='')&&($status!='20'))
+                $query="select count(*) as count from KG_InvitationUsers where CONCAT_WS(' ',first_name,last_name) like '%".$uname."%' and invite=".$status;
+            else if(($uname!='')&&($phone!='')&&($status=='20'))
+                $query="select count(*) as count from KG_InvitationUsers where CONCAT_WS(' ',first_name,last_name) like '%".$uname."%' and phone like '%".$phone."%'";
+            else if(($uname!='')&&($phone!='')&&($status!='20'))
+                $query="select count(*) as count from KG_InvitationUsers where CONCAT_WS(' ',first_name,last_name) like '%".$uname."%' and phone like '%".$phone."%' and invite=".$status;
+           
+//            $query = "SELECT count(*) as count FROM KG_InvitationUsers";
                    
             $result = Yii::app()->db->createCommand($query)->queryRow();
         
@@ -99,9 +117,26 @@ class InviteUser extends CActiveRecord {
         }
         return $result['count'];
     } 
-   public function getAllUsers($start,$end){
-        try{            
-            $query = "SELECT * FROM KG_InvitationUsers where status =1 ORDER BY id DESC limit ".$start. ",".$end;
+   public function getAllUsers($start,$end,$uname,$phone,$status){
+        try{     
+            if(($uname=='')&&($phone=='')&&($status=='20'))
+                $query = "select * from KG_InvitationUsers ORDER BY id DESC limit ".$start. ",".$end;
+            else if(($uname=='')&&($phone=='')&&($status!='20'))
+                $query="select * from KG_InvitationUsers where invite=".$status. " ORDER BY id DESC limit ".$start. ",".$end;
+            else if(($uname!='')&&($phone=='')&&($status=='20'))
+                $query="select * from KG_InvitationUsers where CONCAT_WS(' ',first_name,last_name) like '%".$uname."%' ORDER BY id DESC limit ".$start. ",".$end;
+            else if(($uname=='')&&($phone!='')&&($status=='20'))
+                $query="select * from KG_InvitationUsers where phone like '%".$phone."%' ORDER BY id DESC limit ".$start. ",".$end;
+            else if(($uname=='')&&($phone!='')&&($status!='20'))
+                $query="select * from KG_InvitationUsers where invite=".$status." and phone like '%".$phone."%' ORDER BY id DESC limit ".$start. ",".$end;
+            else if(($uname!='')&&($phone=='')&&($status!='20'))
+                $query="select * from KG_InvitationUsers where CONCAT_WS(' ',first_name,last_name) like '%".$uname."%' and invite=".$status." ORDER BY id DESC limit ".$start. ",".$end;
+            else if(($uname!='')&&($phone!='')&&($status=='20'))
+                $query="select * from KG_InvitationUsers where CONCAT_WS(' ',first_name,last_name) like '%".$uname."%' and phone like '%".$phone."%' ORDER BY id DESC limit ".$start. ",".$end;
+            else if(($uname!='')&&($phone!='')&&($status!='20'))
+                $query="select * from KG_InvitationUsers where CONCAT_WS(' ',first_name,last_name) like '%".$uname."%' and phone like '%".$phone."%' and invite=".$status." ORDER BY id DESC limit ".$start. ",".$end;
+           
+//            $query = "SELECT * FROM KG_InvitationUsers where status =1 ORDER BY id DESC limit ".$start. ",".$end;
                 
             $result = Yii::app()->db->createCommand($query)->queryAll();
         

@@ -96,7 +96,7 @@
            </div>
            <div class=" span4">
                 <label><abbr title="required">*</abbr> Pin Code</label>
-                <input type="text" class="span12" id="11_PinCode" value="" maxLength="6"  onkeypress="return isNumberKey(event); >
+                <input type="text" class="span12" id="11_PinCode" value="" maxLength="6"  onkeypress="return isNumberKey(event);">
                 <div id="11_PinCode_em" class="errorMessage" style="display:none"></div>
            </div>
            </div>

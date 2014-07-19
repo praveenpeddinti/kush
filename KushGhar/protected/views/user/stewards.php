@@ -96,6 +96,7 @@ $form = $this->beginWidget('CActiveForm', array(
 <?php echo $form->checkBox($model1, 'PostDinner', array('id' => 'StewardCleaningForm_PostDinner')); ?>
                 </div>
             </div>
+            
         </div>
     </div>
     <div class="row-fluid">
@@ -107,8 +108,56 @@ $form = $this->beginWidget('CActiveForm', array(
             <?php echo $form->textField($model1, 'totalStewards', array('value'=>$TotalStewards,'maxLength' => 4, 'class' => 'span6','onkeypress' => 'return isNumberKey(event);')); ?>
             <?php echo $form->error($model1, 'totalStewards'); ?>
         </div>
-        
+        <div class="span6">
+                <?php echo $form->label($model1, 'DifferentAddress'); ?>
+                <div class="switch switch-large" id="DifferentAddress" data-on-label="Yes" data-off-label="No">
+                <?php echo $form->checkBox($model1, 'DifferentAddress', array('id' => 'StewardCleaningForm_DifferentAddress')); ?>
+                </div>
+            </div>
     </div>
+    <div class="row-fluid">
+            <div class=" span4">
+                <label><abbr title="required">*</abbr> Address Line1</label>
+                <?php  echo $form->textField($model1, 'Address1', array('value'=>$getServiceDetails['S_address1'],'maxLength'=>'100', 'class' => 'span12')); ?>
+                <?php echo $form->error($model1, 'Address1'); ?>
+                
+             </div>
+             <div class=" span4">
+                <label> Address Line2</label>
+                <?php  echo $form->textField($model1, 'Address2', array('value'=>$getServiceDetails['S_address2'],'maxLength'=>'100', 'class' => 'span12')); ?>
+                <?php  echo $form->error($model1, 'Address2'); ?>
+             </div>
+             <div class=" span4">
+                <label> Alternate Phone</label><input type="text" value="+91" disabled="disabled" class="span3"/>
+                <?php  echo $form->textField($model1, 'AlternatePhone', array('value'=>$getServiceDetails['S_alternate_phone'],'maxLength'=>'10', 'class' => 'span9', 'onkeypress'=>'return isNumberKey(event);')); ?>
+                <?php echo $form->error($model1, 'AlternatePhone'); ?>
+                
+             </div> 
+        </div>
+        <div class="row-fluid">
+            <div class=" span4">
+                <label><abbr title="required">*</abbr> State</label>
+                <?php echo $form->dropDownList($model1, 'State', CHtml::listData($States, 'Id', 'StateName'), array('prompt'=>'Select State','options' => array($customerAddressDetails->address_state => array('selected' => 'selected')), 'class' => 'span12')); ?>
+                <?php echo $form->error($model1,'State'); ?>
+                <!--<select name="State" id="State" class="span12" >
+                    <option value="">Select State</option>
+                    <?php //foreach ($States as $course) { ?>
+                    <option  value="<?php //echo $course['Id']; ?>"><?php //echo $course['StateName']; ?></option>
+                    <?php //} ?>
+                    </select>
+                    <div id="State_em" class="errorMessage" style="display:none"></div>-->
+             </div>
+             <div class=" span4">
+                <label><abbr title="required">*</abbr> City</label>
+                <?php  echo $form->textField($model1, 'City', array('value'=>$getServiceDetails['S_city'],'maxLength'=>'25', 'class' => 'span12')); ?>
+                <?php echo $form->error($model1, 'City'); ?>               
+           </div>
+           <div class=" span4">
+                <label><abbr title="required">*</abbr> Pin Code</label>
+                <?php  echo $form->textField($model1, 'PinCode', array('value'=>$getServiceDetails['S_pincode'],'maxLength'=>'6', 'class' => 'span12', 'onkeypress'=>'return isNumberKey(event);')); ?>
+                <?php echo $form->error($model1, 'PinCode'); ?>
+           </div>
+           </div>
     <div class="row-fluid">
         <div class=" span12">
             <div class="pull-right paddingT30">
@@ -135,6 +184,14 @@ $form = $this->beginWidget('CActiveForm', array(
         $('#Dessert').bootstrapSwitch();
         $('#Beverage').bootstrapSwitch();
         $('#PostDinner').bootstrapSwitch();
+        $('#DifferentAddress').bootstrapSwitch();
+        
+        <?php if($getServiceDetails['S_differentaddress'] == 1){ ?>
+        $('#DifferentAddress').bootstrapSwitch('setState', true);
+        
+        <?php } else {?>
+        $('#DifferentAddress').bootstrapSwitch('setState', false);
+        <?php } ?>
         if( ($('#StewardCleaningForm_HouseCleaning').val()==1) ||($('#StewardCleaningForm_CarCleaning').val()==1)){
             $('#StewardsCleaningPrevious').show();
         }
@@ -167,6 +224,28 @@ $form = $this->beginWidget('CActiveForm', array(
         <?php } else {?>
         $('#PostDinner').bootstrapSwitch('setState', false);
         <?php } ?>
+        $('#DifferentAddress').on('switch-change', function (e, data) {
+            var $el = $(data.el);
+            value = data.value;
+            
+            if(value == true){
+                
+                $('#StewardCleaningForm_Address1').val('<?php echo $customerAddressDetails->address_line1;?>');
+                $('#StewardCleaningForm_Address2').val('<?php echo $customerAddressDetails->address_line2;?>');
+                $('#StewardCleaningForm_AlternatePhone').val('<?php echo $customerAddressDetails->alternate_phone;?>');
+                
+                $('#StewardCleaningForm_City').val('<?php echo $customerAddressDetails->address_city;?>');
+                $('#StewardCleaningForm_PinCode').val('<?php echo $customerAddressDetails->address_pin_code;?>');
+            }
+            else{
+                $('#StewardCleaningForm_Address1').val('<?php echo $getServiceDetails["S_address1"];?>');
+                $('#StewardCleaningForm_Address2').val('<?php echo $getServiceDetails["S_address2"];?>');
+                $('#StewardCleaningForm_AlternatePhone').val('<?php echo $getServiceDetails["S_alternate_phone"];?>');
+                
+                $('#StewardCleaningForm_City').val('<?php echo $getServiceDetails["S_city"];?>');
+                $('#StewardCleaningForm_PinCode').val('<?php echo $getServiceDetails["S_pincode"];?>');
+            }
+         });
         //Date and Time start
         var currentDate=new Date();
                 var maxdate=new Date();

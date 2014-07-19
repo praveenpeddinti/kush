@@ -19,6 +19,13 @@ class StewardsCleaningService extends CActiveRecord {
     public $post_dinner;
     public $service_hours;
     public $no_of_stewards;
+    public $S_differentaddress;
+    public $S_address1;
+    public $S_address2;
+    public $S_alternate_phone;
+    public $S_state;
+    public $S_city;
+    public $S_pincode;
     public $create_timestamp;
     public $update_timestamp;
   
@@ -51,6 +58,13 @@ class StewardsCleaningService extends CActiveRecord {
             $servicesDetails->post_dinner = $model->PostDinner;
             $servicesDetails->service_hours = $model->DurationHours;
             $servicesDetails->no_of_stewards = $model->totalStewards;
+            $servicesDetails->S_differentaddress = $model->DifferentAddress;
+            $servicesDetails->S_address1 = $model->Address1;
+            $servicesDetails->S_address2 = $model->Address2;
+            $servicesDetails->S_alternate_phone = $model->AlternatePhone;
+            $servicesDetails->S_state = $model->State;
+            $servicesDetails->S_city = $model->City;
+            $servicesDetails->S_pincode = $model->PinCode;
             $servicesDetails->status = 0;
             $servicesDetails->create_timestamp = gmdate("Y-m-d H:i:s", time());
             $servicesDetails->update_timestamp = gmdate("Y-m-d H:i:s", time());
@@ -88,6 +102,13 @@ class StewardsCleaningService extends CActiveRecord {
             $servicesDetails->post_dinner = $model->PostDinner;
             $servicesDetails->service_hours = $model->DurationHours;
             $servicesDetails->no_of_stewards = $model->totalStewards;
+            $servicesDetails->S_differentaddress = $model->DifferentAddress;
+            $servicesDetails->S_address1 = $model->Address1;
+            $servicesDetails->S_address2 = $model->Address2;
+            $servicesDetails->S_alternate_phone = $model->AlternatePhone;
+            $servicesDetails->S_state = $model->State;
+            $servicesDetails->S_city = $model->City;
+            $servicesDetails->S_pincode = $model->PinCode;
             $servicesDetails->status = 0;
             //$servicesDetails->create_timestamp = gmdate("Y-m-d H:i:s", time());
             $servicesDetails->update_timestamp = gmdate("Y-m-d H:i:s", time());

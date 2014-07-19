@@ -22,6 +22,13 @@ class StewardCleaningForm extends CFormModel {
     public $DurationHours;
     public $ServiceHours;
     public $totalStewards;
+    public $DifferentAddress;
+    public $Address1;
+    public $Address2;
+    public $AlternatePhone;
+    public $State;
+    public $City;
+    public $PinCode;
     public $Status;
     public $HouseCleaning;
     public $CarCleaning;
@@ -45,7 +52,7 @@ class StewardCleaningForm extends CFormModel {
             ),
             //array('AttendPeople', 'numerical', 'integerOnly'=>true),
             //array('AttendPeople', 'length', 'min'=>5),*/
-            array('PriceFlag, HouseCleaning, CarCleaning, StewardCleaning, EventType, EventName, ServiceStartTime, totalStewards,StartTime, EndTime, AttendPeople, Appetizers, Dinner, Dessert, Beverage, PostDinner, DurationHours, ServiceHours, totalStewards,  Status, ServicesId, Id', 'safe'),
+            array('PriceFlag, HouseCleaning, CarCleaning, StewardCleaning, EventType, EventName, ServiceStartTime, totalStewards,StartTime, EndTime, AttendPeople, Appetizers, Dinner, Dessert, Beverage, PostDinner, DurationHours, ServiceHours, totalStewards,DifferentAddress, Address1, Address2, State, City, PinCode,AlternatePhone,  Status, ServicesId, Id', 'safe'),
         );
     }
 

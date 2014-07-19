@@ -31,12 +31,18 @@
                                         <?php if($getServiceDetails['squarefeets']=='0') {$squareFeetsValue='';}else{ $squareFeetsValue=$getServiceDetails['squarefeets'];} echo $form->textField($model, 'SquareFeets', array('value'=>$squareFeetsValue,'maxLength' => 5, 'class' => 'span12')); ?>
                                         <?php echo $form->error($model, 'SquareFeets'); ?>
                                     </div>
-                                      <div class="span8">
+                                      <div class="span4">
                                         <label><abbr title="required">*</abbr> Service Date</label>
                                         <?php  echo $form->textField($model, 'ServiceStartTime', array('value'=>$getServiceDetails['houseservice_start_time'], 'class' => 'span5','readOnly'=>true)); ?>
                                         <?php echo $form->error($model, 'ServiceStartTime'); ?>
 
                                     </div>
+                                    <div class="span4">
+                                        <label>Different Address</label>
+                                        <div class="switch switch-large" id="DifferentAddress" data-on-label="Yes" data-off-label="No">
+                                        <?php echo $form->checkBox($model, 'DifferentAddress', array('id' => 'HouseCleaningForm_DifferentAddress')); ?>
+                                       </div>
+                                      </div>
                                 </div>
                                 
                                 </div>
@@ -122,7 +128,49 @@
                                             </div>
                                         </div>
                                     </div><hr>
-                                    
+                                    <div class="row-fluid">
+            <div class=" span4">
+                <label><abbr title="required">*</abbr> Address Line1</label>
+                <?php  echo $form->textField($model, 'Address1', array('value'=>$getServiceDetails['H_address1'],'maxLength'=>'100', 'class' => 'span12')); ?>
+                <?php echo $form->error($model, 'Address1'); ?>
+                
+             </div>
+             <div class=" span4">
+                <label> Address Line2</label>
+                <?php  echo $form->textField($model, 'Address2', array('value'=>$getServiceDetails['H_address2'],'maxLength'=>'100', 'class' => 'span12')); ?>
+                <?php  echo $form->error($model, 'Address2'); ?>
+             </div>
+             <div class=" span4">
+                <label> Alternate Phone</label><input type="text" value="+91" disabled="disabled" class="span3"/>
+                <?php  echo $form->textField($model, 'AlternatePhone', array('value'=>$getServiceDetails['H_alternate_phone'],'maxLength'=>'10', 'class' => 'span9', 'onkeypress'=>'return isNumberKey(event);')); ?>
+                <?php echo $form->error($model, 'AlternatePhone'); ?>
+                
+             </div> 
+        </div>
+        <div class="row-fluid">
+            <div class=" span4">
+                <label><abbr title="required">*</abbr> State</label>
+                <?php echo $form->dropDownList($model, 'State', CHtml::listData($States, 'Id', 'StateName'), array('prompt'=>'Select State','options' => array($customerAddressDetails->address_state => array('selected' => 'selected')), 'class' => 'span12')); ?>
+                <?php echo $form->error($model,'State'); ?>
+                <!--<select name="State" id="State" class="span12" >
+                    <option value="">Select State</option>
+                    <?php //foreach ($States as $course) { ?>
+                    <option  value="<?php //echo $course['Id']; ?>"><?php //echo $course['StateName']; ?></option>
+                    <?php //} ?>
+                    </select>
+                    <div id="State_em" class="errorMessage" style="display:none"></div>-->
+             </div>
+             <div class=" span4">
+                <label><abbr title="required">*</abbr> City</label>
+                <?php  echo $form->textField($model, 'City', array('value'=>$getServiceDetails['H_city'],'maxLength'=>'25', 'class' => 'span12')); ?>
+                <?php echo $form->error($model, 'City'); ?>               
+           </div>
+           <div class=" span4">
+                <label><abbr title="required">*</abbr> Pin Code</label>
+                <?php  echo $form->textField($model, 'PinCode', array('value'=>$getServiceDetails['H_pincode'],'maxLength'=>'6', 'class' => 'span12', 'onkeypress'=>'return isNumberKey(event);')); ?>
+                <?php echo $form->error($model, 'PinCode'); ?>
+           </div>
+           </div>
                                     
                                    
                                 
@@ -179,6 +227,14 @@
         $('#FridgeInterior').bootstrapSwitch();
         $('#MicroWaveOven').bootstrapSwitch();
         $('#PoojaRoom').bootstrapSwitch();
+        $('#DifferentAddress').bootstrapSwitch();
+        
+        <?php if($getServiceDetails['H_differentaddress'] == 1){ ?>
+        $('#DifferentAddress').bootstrapSwitch('setState', true);
+        
+        <?php } else {?>
+        $('#DifferentAddress').bootstrapSwitch('setState', false);
+        <?php } ?>
         <?php if($getServiceDetails['window_grills'] == 1){ ?>
         $('#WindowGrills').bootstrapSwitch('setState', true);
         $('#WindowGrillsTooltip').show();
@@ -201,10 +257,33 @@
         <?php } ?>
             <?php if($getServiceDetails['pooja_room_cleaning'] == 1){ ?>
         $('#PoojaRoom').bootstrapSwitch('setState', true);
+         
         <?php } else {?>
         $('#PoojaRoom').bootstrapSwitch('setState', false);
+        
         <?php } ?>
+         $('#DifferentAddress').on('switch-change', function (e, data) {
+            var $el = $(data.el);
+            value = data.value;
             
+            if(value == true){
+                
+                $('#HouseCleaningForm_Address1').val('<?php echo $customerAddressDetails->address_line1;?>');
+                $('#HouseCleaningForm_Address2').val('<?php echo $customerAddressDetails->address_line2;?>');
+                $('#HouseCleaningForm_AlternatePhone').val('<?php echo $customerAddressDetails->alternate_phone;?>');
+                
+                $('#HouseCleaningForm_City').val('<?php echo $customerAddressDetails->address_city;?>');
+                $('#HouseCleaningForm_PinCode').val('<?php echo $customerAddressDetails->address_pin_code;?>');
+            }
+            else{
+                $('#HouseCleaningForm_Address1').val('<?php echo $getServiceDetails["H_address1"];?>');
+                $('#HouseCleaningForm_Address2').val('<?php echo $getServiceDetails["H_address2"];?>');
+                $('#HouseCleaningForm_AlternatePhone').val('<?php echo $getServiceDetails["H_alternate_phone"];?>');
+                
+                $('#HouseCleaningForm_City').val('<?php echo $getServiceDetails["H_city"];?>');
+                $('#HouseCleaningForm_PinCode').val('<?php echo $getServiceDetails["H_pincode"];?>');
+            }
+         });   
          $('#WindowGrills').on('switch-change', function (e, data) {
             var $el = $(data.el);
             value = data.value;

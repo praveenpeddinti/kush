@@ -333,8 +333,6 @@ $(document).ready(function() {
                 $("#HouseCleaningForm_ServiceStartTime_em_").addClass('errorMessage');
                 $("#HouseCleaningForm_ServiceStartTime_em_").text("Please Select Service Date.");
                 return false;
-       }else{
-              $("#HouseCleaningForm_ServiceStartTime_em_").hide();
        }
        if (($('#HouseCleaningForm_LivingRooms').val() == '0') && ($('#HouseCleaningForm_BedRooms').val() == '0') && ($('#HouseCleaningForm_Kitchens').val() == '0') && ($('#HouseCleaningForm_BathRooms').val() == '0')) {
             $("#HouseCleaningForm_ServiceStartTime_em_").hide();
@@ -344,9 +342,59 @@ $(document).ready(function() {
             $("#HouseCleaningForm_LivingRooms_em_").text("You have choosen 0 rooms at your house, Please choose atleast one kind of room.");
             return false;
         }
-         else {
-            $("#HouseCleaningForm_LivingRooms_em_").hide();
-            $("#HouseCleaningForm_NumberOfTimesServices_em_").hide();
+        if ($('#HouseCleaningForm_Address1').val()=='') {
+            $("#HouseCleaningForm_Address1_em_").show();
+            $("#HouseCleaningForm_Address1_em_").addClass('errorMessage');
+            $("#HouseCleaningForm_Address1_em_").text("Please Enter Address Line1");
+            return false;
+        }
+        if ( ($("#HouseCleaningForm_AlternatePhone").val() != "") && (!$("#HouseCleaningForm_AlternatePhone").val().match(/^[0-9]+$/)) ) {
+                $("#HouseCleaningForm_Address1_em_").hide(); 
+                $("#HouseCleaningForm_AlternatePhone_em_").show();
+                $("#HouseCleaningForm_AlternatePhone_em_").addClass('errorMessage');
+                $("#HouseCleaningForm_AlternatePhone_em_").text("Please Enter only numbers ");
+                return false;
+            } 
+        //State validation start
+            if ( ($("#HouseCleaningForm_State").val()=='') ) {
+                $("#HouseCleaningForm_State_em_").show();
+                $("#HouseCleaningForm_State_em_").addClass('errorMessage');
+                $("#HouseCleaningForm_State_em_").text("Please Select State ");
+                return false;
+            } 
+            //State validation end
+            //City validation start
+            
+            if ( (!$("#HouseCleaningForm_City").val().match(/[A-Za-z0-9]$/)) ) {
+                $("#HouseCleaningForm_Address1_em_").hide(); 
+                $("#HouseCleaningForm_City_em_").show();
+                $("#HouseCleaningForm_City_em_").addClass('errorMessage');
+                $("#HouseCleaningForm_City_em_").text("Please Enter City ");
+                return false;
+            } 
+            //City validation end
+            //Pin code validation start
+            if ( ($("#HouseCleaningForm_PinCode").val()=='') ) {
+                $("#HouseCleaningForm_PinCode_em_").show();
+                $("#HouseCleaningForm_PinCode_em_").addClass('errorMessage');
+                $("#HouseCleaningForm_PinCode_em_").text("Please Enter Pin Code ");
+                return false;
+            } 
+            if ( (!$("#HouseCleaningForm_PinCode").val().match(/^[0-9]+$/)) ) {
+                
+                $("#HouseCleaningForm_PinCode_em_").show();
+                $("#HouseCleaningForm_PinCode_em_").addClass('errorMessage');
+                $("#HouseCleaningForm_PinCode_em_").text("Please Enter only numbers ");
+                return false;
+            } 
+            if ( ($("#HouseCleaningForm_PinCode").val().length<='5') ) {
+                $("#HouseCleaningForm_PinCode_em_").show();
+                $("#HouseCleaningForm_PinCode_em_").addClass('errorMessage');
+                $("#HouseCleaningForm_PinCode_em_").text("Pin Code too short (minimum is 6 numbers).");
+                return false;
+            }else {
+            $("#HouseCleaningForm_PinCode_em_").hide();
+            //$("#HouseCleaningForm_NumberOfTimesServices_em_").hide();
             var type = '';
             if ($('#HouseCleaningSubmit').val() == 'Submit') {
                 type = 'submit';
@@ -355,6 +403,7 @@ $(document).ready(function() {
                 type = 'next';
             }
             queryString += '&Type=' + type;
+            
             ajaxRequest('/user/services', queryString, addHouseCleaningServicehandler);
         }
     }
@@ -1058,12 +1107,63 @@ function onTotalStewards(obj) {
             $("#StewardCleaningForm_EndTime_em_").text("End Date cannot be less than Start Date");
             return false;
         }
-
+        if ($('#StewardCleaningForm_Address1').val()=='') {
+            $("#StewardCleaningForm_EndTime_em_").hide();
+            $("#StewardCleaningForm_Address1_em_").show();
+            $("#StewardCleaningForm_Address1_em_").addClass('errorMessage');
+            $("#StewardCleaningForm_Address1_em_").text("Please Enter Address Line1");
+            return false;
+        }
+        if ( ($("#StewardCleaningForm_AlternatePhone").val() != "") && (!$("#StewardCleaningForm_AlternatePhone").val().match(/^[0-9]+$/)) ) {
+                $("#StewardCleaningForm_Address1_em_").hide(); 
+                $("#StewardCleaningForm_AlternatePhone_em_").show();
+                $("#StewardCleaningForm_AlternatePhone_em_").addClass('errorMessage');
+                $("#StewardCleaningForm_AlternatePhone_em_").text("Please Enter only numbers ");
+                return false;
+            } 
+        //State validation start
+            if ( ($("#StewardCleaningForm_State").val()=='') ) {
+                $("#StewardCleaningForm_State_em_").show();
+                $("#StewardCleaningForm_State_em_").addClass('errorMessage');
+                $("#StewardCleaningForm_State_em_").text("Please Select State ");
+                return false;
+            } 
+            //State validation end
+            //City validation start
+            
+            if ( (!$("#StewardCleaningForm_City").val().match(/[A-Za-z0-9]$/)) ) {
+                $("#StewardCleaningForm_Address1_em_").hide(); 
+                $("#StewardCleaningForm_City_em_").show();
+                $("#StewardCleaningForm_City_em_").addClass('errorMessage');
+                $("#StewardCleaningForm_City_em_").text("Please Enter City ");
+                return false;
+            } 
+            //City validation end
+            //Pin code validation start
+            if ( ($("#StewardCleaningForm_PinCode").val()=='') ) {
+                $("#StewardCleaningForm_PinCode_em_").show();
+                $("#StewardCleaningForm_PinCode_em_").addClass('errorMessage');
+                $("#StewardCleaningForm_PinCode_em_").text("Please Enter Pin Code ");
+                return false;
+            } 
+            if ( (!$("#StewardCleaningForm_PinCode").val().match(/^[0-9]+$/)) ) {
+                
+                $("#StewardCleaningForm_PinCode_em_").show();
+                $("#StewardCleaningForm_PinCode_em_").addClass('errorMessage');
+                $("#StewardCleaningForm_PinCode_em_").text("Please Enter only numbers ");
+                return false;
+            } 
+            if ( ($("#StewardCleaningForm_PinCode").val().length<='5') ) {
+                $("#StewardCleaningForm_PinCode_em_").show();
+                $("#StewardCleaningForm_PinCode_em_").addClass('errorMessage');
+                $("#StewardCleaningForm_PinCode_em_").text("Pin Code too short (minimum is 6 numbers).");
+                return false;
+            }
         
 
          else {
-
-            $("#StewardCleaningForm_EndTime_em_").show();
+             $("#StewardCleaningForm_PinCode_em_").hide();
+            
 
             var type = '';
             if ($('#StewardsCleaningSubmit').val() == 'Submit') {

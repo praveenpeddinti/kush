@@ -18,6 +18,13 @@ class HouseCleaningService extends CActiveRecord {
     public $microwave_oven_interior;
     public $pooja_room_cleaning;
     public $service_no_of_times;
+    public $H_differentaddress;
+    public $H_address1;
+    public $H_address2;
+    public $H_alternate_phone;
+    public $H_state;
+    public $H_city;
+    public $H_pincode;
     public $create_timestamp;
     public $update_timestamp;
   
@@ -35,7 +42,6 @@ class HouseCleaningService extends CActiveRecord {
     public function addHouseCleaningService($model,$cId,$haveService) {
         try { 
             
-            $orderNo="KG000".$cId.gmdate("Y-m-d", time());
             $servicesDetails = new HouseCleaningService();
             $servicesDetails->CustId = $cId;
             //$servicesDetails->order_number = $orderNo;
@@ -51,6 +57,13 @@ class HouseCleaningService extends CActiveRecord {
             $servicesDetails->microwave_oven_interior = $model->MicroWaveOven;
             $servicesDetails->pooja_room_cleaning = $model->PoojaRoom;
             $servicesDetails->service_no_of_times = $model->NumberOfTimesServices;
+            $servicesDetails->H_differentaddress = $model->DifferentAddress;
+            $servicesDetails->H_address1 = $model->Address1;
+            $servicesDetails->H_address2 = $model->Address2;
+            $servicesDetails->H_alternate_phone = $model->AlternatePhone;
+            $servicesDetails->H_state = $model->State;
+            $servicesDetails->H_city = $model->City;
+            $servicesDetails->H_pincode = $model->PinCode;
             $servicesDetails->status = 0;
             $servicesDetails->create_timestamp = gmdate("Y-m-d H:i:s", time());
             $servicesDetails->update_timestamp = gmdate("Y-m-d H:i:s", time());
@@ -88,6 +101,13 @@ class HouseCleaningService extends CActiveRecord {
             $servicesDetails->microwave_oven_interior = $model->MicroWaveOven;
             $servicesDetails->pooja_room_cleaning = $model->PoojaRoom;
             $servicesDetails->service_no_of_times = $model->NumberOfTimesServices;
+            $servicesDetails->H_differentaddress = $model->DifferentAddress;
+            $servicesDetails->H_address1 = $model->Address1;
+            $servicesDetails->H_address2 = $model->Address2;
+            $servicesDetails->H_alternate_phone = $model->AlternatePhone;
+            $servicesDetails->H_state = $model->State;
+            $servicesDetails->H_city = $model->City;
+            $servicesDetails->H_pincode = $model->PinCode;
             $servicesDetails->status = 0;
             //$servicesDetails->create_timestamp = gmdate("Y-m-d H:i:s", time());
             $servicesDetails->update_timestamp = gmdate("Y-m-d H:i:s", time());

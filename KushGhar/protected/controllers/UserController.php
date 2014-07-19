@@ -573,6 +573,7 @@ class UserController extends Controller {
         $customerServicesHouse = $this->kushGharService->getcustomerServicesHouse($cId);
         $customerServicesCar = $this->kushGharService->getcustomerServicesCar($cId);
         $customerServicesStewards = $this->kushGharService->getcustomerServicesStewards($cId);
+        $States = $this->kushGharService->getStates();
         $request = yii::app()->getRequest();
         $formName = $request->getParam('HomeServiceForm');
         if ($formName != '') {
@@ -608,8 +609,7 @@ class UserController extends Controller {
                         if(!empty($homeModel->HouseCleaning)){
                             $houseModel = new HouseCleaningForm;
                             $getServiceDetails = $this->kushGharService->getDetails($cId);
-                            $data=$this->renderPartial('services', array('model'=>$houseModel,'getServiceDetails'=>$getServiceDetails,'HouseCleaning'=>$HouseCleaning,'CarCleaning'=>$CarCleaning,'StewardCleaning'=>$StewardCleaning,'PriceFlag'=>'0'), true);
-                        
+                            $data=$this->renderPartial('services', array('model'=>$houseModel, "States" => $States, 'getServiceDetails'=>$getServiceDetails,"customerAddressDetails" => $customerAddressDetails,'HouseCleaning'=>$HouseCleaning,'CarCleaning'=>$CarCleaning,'StewardCleaning'=>$StewardCleaning,'PriceFlag'=>'0'), true);
                         }
                         elseif (!empty($homeModel->CarCleaning)) {
                                 $carModel = new CarWashForm;
@@ -628,7 +628,7 @@ class UserController extends Controller {
                         }elseif (!empty($homeModel->StewardCleaning)) {
                             $stewardModel = new StewardCleaningForm;
                             $getServiceDetails = $this->kushGharService->getStewardsDetails($cId);
-                            $data=$this->renderPartial('stewards', array('model1'=>$stewardModel,'getServiceDetails'=>$getServiceDetails, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails,'HouseCleaning'=>$HouseCleaning,'CarCleaning'=>$CarCleaning,'StewardCleaning'=>$StewardCleaning,'PriceFlag'=>'0'), true);
+                            $data=$this->renderPartial('stewards', array('model1'=>$stewardModel,'States' => $States,'getServiceDetails'=>$getServiceDetails, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails,'HouseCleaning'=>$HouseCleaning,'CarCleaning'=>$CarCleaning,'StewardCleaning'=>$StewardCleaning,'PriceFlag'=>'0'), true);
                            //$data=$this->renderPartial('stewards', array('model1'=>$stewardModel,'HouseCleaning'=>$HouseCleaning,'CarCleaning'=>$CarCleaning,'StewardCleaning'=>$StewardCleaning), true);
                             
                         }
@@ -656,7 +656,7 @@ class UserController extends Controller {
         $customerServicesHouse = $this->kushGharService->getcustomerServicesHouse($cId);
         $customerServicesCar = $this->kushGharService->getcustomerServicesCar($cId);
         $customerServicesStewards = $this->kushGharService->getcustomerServicesStewards($cId);
-        
+        $States = $this->kushGharService->getStates();
         $request = yii::app()->getRequest();
         $formName = $request->getParam('HouseCleaningForm');
         if ($formName != '') {
@@ -698,7 +698,7 @@ class UserController extends Controller {
                     
                  $carModel = new CarWashForm;
                         //$cId = $this->session['UserId'];
-                        $States = $this->kushGharService->getStates();
+                        
                         //$customerDetails = $this->kushGharService->getCustomerDetails($cId);
                          $getCarWashServiceDetails = $this->kushGharService->getCarWashDetails($cId);
                     //$data=$this->renderPartial('carwash', array('model'=>$carModel, 'customerDetails' => $customerDetails, "getCarWashServiceDetails" => $getCarWashServiceDetails, 'States' => $States, 'HouseCleaning'=>$HouseCleaning,'CarCleaning'=>$CarCleaning,'StewardCleaning'=>$StewardCleaning,'PriceFlag'=>'0'), true);
@@ -719,7 +719,7 @@ class UserController extends Controller {
                     //$customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($cId);
                     //$customerPaymentDetails = $this->kushGharService->getCustomerPaymentDetails($cId);
                     
-                    $data=$this->renderPartial('stewards', array('model1'=>$stewardModel,'getServiceDetails'=>$getServiceDetails, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails,'HouseCleaning'=>$HouseCleaning,'CarCleaning'=>$CarCleaning,'StewardCleaning'=>$StewardCleaning,'PriceFlag'=>'0'), true);
+                    $data=$this->renderPartial('stewards', array('model1'=>$stewardModel,'States' => $States,'getServiceDetails'=>$getServiceDetails, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails,'HouseCleaning'=>$HouseCleaning,'CarCleaning'=>$CarCleaning,'StewardCleaning'=>$StewardCleaning,'PriceFlag'=>'0'), true);
                 }
                 $obj = array('status' => 'success', 'data' => $data, 'error' => '','HouseCleaning'=>$HouseCleaning,'CarCleaning'=>$CarCleaning,'StewardCleaning'=>$StewardCleaning);
                 
@@ -754,6 +754,7 @@ class UserController extends Controller {
    public function actionStewards(){
         $stewardModel = new StewardCleaningForm;
         $cId = $this->session['UserId'];
+        $States = $this->kushGharService->getStates();
         $customerDetails = $this->kushGharService->getCustomerDetails($cId);
         $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($cId);
         $customerPaymentDetails = $this->kushGharService->getCustomerPaymentDetails($cId);
@@ -787,7 +788,7 @@ class UserController extends Controller {
                 
                             if($CarCleaning==1){
                                 $carModel = new CarWashForm;
-                           $States = $this->kushGharService->getStates();
+                           
                            $getCarWashServiceDetails = $this->kushGharService->getCarWashDetails($cId);
                            //$data=$this->renderPartial('carwash', array('model'=>$carModel, 'customerDetails' => $customerDetails, "getCarWashServiceDetails" => $getCarWashServiceDetails, 'States' => $States, 'HouseCleaning'=>$HouseCleaning,'CarCleaning'=>$CarCleaning,'StewardCleaning'=>$StewardCleaning,'PriceFlag'=>'0'), true);
                             if(count($getCarWashServiceDetails)==0){$countCars = 1;}else{$countCars = count($getCarWashServiceDetails);}
@@ -796,7 +797,7 @@ class UserController extends Controller {
                             }else{
                             $houseModel = new HouseCleaningForm;;
                             $getServiceDetails = $this->kushGharService->getDetails($cId);
-                            $data=$this->renderPartial('services', array('model'=>$houseModel,'getServiceDetails'=>$getServiceDetails, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails,'HouseCleaning'=>$HouseCleaning,'CarCleaning'=>$CarCleaning,'StewardCleaning'=>$StewardCleaning,'PriceFlag'=>'0'), true);
+                            $data=$this->renderPartial('services', array('model'=>$houseModel,"States" => $States, 'getServiceDetails'=>$getServiceDetails, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails,'HouseCleaning'=>$HouseCleaning,'CarCleaning'=>$CarCleaning,'StewardCleaning'=>$StewardCleaning,'PriceFlag'=>'0'), true);
                             }
                             
                             
@@ -1213,7 +1214,7 @@ class UserController extends Controller {
                                 
                             $houseModel1 = new HouseCleaningForm;;
                             $getServiceDetails = $this->kushGharService->getDetails($cId);
-                            $data=$this->renderPartial('services', array('model'=>$houseModel1,'getServiceDetails'=>$getServiceDetails, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails,'HouseCleaning'=>$HouseCleaning,'CarCleaning'=>$CarCleaning,'StewardCleaning'=>$StewardCleaning,'PriceFlag'=>'0'), true);
+                            $data=$this->renderPartial('services', array('model'=>$houseModel1,'States' => $States,'getServiceDetails'=>$getServiceDetails, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails,'HouseCleaning'=>$HouseCleaning,'CarCleaning'=>$CarCleaning,'StewardCleaning'=>$StewardCleaning,'PriceFlag'=>'0'), true);
                             }
                             $obj = array('status' => 'success', 'data' => $data, 'error' => '','HouseCleaning'=>$HouseCleaning,'CarCleaning'=>$CarCleaning,'StewardCleaning'=>$StewardCleaning);
     
@@ -1229,7 +1230,7 @@ class UserController extends Controller {
                             $stewardModel = new StewardCleaningForm;
                             $getServiceDetails = $this->kushGharService->getStewardsDetails($cId);
                             //$data=$this->renderPartial('stewards', array('model1'=>$stewardModel), true);
-                            $data=$this->renderPartial('stewards', array('model1'=>$stewardModel,'getServiceDetails'=>$getServiceDetails, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails,'HouseCleaning'=>$HouseCleaning,'CarCleaning'=>$CarCleaning,'StewardCleaning'=>$StewardCleaning,'PriceFlag'=>'0'), true);
+                            $data=$this->renderPartial('stewards', array('model1'=>$stewardModel,'States' => $States, 'getServiceDetails'=>$getServiceDetails, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails,'HouseCleaning'=>$HouseCleaning,'CarCleaning'=>$CarCleaning,'StewardCleaning'=>$StewardCleaning,'PriceFlag'=>'0'), true);
                             
                         }
                         $obj = array('status' => 'success', 'data' => $data, 'error' => '','HouseCleaning'=>$HouseCleaning,'CarCleaning'=>$CarCleaning,'StewardCleaning'=>$StewardCleaning);

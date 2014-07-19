@@ -55,7 +55,7 @@ class InviteForm extends CFormModel
                 //array('EmailIds', 'required','message'=>'Please enter a value for {attribute}.'),
                 // Email has to be a valid email address
                 
-                array(' FirstName,LastName,Phone,HServices,CServices,SServices,Email,EmailIds,Location,Referrer', 'safe'),
+                array(' FirstName,LastName,Phone,HServices,CServices,SServices,Email,EmailIds,Location,Referrer,InviteType', 'safe'),
                        
 		
 		);

@@ -84,7 +84,7 @@
                     </li>
                     <li><a href="order"> <i class="fa fa-file-text"></i> Orders</a>
                                 </li>
-                                <!--<li><a href="invitefriends"><i class="fa fa-users"></i> Invite Friends</a></li>-->
+                                <li><a href="invitefriends"><i class="fa fa-users"></i> Invite Friends</a></li>
                 </ul>
             </div>
             <div id="payment" class="collapse">

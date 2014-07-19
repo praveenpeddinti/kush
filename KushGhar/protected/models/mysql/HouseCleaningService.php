@@ -41,7 +41,6 @@ class HouseCleaningService extends CActiveRecord {
     //New Services
     public function addHouseCleaningService($model,$cId,$haveService) {
         try { 
-            
             $servicesDetails = new HouseCleaningService();
             $servicesDetails->CustId = $cId;
             //$servicesDetails->order_number = $orderNo;
@@ -86,7 +85,6 @@ class HouseCleaningService extends CActiveRecord {
             $servicesDetails = HouseCleaningService::model()->findByAttributes(array(), 'CustId=:CustId AND status=:status', array(':CustId' => $cId, ':status' => '0'));
             
         
-            $orderNo="KG000".$cId.gmdate("Y-m-d", time());
             $servicesDetails->CustId = $cId;
             //$servicesDetails->order_number = $orderNo;
             $servicesDetails->squarefeets = $model->SquareFeets;
@@ -111,7 +109,7 @@ class HouseCleaningService extends CActiveRecord {
             $servicesDetails->status = 0;
             //$servicesDetails->create_timestamp = gmdate("Y-m-d H:i:s", time());
             $servicesDetails->update_timestamp = gmdate("Y-m-d H:i:s", time());
-            
+           
                 if ($servicesDetails->update()) {
                     $result = "success";
                 } else {

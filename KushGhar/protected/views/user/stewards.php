@@ -229,13 +229,14 @@ $form = $this->beginWidget('CActiveForm', array(
             value = data.value;
             
             if(value == true){
+                <?php if($customerAddressDetails->alternate_phone==0){$A_Phone='';}else{$A_Phone=$customerAddressDetails->alternate_phone;};?>
                 
                 $('#StewardCleaningForm_Address1').val('<?php echo $customerAddressDetails->address_line1;?>');
                 $('#StewardCleaningForm_Address2').val('<?php echo $customerAddressDetails->address_line2;?>');
                 $('#StewardCleaningForm_AlternatePhone').val('<?php echo $customerAddressDetails->alternate_phone;?>');
                 
                 $('#StewardCleaningForm_City').val('<?php echo $customerAddressDetails->address_city;?>');
-                $('#StewardCleaningForm_PinCode').val('<?php echo $customerAddressDetails->address_pin_code;?>');
+                $('#StewardCleaningForm_PinCode').val('<?php echo $A_Phone;?>');
             }
             else{
                 $('#StewardCleaningForm_Address1').val('<?php echo $getServiceDetails["S_address1"];?>');
@@ -300,6 +301,7 @@ $form = $this->beginWidget('CActiveForm', array(
             step:30,
             minDate:date,
             scrollMonth:false,
+            defaultDate:date
         });
         $('#StewardCleaningForm_EndTime').datetimepicker({
             format:'d-m-Y H:i',

@@ -33,7 +33,7 @@
                                     </div>
                                       <div class="span4">
                                         <label><abbr title="required">*</abbr> Service Date</label>
-                                        <?php  echo $form->textField($model, 'ServiceStartTime', array('value'=>$getServiceDetails['houseservice_start_time'], 'class' => 'span5','readOnly'=>'true')); ?>
+                                        <?php  echo $form->textField($model, 'ServiceStartTime', array('value'=>$getServiceDetails['houseservice_start_time'], 'class' => 'span8','readOnly'=>'true')); ?>
                                         <?php echo $form->error($model, 'ServiceStartTime'); ?>
 
                                     </div>
@@ -201,25 +201,7 @@
     $(document).ready(function() {
          Custom.init();
          
-         //Date and Time start
-        var currentDate=new Date.today().addDays(1);
-                var maxdate=new Date();
-                maxdate.setFullYear(maxdate.getFullYear()-19);
-                var mindate=new Date();
-                mindate.setFullYear(currentDate.getFullYear());
-                mindate.setMonth(currentDate.getMonth());
-                mindate.setDate(currentDate.getDate());
                
-                $('#HouseCleaningForm_ServiceStartTime').scroller({
-                    preset: 'date',
-                    theme: 'android', // for android set theme:'android'
-                    display: 'modal',
-                    mode: 'scroller',
-                    dateFormat:'dd-mm-yyyy',
-                    dateOrder: 'Md ddyy',
-                    minDate:  mindate
-                });
-        
                 <?php //if(!empty($getServiceDetails['houseservice_start_time']) ){ ?>
                 //$('#HouseCleaningForm_ServiceStartTime').handleDtpicker('setDate', new Date(2014, 04, 25, 0, 0, 0));
                 <?php //}?>
@@ -267,18 +249,19 @@
             value = data.value;
             
             if(value == true){
-                
+                <?php if($customerAddressDetails->alternate_phone==0){$A_Phone='';}else{$A_Phone=$customerAddressDetails->alternate_phone;};?>
                 $('#HouseCleaningForm_Address1').val('<?php echo $customerAddressDetails->address_line1;?>');
                 $('#HouseCleaningForm_Address2').val('<?php echo $customerAddressDetails->address_line2;?>');
-                $('#HouseCleaningForm_AlternatePhone').val('<?php echo $customerAddressDetails->alternate_phone;?>');
+                $('#HouseCleaningForm_AlternatePhone').val('<?php echo $A_Phone;?>');
                 
                 $('#HouseCleaningForm_City').val('<?php echo $customerAddressDetails->address_city;?>');
                 $('#HouseCleaningForm_PinCode').val('<?php echo $customerAddressDetails->address_pin_code;?>');
             }
-            else{
+            else{alert("else");
+                <?php if($getServiceDetails["H_alternate_phone"]==0){$A_Phone='';}else{$A_Phone=$getServiceDetails["H_alternate_phone"];};?>
                 $('#HouseCleaningForm_Address1').val('<?php echo $getServiceDetails["H_address1"];?>');
                 $('#HouseCleaningForm_Address2').val('<?php echo $getServiceDetails["H_address2"];?>');
-                $('#HouseCleaningForm_AlternatePhone').val('<?php echo $getServiceDetails["H_alternate_phone"];?>');
+                $('#HouseCleaningForm_AlternatePhone').val('<?php echo $A_Phone;?>');
                 
                 $('#HouseCleaningForm_City').val('<?php echo $getServiceDetails["H_city"];?>');
                 $('#HouseCleaningForm_PinCode').val('<?php echo $getServiceDetails["H_pincode"];?>');

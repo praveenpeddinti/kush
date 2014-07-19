@@ -1111,6 +1111,7 @@ class UserController extends Controller {
                     $result = $this->kushGharService->getInvitationFriendUser($inviteFriends, $this->session['Type']);
                     }
                     else{
+                        $result = 'failure';
                         $errors = array("InviteForm_error" => 'User Exist.');
                         $obj = array('status' => 'error', 'data' => '', 'error' => $errors); 
                     }

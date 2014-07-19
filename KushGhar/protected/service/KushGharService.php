@@ -335,12 +335,12 @@ class KushGharService {
         return $result;
     }
 
-    public function getTotalUsers() {
-        return InviteUser::model()->getTotalUsers();
+    public function getTotalUsers($uname,$phone,$status) {
+        return InviteUser::model()->getTotalUsers($uname,$phone,$status);
     }
 
-    public function getAllUsers($startLimit, $endLimit) {
-        return InviteUser::model()->getAllUsers($startLimit, $endLimit);
+    public function getAllUsers($startLimit, $endLimit,$uname,$phone,$status) {
+        return InviteUser::model()->getAllUsers($startLimit, $endLimit,$uname,$phone,$status);
     }
 
     public function getStatusUser($id, $val) {

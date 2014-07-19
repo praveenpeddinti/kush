@@ -48,7 +48,7 @@
         </div>
         <div class="span4" >
              <label><abbr title="required">*</abbr> Service Date</label>
-             <?php echo $form->textField($model, 'ServiceStartTime', array('value'=>$CarServiceTime, 'class' => 'span8')); ?>
+             <?php echo $form->textField($model, 'ServiceStartTime', array('value'=>$CarServiceTime, 'class' => 'span8','readonly'=>'true')); ?>
              <?php echo $form->error($model, 'ServiceStartTime'); ?>
         </div>
         <div class=" span5" id="DifferentLocationDiv" style="display:none">
@@ -96,7 +96,7 @@
            </div>
            <div class=" span4">
                 <label><abbr title="required">*</abbr> Pin Code</label>
-                <input type="text" class="span12" id="11_PinCode" value="" maxLength="6"  onkeypress="return isNumberKey(event);">
+                <input type="text" class="span12" id="11_PinCode" value="" maxLength="6"  onkeypress="return isNumberKey(event);" >
                 <div id="11_PinCode_em" class="errorMessage" style="display:none"></div>
            </div>
            </div>
@@ -146,7 +146,10 @@
        
     $('#DifferentLocation').bootstrapSwitch();
     //   $("#DifferentLocation").val('0');
-    var currentDate=new Date.today().addDays(2);
+
+    /*var currentDate=new Date.today().addDays(1);
+   var currentDate=new Date.today().addDays(2);
+
     var maxdate=new Date();
     maxdate.setFullYear(maxdate.getFullYear()-19);
     var mindate=new Date();
@@ -161,7 +164,7 @@
         dateFormat:'dd-mm-yyyy',
         dateOrder: 'Md ddyy',
         minDate: mindate
-    });
+    });*/
 
  });
         
@@ -210,7 +213,18 @@
     }
     
     $(function () {
-      
+
+         var date=new Date.today().addDays(1);
+       $('#CarWashForm_ServiceStartTime').datetimepicker({
+            step:30,
+            format:'d-m-Y',
+            minDate:date,
+            formatDate:'Y/m/d',
+            scrollMonth:false,
+            timepicker:false,
+            closeOnDateSelect:true
+        });
+
     var showPopover = function () {
         $(this).popover('show');
     }

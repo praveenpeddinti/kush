@@ -8,7 +8,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl; ?>/images/favicon.ico" type="image/x-icon">
-        <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/jquery.simple-dtpicker.css" rel="stylesheet"> 
+        <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/jquery.datetimepicker.css" rel="stylesheet"> 
         <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap.css" rel="stylesheet">
         <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrapSwitch.css" rel="stylesheet">
         <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap-responsive.css" rel="stylesheet">
@@ -25,7 +25,7 @@
            <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie.css" rel="stylesheet">
         <![endif]-->
         <!-- Fav and touch icons -->
-        <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.simple-dtpicker.js"></script>
+        <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.datetimepicker.js"></script>
         
         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/common.js"> </script>
         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrap.js"> </script>

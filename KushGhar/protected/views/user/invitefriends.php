@@ -130,8 +130,48 @@
 </div>
 <script type="text/javascript">
     function inviteClick() {
+        $("")
         scrollPleaseWait("inviteSpinLoader","invite-form")
          var data = $("#invite-friends").serialize();
-         ajaxRequest('/user/invitefriends', data)
+         ajaxRequest('/user/invitefriends',  data, inviteMailHandler)
 }
+function inviteMailHandler(data)
+    { scrollPleaseWaitClose('inviteSpinLoader');
+        if(data.status =='success'){
+            $("#InviteForm_error_em_").show(1000);
+                    $("#InviteForm_error_em_").removeClass('errorMessage');
+                    $("#InviteForm_error_em_").addClass('alert alert-success');
+                    $("#InviteForm_error_em_").text(data.error);
+                    $("#InviteForm_error_em_").fadeOut(20000, "");
+                   
+        }
+        if(data.status == 'error'){
+            var lengthvalue=data.error.length;
+            var msg=data.data;
+            var error=[];
+            $("#InviteForm_error_em_").removeClass('alert alert-success');
+            $("#InviteForm_error_em_").addClass('errorMessage');
+            if(typeof(data.error)== 'string') {
+
+                    var error = eval("(" + data.error.toString() + ")");
+
+                } else {
+
+                    var error = eval(data.error);
+                }
+
+
+                $.each(error, function(key, val) {
+                    if ($("#" + key + "_em_")) {
+                        $("#"+key+"_em_").text(val);
+                        $("#"+key+"_em_").show();
+                        $("#"+key).parent().addClass('error');
+                       
+                    }
+
+                });
+            }
+            
+        } 
+
 </script>

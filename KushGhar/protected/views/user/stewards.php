@@ -44,12 +44,12 @@ $form = $this->beginWidget('CActiveForm', array(
     <div class="row-fluid">
         <div class=" span4">
             <?php echo $form->label($model1, '<abbr title="required">*</abbr> Event Start Time'); ?>
-            <?php echo $form->textField($model1, 'StartTime', array('value'=>$getServiceDetails['start_time'], 'onchange' => 'javascript:onChangeTime();', 'class' => 'span10')); ?>
+            <?php echo $form->textField($model1, 'StartTime', array('value'=>$getServiceDetails['start_time'], 'onchange' => 'javascript:onChangeTime();', 'class' => 'span10','readonly'=>'true')); ?>
 <?php echo $form->error($model1, 'StartTime'); ?>
         </div>
         <div class=" span4">
             <?php echo $form->label($model1, '<abbr title="required">*</abbr> Event End Time'); ?>
-            <?php echo $form->textField($model1, 'EndTime', array('value'=>$getServiceDetails['end_time'], 'onchange' => 'javascript:onChangeTime();','class' => 'span10')); ?>
+            <?php echo $form->textField($model1, 'EndTime', array('value'=>$getServiceDetails['end_time'], 'onchange' => 'javascript:onChangeTime();','class' => 'span10','readonly'=>'true')); ?>
 <?php echo $form->error($model1, 'EndTime'); ?>
         </div>
         <div class=" span4">
@@ -247,7 +247,7 @@ $form = $this->beginWidget('CActiveForm', array(
             }
          });
         //Date and Time start
-        var currentDate=new Date();
+        /*var currentDate=new Date();
                 var maxdate=new Date();
                 maxdate.setFullYear(maxdate.getFullYear()-19);
                 var mindate=new Date();
@@ -287,13 +287,30 @@ $form = $this->beginWidget('CActiveForm', array(
                     dateOrder: 'Md ddyy',
                     timeWheels:'HHii',
                     minDate:  new Date()
-                });   
+                }); */  
         
         //Date and Time end
         
         
     });
     $(function () {
+        var date=new Date.today().addDays(2);
+        $('#StewardCleaningForm_StartTime').datetimepicker({
+            format:'d-m-Y H:i',
+            step:30,
+            minDate:date,
+            scrollMonth:false,
+        });
+        $('#StewardCleaningForm_EndTime').datetimepicker({
+            format:'d-m-Y H:i',
+            step:30,
+            onShow:function( ct ){
+                this.setOptions({
+                minDate:$('#StewardCleaningForm_StartTime').val()?$('#StewardCleaningForm_StartTime').val():false
+                })
+            },
+            scrollMonth:false,
+    });
     var showPopover = function () {
         $(this).popover('show');
     }

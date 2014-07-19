@@ -124,13 +124,13 @@ class AdminController extends Controller {
                 $phone = $inviteFriends->Phone;
                 $location = $inviteFriends->Location;
                 $subject ='KushGhar Invitation';
-                error_log("After Subject==============================");
+               
                 $Logo = YII::app()->params['SERVER_URL'] . "/images/color_logo.png";
                 $employerEmail = "no-reply@kushghar.com";
                 $messageview1="sendInvitationMailToUser";
                 $params1 = array('Logo' => $Logo, 'Name' =>$name, 'Referrer'=>$referrer);
                 $mess1 = 'http://www.kushghar.com/user/registration?Uname=' . $inviteFriends->Email . "\r\n\n";
-                $this->sendMailToUser($to1, $name, $subject, $mess1, 'KushGhar', 'no-reply@kushghar.com', 'InvitationMail');            
+                //$this->sendMailToUser($to1, $name, $subject, $mess1, 'KushGhar', 'no-reply@kushghar.com', 'InvitationMail');            
                 /*
                  * KG Team mail details
                  */
@@ -141,12 +141,11 @@ class AdminController extends Controller {
                 $messageview="InvitationMail";
                 $params = array('Logo' => $Logo, 'Name' =>$name, 'Email' =>$to1, 'Phone'=>$phone, 'Location'=>$location, 'Referrer'=>$referrer);
                 //$params = '';
-                $sendMailToUser=new CommonUtility;
-                $sendMailToUser->actionSendmail($messageview1,$params1, $subject, $to1,$employerEmail);
-                $mailSendStatusw=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
+                //$sendMailToUser=new CommonUtility;
+                //$sendMailToUser->actionSendmail($messageview1,$params1, $subject, $to1,$employerEmail);
+                //$mailSendStatusw=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
                         $obj = array('status' => 'success', 'data' => $result, 'error' => 'Invitation sent Successfully.');
                     } else {
-                        error_log("Referrer started in params=========Userinvited error=============");
                         $errors = array("InviteForm_error" => 'User already Invited.');
                         $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
                     }

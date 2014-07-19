@@ -891,9 +891,6 @@ $(document).ready(function() {
         
         var StartTimes = $("#StewardCleaningForm_StartTime").val();
         var EndTimes = $("#StewardCleaningForm_EndTime").val();
-
-        $('#StewardCleaningForm_EndTime').scroller('option', 'minDate', $('#StewardCleaningForm_StartTime').scroller('getDate'));
-
         if ((StartTimes != '') && (EndTimes != '')){
         var first=StartTimes.split(" ");
         var STimefirst=first[1].split(":");

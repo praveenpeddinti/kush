@@ -33,7 +33,7 @@
                                     </div>
                                       <div class="span4">
                                         <label><abbr title="required">*</abbr> Service Date</label>
-                                        <?php  echo $form->textField($model, 'ServiceStartTime', array('value'=>$getServiceDetails['houseservice_start_time'], 'class' => 'span5','readOnly'=>true)); ?>
+                                        <?php  echo $form->textField($model, 'ServiceStartTime', array('value'=>$getServiceDetails['houseservice_start_time'], 'class' => 'span5','readOnly'=>'true')); ?>
                                         <?php echo $form->error($model, 'ServiceStartTime'); ?>
 
                                     </div>
@@ -320,33 +320,17 @@
     });
     
    $(function () {
-                /*var currentDate=new Date();
-                var maxdate=new Date();
-                maxdate.setFullYear(maxdate.getFullYear()-19);
-                var mindate=new Date();
-                mindate.setFullYear(mindate.getFullYear()-100);
-                mindate.setMonth(currentDate.getMonth()+2);
-                mindate.setDate(currentDate.getDate()+2);
-                var currentDate=new Date.today().addDays(2);
-    var maxdate=new Date();
-    maxdate.setFullYear(maxdate.getFullYear()-19);
-    var mindate=new Date();
-    mindate.setFullYear(currentDate.getFullYear());
-    mindate.setMonth(currentDate.getMonth());
-    mindate.setDate(currentDate.getDate());
-            alert(mindate); 
-            //$('#HouseCleaningForm_ServiceStartTime').handleDtpicker('minDate', new Date(2014, 07, 25, 0, 0, 0));
-       $('#HouseCleaningForm_ServiceStartTime').appendDtpicker({
-            //'dateFormat':'DD-MM-YYYY h:m',
-            //'dateOnly':true,
-            //'minuteInterval' : 30,
-            //'futureOnly': true,
-            //'autodateOnStart':false,
-            //'closeonSelected':true,
-            'minDate':  new Date(2014, 07, 25, 0, 0, 0)
-            
-       });*/
-   
+       var date=new Date.today().addDays(1);
+       $('#HouseCleaningForm_ServiceStartTime').datetimepicker({
+            step:30,
+            format:'d-m-Y',
+            minDate:date,
+            formatDate:'Y/m/d',
+            scrollMonth:false,
+            timepicker:false,
+            closeOnDateSelect:true
+        });
+
     var showPopover = function () {
         $(this).popover('show');
     }

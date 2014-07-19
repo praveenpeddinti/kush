@@ -14,7 +14,7 @@
                                     </tr>
                                     <tr>
                                         <td valign="top" bgcolor="#fffff" align="left" >
-                                            <a href="#" target="_blank"><img alt="KushGhar" style="float:left" src="<?php echo $Logo;?>"/></a>
+                                            <a href="<?php echo YII::app()->params['SERVER_URL'];?>" target="_blank"><img alt="KushGhar" style="float:left" src="<?php echo $Logo;?>"/></a>
                                         </td>
                                         <td bgcolor="#fffff" valign="center" >
                                             <h3>Welcome to KushGhar</h3><br/><b>Toll Free Number:</b> 1-800-3070-6959
@@ -229,7 +229,7 @@
                         </tr>
                         <tr>
                             <td width="10" valign="top" bgcolor="#ededed" align="left" height="58">&nbsp;</td>
-                            <td  bgcolor="#ededed" align="left" style="font-family: Helvetica, sans-serif; font-size: 11px; color: #757887; line-height: 16px;">Copyright &copy; 2014 <a href="{--SITEURL--}" target="_blank" style="text-decoration: none;"> KushGhar</a> All Rights Reserved.</td>
+                            <td  bgcolor="#ededed" align="left" style="font-family: Helvetica, sans-serif; font-size: 11px; color: #757887; line-height: 16px;">Copyright &copy; 2014 <a href="<?php echo YII::app()->params['SERVER_URL'];?>" target="_blank" style="text-decoration: none;"> KushGhar</a> All Rights Reserved.</td>
                         </tr>
                     </tbody>
                 </table>

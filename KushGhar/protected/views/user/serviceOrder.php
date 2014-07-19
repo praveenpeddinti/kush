@@ -16,7 +16,7 @@
                 </td>
             </tr>
             <tr>
-                <td><b>House cleaning cervice cost :</b>  </td>
+                <td><b>House cleaning service cost :</b>  </td>
                 <td><?php
                 $priceRoom1 = (($HouseService['total_livingRooms'] + $HouseService['total_bedRooms']) * 125);
                 $priceRoom2 = (($HouseService['total_bathRooms'] + $HouseService['total_kitchens']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);

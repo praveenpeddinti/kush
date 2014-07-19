@@ -1095,7 +1095,6 @@ class UserController extends Controller {
         }
     }
     public function actionInviteFriends(){
-        error_log("------------".$this->session['email']);
         $inviteFriends = new InviteForm;
         if ($_REQUEST){
            $request = yii::app()->getRequest();
@@ -1108,15 +1107,13 @@ class UserController extends Controller {
                 } else {
                     $inviteUser = $this->kushGharService->checkNewUserExistInInviteTable($inviteFriends->Email);
                     $custUser = $this->kushGharService->checkNewUserExistInCustomerTable($inviteFriends->Email);
-                    if( ($inviteUser=='No user') && ($custUser=='No user')){error_log("No USer===========");
+                    if( ($inviteUser=='No user') && ($custUser=='No user')){
                     $result = $this->kushGharService->getInvitationFriendUser($inviteFriends, $this->session['Type']);
                     }
                     else{
-                        error_log("Yes USer===========");
                         $errors = array("InviteForm_error" => 'User Exist.');
                         $obj = array('status' => 'error', 'data' => '', 'error' => $errors); 
                     }
-                    error_log("Result===========".$result);
                     if ($result == "success") {
                         //$to = $inviteForm->Email;
                         //$name = $inviteForm->FirstName . ' ' . $inviteForm->LastName;
@@ -1154,7 +1151,6 @@ class UserController extends Controller {
                 //$mailSendStatusw=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
                         $obj = array('status' => 'success', 'data' => $result, 'error' => 'Invitation sent Successfully.');
                     } else {
-                        error_log("Referrer started in params=========Userinvited error=============");
                         $errors = array("InviteForm_error" => 'User already Invited.');
                         $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
                     }

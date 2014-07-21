@@ -203,7 +203,7 @@
                                         <input type="text" id="userName" class="span12"/>
                                     </div>
                                     <div class="span3">
-                                        <label>Phone No.</label>
+                                        <label>Phone</label>
                                         <input type="text" id="phone" class="span12"/>
                                     </div>
                                     <div class="span3">

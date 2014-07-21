@@ -231,6 +231,12 @@
         <?php if($getServiceDetails['H_differentaddress'] == 1){ ?>
             $('#DifferentAddress').bootstrapSwitch('setState', true);
             $('#HouseCleaningForm_DifferentAddress').val('1');
+            $('#HouseCleaningForm_Address1').attr('readOnly', false);
+            $('#HouseCleaningForm_Address2').attr('readOnly', false);
+            $('#HouseCleaningForm_AlternatePhone').attr('readOnly', false);
+            $('#HouseCleaningForm_State').attr('readOnly', false);
+            $('#HouseCleaningForm_City').attr('readOnly', false);
+            $('#HouseCleaningForm_PinCode').attr('readOnly', false);
         
         <?php } else {?>
             $('#DifferentAddress').bootstrapSwitch('setState', false);

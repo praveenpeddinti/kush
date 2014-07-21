@@ -205,6 +205,12 @@ $form = $this->beginWidget('CActiveForm', array(
         <?php if($getServiceDetails['S_differentaddress'] == 1){ ?>
             $('#DifferentAddress').bootstrapSwitch('setState', true);
             $('#StewardCleaningForm_DifferentAddress').val('1');
+            $('#StewardCleaningForm_Address1').attr('readOnly', false);
+            $('#StewardCleaningForm_Address2').attr('readOnly', false);
+            $('#StewardCleaningForm_AlternatePhone').attr('readOnly', false);
+            $('#StewardCleaningForm_State').attr('readOnly', false);
+            $('#StewardCleaningForm_City').attr('readOnly', false);
+            $('#StewardCleaningForm_PinCode').attr('readOnly', false);
         
         <?php } else {?>
             $('#DifferentAddress').bootstrapSwitch('setState', false);

@@ -50,12 +50,12 @@
             <div >
                 <div class="row-fluid" >
                     <div class="span4">
-                        <a href="/user/registration" class="steps1"><p>Getting Started</p></a>
+                        <a href="/site/registration" class="steps1"><p>Getting Started</p></a>
                     </div>
                     <div class="span4 ">
-                        <a href="/user/registration" class="steps2"><p>Get to know you</p></a>
+                        <a href="/site/registration" class="steps2"><p>Get to know you</p></a>
                     </div>
-                    <div class="span4"><a href="/user/registration" class="steps3"><p>Taking care of you and your family</p></a>
+                    <div class="span4"><a href="/site/registration" class="steps3"><p>Taking care of you and your family</p></a>
                     </div>
                 </div>
             </div>

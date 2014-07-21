@@ -245,8 +245,18 @@ class SiteController extends Controller {
                 if ($errors != '[]') {
                     $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
                 } else {
-                    $result = $this->kushGharService->getInvitationUser($inviteForm, $this->session['Type']);
-
+                    $inviteUser = $this->kushGharService->checkNewUserExistInInviteTable($inviteFriends->Email);
+                    $custUser = $this->kushGharService->checkNewUserExistInCustomerTable($inviteFriends->Email);
+                    if( ($inviteUser=='No user') && ($custUser=='No user')){
+                        error_log("No user result success");
+                    $result = $this->kushGharService->getInvitationUser($inviteFriends, $this->session['Type']);
+                    }
+                    else{
+                        error_log("Yes User result failure");
+                        $result = 'failure';
+//                        $errors = array("InviteForm_error" => 'User Exist.');
+//                        $obj = array('status' => 'error', 'data' => '', 'error' => $errors); 
+                    }
                     if ($result == "success") {
 
                         //$to = $inviteForm->Email;
@@ -261,6 +271,7 @@ class SiteController extends Controller {
                          /*
                   * Customer Mail Details
                   */
+                        
                 $to1 = $inviteForm->Email;
                 $name = $inviteForm->FirstName . ' ' . $inviteForm->LastName;
                 $phone = $inviteForm->Phone;

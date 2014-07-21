@@ -118,18 +118,23 @@
        if( ($('#CarWashForm_HouseCleaning').val()==1) ||($('#CarWashForm_StewardCleaning').val()==1)){
             $('#CarWashCleaningPrevious').show();
         }
+       if($('#CarWashForm_TotalCars').val()>1){
+           $("#DifferentLocationDiv").show();
+       }else{
+           $("#DifferentLocationDiv").hide();
+       };
     <?php if(isset($getCarWashServiceDetails) && sizeof($getCarWashServiceDetails)>0){ 
             $j=1; foreach($getCarWashServiceDetails as $rw){ ?>
             <?php if($rw['different_location']==1){?>
                 $("#DifferentLocationDiv").show(); 
-                $('#DifferentLocation').val('1');
                 $('#DifferentLocation').bootstrapSwitch('setState', true);
+                $('#DifferentLocation').val('1');
                 $('.AddressFieldsDiv').show();
                 $('.AddressFieldsOneCarDiv').hide();
                 $('.AddressFieldsOneCarDiv').hide();
                 $('.AddressFieldsMultiCarDiv').show();
             <?}else{?>
-                $("#DifferentLocationDiv").hide();    
+                //$("#DifferentLocationDiv").show();    
                 $('#DifferentLocation').val('0');  
                 $('.AddressFieldsMultiCarDiv').hide();
                 $('.AddressFieldsOneCarDiv').show();
@@ -145,7 +150,7 @@
     <?php }?>  
        
     $('#DifferentLocation').bootstrapSwitch();
-       $("#DifferentLocation").val('0');
+      // $("#DifferentLocation").val('0');
 
     /*var currentDate=new Date.today().addDays(1);
    var currentDate=new Date.today().addDays(2);

@@ -313,7 +313,6 @@ $(document).ready(function() {
      * @returns Praveen House Cleaning service button start
      */
     function submitHouseCleaning() {
-        
         var queryString = $('#services-form').serialize();
         if (($('#HouseCleaningForm_SquareFeets').val() == '0') || ($('#HouseCleaningForm_SquareFeets').val() == '00')) {
             $("#HouseCleaningForm_SquareFeets_em_").show();
@@ -402,7 +401,20 @@ $(document).ready(function() {
             if ($('#HouseCleaningSubmit').val() == 'Next') {
                 type = 'next';
             }
-            queryString += '&Type=' + type;
+            var r='';
+            if ( ($('#HouseCleaningForm_DifferentAddress').val()=='0') && ($('#HouseCleaningForm_ContactAddress').val()=='')) {
+            var statusData = 'Would you like to add Contact info details?';
+            r = confirm(statusData);
+            }else{
+                r= false;
+            }
+            if(r==true){
+                queryString += '&Type=' + type+'&ContactInfo=Yes';
+            }else{
+                queryString += '&Type=' + type+'&ContactInfo=No';
+            } 
+        
+            
             ajaxRequest('/user/services', queryString, addHouseCleaningServicehandler);
         }
     }
@@ -807,6 +819,7 @@ $(document).ready(function() {
         if ($('#CarWashCleaningSubmit').val() == 'Next') {
             type = 'next';
         }
+        
         var queryString = $('#carwash-form').serialize();
         queryString += '&Type=' + type+'&DL='+DL;
         ajaxRequest('/user/carwash', queryString, addCarWashCleaningServicehandler);
@@ -1155,7 +1168,19 @@ function onTotalStewards(obj) {
             if ($('#StewardsCleaningSubmit').val() == 'Next') {
                 type = 'next';
             }
-            queryString += '&Type=' + type;
+            var r='';
+            if ( ($('#StewardCleaningForm_DifferentAddress').val()=='0') && ($('#StewardCleaningForm_ContactAddress').val()=='')) {
+            var statusData = 'Do you want to Add this adress to Contact details?';
+            r = confirm(statusData);
+            }else{
+                r= false;
+            }
+            if(r==true){
+                queryString += '&Type=' + type+'&ContactInfo=Yes';
+            }else{
+                queryString += '&Type=' + type+'&ContactInfo=No';
+            } 
+            //queryString += '&Type=' + type;
             
             ajaxRequest('/user/stewards', queryString, addStewardCleaningServicehandler);
         }

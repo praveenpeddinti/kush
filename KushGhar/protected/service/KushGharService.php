@@ -109,6 +109,11 @@ class KushGharService {
     public function saveCustomerInfoDetails($model, $cId) {
         return ContactInfo::model()->saveCustomerInfoDetails($model, $cId);
     }
+    
+    //Update the contact info Details by the time of House cleaning and stewards service pages submitted Start methods
+    public function updateCcontactInfoDetailsByServices($model, $cId) {
+        return ContactInfo::model()->updateCcontactInfoDetailsByServices($model, $cId);
+    }
 
     //Update Password in Basic Info Data
     public function getupdatedPasswordInBasicInfo($model, $cId) {

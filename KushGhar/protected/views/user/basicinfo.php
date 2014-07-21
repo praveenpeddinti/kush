@@ -263,8 +263,8 @@
                                     </div>
                                     <div class=" span4">
                                         <?php echo $form->label($updatedPassword, 'Confirm Password'); ?>
-                                        <?php echo $form->passwordField($updatedPassword, 'RepeatPassword', array('maxLength' => 50, 'class' => 'span12')); ?>
-                                        <?php echo $form->error($updatedPassword, 'RepeatPassword'); ?>
+                                        <?php echo $form->passwordField($updatedPassword, 'ConfirmPassword', array('maxLength' => 50, 'class' => 'span12')); ?>
+                                        <?php echo $form->error($updatedPassword, 'ConfirmPassword'); ?>
                                     </div>
                                     <div class=" span4">
                                         <div  class=" paddingT30">

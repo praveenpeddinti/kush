@@ -12,6 +12,7 @@ $form = $this->beginWidget('CActiveForm', array(
 <?php echo $form->hiddenField($model1, 'CarCleaning', array('value'=>$CarCleaning)); ?>
 <?php echo $form->hiddenField($model1, 'StewardCleaning', array('value'=>$StewardCleaning)); ?>
 <?php echo $form->hiddenField($model1, 'PriceFlag', array('value'=>$PriceFlag)); ?> 
+<?php echo $form->hiddenField($model1, 'ContactAddress', array('value'=>$customerAddressDetails->address_line1)); ?> 
 <?php echo $form->error($model1, 'error'); ?>
 <fieldset>
     <div class=" row-fluid borderB">
@@ -185,12 +186,34 @@ $form = $this->beginWidget('CActiveForm', array(
         $('#Beverage').bootstrapSwitch();
         $('#PostDinner').bootstrapSwitch();
         $('#DifferentAddress').bootstrapSwitch();
-        
+        if($('#StewardCleaningForm_ContactAddress').val()==''){
+            $('#StewardCleaningForm_Address1').attr('readOnly', false);
+            $('#StewardCleaningForm_Address2').attr('readOnly', false);
+            $('#StewardCleaningForm_AlternatePhone').attr('readOnly', false);
+            $('#StewardCleaningForm_State').attr('readOnly', false);
+            $('#StewardCleaningForm_City').attr('readOnly', false);
+            $('#StewardCleaningForm_PinCode').attr('readOnly', false);
+            
+        }else{
+            $('#StewardCleaningForm_Address1').attr('readOnly', true);
+            $('#StewardCleaningForm_Address2').attr('readOnly', true);
+            $('#StewardCleaningForm_AlternatePhone').attr('readOnly', true);
+            $('#StewardCleaningForm_State').attr('readOnly', true);
+            $('#StewardCleaningForm_City').attr('readOnly', true);
+            $('#StewardCleaningForm_PinCode').attr('readOnly', true);
+        }
         <?php if($getServiceDetails['S_differentaddress'] == 1){ ?>
-        $('#DifferentAddress').bootstrapSwitch('setState', true);
+            $('#DifferentAddress').bootstrapSwitch('setState', true);
+            $('#StewardCleaningForm_DifferentAddress').val('1');
         
         <?php } else {?>
-        $('#DifferentAddress').bootstrapSwitch('setState', false);
+            $('#DifferentAddress').bootstrapSwitch('setState', false);
+            $('#StewardCleaningForm_DifferentAddress').val('0');
+            $('#StewardCleaningForm_Address1').val('<?php echo $customerAddressDetails->address_line1;?>');
+            $('#StewardCleaningForm_Address2').val('<?php echo $customerAddressDetails->address_line2;?>');
+            $('#StewardCleaningForm_AlternatePhone').val('<?php echo $customerAddressDetails->alternate_phone;?>');
+            $('#StewardCleaningForm_City').val('<?php echo $customerAddressDetails->address_city;?>');
+            $('#StewardCleaningForm_PinCode').val('<?php echo $customerAddressDetails->address_pin_code;?>');
         <?php } ?>
         if( ($('#StewardCleaningForm_HouseCleaning').val()==1) ||($('#StewardCleaningForm_CarCleaning').val()==1)){
             $('#StewardsCleaningPrevious').show();
@@ -228,23 +251,43 @@ $form = $this->beginWidget('CActiveForm', array(
             var $el = $(data.el);
             value = data.value;
             
-            if(value == true){
-                <?php if($customerAddressDetails->alternate_phone==0){$A_Phone='';}else{$A_Phone=$customerAddressDetails->alternate_phone;};?>
-                
+            if(value == false){
+                $('#StewardCleaningForm_DifferentAddress').val('0');
+                if($('#StewardCleaningForm_ContactAddress').val()==''){
+                    $('#StewardCleaningForm_Address1').attr('readOnly', false);
+                    $('#StewardCleaningForm_Address2').attr('readOnly', false);
+                    $('#StewardCleaningForm_AlternatePhone').attr('readOnly', false);
+                    $('#StewardCleaningForm_State').attr('readOnly', false);
+                    $('#StewardCleaningForm_City').attr('readOnly', false);
+                    $('#StewardCleaningForm_PinCode').attr('readOnly', false);
+
+                }else{
+                    $('#StewardCleaningForm_Address1').attr('readOnly', true);
+                    $('#StewardCleaningForm_Address2').attr('readOnly', true);
+                    $('#StewardCleaningForm_AlternatePhone').attr('readOnly', true);
+                    $('#StewardCleaningForm_State').attr('readOnly', true);
+                    $('#StewardCleaningForm_City').attr('readOnly', true);
+                    $('#StewardCleaningForm_PinCode').attr('readOnly', true);
+                }
                 $('#StewardCleaningForm_Address1').val('<?php echo $customerAddressDetails->address_line1;?>');
                 $('#StewardCleaningForm_Address2').val('<?php echo $customerAddressDetails->address_line2;?>');
-                $('#StewardCleaningForm_AlternatePhone').val('<?php echo $A_Phone;?>');
-                
+                $('#StewardCleaningForm_AlternatePhone').val('<?php echo $customerAddressDetails->alternate_phone;?>');
                 $('#StewardCleaningForm_City').val('<?php echo $customerAddressDetails->address_city;?>');
                 $('#StewardCleaningForm_PinCode').val('<?php echo $customerAddressDetails->address_pin_code;?>');
             }
             else{
+                $('#StewardCleaningForm_DifferentAddress').val('1');
                 $('#StewardCleaningForm_Address1').val('<?php echo $getServiceDetails["S_address1"];?>');
                 $('#StewardCleaningForm_Address2').val('<?php echo $getServiceDetails["S_address2"];?>');
                 $('#StewardCleaningForm_AlternatePhone').val('<?php echo $getServiceDetails["S_alternate_phone"];?>');
-                
                 $('#StewardCleaningForm_City').val('<?php echo $getServiceDetails["S_city"];?>');
                 $('#StewardCleaningForm_PinCode').val('<?php echo $getServiceDetails["S_pincode"];?>');
+                $('#StewardCleaningForm_Address1').attr('readOnly', false);
+                $('#StewardCleaningForm_Address2').attr('readOnly', false);
+                $('#StewardCleaningForm_AlternatePhone').attr('readOnly', false);
+                $('#StewardCleaningForm_State').attr('readOnly', false);
+                $('#StewardCleaningForm_City').attr('readOnly', false);
+                $('#StewardCleaningForm_PinCode').attr('readOnly', false);
             }
          });
         //Date and Time start

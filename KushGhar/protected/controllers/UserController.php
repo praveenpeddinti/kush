@@ -666,7 +666,9 @@ class UserController extends Controller {
             if ($errors != '[]') {
                 $obj = array('status' => 'error', 'message' => '', 'error' => $errors);
         }else{
-            
+             if($_REQUEST['ContactInfo']=='Yes'){
+                 $contentUpdate = $this->kushGharService->updateCcontactInfoDetailsByServices($houseModel,$cId);
+             }
             //Saving Logic
             $rows = $this->kushGharService->checkingHouseService($cId);
             if($rows=='No Service'){
@@ -716,7 +718,7 @@ class UserController extends Controller {
                     $getServiceDetails = $this->kushGharService->getStewardsDetails($cId);
                     //$cId = $this->session['UserId'];
                     //$customerDetails = $this->kushGharService->getCustomerDetails($cId);
-                    //$customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($cId);
+                    $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($cId);
                     //$customerPaymentDetails = $this->kushGharService->getCustomerPaymentDetails($cId);
                     
                     $data=$this->renderPartial('stewards', array('model1'=>$stewardModel,'States' => $States,'getServiceDetails'=>$getServiceDetails, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails,'HouseCleaning'=>$HouseCleaning,'CarCleaning'=>$CarCleaning,'StewardCleaning'=>$StewardCleaning,'PriceFlag'=>'0'), true);
@@ -834,6 +836,10 @@ class UserController extends Controller {
                 }
                 $obj = array('status' => 'success', 'data' => $data, 'error' => '','HouseCleaning'=>$HouseCleaning,'CarCleaning'=>$CarCleaning,'StewardCleaning'=>$StewardCleaning);
             }else{
+                
+             if($_REQUEST['ContactInfo']=='Yes'){
+                 $contentUpdate = $this->kushGharService->updateCcontactInfoDetailsByServices($stewardModel,$cId);
+             }
                 $rows = $this->kushGharService->checkingStewardService($cId);
             if($rows=='No Service'){
             $result = $this->kushGharService->addStewardsCleaningService($stewardModel, $cId);

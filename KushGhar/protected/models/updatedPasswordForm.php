@@ -8,7 +8,7 @@
 class updatedPasswordForm extends CFormModel {
 
     public $Password;
-    public $RepeatPassword;
+    public $ConfirmPassword;
 
     /**
      * Declares the validation rules.
@@ -16,13 +16,13 @@ class updatedPasswordForm extends CFormModel {
     public function rules() {
         return array(
 
-             array('Password, RepeatPassword', 'required', 'message' => 'Please enter a value for {attribute}.'),
+             array('Password, ConfirmPassword', 'required', 'message' => 'Please enter a value for {attribute}.'),
             array('Password', 'required', 'on' => 'insert'),
-            array('RepeatPassword', 'compare', 'compareAttribute' => 'Password',
-                'message' => ' Password  and Repeat Password must be match'
+            array('ConfirmPassword', 'compare', 'compareAttribute' => 'Password',
+                'message' => ' Password  and Confirm Password must be match'
             ),
             
-            array('Password,RepeatPassword', 'safe'),
+            array('Password,ConfirmPassword', 'safe'),
         );
     }
 

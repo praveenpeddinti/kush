@@ -71,6 +71,29 @@ class ContactInfo extends CActiveRecord {
         }
         return $customerAddressDetails;
     }
+    
+    //Update the contact info Details by the time of House cleaning and stewards service pages submitted
+    public function updateCcontactInfoDetailsByServices($model, $cId) {
+        try {
+            $sampleDetails = ContactInfo::model()->findByAttributes(array('customer_id' => $cId));
+            $sampleDetails->address_line1 = $model->Address1;
+            $sampleDetails->address_line2 = $model->Address2;
+            $sampleDetails->alternate_phone = $model->AlternatePhone;
+            $sampleDetails->address_state = $model->State;
+            $sampleDetails->address_city = $model->City;
+            $sampleDetails->address_pin_code = $model->PinCode;
+            $sampleDetails->create_timestamp = gmdate("Y-m-d H:i:s", time());
+            $sampleDetails->update_timestamp = gmdate("Y-m-d H:i:s", time());
+            if ($sampleDetails->update()) {
+                $result = "success";
+            } else {
+                $result = "failed";
+            }
+        } catch (Exception $ex) {
+            error_log("##########Exception Occurred saveData#############" . $ex->getMessage());
+        }
+        return $result;
+    }
 
 }
 ?>

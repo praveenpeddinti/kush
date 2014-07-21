@@ -214,7 +214,7 @@
     
     $(function () {
 
-        var date=new Date.today().addDays(1);
+        var date=new Date.today().addDays(2);
         var cyear=date.getFullYear();
         var eyear=cyear+1;
        $('#CarWashForm_ServiceStartTime').datetimepicker({

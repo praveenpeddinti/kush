@@ -63,6 +63,9 @@
 
     function statusChangeUser(rowNos, status) {
         //alert(status);
+        var uname = $("#userName").val();
+        var phone = $("#phone").val();
+        var status1 = $("#status").val();
         if (status == 1) {
             var statusData = 'Do you want to Delete?';
         } 
@@ -85,7 +88,7 @@
                     $("#message").text('Delete user Successfully.');
                     $("#message").fadeOut(6000, "");
                     $('#row_' + rowNos).remove();
-                    getCollectionDataWithPagination('/admin/newManage','userDetails', 'abusedWords_tbody',pageno,5, '');
+                    getCollectionDataWithPagination('/admin/newManage','userDetails', 'abusedWords_tbody',pageno,5,uname,phone,status1, '');
                 },
                 error: function(data) { // if error occured
                     //alert("Error occured.please try again");

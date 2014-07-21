@@ -145,7 +145,7 @@
     <?php }?>  
        
     $('#DifferentLocation').bootstrapSwitch();
-    //   $("#DifferentLocation").val('0');
+       $("#DifferentLocation").val('0');
 
     /*var currentDate=new Date.today().addDays(1);
    var currentDate=new Date.today().addDays(2);
@@ -247,6 +247,6 @@
 });
 
 function checkBox(obj){
-    alert(obj.toSource());
+    //alert(obj.toSource());
 } 
 </script>

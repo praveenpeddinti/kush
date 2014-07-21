@@ -257,7 +257,7 @@
                 $('#HouseCleaningForm_City').val('<?php echo $customerAddressDetails->address_city;?>');
                 $('#HouseCleaningForm_PinCode').val('<?php echo $customerAddressDetails->address_pin_code;?>');
             }
-            else{alert("else");
+            else{
                 <?php if($getServiceDetails["H_alternate_phone"]==0){$A_Phone='';}else{$A_Phone=$getServiceDetails["H_alternate_phone"];};?>
                 $('#HouseCleaningForm_Address1').val('<?php echo $getServiceDetails["H_address1"];?>');
                 $('#HouseCleaningForm_Address2').val('<?php echo $getServiceDetails["H_address2"];?>');

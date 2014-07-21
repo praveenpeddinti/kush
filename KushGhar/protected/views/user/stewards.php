@@ -233,10 +233,10 @@ $form = $this->beginWidget('CActiveForm', array(
                 
                 $('#StewardCleaningForm_Address1').val('<?php echo $customerAddressDetails->address_line1;?>');
                 $('#StewardCleaningForm_Address2').val('<?php echo $customerAddressDetails->address_line2;?>');
-                $('#StewardCleaningForm_AlternatePhone').val('<?php echo $customerAddressDetails->alternate_phone;?>');
+                $('#StewardCleaningForm_AlternatePhone').val('<?php echo $A_Phone;?>');
                 
                 $('#StewardCleaningForm_City').val('<?php echo $customerAddressDetails->address_city;?>');
-                $('#StewardCleaningForm_PinCode').val('<?php echo $A_Phone;?>');
+                $('#StewardCleaningForm_PinCode').val('<?php echo $customerAddressDetails->address_pin_code;?>');
             }
             else{
                 $('#StewardCleaningForm_Address1').val('<?php echo $getServiceDetails["S_address1"];?>');

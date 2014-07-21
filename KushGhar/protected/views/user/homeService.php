@@ -441,7 +441,6 @@ $(document).ready(function() {
 
         var dd='';
         var DL = $("#DifferentLocation").val();
-        alert("=====================".DL);
         if ($("#CarWashForm_TotalCars").val() == "") {
                 $("#CarWashForm_TotalCars_em_").show();
                 $("#CarWashForm_TotalCars_em_").addClass('errorMessage');

@@ -236,7 +236,7 @@ class SiteController extends Controller {
     }
     public function actionInviteRegistration() {
         if ($_REQUEST) {
-            $inviteForm = new InviteForm;
+           $inviteForm = new InviteForm;
             $request = yii::app()->getRequest();
             $formName = $request->getParam('InviteForm');
             if ($formName != '') {
@@ -245,8 +245,8 @@ class SiteController extends Controller {
                 if ($errors != '[]') {
                     $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
                 } else {
-                    $inviteUser = $this->kushGharService->checkNewUserExistInInviteTable($inviteFriends->Email);
-                    $custUser = $this->kushGharService->checkNewUserExistInCustomerTable($inviteFriends->Email);
+                    $inviteUser = $this->kushGharService->checkNewUserExistInInviteTable($inviteForm->Email);
+                    $custUser = $this->kushGharService->checkNewUserExistInCustomerTable($inviteForm->Email);
                     if( ($inviteUser=='No user') && ($custUser=='No user')){
                     $result = $this->kushGharService->getInvitationUser($inviteFriends, $this->session['Type']);
                     }

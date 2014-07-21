@@ -304,6 +304,8 @@
     
    $(function () {
        var date=new Date.today().addDays(1);
+       var cyear=date.getFullYear();
+       var eyear=cyear+1;
        $('#HouseCleaningForm_ServiceStartTime').datetimepicker({
             step:30,
             format:'d-m-Y',
@@ -311,7 +313,9 @@
             formatDate:'Y/m/d',
             scrollMonth:false,
             timepicker:false,
-            closeOnDateSelect:true
+            closeOnDateSelect:true,
+            yearStart:cyear,
+            yearEnd:eyear
         });
 
     var showPopover = function () {

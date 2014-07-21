@@ -296,16 +296,22 @@ $form = $this->beginWidget('CActiveForm', array(
     });
     $(function () {
         var date=new Date.today().addDays(2);
+        var cyear=date.getFullYear();
+        var eyear=cyear+1;
         $('#StewardCleaningForm_StartTime').datetimepicker({
             format:'d-m-Y H:i',
             step:30,
             minDate:date,
             scrollMonth:false,
-            defaultDate:date
+            defaultDate:date,
+            yearStart:cyear,
+            yearEnd:eyear
         });
         $('#StewardCleaningForm_EndTime').datetimepicker({
             format:'d-m-Y H:i',
             step:30,
+            yearStart:cyear,
+            yearEnd:eyear,
             onShow:function( ct ){
                 this.setOptions({
                 minDate:$('#StewardCleaningForm_StartTime').val()?$('#StewardCleaningForm_StartTime').val():false

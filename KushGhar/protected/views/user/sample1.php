@@ -58,7 +58,7 @@
            </div>
            <div class=" span4">
                <label><abbr title="required">*</abbr> Pin Code</label>
-                <input type="text" class="span12" value="<?php echo isset($getCarWashServiceDetails[$i])?$getCarWashServiceDetails[$i]['address_pin_code']:'';?>" id="<?php echo $i+1; ?>_PinCode" maxLength="6">
+                <input type="text" class="span12" value="<?php echo isset($getCarWashServiceDetails[$i])?$getCarWashServiceDetails[$i]['address_pin_code']:'';?>" id="<?php echo $i+1; ?>_PinCode" maxLength="6" onkeypress="return isNumberKey(event);">
                 <div id="<?php echo $i+1; ?>_PinCode_em" class="errorMessage" style="display:none"></div>
            </div>
            </div>

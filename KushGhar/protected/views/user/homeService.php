@@ -900,35 +900,23 @@ $(document).ready(function() {
         var eDateFinal=EDate[2]+"/"+EDate[1]+"/"+EDate[0];
         var sdate=new Date(sDateFinal);
         var edate=new Date(eDateFinal);
-        var diffdays=sdate-edate; 
         var scmp=sdate.getTime();
         var ecmp=edate.getTime();
+        var f=new Date(SDate[2], SDate[1]-1, SDate[0], STimefirst[0], STimefirst[1], 0, 0);
+        var e=new Date(EDate[2], EDate[1]-1, EDate[0], eTimeLast[0], eTimeLast[1], 0, 0);
         if(scmp > ecmp)
         {
             $("#StewardCleaningForm_EndTime").val(StartTimes); 
             $("#StewardCleaningForm_DurationHours").val("1");
         }
-        if(diffdays==0)
+        else
         {
-            if (STimefirst[0] < eTimeLast[0])
-            {
-                var hrs=eTimeLast[0]-STimefirst[0];
-                $("#StewardCleaningForm_DurationHours").val(hrs);
-            }
-            else
-            {
-                $("#StewardCleaningForm_DurationHours").val("1");
-            }
-        }
-
-        if (scmp < ecmp)
-        {
-            var f=new Date(SDate[2], SDate[1]-1, SDate[0], STimefirst[0], STimefirst[1], 0, 0);
-            var e=new Date(EDate[2], EDate[1]-1, EDate[0], eTimeLast[0], eTimeLast[1], 0, 0);
             var thrs=Math.abs(e - f) / 36e5;
-            $("#StewardCleaningForm_DurationHours").val(thrs);
-
+            var thrs1=Math.round(thrs);
+            $("#StewardCleaningForm_DurationHours").val(thrs1);
         }
+        if($("#StewardCleaningForm_DurationHours").val()==0)
+            $("#StewardCleaningForm_DurationHours").val("1");
     }
 
 //        if ((StartTimes != '') && (EndTimes != '')) {

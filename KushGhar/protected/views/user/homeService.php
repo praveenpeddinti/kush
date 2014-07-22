@@ -354,7 +354,7 @@ $(document).ready(function() {
                 $("#HouseCleaningForm_AlternatePhone_em_").text("Please Enter only numbers ");
                 return false;
         }
-        if ( ($("#HouseCleaningForm_AlternatePhone").val().length<='9') ) {
+        if ( ($("#HouseCleaningForm_AlternatePhone").val() != "") && ($("#HouseCleaningForm_AlternatePhone").val().length<='9') ) {alert("praveen");
                 $("#HouseCleaningForm_AlternatePhone_em").show();
                 $("#HouseCleaningForm_AlternatePhone").addClass('errorMessage');
                 $("#HouseCleaningForm_AlternatePhone").text("Alternate Phone too short (minimum is 10 numbers).");
@@ -526,7 +526,7 @@ $(document).ready(function() {
             } else {
                 $("#" + i + "_AlternatePhone_em").hide();
             }
-            if ( ($("#" + i + "_AlternatePhone").val().length<='9') ) {
+            if ( ($("#" + i + "_AlternatePhone").val() != "") && ($("#" + i + "_AlternatePhone").val().length<='9') ) {
                 $("#" + i + "_AlternatePhone_em").show();
                 $("#" + i + "_AlternatePhone_em").addClass('errorMessage');
                 $("#" + i + "_AlternatePhone_em").text("Alternate Phone too short (minimum is 10 numbers).");
@@ -700,7 +700,7 @@ $(document).ready(function() {
             } else {
                 $("#11_AlternatePhone_em").hide();
             }
-            if ( ($("#11_AlternatePhone").val().length<='9') ) {
+            if ( ($("#11_AlternatePhone").val()!='') && ($("#11_AlternatePhone").val().length<='9') ) {
                 $("#11_AlternatePhone_em").show();
                 $("#11_AlternatePhone_em").addClass('errorMessage');
                 $("#11_AlternatePhone_em").text("Alternate Phone too short (minimum is 10 numbers).");
@@ -1140,7 +1140,7 @@ function onTotalStewards(obj) {
                 $("#StewardCleaningForm_AlternatePhone_em_").text("Please Enter only numbers ");
                 return false;
             }
-            if ( ($("#StewardCleaningForm_AlternatePhone").val().length<='9') ) {
+            if ( ($("#StewardCleaningForm_AlternatePhone").val() != "") && ($("#StewardCleaningForm_AlternatePhone").val().length<='9') ) {
                 $("#StewardCleaningForm_AlternatePhone_em").show();
                 $("#StewardCleaningForm_AlternatePhone").addClass('errorMessage');
                 $("#StewardCleaningForm_AlternatePhone").text("Alternate Phone too short (minimum is 10 numbers).");

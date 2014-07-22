@@ -650,7 +650,6 @@
         });
         function submitServiceOrder() {
 
-
             var queryString = '';
 
             ajaxRequest('/user/serviceOrder', queryString, addServiceOrderhandler);
@@ -659,13 +658,19 @@
 
         }
         function addServiceOrderhandler(data) {
-
-            scrollPleaseWaitClose('mailSpinLoader');
+               scrollPleaseWaitClose('mailSpinLoader');
             if (data.status == 'success') {
                 $('#priceQuoteDiv').hide();
                 $('#orderPlaceDiv').show();
                 $('#orderPlaceDiv').html(data.data);
+                var queryString = '';
+                ajaxRequest('/user/mailSendData', queryString, addMailSendhandler);
+                
             }
+        }
+        function addMailSendhandler(data) {
+           if (data.status == 'success') {
+           }
         }
     </script>
 <?php } ?>

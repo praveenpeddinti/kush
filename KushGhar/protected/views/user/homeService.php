@@ -1217,10 +1217,14 @@ function onTotalStewards(obj) {
             $('#ServiceMainDiv').hide();
             $('#ServiceMainDiv2').show();
             $('#ServiceMainDiv2').html(data.data);
-            
+            var queryString = '';
+            ajaxRequest('/user/mailSendData', queryString, addMailSendhandler);
         } 
     }
-    
+    function addMailSendhandler(data) {
+           if (data.status == 'success') {
+           }
+        }
     
     
     //Previous button purpose----------------------------

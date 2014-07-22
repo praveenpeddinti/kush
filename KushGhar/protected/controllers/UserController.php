@@ -1156,7 +1156,12 @@ class UserController extends Controller {
                 $sendMailToUser=new CommonUtility;
                 $sendMailToUser->actionSendmail($messageview1,$params1, $subject, $to1,$employerEmail);
                 $mailSendStatusw=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
-                        $obj = array('status' => 'success', 'data' => $result, 'error' => 'Invitation sent Successfully.');
+
+                
+
+
+
+                $obj = array('status' => 'success', 'data' => $result, 'error' => 'Invitation sent Successfully.');
                     } else {
                         $errors = array("InviteForm_error" => 'User already Invited.');
                         $obj = array('status' => 'error', 'data' => '', 'error' => $errors);

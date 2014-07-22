@@ -122,6 +122,7 @@
            $("#DifferentLocationDiv").show();
        }else{
            $("#DifferentLocationDiv").hide();
+           $('#DifferentLocation').val('0');  
        };
     <?php if(isset($getCarWashServiceDetails) && sizeof($getCarWashServiceDetails)>0){ 
             $j=1; foreach($getCarWashServiceDetails as $rw){ ?>

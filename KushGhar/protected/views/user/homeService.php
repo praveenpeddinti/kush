@@ -353,7 +353,13 @@ $(document).ready(function() {
                 $("#HouseCleaningForm_AlternatePhone_em_").addClass('errorMessage');
                 $("#HouseCleaningForm_AlternatePhone_em_").text("Please Enter only numbers ");
                 return false;
-            } 
+        }
+        if ( ($("#HouseCleaningForm_AlternatePhone").val().length<='9') ) {
+                $("#HouseCleaningForm_AlternatePhone_em").show();
+                $("#HouseCleaningForm_AlternatePhone").addClass('errorMessage');
+                $("#HouseCleaningForm_AlternatePhone").text("Alternate Phone too short (minimum is 10 numbers).");
+                return false;
+            }
         //State validation start
             if ( ($("#HouseCleaningForm_State").val()=='') ) {
                 $("#HouseCleaningForm_State_em_").show();
@@ -453,6 +459,7 @@ $(document).ready(function() {
 
         var dd='';
         var DL = $("#DifferentLocation").val();
+        //alert("DL====="+DL);exit;
         if ($("#CarWashForm_TotalCars").val() == "") {
                 $("#CarWashForm_TotalCars_em_").show();
                 $("#CarWashForm_TotalCars_em_").addClass('errorMessage');
@@ -515,6 +522,14 @@ $(document).ready(function() {
                 $("#" + i + "_AlternatePhone_em").show();
                 $("#" + i + "_AlternatePhone_em").addClass('errorMessage');
                 $("#" + i + "_AlternatePhone_em").text("Please Enter only numbers ");
+                return false;
+            } else {
+                $("#" + i + "_AlternatePhone_em").hide();
+            }
+            if ( ($("#" + i + "_AlternatePhone").val().length<='9') ) {
+                $("#" + i + "_AlternatePhone_em").show();
+                $("#" + i + "_AlternatePhone_em").addClass('errorMessage');
+                $("#" + i + "_AlternatePhone_em").text("Alternate Phone too short (minimum is 10 numbers).");
                 return false;
             } else {
                 $("#" + i + "_AlternatePhone_em").hide();
@@ -681,6 +696,14 @@ $(document).ready(function() {
                 $("#11_AlternatePhone_em").show();
                 $("#11_AlternatePhone_em").addClass('errorMessage');
                 $("#11_AlternatePhone_em").text("Please Enter only numbers ");
+                return false;
+            } else {
+                $("#11_AlternatePhone_em").hide();
+            }
+            if ( ($("#11_AlternatePhone").val().length<='9') ) {
+                $("#11_AlternatePhone_em").show();
+                $("#11_AlternatePhone_em").addClass('errorMessage');
+                $("#11_AlternatePhone_em").text("Alternate Phone too short (minimum is 10 numbers).");
                 return false;
             } else {
                 $("#11_AlternatePhone_em").hide();
@@ -1116,7 +1139,13 @@ function onTotalStewards(obj) {
                 $("#StewardCleaningForm_AlternatePhone_em_").addClass('errorMessage');
                 $("#StewardCleaningForm_AlternatePhone_em_").text("Please Enter only numbers ");
                 return false;
-            } 
+            }
+            if ( ($("#StewardCleaningForm_AlternatePhone").val().length<='9') ) {
+                $("#StewardCleaningForm_AlternatePhone_em").show();
+                $("#StewardCleaningForm_AlternatePhone").addClass('errorMessage');
+                $("#StewardCleaningForm_AlternatePhone").text("Alternate Phone too short (minimum is 10 numbers).");
+                return false;
+            }
         //State validation start
             if ( ($("#StewardCleaningForm_State").val()=='') ) {
                 $("#StewardCleaningForm_State_em_").show();

@@ -663,8 +663,8 @@
                 $('#priceQuoteDiv').hide();
                 $('#orderPlaceDiv').show();
                 $('#orderPlaceDiv').html(data.data);
-                var queryString = '';
-                ajaxRequest('/user/mailSendData', queryString, addMailSendhandler);
+                //var queryString = '';
+                //ajaxRequest('/user/mailSendData', queryString, addMailSendhandler);
                 
             }
         }

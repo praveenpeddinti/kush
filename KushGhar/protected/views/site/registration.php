@@ -36,7 +36,7 @@
      function addNewUserhandler(data){
         scrollPleaseWaitClose('registrationSpinLoader');
         if(data.status=='success'){
-            window.location.href='basicinfo';
+            window.location.href='<?php echo Yii::app()->request->baseUrl; ?>/user/basicinfo';
         }else{
             var error=[];
             if(typeof(data.error)=='string'){

@@ -248,7 +248,7 @@ class SiteController extends Controller {
                     $inviteUser = $this->kushGharService->checkNewUserExistInInviteTable($inviteForm->Email);
                     $custUser = $this->kushGharService->checkNewUserExistInCustomerTable($inviteForm->Email);
                     if( ($inviteUser=='No user') && ($custUser=='No user')){
-                    $result = $this->kushGharService->getInvitationUser($inviteFriends, $this->session['Type']);
+                    $result = $this->kushGharService->getInvitationUser($inviteForm, $this->session['Type']);
                     }
                     else{
                         $result = 'failure';

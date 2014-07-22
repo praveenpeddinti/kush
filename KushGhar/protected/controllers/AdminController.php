@@ -140,9 +140,9 @@ class AdminController extends Controller {
                 $messageview="InvitationMail";
                 $params = array('Logo' => $Logo, 'Name' =>$name, 'Email' =>$to1, 'Phone'=>$phone, 'Location'=>$location, 'Referrer'=>$referrer);
                 //$params = '';
-                //$sendMailToUser=new CommonUtility;
-                //$sendMailToUser->actionSendmail($messageview1,$params1, $subject, $to1,$employerEmail);
-                //$mailSendStatusw=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
+                $sendMailToUser=new CommonUtility;
+                $sendMailToUser->actionSendmail($messageview1,$params1, $subject, $to1,$employerEmail);
+                $mailSendStatusw=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
                         $obj = array('status' => 'success', 'data' => $result, 'error' => 'Invitation sent Successfully.');
                     } else {
                         $errors = array("InviteForm_error" => 'User already Invited.');

@@ -128,7 +128,7 @@ class AdminController extends Controller {
                 $employerEmail = "no-reply@kushghar.com";
                 $messageview1="sendInvitationMailToUser";
                 $params1 = array('Logo' => $Logo, 'Name' =>$name, 'Referrer'=>$referrer);
-                $mess1 = 'http://www.kushghar.com/user/registration?Uname=' . $inviteFriends->Email . "\r\n\n";
+                $mess1 = 'http://115.248.17.88:6060/site/registration?Uname=' . $inviteFriends->Email . "\r\n\n";
                 //$this->sendMailToUser($to1, $name, $subject, $mess1, 'KushGhar', 'no-reply@kushghar.com', 'InvitationMail');            
                 /*
                  * KG Team mail details

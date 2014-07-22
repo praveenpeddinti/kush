@@ -127,8 +127,9 @@ class AdminController extends Controller {
                 $Logo = YII::app()->params['SERVER_URL'] . "/images/color_logo.png";
                 $employerEmail = "no-reply@kushghar.com";
                 $messageview1="sendInvitationMailToUser";
-                $params1 = array('Logo' => $Logo, 'Name' =>$name, 'Referrer'=>$referrer);
+                //$params1 = array('Logo' => $Logo, 'Name' =>$name, 'Referrer'=>$referrer);
                 $mess1 = 'http://115.248.17.88:6060/site/registration?Uname=' . $inviteFriends->Email . "\r\n\n";
+                $params1 = array('Logo' => $Logo, 'Name' =>$name, 'Message' =>$mess1);
                 //$this->sendMailToUser($to1, $name, $subject, $mess1, 'KushGhar', 'no-reply@kushghar.com', 'InvitationMail');            
                 /*
                  * KG Team mail details
@@ -137,8 +138,8 @@ class AdminController extends Controller {
                 //$subject ="Order placed";
                 //$Logo = YII::app()->params['SERVER_URL'] . "/images/color_logo.png";
                 //$employerEmail = "no-reply@kushghar.com";
-                $messageview="InvitationMail";
-                $params = array('Logo' => $Logo, 'Name' =>$name, 'Email' =>$to1, 'Phone'=>$phone, 'Location'=>$location, 'Referrer'=>$referrer);
+                $messageview="CustomerInvitationMailToKGTeam";
+                $params = array('Logo' => $Logo, 'Name' =>$name, 'Email' =>$to1, 'Phone'=>$phone, 'Location'=>$location);
                 //$params = '';
                 $sendMailToUser=new CommonUtility;
                 $sendMailToUser->actionSendmail($messageview1,$params1, $subject, $to1,$employerEmail);

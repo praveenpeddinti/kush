@@ -342,8 +342,9 @@
 
     });
     $(document).ready(function(){
-        var w = document.getElementById('KnowKgByddl').value;
-        if(w=="Other")
+        //var w = document.getElementById('KnowKgByddl').value;
+        var KushgharFound = $('#KnowKgByddl').val();
+        if(KushgharFound=="Other")
            $("#otherDiv").show(); 
         else
             $("#otherDiv").hide();

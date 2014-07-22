@@ -32,7 +32,7 @@ $form = $this->beginWidget('CActiveForm', array(
         </div>
         <div class=" span4" id='otherDiv' style="display:none">
             <?php echo $form->label($model1, '<abbr title="required">*</abbr> Event Name'); ?>
-            <?php echo $form->textField($model1, 'EventName', array('maxLength' => 10, 'class' => 'span8')); ?>
+            <?php echo $form->textField($model1, 'EventName', array('maxLength' => '10', 'class' => 'span8')); ?>
 <?php echo $form->error($model1, 'EventName'); ?>
         </div>
         <div class=" span4">
@@ -186,6 +186,15 @@ $form = $this->beginWidget('CActiveForm', array(
         $('#Beverage').bootstrapSwitch();
         $('#PostDinner').bootstrapSwitch();
         $('#DifferentAddress').bootstrapSwitch();
+        var eventType = $('#StewardCleaningForm_EventType').val();
+        if(eventType=='7'){
+           $("#otherDiv").show();
+           $("#StewardCleaningForm_EventName").val("<?php echo $getServiceDetails['event_name'];?>");
+           }else{
+                $("#otherDiv").hide();
+               
+           }
+           
         if($('#StewardCleaningForm_ContactAddress').val()==''){
             $('#StewardCleaningForm_Address1').attr('readOnly', false);
             $('#StewardCleaningForm_Address2').attr('readOnly', false);
@@ -366,7 +375,7 @@ $form = $this->beginWidget('CActiveForm', array(
                 minDate:$('#StewardCleaningForm_StartTime').val()?$('#StewardCleaningForm_StartTime').val():false
                 })
             },
-            scrollMonth:false,
+            scrollMonth:false
     });
     var showPopover = function () {
         $(this).popover('show');

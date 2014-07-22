@@ -1064,6 +1064,12 @@ function onTotalStewards(obj) {
             $("#StewardCleaningForm_EventName_em_").text("Please Enter Event Name");
             return false;
         }
+        if ( (!$("#StewardCleaningForm_EventName").val().match(/[A-Za-z]$/)) ) {
+                $("#StewardCleaningForm_EventName_em_").show();
+                $("#StewardCleaningForm_EventName_em_").addClass('errorMessage');
+                $("#StewardCleaningForm_EventName_em_").text("Please Enter only alphabets ");
+                return false;
+            }
 
         if (isNaN($('#StewardCleaningForm_AttendPeople').val()) || ($('#StewardCleaningForm_AttendPeople').val() == '')) {
             $("#StewardCleaningForm_AttendPeople_em_").show();

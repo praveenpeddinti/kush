@@ -87,7 +87,7 @@
                                 <li><a href="contactInfo"> <i class="fa fa-phone"></i> Contact Info</a>
 <!--                                    <div class="<?php echo $statusClassForContact;?>"> </div>-->
                                 </li>
-                                <li class="active"><a href="#"> <i class="fa fa-file-text"></i> Orders</a>
+                                <li class="active"><a href="order"> <i class="fa fa-file-text"></i> Orders</a>
                                 </li>
                                 <li><a href="invitefriends"><i class="fa fa-users"></i> Invite Friends</a></li>
                             </ul>
@@ -121,7 +121,7 @@
                             <div id="tablewidget"  style="margin: auto;"><div id="message" style="display:none"></div>
                                 <table id="userTable" class="table table-hover">
 
-                                    <thead><tr><th>Service Name</th><th>Order Number</th><th>Status</th><th>Amount</th></tr></thead>
+                                    <thead><tr><th>Service Name</th><th>Order Number</th><th>Status</th><th>Amount</th><th>Actions</th></tr></thead>
                                     <tbody id="abusedWords_tbody">
                                       
                                     </tbody>
@@ -137,6 +137,19 @@
                         </div>
                     </div>    
                 </div>
+                <div id="myModalforgot1" class="modal fade" >
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h3 id="myModalLabel">Re-Schedule Order</h3>
+                            </div>
+                            <div class="modal-body" id="modelBodyDiv1" style="padding:15px;">
+                            
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
             </article>
         </div>
     </section>
@@ -146,10 +159,18 @@
     
     
     $(document).ready(function() { 
+        alert
         <?php $totalPercent = $basicPercent+$contactPercent+$payPercent; ?>
         $( "#progressbar" ).progressbar({value: <?php echo $totalPercent;?>});
         $("#instant_notifications").fadeOut(6000, "");
-
+        $('#userTable tr td input').live('click', function() {
+            var id1=$(this).attr('id');
+            var id = $(this).attr('data-id');
+            if(id1.indexOf("reschedule") > -1)
+                reSchedule(Number(id));
+            else
+                statusChangeUser(Number(id));
+        });
 });
 
 
@@ -219,6 +240,51 @@ function getCollectionDataWithPagination(URL,CollectionName, MainDiv, CurrentPag
                 if(callback!=''){
                     callback();
                 }
+    }
+    function statusChangeUser(rowNos) {
+        var statusData = 'Are you sure want to cancel your order?';
+        var r = confirm(statusData);
+        if (r == true) {
+            var data = "Id=" + rowNos;
+            //alert(data);
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: '<?php echo Yii::app()->createAbsoluteUrl("/user/ordercancelmanage"); ?>',
+                data: data,
+                success: function(data) {
+                    //activeFormHandler(data, status, rowNos);
+                    $('#message').show();
+                    $("#message").addClass('alert alert-success');
+                    $("#message").text('Order cancelled  Successfully.');
+                    $("#message").fadeOut(6000, "");
+                    $('#row_' + rowNos).remove();
+                    getCollectionDataWithPagination('/user/newOrder','userDetails', 'abusedWords_tbody',1,5,'','', '');
+                },
+                error: function(data) { // if error occured
+                    alert("Error occured.please try again");
+
+                }
+            });
+        } 
+    }
+    function reSchedule(id){
+         var data = "Id=" + id;
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: '<?php echo Yii::app()->createAbsoluteUrl("/user/orderreschedule"); ?>',
+                data: data,
+                success: function(data) {
+                    $("#myModalforgot1").modal({ backdrop: 'static', keyboard: false,show:false });
+                    $("#modelBodyDiv1").html(data.html);
+                    $('#myModalforgot1').modal('show');
+                },
+                error: function(data) { 
+                   alert("Error occured.please try again");
+
+                }
+            });
     }
 
 </script>

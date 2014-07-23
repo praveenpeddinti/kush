@@ -631,7 +631,21 @@ class KushGharService {
     public function checkNewUserExistInCustomerTable($email) {
         return Registration::model()->checkNewUserExistInCustomerTable($email);
     }
-    
+    public function cancelUserOrderStatus($id) {
+        return OrderDetails::model()->cancelUserOrderStatus($id);
+    }
+    public function getServiceType($id){
+        return OrderDetails::model()->getServiceType($id);
+    }
+    public function rescheduleHouseCleaning($serviceTime,$OrderNumber){
+        return OrderDetails::model()->rescheduleHouseCleaning($serviceTime,$OrderNumber);
+    }
+    public function rescheduleCarWah($serviceTime,$OrderNumber){
+        return OrderDetails::model()->rescheduleCarWah($serviceTime,$OrderNumber);
+    }
+    public function rescheduleStewards($startTime,$endTime,$duration,$OrderNumber){
+        return OrderDetails::model()->rescheduleStewards($startTime,$endTime,$duration,$OrderNumber);
+    }
 }
 
 ?>

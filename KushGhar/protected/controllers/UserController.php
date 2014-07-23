@@ -1296,9 +1296,64 @@ class UserController extends Controller {
             echo $exc->getTraceAsString();
         }
    }
+   public function actionOrderCancelManage(){
+       $changeUserStatus = $this->kushGharService->cancelUserOrderStatus($_POST['Id']);
+       $obj = array('status' => 'error', 'data' => '', 'error' => $changeUserStatus);
+       echo CJSON::encode($obj);
+   }
+   public function actionOrderReschedule(){
+       try{
+           $Model = new OrderRescheduleForm;
+            $id=$_POST['Id'];
+            $getServiceType = $this->kushGharService->getServiceType($id);
+            $renderHtml=  $this->renderPartial('orderreschedule',array("model"=>$Model, "serviceType" => $getServiceType['ServiceId'],"OrderNumber"=>$id),true);
+            $obj=array('status'=>'success','html'=>$renderHtml);
+            $renderScript=  $this->rendering($obj);
+            echo $renderScript;
+        } catch (Exception $ex) {
+            error_log("####### Exception Occurred in Order Re-Scheduling ##########".$ex->getMessage());
+        }
+   }
+   public function actionOrderRescheduleDate() {
+       $rescheduleForm = new OrderRescheduleForm;
+       $request = yii::app()->getRequest();
+       $formName = $request->getParam('OrderRescheduleForm');
+       if ($formName != '') {
+                $rescheduleForm->attributes = $request->getParam('OrderRescheduleForm');
+                $errors = CActiveForm::validate($rescheduleForm);
+                if ($errors != '[]') {
+                    $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
+                } else
+                {
+                    if($_POST['Type']==1)
+                        $result = $this->kushGharService->rescheduleHouseCleaning($rescheduleForm->ServiceStartTime,$_POST['OrderNumber']);
+                    else if($_POST['Type']==2)
+                        $result = $this->kushGharService->rescheduleCarWah($rescheduleForm->ServiceStartTime,$_POST['OrderNumber']);  
+                    else if($_POST['Type']==3)
+                        $result = $this->kushGharService->rescheduleStewards($rescheduleForm->StartTime,$rescheduleForm->EndTime,$rescheduleForm->DurationHours,$_POST['OrderNumber']);
+                    if($result=='success')
+                    {
+                        //Mailing functionality
+                        $obj = array('status' => 'success', 'data' => $result, 'error' => 'Re-Scheduled Successfully.');
+                    }
+                    else
+                    {
+                        $errors = array("RescheduleForm_error" => 'Re-Schedule Failed.');
+                        $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
+                    }
+                    $renderScript = $this->rendering($obj);
+                echo $renderScript;
+                }
+            }
+            else
+            {
+                $errors = array("RescheduleForm_error" => 'Re-Schedule Failed.');
+                $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
+            }
+        }
    
    public function actionMailSendData() {
-        try {   error_log("-------------------enter controll----1---------");
+        try {   
                 $cId = $this->session['UserId'];
         $genOrderNo = '';
         $HOrder='';$COrder='';$SOrder='';
@@ -1419,11 +1474,9 @@ class UserController extends Controller {
                 $sendMailToUser->actionSendmail($messageview1,$params1, $subject1, $to1,$employerEmail);
                 $mailSendStatus=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
                 $obj = array('status' => 'success');
-                error_log("-------------------enter controll-----2--------");
                 $renderScript = $this->rendering($obj);
                 echo $renderScript;
-            error_log("-------------------enter controll---------3----");
-        } catch (Exception $ex) {
+            } catch (Exception $ex) {
             error_log("#########Exception Occurred########" . $ex->getMessage());
         }
     }

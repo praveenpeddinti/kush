@@ -1,6 +1,6 @@
 <?php if ($totalCount <= 0) { ?>
                                         <tr id="noRecordsTR">
-                                            <td colspan="4">
+                                            <td colspan="5">
                                                 <span class="text-error"> <b>No records found</b></span>
                                             </td>
                                         </tr>
@@ -26,7 +26,10 @@
                                                 if($row['status']==2){$status = 'Cancel';} 
                                             echo $status; ?></td>
                                         <td><center><?php echo $row['amount'];?></center></td>
-                                        
+                                         <td>
+                                            <input id="reschedule_<?php echo $row['id']; ?>" data-id="<?php echo $row['order_number']; ?>"  type="button" value=" " class="<? echo 'icon_reinvite';?>" alt="Re-Schedule" title="Re-Schedule"/>
+                                            <input id="cancel_<?php echo $row['id']; ?>" data-id="<?php echo $row['order_number']; ?>" type="button" value=" " class="<? echo 'icon_inactive'; ?>" alt="Cancel" title="Cancel"/>
+                                            </td>
                                             
                                                     </tr>
         <?php }

@@ -162,7 +162,45 @@ public function sendorderStatus($id,$val){
         }
         return $result;
     }
-
-}
-
-?>
+    public function cancelUserOrderStatus($id){
+        $query="update KG_Order_details set status=2 where order_number=".$id;
+        $result1 = YII::app()->db->createCommand($query)->execute();
+        if($result1>0)
+            $result = "success"; 
+    }
+    public function getServiceType($id){
+        $query="select ServiceId from KG_Order_details where order_number=".$id;
+        $result = YII::app()->db->createCommand($query)->queryRow();
+        return $result;
+    }
+    public function rescheduleHouseCleaning($serviceTime,$OrderNumber){
+        $query="update KG_House_cleaning_service set houseservice_start_time='".$serviceTime."' where order_number=".$OrderNumber;
+        $query1="update KG_Order_details set status=0 where order_number=".$OrderNumber;
+        $result = YII::app()->db->createCommand($query)->execute();
+        $result1 = YII::app()->db->createCommand($query1)->execute();
+        if($result>0||$result1>0)
+         return "success";
+        else 
+            return "failure";
+    }
+    public function rescheduleCarWah($serviceTime,$OrderNumber){
+        $query="update KG_Car_cleaning_service set carservice_start_time='".$serviceTime."' where order_number=".$OrderNumber;
+        $query1="update KG_Order_details set status=0 where order_number=".$OrderNumber;
+        $result = YII::app()->db->createCommand($query)->execute();
+        $result1 = YII::app()->db->createCommand($query1)->execute();
+        if($result>0||$result1>0)
+         return "success";
+        else 
+            return "failure";
+    }
+    public function rescheduleStewards($startTime,$endTime,$Duration,$OrderNumber){
+        $query="update KG_Stewards_cleaning_service set start_time='".$startTime."' , end_time='".$endTime."' ,service_hours=".$Duration." where order_number=".$OrderNumber;
+        $query1="update KG_Order_details set status=0 where order_number=".$OrderNumber;
+        $result = YII::app()->db->createCommand($query)->execute();
+        $result1 = YII::app()->db->createCommand($query1)->execute();
+        if($result>0||$result1>0)
+         return "success";
+        else 
+            return "failure";
+    }
+}?>

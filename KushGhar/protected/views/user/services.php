@@ -243,10 +243,7 @@
             $('#HouseCleaningForm_DifferentAddress').val('0');
             $('#HouseCleaningForm_Address1').val('<?php echo $customerAddressDetails->address_line1;?>');
             $('#HouseCleaningForm_Address2').val('<?php echo $customerAddressDetails->address_line2;?>');
-            <?php if(($customerAddressDetails->alternate_phone)!=0) ?>
             $('#HouseCleaningForm_AlternatePhone').val('<?php echo $customerAddressDetails->alternate_phone;?>');
-            else
-              $('#HouseCleaningForm_AlternatePhone').val('');  
             $('#HouseCleaningForm_City').val('<?php echo $customerAddressDetails->address_city;?>');
             $('#HouseCleaningForm_PinCode').val('<?php echo $customerAddressDetails->address_pin_code;?>');
             

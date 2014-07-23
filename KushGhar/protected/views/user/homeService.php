@@ -1064,7 +1064,7 @@ function onTotalStewards(obj) {
             $("#StewardCleaningForm_EventName_em_").text("Please Enter Event Name");
             return false;
         }
-        if ( (!$("#StewardCleaningForm_EventName").val().match(/[A-Za-z]$/)) ) {
+        if ( ($('#StewardCleaningForm_EventType').val() == '7') && (!$("#StewardCleaningForm_EventName").val().match(/[A-Za-z]$/)) ) {
                 $("#StewardCleaningForm_EventName_em_").show();
                 $("#StewardCleaningForm_EventName_em_").addClass('errorMessage');
                 $("#StewardCleaningForm_EventName_em_").text("Please Enter only alphabets ");

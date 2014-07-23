@@ -40,7 +40,7 @@
 
                                     </div>
                                     <div class="span4">
-                                        <label>Different Address</label>
+                                        <label>Same as Contact Info</label>
                                         <div class="switch switch-large" id="DifferentAddress" data-on-label="Yes" data-off-label="No">
                                         <?php echo $form->checkBox($model, 'DifferentAddress', array('id' => 'HouseCleaningForm_DifferentAddress')); ?>
                                        </div>

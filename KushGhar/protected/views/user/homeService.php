@@ -62,20 +62,21 @@
                                     $payPercent = 0;
                                 }
                                 ?>
-                                <li  class="active"><a href="homeService"> <i class="fa fa-wrench"></i> Services</a></li>
-                                <li><a href="priceQuote"> <i class="fa fa-user"></i> Price Quote</a></li>
-                                <li><a href="paymentInfo"> <i class="fa fa-credit-card"></i> Payment Info</a>
-<!--                                    <div class="<?php echo $statusClassForPayment; ?>"> </div>-->
-                                </li>
-                                <li><a href="basicinfo"> <i class="fa fa-file-text-o"></i> Basic Info</a>
-<!--                                    <div class=<?php echo '"' . $statusClassForBasic . '"' ?>></div>-->
-                                </li>
-                                <li><a href="contactInfo"> <i class="fa fa-phone"></i> Contact Info</a>
-<!--                                    <div class="<?php echo $statusClassForContact; ?>"> </div>-->
-                                </li>
-                                <li><a href="order"> <i class="fa fa-file-text"></i> Orders</a>
-                                </li>
-                                <li><a href="invitefriends"><i class="fa fa-users"></i> Invite Friends</a></li>
+                                <a href="homeService"><li class="active"> <i class="fa fa-wrench"></i> Services</li></a>
+                                <a href="priceQuote"><li> <i class="fa fa-user"></i> Price Quote</li></a>
+                                <a href="paymentInfo"><li> <i class="fa fa-credit-card"></i> Payment Info
+<!--                                    <div class="<?php echo $statusClassForPayment;?>"> </div>-->
+                                </li></a>
+                                <a href="basicinfo"><li> <i class="fa fa-file-text-o"></i> Basic Info
+<!--                                    <div class=<?php echo '"'.$statusClassForBasic.'"' ?>></div>-->
+                                </li></a>
+                                <a href="contactInfo"><li> <i class="fa fa-phone"></i> Contact Info
+<!--                                    <div class="<?php echo $statusClassForContact;?>"> </div>-->
+                                </li></a>
+                                <a href="order"><li> <i class="fa fa-file-text"></i> Orders</li></a>
+                                <a href="invitefriends"><li> <i class="fa fa-users"></i> Invite Friends</li></a>
+                                
+                                
                             </ul>
                         </div>
                         <div id="payment" class="collapse">

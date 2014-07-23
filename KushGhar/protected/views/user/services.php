@@ -39,12 +39,7 @@
                                         <?php echo $form->error($model, 'ServiceStartTime'); ?>
 
                                     </div>
-                                    <div class="span4">
-                                        <label>Same as Contact Info</label>
-                                        <div class="switch switch-large" id="DifferentAddress" data-on-label="Yes" data-off-label="No">
-                                        <?php echo $form->checkBox($model, 'DifferentAddress', array('id' => 'HouseCleaningForm_DifferentAddress')); ?>
-                                       </div>
-                                      </div>
+                                    
                                 </div>
                                 
                                 </div>
@@ -130,6 +125,14 @@
                                             </div>
                                         </div>
                                     </div><hr>
+                                    <div class="row-fluid">
+                                    <div class="pull-right span12">
+                                        <label>Same as Contact Info Address</label>
+                                        <div class="switch switch-large" id="DifferentAddress" data-on-label="Yes" data-off-label="No">
+                                        <?php echo $form->checkBox($model, 'DifferentAddress', array('id' => 'HouseCleaningForm_DifferentAddress')); ?>
+                                       </div>
+                                      </div>
+                                    </div>
                                     <div class="row-fluid">
             <div class=" span4">
                 <label><abbr title="required">*</abbr> Address Line1</label>

@@ -48,10 +48,10 @@ if($serviceType == 3) {?>
         scrollPleaseWait("inviteSpinLoader","invite-form")
          var data = $("#reschedule-form").serialize();
          data+= '&Type=' + $("#OrderRescheduleForm_ServiceType").val()+'&OrderNumber='+$("#OrderRescheduleForm_OrderNumber").val();
-         alert("type"+data);exit;
+         
          ajaxRequest('/user/orderrescheduledate', data, rescheduleHandler)
     }
-    function validate(){alert("enter vall");
+    function validate(){
         if(($("#OrderRescheduleForm_ServiceType").val()==1)||($("#OrderRescheduleForm_ServiceType").val()==2))
         {
         if (($('#OrderRescheduleForm_ServiceStartTime').val() == '')) {

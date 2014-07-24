@@ -1143,7 +1143,7 @@ class UserController extends Controller {
                 $employerEmail = "no-reply@kushghar.com";
                 $messageview1="InvitationMail";
                 
-                $mess1 = 'http://115.248.17.88:6060/site/registration?Uname=' . $inviteFriends->Email . "\r\n\n";
+                $mess1 = 'http://www.kushghar.com/site/registration?Uname=' . $inviteFriends->Email . "\r\n\n";
                 $params1 = array('Logo' => $Logo, 'Name' =>$name, 'Message' =>$mess1);
                 //$this->sendMailToUser($to1, $name, $subject, $mess1, 'KushGhar', 'no-reply@kushghar.com', 'InvitationMail');            
                 /*

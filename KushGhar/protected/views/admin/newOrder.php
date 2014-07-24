@@ -26,7 +26,7 @@
                                                 if($row['status']==3){$status='Close';}
                                                 if($row['status']==2){$status = 'Cancel';} 
                                             echo $status; ?></td>
-                                        <td><?php echo $row['service_date']?>
+                                        <td><?php $datee = explode(" ",$row['service_date']);echo $datee[0];?>
                                         </td>
                                         <td><center><?php echo $row['amount'];?></center></td>
                                         <td>

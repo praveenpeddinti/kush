@@ -220,7 +220,7 @@ article{margin-left:300px;min-height: 480px}
 .sub_menu ul.l_menu_sub_menu li{ margin:0; padding:5px 10px 5px 10px; line-height:40px; display:block; border-bottom:1px solid #e1e1e1; position:relative }
 .sub_menu ul.l_menu_sub_menu li a{ font-size:14px; color:#555555; text-decoration:none;}
 .sub_menu ul.l_menu_sub_menu li:hover, .sub_menu ul.l_menu_sub_menu li.active { background-image: url(../images/submenu_h_bg.png); background-repeat: repeat; background-position: left top; }
-.sub_menu ul.l_menu_sub_menu li:hover a{ font-size:14px; color:#363636; text-decoration:none;}
+.sub_menu ul.l_menu_sub_menu li:hover a{ font-size:14px; color:#363636; text-decoration:none;display:block}
 .sub_menu ul.l_menu_sub_menu li a i{ color:#c0bfbf; font-size:16px; width:20px; text-decoration:none;}
 .sub_menu ul.l_menu_sub_menu li:hover a i{ color:#656565}
 .status_info1, .status_info2, .status_info3{ position: absolute; right:3px; top:8px; background-image: url(../images/left_menu.png);background-repeat: repeat; background-position: left top; width:32px; height:32px; }

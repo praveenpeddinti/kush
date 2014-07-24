@@ -200,8 +200,8 @@ $form = $this->beginWidget('CActiveForm', array(
         if($('#StewardCleaningForm_ContactAddress').val()==''){
             $('#StewardCleaningForm_Address1').attr('readOnly', false);
             $('#StewardCleaningForm_Address2').attr('readOnly', false);
-            $('#StewardCleaningForm_AlternatePhone').attr('readOnly', false);
-            $('#StewardCleaningForm_State').attr('readOnly', false);
+            $('#StewardCleaningFom_AlternatePhone').attr('readOnly', false);
+            $('#StewardCleaningForm_State').attr('disabled', false);
             $('#StewardCleaningForm_City').attr('readOnly', false);
             $('#StewardCleaningForm_PinCode').attr('readOnly', false);
             
@@ -209,7 +209,7 @@ $form = $this->beginWidget('CActiveForm', array(
             $('#StewardCleaningForm_Address1').attr('readOnly', true);
             $('#StewardCleaningForm_Address2').attr('readOnly', true);
             $('#StewardCleaningForm_AlternatePhone').attr('readOnly', true);
-            $('#StewardCleaningForm_State').attr('readOnly', true);
+            $('#StewardCleaningForm_State').attr('disabled', true);
             $('#StewardCleaningForm_City').attr('readOnly', true);
             $('#StewardCleaningForm_PinCode').attr('readOnly', true);
         }
@@ -219,7 +219,7 @@ $form = $this->beginWidget('CActiveForm', array(
             $('#StewardCleaningForm_Address1').attr('readOnly', false);
             $('#StewardCleaningForm_Address2').attr('readOnly', false);
             $('#StewardCleaningForm_AlternatePhone').attr('readOnly', false);
-            $('#StewardCleaningForm_State').attr('readOnly', false);
+            $('#StewardCleaningForm_State').attr('disabled', false);
             $('#StewardCleaningForm_City').attr('readOnly', false);
             $('#StewardCleaningForm_PinCode').attr('readOnly', false);
         
@@ -274,7 +274,7 @@ $form = $this->beginWidget('CActiveForm', array(
                     $('#StewardCleaningForm_Address1').attr('readOnly', false);
                     $('#StewardCleaningForm_Address2').attr('readOnly', false);
                     $('#StewardCleaningForm_AlternatePhone').attr('readOnly', false);
-                    $('#StewardCleaningForm_State').attr('readOnly', false);
+                    $('#StewardCleaningForm_State').attr('disabled', false);
                     $('#StewardCleaningForm_City').attr('readOnly', false);
                     $('#StewardCleaningForm_PinCode').attr('readOnly', false);
 
@@ -282,7 +282,7 @@ $form = $this->beginWidget('CActiveForm', array(
                     $('#StewardCleaningForm_Address1').attr('readOnly', true);
                     $('#StewardCleaningForm_Address2').attr('readOnly', true);
                     $('#StewardCleaningForm_AlternatePhone').attr('readOnly', true);
-                    $('#StewardCleaningForm_State').attr('readOnly', true);
+                    $('#StewardCleaningForm_State').attr('disabled', true);
                     $('#StewardCleaningForm_City').attr('readOnly', true);
                     $('#StewardCleaningForm_PinCode').attr('readOnly', true);
                 }
@@ -302,7 +302,7 @@ $form = $this->beginWidget('CActiveForm', array(
                 $('#StewardCleaningForm_Address1').attr('readOnly', false);
                 $('#StewardCleaningForm_Address2').attr('readOnly', false);
                 $('#StewardCleaningForm_AlternatePhone').attr('readOnly', false);
-                $('#StewardCleaningForm_State').attr('readOnly', false);
+                $('#StewardCleaningForm_State').attr('disabled', false);
                 $('#StewardCleaningForm_City').attr('readOnly', false);
                 $('#StewardCleaningForm_PinCode').attr('readOnly', false);
             }

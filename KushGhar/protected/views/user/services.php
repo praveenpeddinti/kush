@@ -42,7 +42,7 @@
                                     
                                 </div>
                                 
-                                </div>
+                               
                                 <div class="row-fluid">
                                     <div class=" span3">
                                         <?php $Rooms = array();
@@ -91,7 +91,7 @@
                                     <div class="span12">
                                     <label>Pooja Room Cleaning</label>
                                     <div class="switch switch-large" id="PoojaRoom" data-on-label="Yes" data-off-label="No">
-                                    <?php echo $form->checkBox($model, 'PoojaRoom', array('id' => 'HouseCleaningForm_PoojaRoom')); ?>
+                                    <?php //echo $form->checkBox($model, 'PoojaRoom', array('id' => 'HouseCleaningForm_PoojaRoom')); ?>
                                     </div>
                                     </div>
                                 </div>-->
@@ -222,7 +222,7 @@
             $('#HouseCleaningForm_Address1').attr('readOnly', false);
             $('#HouseCleaningForm_Address2').attr('readOnly', false);
             $('#HouseCleaningForm_AlternatePhone').attr('readOnly', false);
-            $('#HouseCleaningForm_State').attr('readOnly', false);
+            $('#HouseCleaningForm_State').attr('disabled', false);
             $('#HouseCleaningForm_City').attr('readOnly', false);
             $('#HouseCleaningForm_PinCode').attr('readOnly', false);
             
@@ -230,7 +230,7 @@
             $('#HouseCleaningForm_Address1').attr('readOnly', true);
             $('#HouseCleaningForm_Address2').attr('readOnly', true);
             $('#HouseCleaningForm_AlternatePhone').attr('readOnly', true);
-            $('#HouseCleaningForm_State').attr('readOnly', true);
+            $('#HouseCleaningForm_State').attr('disabled', true);
             $('#HouseCleaningForm_City').attr('readOnly', true);
             $('#HouseCleaningForm_PinCode').attr('readOnly', true);
         }
@@ -240,7 +240,7 @@
             $('#HouseCleaningForm_Address1').attr('readOnly', false);
             $('#HouseCleaningForm_Address2').attr('readOnly', false);
             $('#HouseCleaningForm_AlternatePhone').attr('readOnly', false);
-            $('#HouseCleaningForm_State').attr('readOnly', false);
+            $('#HouseCleaningForm_State').attr('disabled', false);
             $('#HouseCleaningForm_City').attr('readOnly', false);
             $('#HouseCleaningForm_PinCode').attr('readOnly', false);
         
@@ -290,7 +290,7 @@
                     $('#HouseCleaningForm_Address1').attr('readOnly', false);
                     $('#HouseCleaningForm_Address2').attr('readOnly', false);
                     $('#HouseCleaningForm_AlternatePhone').attr('readOnly', false);
-                    $('#HouseCleaningForm_State').attr('readOnly', false);
+                    $('#HouseCleaningForm_State').attr('disabled', false);
                     $('#HouseCleaningForm_City').attr('readOnly', false);
                     $('#HouseCleaningForm_PinCode').attr('readOnly', false);
 
@@ -298,7 +298,7 @@
                     $('#HouseCleaningForm_Address1').attr('readOnly', true);
                     $('#HouseCleaningForm_Address2').attr('readOnly', true);
                     $('#HouseCleaningForm_AlternatePhone').attr('readOnly', true);
-                    $('#HouseCleaningForm_State').attr('readOnly', true);
+                    $('#HouseCleaningForm_State').attr('disabled', true);
                     $('#HouseCleaningForm_City').attr('readOnly', true);
                     $('#HouseCleaningForm_PinCode').attr('readOnly', true);
                 }
@@ -320,7 +320,7 @@
                 $('#HouseCleaningForm_Address1').attr('readOnly', false);
                 $('#HouseCleaningForm_Address2').attr('readOnly', false);
                 $('#HouseCleaningForm_AlternatePhone').attr('readOnly', false);
-                $('#HouseCleaningForm_State').attr('readOnly', false);
+                $('#HouseCleaningForm_State').attr('disabled', false);
                 $('#HouseCleaningForm_City').attr('readOnly', false);
                 $('#HouseCleaningForm_PinCode').attr('readOnly', false);
             }

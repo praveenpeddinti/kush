@@ -22,8 +22,9 @@
                                         <td id="status_<?php echo $row['id']; ?>">
                                                 <?php 
                                                 if($row['status']==0){$status = 'Open';} 
-                                                if($row['status']==1){$status = 'Close';} 
-                                                if($row['status']==2){$status = 'Cancel';} 
+                                                if($row['status']==1){$status = 'Schedule';} 
+                                                if($row['status']==2){$status = 'Cancel';}
+                                                if($row['status']==3){$status = 'Close';}
                                             echo $status; ?></td>
                                         <td><center><?php echo $row['amount'];?></center></td>
                                          <td>

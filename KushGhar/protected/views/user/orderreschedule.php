@@ -44,12 +44,12 @@ if($serviceType == 3) {?>
          </div>
 <script type="text/javascript">
     function reschedule(){
-        validate();
+        if(validate()){
         scrollPleaseWait("inviteSpinLoader","invite-form")
          var data = $("#reschedule-form").serialize();
          data+= '&Type=' + $("#OrderRescheduleForm_ServiceType").val()+'&OrderNumber='+$("#OrderRescheduleForm_OrderNumber").val();
-         
          ajaxRequest('/user/orderrescheduledate', data, rescheduleHandler)
+    }
     }
     function validate(){
         if(($("#OrderRescheduleForm_ServiceType").val()==1)||($("#OrderRescheduleForm_ServiceType").val()==2))
@@ -58,7 +58,7 @@ if($serviceType == 3) {?>
             $("#OrderRescheduleForm_ServiceStartTime_em_").show();
             $("#OrderRescheduleForm_ServiceStartTime_em_").addClass('errorMessage');
             $("#OrderRescheduleForm_ServiceStartTime_em_").text("Please Select Service Time");
-            return false;
+                return false;
         }
         else
         {

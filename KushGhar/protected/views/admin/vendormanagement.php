@@ -12,11 +12,11 @@
                         <div id="accounts" class="collapse in">
                             <div class="selected_tab">Dashboard</div>
                             <ul class="l_menu_sub_menu">
-                                <a href="/admin/dashboard"><li> <i class="fa fa-users"></i> Invite Friends</li></a>
-                                <a href="/admin/manage"><li> <i class="fa fa-users"></i> Invite Management</li></a>
-                                <a href="/admin/order"><li> <i class="fa fa-file-text"></i> Orders</li></a>
-                                <a href="/admin/usermanagement"><li> <i class="fa fa-user"></i> User Management</li></a>
-                                <a href="/admin/vendormanagement"><li class="active"> <i class="fa fa-user"></i> Vendor Management</li></a>
+                                <li><a href="/admin/dashboard"> <i class="fa fa-users"></i> Invite Friends</a></li>
+                                <li><a href="/admin/manage"> <i class="fa fa-users"></i> Invite Management</a></li>
+                                <li><a href="/admin/order"> <i class="fa fa-file-text"></i> Orders</a></li>
+                                <li><a href="/admin/usermanagement"> <i class="fa fa-user"></i> User Management</a></li>
+                                <li class="active"><a href="/admin/vendormanagement"> <i class="fa fa-user"></i> Vendor Management</a></li>
                             </ul>
                         </div>
                     </div>

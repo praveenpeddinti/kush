@@ -76,19 +76,19 @@
                                      $payPercent = 0;
                                  }
                                  ?>
-                                <a href="homeService"><li> <i class="fa fa-wrench"></i> Services</li></a>
-                                <a href="priceQuote"><li> <i class="fa fa-user"></i> Price Quote</li></a>
-                                <a href="paymentInfo"><li> <i class="fa fa-credit-card"></i> Payment Info
+                                <li><a href="homeService"> <i class="fa fa-wrench"></i> Services</a></li>
+                                <li><a href="priceQuote"> <i class="fa fa-user"></i> Price Quote</a></li>
+                                <li><a href="paymentInfo"> <i class="fa fa-credit-card"></i> Payment Info
 <!--                                    <div class="<?php echo $statusClassForPayment;?>"> </div>-->
-                                </li></a>
-                                <a href="basicinfo"><li> <i class="fa fa-file-text-o"></i> Basic Info
+                                </a></li>
+                                <li><a href="basicinfo"> <i class="fa fa-file-text-o"></i> Basic Info
 <!--                                    <div class=<?php echo '"'.$statusClassForBasic.'"' ?>></div>-->
-                                </li></a>
-                                <a href="contactInfo"><li> <i class="fa fa-phone"></i> Contact Info
+                                </a></li>
+                               <li> <a href="contactInfo"> <i class="fa fa-phone"></i> Contact Info
 <!--                                    <div class="<?php echo $statusClassForContact;?>"> </div>-->
-                                </li></a>
-                                <a href="order"><li class="active"> <i class="fa fa-file-text"></i> Orders</li></a>
-                                <a href="invitefriends"><li> <i class="fa fa-users"></i> Invite Friends</li></a>
+                                </a></li>
+                                <li class="active"><a href="order"> <i class="fa fa-file-text"></i> Orders</a></li>
+                               <li> <a href="invitefriends"> <i class="fa fa-users"></i> Invite Friends</a></li>
                                 
                             </ul>
                         </div>
@@ -121,7 +121,7 @@
                             <div id="tablewidget"  style="margin: auto;"><div id="message" style="display:none"></div>
                                 <table id="userTable" class="table table-hover">
 
-                                    <thead><tr><th>Service Name</th><th>Order Number</th><th>Status</th><th>Amount</th><th>Actions</th></tr></thead>
+                                    <thead><tr><th>Service Name</th><th>Order Number</th><th>Status</th><th>Service Date</th><th>Amount</th><th>Actions</th></tr></thead>
                                     <tbody id="abusedWords_tbody">
                                       
                                     </tbody>

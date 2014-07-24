@@ -8,6 +8,7 @@ class OrderDetails extends CActiveRecord {
     public $order_number;
     public $status;
     public $amount;
+    public $service_date;
     public $create_timestamp;
     public $update_timestamp;
     
@@ -53,7 +54,7 @@ class OrderDetails extends CActiveRecord {
         return $result;
     }
     
-    public function storeOrderDetailsOfHouse($cId,$parentId,$CustId,$orderNo,$serviceId,$amount) {
+    public function storeOrderDetailsOfHouse($cId,$parentId,$CustId,$orderNo,$serviceId,$amount,$serviceDate) {
                 try {
                 $order = new OrderDetails();
                 $order->parent_id = $parentId+1;
@@ -61,6 +62,7 @@ class OrderDetails extends CActiveRecord {
                 $order->ServiceId = $serviceId;
                 $order->order_number = ($orderNo+1);
                 $order->status = 0;
+                $order->service_date=$serviceDate;
                 $order->amount = $amount;
                 $order->create_timestamp = gmdate("Y-m-d H:i:s", time());
                 $order->update_timestamp = gmdate("Y-m-d H:i:s", time());
@@ -176,7 +178,7 @@ public function sendorderStatus($id,$val){
     }
     public function rescheduleHouseCleaning($serviceTime,$OrderNumber){
         $query="update KG_House_cleaning_service set houseservice_start_time='".$serviceTime."' where order_number=".$OrderNumber;
-        $query1="update KG_Order_details set status=0 where order_number=".$OrderNumber;
+        $query1="update KG_Order_details set status=0, service_date='".$serviceTime."' where order_number=".$OrderNumber;
         $result = YII::app()->db->createCommand($query)->execute();
         $result1 = YII::app()->db->createCommand($query1)->execute();
         if($result>0||$result1>0)
@@ -186,7 +188,7 @@ public function sendorderStatus($id,$val){
     }
     public function rescheduleCarWah($serviceTime,$OrderNumber){
         $query="update KG_Car_cleaning_service set carservice_start_time='".$serviceTime."' where order_number=".$OrderNumber;
-        $query1="update KG_Order_details set status=0 where order_number=".$OrderNumber;
+        $query1="update KG_Order_details set status=0, service_date='".$serviceTime."' where order_number=".$OrderNumber;
         $result = YII::app()->db->createCommand($query)->execute();
         $result1 = YII::app()->db->createCommand($query1)->execute();
         if($result>0||$result1>0)
@@ -196,7 +198,7 @@ public function sendorderStatus($id,$val){
     }
     public function rescheduleStewards($startTime,$endTime,$Duration,$OrderNumber){
         $query="update KG_Stewards_cleaning_service set start_time='".$startTime."' , end_time='".$endTime."' ,service_hours=".$Duration." where order_number=".$OrderNumber;
-        $query1="update KG_Order_details set status=0 where order_number=".$OrderNumber;
+        $query1="update KG_Order_details set status=0, service_date='".$startTime."' where order_number=".$OrderNumber;
         $result = YII::app()->db->createCommand($query)->execute();
         $result1 = YII::app()->db->createCommand($query1)->execute();
         if($result>0||$result1>0)

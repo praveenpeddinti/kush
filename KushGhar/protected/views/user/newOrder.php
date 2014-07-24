@@ -1,6 +1,6 @@
 <?php if ($totalCount <= 0) { ?>
                                         <tr id="noRecordsTR">
-                                            <td colspan="5">
+                                            <td colspan="6">
                                                 <span class="text-error"> <b>No records found</b></span>
                                             </td>
                                         </tr>
@@ -26,6 +26,7 @@
                                                 if($row['status']==2){$status = 'Cancel';}
                                                 if($row['status']==3){$status = 'Close';}
                                             echo $status; ?></td>
+                                        <td><?php echo $row['service_date'] ?></td>
                                         <td><center><?php echo $row['amount'];?></center></td>
                                          <td>
                                             <?php if(($row['status']==0)||($row['status']==2)) {?>

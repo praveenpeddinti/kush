@@ -500,8 +500,9 @@ class KushGharService {
     }
     
     //add House Service with parent id
-    public function storeOrderDetailsOfHouse($cId,$parentId,$CustId,$orderNo,$serviceId,$amount) {
-        return OrderDetails::model()->storeOrderDetailsOfHouse($cId,$parentId,$CustId,$orderNo,$serviceId,$amount);
+    public function storeOrderDetailsOfHouse($cId,$parentId,$CustId,$orderNo,$serviceId,$amount,$servicedate) {
+        error_log("date==========".$servicedate);
+        return OrderDetails::model()->storeOrderDetailsOfHouse($cId,$parentId,$CustId,$orderNo,$serviceId,$amount,$servicedate);
     }
       //Order Details queries end   
     

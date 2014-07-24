@@ -26,6 +26,8 @@
                                                 if($row['status']==3){$status='Close';}
                                                 if($row['status']==2){$status = 'Cancel';} 
                                             echo $status; ?></td>
+                                        <td><?php echo $row['service_date']?>
+                                        </td>
                                         <td><center><?php echo $row['amount'];?></center></td>
                                         <td>
                                         <select class="span10 action" onchange="orderAction(<?php echo $row['id']; ?>,<?php echo $row['status']; ?>,this);">

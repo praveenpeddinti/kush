@@ -355,7 +355,7 @@ $(document).ready(function() {
                 $("#HouseCleaningForm_AlternatePhone_em_").text("Please Enter only numbers ");
                 return false;
         }
-        if ( ($("#HouseCleaningForm_AlternatePhone").val() != "") && ($("#HouseCleaningForm_AlternatePhone").val().length<='9') ) {alert("praveen");
+        if ( ($("#HouseCleaningForm_AlternatePhone").val() != "") && ($("#HouseCleaningForm_AlternatePhone").val().length<='9') ) {
                 $("#HouseCleaningForm_AlternatePhone_em").show();
                 $("#HouseCleaningForm_AlternatePhone").addClass('errorMessage');
                 $("#HouseCleaningForm_AlternatePhone").text("Alternate Phone too short (minimum is 10 numbers).");

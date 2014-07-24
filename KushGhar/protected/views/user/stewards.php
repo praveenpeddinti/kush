@@ -110,9 +110,11 @@ $form = $this->beginWidget('CActiveForm', array(
             <?php echo $form->error($model1, 'totalStewards'); ?>
         </div>
         <div class="span6">
+                
                 <label>Same as Contact Info Address</label><?php //echo $form->label($model1, 'DifferentAddress'); ?>
                 <div class="switch switch-large" id="DifferentAddress" data-on-label="Yes" data-off-label="No">
                 <?php echo $form->checkBox($model1, 'DifferentAddress', array('id' => 'StewardCleaningForm_DifferentAddress')); ?>
+                
                 </div>
             </div>
     </div>

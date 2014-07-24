@@ -74,7 +74,7 @@
                                 </table>
                                 <br>
                                 
-                                <div id="inviteFriendsSpinLoader"></div>
+                                <div id="inviteSpinLoader"></div>
                                 <div id="singleInvite">
                                 <?php $inviteFriends=$this->beginWidget('CActiveForm', array(
                                                                 'id'=>'invite-friends',
@@ -166,6 +166,7 @@ function inviteMailHandler(data)
                     $("#InviteForm_error_em_").addClass('alert alert-success');
                     $("#InviteForm_error_em_").text(data.error);
                     $("#InviteForm_error_em_").fadeOut(20000, "");
+                    window.location.href = '<?php echo Yii::app()->request->baseUrl; ?>/admin/dashboard';
                    
         }
         if(data.status == 'error'){

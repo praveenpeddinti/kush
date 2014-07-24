@@ -18,7 +18,7 @@ $form = $this->beginWidget('CActiveForm', array(
     <div class=" row-fluid borderB">
         <div class="span12 ">
             <div class="stewards_title">
-                Stewards / Stewardesses Service <a class="details has-popover" target="_blank" title="" data-toggle="popover" data-placement="bottom" data-content="<ul><li style='float:none'>Serving food</li><li style='float:none'>Serving beverages</li><li style='float:none'>Assisting in seating the guests</li><li style='float:none'>Refilling of food and beverage</li><li style='float:none'>Garbage emptying</li></ul>" data-original-title="Stewards/Stewardesses" href="/site/stewards">(What is included<b>?</b>)</a>
+                Stewards / Stewardesses Service <a class="details has-popover" target="_blank" title="" data-toggle="popover" data-placement="bottom" data-content="<ul><li style='float:none'>Serving food</li><li style='float:none'>Serving beverages</li><li style='float:none'>Assisting in seating the guests</li><li style='float:none'>Refilling of food and beverage</li><li style='float:none'>Garbage emptying</li></ul>" data-original-title="Stewards / Stewardesses" href="/site/stewards">(What is included<b>?</b>)</a>
             </div>
         </div>        
     </div>

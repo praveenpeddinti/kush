@@ -46,10 +46,10 @@
                     <td valign='top'>Additional Services are</td>
                 </tr>
                 <tr>
-                    <td><?php if ($services['window_grills'] == 1) echo "Window grills cleaning</br>"; ?>
+                    <td><b><?php if ($services['window_grills'] == 1) echo "Window grills cleaning</br>"; ?>
                         <?php if ($services['fridge_interior'] == 1) echo "Fridge interior cleaning</br>"; ?>
                         <?php if ($services['microwave_oven_interior'] == 1) echo "Micro wave oven interior cleaning</br>"; ?>
-                    </td>
+                    </b></td>
                 </tr>
                <?php }?>
                 <?php if($serviceId==2){?> 
@@ -88,7 +88,7 @@
                     <td><?php echo "<b>" . $services['attend_people'] . "</b>"; ?></td>
                 </tr>
                 <tr>
-                    <td>Event durations hours</td>
+                    <td>Event duration hour(s)</td>
                     <td><?php echo "<b>" . $services['service_hours'] . "</b>"; ?></td>
                 </tr>
                 <tr>
@@ -98,12 +98,12 @@
                 <?php if( ($services['appetizers'] == 1) || ($services['dinner'] == 1) || ($services['dessert'] == 1) || ($services['alcoholic'] == 1) || ($services['post_dinner'] == 1) ) {?>
                 <tr>
                     <td valign='top'>Services Required</td>
-                    <td><?php if ($services['appetizers'] == 1) echo "Appetizers</br>"; ?>
+                    <td><b><?php if ($services['appetizers'] == 1) echo "Appetizers</br>"; ?>
                         <?php if ($services['dinner'] == 1) echo "Dinner</br>"; ?>
                         <?php if ($services['dessert'] == 1) echo "Dessert</br>"; ?>
                         <?php if ($services['alcoholic'] == 1) echo "Beverage</br>"; ?>
                         <?php if ($services['post_dinner'] == 1) echo "Coffee / Tea</br>"; ?>
-                    </td>
+                   </b> </td>
                 </tr>
                 <?php }}?>
                 </table> 

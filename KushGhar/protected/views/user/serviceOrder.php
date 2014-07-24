@@ -62,11 +62,11 @@
             <?php if( ($HouseService['window_grills'] != 0) || ($HouseService['fridge_interior'] != 0) || ($HouseService['microwave_oven_interior'] != 0) || ($HouseService['pooja_room_cleaning'] != 0) ){?>
             <tr>
                 <td valign='top'>Additional Services are</td>
-                <td><?php if ($HouseService['window_grills'] == 1) echo "Window grills cleaning</br>"; 
+                <td><b><?php if ($HouseService['window_grills'] == 1) echo "Window grills cleaning</br>"; 
                           if ($HouseService['fridge_interior'] == 1) echo "Fridge interior cleaning</br>"; 
                           if ($HouseService['microwave_oven_interior'] == 1) echo "Micro wave oven interior cleaning</br>"; 
                           if ($HouseService['pooja_room_cleaning'] == 1) echo "Pooja room cleaning";?>
-                </td>
+               </b> </td>
             </tr><?php }?>
             <tr><td>Scheduled time</td>
                 <td><?php echo $HouseService['houseservice_start_time'];?></td>
@@ -141,7 +141,7 @@
                 <td><?php echo "<b>" . $StewardService['attend_people'] . "</b>"; ?></td>
             </tr>
             <tr>
-                <td>Event durations hours</td>
+                <td>Event duration hour(s)</td>
                 <td><?php echo "<b>" . $StewardService['service_hours'] . "</b>"; ?></td>
             </tr>
             <tr>
@@ -151,13 +151,13 @@
             <?php if( ($StewardService['appetizers'] == 1) || ($StewardService['dinner'] == 1) || ($StewardService['dessert'] == 1) || ($StewardService['alcoholic'] == 1) || ($StewardService['post_dinner'] == 1) ) {?>
             <tr>
                 <td valign='top'>Services Required</td>
-                <td>
+                <td><b>
                     <?php if ($StewardService['appetizers'] == 1) echo "Appetizers</br>"; ?>
                     <?php if ($StewardService['dinner'] == 1) echo "Dinner</br>"; ?>
                     <?php if ($StewardService['dessert'] == 1) echo "Dessert</br>"; ?>
                     <?php if ($StewardService['alcoholic'] == 1) echo "Beverage</br>"; ?>
                     <?php if ($StewardService['post_dinner'] == 1) echo "Coffee / Tea</br>"; ?>
-                </td>
+                </b></td>
             </tr>
             <?php }?>
             <tr><td>Scheduled time</td>

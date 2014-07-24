@@ -129,7 +129,7 @@
 </div>
 <script type="text/javascript">
     function inviteClick() {
-        $("")
+        
         scrollPleaseWait("inviteSpinLoader","invite-form")
          var data = $("#invite-friends").serialize();
          ajaxRequest('/user/invitefriends',  data, inviteMailHandler)
@@ -142,7 +142,7 @@ function inviteMailHandler(data)
                     $("#InviteForm_error_em_").addClass('alert alert-success');
                     $("#InviteForm_error_em_").text(data.error);
                     $("#InviteForm_error_em_").fadeOut(20000, "");
-                   
+           window.location.href = '<?php echo Yii::app()->request->baseUrl; ?>/user/invitefriends';        
         }
         if(data.status == 'error'){
             var lengthvalue=data.error.length;

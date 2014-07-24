@@ -183,6 +183,16 @@
         }else{
             $("#CarWashForm_TotalCars_em_").hide();
         }
+        if(obj.value>3){
+            $("#CarWashForm_TotalCars_em_").show();
+            $("#CarWashForm_TotalCars_em_").addClass('errorMessage');
+            $("#CarWashForm_TotalCars_em_").text("# of Cars accepts only upto 3");
+            alert("If more than 3 cars needed..,\nWe recommend you to place another order for remaining cars.")
+            return false;
+        }
+        else
+        {
+            $("#CarWashForm_TotalCars_em_").hide();
         if(obj.value > 1) {
             $("#DifferentLocationDiv").show();
             $('#DifferentLocation').bootstrapSwitch('setState', false);
@@ -196,6 +206,7 @@
             var queryString = {TCars:obj.value};
             ajaxRequest('/user/TotalCars', queryString, totalcarsDivhandler);
         }
+    }
     }
    
     $("#DifferentLocation").on('switch-change', function (e, data) {

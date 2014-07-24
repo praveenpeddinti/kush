@@ -28,9 +28,12 @@
                                             echo $status; ?></td>
                                         <td><center><?php echo $row['amount'];?></center></td>
                                          <td>
+                                            <?php if(($row['status']==0)||($row['status']==2)) {?>
                                             <input id="reschedule_<?php echo $row['id']; ?>" data-id="<?php echo $row['order_number']; ?>"  type="button" value=" " class="<? echo 'icon_reinvite';?>" alt="Re-Schedule" title="Re-Schedule"/>
+                                            
                                             <input id="cancel_<?php echo $row['id']; ?>" data-id="<?php echo $row['order_number']; ?>" type="button" value=" " class="<? echo 'icon_inactive'; ?>" alt="Cancel" title="Cancel"/>
-                                            </td>
+                                         <?php } ?>   
+                                         </td>
                                             
                                                     </tr>
         <?php }

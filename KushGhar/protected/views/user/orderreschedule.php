@@ -14,30 +14,38 @@ if($serviceType == 3) {?>
     <div class="row-fluid">
         <div class=" span4">
             <?php echo $rescheduleForm->label($model, '<abbr title="required">*</abbr> Event Start Time'); ?>
-            <?php echo $rescheduleForm->textField($model, 'StartTime', array('onchange' => 'javascript:onChangeTime();', 'class' => 'span10','readonly'=>'true')); ?>
+            <?php echo $rescheduleForm->textField($model, 'StartTime', array('value'=>$getserviceDetails['start_time'] ,'onchange' => 'javascript:onChangeTime();', 'class' => 'span10','readonly'=>'true')); ?>
             <?php echo $rescheduleForm->error($model, 'StartTime'); ?>
         </div>
         <div class=" span4">
             <?php echo $rescheduleForm->label($model, '<abbr title="required">*</abbr> Event End Time'); ?>
-            <?php echo $rescheduleForm->textField($model, 'EndTime', array('onchange' => 'javascript:onChangeTime();','class' => 'span10','readonly'=>'true')); ?>
+            <?php echo $rescheduleForm->textField($model, 'EndTime', array('value'=>$getserviceDetails['end_time'],'onchange' => 'javascript:onChangeTime();','class' => 'span10','readonly'=>'true')); ?>
             <?php echo $rescheduleForm->error($model, 'EndTime'); ?>
         </div>
         <div class=" span4">
             <?php echo $rescheduleForm->label($model, 'DurationHour(s)'); ?>
-            <?php echo $rescheduleForm->textField($model, 'DurationHours', array('class' => 'span4', 'readonly'=>'true')); ?>
+            <?php echo $rescheduleForm->textField($model, 'DurationHours', array('value'=>$getserviceDetails['service_hours'],'class' => 'span4', 'readonly'=>'true')); ?>
 
         </div> 
         
     </div>
-<?php } else { ?>
+<?php } else if($serviceType==1) { ?>
 <div class="row-fluid">
     <div class="span10">
     <label><abbr title="required">*</abbr> Service Date</label>
-    <?php  echo $rescheduleForm->textField($model, 'ServiceStartTime', array('class' => 'span4','readOnly'=>'true')); ?>
+    <?php  echo $rescheduleForm->textField($model, 'ServiceStartTime', array('value'=>$getserviceDetails['houseservice_start_time'],'class' => 'span4','readOnly'=>'true')); ?>
     <?php echo $rescheduleForm->error($model, 'ServiceStartTime'); ?>
 </div>
     </div>
-    <?php }
+    <?php } else if($serviceType==2){ ?>
+<div class="row-fluid">
+    <div class="span10">
+    <label><abbr title="required">*</abbr> Service Date</label>
+    <?php  echo $rescheduleForm->textField($model, 'ServiceStartTime', array('value'=>$getserviceDetails['carservice_start_time'],'class' => 'span4','readOnly'=>'true')); ?>
+    <?php echo $rescheduleForm->error($model, 'ServiceStartTime'); ?>
+</div>
+    </div>
+<?php }
  $this->endWidget(); ?>
          <div style="text-align: right">
              <?php echo CHtml::Button('Reschedule',array('id' => 'reschedule','class' => 'btn btn-primary','onclick'=>'reschedule();')); ?>

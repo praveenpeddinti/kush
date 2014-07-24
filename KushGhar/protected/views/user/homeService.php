@@ -477,7 +477,14 @@ $(document).ready(function() {
             }else{
               $("#CarWashForm_TotalCars_em_").hide();
             }
-        
+        if($("#CarWashForm_TotalCars").val() > 3){
+            $("#CarWashForm_TotalCars_em_").show();
+            $("#CarWashForm_TotalCars_em_").addClass('errorMessage');
+            $("#CarWashForm_TotalCars_em_").text("# of Cars accepts only upto 3");
+            return false;
+        }else{
+             $("#CarWashForm_TotalCars_em_").hide();
+        }
         if ($("#CarWashForm_ServiceStartTime").val() == "") {
                 $("#CarWashForm_ServiceStartTime_em_").show();
                 $("#CarWashForm_ServiceStartTime_em_").addClass('errorMessage');

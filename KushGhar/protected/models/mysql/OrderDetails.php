@@ -118,6 +118,7 @@ public function sendorderStatus($id,$val){
         if($val==0){$status=0;}
         if($val==1){$status=1;}
         if($val==2){$status=2;}
+        if($val==3){$status=3;}
         $result = "failed";
         try{
             $InviteObj = OrderDetails::model()->findByAttributes(array('id'=>$id));
@@ -202,5 +203,25 @@ public function sendorderStatus($id,$val){
          return "success";
         else 
             return "failure";
+    }
+    public function getServiceDetails($ordernumber,$type){
+        
+        try{
+            if($type==1){
+                $query="SELECT * FROM Kushghar.KG_House_cleaning_service where order_number=".$ordernumber;
+            }
+            else if($type==2){
+                $query="SELECT * FROM Kushghar.KG_Car_cleaning_service where order_number=".$ordernumber;
+            }
+            else if($type==3){
+                $query="SELECT * FROM Kushghar.KG_Stewards_cleaning_service where order_number=".$ordernumber;
+            }
+            error_log("Query==================".$query);
+            $result = YII::app()->db->createCommand($query)->queryRow();
+        }
+        catch (Exception $ex) {
+            error_log("getServiceDetailsById Exception occured==" . $ex->getMessage());
+        }
+        return $result;
     }
 }?>

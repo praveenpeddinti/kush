@@ -57,6 +57,7 @@
                                             <option value="20">Select Status</option>
                                             <option value="0">Open</option>
                                             <option value="1">Schedule</option>
+                                            <option value="3">Close</option>
                                             <option value="2">Cancel</option>
                                         </select>
                                     </div>
@@ -121,7 +122,17 @@
 
 <script type="text/javascript">
     function orderAction(id2,inviteStatus,obj){
+       if(obj.value=="Close")
+           var r=confirm("Are you sure want to close the order");
+       else if(obj.value=="Cancel")
+           var r=confirm("Are you sure want to cancel the order");
+       else 
+           r=true;
+       //var r = confirm(msg);
+       if(r==true)
+       {
     inviteUser(Number(id2), Number(inviteStatus),obj.value);
+       }
     }
      $(document).ready(function() {
        $('#userTable tr td input').live('click', function() {
@@ -193,7 +204,10 @@
         } else if (value == 'Cancel') {
             
             $('#status_' + rowNos).text('Cancel');
-        }else {
+        }else if(value=='Close'){
+            $('#status_' + rowNos).text('Close');
+        }
+        else {
             
             $('#status_' + rowNos).text('Open');
         }

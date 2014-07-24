@@ -646,6 +646,9 @@ class KushGharService {
     public function rescheduleStewards($startTime,$endTime,$duration,$OrderNumber){
         return OrderDetails::model()->rescheduleStewards($startTime,$endTime,$duration,$OrderNumber);
     }
+    public function getServiceDetails($ordernumber,$type){
+        return OrderDetails::model()->getServiceDetails($ordernumber,$type);
+    }
 }
 
 ?>

@@ -1306,7 +1306,10 @@ class UserController extends Controller {
            $Model = new OrderRescheduleForm;
             $id=$_POST['Id'];
             $getServiceType = $this->kushGharService->getServiceType($id);
-            $renderHtml=  $this->renderPartial('orderreschedule',array("model"=>$Model, "serviceType" => $getServiceType['ServiceId'],"OrderNumber"=>$id),true);
+            $type=$getServiceType['ServiceId'];
+            $getserviceDetails=$this->kushGharService->getServiceDetails($id,$type);
+            $renderHtml=  $this->renderPartial('orderreschedule',array("model"=>$Model, "serviceType" => $type,"OrderNumber"=>$id,"getserviceDetails"=>$getserviceDetails),true);
+            error_log("Rendered");
             $obj=array('status'=>'success','html'=>$renderHtml);
             $renderScript=  $this->rendering($obj);
             echo $renderScript;

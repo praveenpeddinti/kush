@@ -282,6 +282,7 @@ $this->pageTitle="KushGhar-Basic Info";
         if($_POST['value']=='Open'){$status = 0;}
         if($_POST['value']=='Schedule'){$status = 1;}
         if($_POST['value']=='Cancel'){$status = 2;}
+        if($_POST['value']=='Close'){$status=3;}
         $changeUserStatus = $this->kushGharService->sendorderStatus($_POST['Id'], $status);
         $obj = array('status' => 'error', 'data' => '', 'error' => $changeUserStatus);
         echo CJSON::encode($obj);

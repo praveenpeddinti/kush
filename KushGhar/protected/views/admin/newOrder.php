@@ -11,7 +11,7 @@
                                             $serviceName='';
                                         ?>
                                         <tr id="row_<?php echo $row['id'];?>" class="odd">
-                                            <td>
+                                            <td nowrap>
                                             <?php if($row['ServiceId']=='1'){$serviceName='House Cleaning';}
                                             if($row['ServiceId']=='2'){$serviceName='Car Wash';}
                                             if($row['ServiceId']=='3'){$serviceName='Stewards Services';}
@@ -29,7 +29,7 @@
                                         <td><?php $datee = explode(" ",$row['service_date']);echo $datee[0];?>
                                         </td>
                                         <td><center><?php echo $row['amount'];?></center></td>
-                                        <td>
+                                        <td nowrap>
                                         <select class="span10 action" onchange="orderAction(<?php echo $row['id']; ?>,<?php echo $row['status']; ?>,this);">
                                             <option <?php if($row['status']=="0") echo "selected=\"selected\""; ?> value="Open">Open</option>
                                             <option <?php if($row['status']=="1") echo "selected=\"selected\""; ?> value="Schedule">Schedule</option>

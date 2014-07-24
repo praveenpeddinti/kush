@@ -71,7 +71,7 @@
                                 
                                 <table id="userTable" class="table table-hover">
 
-                                    <thead><tr><th>Service Name</th><th><center>Order Number</center></th><th>Status</th><th>Service Date</th><th><center>Amount</center></th><th>Actions</th></tr></thead>
+                                    <thead><tr><th nowrap>Service Name</th><th nowrap>Order #</th><th>Status</th><th nowrap>Service Date</th><th><center>Amount</center></th><th>Actions</th></tr></thead>
                                     <tbody id="abusedWords_tbody">
                                     <?php //for($i=0;$i<sizeof($orderDetails);$i++){
                                         //$serviceName='';

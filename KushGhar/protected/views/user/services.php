@@ -125,12 +125,15 @@
                                             </div>
                                         </div>
                                     </div><hr>
+                                    
                                     <div class="row-fluid">
-                                    <div class="pull-right span12">
+                                    <div class="span12">
+                                        <div class="pull-right">
                                         <label>Same as Contact Info Address</label>
                                         <div class="switch switch-large" id="DifferentAddress" data-on-label="Yes" data-off-label="No">
                                         <?php echo $form->checkBox($model, 'DifferentAddress', array('id' => 'HouseCleaningForm_DifferentAddress')); ?>
-                                       </div>
+                                        </div>
+                                        </div>
                                       </div>
                                     </div>
                                     <div class="row-fluid">

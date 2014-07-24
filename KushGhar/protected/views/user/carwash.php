@@ -183,11 +183,11 @@
         }else{
             $("#CarWashForm_TotalCars_em_").hide();
         }
-        if(obj.value>3){
+        if(obj.value>2){
             $("#CarWashForm_TotalCars_em_").show();
             $("#CarWashForm_TotalCars_em_").addClass('errorMessage');
-            $("#CarWashForm_TotalCars_em_").text("# of Cars accepts only upto 3");
-            alert("If more than 3 cars needed..,\nWe recommend you to place another order for remaining cars.")
+            $("#CarWashForm_TotalCars_em_").text("# of Cars accepts upto 2 only");
+            alert("If more than 2 cars needed..,\nWe recommend you to place another order for remaining cars.")
             return false;
         }
         else

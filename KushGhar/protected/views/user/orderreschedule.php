@@ -131,12 +131,33 @@ if($serviceType == 3) {?>
         
         var StartTimes = $("#OrderRescheduleForm_StartTime").val();
         var EndTimes = $("#OrderRescheduleForm_EndTime").val();
+       
         if ((StartTimes != '') && (EndTimes != '')){
         var first=StartTimes.split(" ");
         var STimefirst=first[1].split(":");
+        if(STimefirst[1]>0&&STimefirst[1]<30){
+            var smdate=first[0]+" "+STimefirst[0]+":30";
+            $("#OrderRescheduleForm_StartTime").val(smdate); 
+        }
+        if(STimefirst[1]>30&&STimefirst[1]<60){
+            var snexthr=Number(STimefirst[0])+1;
+            if(snexthr==24){snexthr=00;}
+            var smdate=first[0]+" "+snexthr+":00";
+            $("#OrderRescheduleForm_StartTime").val(smdate); 
+        }
         var SDate=first[0].split("-");
         var last=EndTimes.split(" ");
         var eTimeLast=last[1].split(":");
+        if(eTimeLast[1]>0&&eTimeLast[1]<30){
+            var emdate=last[0]+" "+eTimeLast[0]+":30";
+            $("#OrderRescheduleForm_EndTime").val(emdate); 
+        }
+        if(eTimeLast[1]>30&&eTimeLast[1]<60){
+            var enexthr=Number(eTimeLast[0])+1;
+            if(enexthr==24){enexthr=00;}
+            var emdate=last[0]+" "+enexthr+":00";
+            $("#OrderRescheduleForm_EndTime").val(emdate); 
+        }
         var EDate=last[0].split("-");
         var sDateFinal=SDate[2]+"/"+SDate[1]+"/"+SDate[0];
         var eDateFinal=EDate[2]+"/"+EDate[1]+"/"+EDate[0];

@@ -40,10 +40,10 @@
                         <div id="services" class="collapse in">
                             <div class="selected_tab">Services</div>
                             <ul class="l_menu_sub_menu">
-                                <li class="active"><a href="/site/cleaning"> House Cleaning</a></li>
-                                <li ><a href="/site/carwash"> Car Cleaning</a> </li>
-                                <li ><a href="/site/stewards">  Stewards / Stewardesses</a> </li>
-                                <li ><a href="/site/moreservices">  More ...</a> </li>
+                                <a href="/site/cleaning"><li class="active"> House Cleaning</li></a>
+                                <a href="/site/carwash"><li> Car Cleaning </li></a>
+                                <a href="/site/stewards"><li>  Stewards / Stewardesses </li></a>
+                                <a href="/site/moreservices"><li>  More ...</li></a>
                             </ul>
                         </div>
                     </div>

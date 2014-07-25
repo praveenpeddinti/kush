@@ -372,6 +372,7 @@
             scrollMonth:false,
             timepicker:false,
             closeOnDateSelect:true,
+            defaultDate:date,
             yearStart:cyear,
             yearEnd:eyear
         });

@@ -243,7 +243,8 @@
             timepicker:false,
             closeOnDateSelect:true,
             yearStart:cyear,
-            yearEnd:eyear
+            yearEnd:eyear,
+            defaultDate:date
         });
 
     var showPopover = function () {

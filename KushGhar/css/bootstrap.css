@@ -173,8 +173,8 @@ a {
 }
 
 a:hover {
-  /*color: #1694be;*/
-  text-decoration: none;
+  color: #1694be;
+  text-decoration: underline;
 }
 
 .img-rounded {

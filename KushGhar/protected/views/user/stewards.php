@@ -372,6 +372,7 @@ $form = $this->beginWidget('CActiveForm', array(
             step:30,
             yearStart:cyear,
             yearEnd:eyear,
+            defaultDate:date,
             onShow:function( ct ){
                 this.setOptions({
                 minDate:$('#StewardCleaningForm_StartTime').val()?$('#StewardCleaningForm_StartTime').val():false

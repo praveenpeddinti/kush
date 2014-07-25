@@ -336,12 +336,17 @@ class SiteController extends Controller {
                     $obj = array('status' => '', 'data' => '', 'error' => $errors);
                 } else {
                     $mess = 'Welcome to KushGhar. Your new password is ' . $result->password_salt . "\r\n\n";
+                    $Name=$result->first_name;
                     $to = $result->email_address;
+                    $Logo = YII::app()->params['SERVER_URL'] . "/images/color_logo.png";
                     $subject = 'Password details';
                     $message = $mess;
-
-                    $this->sendMailToUser($to, '', $subject, $message, 'KushGhar', 'no-reply@kushghar.com', 'PasswordMail');
-
+                    $messageview="passwordMail";
+                    $employerEmail = "no-reply@kushghar.com";
+                    
+                    $params = array('Logo' => $Logo, 'Email' =>$to,'Message'=>$message,'Name'=>$Name);
+                    $sendMailToUser=new CommonUtility;
+                    $sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
                     $obj = array('status' => 'success', 'data' => $result, 'error' => 'Password is sent to your mail');
                 }
             }

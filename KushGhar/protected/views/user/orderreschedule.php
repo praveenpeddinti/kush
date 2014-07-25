@@ -196,6 +196,7 @@ if($serviceType == 3) {?>
             timepicker:false,
             closeOnDateSelect:true,
             yearStart:cyear,
+            defaultDate:date,
             yearEnd:eyear
         });
        $('#OrderRescheduleForm_StartTime').datetimepicker({
@@ -212,6 +213,7 @@ if($serviceType == 3) {?>
             step:30,
             yearStart:cyear,
             yearEnd:eyear,
+            defaultDate:date,
             onShow:function( ct ){
                 this.setOptions({
                 minDate:$('#StewardCleaningForm_StartTime').val()?$('#StewardCleaningForm_StartTime').val():false

@@ -90,24 +90,24 @@
                                     <div class="row-fluid">
                                     <div class=" span4">
                                         <?php echo $form->label($model, '<abbr title="required">*</abbr> Primary Contact First Name'); ?>
-                                        <?php echo $form->textField($model, 'PrimaryContactFirstName', array('value' => $getVendorDetailsType1->first_name, 'maxLength' => 50, 'class' => 'span12', 'placeholder' => 'Primary Contact First Name…')); ?>
+                                        <?php echo $form->textField($model, 'PrimaryContactFirstName', array('value' => $getVendorDetailsType1->first_name, 'maxLength' => 50, 'class' => 'span12')); ?>
                                         <?php echo $form->error($model, 'PrimaryContactFirstName'); ?>
                                     </div>
                                     <div class=" span4">
                                         <?php echo $form->label($model, 'Primary Contact Middle Name'); ?>
-                                        <?php echo $form->textField($model, 'PrimaryContactMiddleName', array('value' => $getVendorDetailsType1->middle_name, 'class' => 'span12', 'maxLength' => 50, 'placeholder' => 'Primary Contact Middle Name…')); ?>
+                                        <?php echo $form->textField($model, 'PrimaryContactMiddleName', array('value' => $getVendorDetailsType1->middle_name, 'class' => 'span12', 'maxLength' => 50)); ?>
                                         <?php echo $form->error($model, 'PrimaryContactMiddleName'); ?>
                                     </div>
                                     <div class=" span4">
                                         <?php echo $form->label($model, '<abbr title="required">*</abbr> Primary Contact Last Name'); ?>
-                                        <?php echo $form->textField($model, 'PrimaryContactLastName', array('value' => $getVendorDetailsType1->last_name, 'maxLength' => 50, 'class' => 'span12', 'placeholder' => 'Primary Contact Last Name…')); ?>
+                                        <?php echo $form->textField($model, 'PrimaryContactLastName', array('value' => $getVendorDetailsType1->last_name, 'maxLength' => 50, 'class' => 'span12')); ?>
                                         <?php echo $form->error($model, 'PrimaryContactLastName'); ?>
                                     </div>
                                     </div>
                                     <div class="row-fluid">
                                     <div class=" span4">
                                         <?php echo $form->label($model, '<abbr title="required">*</abbr> Agency Name'); ?>
-                                        <?php echo $form->textField($model, 'AgencyName', array('value' => $getVendorDetailsType1->legal_name, 'maxLength' => 50, 'class' => 'span12', 'placeholder' => 'Agency Name…')); ?>
+                                        <?php echo $form->textField($model, 'AgencyName', array('value' => $getVendorDetailsType1->legal_name, 'maxLength' => 50, 'class' => 'span12')); ?>
                                         <?php echo $form->error($model, 'AgencyName'); ?>
                                     </div>
                                     </div>
@@ -116,17 +116,17 @@
                                     <div class="row-fluid">
                                     <div class=" span4">
                                         <?php echo $form->label($model, '<abbr title="required">*</abbr> first name'); ?>
-                                        <?php echo $form->textField($model, 'FirstName', array('value' => $getVendorDetailsType1->first_name, 'maxLength' => 50, 'class' => 'span12', 'placeholder' => 'First Name…')); ?>
+                                        <?php echo $form->textField($model, 'FirstName', array('value' => $getVendorDetailsType1->first_name, 'maxLength' => 50, 'class' => 'span12')); ?>
                                         <?php echo $form->error($model, 'FirstName'); ?>
                                     </div>
                                     <div class=" span4">
                                         <?php echo $form->label($model, 'middle name'); ?>
-                                        <?php echo $form->textField($model, 'MiddleName', array('value' => $getVendorDetailsType1->middle_name, 'class' => 'span12', 'maxLength' => 50, 'placeholder' => 'Middle Name…')); ?>
+                                        <?php echo $form->textField($model, 'MiddleName', array('value' => $getVendorDetailsType1->middle_name, 'class' => 'span12', 'maxLength' => 50)); ?>
                                         <?php echo $form->error($model, 'MiddleName'); ?>
                                     </div>
                                     <div class=" span4">
                                         <?php echo $form->label($model, '<abbr title="required">*</abbr> last name'); ?>
-                                        <?php echo $form->textField($model, 'LastName', array('value' => $getVendorDetailsType1->last_name, 'maxLength' => 50, 'class' => 'span12', 'placeholder' => 'Last Name…')); ?>
+                                        <?php echo $form->textField($model, 'LastName', array('value' => $getVendorDetailsType1->last_name, 'maxLength' => 50, 'class' => 'span12')); ?>
                                         <?php echo $form->error($model, 'LastName'); ?>
                                     </div>
                                     </div>
@@ -140,7 +140,7 @@
                                     </div>
                                     <div class=" span4">
                                         <?php echo $form->label($model, 'ID Number'); ?>
-                                        <?php echo $form->textField($model, 'Number', array('value' => $getVendorDocuments->proof_number, 'class' => 'span12', 'maxLength' => 25, 'placeholder' => 'Id Number…')); ?>
+                                        <?php echo $form->textField($model, 'Number', array('value' => $getVendorDocuments->proof_number, 'class' => 'span12', 'maxLength' => 25)); ?>
                                         <?php echo $form->error($model, 'Number'); ?>
                                     </div>
                                      
@@ -230,7 +230,7 @@
                                     
                                     <div class="span4">
                                         <?php echo $form->label($model, 'Date of Birth'); ?>
-                                        <?php echo $form->textField($model, 'dateOfBirth', array('value' => $birthdata, 'class' => 'span10 dob', 'placeholder' => 'Date of Birth…')); ?>
+                                        <?php echo $form->textField($model, 'dateOfBirth', array('value' => $birthdata, 'class' => 'span10 dob')); ?>
                                         <?php echo $form->error($model, 'dateOfBirth'); ?>
                                     </div>
                                 </div>
@@ -283,17 +283,17 @@
                                 <div class="row-fluid">
                                     <div class=" span4">
                                         <?php echo $form->label($model, ' web site'); ?>
-                                        <?php echo $form->textField($model, 'Website', array('value' => $getVendorDetailsType1->website, 'maxLength' => 50, 'class' => 'span12', 'placeholder' => 'Web Site…')); ?>
+                                        <?php echo $form->textField($model, 'Website', array('value' => $getVendorDetailsType1->website, 'maxLength' => 50, 'class' => 'span12')); ?>
                                         <?php echo $form->error($model, 'Website'); ?>
                                     </div>
                                     <div class=" span4">
                                         <?php echo $form->label($model, 'Pan', array('class' => 'labelUpperCase')); ?>
-                                        <?php echo $form->textField($model, 'Pan', array('value' => $getVendorDetailsType1->pan_card, 'class' => 'span12', 'maxLength' => 25, 'placeholder' => 'PAN…')); ?>
+                                        <?php echo $form->textField($model, 'Pan', array('value' => $getVendorDetailsType1->pan_card, 'class' => 'span12', 'maxLength' => 25)); ?>
                                         <?php echo $form->error($model, 'Pan'); ?>
                                     </div>
                                     <div class=" span4">
                                         <?php echo $form->label($model, 'Tin', array('class' => 'labelUpperCase')); ?>
-                                        <?php echo $form->textField($model, 'Tin', array('value' => $getVendorDetailsType1->tin_number, 'class' => 'span12', 'maxLength' => 25, 'placeholder' => 'TIN…')); ?>
+                                        <?php echo $form->textField($model, 'Tin', array('value' => $getVendorDetailsType1->tin_number, 'class' => 'span12', 'maxLength' => 25)); ?>
                                         <?php echo $form->error($model, 'Tin'); ?>
                                     </div>
                                 </div>
@@ -336,13 +336,13 @@
                                 <div class="row-fluid">
                                     <div class=" span4">
                                        <?php echo $form->label($updatedPassword, 'Update Password'); ?>
-                                <?php echo $form->passwordField($updatedPassword, 'Password', array('maxLength' => 50, 'class' => 'span12', 'placeholder' => 'Update Password…')); ?>
+                                <?php echo $form->passwordField($updatedPassword, 'Password', array('maxLength' => 50, 'class' => 'span12')); ?>
                                 <?php echo $form->error($updatedPassword, 'Password'); ?>
                                     </div>
                                     <div class=" span4">
-                                        <?php echo $form->label($updatedPassword, 'Repeat Password'); ?>
-                                        <?php echo $form->passwordField($updatedPassword, 'RepeatPassword', array('maxLength' => 50, 'class' => 'span12', 'placeholder' => 'Repeat Password…')); ?>
-                                        <?php echo $form->error($updatedPassword, 'RepeatPassword'); ?>
+                                        <?php echo $form->label($updatedPassword, 'ConfirmPassword'); ?>
+                                        <?php echo $form->passwordField($updatedPassword, 'ConfirmPassword', array('maxLength' => 50, 'class' => 'span12')); ?>
+                                        <?php echo $form->error($updatedPassword, 'ConfirmPassword'); ?>
                                     </div>
                                     <div class=" span4">
                                         <div  class=" paddingT30 m_paddingT30">

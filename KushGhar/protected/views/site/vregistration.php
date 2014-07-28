@@ -222,10 +222,10 @@
                             <?php echo $form->error($modelLogin, 'error', array('class' => 'errorMessageFont')); ?>
                             <fieldset>
                                 <?php echo $form->label($modelLogin, '<abbr title="required">*</abbr> user ID'); ?>
-                                <?php echo $form->textField($modelLogin, 'UserId', array('class' => 'span12', 'placeholder' => 'Email…', 'maxLength' => 100)); ?>
+                                <?php echo $form->textField($modelLogin, 'UserId', array('class' => 'span12',  'maxLength' => 100)); ?>
                                 <?php echo $form->error($modelLogin, 'UserId'); ?>
                                 <?php echo $form->labelEx($modelLogin, '<abbr title="required">*</abbr> password'); ?>
-                                <?php echo $form->passwordField($modelLogin, 'Password', array('class' => 'span12', 'placeholder' => 'Password…', 'maxLength' => 100)); ?>
+                                <?php echo $form->passwordField($modelLogin, 'Password', array('class' => 'span12', 'maxLength' => 100)); ?>
                                 <?php echo $form->error($modelLogin, 'Password'); ?>
                                 <div class="row-fluid paddingB20">
                                     <div class="span6">

@@ -104,10 +104,10 @@
                                     <?php if( ($HouseService['window_grills'] != 0) || ($HouseService['fridge_interior'] != 0) || ($HouseService['microwave_oven_interior'] != 0) || ($HouseService['pooja_room_cleaning'] != 0) ){?>
                                     <tr>
                                         <td valign='top'>Additional Services are</td>
-                                        <td><b><?php if ($HouseService['window_grills'] == 1) echo "Window grills cleaning</br>"; 
-                                                  if ($HouseService['fridge_interior'] == 1) echo "Fridge interior cleaning</br>"; 
-                                                  if ($HouseService['microwave_oven_interior'] == 1) echo "Micro wave oven interior cleaning</br>"; 
-                                                  if ($HouseService['pooja_room_cleaning'] == 1) echo "Pooja room cleaning";?>
+                                        <td nowrap><b><?php if ($HouseService['window_grills'] == 1) echo "Window grills cleaning </br>"; 
+                                                  if ($HouseService['fridge_interior'] == 1) echo "Fridge interior cleaning </br>"; 
+                                                  if ($HouseService['microwave_oven_interior'] == 1) echo "Micro wave oven interior cleaning </br>"; 
+                                                  if ($HouseService['pooja_room_cleaning'] == 1) echo "Pooja room cleaning ";?>
                                         </b></td>
                                     </tr><?php }?>
                                     <tr>
@@ -184,11 +184,11 @@
                                     <?php if( ($StewardService['appetizers'] == 1) || ($StewardService['dinner'] == 1) || ($StewardService['dessert'] == 1) || ($StewardService['alcoholic'] == 1) || ($StewardService['post_dinner'] == 1) ) {?>
                                     <tr>
                                         <td valign='top'>Services Required</td>
-                                        <td><b><?php if ($StewardService['appetizers'] == 1) echo "Appetizers</br>"; 
-                                                  if ($StewardService['dinner'] == 1) echo "Dinner</br>"; 
-                                                  if ($StewardService['dessert'] == 1) echo "Dessert</br>"; 
-                                                  if ($StewardService['alcoholic'] == 1) echo "Beverage</br>"; 
-                                                  if ($StewardService['post_dinner'] == 1) echo "Coffee / Tea</br>"; ?>
+                                        <td nowrap><b><?php if ($StewardService['appetizers'] == 1) echo "Appetizers </br>"; 
+                                                  if ($StewardService['dinner'] == 1) echo "Dinner </br>"; 
+                                                  if ($StewardService['dessert'] == 1) echo "Dessert </br>"; 
+                                                  if ($StewardService['alcoholic'] == 1) echo "Beverage </br>"; 
+                                                  if ($StewardService['post_dinner'] == 1) echo "Coffee / Tea </br>"; ?>
                                         </b></td>
                                     </tr>
                                     <?php }?>

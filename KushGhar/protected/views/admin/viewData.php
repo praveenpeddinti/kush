@@ -101,11 +101,12 @@
                 <?php if( ($services['appetizers'] == 1) || ($services['dinner'] == 1) || ($services['dessert'] == 1) || ($services['alcoholic'] == 1) || ($services['post_dinner'] == 1) ) {?>
                 <tr>
                     <td valign='top'>Services Required</td>
-                    <td><b><?php if ($services['appetizers'] == 1) echo "Appetizers<br>"; ?>
-                        <?php if ($services['dinner'] == 1) echo "Dinner<br>"; ?>
-                        <?php if ($services['dessert'] == 1) echo "Dessert<br>"; ?>
-                        <?php if ($services['alcoholic'] == 1) echo "Beverage<br>"; ?>
-                        <?php if ($services['post_dinner'] == 1) echo "Coffee / Tea<br>"; ?>
+                    <td><b><?php if ($services['appetizers'] == 1) echo "Appetizers</br>"; ?>
+                        <?php if ($services['dinner'] == 1) echo "Dinner</br>"; ?>
+                        <?php if ($services['dessert'] == 1) echo "Dessert</br>"; ?>
+                        <?php if ($services['alcoholic'] == 1) echo "Beverage</br>"; ?>
+                        <?php if ($services['post_dinner'] == 1) echo "Coffee/Tea</br>"; ?>
+
                    </b> </td>
                 </tr>
                 <?php }}?>

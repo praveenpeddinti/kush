@@ -115,7 +115,11 @@
 
 <script type="text/javascript">
    $(document).ready(function() {
-       if( ($('#CarWashForm_HouseCleaning').val()==1) ||($('#CarWashForm_StewardCleaning').val()==1)){
+       
+       //if( ($('#CarWashForm_HouseCleaning').val()==1) && ($('#CarWashForm_StewardCleaning').val()==1)){
+        //    $('#CarWashCleaningPrevious').show();
+        //}
+        if(($('#CarWashForm_HouseCleaning').val()==1)){
             $('#CarWashCleaningPrevious').show();
         }
        if($('#CarWashForm_TotalCars').val()>1){

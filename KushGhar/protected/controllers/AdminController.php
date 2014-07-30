@@ -126,7 +126,7 @@ class AdminController extends Controller {
                
                 $Logo = YII::app()->params['SERVER_URL'] . "/images/color_logo.png";
                 $employerEmail = "no-reply@kushghar.com";
-                $messageview1="sendInvitationMailToUser";
+                $messageview1="InvitationMail";
                 //$params1 = array('Logo' => $Logo, 'Name' =>$name, 'Referrer'=>$referrer);
                 $mess1 = 'http://www.kushghar.com/site/registration?Uname=' . $inviteFriends->Email . "\r\n\n";
                 $params1 = array('Logo' => $Logo, 'Name' =>$name, 'Message' =>$mess1);

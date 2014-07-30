@@ -1006,10 +1006,10 @@ class UserController extends Controller {
                 $servicedate=$ee['carservice_start_time'];
             }
             $totalCPrice=$getTotalCars*500+$totalSeats;
-            $storeOrderDetailsOfHouses = $this->kushGharService->storeOrderDetailsOfHouse($cId,$getOrderDetailsMaxParentId['id'],$getStewardsServiceDetails['CustId'],$genOrderNo,'2',$totalCPrice,$servicedate);
+            $storeOrderDetailsOfHouses = $this->kushGharService->storeOrderDetailsOfHouse($cId,$getOrderDetailsMaxParentId['id'],1,$genOrderNo,'2',$totalCPrice,$servicedate);
             $getOrderDetailsMaxParentIdC = $this->kushGharService->getOrderDetailsMaxParentId();
             
-            //$getOrderNumber = $getStewardsServiceDetails['order_number'];
+//$getOrderNumber = $getStewardsServiceDetails['order_number'];
             foreach($getCarWashServiceDetails as $ee){
                 $storeOrdernumberofHouse = $this->kushGharService->storeOrdernumberofCar($cId,$getOrderDetailsMaxParentIdC['id'],$getOrderDetailsMaxParentIdC['order_number']);
                 $getOrderNumber = $getOrderDetailsMaxParentIdC['order_number'];
@@ -1485,4 +1485,53 @@ class UserController extends Controller {
             error_log("#########Exception Occurred########" . $ex->getMessage());
         }
     }
+    public function actionOrderReview(){
+       try{
+           $Model = new OrderReviewForm;
+            $id=$_POST['Id'];
+            $renderHtml=  $this->renderPartial('orderreview',array("model"=>$Model, "OrderNumber"=>$id),true);
+            $obj=array('status'=>'success','html'=>$renderHtml);
+            $renderScript=  $this->rendering($obj);
+            echo $renderScript;
+        } catch (Exception $ex) {
+            error_log("####### Exception Occurred in Order Review/feedback ##########".$ex->getMessage());
+        }
+   }
+   public function actionOrderReviewSave(){
+       try{
+            $reviewForm = new OrderReviewForm;
+            $request = yii::app()->getRequest();
+            $formName = $request->getParam('OrderReviewForm');
+            if ($formName != '') {
+                $reviewForm->attributes = $request->getParam('OrderReviewForm');
+                $errors = CActiveForm::validate($reviewForm);
+                if ($errors != '[]') {
+                    $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
+                } else
+                {
+                    
+                    $result = $this->kushGharService->reviewSave($_POST['OrderNumber'],$reviewForm->Rating,$reviewForm->Feedback);
+                    if($result=='success')
+                    {
+                        //Mailing functionality
+                        $obj = array('status' => 'success', 'data' => $result, 'error' => 'Re-View saved Successfully.');
+                    }
+                    else
+                    {
+                        $errors = array("ReviewForm_error" => 'Re-View saving Failed..,Retry Again');
+                        $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
+                    }
+                    $renderScript = $this->rendering($obj);
+                    echo $renderScript;
+                }
+            }
+            else
+            {
+                $errors = array("RescheduleForm_error" => 'Re-Schedule Failed.');
+                $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
+            }
+       } catch (Exception $ex) {
+            error_log("####### Exception Occurred in saving Order Review/feedback ##########".$ex->getMessage());
+       }
+   }
 }

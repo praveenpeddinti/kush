@@ -17,6 +17,7 @@
                                 <li><a href="/admin/order"> <i class="fa fa-file-text"></i> Orders</a></li>
                                 <li><a href="/admin/usermanagement"> <i class="fa fa-user"></i> User Management</a></li>
                                 <li class="active"><a href="/admin/vendormanagement"> <i class="fa fa-user"></i> Vendor Management</a></li>
+                                <li><a href="/admin/reviews"> <i class="fa fa-user"></i> Review/Feedback</a></li>
                             </ul>
                         </div>
                     </div>

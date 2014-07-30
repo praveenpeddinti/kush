@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 <div class="copyrights">
-                    © <?php echo date('Y'); ?> KushGhar</br>
+                    © <?php echo date('Y'); ?> KushGhar<br>
                     Making people's lives better, one home at a time
                 </div>
             </div>

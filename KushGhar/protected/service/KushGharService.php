@@ -650,6 +650,15 @@ class KushGharService {
     public function getServiceDetails($ordernumber,$type){
         return OrderDetails::model()->getServiceDetails($ordernumber,$type);
     }
+    public function reviewSave($ordernumber,$rating,$feedback){
+        return OrderReviews::model()->addCustomerReview($ordernumber,$rating,$feedback);
+    }
+    public function getUserReviews(){
+        return OrderReviews::model()->getUserReviews();
+    }
+    public function getAllUsersReviews($startLimit, $endLimit){
+        return OrderReviews::model()->getAllUsersReviews($startLimit, $endLimit);
+    }
 }
 
 ?>

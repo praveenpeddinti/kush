@@ -33,6 +33,7 @@
          <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.simplePagination.js"> </script>
          <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/mobiscroll.custom-2.4.4.min.js"> </script>
         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/date.js"></script>
+         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.barrating.js"></script>
          <script>
             // tooltip demo
             $('.tooltiplink').tooltip({

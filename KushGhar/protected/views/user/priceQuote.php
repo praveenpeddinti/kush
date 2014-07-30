@@ -86,9 +86,9 @@
                                 <?php if( ($getServiceDetails['window_grills'] != 0) || ($getServiceDetails['fridge_interior'] != 0) || ($getServiceDetails['microwave_oven_interior'] != 0) || ($getServiceDetails['pooja_room_cleaning'] != 0) ){?>
                                 <tr>
                                     <td valign='top'>Additional Services are</td>
-                                    <td><b><?php if ($getServiceDetails['window_grills'] == 1) echo "Window grills cleaning</br>"; 
-                                              if ($getServiceDetails['fridge_interior'] == 1) echo "Fridge interior cleaning</br>"; 
-                                              if ($getServiceDetails['microwave_oven_interior'] == 1) echo "Micro wave oven interior cleaning</br>"; 
+                                    <td><b><?php if ($getServiceDetails['window_grills'] == 1) echo "Window grills cleaning<br>"; 
+                                              if ($getServiceDetails['fridge_interior'] == 1) echo "Fridge interior cleaning<br>"; 
+                                              if ($getServiceDetails['microwave_oven_interior'] == 1) echo "Micro wave oven interior cleaning<br>"; 
                                               if ($getServiceDetails['pooja_room_cleaning'] == 1) echo "Pooja room cleaning";?>
                                     </b></td>
                                 </tr><?php }?>
@@ -195,11 +195,11 @@
                                         <tr>
                                             <td valign='top'>Services Required</td>
                                             <td><b>
-                                                <?php if ($getStewardsServiceDetails['appetizers'] == 1) echo "Appetizers</br>"; ?>
-                                                <?php if ($getStewardsServiceDetails['dinner'] == 1) echo "Dinner</br>"; ?>
-            <?php if ($getStewardsServiceDetails['dessert'] == 1) echo "Dessert</br>"; ?>
-                                        <?php if ($getStewardsServiceDetails['alcoholic'] == 1) echo "Beverage</br>"; ?>
-                                        <?php if ($getStewardsServiceDetails['post_dinner'] == 1) echo "Coffee / Tea</br>"; ?>
+                                                <?php if ($getStewardsServiceDetails['appetizers'] == 1) echo "Appetizers<br>"; ?>
+                                                <?php if ($getStewardsServiceDetails['dinner'] == 1) echo "Dinner<br>"; ?>
+            <?php if ($getStewardsServiceDetails['dessert'] == 1) echo "Dessert<br>"; ?>
+                                        <?php if ($getStewardsServiceDetails['alcoholic'] == 1) echo "Beverage<br>"; ?>
+                                        <?php if ($getStewardsServiceDetails['post_dinner'] == 1) echo "Coffee / Tea<br>"; ?>
                                            </b> </td>
                                         </tr>
         <?php } ?>
@@ -245,8 +245,8 @@
                     <div class="asideBG">
                         <div class="left_nav">
                             <ul class="main">
-                                <li class="active" title="Account"><a href="/user/basicinfo" ><span class="KGaccounts"> </span></a></li>
-                                <li class="" title="Services"><a href="/user/homeservice"  ><span class="KGservices"> </span></a></li>
+                                <li class="" title="Account"><a href="/user/basicinfo" ><span class="KGaccounts"> </span></a></li>
+                                <li class="active" title="Services"><a href="/user/homeservice"  ><span class="KGservices"> </span></a></li>
                                 <li class="" title="Payment"><a href="/user/paymentinfo" ><span class="KGpayment"> </span></a></li>
 
                             </ul>
@@ -454,9 +454,9 @@
                                                                 <?php if( ($getServiceDetails['window_grills'] != 0) || ($getServiceDetails['fridge_interior'] != 0) || ($getServiceDetails['microwave_oven_interior'] != 0) || ($getServiceDetails['pooja_room_cleaning'] != 0) ){?>
                                 <tr>
                                     <td valign='top'>Additional Services are</td>
-                                    <td><b><?php if ($getServiceDetails['window_grills'] == 1) echo "Window grills cleaning</br>"; 
-                                              if ($getServiceDetails['fridge_interior'] == 1) echo "Fridge interior cleaning</br>"; 
-                                              if ($getServiceDetails['microwave_oven_interior'] == 1) echo "Micro wave oven interior cleaning</br>"; 
+                                    <td><b><?php if ($getServiceDetails['window_grills'] == 1) echo "Window grills cleaning<br>"; 
+                                              if ($getServiceDetails['fridge_interior'] == 1) echo "Fridge interior cleaning<br>"; 
+                                              if ($getServiceDetails['microwave_oven_interior'] == 1) echo "Micro wave oven interior cleaning<br>"; 
                                               if ($getServiceDetails['pooja_room_cleaning'] == 1) echo "Pooja room cleaning";?>
                                        </b> </td>
                                 </tr><?php }?>
@@ -578,11 +578,11 @@
                                                                     <tr>
                                                                         <td valign='top'>Services Required</td>
                                                                         <td><b>
-                                                                    <?php if ($getStewardsServiceDetails['appetizers'] == 1) echo "Appetizers</br>"; ?>
-            <?php if ($getStewardsServiceDetails['dinner'] == 1) echo "Dinner</br>"; ?>
-            <?php if ($getStewardsServiceDetails['dessert'] == 1) echo "Dessert</br>"; ?>
-            <?php if ($getStewardsServiceDetails['alcoholic'] == 1) echo "Beverage</br>"; ?>
-                                                    <?php if ($getStewardsServiceDetails['post_dinner'] == 1) echo "Coffee / Tea</br>"; ?>
+                                                                    <?php if ($getStewardsServiceDetails['appetizers'] == 1) echo "Appetizers<br>"; ?>
+            <?php if ($getStewardsServiceDetails['dinner'] == 1) echo "Dinner<br>"; ?>
+            <?php if ($getStewardsServiceDetails['dessert'] == 1) echo "Dessert<br>"; ?>
+            <?php if ($getStewardsServiceDetails['alcoholic'] == 1) echo "Beverage<br>"; ?>
+                                                    <?php if ($getStewardsServiceDetails['post_dinner'] == 1) echo "Coffee / Tea<br>"; ?>
                                                                         </b></td>
                                                                     </tr>
         <?php } ?>

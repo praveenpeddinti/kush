@@ -48,10 +48,10 @@
                     <td valign='top'>Additional Services are</td>
                 </tr>
                 <tr>
-                    <td><b><?php if ($services['window_grills'] == 1) echo " Window grills cleaning</br>"; ?>
-                        <?php if ($services['fridge_interior'] == 1) echo " Fridge interior cleaning</br>"; ?>
-                        <?php if ($services['microwave_oven_interior'] == 1) echo " Micro wave oven interior cleaning</br>"; ?>
-                        <?php if ($services['pooja_room_cleaning'] == 1) echo " Pooja room cleaning</br>"; ?>
+                    <td><b><?php if ($services['window_grills'] == 1) echo " Window grills cleaning<br>"; ?>
+                        <?php if ($services['fridge_interior'] == 1) echo " Fridge interior cleaning<br>"; ?>
+                        <?php if ($services['microwave_oven_interior'] == 1) echo " Micro wave oven interior cleaning<br>"; ?>
+                        <?php if ($services['pooja_room_cleaning'] == 1) echo " Pooja room cleaning<br>"; ?>
                     </b></td>
                 </tr>
                <?php } }?>
@@ -101,11 +101,11 @@
                 <?php if( ($services['appetizers'] == 1) || ($services['dinner'] == 1) || ($services['dessert'] == 1) || ($services['alcoholic'] == 1) || ($services['post_dinner'] == 1) ) {?>
                 <tr>
                     <td valign='top'>Services Required</td>
-                    <td><b><?php if ($services['appetizers'] == 1) echo "Appetizers</br>"; ?>
-                        <?php if ($services['dinner'] == 1) echo "Dinner</br>"; ?>
-                        <?php if ($services['dessert'] == 1) echo "Dessert</br>"; ?>
-                        <?php if ($services['alcoholic'] == 1) echo "Beverage</br>"; ?>
-                        <?php if ($services['post_dinner'] == 1) echo "Coffee / Tea</br>"; ?>
+                    <td><b><?php if ($services['appetizers'] == 1) echo "Appetizers<br>"; ?>
+                        <?php if ($services['dinner'] == 1) echo "Dinner<br>"; ?>
+                        <?php if ($services['dessert'] == 1) echo "Dessert<br>"; ?>
+                        <?php if ($services['alcoholic'] == 1) echo "Beverage<br>"; ?>
+                        <?php if ($services['post_dinner'] == 1) echo "Coffee / Tea<br>"; ?>
                    </b> </td>
                 </tr>
                 <?php }}?>

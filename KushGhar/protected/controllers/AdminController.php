@@ -410,4 +410,32 @@ $this->pageTitle="KushGhar-Basic Info";
         $obj = array('status' => 'error', 'data' => '', 'error' => $changeUserStatus);
         echo CJSON::encode($obj);
     }
+    public function actionReviews() {
+        try {
+            $this->pageTitle="KushGhar-Reviews";
+            $this->render("reviews");
+        } catch (Exception $ex) {
+            error_log("#########Exception Occurred########" . $ex->getMessage());
+        }
+    }
+    public function actionNewReviews(){
+        try {           
+                if (isset($_GET['userDetails_page'])) {
+                $totaluser = $this->kushGharService->getUserReviews();
+                $startLimit = ((int) $_GET['userDetails_page'] - 1) * (int) $_GET['pageSize'];
+                $endLimit = $_GET['pageSize'];
+                $userDetails = $this->kushGharService->getAllUsersReviews($startLimit, $endLimit);
+                error_log("User details fetched=====================");
+                $renderHtml = $this->renderPartial('newreviews', array('userDetails' => $userDetails, 'totalCount' => $totaluser), true);
+                error_log("Rendering===============1==========");
+                $obj = array('status' => 'success', 'html' => $renderHtml, 'totalCount' => $totaluser);
+                error_log("Rendering===============2==========");
+                $renderScript = $this->rendering($obj);
+                error_log("Rendering===============3==========");
+                echo $renderScript;
+            }
+        } catch (Exception $ex) {
+            error_log("######### Exception Occurred##########".$ex->getMessage());
+        }
+    }
  }

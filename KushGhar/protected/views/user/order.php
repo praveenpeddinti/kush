@@ -150,6 +150,19 @@
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->
                 </div><!-- /.modal -->
+                <div id="myModalReview" class="modal fade" >
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h3 id="myModalLabel">Review/Feedback</h3>
+                            </div>
+                            <div class="modal-body" id="modalBodyReviewDiv" style="padding:15px;">
+                            
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
             </article>
         </div>
     </section>
@@ -168,8 +181,10 @@
             var id = $(this).attr('data-id');
             if(id1.indexOf("reschedule") > -1)
                 reSchedule(Number(id));
-            else
+            else if(id1.indexOf("cancel")> -1)
                 statusChangeUser(Number(id));
+            else if(id1.indexOf("review")> -1)
+                review(Number(id));
         });
 });
 
@@ -279,6 +294,24 @@ function getCollectionDataWithPagination(URL,CollectionName, MainDiv, CurrentPag
                     $("#myModalforgot1").modal({ backdrop: 'static', keyboard: false,show:false });
                     $("#modelBodyDiv1").html(data.html);
                     $('#myModalforgot1').modal('show');
+                },
+                error: function(data) { 
+                   alert("Error occured.please try again");
+
+                }
+            });
+    }
+    function review(id){
+    var data = "Id=" + id;
+            $.ajax({
+                type: 'POST',
+                dataType: 'json', 
+                url: '<?php echo Yii::app()->createAbsoluteUrl("/user/orderreview"); ?>',
+                data: data,
+                success: function(data) {
+                    $("#myModalReview").modal({ backdrop: 'static', keyboard: false,show:false });
+                    $("#modalBodyReviewDiv").html(data.html);
+                    $('#myModalReview').modal('show');
                 },
                 error: function(data) { 
                    alert("Error occured.please try again");

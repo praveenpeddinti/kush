@@ -155,7 +155,7 @@
                                 <?php }?>
                                 <!--<li><a href="account"> <i class="fa fa-user"></i> Account</a></li>-->
                                 <!--<li><a href="#"><i class="fa fa-user"></i> Settings</a></li>-->
-                                <li><a href="logout" ><i class="fa fa-power-off"></i> Logout</a></li>
+                                <li><a href="/user/logout" ><i class="fa fa-power-off"></i> Logout</a></li>
 
                             </ul>
                         </div>

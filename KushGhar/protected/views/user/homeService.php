@@ -15,7 +15,7 @@
                         <div id="accounts" class="collapse in">
                             <div class="selected_tab">Account</div>
                             <ul class="l_menu_sub_menu">
-                                <!--<li>                                    
+                                <!--<li>
                                     <div id="progressbar"></div>
                                 </li>-->
                                 <?php
@@ -75,8 +75,8 @@
                                 </a></li>
                                 <li><a href="order"> <i class="fa fa-file-text"></i> Orders</a></li>
                                 <li><a href="invitefriends"> <i class="fa fa-users"></i> Invite Friends</a></li>
-                                
-                                
+
+
                             </ul>
                         </div>
                         <div id="payment" class="collapse">
@@ -138,7 +138,7 @@
                                                     </li>
                                                 </ul>
                                             </div>
-                                        </div>                                 
+                                        </div>
                                     </div>
                                     <div class="row-fluid">
                                         <div class=" span12">
@@ -172,11 +172,11 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-    
+
         var radio1 = $('input[name="HomeServiceForm[HouseCleaning]"]');
         <?php if($HouseService=='Yes Service'){?>
         for (var i = 0; i < radio1.length; i++) {
-            
+
             if (radio1[i].value == 1) {
                 radio1[i].checked = true;
                 $(".house_cleaning").addClass('select');
@@ -184,7 +184,7 @@ $(document).ready(function() {
         }
         <?php  }else {?>
             for (var i = 0; i < radio1.length; i++) {
-            
+
             if (radio1[i].value == 0) {
                 radio1[i].checked = true;
                 $(".house_cleaning").addClass('not_required');
@@ -201,7 +201,7 @@ $(document).ready(function() {
         }
         <?php  }else {?>
             for (var i = 0; i < radio2.length; i++) {
-            
+
             if (radio2[i].value == 0) {
                 radio2[i].checked = true;
                 $(".car_wash").addClass('not_required');
@@ -210,9 +210,9 @@ $(document).ready(function() {
       <?php }?>
         var radio3 = $('input[name="HomeServiceForm[StewardCleaning]"]');
         <?php if($StewardsService=='Yes Service'){?>
-              
+
         for (var i = 0; i < radio3.length; i++) {
-            
+
             if (radio3[i].value == 1) {
                 radio3[i].checked = true;
                 $(".stewards").addClass('select');
@@ -220,7 +220,7 @@ $(document).ready(function() {
         }
       <?php  }else {?>
           for (var i = 0; i < radio3.length; i++) {
-            
+
             if (radio3[i].value == 0) {
                 radio3[i].checked = true;
                 $(".stewards").addClass('not_required');
@@ -238,7 +238,7 @@ $(document).ready(function() {
             }
 
         });
-        
+
         $('#HomeServiceForm_CarCleaning').live('click', function() {
             var radiosC = $('input[name="HomeServiceForm[CarCleaning]"]:checked').val();
             if (radiosC == "1") {
@@ -249,7 +249,7 @@ $(document).ready(function() {
                 $(".car_wash").addClass('not_required');
             }
         });
-        
+
         $('#HomeServiceForm_StewardCleaning').live('click', function() {
             var radiosC = $('input[name="HomeServiceForm[StewardCleaning]"]:checked').val();
             if (radiosC == "1") {
@@ -268,9 +268,9 @@ $(document).ready(function() {
 
 
     /*
-     * 
+     *
      * @param {type} data
-     * @returns praveen main services (Select services 
+     * @returns praveen main services (Select services
      */
     function addAllServicehandler(data) {
         scrollPleaseWaitClose('serviceSpinLoader');
@@ -281,17 +281,17 @@ $(document).ready(function() {
             $('#homeServicesMainDiv').hide();
             $('#ServiceMainDiv').show();
             $('#ServiceMainDiv').html(data.data);
-            
-           
+
+
             if (globalspace.CarCleaning == 0 && globalspace.StewardCleaning == 0) {
                 $('#HouseCleaningSubmit').val('Submit');
             }
             if (globalspace.HouseCleaning == 0 && globalspace.StewardCleaning == 0) {
-                
+
                 $('#CarWashCleaningSubmit').val('Submit');
-                        
+
             }
-            
+
         } else {
             var error = [];
             if (typeof (data.error) == 'string') {
@@ -310,7 +310,7 @@ $(document).ready(function() {
         }
     }
     /*
-     * 
+     *
      * @returns Praveen House Cleaning service button start
      */
     function submitHouseCleaning() {
@@ -334,7 +334,18 @@ $(document).ready(function() {
                 $("#HouseCleaningForm_ServiceStartTime_em_").text("Please Select Service Date.");
                 return false;
        }
-       if (($('#HouseCleaningForm_LivingRooms').val() == '0') && ($('#HouseCleaningForm_BedRooms').val() == '0') && ($('#HouseCleaningForm_Kitchens').val() == '0') && ($('#HouseCleaningForm_BathRooms').val() == '0')) {
+       var date=new Date.today().addDays(2);
+       var sdate=$("#HouseCleaningForm_ServiceStartTime").val();
+       var sdatee=sdate.split("-");
+       var servicedate=new Date(sdatee[2],sdatee[1]-1,sdatee[0]);
+       if(servicedate < date)
+           {
+                $("#HouseCleaningForm_ServiceStartTime_em_").show();
+                $("#HouseCleaningForm_ServiceStartTime_em_").addClass('errorMessage');
+                $("#HouseCleaningForm_ServiceStartTime_em_").text("Service can only be configured post 2 days from current date ");
+                return false;
+           }
+      if (($('#HouseCleaningForm_LivingRooms').val() == '0') && ($('#HouseCleaningForm_BedRooms').val() == '0') && ($('#HouseCleaningForm_Kitchens').val() == '0') && ($('#HouseCleaningForm_BathRooms').val() == '0')) {
             $("#HouseCleaningForm_ServiceStartTime_em_").hide();
             $("#HouseCleaningForm_WeekDays_em_").hide();
             $("#HouseCleaningForm_LivingRooms_em_").show();
@@ -349,7 +360,7 @@ $(document).ready(function() {
             return false;
         }
         if ( ($("#HouseCleaningForm_AlternatePhone").val() != "") && (!$("#HouseCleaningForm_AlternatePhone").val().match(/^[0-9]+$/)) ) {
-                $("#HouseCleaningForm_Address1_em_").hide(); 
+                $("#HouseCleaningForm_Address1_em_").hide();
                 $("#HouseCleaningForm_AlternatePhone_em_").show();
                 $("#HouseCleaningForm_AlternatePhone_em_").addClass('errorMessage');
                 $("#HouseCleaningForm_AlternatePhone_em_").text("Please Enter only numbers ");
@@ -367,17 +378,17 @@ $(document).ready(function() {
                 $("#HouseCleaningForm_State_em_").addClass('errorMessage');
                 $("#HouseCleaningForm_State_em_").text("Please Select State ");
                 return false;
-            } 
+            }
             //State validation end
             //City validation start
-            
+
             if ( (!$("#HouseCleaningForm_City").val().match(/[A-Za-z0-9]$/)) ) {
-                $("#HouseCleaningForm_Address1_em_").hide(); 
+                $("#HouseCleaningForm_Address1_em_").hide();
                 $("#HouseCleaningForm_City_em_").show();
                 $("#HouseCleaningForm_City_em_").addClass('errorMessage');
                 $("#HouseCleaningForm_City_em_").text("Please Enter City ");
                 return false;
-            } 
+            }
             //City validation end
             //Pin code validation start
             if ( ($("#HouseCleaningForm_PinCode").val()=='') ) {
@@ -385,14 +396,14 @@ $(document).ready(function() {
                 $("#HouseCleaningForm_PinCode_em_").addClass('errorMessage');
                 $("#HouseCleaningForm_PinCode_em_").text("Please Enter Pin Code ");
                 return false;
-            } 
+            }
             if ( (!$("#HouseCleaningForm_PinCode").val().match(/^[0-9]+$/)) ) {
-                
+
                 $("#HouseCleaningForm_PinCode_em_").show();
                 $("#HouseCleaningForm_PinCode_em_").addClass('errorMessage');
                 $("#HouseCleaningForm_PinCode_em_").text("Please Enter only numbers ");
                 return false;
-            } 
+            }
             if ( ($("#HouseCleaningForm_PinCode").val().length<='5') ) {
                 $("#HouseCleaningForm_PinCode_em_").show();
                 $("#HouseCleaningForm_PinCode_em_").addClass('errorMessage');
@@ -409,7 +420,7 @@ $(document).ready(function() {
                 type = 'next';
             }
             var r='';
-            if ($('#HouseCleaningForm_ContactAddress').val()==''){
+            if ( ($('#HouseCleaningForm_DifferentAddress').val()=='0') && ($('#HouseCleaningForm_ContactAddress').val()=='')) {
             var statusData = 'Do you want to Add this address to Contact details?';
             r = confirm(statusData);
             }else{
@@ -419,9 +430,9 @@ $(document).ready(function() {
                 queryString += '&Type=' + type+'&ContactInfo=Yes';
             }else{
                 queryString += '&Type=' + type+'&ContactInfo=No';
-            } 
-        
-            
+            }
+
+
             ajaxRequest('/user/services', queryString, addHouseCleaningServicehandler);
         }
     }
@@ -442,11 +453,11 @@ $(document).ready(function() {
     }
 
     /*
-     * 
+     *
      * @returns Praveen Car Wash Cleaning service button start
      */
 
-    function submitCarWashCleaning() { 
+    function submitCarWashCleaning() {
         var dumpcars='';
         var makeofcar = "";
         var color = "";
@@ -469,7 +480,7 @@ $(document).ready(function() {
             }else{
               $("#CarWashForm_TotalCars_em_").hide();
             }
-        if(isNaN($("#CarWashForm_TotalCars").val()) || ($("#CarWashForm_TotalCars").val() <= 0)) { 
+        if(isNaN($("#CarWashForm_TotalCars").val()) || ($("#CarWashForm_TotalCars").val() <= 0)) {
                 $("#CarWashForm_TotalCars_em_").show();
                 $("#CarWashForm_TotalCars_em_").addClass('errorMessage');
                 $("#CarWashForm_TotalCars_em_").text("Please Enter +ve Number.");
@@ -494,6 +505,19 @@ $(document).ready(function() {
               $("#CarWashForm_ServiceStartTime_em_").hide();
             }
             dumpcars=$('#CarWashForm_TotalCars').val();
+
+             var date=new Date.today().addDays(2);
+             var sdate=$("#CarWashForm_ServiceStartTime").val();
+             var sdatee=sdate.split("-");
+             var servicedate=new Date(sdatee[2],sdatee[1]-1,sdatee[0]);
+             if(servicedate < date)
+             {
+                 $("#CarWashForm_ServiceStartTime_em_").show();
+                 $("#CarWashForm_ServiceStartTime_em_").addClass('errorMessage');
+                 $("#CarWashForm_ServiceStartTime_em_").text("Service can only be configured post 2 days from current date ");
+                 return false;
+             }
+
         if($("#DifferentLocation").val()=='1'){
         for (var i = 1; i <= dumpcars; i++) {
             if ($("#" + i + "_MakeOfCar").val() == "") {
@@ -503,7 +527,7 @@ $(document).ready(function() {
                 return false;
             } else {
                 $("#" + i + "_MakeOfCar_em").hide();
-                
+
             }
 
             if (($("#" + i + "_ExteriorColor").val() != "") && (!$("#" + i + "_ExteriorColor").val().match(/^[a-zA-Z]+$/))) {
@@ -513,7 +537,7 @@ $(document).ready(function() {
                 return false;
             } else {
                 $("#" + i + "_ExteriorColor_em").hide();
-                
+
             }
             //address line1 start
             if ( ($("#" + i + "_Address1").val() == "") ) {
@@ -573,7 +597,7 @@ $(document).ready(function() {
                 $("#" + i + "_PinCode_em").hide();
             }
             if ( (!$("#" + i + "_PinCode").val().match(/^[0-9]+$/)) ) {
-                
+
                 $("#" + i + "_PinCode_em").show();
                 $("#" + i + "_PinCode_em").addClass('errorMessage');
                 $("#" + i + "_PinCode_em").text("Please Enter only numbers ");
@@ -590,22 +614,22 @@ $(document).ready(function() {
                 $("#" + i + "_PinCode_em").hide();
             }
             //Pin Code validation end
-        
+
               if (makeofcar == "") {
                     makeofcar = $("#" + i + "_MakeOfCar").val();
                 } else if (makeofcar != "") {
                     makeofcar = makeofcar+"," + $("#" + i + "_MakeOfCar").val();
                 }
                 //makeofcar = makeofcar+ $("#" + i + "_MakeOfCar").val()+",";
-                $('#CarWashForm_MakeOfCar').val(makeofcar); 
-                
+                $('#CarWashForm_MakeOfCar').val(makeofcar);
+
                 /*if (color == "") {
                     color = $("#" + i + "_ExteriorColor").val()+",";
                 } else if (color != "") {
                     color =  color + $("#" + i + "_ExteriorColor").val();
                 }*/
                 color =  color + $("#" + i + "_ExteriorColor").val()+",";
-                $('#CarWashForm_ExteriorColor').val(color); 
+                $('#CarWashForm_ExteriorColor').val(color);
                 /*if (differentAddress == "") {
                     differentAddress = $("#" + i + "_DifferentAddress").val();
                 } else if (differentAddress != "") {
@@ -614,9 +638,9 @@ $(document).ready(function() {
                 differentAddress = differentAddress + "," + $("#" + i + "_DifferentAddress").val()+",";
                 $('#CarWashForm_DifferentAddress').val(differentAddress);
                /*if (address1 == "") {
-                        
+
                     address1 = $("#" + i + "_Address1").val()+",";
-                    
+
                 } else if (address1 != "") {
                   address1 = address1 + $("#" + i + "_Address1").val();
                 }*/
@@ -630,7 +654,7 @@ $(document).ready(function() {
                 }*/
                 address2 = address2 + $("#" + i + "_Address2").val()+",";
                 $('#CarWashForm_Address2').val(address2);
-                
+
                 /*if (alternate_phone == "") {
                     alternate_phone = $("#" + i + "_AlternatePhone").val()+",";
                 } else if (alternate_phone != "") {
@@ -638,7 +662,7 @@ $(document).ready(function() {
                 }*/
                 alternate_phone = alternate_phone + $("#" + i + "_AlternatePhone").val()+",";
                 $('#CarWashForm_AlternatePhone').val(alternate_phone);
-                
+
                 /*if (state == "") {
                     state = $("#" + i + "_State").val()+",";
                 } else if (state != "") {
@@ -646,7 +670,7 @@ $(document).ready(function() {
                 }*/
                 state = state  + $("#" + i + "_State").val()+",";
                 $('#CarWashForm_State').val(state);
-                
+
                 /*if (city == "") {
                     city = $("#" + i + "_City").val()+ ",";
                 } else if (city != "") {
@@ -654,7 +678,7 @@ $(document).ready(function() {
                 }*/
                 city = city  + $("#" + i + "_City").val()+",";
                 $('#CarWashForm_City').val(city);
-                
+
                 /*if (pin_code == "") {
                     pin_code = $("#" + i + "_PinCode").val()+",";
                 } else if (pin_code != "") {
@@ -663,11 +687,11 @@ $(document).ready(function() {
                 pin_code = pin_code  + $("#" + i + "_PinCode").val()+",";
                 $('#CarWashForm_PinCode').val(pin_code);
         }
-        
-        
+
+
         }
-        
-        
+
+
         if($("#DifferentLocation").val()=='0'){
         for (var i = 1; i <= dumpcars; i++) {
             if ($("#" + i + "_MakeOfCar").val() == "") {
@@ -677,7 +701,7 @@ $(document).ready(function() {
                 return false;
             } else {
                 $("#" + i + "_MakeOfCar_em").hide();
-                
+
             }
 
             if (($("#" + i + "_ExteriorColor").val() != "") && (!$("#" + i + "_ExteriorColor").val().match(/^[a-zA-Z]+$/))) {
@@ -687,7 +711,7 @@ $(document).ready(function() {
                 return false;
             } else {
                 $("#" + i + "_ExteriorColor_em").hide();
-                
+
             }
             //address line1 start
             if ( ($("#11_Address1").val() == "") ) {
@@ -736,7 +760,7 @@ $(document).ready(function() {
             } else {
                 $("#11_City_em").hide();
             }
-           
+
             //City validation end
             //Pin code validation start
             if ( ($("#11_PinCode").val()=='') ) {
@@ -748,7 +772,7 @@ $(document).ready(function() {
                 $("#11_PinCode_em").hide();
             }
             if ( (!$("#11_PinCode").val().match(/^[0-9]+$/)) ) {
-                
+
                 $("#11_PinCode_em").show();
                 $("#11_PinCode_em").addClass('errorMessage');
                 $("#11_PinCode_em").text("Please Enter only numbers ");
@@ -764,28 +788,28 @@ $(document).ready(function() {
             } else {
                 $("#11_PinCode_em").hide();
             }
-            
-        
+
+
               /*if (makeofcar == "") {
                     makeofcar = $("#" + i + "_MakeOfCar").val()+",";
                 } else if (makeofcar != "") {
                     makeofcar = makeofcar + $("#" + i + "_MakeOfCar").val();
                 }*/
                 makeofcar = makeofcar + $("#" + i + "_MakeOfCar").val()+",";
-                $('#CarWashForm_MakeOfCar').val(makeofcar); 
-                
+                $('#CarWashForm_MakeOfCar').val(makeofcar);
+
               /*if (color == "") {
                     color = $("#" + i + "_ExteriorColor").val()+",";
                 } else if (color != "") {
                     color = color  + $("#" + i + "_ExteriorColor").val();
                 }*/
                 color = color  + $("#" + i + "_ExteriorColor").val()+",";
-                $('#CarWashForm_ExteriorColor').val(color); 
-              
+                $('#CarWashForm_ExteriorColor').val(color);
+
                /*if (address1 == "") {
-                        
+
                     address1 = $("#11_Address1").val()+",";
-                    
+
                 } else if (address1 != "") {
                   address1 = address1 + $("#11_Address1").val();
                 }*/
@@ -799,7 +823,7 @@ $(document).ready(function() {
                 }*/
                 address2 = address2 + $("#11_Address2").val()+",";
                 $('#CarWashForm_Address2').val(address2);
-               
+
                 /*if (alternate_phone == "") {
                     alternate_phone = $("#11_AlternatePhone").val()+",";
                 } else if (alternate_phone != "") {
@@ -807,7 +831,7 @@ $(document).ready(function() {
                 }*/
                 alternate_phone = alternate_phone + $("#11_AlternatePhone").val()+",";
                 $('#CarWashForm_AlternatePhone').val(alternate_phone);
-                
+
                 /*if (state == "") {
                     state = $("#11_State").val()+",";
                 } else if (state != "") {
@@ -815,7 +839,7 @@ $(document).ready(function() {
                 }*/
                 state = state  + $("#11_State").val()+",";
                 $('#CarWashForm_State').val(state);
-                
+
                 /*if (city == "") {
                     city = $("#11_City").val()+ ",";
                 } else if (city != "") {
@@ -823,7 +847,7 @@ $(document).ready(function() {
                 }*/
                 city = city  + $("#11_City").val()+",";
                 $('#CarWashForm_City').val(city);
-                
+
                 /*if (pin_code == "") {
                     pin_code = $("#11_PinCode").val()+",";
                 } else if (pin_code != "") {
@@ -832,8 +856,8 @@ $(document).ready(function() {
                 pin_code = pin_code  + $("#11_PinCode").val()+",";
                 $('#CarWashForm_PinCode').val(pin_code);
         }
-        
-        
+
+
         }
          /*if ( ($("#11_Address1").val() == "") ) {
                 $("#11_Address1_em").show();
@@ -850,12 +874,12 @@ $(document).ready(function() {
         if ($('#CarWashCleaningSubmit').val() == 'Next') {
             type = 'next';
         }
-        
+
         var queryString = $('#carwash-form').serialize();
         queryString += '&Type=' + type+'&DL='+DL;
         ajaxRequest('/user/carwash', queryString, addCarWashCleaningServicehandler);
     }
-   
+
 
     function addCarWashCleaningServicehandler(data) {
         //scrollPleaseWaitClose('serviceSpinLoader');
@@ -878,12 +902,12 @@ $(document).ready(function() {
         queryString += '&Type=' + type;
         ajaxRequest('/user/carwash', queryString, previousHouseCleaningServicehandler);
     }
-    
+
     function previousHouseCleaningServicehandler(data) {
         //scrollPleaseWaitClose('serviceSpinLoader');
 
         if (data.status == 'success') {
-            
+
             globalspace.HouseCleaning = Number(data.HouseCleaning);
             globalspace.CarCleaning = Number(data.CarCleaning);
             globalspace.StewardCleaning = Number(data.StewardCleaning);
@@ -901,7 +925,7 @@ $(document).ready(function() {
             $('#homeServicesMainDiv').hide();
             $('#ServiceMainDiv').show();
             $('#ServiceMainDiv').html(data.data);
-            
+
         } else {
             var error = [];
             if (typeof (data.error) == 'string') {
@@ -930,7 +954,7 @@ $(document).ready(function() {
         }
     }
     function onChangeTime() {
-        
+
         var StartTimes = $("#StewardCleaningForm_StartTime").val();
         var EndTimes = $("#StewardCleaningForm_EndTime").val();
         if ((StartTimes != '') && (EndTimes != '')){
@@ -938,26 +962,26 @@ $(document).ready(function() {
         var STimefirst=first[1].split(":");
         if(STimefirst[1]>0&&STimefirst[1]<30){
             var smdate=first[0]+" "+STimefirst[0]+":30";
-            $("#StewardCleaningForm_StartTime").val(smdate); 
+            $("#StewardCleaningForm_StartTime").val(smdate);
         }
         if(STimefirst[1]>30&&STimefirst[1]<60){
             var snexthr=Number(STimefirst[0])+1;
             if(snexthr==24){snexthr=00;}
             var smdate=first[0]+" "+snexthr+":00";
-            $("#StewardCleaningForm_StartTime").val(smdate); 
+            $("#StewardCleaningForm_StartTime").val(smdate);
         }
         var SDate=first[0].split("-");
         var last=EndTimes.split(" ");
         var eTimeLast=last[1].split(":");
         if(eTimeLast[1]>0&&eTimeLast[1]<30){
             var emdate=last[0]+" "+eTimeLast[0]+":30";
-            $("#StewardCleaningForm_EndTime").val(emdate); 
+            $("#StewardCleaningForm_EndTime").val(emdate);
         }
         if(eTimeLast[1]>30&&eTimeLast[1]<60){
             var enexthr=Number(eTimeLast[0])+1;
             if(enexthr==24){enexthr=00;}
             var emdate=last[0]+" "+enexthr+":00";
-            $("#StewardCleaningForm_EndTime").val(emdate); 
+            $("#StewardCleaningForm_EndTime").val(emdate);
         }
         var EDate=last[0].split("-");
         var sDateFinal=SDate[2]+"/"+SDate[1]+"/"+SDate[0];
@@ -970,7 +994,7 @@ $(document).ready(function() {
         var e=new Date(EDate[2], EDate[1]-1, EDate[0], eTimeLast[0], eTimeLast[1], 0, 0);
         if(scmp > ecmp)
         {
-            $("#StewardCleaningForm_EndTime").val(StartTimes); 
+            $("#StewardCleaningForm_EndTime").val(StartTimes);
             $("#StewardCleaningForm_DurationHours").val("1");
         }
         else
@@ -986,12 +1010,12 @@ $(document).ready(function() {
 //        if ((StartTimes != '') && (EndTimes != '')) {
 //            if(StartTimes>EndTimes)
 //            {
-//                $("#StewardCleaningForm_EndTime").val(StartTimes); 
+//                $("#StewardCleaningForm_EndTime").val(StartTimes);
 //                $("#StewardCleaningForm_DurationHours").val("1");
 //            }
 //        }
 //        if ((StartTimes != '') && (EndTimes != '')) {
-//            
+//
 //            var totalHours1 = '';
 //            var stDateres1 = StartTimes.split(" ");
 //            var enDateres1 = EndTimes.split(" ");
@@ -1002,13 +1026,13 @@ $(document).ready(function() {
 //            var enDateres = eTime[2]+"/"+eTime[1]+"/"+eTime[0];
 //            var stDate1 = new Date(stDateres);
 //            var enDate1 = new Date(enDateres);
-//             
+//
 //            var compDate = stDate1 - enDate1;
 //
 //            var startDateValuecmp = stDate1.getTime();
 //            var endDateValuecmp = enDate1.getTime();
 //            if (compDate == 0) {
-//                           
+//
 //                var stTimeres = stDateres1[1].split(":");
 //                var enTimeres = enDateres1[1].split(":");
 //                if (Math.round(stTimeres[0]) < Math.round(enTimeres[0])) {
@@ -1046,7 +1070,7 @@ $(document).ready(function() {
     var noOfStewards;
 
 function onTotalStewards(obj) {
-       
+
         if(obj.value<15)
         {
             $("#StewardCleaningForm_totalStewards").val("1");
@@ -1075,7 +1099,7 @@ function onTotalStewards(obj) {
             var enDate1 = new Date(enDateres);
 
             var compDate = stDate1 - enDate1;
-            
+
             var startDateValuecmp = stDate1.getTime();
             var endDateValuecmp = enDate1.getTime();
 
@@ -1112,7 +1136,7 @@ function onTotalStewards(obj) {
             $("#StewardCleaningForm_AttendPeople_em_").text("You have entered '0' please enter the people attending the event");
             return false;
         }
-        
+
 
         if ($('#StewardCleaningForm_StartTime').val() == '') {
             $("#StewardCleaningForm_EventType_em_").hide();
@@ -1122,6 +1146,7 @@ function onTotalStewards(obj) {
             $("#StewardCleaningForm_StartTime_em_").text("Please Select Start Time");
             return false;
         }
+
         if ($('#StewardCleaningForm_EndTime').val() == '') {
             $("#StewardCleaningForm_StartTime_em_").hide();
             $("#StewardCleaningForm_EndTime_em_").show();
@@ -1129,8 +1154,28 @@ function onTotalStewards(obj) {
             $("#StewardCleaningForm_EndTime_em_").text("Please Select End Time");
             return false;
         }
-        if (compDate == 0) {
 
+             var date=new Date.today().addDays(2);
+             var servicedate=new Date(sTime[2],sTime[1]-1,sTime[0]);
+             if(servicedate < date)
+             {
+                 $("#StewardCleaningForm_EventType_em_").hide();
+                 $("#StewardCleaningForm_EventName_em_").hide();
+                 $("#StewardCleaningForm_StartTime_em_").show();
+                 $("#StewardCleaningForm_StartTime_em_").addClass('errorMessage');
+                 $("#StewardCleaningForm_StartTime_em_").text("Service can only be configured post 2 days from current date ");
+                 return false;
+             }
+             var serviceEndDate = new Date(eTime[2],eTime[1]-1,eTime[0]);
+             if(serviceEndDate < date)
+             {
+                 $("#StewardCleaningForm_StartTime_em_").hide();
+                 $("#StewardCleaningForm_EndTime_em_").show();
+                 $("#StewardCleaningForm_EndTime_em_").addClass('errorMessage');
+                 $("#StewardCleaningForm_EndTime_em_").text("Service can only be configured post 2 days from current date");
+                 return false;
+             }
+        if (compDate == 0) {
             var stTimeres = stDateres1[1].split(":");
             var enTimeres = enDateres1[1].split(":");
             if (Math.round(stTimeres[0]) > Math.round(enTimeres[0])) {
@@ -1168,7 +1213,7 @@ function onTotalStewards(obj) {
             return false;
         }
         if ( ($("#StewardCleaningForm_AlternatePhone").val() != "") && (!$("#StewardCleaningForm_AlternatePhone").val().match(/^[0-9]+$/)) ) {
-                $("#StewardCleaningForm_Address1_em_").hide(); 
+                $("#StewardCleaningForm_Address1_em_").hide();
                 $("#StewardCleaningForm_AlternatePhone_em_").show();
                 $("#StewardCleaningForm_AlternatePhone_em_").addClass('errorMessage');
                 $("#StewardCleaningForm_AlternatePhone_em_").text("Please Enter only numbers ");
@@ -1186,17 +1231,17 @@ function onTotalStewards(obj) {
                 $("#StewardCleaningForm_State_em_").addClass('errorMessage');
                 $("#StewardCleaningForm_State_em_").text("Please Select State ");
                 return false;
-            } 
+            }
             //State validation end
             //City validation start
-            
+
             if ( (!$("#StewardCleaningForm_City").val().match(/[A-Za-z0-9]$/)) ) {
-                $("#StewardCleaningForm_Address1_em_").hide(); 
+                $("#StewardCleaningForm_Address1_em_").hide();
                 $("#StewardCleaningForm_City_em_").show();
                 $("#StewardCleaningForm_City_em_").addClass('errorMessage');
                 $("#StewardCleaningForm_City_em_").text("Please Enter City ");
                 return false;
-            } 
+            }
             //City validation end
             //Pin code validation start
             if ( ($("#StewardCleaningForm_PinCode").val()=='') ) {
@@ -1204,25 +1249,25 @@ function onTotalStewards(obj) {
                 $("#StewardCleaningForm_PinCode_em_").addClass('errorMessage');
                 $("#StewardCleaningForm_PinCode_em_").text("Please Enter Pin Code ");
                 return false;
-            } 
+            }
             if ( (!$("#StewardCleaningForm_PinCode").val().match(/^[0-9]+$/)) ) {
-                
+
                 $("#StewardCleaningForm_PinCode_em_").show();
                 $("#StewardCleaningForm_PinCode_em_").addClass('errorMessage');
                 $("#StewardCleaningForm_PinCode_em_").text("Please Enter only numbers ");
                 return false;
-            } 
+            }
             if ( ($("#StewardCleaningForm_PinCode").val().length<='5') ) {
                 $("#StewardCleaningForm_PinCode_em_").show();
                 $("#StewardCleaningForm_PinCode_em_").addClass('errorMessage');
                 $("#StewardCleaningForm_PinCode_em_").text("Pin Code too short (minimum is 6 numbers).");
                 return false;
             }
-        
+
 
          else {
              $("#StewardCleaningForm_PinCode_em_").hide();
-            
+
 
             var type = '';
             if ($('#StewardsCleaningSubmit').val() == 'Submit') {
@@ -1232,7 +1277,7 @@ function onTotalStewards(obj) {
                 type = 'next';
             }
             var r='';
-            if ($('#StewardCleaningForm_ContactAddress').val()==''){
+            if ( ($('#StewardCleaningForm_DifferentAddress').val()=='0') && ($('#StewardCleaningForm_ContactAddress').val()=='')) {
             var statusData = 'Do you want to Add this address to Contact details?';
             r = confirm(statusData);
             }else{
@@ -1242,9 +1287,9 @@ function onTotalStewards(obj) {
                 queryString += '&Type=' + type+'&ContactInfo=Yes';
             }else{
                 queryString += '&Type=' + type+'&ContactInfo=No';
-            } 
+            }
             //queryString += '&Type=' + type;
-            
+
             ajaxRequest('/user/stewards', queryString, addStewardCleaningServicehandler);
         }
     }
@@ -1271,8 +1316,8 @@ function onTotalStewards(obj) {
         var queryString = '';
 
             ajaxRequest('/user/serviceOrder',queryString, addOrderhandler);
-           
-            
+
+
      }
      function addOrderhandler(data) {scrollPleaseWaitClose('mailSpinLoader');
         if (data.status == 'success') {
@@ -1282,14 +1327,14 @@ function onTotalStewards(obj) {
             $('#ServiceMainDiv2').html(data.data);
             //var queryString = '';
             //ajaxRequest('/user/mailSendData', queryString, addMailSendhandler);
-        } 
+        }
     }
     function addMailSendhandler(data) {
            if (data.status == 'success') {
            }
         }
-    
-    
+
+
     //Previous button purpose----------------------------
     function previousStewardsCleaning(){
         var queryString = $('#steward-form').serialize();
@@ -1297,9 +1342,9 @@ function onTotalStewards(obj) {
         queryString +='&Type='+type;
         ajaxRequest('/user/stewards', queryString, previousStewardsCleaningehandler);
     }
-    
+
     function previousStewardsCleaningehandler(data) {
-        
+
 
         if (data.status == 'success') {
             globalspace.HouseCleaning = Number(data.HouseCleaning);
@@ -1311,17 +1356,17 @@ function onTotalStewards(obj) {
 
         }
     }
-    
-    
+
+
     function previousCarWashCleaning(){
         var queryString = $('#carwash-form').serialize();
         var DL = $("#CarWashForm_DifferentLocation").val();
         type = 'Previous';
         queryString += '&Type=' + type+'&DL='+DL;
         ajaxRequest('/user/carwash', queryString, previousCarWashCleaninghandler);
-        
+
     }
-    
+
     function previousCarWashCleaninghandler(data) {
         if (data.status == 'success') {
             globalspace.HouseCleaning = Number(data.HouseCleaning);

@@ -409,7 +409,7 @@ $(document).ready(function() {
                 type = 'next';
             }
             var r='';
-            if ( ($('#HouseCleaningForm_DifferentAddress').val()=='0') && ($('#HouseCleaningForm_ContactAddress').val()=='')) {
+            if ($('#HouseCleaningForm_ContactAddress').val()==''){
             var statusData = 'Do you want to Add this address to Contact details?';
             r = confirm(statusData);
             }else{
@@ -1232,7 +1232,7 @@ function onTotalStewards(obj) {
                 type = 'next';
             }
             var r='';
-            if ( ($('#StewardCleaningForm_DifferentAddress').val()=='0') && ($('#StewardCleaningForm_ContactAddress').val()=='')) {
+            if ($('#StewardCleaningForm_ContactAddress').val()==''){
             var statusData = 'Do you want to Add this address to Contact details?';
             r = confirm(statusData);
             }else{

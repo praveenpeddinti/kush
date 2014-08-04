@@ -126,7 +126,7 @@
                                         </div>
                                     </div><hr>
                                     
-                                    <div class="row-fluid">
+                                    <div class="row-fluid" id="diffDiv" style="display: none">
                                     <div class="span12">
                                         <div class="pull-right">
                                         <label>Same as Contact Info Address</label>
@@ -207,36 +207,14 @@
 <script type="text/javascript">
     
     $(document).ready(function() {
-         Custom.init();
-         
-               
-                <?php //if(!empty($getServiceDetails['houseservice_start_time']) ){ ?>
-                //$('#HouseCleaningForm_ServiceStartTime').handleDtpicker('setDate', new Date(2014, 04, 25, 0, 0, 0));
-                <?php //}?>
+        Custom.init();
         $('#WindowGrills').bootstrapSwitch();
         $('#FridgeInterior').bootstrapSwitch();
         $('#MicroWaveOven').bootstrapSwitch();
         $('#PoojaRoom').bootstrapSwitch();
         $('#DifferentAddress').bootstrapSwitch();
-        if($('#HouseCleaningForm_ContactAddress').val()== '1'){
-            $('#HouseCleaningForm_Address1').attr('readOnly', false);
-            $('#HouseCleaningForm_Address2').attr('readOnly', false);
-            $('#HouseCleaningForm_AlternatePhone').attr('readOnly', false);
-            $('#HouseCleaningForm_State').attr('disabled', false);
-            $('#HouseCleaningForm_City').attr('readOnly', false);
-            $('#HouseCleaningForm_PinCode').attr('readOnly', false);
-            
-        }else{
-            $('#HouseCleaningForm_Address1').attr('readOnly', true);
-            $('#HouseCleaningForm_Address2').attr('readOnly', true);
-            $('#HouseCleaningForm_AlternatePhone').attr('readOnly', true);
-            $('#HouseCleaningForm_State').attr('disabled', true);
-            $('#HouseCleaningForm_City').attr('readOnly', true);
-            $('#HouseCleaningForm_PinCode').attr('readOnly', true);
-        }
-        <?php if($getServiceDetails['H_differentaddress'] == ''){ ?>
-            $('#DifferentAddress').bootstrapSwitch('setState', false);
-            $('#HouseCleaningForm_DifferentAddress').val('0');
+        if(($('#HouseCleaningForm_ContactAddress').val()=='')||($('#HouseCleaningForm_ServiceStartTime').val()!='')){
+            document.getElementById('diffDiv').style.display='none';
             $('#HouseCleaningForm_Address1').attr('readOnly', false);
             $('#HouseCleaningForm_Address2').attr('readOnly', false);
             $('#HouseCleaningForm_AlternatePhone').attr('readOnly', false);
@@ -244,16 +222,38 @@
             $('#HouseCleaningForm_City').attr('readOnly', false);
             $('#HouseCleaningForm_PinCode').attr('readOnly', false);
         
-        <?php } else {?>
+            
+        }else{
+            document.getElementById('diffDiv').style.display='block';
             $('#DifferentAddress').bootstrapSwitch('setState', true);
-            $('#HouseCleaningForm_DifferentAddress').val('1');
+            $('#HouseCleaningForm_Address1').attr('readOnly', true);
+            $('#HouseCleaningForm_Address2').attr('readOnly', true);
+            $('#HouseCleaningForm_AlternatePhone').attr('readOnly', true);
+            $('#HouseCleaningForm_State').attr('disabled', true);
+            $('#HouseCleaningForm_City').attr('readOnly', true);
+            $('#HouseCleaningForm_PinCode').attr('readOnly', true);
             $('#HouseCleaningForm_Address1').val('<?php echo $customerAddressDetails->address_line1;?>');
             $('#HouseCleaningForm_Address2').val('<?php echo $customerAddressDetails->address_line2;?>');
             $('#HouseCleaningForm_AlternatePhone').val('<?php echo $customerAddressDetails->alternate_phone;?>');
+            $('#HouseCleaningForm_State').val('<?php echo $customerAddressDetails->address_state;?>');
             $('#HouseCleaningForm_City').val('<?php echo $customerAddressDetails->address_city;?>');
             $('#HouseCleaningForm_PinCode').val('<?php echo $customerAddressDetails->address_pin_code;?>');
-            
-        <?php } ?>
+        }
+        if($('#HouseCleaningForm_ServiceStartTime').val()!=''){
+            document.getElementById('diffDiv').style.display='none';
+            $('#HouseCleaningForm_Address1').attr('readOnly', false);
+            $('#HouseCleaningForm_Address2').attr('readOnly', false);
+            $('#HouseCleaningForm_AlternatePhone').attr('readOnly', false);
+            $('#HouseCleaningForm_State').attr('disabled', false);
+            $('#HouseCleaningForm_City').attr('readOnly', false);
+            $('#HouseCleaningForm_PinCode').attr('readOnly', false);
+            $('#HouseCleaningForm_Address1').val('<?php echo $getServiceDetails["H_address1"];?>');
+            $('#HouseCleaningForm_Address2').val('<?php echo $getServiceDetails["H_address2"];?>');
+            $('#HouseCleaningForm_AlternatePhone').val('<?php echo $getServiceDetails["H_alternate_phone"];?>');
+            $('#HouseCleaningForm_State').val('<?php echo $getServiceDetails["H_state"]?>');
+            $('#HouseCleaningForm_City').val('<?php echo $getServiceDetails["H_city"];?>');
+            $('#HouseCleaningForm_PinCode').val('<?php echo $getServiceDetails["H_pincode"];?>');
+        }
         <?php if($getServiceDetails['window_grills'] == 1){ ?>
         $('#WindowGrills').bootstrapSwitch('setState', true);
         $('#WindowGrillsTooltip').show();
@@ -286,43 +286,33 @@
             value = data.value;
             if(value == false){alert("------value---"+value);
                 $('#HouseCleaningForm_DifferentAddress').val('0');
-                if($('#HouseCleaningForm_ContactAddress').val()== ''){alert("------1value---"+value);
-                    $('#HouseCleaningForm_Address1').attr('readOnly', false);
-                    $('#HouseCleaningForm_Address2').attr('readOnly', false);
-                    $('#HouseCleaningForm_AlternatePhone').attr('readOnly', false);
-                    $('#HouseCleaningForm_State').attr('disabled', false);
-                    $('#HouseCleaningForm_City').attr('readOnly', false);
-                    $('#HouseCleaningForm_PinCode').attr('readOnly', false);
-
-                }else{alert("------2value---"+value);
-                    $('#HouseCleaningForm_Address1').attr('readOnly', false);
-                    $('#HouseCleaningForm_Address2').attr('readOnly', false);
-                    $('#HouseCleaningForm_AlternatePhone').attr('readOnly', false);
-                    $('#HouseCleaningForm_State').attr('disabled', false);
-                    $('#HouseCleaningForm_City').attr('readOnly', false);
-                    $('#HouseCleaningForm_PinCode').attr('readOnly', false);
-                }
                 $('#HouseCleaningForm_Address1').val('<?php echo $customerAddressDetails->address_line1;?>');
                 $('#HouseCleaningForm_Address2').val('<?php echo $customerAddressDetails->address_line2;?>');
                 $('#HouseCleaningForm_AlternatePhone').val('<?php echo $customerAddressDetails->alternate_phone;?>');
-                
+                $('#HouseCleaningForm_State').val('<?php echo $customerAddressDetails->address_state;?>');
                 $('#HouseCleaningForm_City').val('<?php echo $customerAddressDetails->address_city;?>');
                 $('#HouseCleaningForm_PinCode').val('<?php echo $customerAddressDetails->address_pin_code;?>');
-            }
-            else{alert("------3value---"+value);
-                $('#HouseCleaningForm_DifferentAddress').val('1');
-                <?php //if($getServiceDetails["H_alternate_phone"]==0){$A_Phone='';}else{$A_Phone=$getServiceDetails["H_alternate_phone"];};?>
-                $('#HouseCleaningForm_Address1').val('<?php echo $getServiceDetails["H_address1"];?>');
-                $('#HouseCleaningForm_Address2').val('<?php echo $getServiceDetails["H_address2"];?>');
-                $('#HouseCleaningForm_AlternatePhone').val('<?php echo $getServiceDetails["H_alternate_phone"];?>');
-                $('#HouseCleaningForm_City').val('<?php echo $getServiceDetails["H_city"];?>');
-                $('#HouseCleaningForm_PinCode').val('<?php echo $getServiceDetails["H_pincode"];?>');
-                $('#HouseCleaningForm_Address1').attr('readOnly', false);
+                $('#HouseCleaningForm_Address1').attr('readOnly',false);
                 $('#HouseCleaningForm_Address2').attr('readOnly', false);
                 $('#HouseCleaningForm_AlternatePhone').attr('readOnly', false);
                 $('#HouseCleaningForm_State').attr('disabled', false);
                 $('#HouseCleaningForm_City').attr('readOnly', false);
                 $('#HouseCleaningForm_PinCode').attr('readOnly', false);
+            }
+            else{
+                $('#HouseCleaningForm_DifferentAddress').val('1');
+                $('#HouseCleaningForm_Address1').val('<?php echo $customerAddressDetails->address_line1;?>');
+                $('#HouseCleaningForm_Address2').val('<?php echo $customerAddressDetails->address_line2;?>');
+                $('#HouseCleaningForm_AlternatePhone').val('<?php echo $customerAddressDetails->alternate_phone;?>');
+                $('#HouseCleaningForm_State').val('<?php echo $customerAddressDetails->address_state;?>');
+                $('#HouseCleaningForm_City').val('<?php echo $customerAddressDetails->address_city;?>');
+                $('#HouseCleaningForm_PinCode').val('<?php echo $customerAddressDetails->address_pin_code;?>');
+                $('#HouseCleaningForm_Address1').attr('readOnly', true);
+                $('#HouseCleaningForm_Address2').attr('readOnly',  true);
+                $('#HouseCleaningForm_AlternatePhone').attr('readOnly',  true);
+                $('#HouseCleaningForm_State').attr('disabled',  true);
+                $('#HouseCleaningForm_City').attr('readOnly',  true);
+                $('#HouseCleaningForm_PinCode').attr('readOnly',  true);
             }
          });   
          $('#WindowGrills').on('switch-change', function (e, data) {

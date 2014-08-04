@@ -26,7 +26,7 @@
     </div>
 <?php $this->endWidget(); ?>
     <div style="text-align: right">
-             <?php echo CHtml::Button('Order Close',array('id' => 'orderCancel','class' => 'btn btn-primary','onclick'=>'orderClose();')); ?>
+             <?php echo CHtml::Button('Close Order',array('id' => 'orderCancel','class' => 'btn btn-primary','onclick'=>'orderClose();')); ?>
          </div>
 
 <script type="text/javascript">

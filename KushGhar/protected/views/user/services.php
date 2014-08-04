@@ -157,7 +157,7 @@
         </div>
         <div class="row-fluid">
             <div class=" span4">
-                <label><abbr title="required">*</abbr> State</label>
+                <label><abbr title="required">*</abbr> State</label><?php echo "==fgfgfgf==".$customerAddressDetails->address_state;?>
                 <?php echo $form->dropDownList($model, 'State', CHtml::listData($States, 'Id', 'StateName'), array('prompt'=>'Select State','options' => array($customerAddressDetails->address_state => array('selected' => 'selected')), 'class' => 'span12')); ?>
                 <?php echo $form->error($model,'State'); ?>
                 <!--<select name="State" id="State" class="span12" >
@@ -229,7 +229,7 @@
             $('#HouseCleaningForm_Address1').attr('readOnly', true);
             $('#HouseCleaningForm_Address2').attr('readOnly', true);
             $('#HouseCleaningForm_AlternatePhone').attr('readOnly', true);
-            $('#HouseCleaningForm_State').attr('disabled', true);
+            $('#HouseCleaningForm_State').attr('readOnly', true);
             $('#HouseCleaningForm_City').attr('readOnly', true);
             $('#HouseCleaningForm_PinCode').attr('readOnly', true);
             $('#HouseCleaningForm_Address1').val('<?php echo $customerAddressDetails->address_line1;?>');
@@ -284,7 +284,7 @@
          $('#DifferentAddress').on('switch-change', function (e, data) {
             var $el = $(data.el);
             value = data.value;
-            if(value == false){alert("------value---"+value);
+            if(value == false){
                 $('#HouseCleaningForm_DifferentAddress').val('0');
                 $('#HouseCleaningForm_Address1').val('<?php echo $customerAddressDetails->address_line1;?>');
                 $('#HouseCleaningForm_Address2').val('<?php echo $customerAddressDetails->address_line2;?>');

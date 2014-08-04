@@ -282,7 +282,6 @@ $(document).ready(function() {
             $('#ServiceMainDiv').show();
             $('#ServiceMainDiv').html(data.data);
 
-
             if (globalspace.CarCleaning == 0 && globalspace.StewardCleaning == 0) {
                 $('#HouseCleaningSubmit').val('Submit');
             }
@@ -420,7 +419,9 @@ $(document).ready(function() {
                 type = 'next';
             }
             var r='';
-            if ($('#HouseCleaningForm_ContactAddress').val()=='') {
+
+            if ( $('#HouseCleaningForm_ContactAddress').val()=='') {
+
             var statusData = 'Do you want to Add this address to Contact details?';
             r = confirm(statusData);
             }else{
@@ -431,7 +432,7 @@ $(document).ready(function() {
             }else{
                 queryString += '&Type=' + type+'&ContactInfo=No';
             }
-
+            
 
             ajaxRequest('/user/services', queryString, addHouseCleaningServicehandler);
         }
@@ -1277,7 +1278,9 @@ function onTotalStewards(obj) {
                 type = 'next';
             }
             var r='';
-            if ( $('#StewardCleaningForm_ContactAddress').val()=='') {
+
+            if ($('#StewardCleaningForm_ContactAddress').val()=='') {
+
             var statusData = 'Do you want to Add this address to Contact details?';
             r = confirm(statusData);
             }else{

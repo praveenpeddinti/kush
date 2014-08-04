@@ -17,7 +17,10 @@
                   if($row['rating']==4){$url="../images/stars5.jpg";}
                   if($row['rating']==5){$url="../images/stars6.jpg";}?>
             <img src="<?php echo $url; ?>" width="80" height="20"></td>
-        <td><?php echo $row['feedback']; ?></td>
+        <td><?php if(strlen($row['feedback'])<20){echo $row['feedback'];}
+        else{$substr=  substr($row['feedback'], 0, 19)."...";
+    ?><div title="<?php echo $row['feedback']; ?>"><label><?php echo $substr; ?></label></div><?php }?></td>
+        <td></td>
     </tr>
 <?php } 
  } ?>

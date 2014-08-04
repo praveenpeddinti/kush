@@ -121,7 +121,7 @@
                             <div id="tablewidget"  style="margin: auto;"><div id="message" style="display:none"></div>
                                 <table id="userTable" class="table table-hover">
 
-                                    <thead><tr><th>Service Name</th><th>Order Number</th><th>Status</th><th>Service Date</th><th>Amount</th><th>Actions</th></tr></thead>
+                                    <thead><tr><th>Service Name</th><th rowspan>Order Number</th><th>Status</th><th rowspan>Service Date</th><th>Amount</th><th>Actions</th></tr></thead>
                                     <tbody id="abusedWords_tbody">
                                       
                                     </tbody>

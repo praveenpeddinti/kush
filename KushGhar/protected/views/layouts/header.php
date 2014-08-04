@@ -158,7 +158,7 @@ ga('send', 'pageview');*/
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 id="myModalLabel">Order Close details</h3>
+                <h3 id="myModalLabel">Order fulfillment details</h3>
             </div>
             <div class="modal-body" id="myModalOrderCloseBodyDiv" style="padding:15px;"></div>
         </div><!-- /.modal-content -->

@@ -55,13 +55,13 @@
        </style>
      <![endif]-->
         <script>
-            var globalspace = new Object();
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    var globalspace = new Object();
+/*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 ga('create', 'UA-52929549-1', 'www.kushghar.com');
-ga('send', 'pageview');
+ga('send', 'pageview');*/
 </script> 
     </head>
     <body>
@@ -153,5 +153,15 @@ ga('send', 'pageview');
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
+<div id="myModalOrderClose" class="modal fade" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel">Order Close details</h3>
+            </div>
+            <div class="modal-body" id="myModalOrderCloseBodyDiv" style="padding:15px;"></div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 

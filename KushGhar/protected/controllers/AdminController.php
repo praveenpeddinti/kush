@@ -425,17 +425,61 @@ $this->pageTitle="KushGhar-Basic Info";
                 $startLimit = ((int) $_GET['userDetails_page'] - 1) * (int) $_GET['pageSize'];
                 $endLimit = $_GET['pageSize'];
                 $userDetails = $this->kushGharService->getAllUsersReviews($startLimit, $endLimit);
-                error_log("User details fetched=====================");
                 $renderHtml = $this->renderPartial('newreviews', array('userDetails' => $userDetails, 'totalCount' => $totaluser), true);
-                error_log("Rendering===============1==========");
                 $obj = array('status' => 'success', 'html' => $renderHtml, 'totalCount' => $totaluser);
-                error_log("Rendering===============2==========");
                 $renderScript = $this->rendering($obj);
-                error_log("Rendering===============3==========");
                 echo $renderScript;
             }
         } catch (Exception $ex) {
             error_log("######### Exception Occurred##########".$ex->getMessage());
         }
     }
+    
+    
+    
+    public function actionOrdercanceldetails() {error_log("Order canel---");
+        
+        try{
+           $Model = new OrderForm;
+            $id=$_POST['Id'];
+            $renderHtml=  $this->renderPartial('ordercanceldetails',array("model"=>$Model,"OrderNumber"=>$id),true);
+            $obj=array('status'=>'success','html'=>$renderHtml);
+            $renderScript=  $this->rendering($obj);
+            echo $renderScript;
+        } catch (Exception $ex) {
+            error_log("####### Exception Occurred in Order Re-Scheduling ##########".$ex->getMessage());
+        }
+    }
+    
+    public function actionOrdercancelstatus() {
+       $orderCancelStatusWithHoursForm = new OrderForm;
+       $request = yii::app()->getRequest();
+       $formName = $request->getParam('OrderForm');
+       if ($formName != '') {
+                $orderCancelStatusWithHoursForm->attributes = $request->getParam('OrderForm');
+                $errors = CActiveForm::validate($orderCancelStatusWithHoursForm);
+                if ($errors != '[]') {
+                    $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
+                } else
+                {   $result = $this->kushGharService->sendorderStatusWithTimeAndPeople($orderCancelStatusWithHoursForm, 3);
+                    if($result=='success')
+                    {
+                        //Mailing functionality
+                        $obj = array('status' => 'success', 'data' => $result, 'error' => 'Service Status is changed Successfully.');
+                    }
+                    else
+                    {
+                        $errors = array("OrderForm_error" => 'Service Failed.');
+                        $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
+                    }
+                    $renderScript = $this->rendering($obj);
+                echo $renderScript;
+                }
+            }
+            else
+            {
+                $errors = array("OrderForm_error" => 'Service Failed.');
+                $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
+            }
+        }
  }

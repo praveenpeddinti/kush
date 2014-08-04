@@ -9,6 +9,8 @@ class OrderDetails extends CActiveRecord {
     public $status;
     public $amount;
     public $service_date;
+    public $total_service_hours;
+    public $total_service_people;
     public $create_timestamp;
     public $update_timestamp;
     
@@ -223,6 +225,23 @@ public function sendorderStatus($id,$val){
         }
         catch (Exception $ex) {
             error_log("getServiceDetailsById Exception occured==" . $ex->getMessage());
+        }
+        return $result;
+    }
+    /*
+     * @Praveen Order status is closed that time store the total time and total peoples in DB 4-Aug-14
+     */
+    public function sendorderStatusWithTimeAndPeople($model,$val){
+       $result = "failed";
+        try{
+            $InviteObj = OrderDetails::model()->findByAttributes(array('id'=>$model->OrderNo));
+            $InviteObj->status = $val;
+            $InviteObj->total_service_hours = $model->TotalServiceHours;
+            $InviteObj->total_service_people = $model->TotalServicePeople;
+            if($InviteObj->update())
+                $result = "success";
+        }catch(Exception $ex){
+             error_log("################Exception Occurred  changeContactStatus##############".$ex->getMessage());
         }
         return $result;
     }

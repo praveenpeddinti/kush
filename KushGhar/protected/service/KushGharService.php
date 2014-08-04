@@ -659,6 +659,13 @@ class KushGharService {
     public function getAllUsersReviews($startLimit, $endLimit){
         return OrderReviews::model()->getAllUsersReviews($startLimit, $endLimit);
     }
+    /*
+     * @Praveen Order status is closed that time store the total time and total peoples in DB 4-Aug-14
+     */
+    public function sendorderStatusWithTimeAndPeople($model, $val) {
+        return OrderDetails::model()->sendorderStatusWithTimeAndPeople($model, $val);
+    }
+    
 }
 
 ?>

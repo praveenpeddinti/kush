@@ -14,6 +14,8 @@ class OrderForm extends CFormModel
         public $ServiceId;
         public $OrderNo;
         public $Amount;
+        public $TotalServiceHours;
+        public $TotalServicePeople;
         
 	
 
@@ -25,7 +27,7 @@ class OrderForm extends CFormModel
 	public function rules()
 	{
             return array(
-                array('Id, ParentId, CustId, ServiceId, OrderNo, Amount', 'safe'),
+                array('Id, ParentId, CustId, ServiceId, OrderNo, Amount, TotalServiceHours, TotalServicePeople', 'safe'),
             );
 	}
 

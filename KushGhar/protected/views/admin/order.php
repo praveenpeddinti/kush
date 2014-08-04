@@ -169,10 +169,30 @@
     
     
     
-    function inviteUser(rowNos, status,value) {//alert("enter=====");
+    function inviteUser(rowNos, status,value) {
         //scrollPleaseWait("InviteInfoSpinLoader","contactInfo-form");
         var data = "Id=" + rowNos + "&status=" + status+"&value="+value;
-            $.ajax({
+            
+          if(value=='Close'){
+              $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: '<?php echo Yii::app()->createAbsoluteUrl("/admin/ordercanceldetails"); ?>',
+                data: data,
+                success: function(data) {
+                    //scrollPleaseWaitClose('InviteInfoSpinLoader');
+                    $("#myModalOrderClose").modal({ backdrop: 'static', keyboard: false,show:false });
+                    $("#myModalOrderCloseBodyDiv").html(data.html);
+                    $('#myModalOrderClose').modal('show');
+                    
+                },
+                error: function(data) { // if error occured
+                    alert("Error occured.please try again");
+
+                }
+            });
+          }else{
+              $.ajax({
                 type: 'POST',
                 dataType: 'json',
                 url: '<?php echo Yii::app()->createAbsoluteUrl("/admin/orderStatus"); ?>',
@@ -192,6 +212,7 @@
 
                 }
             });
+            }
     }
 
     

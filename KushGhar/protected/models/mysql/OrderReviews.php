@@ -52,8 +52,8 @@ class OrderReviews extends CActiveRecord {
     * @Praveen feedback is published in the home page when the check the is publish checkbox in User review/feedback tab in admin side
     */
     public function getIspublishReview($id,$val){
-        if($val==true){$is_publish=1;}
-        if($val==false){$is_publish=0;}
+        if($val=='true'){$is_publish=1;}
+        if($val=='false'){$is_publish=0;}
         $result = "failed";
         try{
             $customerReviews = OrderReviews::model()->findByAttributes(array('id'=>$id));

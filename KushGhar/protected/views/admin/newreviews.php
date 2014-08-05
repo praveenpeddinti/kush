@@ -6,8 +6,8 @@
     </tr>
     <?php } else { foreach ($userDetails as $row) { ?>
     <tr id="row_<?php echo $row['id'];?>" class="odd">
-        <td><?php echo $row['UserName']; ?></td>
-        <td><?php   if($row['ServiceId']==1){$type="House Cleaning";}
+        <td nowrap><?php echo $row['UserName']; ?></td>
+        <td nowrap><?php   if($row['ServiceId']==1){$type="House Cleaning";}
                     if($row['ServiceId']==2){$type="Car Wash";}
                     if($row['ServiceId']==3){$type="Stewards Services";}
             echo $type;?></td>

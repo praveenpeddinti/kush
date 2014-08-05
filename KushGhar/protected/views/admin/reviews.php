@@ -57,7 +57,6 @@ $(document).ready(function() {
             var id = $(this).attr('id');
             var id2 = $(this).attr('review-id');
             var inviteStatus = $(this).attr('comment-status');
-            
             var x = document.getElementById(id).checked;
             commentPublish(Number(id2), Number(inviteStatus), x);
             

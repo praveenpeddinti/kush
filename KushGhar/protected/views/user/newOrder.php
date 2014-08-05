@@ -11,7 +11,7 @@
                                             $serviceName='';
                                         ?>
                                         <tr id="row_<?php echo $row['id'];?>" class="odd">
-                                            <td>
+                                            <td nowrap>
                                             <?php if($row['ServiceId']=='1'){$serviceName='House Cleaning';}
                                             if($row['ServiceId']=='2'){$serviceName='Car Wash';}
                                             if($row['ServiceId']=='3'){$serviceName='Stewards Services';}

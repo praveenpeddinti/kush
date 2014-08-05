@@ -10,7 +10,7 @@
         <td><?php echo $row['email_address']; ?></td>
         <td><?php echo $row['phone']; ?></td>
         <td><?php echo $row['Location']; ?></td>
-        <td><?php $datee = explode(" ",$row['RegisteredOn']);echo $datee[0];?></td>
+        <td nowrap><?php $datee = explode(" ",$row['RegisteredOn']);echo $datee[0];?></td>
         <td id="status_<?php echo $row['vid']; ?>">
             <?php 
                 if($row['status']==1){$status = 'Active';} 

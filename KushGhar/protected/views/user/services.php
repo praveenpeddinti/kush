@@ -157,7 +157,7 @@
         </div>
         <div class="row-fluid">
             <div class=" span4">
-                <label><abbr title="required">*</abbr> State</label><?php echo "==fgfgfgf==".$customerAddressDetails->address_state;?>
+                <label><abbr title="required">*</abbr> State</label>
                 <?php echo $form->dropDownList($model, 'State', CHtml::listData($States, 'Id', 'StateName'), array('prompt'=>'Select State','options' => array($customerAddressDetails->address_state => array('selected' => 'selected')), 'class' => 'span12')); ?>
                 <?php echo $form->error($model,'State'); ?>
                 <!--<select name="State" id="State" class="span12" >

@@ -16,11 +16,14 @@
                   if($row['rating']==3){$url="../images/stars4.jpg";}
                   if($row['rating']==4){$url="../images/stars5.jpg";}
                   if($row['rating']==5){$url="../images/stars6.jpg";}?>
-            <img src="<?php echo $url; ?>" width="80" height="20"></td>
-        <td><?php if(strlen($row['feedback'])<20){echo $row['feedback'];}
-        else{$substr=  substr($row['feedback'], 0, 19)."...";
-    ?><div title="<?php echo $row['feedback']; ?>"><label><?php echo $substr; ?></label></div><?php }?></td>
-        <td></td>
+            <img src="<?php echo $url; ?>" width="80px" height="20px"></td>
+        <td>
+            <span id="Comments<?echo $row['id'];?>__view"  style="display: block;cursor:none" onmouseover="showTooltip(this.id,'<?echo $row['feedback'];?>')" onmouseout="showTooltipdown(this.id)">
+                <?php $len= strlen($row['feedback']);
+                    if($len>=20){echo substr($row['feedback'],0,20).'...';}else{echo $row['feedback'];}?>
+            </span><div style="display:none;width:400px" id="Comments<?echo $row['id'];?>__div" class="table_tooltip" ></div>
+         </td>
+         <td><input id="comment_<?php echo $row['id']; ?>" review-id="<?php echo $row['id']; ?>" comment-status="<?php echo $row['is_publish']; ?>" <? if ($row['is_publish'] == '1') echo 'checked';?> type="checkbox" /></td>
     </tr>
 <?php } 
  } ?>

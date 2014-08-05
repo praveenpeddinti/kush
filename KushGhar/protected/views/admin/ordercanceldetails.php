@@ -6,18 +6,22 @@
      )); 
  echo $form->error($model, 'error',array('value'=>'Hide')); 
  echo $form->hiddenField($model,'OrderNo', array('value'=>$OrderNumber));
+ $months = array();
+    for( $i = 1; $i <= 20; ++$i )
+    $months[ $i ] = $i;
  ?>
     <div class="row-fluid">
-    <div class=" span6">
+    <div class=" span4">
         <?php echo $form->label($model, '<abbr title="required">*</abbr> Total Service Hours'); ?>
         <?php echo $form->dropDownList($model,'TotalServiceHours', array(''=>'Select','1' => '1', '1.5' => '1.5','2' => '2', '2.5' => '2.5','3' => '3', '3.5' => '3.5','4' => '4', '4.5' => '4.5','5' => '5', '5.5' => '5.5','6' => '6', '6.5' => '6.5'
             ,'7' => '7', '7.5' => '7.5','8' => '8', '8.5' => '8.5','9' => '9', '9.5' => '9.5','10' => '10', '10.5' => '10.5','11' => '11', '11.5' => '11.5','12' => '12'), array('class' => 'span8'));?>
         <?php echo $form->error($model,'TotalServiceHours'); ?>
         
     </div>
-        <div class=" span6">
+        <div class=" span5">
         <?php echo $form->label($model, '<abbr title="required">*</abbr> Total Service People'); ?>
-        <?php echo $form->textField($model,'TotalServicePeople',array('maxLength' => 4, 'class'=>'span4','onkeypress'=>'return isNumberKey(event);')); ?>
+        <?php echo $form->dropDownList($model,'TotalServicePeople',$months, array('prompt'=>'Select','class' => 'span8'));?>
+        
         <?php echo $form->error($model,'TotalServicePeople'); ?>
         
     </div>
@@ -41,23 +45,15 @@
         if (($('#OrderForm_TotalServiceHours').val() == '')) {
             $("#OrderForm_TotalServiceHours_em_").show();
             $("#OrderForm_TotalServiceHours_em_").addClass('errorMessage');
-            $("#OrderForm_TotalServiceHours_em_").text("Please Select Total Service Hours");
+            $("#OrderForm_TotalServiceHours_em_").text("Select Total Service Hours");
                 return false;
         }else if (($('#OrderForm_TotalServicePeople').val() == '')) {
             $("#OrderForm_TotalServiceHours_em_").hide();
             $("#OrderForm_TotalServicePeople_em_").show();
             $("#OrderForm_TotalServicePeople_em_").addClass('errorMessage');
-            $("#OrderForm_TotalServicePeople_em_").text("Please Enter Total Service People");
+            $("#OrderForm_TotalServicePeople_em_").text("Select Total Service People");
                 return false;
-        }else if(isNaN($("#OrderForm_TotalServicePeople").val()) || ($("#OrderForm_TotalServicePeople").val() <= 0)) { 
-            $("#OrderForm_TotalServiceHours_em_").hide();
-            $("#OrderForm_TotalServicePeople_em_").show();
-            $("#OrderForm_TotalServicePeople_em_").addClass('errorMessage');
-            $("#OrderForm_TotalServicePeople_em_").text("Please Enter number only");
-                return false;
-        }
-        else
-        {
+       }else {
             $("#OrderForm_TotalServiceHours_em_").hide();
             $("#OrderForm_TotalServicePeople_em_").hide();
             return true;

@@ -123,9 +123,9 @@
 
 <script type="text/javascript">
     function orderAction(id2,inviteStatus,obj){
-       if(obj.value=="Close")
+       /*if(obj.value=="Close")
            var r=confirm("Are you sure want to close the order");
-       else if(obj.value=="Cancel")
+       else*/ if(obj.value=="Cancel")
            var r=confirm("Are you sure want to cancel the order");
        else 
            r=true;

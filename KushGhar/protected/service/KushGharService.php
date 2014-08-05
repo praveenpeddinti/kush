@@ -665,6 +665,12 @@ class KushGharService {
     public function sendorderStatusWithTimeAndPeople($model, $val) {
         return OrderDetails::model()->sendorderStatusWithTimeAndPeople($model, $val);
     }
+    /*
+    * @Praveen feedback is published in the home page when the check the is publish checkbox in User review/feedback tab in admin side
+    */
+    public function getIspublishReview($id, $val) {
+        return OrderReviews::model()->getIspublishReview($id, $val);
+    }
     
 }
 

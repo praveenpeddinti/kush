@@ -2,6 +2,7 @@
 class OrderReviews extends CActiveRecord {
     public $CustId;
     public $order_number;
+    public $is_publish;
     public $rating;
     public $feedback;
     public $create_timestamp;
@@ -40,10 +41,27 @@ class OrderReviews extends CActiveRecord {
     }
     public function getAllUsersReviews($startLimit, $endLimit){
         try{
-            $query = "select cr.id,CONCAT_WS(' ',c.first_name,c.middle_name,c.last_name) as UserName,cr.rating,cr.feedback,o.CustId,o.ServiceId from KG_Customer c inner join KG_Customer_reviews cr on c.customer_id=cr.CustId inner join KG_Order_details o on o.order_number=cr.order_number ORDER BY cr.create_timestamp DESC limit ".$startLimit. ",".$endLimit;
+            $query = "select cr.id,CONCAT_WS(' ',c.first_name,c.middle_name,c.last_name) as UserName,cr.rating,cr.feedback,cr.is_publish,o.CustId,o.ServiceId from KG_Customer c inner join KG_Customer_reviews cr on c.customer_id=cr.CustId inner join KG_Order_details o on o.order_number=cr.order_number ORDER BY cr.create_timestamp DESC limit ".$startLimit. ",".$endLimit;
             $result = Yii::app()->db->createCommand($query)->queryAll();
         } catch (Exception $ex) {
             error_log("##########Exception Occurred retrieve Data#############" . $ex->getMessage());
+        }
+        return $result;
+    }
+    /*
+    * @Praveen feedback is published in the home page when the check the is publish checkbox in User review/feedback tab in admin side
+    */
+    public function getIspublishReview($id,$val){
+        if($val==true){$is_publish=1;}
+        if($val==false){$is_publish=0;}
+        $result = "failed";
+        try{
+            $customerReviews = OrderReviews::model()->findByAttributes(array('id'=>$id));
+            $customerReviews->is_publish = $is_publish;
+            if($customerReviews->update())
+                $result = "success";
+        }catch(Exception $ex){
+             error_log("################Exception Occurred  changeContactStatus##############".$ex->getMessage());
         }
         return $result;
     }

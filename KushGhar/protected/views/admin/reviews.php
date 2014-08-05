@@ -33,7 +33,7 @@
                             <div id="tablewidget"  style="margin: auto;"><div id="message" style="display:none"></div>
                                 <div class="table-responsive"> <table id="userTable" class="table table-hover usermanagement_table">
 
-                                    <thead><tr><th>Name</th><th>Service Type</th><th>Rating</th><th>Feedback</th></tr></thead>
+                                        <thead><tr><th>Name</th><th nowrap>Service Type</th><th>Rating</th><th>Feedback</th><th nowrap>Is publish</th></tr></thead>
                                     <tbody id="abusedWords_tbody">
 
                                     </tbody>
@@ -52,7 +52,17 @@
     </section>
 </div>
 <script type="text/javascript">
-
+$(document).ready(function() {
+        $('#userTable tr td input').live('click', function() {
+            var id = $(this).attr('id');
+            var id2 = $(this).attr('review-id');
+            var inviteStatus = $(this).attr('comment-status');
+            
+            var x = document.getElementById(id).checked;
+            commentPublish(Number(id2), Number(inviteStatus), x);
+            
+        });
+    });
     $(function(){
         getCollectionDataWithPagination('/admin/newreviews','userDetails', 'abusedWords_tbody',1,5,'');
     });
@@ -81,5 +91,52 @@
             if(callback!=''){
                 callback();
         }
+    }
+    var  moveTextToTextbox='';
+    var divId='';
+    var textData='';
+    function showTooltip(id,textData){
+       var dumpdata='';
+       var textData1 =document.getElementById(id).innerHTML;
+       if(textData1.length>=10){
+           if(moveTextToTextbox==''){
+               dumpdata=textData;}else{dumpdata=moveTextToTextbox;}
+           }else{
+               dumpdata=textData1;
+           }
+       divId=id.replace(/view/i, "div");
+       if(textData.length>=20){
+           document.getElementById(divId).style.display='block';
+           document.getElementById(divId).innerHTML=dumpdata;
+       }else{document.getElementById(divId).style.display='none';}
+    }
+    function showTooltipdown(id){
+       divId=id.replace(/view/i, "div");
+       document.getElementById(divId).style.display='none';
+    }
+    
+    function commentPublish(rowNos, status,x) {
+        var data = "Id=" + rowNos + "&value=" + x;
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: '<?php echo Yii::app()->createAbsoluteUrl("/admin/feedbackPublish"); ?>',
+                data: data,
+                success: function(data) {
+                    $('#message').show();
+                    $("#message").addClass('alert alert-success');
+                    if(data.data=='true'){
+                        $("#message").text('Customer Feedback is published.');
+                    }else{
+                        $("#message").text('Customer Feedback is unpublished.');
+                    }
+                    $("#message").fadeOut(6000, "");
+                    },
+                error: function(data) { // if error occured
+                    //alert("Error occured.please try again");
+
+                }
+            });
+        
     }
 </script>

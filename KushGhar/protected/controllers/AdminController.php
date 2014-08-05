@@ -482,4 +482,13 @@ $this->pageTitle="KushGhar-Basic Info";
                 $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
             }
         }
+        /*
+         * @Praveen feedback is published in the home page when the check the is publish checkbox in User review/feedback tab in admin side
+         */
+        public function actionFeedbackPublish() {
+        $value=$_POST['value'];    
+        $changeReviewStatus = $this->kushGharService->getIspublishReview($_POST['Id'], $_POST['value']);
+        $obj = array('status' => 'error', 'data' => $value, 'error' => $changeReviewStatus);
+        echo CJSON::encode($obj);
+    }
  }

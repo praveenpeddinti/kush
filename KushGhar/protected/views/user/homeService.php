@@ -1292,7 +1292,7 @@ function onTotalStewards(obj) {
                 queryString += '&Type=' + type+'&ContactInfo=No';
             }
             //queryString += '&Type=' + type;
-
+           
             ajaxRequest('/user/stewards', queryString, addStewardCleaningServicehandler);
         }
     }

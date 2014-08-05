@@ -41,6 +41,8 @@ class StewardsCleaningService extends CActiveRecord {
     //New Services
     public function addStewardsCleaningService($model,$cId) {
         try {
+            error_log("State=================".$model->State);
+            error_log("hdnState===============".$model->state);
             $orderNo="KG000".$cId.gmdate("Y-m-d", time());
             $servicesDetails = new StewardsCleaningService();
             $servicesDetails->ServiceId = 3;
@@ -62,6 +64,9 @@ class StewardsCleaningService extends CActiveRecord {
             $servicesDetails->S_address1 = $model->Address1;
             $servicesDetails->S_address2 = $model->Address2;
             $servicesDetails->S_alternate_phone = $model->AlternatePhone;
+            if($model->State=='')
+            $servicesDetails->S_state=$model->state;
+            else
             $servicesDetails->S_state = $model->State;
             $servicesDetails->S_city = $model->City;
             $servicesDetails->S_pincode = $model->PinCode;

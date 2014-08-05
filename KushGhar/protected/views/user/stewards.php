@@ -13,6 +13,7 @@ $form = $this->beginWidget('CActiveForm', array(
 <?php echo $form->hiddenField($model1, 'StewardCleaning', array('value'=>$StewardCleaning)); ?>
 <?php echo $form->hiddenField($model1, 'PriceFlag', array('value'=>$PriceFlag)); ?> 
 <?php echo $form->hiddenField($model1, 'ContactAddress', array('value'=>$customerAddressDetails->address_line1)); ?> 
+ <?php echo $form->hiddenField($model1,'state',array('value'=>$customerAddressDetails->address_state));?>
 <?php echo $form->error($model1, 'error'); ?>
 <fieldset>
     <div class=" row-fluid borderB">
@@ -140,7 +141,7 @@ $form = $this->beginWidget('CActiveForm', array(
         <div class="row-fluid">
             <div class=" span4">
                 <label><abbr title="required">*</abbr> State</label>
-                <?php echo $form->dropDownList($model1, 'State', CHtml::listData($States, 'Id', 'StateName'), array('prompt'=>'Select State','options' => array($customerAddressDetails->address_state => array('selected' => 'selected')), 'class' => 'span12')); ?>
+                <?php echo $form->dropDownList($model1, 'State', CHtml::listData($States, 'Id', 'StateName'), array('prompt'=>'Select State','options' => array($getServiceDetails['S_state'] => array('selected' => 'selected')), 'class' => 'span12')); ?>
                 <?php echo $form->error($model1,'State'); ?>
                 <!--<select name="State" id="State" class="span12" >
                     <option value="">Select State</option>
@@ -219,6 +220,7 @@ $form = $this->beginWidget('CActiveForm', array(
             $('#StewardCleaningForm_Address2').val('<?php echo $customerAddressDetails->address_line2;?>');
             $('#StewardCleaningForm_AlternatePhone').val('<?php echo $customerAddressDetails->alternate_phone;?>');
             $('#StewardCleaningForm_State').val('<?php echo $customerAddressDetails->address_state;?>');
+            $('#StewardCleaningForm_state').val('<?php echo $customerAddressDetails->address_state;?>');
             $('#StewardCleaningForm_City').val('<?php echo $customerAddressDetails->address_city;?>');
             $('#StewardCleaningForm_PinCode').val('<?php echo $customerAddressDetails->address_pin_code;?>');
         }
@@ -301,6 +303,7 @@ $form = $this->beginWidget('CActiveForm', array(
                 $('#StewardCleaningForm_Address2').attr('readOnly',  true);
                 $('#StewardCleaningForm_AlternatePhone').attr('readOnly',  true);
                 $('#StewardCleaningForm_State').attr('disabled',  true);
+                $('#StewardCleaningForm_state').val('<?php echo $customerAddressDetails->address_state; ?>');
                 $('#StewardCleaningForm_City').attr('readOnly',  true);
                 $('#StewardCleaningForm_PinCode').attr('readOnly',  true);
             }

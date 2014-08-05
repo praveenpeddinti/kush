@@ -12,7 +12,7 @@
                         <?php echo $form->hiddenField($model, 'StewardCleaning', array('value'=>$StewardCleaning)); ?>
                         <?php echo $form->hiddenField($model, 'PriceFlag', array('value'=>$PriceFlag)); ?> 
                         <?php echo $form->hiddenField($model, 'ContactAddress', array('value'=>$customerAddressDetails->address_line1)); ?> 
-
+                        <?php echo $form->hiddenField($model,'state',array('value'=>$customerAddressDetails->address_state));?>
 
 
                             <!--<input type="hidden" id="HouseCleaning" value="<?php echo $HouseCleaning;?>" >-->
@@ -158,7 +158,7 @@
         <div class="row-fluid">
             <div class=" span4">
                 <label><abbr title="required">*</abbr> State</label>
-                <?php echo $form->dropDownList($model, 'State', CHtml::listData($States, 'Id', 'StateName'), array('prompt'=>'Select State','options' => array($customerAddressDetails->address_state => array('selected' => 'selected')), 'class' => 'span12')); ?>
+                <?php echo $form->dropDownList($model, 'State', CHtml::listData($States, 'Id', 'StateName'), array('prompt'=>'Select State','options' => array($getServiceDetails['H_state'] => array('selected' => 'selected')), 'class' => 'span12')); ?>
                 <?php echo $form->error($model,'State'); ?>
                 <!--<select name="State" id="State" class="span12" >
                     <option value="">Select State</option>
@@ -236,6 +236,7 @@
             $('#HouseCleaningForm_Address2').val('<?php echo $customerAddressDetails->address_line2;?>');
             $('#HouseCleaningForm_AlternatePhone').val('<?php echo $customerAddressDetails->alternate_phone;?>');
             $('#HouseCleaningForm_State').val('<?php echo $customerAddressDetails->address_state;?>');
+            $('#HouseCleaningForm_state').val('<?php echo $customerAddressDetails->address_state;?>');
             $('#HouseCleaningForm_City').val('<?php echo $customerAddressDetails->address_city;?>');
             $('#HouseCleaningForm_PinCode').val('<?php echo $customerAddressDetails->address_pin_code;?>');
         }
@@ -311,6 +312,7 @@
                 $('#HouseCleaningForm_Address2').attr('readOnly',  true);
                 $('#HouseCleaningForm_AlternatePhone').attr('readOnly',  true);
                 $('#HouseCleaningForm_State').attr('disabled',  true);
+                $('#HouseCleaningForm_state').val('<?php echo $customerAddressDetails->address_state; ?>');
                 $('#HouseCleaningForm_City').attr('readOnly',  true);
                 $('#HouseCleaningForm_PinCode').attr('readOnly',  true);
             }

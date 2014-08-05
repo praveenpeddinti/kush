@@ -60,6 +60,9 @@ class HouseCleaningService extends CActiveRecord {
             $servicesDetails->H_address1 = $model->Address1;
             $servicesDetails->H_address2 = $model->Address2;
             $servicesDetails->H_alternate_phone = $model->AlternatePhone;
+            if($model->State=='')
+            $servicesDetails->H_state=$model->state;
+            else
             $servicesDetails->H_state = $model->State;
             $servicesDetails->H_city = $model->City;
             $servicesDetails->H_pincode = $model->PinCode;

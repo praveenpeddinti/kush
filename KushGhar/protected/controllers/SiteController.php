@@ -419,17 +419,13 @@ class SiteController extends Controller {
             if ($errors != '[]') {
                 $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
             } else {
-                error_log("No errors===" . $model->vendorType);
                 if ($model->vendorType == 1) {
                     $Dresult = $this->kushGharService->getcheckVendorForIndividual($model);
-                    if ($Dresult == 'No vendor') {error_log("enter controller1======".$model->vendorType);
+                    if ($Dresult == 'No vendor') {
                         $result = $this->kushGharService->saveVendorForIndividualData($model);
-                        error_log("enter controller12======".$model->vendorType);
                         $getVendorDetailsType1 = $this->kushGharService->getVendorDetailsWithEmailIndividual($model->Email);
-                        error_log("enter controller13======".$getVendorDetailsType1->vendor_id."====".$model->vendorType);
                         $vendorAddressDetails = $this->kushGharService->saveVendorAddressDumpInfo($getVendorDetailsType1->vendor_id, $model->vendorType);
                         $vendorDocumentsDetails = $this->kushGharService->saveVendorDocumentsDumpInfo($getVendorDetailsType1->vendor_id, $model->vendorType);
-                        error_log("enter controller14======".$model->vendorType);
                         $this->session['UserId'] = $getVendorDetailsType1->vendor_id;
                         $this->session['VendorType'] = $model->vendorType;
                         //$this->session['Type']='Vendor';
@@ -440,17 +436,16 @@ class SiteController extends Controller {
                 }
 
                 }
-                if ($model->vendorType == 2) {error_log("enter controller2======".$model->vendorType);
+                if ($model->vendorType == 2) {
                     $Dresult = $this->kushGharService->getcheckVendorForAgency($model);
                     if ($Dresult == 'No vendor') {
                         $result = $this->kushGharService->saveVendorForAgencyData($model);
                         $getVendorDetailsType1 = $this->kushGharService->getVendorDetailsWithEmailAgency($model->Email);
                         $vendorAddressDetails = $this->kushGharService->saveVendorAddressDumpInfo($getVendorDetailsType1->vendor_id, $model->vendorType);
                         $vendorDocumentsDetails = $this->kushGharService->saveVendorDocumentsDumpInfo($getVendorDetailsType1->vendor_id, $model->vendorType);
-                        error_log("enter controller24======".$model->vendorType);
                         $this->session['UserId'] = $getVendorDetailsType1->vendor_id;
                         $this->session['VendorType'] = $model->vendorType;
-                    }else {error_log("dsfsdfsdd=====".$Dresult);
+                    }else {
                     $result="fail";
                     $message = array("VendorRegistrationForm_error" => 'Vendor Already Exists.');
                     $obj = array('status' => 'error', 'data' => '', 'error' => $message);

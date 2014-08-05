@@ -437,7 +437,7 @@ $this->pageTitle="KushGhar-Basic Info";
     
     
     
-    public function actionOrdercanceldetails() {error_log("Order canel---");
+    public function actionOrdercanceldetails() {
         
         try{
            $Model = new OrderForm;

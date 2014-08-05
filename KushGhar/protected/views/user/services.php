@@ -229,7 +229,7 @@
             $('#HouseCleaningForm_Address1').attr('readOnly', true);
             $('#HouseCleaningForm_Address2').attr('readOnly', true);
             $('#HouseCleaningForm_AlternatePhone').attr('readOnly', true);
-            $('#HouseCleaningForm_State').attr('readOnly', true);
+            $('#HouseCleaningForm_State').attr('disable', true);
             $('#HouseCleaningForm_City').attr('readOnly', true);
             $('#HouseCleaningForm_PinCode').attr('readOnly', true);
             $('#HouseCleaningForm_Address1').val('<?php echo $customerAddressDetails->address_line1;?>');

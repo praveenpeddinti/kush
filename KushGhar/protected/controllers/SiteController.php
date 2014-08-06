@@ -485,10 +485,9 @@ class SiteController extends Controller {
                 $obj = array('status' => '', 'data' => '', 'error' => $errors);
             } else {
                 $result = $this->kushGharService->login($model, 'Admin');
-                if ($result == "false") {
-                    $errors = array("LoginForm_error" => 'Invalid User Id or Password.');
-                    $obj = array('status' => '', 'data' => '', 'error' => $errors);
-                } else {
+                if(isset ($result)) {
+                   if($result->status==1)
+                   {
                     $ppp = md5($result->password_hash);
                     $this->session['UserId'] = $result->Id;
                     $this->session['email'] = $result->email_address;
@@ -496,7 +495,17 @@ class SiteController extends Controller {
                     $this->session['LoginPic'] = $result->profilePicture;
                     $this->session['Type'] = 'Admin';
                     $obj = array('status' => 'success', 'data' => $result, 'error' => '');
-                }
+                   }
+                   else if ($result->status==0)
+                   {
+                          $errors = array("LoginForm_error" => 'Your acount is Inactive. Contact your administrator.');
+                    $obj = array('status' => '', 'data' => '', 'error' => $errors);
+                   }
+               }
+               else{
+                   $errors = array("LoginForm_error" => 'Invalid User Id or Password.');
+                    $obj = array('status' => '', 'data' => '', 'error' => $errors);
+               } 
             }
             $renderScript = $this->rendering($obj);
             echo $renderScript;

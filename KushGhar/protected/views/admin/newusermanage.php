@@ -11,7 +11,12 @@
                                         ?>
                                         <tr id="row_<?php echo $row['cid'];?>" class="odd">
                                             <td><?php echo $row['UserName']; ?></td>
-                                            <td><?php echo $row['email_address']; ?></td>
+                                            <td>
+                                                <span style="display: block;cursor:none" onmouseover="showTooltip(this.id,'<?echo $row['email_address'];?>')" onmouseout="showTooltipdown(this.id)">
+                <?php $len= strlen($row['email_address']);
+                    if($len>20){echo substr($row['email_address'],0,20).'...';}else{echo $row['email_address'];}?>
+            </span><div style="display:none;width:400px" class="table_tooltip" ></div>
+                                            </td>
                                             <td><?php echo $row['phone']; ?></td>
                                             <td><?php echo $row['Location']; ?></td>
                                             <td id="status_<?php echo $row['cid']; ?>">

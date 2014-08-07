@@ -27,7 +27,10 @@
                                 </div>
                                 
                                 <div class="row-fluid">
-                                      
+                                    <div class=" span4">
+                                        <?php echo $form->label($model, 'HouseType'); ?>
+                                        <?php echo $form->dropDownList($model,'HouseType', array(''=>'Select','Apartment' => 'Apartment', 'Villa'=>'Villa','Independent House' => 'Independent House', 'Commercial'=>'Commercial'), array('class' => 'span12','options' => array($getServiceDetails['house_type'] => array('selected' => 'selected'))));?>
+                                    </div>  
                                     <div class=" span4">
                                         <?php echo $form->label($model, 'Square Feet'); ?>
                                         <?php if($getServiceDetails['squarefeets']=='0') {$squareFeetsValue='';}else{ $squareFeetsValue=$getServiceDetails['squarefeets'];} echo $form->textField($model, 'SquareFeets', array('value'=>$squareFeetsValue,'maxLength' => 5, 'class' => 'span12')); ?>

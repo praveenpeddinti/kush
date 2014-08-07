@@ -70,7 +70,12 @@
                                             echo $totalRoomsPrice; ?>                 
                                         </td>
                                     </tr>
-            
+                                    <?php if ($getServiceDetails['house_type'] !='') { ?>
+                                    <tr>
+                                        <td>House Type </td>
+                                        <td><?php echo "<b>" . $getServiceDetails['house_type'] . "</b>"; ?></td>
+                                    </tr>
+                                    <?php } ?>
                                     <?php if ($HouseService['squarefeets'] != 0) { ?>
                                     <tr>
                                         <td>Square Feets </td>

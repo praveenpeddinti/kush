@@ -52,6 +52,13 @@
                     <div id="collapseOne" class="panel-collapse collapse">
                         <div class="panel-body paddinground">
                             <table class="table price">
+                                <tr><td colspan="2" style="text-align:right"><a href="homeService"><input type="button" class="btn btn" value="Edit"></a></td></tr>
+                                <?php if ($getServiceDetails['house_type'] !='') { ?>
+                                <tr>
+                                    <td>House Type </td>
+                                    <td><?php echo "<b>" . $getServiceDetails['house_type'] . "</b>"; ?></td>
+                                </tr>
+                                <?php } ?>
                                 <?php if ($getServiceDetails['squarefeets'] != 0) { ?>
                                 <tr>
                                     <td>Square Feet </td>
@@ -114,6 +121,7 @@
                     <div id="collapseTwo" class="panel-collapse collapse">
                         <div class="panel-body paddinground">
                             <table class="table price">
+                                <tr><td colspan="2" style="text-align:right"><a href="homeService"><input type="button" class="btn btn" value="Edit"></a></td></tr>
                                 <tr>
                                     <td>Total Cars</td>
                                     <td><?php echo "<b>" . count($getCarWashServiceDetails) . "</b>"; ?></td>
@@ -152,6 +160,7 @@
                     <div id="collapseThree" class="panel-collapse collapse">
                         <div class="panel-body paddinground">
                             <table class="table price">
+                                <tr><td colspan="2" style="text-align:right"><a href="homeService"><input type="button" class="btn btn" value="Edit"></a></td></tr>
                                 <tr>
                                     <td>Event Name </td>
                                     <td><?php if ($getStewardsServiceDetails['event_type'] == 1) {
@@ -419,7 +428,14 @@
                                                     <div id="collapseOne" class="panel-collapse collapse">
                                                         <div class="panel-body paddinground">
                                                             <table class="table price">
-
+                                                                <!--<tr><td colspan="2" style="text-align:right"><a href="homeService">Edit</a></td></tr>-->
+                                                                <tr><td colspan="2" style="text-align:right"><a href="homeService"><input type="button" class="btn btn" value="Edit"></a></td></tr>
+                                                                <?php if ($getServiceDetails['house_type'] !='') { ?>
+                                                                <tr>
+                                                                    <td>House Type </td>
+                                                                    <td><?php echo "<b>" . $getServiceDetails['house_type'] . "</b>"; ?></td>
+                                                                </tr>
+                                                                <?php } ?>
                                                                 <?php if ($getServiceDetails['squarefeets'] != 0) { ?>
                                                                     <tr>
                                                                         <td>Square Feets </td>
@@ -485,6 +501,7 @@
                                                     <div id="collapseTwo" class="panel-collapse collapse">
                                                         <div class="panel-body paddinground">
                                                             <table class="table price">
+                                                                <tr><td colspan="2" style="text-align:right"><a href="homeService"><input type="button" class="btn btn" value="Edit"></a></td></tr>
                                                                 <tr>
                                                                     <td>Total Cars</td>
                                                                     <td><?php echo "<b>" . count($getCarWashServiceDetails) . "</b>"; ?></td>
@@ -532,6 +549,7 @@
                                                     <div id="collapseThree" class="panel-collapse collapse">
                                                         <div class="panel-body paddinground">
                                                             <table class="table price">
+                                                                <tr><td colspan="2" style="text-align:right"><a href="homeService"><input type="button" class="btn btn" value="Edit"></a></td></tr>
                                                                 <tr>
                                                                     <td>Event Name </td>
                                                                     <td>

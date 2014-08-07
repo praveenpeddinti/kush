@@ -433,7 +433,7 @@ $(document).ready(function() {
                 queryString += '&Type=' + type+'&ContactInfo=No';
             }
             
-
+            alert(queryString);
             ajaxRequest('/user/services', queryString, addHouseCleaningServicehandler);
         }
     }

@@ -38,6 +38,15 @@
         </div>
         <div class="row-fluid">
             <div class=" span4">
+                <label><abbr title="required">*</abbr> City</label>
+                <select name="<?php echo $i+1; ?>_City" id="<?php echo $i+1; ?>_City" class="span12" >
+                    <option value="">Select City</option>
+                    <option value="Hyderabad">Hyderabad</option>
+                    <option value="Secunderabad">Secunderabad</option>
+                </select>
+                <div id="<?php echo $i+1; ?>_City_em" class="errorMessage" style="display:none"></div>
+           </div>
+            <div class=" span4">
                 <label><abbr title="required">*</abbr> State</label>
                 <select name="<?php echo $i+1; ?>_State" id="<?php echo $i+1; ?>_State" class="span12" >
                     <option value="">Select State</option>
@@ -51,11 +60,6 @@
                     </select>
                     <div id="<?php echo $i+1; ?>_State_em" class="errorMessage" style="display:none"></div>
              </div>
-             <div class=" span4">
-                <label><abbr title="required">*</abbr> City</label>
-                <input type="text" class="span12" value="<?php echo isset($getCarWashServiceDetails[$i])?$getCarWashServiceDetails[$i]['address_city']:'';?>" id="<?php echo $i+1; ?>_City" maxLength="25">
-                <div id="<?php echo $i+1; ?>_City_em" class="errorMessage" style="display:none"></div>
-           </div>
            <div class=" span4">
                <label><abbr title="required">*</abbr> Pin Code</label>
                 <input type="text" class="span12" value="<?php echo isset($getCarWashServiceDetails[$i])?$getCarWashServiceDetails[$i]['address_pin_code']:'';?>" id="<?php echo $i+1; ?>_PinCode" maxLength="6" onkeypress="return isNumberKey(event);">
@@ -65,3 +69,13 @@
         </div>
         </div>
      <?php  } }?> 
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        if($("#1_State").val()=='')
+        $("#1_State").val('35');
+        
+        if($("#2_State").val()=='')
+        $("#2_State").val('35');
+    });
+</script>

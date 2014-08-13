@@ -27,8 +27,8 @@
 <?php echo $form->hiddenField($model, 'Address1'); ?>
 <?php echo $form->hiddenField($model, 'Address2'); ?>
 <?php echo $form->hiddenField($model, 'AlternatePhone'); ?>
-<?php echo $form->hiddenField($model, 'State'); ?>
 <?php echo $form->hiddenField($model, 'City'); ?>
+<?php echo $form->hiddenField($model, 'State'); ?>
 <?php echo $form->hiddenField($model, 'PinCode'); ?>
 
 
@@ -80,6 +80,15 @@
         </div>
         <div class="row-fluid">
             <div class=" span4">
+                <label><abbr title="required">*</abbr> City</label>
+                <select name="11_City" id="11_City" class="span12" >
+                    <option value="">Select City</option>
+                    <option value="Hyderabad">Hyderabad</option>
+                    <option value="Secunderabad">Secunderabad</option>
+                    </select>
+                <div id="11_City_em" class="errorMessage" style="display:none"></div>
+           </div>
+            <div class=" span4">
                 <label><abbr title="required">*</abbr> State</label>
                 <select name="11_State" id="11_State" class="span12" >
                     <option value="">Select State</option>
@@ -89,11 +98,6 @@
                     </select>
                     <div id="11_State_em" class="errorMessage" style="display:none"></div>
              </div>
-             <div class=" span4">
-                <label><abbr title="required">*</abbr> City</label>
-                <input type="text" class="span12" id="11_City" value="" maxLength="25" >
-                <div id="11_City_em" class="errorMessage" style="display:none"></div>
-           </div>
            <div class=" span4">
                 <label><abbr title="required">*</abbr> Pin Code</label>
                 <input type="text" class="span12" id="11_PinCode" value="" maxLength="6"  onkeypress="return isNumberKey(event);" >
@@ -114,6 +118,11 @@
 <?php $this->endWidget(); ?>
 
 <script type="text/javascript">
+    $(document).ready(function(){
+        if($("#11_State").val()=='')
+        $("#11_State").val('35');
+    });
+    
    $(document).ready(function() {
        
        //if( ($('#CarWashForm_HouseCleaning').val()==1) && ($('#CarWashForm_StewardCleaning').val()==1)){
@@ -145,9 +154,9 @@
                 $('.AddressFieldsOneCarDiv').show();
                 $('#11_Address1').val("<?php echo $rw['address_line1'];?>");
                 $('#11_Address2').val("<?php echo $rw['address_line2'];?>");
-                $('#11_AlternatePhone').val("<?php echo $rw['alternate_phone'];?>");
-                $('#11_State').val("<?php echo $rw['address_state'];?>");
+                $('#11_AlternatePhone').val("<?php echo $rw['alternate_phone'];?>");                
                 $('#11_City').val("<?php echo $rw['address_city'];?>");
+                $('#11_State').val("<?php echo $rw['address_state'];?>");
                 $('#11_PinCode').val("<?php echo $rw['address_pin_code'];?>");
             <?php }?>
             <?php $j++;?>

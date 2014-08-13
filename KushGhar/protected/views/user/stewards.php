@@ -139,6 +139,11 @@ $form = $this->beginWidget('CActiveForm', array(
              </div> 
         </div>
         <div class="row-fluid">
+             <div class=" span4">
+                <label><abbr title="required">*</abbr> City</label>
+                <?php echo $form->dropDownList($model1,'City', array(''=>'Select City','Hyderabad' => 'Hyderabad', 'Secunderabad'=>'Secunderabad'), array('class' => 'span12','options' => array($getServiceDetails['S_city'] => array('selected' => 'selected'))));?>       
+                <?php echo $form->error($model1, 'City'); ?>               
+           </div>
             <div class=" span4">
                 <label><abbr title="required">*</abbr> State</label>
                 <?php echo $form->dropDownList($model1, 'State', CHtml::listData($States, 'Id', 'StateName'), array('prompt'=>'Select State','options' => array($getServiceDetails['S_state'] => array('selected' => 'selected')), 'class' => 'span12')); ?>
@@ -151,11 +156,6 @@ $form = $this->beginWidget('CActiveForm', array(
                     </select>
                     <div id="State_em" class="errorMessage" style="display:none"></div>-->
              </div>
-             <div class=" span4">
-                <label><abbr title="required">*</abbr> City</label>
-                <?php  echo $form->textField($model1, 'City', array('value'=>$getServiceDetails['S_city'],'maxLength'=>'25', 'class' => 'span12')); ?>
-                <?php echo $form->error($model1, 'City'); ?>               
-           </div>
            <div class=" span4">
                 <label><abbr title="required">*</abbr> Pin Code</label>
                 <?php  echo $form->textField($model1, 'PinCode', array('value'=>$getServiceDetails['S_pincode'],'maxLength'=>'6', 'class' => 'span12', 'onkeypress'=>'return isNumberKey(event);')); ?>
@@ -182,6 +182,8 @@ $form = $this->beginWidget('CActiveForm', array(
 <?php $this->endWidget(); ?>
 <script type="text/javascript">
     $(document).ready(function() {
+         if($("#StewardCleaningForm_State").val()=='')
+        $("#StewardCleaningForm_State").val('35');
         Custom.init();
         $('#Appetizers').bootstrapSwitch();
         $('#Dinner').bootstrapSwitch();

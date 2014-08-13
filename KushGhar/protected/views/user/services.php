@@ -32,9 +32,8 @@
                                         <?php echo $form->dropDownList($model,'HouseType', array(''=>'Select','Apartment' => 'Apartment', 'Villa'=>'Villa','Independent House' => 'Independent House', 'Commercial'=>'Commercial'), array('class' => 'span12','options' => array($getServiceDetails['house_type'] => array('selected' => 'selected'))));?>
                                     </div>  
                                     <div class=" span4">
-                                        <?php echo $form->label($model, 'Square Feet'); ?>
-                                        <?php if($getServiceDetails['squarefeets']=='0') {$squareFeetsValue='';}else{ $squareFeetsValue=$getServiceDetails['squarefeets'];} echo $form->textField($model, 'SquareFeets', array('value'=>$squareFeetsValue,'maxLength' => 5, 'class' => 'span12')); ?>
-                                        <?php echo $form->error($model, 'SquareFeets'); ?>
+                                        <?php echo $form->label($model, 'SquareFeets'); ?>
+                                        <?php echo $form->dropDownList($model,'SquareFeets', array(''=>'Select Range','500-750' => '500-750', '750-1000'=>'750-1000','1000-1500' => '1000-1500', '1500-2000'=>'1500-2000', '2000 and more '), array('class' => 'span12','options' => array($getServiceDetails['squarefeets'] => array('selected' => 'selected'))));?>
                                     </div>
                                       <div class="span4">
                                         <label><abbr title="required">*</abbr> Service Date</label>
@@ -160,6 +159,11 @@
         </div>
         <div class="row-fluid">
             <div class=" span4">
+                <label><abbr title="required">*</abbr> City</label>
+                <?php echo $form->dropDownList($model,'City', array(''=>'Select City','Hyderabad' => 'Hyderabad', 'Secunderabad'=>'Secunderabad'), array('class' => 'span12','options' => array($getServiceDetails['H_city'] => array('selected' => 'selected'))));?>       
+                <?php echo $form->error($model, 'City'); ?>               
+           </div>
+            <div class=" span4">
                 <label><abbr title="required">*</abbr> State</label>
                 <?php echo $form->dropDownList($model, 'State', CHtml::listData($States, 'Id', 'StateName'), array('prompt'=>'Select State','options' => array($getServiceDetails['H_state'] => array('selected' => 'selected')), 'class' => 'span12')); ?>
                 <?php echo $form->error($model,'State'); ?>
@@ -170,12 +174,7 @@
                     <?php //} ?>
                     </select>
                     <div id="State_em" class="errorMessage" style="display:none"></div>-->
-             </div>
-             <div class=" span4">
-                <label><abbr title="required">*</abbr> City</label>
-                <?php  echo $form->textField($model, 'City', array('value'=>$getServiceDetails['H_city'],'maxLength'=>'25', 'class' => 'span12')); ?>
-                <?php echo $form->error($model, 'City'); ?>               
-           </div>
+             </div>      
            <div class=" span4">
                 <label><abbr title="required">*</abbr> Pin Code</label>
                 <?php  echo $form->textField($model, 'PinCode', array('value'=>$getServiceDetails['H_pincode'],'maxLength'=>'6', 'class' => 'span12', 'onkeypress'=>'return isNumberKey(event);')); ?>
@@ -210,6 +209,8 @@
 <script type="text/javascript">
     
     $(document).ready(function() {
+        if($("#HouseCleaningForm_State").val()=='')
+        $("#HouseCleaningForm_State").val('35');
         Custom.init();
         $('#WindowGrills').bootstrapSwitch();
         $('#FridgeInterior').bootstrapSwitch();

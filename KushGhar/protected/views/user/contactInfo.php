@@ -47,7 +47,7 @@
                                      $basicPercent = 10;
                                      
                                  }
-                                 if((!empty($customerAddressDetails->alternate_phone)) && (!empty($customerAddressDetails->address_line1)) && (!empty($customerAddressDetails->address_line2)) && (!empty($customerAddressDetails->address_state)) && (!empty($customerAddressDetails->address_city)) && (!empty($customerAddressDetails->address_pin_code)) && (!empty($customerAddressDetails->address_landmark))){
+                                 if((!empty($customerAddressDetails->alternate_phone)) && (!empty($customerAddressDetails->address_line1)) && (!empty($customerAddressDetails->address_line2)) && (!empty($customerAddressDetails->address_city)) && (!empty($customerAddressDetails->address_state)) && (!empty($customerAddressDetails->address_pin_code)) && (!empty($customerAddressDetails->address_landmark))){
                                      
                                      $statusClassForContact = 'status_info2';
                                      $contactPercent = 35;
@@ -165,18 +165,17 @@
 
     <div class="row-fluid">
     <div class=" span4">
+    <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> city'); ?>
+        <?php echo $form->dropDownList($model,'City', array(''=>'Select City','Hyderabad' => 'Hyderabad', 'Secunderabad'=>'Secunderabad'), array('class' => 'span12','options' => array($getServiceDetails['City'] => array('selected' => 'selected'))));?>       
+        <?php echo $form->error($model,'City'); ?>
+   </div>
+    <div class=" span4">
     <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> state'); ?>
         <?php //echo $form->textField($model,'State',array('value'=>$customerAddressDetails->address_state,'class'=>'span12')); ?>
         
         <?php echo $form->dropDownList($model, 'State', CHtml::listData($States, 'Id', 'StateName'), array('prompt'=>'Select State','options' => array($customerAddressDetails->address_state => array('selected' => 'selected')), 'class' => 'span12')); ?>
         <?php echo $form->error($model,'State'); ?>
-   </div>
-      <div class=" span4">
-    <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> city'); ?>
-        <?php echo $form->textField($model,'City',array('value'=>$customerAddressDetails->address_city, 'maxLength' => 25, 'class'=>'span12')); ?>
-        <?php echo $form->error($model,'City'); ?>
-   </div>
-   
+   </div>   
     <div class=" span4">
     <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> pin code'); ?>
         <?php echo $form->textField($model,'PinCode',array('value'=>$customerAddressDetails->address_pin_code, 'class'=>'span12', 'maxLength' => 6, 'onkeypress' => 'return isNumberKey(event);')); ?>
@@ -232,6 +231,10 @@
         $( "#progressbar" ).progressbar({value: <?php echo $totalPercent;?>});
    });
     
+    $(document).ready(function(){
+        if($("#ContactInfoForm_State").val()=='')
+        $("#ContactInfoForm_State").val('35');
+    });
     
     function addContactInformationhandler(data){
     scrollPleaseWaitClose('contactInfoSpinLoader');

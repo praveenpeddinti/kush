@@ -24,7 +24,7 @@ class ContactInfoForm extends CFormModel {
     public function rules() {
         return array(
             // name, email, subject and body are required
-            array('Phone, Address1, City, PinCode, Landmark', 'required', 'message' => 'Please enter a value for {attribute}.'),
+            array('Phone, Address1, PinCode, Landmark', 'required', 'message' => 'Please enter a value for {attribute}.'),
             // email has to be a valid email address
             array('Email', 'email'),
             array('Phone, AlternatePhone', 'numerical', 'integerOnly'=>true),
@@ -33,7 +33,7 @@ class ContactInfoForm extends CFormModel {
             array('PinCode', 'numerical', 'integerOnly'=>true),
             array('PinCode', 'length', 'min'=>6),
             //array('cardNumber', 'length', 'min'=>6),
-            array('State', 'required', 'message' => 'Please Select {attribute}.'),
+            array('State, City', 'required', 'message' => 'Please Select {attribute}.'),
             array('Email, Phone, AlternatePhone, Address1, Address2, State, City, PinCode, Landmark, Id', 'safe'),
         );
     }

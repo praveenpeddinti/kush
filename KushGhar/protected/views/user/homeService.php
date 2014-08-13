@@ -41,7 +41,7 @@
                                     $statusClassForBasic = 'status_info1';
                                     $basicPercent = 10;
                                 }
-                                if ((!empty($customerAddressDetails->alternate_phone)) && (!empty($customerAddressDetails->address_line1)) && (!empty($customerAddressDetails->address_line2)) && (!empty($customerAddressDetails->address_state)) && (!empty($customerAddressDetails->address_city)) && (!empty($customerAddressDetails->address_pin_code)) && (!empty($customerAddressDetails->address_landmark))) {
+                                if ((!empty($customerAddressDetails->alternate_phone)) && (!empty($customerAddressDetails->address_line1)) && (!empty($customerAddressDetails->address_line2)) && (!empty($customerAddressDetails->address_city)) && (!empty($customerAddressDetails->address_state)) && (!empty($customerAddressDetails->address_pin_code)) && (!empty($customerAddressDetails->address_landmark))) {
                                     $statusClassForContact = 'status_info2';
                                     $contactPercent = 35;
                                 } else if ((empty($customerAddressDetails->address_line1))) {
@@ -316,16 +316,16 @@ $(document).ready(function() {
         var queryString = $('#services-form').serialize();
         if (($('#HouseCleaningForm_SquareFeets').val() == '0') || ($('#HouseCleaningForm_SquareFeets').val() == '00')) {
             $("#HouseCleaningForm_SquareFeets_em_").show();
-            $("#HouseCleaningForm_SquareFeets_em_").addClass('errorMessage');
-            $("#HouseCleaningForm_SquareFeets_em_").text("Please Enter Numbers only");
+//            $("#HouseCleaningForm_SquareFeets_em_").addClass('errorMessage');
+//            $("#HouseCleaningForm_SquareFeets_em_").text("Please Enter Numbers only");
             return false;
         }
-        if (isNaN($('#HouseCleaningForm_SquareFeets').val())) {
-            $("#HouseCleaningForm_SquareFeets_em_").show();
-            $("#HouseCleaningForm_SquareFeets_em_").addClass('errorMessage');
-            $("#HouseCleaningForm_SquareFeets_em_").text("Please Enter Numbers only");
-            return false;
-        }
+//        if (isNaN($('#HouseCleaningForm_SquareFeets').val())) {
+//            $("#HouseCleaningForm_SquareFeets_em_").show();
+//            $("#HouseCleaningForm_SquareFeets_em_").addClass('errorMessage');
+//            $("#HouseCleaningForm_SquareFeets_em_").text("Please Enter Numbers only");
+//            return false;
+//        }
        if ($("#HouseCleaningForm_ServiceStartTime").val() == "") {
            $("#HouseCleaningForm_SquareFeets_em_").hide();
                 $("#HouseCleaningForm_ServiceStartTime_em_").show();
@@ -348,7 +348,7 @@ $(document).ready(function() {
             $("#HouseCleaningForm_ServiceStartTime_em_").hide();
             $("#HouseCleaningForm_WeekDays_em_").hide();
             $("#HouseCleaningForm_LivingRooms_em_").show();
-            $("#HouseCleaningForm_LivingRooms_em_").addClass('errorMessage');
+             $("#HouseCleaningForm_LivingRooms_em_").addClass('errorMessage');
             $("#HouseCleaningForm_LivingRooms_em_").text("You have choosen 0 rooms at your house, Please choose atleast one kind of room.");
             return false;
         }
@@ -371,24 +371,27 @@ $(document).ready(function() {
                 $("#HouseCleaningForm_AlternatePhone").text("Alternate Phone too short (minimum is 10 numbers).");
                 return false;
             }
-        //State validation start
+        
+            //City validation start
+
+            if ( ($("#HouseCleaningForm_City").val()=='') ) {
+                $("#HouseCleaningForm_Address1_em_").hide();
+                $("#HouseCleaningForm_City_em_").show();
+                $("#HouseCleaningForm_City_em_").addClass('errorMessage');
+                $("#HouseCleaningForm_City_em_").text("Please select City ");
+                return false;
+            }
+            //City validation end
+            
+            //State validation start
             if ( ($("#HouseCleaningForm_State").val()=='') ) {
                 $("#HouseCleaningForm_State_em_").show();
                 $("#HouseCleaningForm_State_em_").addClass('errorMessage');
                 $("#HouseCleaningForm_State_em_").text("Please Select State ");
                 return false;
             }
-            //State validation end
-            //City validation start
-
-            if ( (!$("#HouseCleaningForm_City").val().match(/[A-Za-z0-9]$/)) ) {
-                $("#HouseCleaningForm_Address1_em_").hide();
-                $("#HouseCleaningForm_City_em_").show();
-                $("#HouseCleaningForm_City_em_").addClass('errorMessage');
-                $("#HouseCleaningForm_City_em_").text("Please Enter City ");
-                return false;
-            }
-            //City validation end
+            //State validation end            
+            
             //Pin code validation start
             if ( ($("#HouseCleaningForm_PinCode").val()=='') ) {
                 $("#HouseCleaningForm_PinCode_em_").show();
@@ -466,8 +469,8 @@ $(document).ready(function() {
         var address1 = "";
         var address2 = "";
         var alternate_phone = "";
-        var state = "";
         var city = "";
+        var state = "";
         var pin_code = "";
 
         var dd='';
@@ -568,6 +571,16 @@ $(document).ready(function() {
                 $("#" + i + "_AlternatePhone_em").hide();
             }
             //phone validation end
+            //City validation start
+            if ( (!$("#" + i + "_City").val().match(/[A-Za-z0-9]$/)) ) {
+                $("#" + i + "_City_em").show();
+                $("#" + i + "_City_em").addClass('errorMessage');
+                $("#" + i + "_City_em").text("Please Select City ");
+                return false;
+            } else {
+                $("#" + i + "_City_em").hide();
+            }
+            //City validation end
             //State validation start
             if ( ($("#" + i + "_State").val()=='') ) {
                 $("#" + i + "_State_em").show();
@@ -578,16 +591,6 @@ $(document).ready(function() {
                 $("#" + i + "_State_em").hide();
             }
             //State validation end
-            //City validation start
-            if ( (!$("#" + i + "_City").val().match(/[A-Za-z0-9]$/)) ) {
-                $("#" + i + "_City_em").show();
-                $("#" + i + "_City_em").addClass('errorMessage');
-                $("#" + i + "_City_em").text("Please Enter City ");
-                return false;
-            } else {
-                $("#" + i + "_City_em").hide();
-            }
-            //City validation end
             //Pin code validation start
             if ( ($("#" + i + "_PinCode").val()=='') ) {
                 $("#" + i + "_PinCode_em").show();
@@ -663,15 +666,7 @@ $(document).ready(function() {
                 }*/
                 alternate_phone = alternate_phone + $("#" + i + "_AlternatePhone").val()+",";
                 $('#CarWashForm_AlternatePhone').val(alternate_phone);
-
-                /*if (state == "") {
-                    state = $("#" + i + "_State").val()+",";
-                } else if (state != "") {
-                    state = state  + $("#" + i + "_State").val();
-                }*/
-                state = state  + $("#" + i + "_State").val()+",";
-                $('#CarWashForm_State').val(state);
-
+                
                 /*if (city == "") {
                     city = $("#" + i + "_City").val()+ ",";
                 } else if (city != "") {
@@ -679,6 +674,15 @@ $(document).ready(function() {
                 }*/
                 city = city  + $("#" + i + "_City").val()+",";
                 $('#CarWashForm_City').val(city);
+                
+                 /*if (state == "") {
+                    state = $("#" + i + "_State").val()+",";
+                } else if (state != "") {
+                    state = state  + $("#" + i + "_State").val();
+                }*/
+                state = state  + $("#" + i + "_State").val()+",";
+                $('#CarWashForm_State').val(state);
+
 
                 /*if (pin_code == "") {
                     pin_code = $("#" + i + "_PinCode").val()+",";
@@ -742,6 +746,19 @@ $(document).ready(function() {
                 $("#11_AlternatePhone_em").hide();
             }
             //phone validation end
+            
+            //City validation start
+            if ( (!$("#11_City").val().match(/[A-Za-z0-9]$/)) ) {
+                $("#11_City_em").show();
+                $("#11_City_em").addClass('errorMessage');
+                $("#11_City_em").text("Please Select City ");
+                return false;
+            } else {
+                $("#11_City_em").hide();
+            }
+
+            //City validation end
+            
             //State validation start
             if ( ($("#11_State").val()=='') ) {
                 $("#11_State_em").show();
@@ -752,17 +769,7 @@ $(document).ready(function() {
                 $("#11_State_em").hide();
             }
             //State validation end
-            //City validation start
-            if ( (!$("#11_City").val().match(/[A-Za-z0-9]$/)) ) {
-                $("#11_City_em").show();
-                $("#11_City_em").addClass('errorMessage');
-                $("#11_City_em").text("Please Enter City ");
-                return false;
-            } else {
-                $("#11_City_em").hide();
-            }
-
-            //City validation end
+            
             //Pin code validation start
             if ( ($("#11_PinCode").val()=='') ) {
                 $("#11_PinCode_em").show();
@@ -833,21 +840,21 @@ $(document).ready(function() {
                 alternate_phone = alternate_phone + $("#11_AlternatePhone").val()+",";
                 $('#CarWashForm_AlternatePhone').val(alternate_phone);
 
-                /*if (state == "") {
-                    state = $("#11_State").val()+",";
-                } else if (state != "") {
-                    state = state  + $("#11_State").val();
-                }*/
-                state = state  + $("#11_State").val()+",";
-                $('#CarWashForm_State').val(state);
-
-                /*if (city == "") {
+                 /*if (city == "") {
                     city = $("#11_City").val()+ ",";
                 } else if (city != "") {
                     city = city  + $("#11_City").val();
                 }*/
                 city = city  + $("#11_City").val()+",";
                 $('#CarWashForm_City').val(city);
+                
+                 /*if (state == "") {
+                    state = $("#11_State").val()+",";
+                } else if (state != "") {
+                    state = state  + $("#11_State").val();
+                }*/
+                state = state  + $("#11_State").val()+",";
+                $('#CarWashForm_State').val(state);
 
                 /*if (pin_code == "") {
                     pin_code = $("#11_PinCode").val()+",";
@@ -1226,7 +1233,19 @@ function onTotalStewards(obj) {
                 $("#StewardCleaningForm_AlternatePhone").text("Alternate Phone too short (minimum is 10 numbers).");
                 return false;
             }
-        //State validation start
+        
+            //City validation start
+
+            if ( (!$("#StewardCleaningForm_City").val().match(/[A-Za-z0-9]$/)) ) {
+                $("#StewardCleaningForm_Address1_em_").hide();
+                $("#StewardCleaningForm_City_em_").show();
+                $("#StewardCleaningForm_City_em_").addClass('errorMessage');
+                $("#StewardCleaningForm_City_em_").text("Please Select City ");
+                return false;
+            }
+            //City validation end
+            
+            //State validation start
             if ( ($("#StewardCleaningForm_State").val()=='') ) {
                 $("#StewardCleaningForm_State_em_").show();
                 $("#StewardCleaningForm_State_em_").addClass('errorMessage');
@@ -1234,16 +1253,7 @@ function onTotalStewards(obj) {
                 return false;
             }
             //State validation end
-            //City validation start
-
-            if ( (!$("#StewardCleaningForm_City").val().match(/[A-Za-z0-9]$/)) ) {
-                $("#StewardCleaningForm_Address1_em_").hide();
-                $("#StewardCleaningForm_City_em_").show();
-                $("#StewardCleaningForm_City_em_").addClass('errorMessage');
-                $("#StewardCleaningForm_City_em_").text("Please Enter City ");
-                return false;
-            }
-            //City validation end
+            
             //Pin code validation start
             if ( ($("#StewardCleaningForm_PinCode").val()=='') ) {
                 $("#StewardCleaningForm_PinCode_em_").show();

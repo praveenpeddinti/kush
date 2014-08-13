@@ -11,14 +11,14 @@
                                             $serviceName='';
                                         ?>
                                         <tr id="row_<?php echo $row['id'];?>" class="odd">
+                                            <td ><center><?php echo $row['order_number'];?></center></td>
                                             <td nowrap>
                                             <?php if($row['ServiceId']=='1'){$serviceName='House Cleaning';}
                                             if($row['ServiceId']=='2'){$serviceName='Car Wash';}
                                             if($row['ServiceId']=='3'){$serviceName='Stewards Services';}
                                             echo $serviceName;
                                            ?>
-                                        </td>
-                                        <td ><center><?php echo $row['order_number'];?></center></td>
+                                        </td>                                      
                                         <td id="status_<?php echo $row['id']; ?>">
                                                 <?php 
                                                 if($row['status']==0){$status = 'Open';} 

@@ -8,10 +8,10 @@
     <tr id="row_<?php echo $row['vid'];?>" class="odd">
         <td><?php echo $row['UserName']; ?></td>
         <td>
-            <span id="Comments<?echo $row['id'];?>__view" style="display: block;cursor:none" onmouseover="showTooltip(this.id,'<?echo $row['email_address'];?>')" onmouseout="showTooltipdown(this.id)">
+            <span id="Comments<?echo $row['vid'];?>__view" style="display: block;cursor:none" onmouseover="showTooltip(this.id,'<?echo $row['email_address'];?>')" onmouseout="showTooltipdown(this.id)">
                 <?php $len= strlen($row['email_address']);
                     if($len>20){echo substr($row['email_address'],0,20).'...';}else{echo $row['email_address'];}?>
-            </span><div style="display:none;width:400px" id="Comments<?echo $row['id'];?>__div" class="table_tooltip" ></div>
+            </span><div style="display:none;width:400px" id="Comments<?echo $row['vid'];?>__div" class="table_tooltip" ></div>
         </td>
         <td><?php echo $row['phone']; ?></td>
         <td><?php echo $row['Location']; ?></td>

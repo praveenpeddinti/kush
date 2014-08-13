@@ -199,13 +199,13 @@
   background-image: -o-linear-gradient(top, #0044cc, #0088cc);
   background-image: linear-gradient(to bottom, #0044cc, #0088cc);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0044cc', endColorstr='#ff0088cc', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0044cc', endColorstr='#0088cc', GradientType=0);
   border-color: #0088cc #0088cc #005580;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
  
   /* Darken IE7 buttons by default so they stand out more given they won't have borders */
 
-  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = true);
 }
 .has-switch span.switch-primary:hover,
 .has-switch span.switch-left:hover,

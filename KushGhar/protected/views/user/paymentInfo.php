@@ -282,9 +282,12 @@ function paymenthandler(data){
             $("#PaymentInfoForm_error_em_").removeClass('errorMessage');
             $("#PaymentInfoForm_error_em_").addClass('alert alert-success');
             $("#PaymentInfoForm_error_em_").text('Profile updated successfully');
-            $("#PaymentInfoForm_error_em_").fadeOut(6000, "");
+            $("#PaymentInfoForm_error_em_").fadeOut(3000);
+             setTimeout(function() {
+	      window.location.href='basicinfo';
+	    }, 3000);
       //document.getElementById('cc').innerHTML="<div style='height:460px;'><center><h1>Profile updated successfully </h1></center></div>";
-      window.location.href='basicinfo';
+      
       //window.location.href='customerDetails';
     }else{
          var error=[];

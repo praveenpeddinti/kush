@@ -1,7 +1,6 @@
 <script type="text/javascript">
     function adminloginhandler(data) {
         if (data.status == 'success') {
-            alert("sucesss===========");
             window.location.href = 'dashboard';
         } else {
             var error = [];

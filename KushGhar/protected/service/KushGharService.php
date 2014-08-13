@@ -650,14 +650,17 @@ class KushGharService {
     public function getServiceDetails($ordernumber,$type){
         return OrderDetails::model()->getServiceDetails($ordernumber,$type);
     }
-    public function reviewSave($ordernumber,$rating,$feedback){
-        return OrderReviews::model()->addCustomerReview($ordernumber,$rating,$feedback);
+    public function reviewSave($model){
+        return OrderReviews::model()->addCustomerReview($model);
     }
     public function getUserReviews(){
         return OrderReviews::model()->getUserReviews();
     }
     public function getAllUsersReviews($startLimit, $endLimit){
         return OrderReviews::model()->getAllUsersReviews($startLimit, $endLimit);
+    }
+    public function getReviewExist($id){
+        return OrderReviews::model()->getReviewExist($id);
     }
     /*
      * @Praveen Order status is closed that time store the total time and total peoples in DB 4-Aug-14
@@ -671,7 +674,63 @@ class KushGharService {
     public function getIspublishReview($id, $val) {
         return OrderReviews::model()->getIspublishReview($id, $val);
     }
-    
-}
-
-?>
+    public function getCarMakes(){
+        return CarMakes::model()->getcarMakes();
+    }
+    public function getAllCarMakes($startLimit, $endLimit){
+        return CarMakes::model()->getAllCarMakes($startLimit, $endLimit);
+    }
+    public function ChangeMakeStatus($id,$status){
+        return CarMakes::model()->ChangeMakeStatus($id,$status);
+    }
+    public function getMakeDetails($id){
+        return CarMakes::model()->getMakeDetails($id);
+    }
+    public function checkNewMakeExistInMakeTable($make_name){
+        return CarMakes::model()->checkNewMakeExistInMakeTable($make_name);
+    }
+    public function UpdateMake($model){
+        return CarMakes::model()->UpdateMake($model);
+    }
+    public function  NewMake($model){
+        return CarMakes::model()->NewMake($model);
+    }
+    public function getCarModels($makeId){
+        return CarModels::model()->getCarModels($makeId);
+    }
+    public function getAllCarModels($makeId,$startLimit, $endLimit){
+        return CarModels::model()->getAllCarModels($makeId,$startLimit, $endLimit);
+    }
+    public function getMakes() {
+        try {
+            $result = CarMakes::model()->getAllMakes();
+        } catch (Exception $ex) {
+            error_log("=============exception occurred in Makes=============" . $ex->getMessage());
+        }
+        return $result;
+    }
+    public function ChangeModelStatus($id,$status){
+        return CarModels::model()->ChangeModelStatus($id,$status);
+    }
+    public function getModelDetails($id){
+        return CarModels::model()->getModelDetails($id);
+    }
+    public function checkNewModelExistInModelTable($model_name,$makeid){
+        return CarModels::model()->checkNewModelExistInModelTable($model_name,$makeid);
+    }
+    public function UpdateModel($model){
+        return CarModels::model()->UpdateModel($model);
+    }
+    public function newModel($model){
+        return CarModels::model()->newModel($model);
+    }
+    public function getFullVendorDetails($id){
+        return InviteUser::model()->getFullVendorDetails($id);
+    } 
+    public function getOrderDetailsById($id){
+        return OrderDetails::model()->getOrderDetailsById($id);
+    }
+    public function getAllVendors(){
+        return VendorIndividualRegistration::model()->getAllVendors();
+    }
+} ?>

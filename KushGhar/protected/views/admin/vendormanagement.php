@@ -18,6 +18,7 @@
                                 <li><a href="/admin/usermanagement"> <i class="fa fa-user"></i> User Management</a></li>
                                 <li class="active"><a href="/admin/vendormanagement"> <i class="fa fa-user"></i> Vendor Management</a></li>
                                 <li><a href="/admin/reviews"> <i class="fa fa-user"></i> Review/Feedback</a></li>
+                                <li><a href="/settings/carMakes"> <i class="fa fa-cog"></i> Settings</a></li>
                             </ul>
                         </div>
                     </div>
@@ -110,6 +111,18 @@
                         </div>
                     </div>    
                 </div>
+                <div id="myModalforgot1" class="modal fade" >
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h3 id="myModalLabel">View Details for Vendor</h3>
+                            </div>
+                            <div class="modal-body" id="modelBodyDiv1" style="padding:15px;">
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
             </article>
         </div>
     </section>
@@ -117,11 +130,33 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('#userTable tr td input').live('click', function() {
+            var id1=$(this).attr('id');    
             var id = $(this).attr('data-id');
             var inviteStatus = $(this).attr('invite-status');
-             statusChangevendorUser(Number(id), Number(inviteStatus));
+             if(id1.indexOf("view") > -1)
+                loadDetails(Number(id));
+            else
+                statusChangevendorUser(Number(id), Number(inviteStatus));
         });
     });
+    function loadDetails(id) {
+            var data = "Id=" + id;
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: '<?php echo Yii::app()->createAbsoluteUrl("/admin/getvendorfulldetails"); ?>',
+                data: data,
+                success: function(data) {
+                    $("#myModalforgot1").modal({ backdrop: 'static', keyboard: false,show:false });
+                    $("#modelBodyDiv1").html(data.html);
+                    $('#myModalforgot1').modal('show');
+                },
+                error: function(data) { 
+                   alert("Error occured.please try again");
+
+                }
+            });
+    }
     $(document).ready(function() {
         $('#agencyVendor tr td input').live('click', function() {
             var id = $(this).attr('data-id');
@@ -151,7 +186,7 @@
                 }
             });
         } else {
-            alert("Cancel!");
+//            alert("Cancel!");
         }
     }
     function statusChangeAgencyUser(rowNos, status) {

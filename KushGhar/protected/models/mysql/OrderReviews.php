@@ -2,6 +2,7 @@
 class OrderReviews extends CActiveRecord {
     public $CustId;
     public $order_number;
+    public $service_type;
     public $is_publish;
     public $rating;
     public $feedback;
@@ -12,13 +13,14 @@ class OrderReviews extends CActiveRecord {
     public function tableName() {
         return 'KG_Customer_reviews';
     }
-    public function addCustomerReview($ordernumber,$rating,$feedback) {
+    public function addCustomerReview($model) {
         try { 
             $customerReviews = new OrderReviews();
             $customerReviews->CustId = Yii::app()->session['UserId'];
-            $customerReviews->order_number = $ordernumber;
-            $customerReviews->feedback = $feedback;
-            $customerReviews->rating = $rating;
+            $customerReviews->order_number = $model->OrderNumber;
+            $customerReviews->feedback = $model->Feedback;
+            $customerReviews->rating = $model->Rating;
+            $customerReviews->service_type=$model->ServiceType;
             $customerReviews->create_timestamp = gmdate("Y-m-d H:i:s", time());
                 if ($customerReviews->save()) {
                     $result = "success";
@@ -48,6 +50,16 @@ class OrderReviews extends CActiveRecord {
         }
         return $result;
     }
+    public function getReviewExist($id){
+        try{
+            $query = "select count(*) as count from KG_Customer_reviews where order_number=".$id;
+            $result = Yii::app()->db->createCommand($query)->queryRow();
+        } catch (Exception $ex) {
+            error_log("##########Exception Occurred retrieve count#############" . $ex->getMessage());
+        }
+        return $result['count'];
+    }
+
     /*
     * @Praveen feedback is published in the home page when the check the is publish checkbox in User review/feedback tab in admin side
     */

@@ -35,14 +35,14 @@
                                  }*/
                                  ?>
                                 <li><a href="vendorBasicInformation"> <i class="fa fa-user"></i> Basic Info</a>
-                                    <div class=<?php echo '"'.$statusClassForBasic.'"' ?>></div>
+<!--                                    <div class=<?php // echo '"'.$statusClassForBasic.'"' ?>></div>-->
                                 </li>
                                 <li  class="active"><a href="vendorContactInformation"> <i class="fa fa-phone"></i> Contact Info</a>
-                                    <div class=<?php echo '"'.$statusClassForContact.'"' ?>></div>
+<!--                                    <div class=<?php // echo '"'.$statusClassForContact.'"' ?>></div>-->
                                 </li>
               
                     <li ><a href="#"> <i class="fa fa-credit-card"></i> Payment Info</a>
-                        <div class="status_info3"></div>
+<!--                        <div class="status_info3"></div>-->
                     </li>
                 </ul>
             </div>
@@ -193,10 +193,12 @@ function addVendorContactInformationhandler(data){
             $("#VendorContactInformationForm_error_em_").removeClass('errorMessage');
             $("#VendorContactInformationForm_error_em_").addClass('alert alert-success');
             $("#VendorContactInformationForm_error_em_").text('Vendor Profile updated successfully');
-            $("#VendorContactInformationForm_error_em_").fadeOut(6000, "");
-      //document.getElementById('cc').innerHTML="<div style='height:460px;'><center><h1>Profile updated successfully </h1></center></div>";
-      window.location.href='vendorBasicInformation';
-     
+            $("#VendorContactInformationForm_error_em_").fadeOut(6000);
+            //document.getElementById('cc').innerHTML="<div style='height:460px;'><center><h1>Profile updated successfully </h1></center></div>";
+            setTimeout(function() {
+	      window.location.href='vendorBasicInformation';
+	    }, 3000);  
+
 //window.location.href='paymentInfo';
     }else{
         //alert("No");

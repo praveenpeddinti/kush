@@ -42,7 +42,7 @@
                 <div class="span6 paddingB20">
                     <div class="reg_div ">
                         <div class="paddinground">
-                            <h2 class="reg_title">Adminstrator Login</h2>
+                            <h2 class="reg_title">Administrator Login</h2>
                             <?php
                             $form = $this->beginWidget('CActiveForm', array(
                                 'id' => 'login-form',

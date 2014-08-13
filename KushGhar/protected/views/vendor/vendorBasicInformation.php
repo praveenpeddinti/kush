@@ -37,31 +37,31 @@
                                  }*/
                                  ?>
                                 <li class="active"><a href="vendorBasicInformation"> <i class="fa fa-user"></i> Basic Info</a>
-                                    <div class=<?php echo '"'.$statusClassForBasic.'"' ?>></div>
+<!--                                    <div class=<?php // echo '"'.$statusClassForBasic.'"' ?>></div>-->
                                 </li>
                                 <li ><a href="vendorContactInformation"> <i class="fa fa-phone"></i> Contact Info</a>
-                                    <div class=<?php echo '"'.$statusClassForContact.'"' ?>></div>
+<!--                                    <div class=<?php // echo '"'.$statusClassForContact.'"' ?>></div>-->
                                    
                                 </li>
                                 <li ><a href="#"> <i class="fa fa-credit-card"></i> Payment Info</a>
-                                   <div class="status_info3"></div>
+<!--                                   <div class="status_info3"></div>-->
                                 </li>
                             </ul>
                         </div>
                         <div id="payment" class="collapse">
                             <div class="selected_tab">payment</div>
                             <ul class="l_menu_sub_menu">
-                                <li class=""><a href="#"> <i class="fa fa-user"></i> Basic Info</a> <div class="status_info1"> </div></li>
-                                <li ><a href="#"> <i class="fa fa-phone"></i> Contact Info</a> <div class="status_info2"> </div></li>
-                                <li ><a href="#"> <i class="fa fa-credit-card"></i> Payment Info</a> <div class="status_info3"> </div></li>
+                                <li class=""><a href="#"> <i class="fa fa-user"></i> Basic Info</a></li>
+                                <li ><a href="#"> <i class="fa fa-phone"></i> Contact Info</a> </li>
+                                <li ><a href="#"> <i class="fa fa-credit-card"></i> Payment Info</a> </li>
                             </ul>
                         </div>
                         <div id="services" class="collapse">
                             <div class="selected_tab">services</div>
                             <ul class="l_menu_sub_menu">
-                                <li class=""><a href="#"> <i class="fa fa-user"></i> Basic Info</a> <div class="status_info1"> </div></li>
-                                <li ><a href="#"> <i class="fa fa-phone"></i> Contact Info</a> <div class="status_info2"> </div></li>
-                                <li ><a href="#"> <i class="fa fa-credit-card"></i> Payment Info</a> <div class="status_info3"> </div></li>
+                                <li class=""><a href="#"> <i class="fa fa-user"></i> Basic Info</a> </li>
+                                <li ><a href="#"> <i class="fa fa-phone"></i> Contact Info</a></li>
+                                <li ><a href="#"> <i class="fa fa-credit-card"></i> Payment Info</a> </li>
                             </ul>
                         </div>
                     </div>
@@ -373,12 +373,13 @@
     
 
     $(document).ready(function() { $("#instant_notifications").fadeOut(6000, "");
-
     <?php if($getVendorDetailsType1->vendor_gender == 1){ ?>
+        $('#Gender').bootstrapSwitch('setState', true);
+    <?php } else if($getVendorDetailsType1->vendor_gender == '') {?>
         $('#Gender').bootstrapSwitch('setState', true);
     <?php } else {?>
         $('#Gender').bootstrapSwitch('setState', false);
-    <?php } ?>
+    <?php }?>
     <?php if($getVendorDetailsType1->found_kushghar_by == ''){ ?>
         //document.getElementById('BasicinfoForm_foundKushgharBy').disabled = false;
         //document.getElementById('BasicinfoForm_foundKushgharBy').selected = false;
@@ -407,6 +408,7 @@
         $('#Gender').on('switch-change', function (e, data) {
             var $el = $(data.el)
             , value = data.value;
+            alert("value=="+value);
             if(value == true)
                 $("#VendorBasicInformationForm_Sex").val('1');
             else
@@ -484,7 +486,7 @@ return false;
             $("#updatedPasswordForm_error_em_").removeClass('errorMessage');
             $("#updatedPasswordForm_error_em_").addClass('alert alert-success');
             $("#updatedPasswordForm_error_em_").text('Password is updated successfully');
-            $("#updatedPasswordForm_error_em_").fadeOut(6000, "");
+            $("#updatedPasswordForm_error_em_").fadeOut(6000);
             $("#updatedPasswordForm_Password").val('');
             $("#updatedPasswordForm_RepeatPassword").val('');
       

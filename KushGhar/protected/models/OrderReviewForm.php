@@ -6,12 +6,16 @@
  * registration form data. It is used by the 'Registration' action of 'UserController'.
  */
 class OrderReviewForm extends CFormModel {
-    public $OrderId;
+    public $OrderNumber;
     public $CustID;
     public $Rating;
     public $Feedback;
     public $Id;
-    
+    public $arrive_on_time;
+    public $professional_appearance;
+    public $rate_us;
+    public $quality_of_service;
+    public $ServiceType;
     
     
     /**
@@ -22,7 +26,7 @@ class OrderReviewForm extends CFormModel {
              
             //array('HouseCleaning', 'required', 'message' => 'Please enter a value for {attribute}.'),
              
-            array('OrderId, CustID, Rating,Feedback,Id', 'safe'),
+            array('OrderNumber,ServiceType, CustID, Rating,Feedback,Id,arrive_on_time,professional_appearance,rate_us,quality_of_service', 'safe'),
         );
     }
 

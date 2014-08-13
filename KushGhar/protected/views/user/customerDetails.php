@@ -268,8 +268,11 @@ function totalCustomerDetailshandler(data){
      $("#CustomerDetailsForm_error_em_").removeClass('errorMessage');
      $("#CustomerDetailsForm_error_em_").addClass('alert alert-success');
      $("#CustomerDetailsForm_error_em_").text('Customer Information updated successfully');
-     $("#CustomerDetailsForm_error_em_").fadeOut(6000, "");
-     window.location.href='basicinfo';
+     $("#CustomerDetailsForm_error_em_").fadeOut(3000);
+      setTimeout(function() {
+	      window.location.href='basicinfo';
+	    }, 3000);
+     
     }else{
         //alert("No");
          var error=[];

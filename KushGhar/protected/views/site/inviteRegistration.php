@@ -97,7 +97,10 @@ function inviteMailHandler(data)
                     $("#InviteForm_error_em_").addClass('alert alert-success');
                     $("#InviteForm_error_em_").text(data.error);
                     $("#InviteForm_error_em_").fadeOut(20000, "");
-                    window.location.href = '/';
+                    setTimeout(function() {
+                        window.location.href = '/';
+                    }, 3000);        
+            
         }
         if(data.status == 'error'){
             var lengthvalue=data.error.length;

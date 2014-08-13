@@ -142,7 +142,7 @@ ga('send', 'pageview');
         <div class="paddinground">
              
              <div id='modelBodyDiv' >
-                 <iframe src="http://gadgets.ndtv.com/internet/features/kushghar-household-help-is-only-a-click-away-547111" style="width:100%;height:600px;border:0"></iframe>
+                 <!--<iframe src="http://gadgets.ndtv.com/internet/features/kushghar-household-help-is-only-a-click-away-547111" style="width:100%;height:600px;border:0"></iframe>-->
              </div>
              </div>
       </div>

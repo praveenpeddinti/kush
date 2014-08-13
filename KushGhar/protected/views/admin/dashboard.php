@@ -6,7 +6,7 @@
             $("#BulkForm_error_em_").removeClass('errorMessage');
             $("#BulkForm_error_em_").addClass('alert alert-success');
             $("#BulkForm_error_em_").text('Invitation(s) sent Successfully.');
-            $("#BulkForm_error_em_").fadeOut(6000, "");
+            $("#BulkForm_error_em_").fadeOut(6000);
             
             //window.location.href='contactInfo';
         }else{
@@ -52,6 +52,7 @@
                                 <li><a href="/admin/usermanagement"> <i class="fa fa-user"></i> User Management</a></li>
                                 <li><a href="/admin/vendormanagement"> <i class="fa fa-user"></i> Vendor Management</a></li>
                                 <li><a href="/admin/reviews"> <i class="fa fa-user"></i> Review/Feedback</a></li>
+                                <li><a href="/settings/carMakes"> <i class="fa fa-cog"></i> Settings</a></li>
                             </ul>
                         </div>
                     </div>
@@ -132,6 +133,50 @@
                                     <label>
                                         Multiple Invite needs a CSV file and the functionality will be implemented as soon as possible
                                     </label>
+                            <?php
+//                            $form = $this->beginWidget('CActiveForm', array(
+//                                    'id' => 'multiple-invite',
+//                                    'enableClientValidation' => true,
+//                                    'clientOptions' => array(
+//                                    'validateOnSubmit' => true,
+//                                    ),
+//                                    'htmlOptions' => array('enctype' => 'multipart/form-data'),
+//                                ));?><fieldset>
+                                  <?php // $link = '<div id="schedule_download">Download sample CSV file</div>';
+//                                    echo CHtml::link($link, array('/admin/downloadCSVFile')); 
+//                                    ?><br>
+                                        <?php
+//                                   $this->widget('ext.EAjaxUpload.EAjaxUpload', array(
+//                                                        'id' => 'csvfile',
+//                                                        'config' => array(
+//                                                            'multiple' => false,
+//                                                            'action' => Yii::app()->createUrl('admin/fileUpload'),
+//                                                            'allowedExtensions' => array("csv"), //array("jpg","jpeg","gif","exe","mov" and etc...
+//
+//                                                            'sizeLimit' => 15 * 1024 * 1024, // maximum file size in bytes
+////                                                          'minSizeLimit'=>10*1024,// minimum file size in bytes
+//                                                            'onComplete' => "js:function(id, fileName, responseJSON){
+//                                    var data = eval(responseJSON);
+//
+//                                    globalProfilePic = '/sampleDownloadFiles/UploadFiles/'+data.filename;
+//                                    $('#CsvFileName').val('/sampleDownloadFiles/UploadFiles/'+data.filename);
+//                                    }
+//                                    ",
+////                                                            'messages'=>array(
+////                                                                              'typeError'=>"{file} has invalid extension. Only {extensions} are allowed.",
+////                                                                              'sizeError'=>"{file} is too large, maximum file size is {sizeLimit}.",
+////                                                                              'minSizeError'=>"{file} is too small, minimum file size is {minSizeLimit}.",
+////                                                                              'emptyError'=>"{file} is empty, please select files again without it.",
+////                                                                              'onLeave'=>"The files are being uploaded, if you leave now the upload will be cancelled."
+////                                                                             ),
+//                                                            'showMessage' => "js:function(message){  commonErrorDiv(message,'common_error');}"
+//                                                        )
+//                                                    ));
+//                                   
+//                                                    ?>
+                                    <?php // echo $inviteFriends->error($inviteModel, 'error'); ?>
+                                    </fieldset>
+                                     <?php // $this->endWidget(); ?>
                                 </div>
                                 </div>
                         </div>

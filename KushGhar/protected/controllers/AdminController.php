@@ -434,11 +434,137 @@ $this->pageTitle="KushGhar-Basic Info";
             error_log("######### Exception Occurred##########".$ex->getMessage());
         }
     }
-    
-    
-    
+    public function actionDownloadCSVFile(){
+        $folder = $this->findUploadedPath();
+        $file = $folder . '/sampleDownloadFiles/sampleCSV.csv';
+        if (file_exists($file)) {
+            header('Content-Description: File Transfer');
+            header('Content-Type: application/octet-stream');
+            header('Content-Disposition: attachment; filename=' . basename($file));
+            header('Content-Transfer-Encoding: binary');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Length: ' . filesize($file));
+            ob_clean();
+            flush();
+            readfile($file);
+            exit;
+        }
+    }
+    public function findUploadedPath() {
+        try {
+            $path = dirname(__FILE__);
+            $pathArray = explode('\\', $path);
+            $appendPath = "";
+            for ($i = count($pathArray) - 3; $i > 0; $i--) {
+            $appendPath = "/" . $pathArray[$i] . $appendPath;
+        }
+        $originalPath = $appendPath;
+        } catch (Exception $ex) {
+            error_log("#########Exception Occurred########".$ex->getMessage());
+        }
+        return $originalPath;
+    }
+    public function actionFileUpload(){
+        Yii::import("ext.EAjaxUpload.qqFileUploader");
+        $error="\n";
+        $folder = $this->findUploadedPath() . '/sampleDownloadFiles/UploadFiles/'; // folder for uploaded files
+        $allowedExtensions = array("csv"); //array("jpg","jpeg","gif","exe","mov" and etc...
+        $sizeLimit = 15 * 1024 * 1024; // maximum file size in bytes
+        $uploader = new qqFileUploader($allowedExtensions, $sizeLimit);
+        $result = $uploader->handleUpload($folder);
+        $return = CJSON::encode($result);
+        $fileSize = filesize($folder . $result['filename']); //GETTING FILE SIZE
+        $fileName = $result['filename']; //GETTING FILE NAME
+        try {
+            $folder=$folder.$fileName;
+            if (NULL!=(fopen($folder, 'r')) ){
+                $fileuploadpath = $this->findUploadedPath();
+                $dest = $fileuploadpath . '/sampleDownloadFiles/UploadFiles/' . $fileName;
+                $col = 0;
+                $csvFile = file($dest);
+                $i = 0;
+                $status = "success";
+                if(sizeof($csvFile)>1){
+                    foreach ($csvFile as $key => $line) {
+                        if ($key >= 1) {
+                              $var = explode(",", $line);
+                            if (count($var) <= 1) {
+                                $error.="Delimiter mismatch! => ".$line;
+                            } else {
+                                if ($var[0] != "" && $var[1] != "" && $var[2] != "" && $var[3] != "") {
+                                    $inviteUser = $this->kushGharService->checkNewUserExistInInviteTable($var[3]);
+                                    $custUser = $this->kushGharService->checkNewUserExistInCustomerTable($var[3]);
+                                    if( ($inviteUser=='No user') && ($custUser=='No user')){
+                                        $resultObject = $this->setUserBeanObject($var);
+                                        $result = $this->kushGharService->getInvitationFriendUser($resultObject, $this->session['Type']);
+                                    }
+                                    else{
+                                        $result = 'failure';
+                                    }
+                                    if ($result == "success") {
+                                        /** Customer Mail Details*/
+                                        $to1 = $var[3];
+                                        $name = $var[0] . ' ' . $var[1];
+                                        $phone = $var[2];
+                                        $location = $var[3];
+                                        $subject ='KushGhar Invitation';
+                                        $Logo = YII::app()->params['SERVER_URL'] ."/images/color_logo.png";
+                                        $employerEmail = "no-reply@kushghar.com";
+                                        $messageview1="InvitationMail";
+                                        $mess1 = 'http://www.kushghar.com/site/registration?Uname=' . $var[3] . "\r\n\n";
+                                        $params1 = array('Logo' => $Logo, 'Name' =>$name, 'Message' =>$mess1);
+                                        //$this->sendMailToUser($to1, $name, $subject, $mess1,'KushGhar', 'no-reply@kushghar.com', 'InvitationMail');            
+                                        /** KG Team mail details*/
+                                        $to = 'praveen.peddinti@gmail.com';
+                                        $messageview="CustomerInvitationMailToKGTeam";
+                                        $params = array('Logo' => $Logo, 'Name' =>$name, 'Email' =>$to1, 'Phone'=>$phone, 'Location'=>$location);
+                                        //$sendMailToUser=new CommonUtility;
+                                        //$sendMailToUser->actionSendmail($messageview1,$params1, $subject, $to1,$employerEmail);
+                                        //$mailSendStatusw=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
+                                        $error.="User Invited Successfully->".$var[3]."\n";                                        
+                                    } else {
+                                        $error.="User Already invited ->".$var[3]."\n";
+                                    }
+                                } else {
+                                    $error.="Sorry,Column did not match! ->".$line;
+                                }
+                            }
+                        }
+                          $i++;
+                    }
+                    }else{
+                        $error.="Sorry, File format is wrong....";
+                    }
+                if ($dest != "") {
+                    if (file_exists($dest)) {
+                        unlink($dest);
+                    }
+                }
+            }
+        } catch (Exception $e) {
+            error_log("***********************" . $e->getMessage());
+        }
+        error_log($error);
+        $errors = array("InviteForm_error" => $error);
+        error_log("Errors=======".print_r($errors, true));
+        $obj = array('status' => 'success', 'error' => $errors);
+        error_log("Errors=======".print_r($obj, true));
+        $renderScript = $this->rendering($obj);
+        echo $renderScript; // it's array
+    }
+    public function setUserBeanObject($var){
+        $model = new InviteForm();
+        $model->FirstName=$var[0];
+        $model->LastName=$var[1];
+        $model->Phone=$var[2];
+        $model->Email=$var[3];
+        $model->Location=$var[4];
+        return $model;
+    }
     public function actionOrdercanceldetails() {
-        
+       
         try{
            $Model = new OrderForm;
             $id=$_POST['Id'];
@@ -491,4 +617,32 @@ $this->pageTitle="KushGhar-Basic Info";
         $obj = array('status' => 'error', 'data' => $value, 'error' => $changeReviewStatus);
         echo CJSON::encode($obj);
     }
+    public function  actionGetVendorFullDetails(){
+        try{
+            $id=$_POST['Id'];
+            $userAllDetails=$this->kushGharService->getFullVendorDetails($id);
+            $renderHtml=  $this->renderPartial('getfulldetails',array('userAllDetails'=> $userAllDetails),true);
+            $obj=array('status'=>'success','html'=>$renderHtml);
+            $renderScript=  $this->rendering($obj);
+            echo $renderScript;
+        } catch (Exception $ex) {
+            error_log("####### Exception Occurred in fetching full details ##########".$ex->getMessage());
+        }
+    }
+//    public function actionOrderSchedule(){
+//         try{
+//            $id=$_POST['Id'];
+//            $this->pageTitle="KushGhar-Admin Order Schedule";
+//            $vendors=$this->kushGharService->getAllVendors();
+//            $OrderDetails=  $this->kushGharService->getOrderDetailsById($id);
+//            $customerDetails = $this->kushGharService->getCustomerDetails($OrderDetails['CustId']);
+//            $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($OrderDetails['CustId']);
+//            $renderHtml=  $this->renderPartial("orderschedule",array("customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "OrderDetails"=>$OrderDetails,'vendors'=>$vendors),true);
+//            $obj=array('status'=>'success','html'=>$renderHtml);
+//            $renderScript=  $this->rendering($obj);
+//            echo $renderScript;
+//         } catch (Exception $ex) {
+//            error_log("#######Exception Occured#######". $ex->getMessage());
+//        }
+//    }
  }

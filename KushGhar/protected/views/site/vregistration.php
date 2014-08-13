@@ -7,8 +7,11 @@
             $("#InviteForm_error_em_").removeClass('errorMessage');
             $("#InviteForm_error_em_").addClass('alert alert-success');
             $("#InviteForm_error_em_").text(data.error);
-            $("#InviteForm_error_em_").fadeOut(6000, "");
-            window.location.href = '/';
+            $("#InviteForm_error_em_").fadeOut(6000);
+             setTimeout(function() {
+	      window.location.href = '/';
+	    }, 3000);
+            
         } else {
             var error = [];
             $("#InviteForm_error_em_").removeClass('alert alert-success');

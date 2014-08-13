@@ -151,11 +151,11 @@
                     </div><!-- /.modal-dialog -->
                 </div><!-- /.modal -->
                 <div id="myModalReview" class="modal fade" >
-                    <div class="modal-dialog">
+                    <div class="modal-dialog" style="width: 800px">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h3 id="myModalLabel">Review/Feedback</h3>
+                                <h3 id="myModalLabel">Customer Feedback Form</h3>
                             </div>
                             <div class="modal-body" id="modalBodyReviewDiv" style="padding:15px;">
                             

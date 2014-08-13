@@ -1311,7 +1311,6 @@ class UserController extends Controller {
             $type=$getServiceType['ServiceId'];
             $getserviceDetails=$this->kushGharService->getServiceDetails($id,$type);
             $renderHtml=  $this->renderPartial('orderreschedule',array("model"=>$Model, "serviceType" => $type,"OrderNumber"=>$id,"getserviceDetails"=>$getserviceDetails),true);
-            error_log("Rendered");
             $obj=array('status'=>'success','html'=>$renderHtml);
             $renderScript=  $this->rendering($obj);
             echo $renderScript;
@@ -1489,7 +1488,14 @@ class UserController extends Controller {
        try{
            $Model = new OrderReviewForm;
             $id=$_POST['Id'];
-            $renderHtml=  $this->renderPartial('orderreview',array("model"=>$Model, "OrderNumber"=>$id),true);
+            $getServiceType = $this->kushGharService->getServiceType($id);
+            $type=$getServiceType['ServiceId'];
+            $getReviewExist=$this->kushGharService->getReviewExist($id);
+            if($getReviewExist>=1){
+                $renderHtml="You have already done your review for this order";
+            }else{
+            $renderHtml=  $this->renderPartial('orderreview',array("model"=>$Model, "OrderNumber"=>$id,"ServiceType"=>$type),true);
+            }
             $obj=array('status'=>'success','html'=>$renderHtml);
             $renderScript=  $this->rendering($obj);
             echo $renderScript;
@@ -1509,8 +1515,7 @@ class UserController extends Controller {
                     $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
                 } else
                 {
-                    
-                    $result = $this->kushGharService->reviewSave($_POST['OrderNumber'],$reviewForm->Rating,$reviewForm->Feedback);
+                    $result = $this->kushGharService->reviewSave($reviewForm);
                     if($result=='success')
                     {
                         //Mailing functionality
@@ -1518,18 +1523,18 @@ class UserController extends Controller {
                     }
                     else
                     {
-                        $errors = array("ReviewForm_error" => 'Re-View saving Failed..,Retry Again');
+                        $errors = array("ReviewForm_error" => 'Re-View saving Failed..,Retry Again.');
                         $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
                     }
-                    $renderScript = $this->rendering($obj);
-                    echo $renderScript;
                 }
             }
             else
             {
-                $errors = array("RescheduleForm_error" => 'Re-Schedule Failed.');
+                $errors = array("ReviewForm_error" => 'Re-View saving Failed..,Retry Again.');
                 $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
             }
+            $renderScript = $this->rendering($obj);
+            echo $renderScript;
        } catch (Exception $ex) {
             error_log("####### Exception Occurred in saving Order Review/feedback ##########".$ex->getMessage());
        }

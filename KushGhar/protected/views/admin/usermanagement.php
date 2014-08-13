@@ -18,6 +18,7 @@
                                 <li class="active"><a href="/admin/usermanagement"> <i class="fa fa-user"></i> User Management</a></li>
                                 <li><a href="/admin/vendormanagement"> <i class="fa fa-user"></i> Vendor Management</a></li>
                                 <li><a href="/admin/reviews"> <i class="fa fa-user"></i> Review/Feedback</a></li>
+                                <li><a href="/settings/carMakes"> <i class="fa fa-cog"></i> Settings</a></li>
                             </ul>
                         </div>
                     </div>
@@ -139,7 +140,7 @@
                 }
             });
         } else {
-            alert("Cancel!");
+//            alert("Cancel!");
         }
     }
     function activeFormHandler(data, status, rowNos) {

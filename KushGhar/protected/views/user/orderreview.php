@@ -10,10 +10,56 @@
  echo $reviewForm->error($model, 'error',array('value'=>'Hide')); 
  echo $reviewForm->hiddenField($model,'Rating');
  echo $reviewForm->hiddenField($model,'OrderNumber', array('value'=>$OrderNumber));
+ echo $reviewForm->hiddenField($model,'ServiceType',array('value'=>$ServiceType));
 ?>
-    <div class="row-fluid">
+<div class="row-fluid" id="ques1">
+    <div class="span12">
+        <?php echo $reviewForm->label($model,'<abbr title="required">*</abbr><b>Did our team arrive on time ? </b>'); ?>
+        <input type="radio" value="1" name="arrive_on_time" /> Yes
+        <input type="radio" value="0" name="arrive_on_time"/> No
+        <?php echo $reviewForm->error($model, 'arrive_on_time'); ?>
+    </div>
+</div><br>
+<div class="row-fluid" id="ques2">
+    <div class="span12">
+        <?php echo $reviewForm->label($model,'<abbr title="required">*</abbr><b>Did our team members have professional appearance ?</b> '); ?>
+        <input type="radio" value="1" name="professional_appearance" /> Yes
+        <input type="radio" value="0" name="professional_appearance" /> No
+        <?php echo $reviewForm->error($model, 'professional_appearance'); ?>
+    </div>
+</div><br>
+<div class="row-fluid" id="ques3">
+    <div class="span12">
+        <?php echo $reviewForm->label($model,'<abbr title="required">*</abbr><b>How would you rate Us ?</b> '); ?>
+        <table class="table_feedback">
+            <tr><th></th><th>Excellent</th><th>Good</th><th>Fair</th><th>Poor</th></tr>
+            <tr><td style="text-align: left;">Office staff</td><td><input type="radio" value="1" name="officeStaff"/></td><td><input type="radio" value="2" name="officeStaff"/></td><td><input type="radio" value="3" name="officeStaff"/></td><td><input type="radio" value="4" name="officeStaff"/></td></tr>
+            <tr><td style="text-align: left;">Home Service</td><td><input type="radio" value="1" name="homeService"/></td><td><input type="radio" value="2" name="homeService"/></td><td><input type="radio" value="3" name="homeService"/></td><td><input type="radio" value="4" name="homeService"/></td></tr>
+            <tr><td style="text-align: left;">Overall Experience</td><td><input type="radio" value="1" name="overAllExp"/></td><td><input type="radio" value="2" name="overAllExp"/></td><td><input type="radio" value="3" name="overAllExp"/></td><td><input type="radio" value="4" name="overAllExp"/></td></tr>
+        </table>
+        <?php echo $reviewForm->error($model, 'rate_us'); ?>
+    </div>
+</div><br>
+<?php if($ServiceType==1){?>
+<div class="row-fluid" id="Hc_ques4">
+    <div class="span12">
+        <?php echo $reviewForm->label($model,'<abbr title="required">*</abbr><b>How would you rate the quality of the service you have received from KushGhar housemen ? </b>'); ?>
+        <table class="table_feedback">
+            <tr><th></th><th>Excellent</th><th>Good</th><th>Fair</th><th>Poor</th></tr>
+            <tr><td style="text-align: left;">Vacuuming</td><td><input type="radio" value="1" name="vaccuming"/></td><td><input type="radio" value="2" name="vaccuming"/></td><td><input type="radio" value="3" name="vaccuming"/></td><td><input type="radio" value="4" name="vaccuming"/></td></tr>
+            <tr><td style="text-align: left;">Dusting</td><td><input type="radio" value="1" name="dusting"/></td><td><input type="radio" value="2" name="dusting"/></td><td><input type="radio" value="3" name="dusting"/></td><td><input type="radio" value="4" name="dusting"/></td></tr>
+            <tr><td style="text-align: left;">Moping</td><td><input type="radio" value="1" name="moping"/></td><td><input type="radio" value="2" name="moping"/></td><td><input type="radio" value="3" name="moping"/></td><td><input type="radio" value="4" name="moping"/></td></tr>
+            <tr><td style="text-align: left;">Trash Disposal</td><td><input type="radio" value="1" name="trash"/></td><td><input type="radio" value="2" name="trash"/></td><td><input type="radio" value="3" name="trash"/></td><td><input type="radio" value="4" name="trash"/></td></tr>
+            <tr><td style="text-align: left;">Additional services(If Any)</td><td><input type="radio" value="1" name="aservices"/></td><td><input type="radio" value="2" name="aservices"/></td><td><input type="radio" value="3" name="aservices"/></td><td><input type="radio" value="4" name="aservices"/></td></tr>
+        </table>
+        <?php echo $reviewForm->error($model, 'quality_of_service'); ?>
+    </div>
+</div>
+<?php }?>
+<br>
+    <div class="row-fluid" id="ques5">
         <div class=" span2">
-            <?php echo $reviewForm->label($model, ' Rating'); ?></div>
+            <?php echo $reviewForm->label($model, '<b> Rating</b>'); ?></div>
         <div class="span6">
             <div class="input select rating-f">
             <select id="Rating1" name="rating">
@@ -28,9 +74,9 @@
         </div>
     </div>
 <br>
-    <div class="row-fluid">
+    <div class="row-fluid" id="ques6">
         <div class=" span12">
-            <?php echo $reviewForm->label($model, '<abbr title="required">*</abbr> Feedback/Suggestion'); ?>
+            <?php echo $reviewForm->label($model, '<b><abbr title="required">*</abbr> Feel free to share any comments or suggestions you may have</b>...'); ?>
             <?php echo $reviewForm->textArea($model,'Feedback',array('maxlength' => 250, 'class' => 'span12')); ?>
             <?php echo $reviewForm->error($model, 'Feedback'); ?>
         </div>
@@ -40,13 +86,14 @@
              <?php echo CHtml::Button('Save',array('id' => 'save','class' => 'btn btn-primary','onclick'=>'save();')); ?>
          </div>
 <script type="text/javascript">
+    var value1=-1;var value2=-1;var value3a=-1;var value3b=-1;var value3c=-1;
+    var value4a=-1;var value4b=-1;var value4c=-1;var value4d=-1;
     function save(){
         if(validate()){
          scrollPleaseWait("inviteSpinLoader","invite-form")
          var data = $("#review-form").serialize();
-         data+= '&Rating=' + $("#OrderReviewForm_Rating").val()+'&OrderNumber='+$("#OrderReviewForm_OrderNumber").val();
+         data+='&ques1='+value1+'&ques2='+value2+'&ques3a='+value3a+'&ques3b='+value3b+'&ques3c='+value3c+'&ques4a='+value4a+'&ques4b='+value4b+'&ques4c='+value4c+'&ques4d='+value4d;
          ajaxRequest('/user/orderreviewsave', data, reviewHandler)
-            //alert("Save==============="+data);
         }
     }
     function reviewHandler(data)
@@ -80,14 +127,125 @@
             }
         } 
     function validate(){
+    var type='<?php echo $ServiceType ?>';
+        var ques1 = $('input[name="arrive_on_time"]');
+        for (var i = 0; i < ques1.length; i++) {
+            if (ques1[i].checked == true) 
+                  value1=ques1[i].value;
+        }
+        if(value1==-1){
+            $("#OrderReviewForm_arrive_on_time_em_").show();
+            $("#OrderReviewForm_arrive_on_time_em_").addClass('errorMessage');
+            $("#OrderReviewForm_arrive_on_time_em_").text("Please enter your feedback for the above question");
+            return false;
+        }
+        var ques2=$('input[name="professional_appearance"]');
+        for (var i = 0; i < ques2.length; i++) {
+            if (ques2[i].checked == true) 
+                  value2=ques2[i].value;
+        }
+        if(value2==-1){
+            $("#OrderReviewForm_arrive_on_time_em_").hide();
+            $("#OrderReviewForm_professional_appearance_em_").show();
+            $("#OrderReviewForm_professional_appearance_em_").addClass('errorMessage');
+            $("#OrderReviewForm_professional_appearance_em_").text("Please enter your feedback for the above question");
+            return false;
+        }
+        var ques3a=$('input[name="officeStaff"]');
+        for (var i = 0; i < ques3a.length; i++) {
+            if (ques3a[i].checked == true) 
+                  value3a=ques3a[i].value;
+        }
+        if(value3a==-1){
+            $("#OrderReviewForm_professional_appearance_em_").hide();
+            $("#OrderReviewForm_rate_us_em_").show();
+            $("#OrderReviewForm_rate_us_em_").addClass('errorMessage');
+            $("#OrderReviewForm_rate_us_em_").text("Please enter your rating for the Office staff");
+            return false;
+        } 
+        var ques3b=$('input[name="homeService"]');
+        for (var i = 0; i < ques3b.length; i++) {
+            if (ques3b[i].checked == true) 
+                  value3b=ques3b[i].value;
+        }
+        if(value3b==-1){
+            $("#OrderReviewForm_professional_appearance_em_").hide();
+            $("#OrderReviewForm_rate_us_em_").show();
+            $("#OrderReviewForm_rate_us_em_").addClass('errorMessage');
+            $("#OrderReviewForm_rate_us_em_").text("Please enter your ratiing for the Home service");
+            return false;
+        } 
+        var ques3c=$('input[name="overAllExp"]');
+        for (var i = 0; i < ques3c.length; i++) {
+            if (ques3c[i].checked == true) 
+                  value3c=ques3c[i].value;
+        }
+        if(value3c==-1){
+            $("#OrderReviewForm_professional_appearance_em_").hide();
+            $("#OrderReviewForm_rate_us_em_").show();
+            $("#OrderReviewForm_rate_us_em_").addClass('errorMessage');
+            $("#OrderReviewForm_rate_us_em_").text("Please enter your rate for the Overall Experience");
+            return false;
+        } 
+       if(type==1){
+        var ques4a=$('input[name="vaccuming"]');
+        for (var i = 0; i < ques4a.length; i++) {
+            if (ques4a[i].checked == true) 
+                  value4a=ques4a[i].value;
+        }
+        if(value4a==-1){
+            $("#OrderReviewForm_rate_us_em_").hide();
+            $("#OrderReviewForm_quality_of_service_em_").show();
+            $("#OrderReviewForm_quality_of_service_em_").addClass('errorMessage');
+            $("#OrderReviewForm_quality_of_service_em_").text("Please enter your rate for the Vaccuming");
+            return false;
+        } 
+        var ques4b=$('input[name="dusting"]');
+        for (var i = 0; i < ques4b.length; i++) {
+            if (ques4b[i].checked == true) 
+                  value4b=ques4b[i].value;
+        }
+        if(value4b==-1){
+            $("#OrderReviewForm_rate_us_em_").hide();
+            $("#OrderReviewForm_quality_of_service_em_").show();
+            $("#OrderReviewForm_quality_of_service_em_").addClass('errorMessage');
+            $("#OrderReviewForm_quality_of_service_em_").text("Please enter your rate for the dusting");
+            return false;
+        } 
+        var ques4c=$('input[name="moping"]');
+        for (var i = 0; i < ques4c.length; i++) {
+            if (ques4c[i].checked == true) 
+                  value4c=ques4c[i].value;
+        }
+        if(value4c==-1){
+            $("#OrderReviewForm_rate_us_em_").hide();
+            $("#OrderReviewForm_quality_of_service_em_").show();
+            $("#OrderReviewForm_quality_of_service_em_").addClass('errorMessage');
+            $("#OrderReviewForm_quality_of_service_em_").text("Please enter your rate for the moping");
+            return false;
+        } 
+        var ques4d=$('input[name="trash"]');
+        for (var i = 0; i < ques4d.length; i++) {
+            if (ques4d[i].checked == true) 
+                  value4d=ques4d[i].value;
+        }
+        if(value4d==-1){
+            $("#OrderReviewForm_rate_us_em_").hide();
+            $("#OrderReviewForm_quality_of_service_em_").show();
+            $("#OrderReviewForm_quality_of_service_em_").addClass('errorMessage');
+            $("#OrderReviewForm_quality_of_service_em_").text("Please enter your rate for the trash disposal");
+            return false;
+        } }
         if (($('#OrderReviewForm_Feedback').val() == '')) {
+            $("#OrderReviewForm_quality_of_service_em_").hide();
+            $("#OrderReviewForm_rate_us_em_").hide();
             $("#OrderReviewForm_Feedback_em_").show();
             $("#OrderReviewForm_Feedback_em_").addClass('errorMessage');
             $("#OrderReviewForm_Feedback_em_").text("Please Enter your feedback or suggestion");
             if($("#OrderReviewForm_Rating").val()==''){
                 $("#OrderReviewForm_Rating").val("1");
             }
-                return false;
+            return false;
         }
         else
         {

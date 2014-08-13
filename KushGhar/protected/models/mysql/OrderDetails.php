@@ -212,15 +212,14 @@ public function sendorderStatus($id,$val){
         
         try{
             if($type==1){
-                $query="SELECT * FROM Kushghar.KG_House_cleaning_service where order_number=".$ordernumber;
+                $query="SELECT * FROM KG_House_cleaning_service where order_number=".$ordernumber;
             }
             else if($type==2){
-                $query="SELECT * FROM Kushghar.KG_Car_cleaning_service where order_number=".$ordernumber;
+                $query="SELECT * FROM KG_Car_cleaning_service where order_number=".$ordernumber;
             }
             else if($type==3){
-                $query="SELECT * FROM Kushghar.KG_Stewards_cleaning_service where order_number=".$ordernumber;
+                $query="SELECT * FROM KG_Stewards_cleaning_service where order_number=".$ordernumber;
             }
-            error_log("Query==================".$query);
             $result = YII::app()->db->createCommand($query)->queryRow();
         }
         catch (Exception $ex) {
@@ -242,6 +241,16 @@ public function sendorderStatus($id,$val){
                 $result = "success";
         }catch(Exception $ex){
              error_log("################Exception Occurred  changeContactStatus##############".$ex->getMessage());
+        }
+        return $result;
+    }
+    public function getOrderDetailsById($id){
+        try{
+            $query="SELECT * FROM KG_Order_details where id=".$id;
+            $result = YII::app()->db->createCommand($query)->queryRow();
+        }
+        catch (Exception $ex) {
+            error_log("getServiceDetailsById Exception occured==" . $ex->getMessage());
         }
         return $result;
     }

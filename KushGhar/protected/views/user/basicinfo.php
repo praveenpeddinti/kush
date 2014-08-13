@@ -424,7 +424,7 @@ return false;
             $("#updatedPasswordForm_error_em_").removeClass('errorMessage');
             $("#updatedPasswordForm_error_em_").addClass('alert alert-success');
             $("#updatedPasswordForm_error_em_").text('Password is updated successfully');
-            $("#updatedPasswordForm_error_em_").fadeOut(6000, "");
+            $("#updatedPasswordForm_error_em_").fadeOut(6000);
             $("#updatedPasswordForm_Password").val('');
             $("#updatedPasswordForm_RepeatPassword").val('');
       }else{

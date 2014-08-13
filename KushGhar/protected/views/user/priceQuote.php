@@ -356,17 +356,17 @@
                     </div>
                 </aside>
                 <article>
-                    <div id="orderPlaceDiv" style="display:none">
+                    <!--<div id="orderPlaceDiv" style="display:none">
 
                         <div class="row-fluid">
                             <div class="span12">
                                 <h2 class="paddingL20">Place order</h2> <hr>
                             </div>
                         </div>
-                    </div>               
+                    </div>-->               
                     <div id="priceQuoteDiv" class="row-fluid">
                         <div class="span12">
-                            <h2 class="paddingL20">Price Quote </h2> <hr>
+                            <h4 class="paddingL20">Price Quote </h4> <hr>
                             <div id="mailSpinLoader" ></div>
                             <div class="paddinground paddingTop0">
 

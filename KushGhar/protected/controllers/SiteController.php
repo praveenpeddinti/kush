@@ -8,7 +8,9 @@ class SiteController extends Controller {
     public function actionIndex() {
         $this->session['UserType']='';
         $this->pageTitle="KushGhar-Home";
-        $this->render('index');
+        $getServices = $this->kushGharService->getFeedbacksTotal5();
+        $this->render('index',array("getServices"=>$getServices));
+        //$this->render('index');
     }
 
     /* AboutUs Page */
@@ -133,6 +135,43 @@ class SiteController extends Controller {
         $this->pageTitle="KushGhar-More Services";
         $this->render('moreservices',array("inviteModel" => $inviteForm, "getServices"=>$getServices));
     }
+    
+    /* Customer Feedback Page */
+    public function actionCustomerFeedback() {
+        $inviteForm = new InviteForm;
+        //$getServices = $this->kushGharService->getFeedbacks();
+        $this->pageTitle="KushGhar-House Cleaning";
+        //$this->render('customerFeedback',array("inviteModel" => $inviteForm, "getServices"=>$getServices));
+        $this->render('customerFeedback',array("inviteModel" => $inviteForm));
+    }
+    
+    public function actionCustomerFeedback1() {
+        try {
+            if (isset($_GET['getServices_page'])) {
+                $inviteForm = new InviteForm;
+                //$totaluser = $this->kushGharService->getTotalUsers($_GET['uname'],$_GET['phone'],$_GET['status']);
+                $totaluser = 3;
+                $startLimit = ((int) $_GET['getServices_page'] - 1) * (int) $_GET['pageSize'];
+                $endLimit = $_GET['pageSize'];
+                if(count($totaluser)==0)
+                {
+                 $obj=  array('status' => 'success', 'html' => 0, 'totalCount' => $totaluser);
+                }
+                else
+                {
+                $getServices = $this->kushGharService->getFeedbacks($startLimit, $endLimit);
+                $renderHtml = $this->renderPartial('customerFeedback1', array('getServices' => $getServices, 'totalCount' => $totaluser), true);
+                $obj = array('status' => 'success', 'html' => $renderHtml, 'totalCount' => $totaluser);
+               
+                }
+                 $renderScript = $this->rendering($obj);
+                echo $renderScript;
+            }
+        } catch (Exception $ex) {
+            error_log("#########Exception Occurred########" . $ex->getMessage());
+        }
+    }
+    
     public function actionLogin() {
         $model = new LoginForm;
         // if it is ajax validation request

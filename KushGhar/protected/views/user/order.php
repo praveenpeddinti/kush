@@ -112,10 +112,10 @@
                 </div>
             </aside>
             <article>
-                <div class="row-fluid" style="height:480px">
+                <div class="row-fluid">
                     <div class="span12">
                         <h4 class="paddingL20">Customer Order Details</h4>
-                        
+                        <hr>
                         <div class="paddinground">    
                             <div id="InviteInfoSpinLoader"></div>
                             <div id="tablewidget"  style="margin: auto;"><div id="message" style="display:none"></div>

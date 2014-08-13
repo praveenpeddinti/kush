@@ -674,6 +674,22 @@ class KushGharService {
     public function getIspublishReview($id, $val) {
         return OrderReviews::model()->getIspublishReview($id, $val);
     }
+
+    
+    /*
+     * @Praveen feedback details show in home page 
+     */
+
+    public function getFeedbacksTotal5() {
+        return Services::model()->getFeedbacksTotal5();
+    }
+    public function getFeedbacks($startLimit, $endLimit){
+        return Services::model()->getFeedbacks($startLimit, $endLimit);
+    }
+    
+
+
+
     public function getCarMakes(){
         return CarMakes::model()->getcarMakes();
     }

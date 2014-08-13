@@ -101,7 +101,7 @@
             <article>
                 <div id="homeServiceWithOrderDiv" class="row-fluid">
                     <div class="span12">
-                        <h4 class="paddingL20">Services </h4> <hr>
+                        <h4 id="priceQuoteData" class="paddingL20">Services </h4> <hr>
                         <div class="paddinground paddingTop0">
                             <div id="serviceSpinLoader"></div>
                             <div id="homeServicesMainDiv">
@@ -284,10 +284,12 @@ $(document).ready(function() {
 
             if (globalspace.CarCleaning == 0 && globalspace.StewardCleaning == 0) {
                 $('#HouseCleaningSubmit').val('Submit');
+                
             }
             if (globalspace.HouseCleaning == 0 && globalspace.StewardCleaning == 0) {
 
                 $('#CarWashCleaningSubmit').val('Submit');
+                
 
             }
 
@@ -449,8 +451,11 @@ $(document).ready(function() {
             $('#homeServicesMainDiv').hide();
             $('#ServiceMainDiv').show();
             $('#ServiceMainDiv').html(data.data);
+            //$('#priceQuoteData').html('Price Quote');
             if (globalspace.StewardCleaning == 0) {
                 $('#CarWashCleaningSubmit').val('Submit');
+                //$('#priceQuoteData').html('Services');
+                
             }
         }
     }
@@ -889,6 +894,7 @@ $(document).ready(function() {
 
 
     function addCarWashCleaningServicehandler(data) {
+        
         //scrollPleaseWaitClose('serviceSpinLoader');
         if (data.status == 'success') {
             globalspace.HouseCleaning = Number(data.HouseCleaning);
@@ -897,8 +903,10 @@ $(document).ready(function() {
             $('#homeServicesMainDiv').hide();
             $('#ServiceMainDiv').show();
             $('#ServiceMainDiv').html(data.data);
+            //$('#priceQuoteData').html('Price Quote');
             if (globalspace.StewardCleaning == 0) {
                 $('#CarWashCleaningSubmit').val('Submit');
+                //$('#priceQuoteData').html('Price Quote');
             }
         }
     }
@@ -1318,7 +1326,7 @@ function onTotalStewards(obj) {
             $('#homeServicesMainDiv').hide();
             $('#ServiceMainDiv').show();
             $('#ServiceMainDiv').html(data.data);
-
+            //$('#priceQuoteData').html('Price Quote');
         }
     }
      function submitServiceOrder(){

@@ -16,12 +16,37 @@
                                         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                                         <li data-target="#myCarousel" data-slide-to="1"></li>
                                         <li data-target="#myCarousel" data-slide-to="2"></li>
+                                        <li data-target="#myCarousel" data-slide-to="3"></li>
                                     </ol>
                                     <!-- Carousel items -->
                                     <div class="carousel-inner">
                                         <div class="active item"><a href="/user/registration" style="border:0px; text-decoration:none;"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/b1.jpg" ></a></div>
                                         <div class="item"><a href="http://gadgets.ndtv.com/internet/features/kushghar-household-help-is-only-a-click-away-547111" target="_blank"  style="border:0px; text-decoration:none;"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/b3.jpg" ></a></div>
                                         <div class="item"><a href="http://gadgets.ndtv.com/internet/news/a-crowdfunding-project-to-make-domestic-chores-simple-and-help-the-underprivileged-543598" target="_blank" style="border:0px; text-decoration:none;"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/b2.jpg" ></a></div>
+                                        <div class="item">
+                                            <a href="/site/customerFeedback" style="border:0px; text-decoration:none;">
+                                            <h2>Customer FeedBack</h2>
+                                            <table id="userTable" class="table table-hover">
+                                            <tbody id="abusedWords_tbody">
+                                            <?php if (sizeof($getServices) <= 0) { ?>
+                                            <tr id="noRecordsTR">
+                                            <td>
+                                            <span class="text-error"> <b>No records found</b></span>
+                                            </td>
+                                            </tr>
+                                            <?php } else {
+                                            foreach ($getServices as $row) { ?>
+                                            <tr>
+                                            <td><center>
+                                                <?php $len= strlen($row['feedback']);
+                                                if($len>=20){echo substr($row['feedback'],0,20).'...';}else{echo $row['feedback'];}?></center>
+                                            </td>
+                                            </tr>
+                                            <?php } } ?>  
+                                            </tbody>
+                                            </table>
+                                            </a>
+                                        </div>
                                     </div>
                                     <!-- Carousel nav -->
                                     <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>

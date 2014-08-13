@@ -1061,8 +1061,8 @@ class UserController extends Controller {
                 
                 //$params = '';
                 $sendMailToUser=new CommonUtility;
-                //$sendMailToUser->actionSendmail($messageview1,$params1, $subject1, $to1,$employerEmail);
-                //$mailSendStatus=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
+                $sendMailToUser->actionSendmail($messageview1,$params1, $subject1, $to1,$employerEmail);
+                $mailSendStatus=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
         $data=$this->renderPartial('serviceOrder', array("customerDetails" => $customerDetails, 'HouseService'=>$getServiceDetails,'CarService'=>$getCarWashServiceDetails,'StewardService'=>$getStewardsServiceDetails,'getCars'=>$getTotalCars,'HO'=>$HOrder,'CO'=>$COrder,'SO'=>$SOrder), true);
         $obj = array('status' => 'success', 'data' => $data, 'error' => '');
         $renderScript = $this->rendering($obj);
@@ -1356,7 +1356,7 @@ class UserController extends Controller {
             }
         }
    
-   public function actionMailSendData() {
+   /*public function actionMailSendData() {
         try {   
                 $cId = $this->session['UserId'];
         $genOrderNo = '';
@@ -1457,7 +1457,7 @@ class UserController extends Controller {
                   /*
                   * Customer Mail Details
                   */
-                $to1 = $customerDetails['email_address'];
+                /*pra$to1 = $customerDetails['email_address'];
                 $subject1 =$getOrderNumber." Order placed";
                 $Logo = YII::app()->params['SERVER_URL'] . "/images/color_logo.png";
                 $employerEmail = "no-reply@kushghar.com";
@@ -1466,7 +1466,7 @@ class UserController extends Controller {
                  /*
                  * KG Team mail details
                  */
-                $to = 'praveen.peddinti@gmail.com';
+                /*pra$to = 'praveen.peddinti@gmail.com';
                 $subject ="Order placed";
                 //$Logo = YII::app()->params['SERVER_URL'] . "/images/color_logo.png";
                 //$employerEmail = "no-reply@kushghar.com";
@@ -1483,7 +1483,7 @@ class UserController extends Controller {
             } catch (Exception $ex) {
             error_log("#########Exception Occurred########" . $ex->getMessage());
         }
-    }
+    }*/
     public function actionOrderReview(){
        try{
            $Model = new OrderReviewForm;

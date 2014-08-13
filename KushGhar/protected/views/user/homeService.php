@@ -435,8 +435,7 @@ $(document).ready(function() {
             }else{
                 queryString += '&Type=' + type+'&ContactInfo=No';
             }
-            
-            alert(queryString);
+ 
             ajaxRequest('/user/services', queryString, addHouseCleaningServicehandler);
         }
     }

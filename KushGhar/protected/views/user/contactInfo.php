@@ -166,7 +166,7 @@
     <div class="row-fluid">
     <div class=" span4">
     <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> city'); ?>
-        <?php echo $form->dropDownList($model,'City', array(''=>'Select City','Hyderabad' => 'Hyderabad', 'Secunderabad'=>'Secunderabad'), array('class' => 'span12','options' => array($getServiceDetails['City'] => array('selected' => 'selected'))));?>       
+        <?php echo $form->dropDownList($model,'City', array(''=>'Select City','Hyderabad' => 'Hyderabad', 'Secunderabad'=>'Secunderabad'), array('class' => 'span12','options' => array($customerAddressDetails['City'] => array('selected' => 'selected'))));?>       
         <?php echo $form->error($model,'City'); ?>
    </div>
     <div class=" span4">

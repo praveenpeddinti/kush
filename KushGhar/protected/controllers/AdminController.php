@@ -629,20 +629,26 @@ $this->pageTitle="KushGhar-Basic Info";
             error_log("####### Exception Occurred in fetching full details ##########".$ex->getMessage());
         }
     }
-//    public function actionOrderSchedule(){
-//         try{
-//            $id=$_POST['Id'];
-//            $this->pageTitle="KushGhar-Admin Order Schedule";
-//            $vendors=$this->kushGharService->getAllVendors();
-//            $OrderDetails=  $this->kushGharService->getOrderDetailsById($id);
-//            $customerDetails = $this->kushGharService->getCustomerDetails($OrderDetails['CustId']);
-//            $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($OrderDetails['CustId']);
-//            $renderHtml=  $this->renderPartial("orderschedule",array("customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "OrderDetails"=>$OrderDetails,'vendors'=>$vendors),true);
-//            $obj=array('status'=>'success','html'=>$renderHtml);
-//            $renderScript=  $this->rendering($obj);
-//            echo $renderScript;
-//         } catch (Exception $ex) {
-//            error_log("#######Exception Occured#######". $ex->getMessage());
-//        }
-//    }
+    public function actionOrderSchedule(){
+         try{
+            $id=$_POST['Id'];
+            $this->pageTitle="KushGhar-Admin Order Schedule";
+            $vendors=$this->kushGharService->getAllVendors();
+            $OrderDetails=  $this->kushGharService->getOrderDetailsById($id);
+            $customerDetails = $this->kushGharService->getCustomerDetails($OrderDetails['CustId']);
+            $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($OrderDetails['CustId']);
+            $renderHtml=  $this->renderPartial("orderschedule",array("customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "OrderDetails"=>$OrderDetails,'vendors'=>$vendors,"id"=>$id),true);
+            $obj=array('status'=>'success','html'=>$renderHtml);
+            $renderScript=  $this->rendering($obj);
+            echo $renderScript;
+         } catch (Exception $ex) {
+            error_log("#######Exception Occured#######". $ex->getMessage());
+        }
+    }
+    public function actionOrderScheduleStatus(){
+        $status = 1;
+        $changeUserStatus = $this->kushGharService->sendorderScheduleStatus($_POST['Id'], $status,$_POST['vendorVals']);
+        $obj = array('status' => 'error', 'data' => '', 'error' => $changeUserStatus);
+        echo CJSON::encode($obj);
+    }
  }

@@ -22,6 +22,7 @@
                                 <li><a href="/admin/usermanagement"> <i class="fa fa-user"></i> User Management</a></li>
                                 <li><a href="/admin/vendormanagement"> <i class="fa fa-user"></i> Vendor Management</a></li>
                                 <li><a href="/admin/reviews"> <i class="fa fa-user"></i> Review/Feedback</a></li>
+                                <li><a href="/settings/carMakes"> <i class="fa fa-cog"></i> Settings</a></li>
                             </ul>
                         </div>
                         
@@ -116,6 +117,18 @@
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->
                 </div><!-- /.modal -->
+                <div id="myModalOrderSchedule" class="modal fade" >
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h3 id="myModalLabel">Schedule the Order</h3>
+                            </div>
+                            <div class="modal-body" id="myModalOrderScheduleDiv" style="padding:15px;">
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
             </article>
         </div>
     </section>
@@ -166,9 +179,6 @@
             });
         
     }
-    
-    
-    
     function inviteUser(rowNos, status,value) {
         //scrollPleaseWait("InviteInfoSpinLoader","contactInfo-form");
         var data = "Id=" + rowNos + "&status=" + status+"&value="+value;
@@ -191,7 +201,25 @@
 
                 }
             });
-          }else{
+          }
+        else if(value=='Schedule'){
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: '<?php echo Yii::app()->createAbsoluteUrl("/admin/orderschedule"); ?>',
+                data: data,
+                success: function(data) {
+                    //scrollPleaseWaitClose('InviteInfoSpinLoader');
+                    $("#myModalOrderSchedule").modal({ backdrop: 'static', keyboard: false,show:false });
+                    $("#myModalOrderScheduleDiv").html(data.html);
+                    $('#myModalOrderSchedule').modal('show');
+                },
+                error: function(data) { // if error occured
+                    alert("Error occured.please try again");
+                }
+            });
+        }
+        else{
               $.ajax({
                 type: 'POST',
                 dataType: 'json',
@@ -202,26 +230,18 @@
                     $('#message').show();
                     $("#message").addClass('alert alert-success');
                     $("#message").text('Service Status is changed Successfully.');
-                    $("#message").fadeOut(6000, "");
+                    $("#message").fadeOut(6000);
                     //$('#usera_' + rowNos).remove();
                     activeFormHandler2(data, status, rowNos,value);
-                    
                 },
                 error: function(data) { // if error occured
-                    
-
                 }
             });
             }
     }
-
-    
-    
     function activeFormHandler2(data, status, rowNos,value) {
-        
 //alert(value+"==order_number---------"+status+"==="+rowNos);
         if (value == 'Schedule') {
-            
             $('#status_' + rowNos).text('Schedule');
         } else if (value == 'Cancel') {
             
@@ -230,39 +250,24 @@
             $('#status_' + rowNos).text('Close');
         }
         else {
-            
             $('#status_' + rowNos).text('Open');
         }
-
         if (data.status == 'success') {
-            
             //alert("ok");
         } else {
-
             //alert("else part");
-
         }
     }
-
-    
-    
     function search(){
        // alert("enter===="+$("#orderNo").val());
         var sType = $("#serviceType").val();
         var orderNo = $("#orderNo").val();
         var status = $("#status").val();
         getCollectionDataWithPagination('/admin/newOrder','userDetails', 'abusedWords_tbody',1,5,sType,orderNo,status,'');
-   
     }
-    
-    
     $(function(){
-        
         getCollectionDataWithPagination('/admin/newOrder','userDetails', 'abusedWords_tbody',1,5,'','','20','');
     });
-    
-    
-    
     function ajaxRequest(url, queryString,callback,dataType,beforeSendCallback) { 
     var data = queryString;
     if(dataType==null || dataType==undefined){
@@ -280,16 +285,12 @@
             }
         },
         error: function(data) {            
-            
-          
         },
          beforeSend: function() {
              if(beforeSendCallback!=null && beforeSendCallback!=undefined){
                    beforeSendCallback();
              }
-             
             }
-        
     });
 }
 function getCollectionDataWithPagination(URL,CollectionName, MainDiv, CurrentPage, PageSize,sType,orderNo,status,callback){
@@ -298,16 +299,13 @@ function getCollectionDataWithPagination(URL,CollectionName, MainDiv, CurrentPag
         globalspace[MainDiv+'_serviceType']=Number(sType);
         globalspace[MainDiv+'_orderNo']=Number(orderNo);
         globalspace[MainDiv+'_status']=Number(status);
-
         var newURL =  URL+"?"+CollectionName+"_page="+globalspace[MainDiv+'_page']+"&pageSize="+globalspace[MainDiv+'_pageSize']+"&serviceType="+globalspace[MainDiv+'_serviceType']+"&orderNo="+globalspace[MainDiv+'_orderNo']+"&status="+globalspace[MainDiv+'_status'];
     var data = "";  
-    
         ajaxRequest(newURL,data,function(data){getCollectionDataWithPaginationHandler(data,URL,CollectionName,MainDiv,callback)});
 }
     function getCollectionDataWithPaginationHandler(data,URL,CollectionName,MainDiv,callback){
           //scrollPleaseWaitClose('spinner_admin');
         $("#"+MainDiv).html(data.html);
-                
                 //$('#'+MainDiv+'_count').text(data.totalCount);
                 $("#pagination").pagination({
                     currentPage: globalspace[MainDiv+'_page'],
@@ -318,11 +316,9 @@ function getCollectionDataWithPagination(URL,CollectionName, MainDiv, CurrentPag
                         globalspace[MainDiv+'_page'] = pageNumber;
                         getCollectionDataWithPagination(URL,CollectionName, MainDiv, globalspace[MainDiv+'_page'], globalspace[MainDiv+'_pageSize'],globalspace[MainDiv+'_serviceType'],globalspace[MainDiv+'_orderNo'],globalspace[MainDiv+'_status'], callback)
                     }
-
                 });
                 if(callback!=''){
                     callback();
                 }
     }
 </script>
-

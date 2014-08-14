@@ -176,5 +176,15 @@ class VendorIndividualRegistration extends CActiveRecord {
         }
         return $result;
     }
+    public function getAllVendors(){
+        try {
+            $Criteria = new CDbCriteria();
+            $Criteria->order = 'vendor_id ASC';
+            $vendorsData = VendorIndividualRegistration::model()->findAll($Criteria);
+        } catch (Exception $ex) {
+            
+        }
+        return $vendorsData;
+    }
 }
 ?>

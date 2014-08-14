@@ -13,6 +13,7 @@ class OrderDetails extends CActiveRecord {
     public $total_service_people;
     public $create_timestamp;
     public $update_timestamp;
+    public $assign_vendors;
     
 
     public static function model($className=__CLASS__) {
@@ -251,6 +252,19 @@ public function sendorderStatus($id,$val){
         }
         catch (Exception $ex) {
             error_log("getServiceDetailsById Exception occured==" . $ex->getMessage());
+        }
+        return $result;
+    }
+    public function sendorderScheduleStatus($id,$status,$vendorVals){
+        $result = "failed";
+        try{
+            $InviteObj = OrderDetails::model()->findByAttributes(array('id'=>$id));
+            $InviteObj->status = $status;
+            $InviteObj->assign_vendors=$vendorVals;
+            if($InviteObj->update())
+                $result = "success";
+        }catch(Exception $ex){
+             error_log("################Exception Occurred  changeContactStatus##############".$ex->getMessage());
         }
         return $result;
     }

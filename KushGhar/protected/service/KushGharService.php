@@ -749,4 +749,7 @@ class KushGharService {
     public function getAllVendors(){
         return VendorIndividualRegistration::model()->getAllVendors();
     }
+    public function sendorderScheduleStatus($id,$status,$vendorVals){
+        return OrderDetails::model()->sendorderScheduleStatus($id,$status,$vendorVals);
+    }
 } ?>

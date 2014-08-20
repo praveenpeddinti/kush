@@ -63,7 +63,7 @@
                                     $totalRoomsPrice = $priceRoom1 + $priceRoom2 +750;
                                     //$totalRoomsPrice = 0 ;  
                                     }
-                                    $priceAddServices = (($HouseService['window_grills'] + $HouseService['fridge_interior'] + $HouseService['microwave_oven_interior']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
+                                    $priceAddServices = (($HouseService['window_grills'] + $HouseService['cupboard_cleaning'] + $HouseService['fridge_interior'] + $HouseService['microwave_oven_interior']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
                                     $totalRoomsPrice+= $priceAddServices;
                                     echo $totalRoomsPrice; ?>
                                                 </td>

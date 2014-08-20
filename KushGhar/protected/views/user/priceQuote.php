@@ -37,7 +37,7 @@
                             $totalRoomsPrice = $priceRoom1 + $priceRoom2 + 750;
                             //$totalRoomsPrice = 0 ;  
                         }
-                        $priceAddServices = (($getServiceDetails['window_grills'] + $getServiceDetails['fridge_interior'] + $getServiceDetails['microwave_oven_interior']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
+                        $priceAddServices = (($getServiceDetails['window_grills'] + $getServiceDetails['cupboard_cleaning'] + $getServiceDetails['fridge_interior'] + $getServiceDetails['microwave_oven_interior']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
                         $totalRoomsPrice+= $priceAddServices;?>
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -90,10 +90,11 @@
                                 </tr>
                                 <?php } ?>
                                 
-                                <?php if( ($getServiceDetails['window_grills'] != 0) || ($getServiceDetails['fridge_interior'] != 0) || ($getServiceDetails['microwave_oven_interior'] != 0) || ($getServiceDetails['pooja_room_cleaning'] != 0) ){?>
+                                <?php if( ($getServiceDetails['window_grills'] != 0) || ($getServiceDetails['cupboard_cleaning'] != 0) || ($getServiceDetails['fridge_interior'] != 0) || ($getServiceDetails['microwave_oven_interior'] != 0) || ($getServiceDetails['pooja_room_cleaning'] != 0) ){?>
                                 <tr>
                                     <td valign='top'>Additional Services are</td>
                                     <td><b><?php if ($getServiceDetails['window_grills'] == 1) echo "Window grills cleaning<br>"; 
+                                              if ($getServiceDetails['cupboard_cleaning'] == 1) echo "Cupboard cleaning<br>";
                                               if ($getServiceDetails['fridge_interior'] == 1) echo "Fridge interior cleaning<br>"; 
                                               if ($getServiceDetails['microwave_oven_interior'] == 1) echo "Micro wave oven interior cleaning<br>"; 
                                               if ($getServiceDetails['pooja_room_cleaning'] == 1) echo "Pooja room cleaning";?>
@@ -405,7 +406,7 @@
                                                     $totalRoomsPrice = $priceRoom1 + $priceRoom2 + 750;
                                                     //$totalRoomsPrice = 0 ;  
                                                 }
-                                                $priceAddServices = (($getServiceDetails['window_grills'] + $getServiceDetails['fridge_interior'] + $getServiceDetails['microwave_oven_interior']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
+                                                $priceAddServices = (($getServiceDetails['window_grills'] + $getServiceDetails['cupboard_cleaning'] + $getServiceDetails['fridge_interior'] + $getServiceDetails['microwave_oven_interior']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
                                                 //$serviceTaxPrice = (($priceRoom1+$priceRoom2+$priceAddServices)*12.36)/100;
 
                                                 /* if($totalRoomsPrice < 750)
@@ -467,10 +468,11 @@
                                                                     </tr>
                                                                 <?php } ?>
         
-                                                                <?php if( ($getServiceDetails['window_grills'] != 0) || ($getServiceDetails['fridge_interior'] != 0) || ($getServiceDetails['microwave_oven_interior'] != 0) || ($getServiceDetails['pooja_room_cleaning'] != 0) ){?>
+                                                                <?php if( ($getServiceDetails['window_grills'] != 0) || ($getServiceDetails['cupboard_cleaning'] != 0) || ($getServiceDetails['fridge_interior'] != 0) || ($getServiceDetails['microwave_oven_interior'] != 0) || ($getServiceDetails['pooja_room_cleaning'] != 0) ){?>
                                 <tr>
                                     <td valign='top'>Additional Services are</td>
                                     <td><b><?php if ($getServiceDetails['window_grills'] == 1) echo "Window grills cleaning<br>"; 
+                                              if ($getServiceDetails['cupboard_cleaning'] == 1) echo "Cupboard cleaning<br>";
                                               if ($getServiceDetails['fridge_interior'] == 1) echo "Fridge interior cleaning<br>"; 
                                               if ($getServiceDetails['microwave_oven_interior'] == 1) echo "Micro wave oven interior cleaning<br>"; 
                                               if ($getServiceDetails['pooja_room_cleaning'] == 1) echo "Pooja room cleaning";?>

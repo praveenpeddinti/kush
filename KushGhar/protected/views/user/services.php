@@ -32,8 +32,8 @@
                                         <?php echo $form->dropDownList($model,'HouseType', array(''=>'Select','Apartment' => 'Apartment', 'Villa'=>'Villa','Independent House' => 'Independent House', 'Commercial'=>'Commercial'), array('class' => 'span12','options' => array($getServiceDetails['house_type'] => array('selected' => 'selected'))));?>
                                     </div>  
                                     <div class=" span4">
-                                        <?php echo $form->label($model, 'SquareFeets'); ?>
-                                        <?php echo $form->dropDownList($model,'SquareFeets', array(''=>'Select Range','500-750' => '500-750', '750-1000'=>'750-1000','1000-1500' => '1000-1500', '1500-2000'=>'1500-2000', '2000 and more '), array('class' => 'span12','options' => array($getServiceDetails['squarefeets'] => array('selected' => 'selected'))));?>
+                                        <?php echo $form->label($model, 'Square Feets'); ?>
+                                        <?php echo $form->dropDownList($model,'SquareFeets', array(''=>'Select Range','500-750' => '500-750', '750-1000'=>'750-1000','1000-1500' => '1000-1500', '1500-2000'=>'1500-2000', '2000 and more'=>'2000 and more '), array('class' => 'span12','options' => array($getServiceDetails['squarefeets'] => array('selected' => 'selected'))));?>
                                     </div>
                                       <div class="span4">
                                         <label><abbr title="required">*</abbr> Service Date</label>
@@ -107,6 +107,12 @@
                                             </div>
                                                 <div id="WindowGrillsTooltip" class="Additional_S_price" style="display:none">Cost of Services is<br/> <b>Rs.<label>250</label>/-</b></div>
                                             </div>
+                                            <div class="span3 cupboard dashed_left_border" style="min-height: 121px"><?php echo $form->label($model, 'Cupboard  Cleaning'); ?>
+                                            <div class="switch switch-large" id="CupBoard" data-on-label="Yes" data-off-label="No">
+                                                <?php echo $form->checkBox($model, 'CupBoard', array('id' => 'HouseCleaningForm_CupBoard')); ?>
+                                            </div>
+                                                <div id="CupBoardTooltip" class="Additional_S_price" style="display:none">Cost of Services is<br/> <b>Rs.<label>250</label>/-</b></div>
+                                            </div>
                                             <div class="span3 fridge dashed_left_border" style="min-height: 121px"><?php echo $form->label($model, 'Fridge Interior Cleaning'); ?>
                                             <div class="switch switch-large" id="FridgeInterior" data-on-label="Yes" data-off-label="No">
                                                 <?php echo $form->checkBox($model, 'FridgeInterior', array('id' => 'HouseCleaningForm_FridgeInterior')); ?>
@@ -119,7 +125,7 @@
                                                 </div>
                                                 <div id="MicroWaveOvenTooltip" class="Additional_S_price" style="display:none">Cost of Services is<br/> <b>Rs.<label>250</label>/-</b></div>
                                             </div>
-                                            <div class="span3 pooja dashed_left_border" style="min-height: 121px">
+                                            <div class="span3 pooja" style="min-height: 121px">
                                                 <label>Pooja Room Cleaning</label>
                                                 <div class="switch switch-large" id="PoojaRoom" data-on-label="Yes" data-off-label="No">
                                                 <?php echo $form->checkBox($model, 'PoojaRoom', array('id' => 'HouseCleaningForm_PoojaRoom')); ?>
@@ -213,6 +219,7 @@
         $("#HouseCleaningForm_State").val('35');
         Custom.init();
         $('#WindowGrills').bootstrapSwitch();
+        $('#CupBoard').bootstrapSwitch();
         $('#FridgeInterior').bootstrapSwitch();
         $('#MicroWaveOven').bootstrapSwitch();
         $('#PoojaRoom').bootstrapSwitch();
@@ -265,6 +272,13 @@
         <?php } else {?>
         $('#WindowGrills').bootstrapSwitch('setState', false);
         <?php } ?>
+            
+        <?php if($getServiceDetails['cupboard_cleaning'] == 1){ ?>
+        $('#CupBoard').bootstrapSwitch('setState', true);
+        $('#CupBoardTooltip').show();
+        <?php } else {?>
+        $('#CupBoard').bootstrapSwitch('setState', false);
+        <?php } ?>    
             
         <?php if($getServiceDetails['fridge_interior'] == 1){ ?>
         $('#FridgeInterior').bootstrapSwitch('setState', true);
@@ -330,6 +344,17 @@
             }
             else
                 $('#WindowGrillsTooltip').hide();
+        });
+        $('#CupBoard').on('switch-change', function (e, data) {
+            var $el = $(data.el);
+            value = data.value;
+            
+            if(value == true){
+                $('#CupBoardTooltip').show();
+                //$("#CupBoardTooltip").fadeOut(10000, "");
+            }
+            else
+                $('#CupBoardTooltip').hide();
         });
         $('#FridgeInterior').on('switch-change', function (e, data) {
             var $el = $(data.el);

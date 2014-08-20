@@ -42,13 +42,14 @@
                     <td><?php echo "<b>" . $services['pooja_room_cleaning'] . "</b>"; ?></td>
                 </tr>
                 <?php } ?>
-                <?php if( ($services['window_grills'] != 0) || ($services['fridge_interior'] != 0) || ($services['microwave_oven_interior'] != 0) || ($services['pooja_room_cleaning'] != 0) ){?>
+                <?php if( ($services['window_grills'] != 0) ||  ($services['fridge_interior'] != 0) || ($services['microwave_oven_interior'] != 0) || ($services['pooja_room_cleaning'] != 0) ){?>
                                     
                 <tr>
                     <td valign='top'>Additional Services are</td>
                 </tr>
                 <tr>
                     <td><b><?php if ($services['window_grills'] == 1) echo " Window grills cleaning<br>"; ?>
+                        <?php if ($services['cupboard_cleaning'] == 1) echo " Cupboard cleaning<br>"; ?>
                         <?php if ($services['fridge_interior'] == 1) echo " Fridge interior cleaning<br>"; ?>
                         <?php if ($services['microwave_oven_interior'] == 1) echo " Micro wave oven interior cleaning<br>"; ?>
                         <?php if ($services['pooja_room_cleaning'] == 1) echo " Pooja room cleaning<br>"; ?>

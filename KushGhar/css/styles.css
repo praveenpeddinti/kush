@@ -513,13 +513,14 @@ input.serachInput::-ms-reveal { width : 0; height: 0;}
 .details {font-family: MuseoSlab700;font-size: 14px;line-height: 30px;}
 .paddingTop0{ padding-top:0px;}
 .borderB{border-bottom:2px solid #dddddd;}
-.window_cleaning, .fridge, .woven, .pooja{ background:url(../images/services_img.png) no-repeat left top; padding-top:80px; text-align:center; }
+.window_cleaning, .fridge, .woven, .pooja, .cupboard{ background:url(../images/services_img.png) no-repeat left top; padding-top:80px; text-align:center; }
 .window_cleaning{ background-position: center top;}
 .fridge{background-position: center -535px;}
 .woven{background-position: center -244px;}
 .pooja{background-position: center 5px;}
+.cupboard{background-position: center 5px;}
 .dashed_left_border{ border-left:1px dashed #ccc}
-.window_cleaning  label, .fridge  label, .woven label{ display:inline-block}
+.window_cleaning  label, .fridge  label, .woven label, .cupboard label{ display:inline-block}
 .Additional_S .row-fluid [class*="span"]{ margin-left:0px;}
 .panel-heading{ background:#f4f4f4; margin-bottom:2px;}
 .panel-title{ padding:0; margin:0;}

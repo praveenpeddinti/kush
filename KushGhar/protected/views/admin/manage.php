@@ -331,4 +331,26 @@ function getCollectionDataWithPaginationHandler(data,URL,CollectionName,MainDiv,
         getCollectionDataWithPagination('/admin/newManage','userDetails', 'abusedWords_tbody',1,5,uname,phone,status,'');
    
     }
+    var  moveTextToTextbox='';
+    var divId='';
+    var textData='';
+    function showTooltip(id,textData){
+       var dumpdata='';
+       var textData1 =document.getElementById(id).innerHTML;
+       if(textData1.length>=10){
+           if(moveTextToTextbox==''){
+               dumpdata=textData;}else{dumpdata=moveTextToTextbox;}
+           }else{
+               dumpdata=textData1;
+           }
+       divId=id.replace(/view/i, "div");
+       if(textData.length>=15){
+           document.getElementById(divId).style.display='block';
+           document.getElementById(divId).innerHTML=dumpdata;
+       }else{document.getElementById(divId).style.display='none';}
+    }
+    function showTooltipdown(id){
+       divId=id.replace(/view/i, "div");
+       document.getElementById(divId).style.display='none';
+    }
 </script>

@@ -130,7 +130,7 @@
                                 <?php foreach ($getCarWashServiceDetails as $cw) { ?>
                                 <tr>
                                     <td>Make / Model of the Car</td>
-                                    <td><?php echo "<b>" . $cw['make_of_car'] . "</b>"; ?></td>
+                                    <td><?php echo "<b>" . $cw['make_of_car']." / ".$cw['model_of_car']."</b>"; ?></td>
                                 </tr>
                                 <?php if ($cw['exterior_cleaning'] != 0) { ?>
                                 <tr>
@@ -512,7 +512,7 @@
 
                                                                     <tr>
                                                                         <td>Make / Model of the Car</td>
-                                                                        <td><?php echo "<b>" . $cw['make_of_car'] . "</b>"; ?></td>
+                                                                        <td><?php echo "<b>" . $cw['make_of_car']." / ".$cw['model_of_car']."</b>"; ?></td>
                                                                     </tr>
                                                                     <?php if ($cw['exterior_cleaning'] != 0) { ?>
                                                                         <tr>

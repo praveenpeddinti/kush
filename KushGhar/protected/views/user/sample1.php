@@ -9,10 +9,40 @@
         </div><hr style="margin: 0;" />
     <div class="row-fluid">
             <div class=" span4">
-                <label><abbr title="required">*</abbr> Make / Model of the Car</label>
-                <input type="text" class="span12" maxLength="25" value="<?php echo isset($getCarWashServiceDetails[$i])?$getCarWashServiceDetails[$i]['make_of_car']:''; ?>" id="<?php echo $i+1; ?>_MakeOfCar">
-                <div id="<?php echo $i+1; ?>_MakeOfCar_em" class="errorMessage" style="display:none"></div>
+                <label><abbr title="required">*</abbr> Make</label>
+                <select name="<?php echo $i+1; ?>_Make" id="<?php echo $i+1; ?>_Make" class="span12" onchange="ModelChange(this,'<?php echo $i+1; ?>');">
+                    <option value="">Select </option>
+                    <?php foreach ($Make as $make) { ?>
+                    <?php 
+                    $make_status = isset($getCarWashServiceDetails[$i])?$getCarWashServiceDetails[$i]['make_of_car']:'';
+                    $makeselected = $make_status==$make['make_name']?'selected':''; ?>
+                    <option  <?php echo $makeselected; ?> value="<?php echo $make['make_name']; ?>"><?php echo $make['make_name']; ?></option>
+                    <?php } ?>
+                    </select>
+                    <div id="<?php echo $i+1; ?>_Make_em" class="errorMessage" style="display:none"></div>
             </div>
+           <div class="span4" id="<?php echo $i+1; ?>_modelDev" style="display:block">
+                <label><abbr title="required">*</abbr> Model</label>
+                <?php $model_select = isset($getCarWashServiceDetails[$i])?'disabled':'';
+                
+                ?>
+                <select <?php echo $model_select; ?> name="<?php echo $i+1; ?>_Model" id="<?php echo $i+1; ?>_Model" class="span12">
+                    <option value="">Select </option>
+                    <?php foreach ($Model as $modelName) { ?>
+                    <?php 
+                    $model_status = isset($getCarWashServiceDetails[$i])?$getCarWashServiceDetails[$i]['model_of_car']:'';
+                    $modelselected = $model_status==$modelName['model_name']?'selected':''; ?>
+                    
+                    <option  <?php echo $modelselected; ?> value="<?php echo $modelName['model_name']; ?>"><?php echo $modelName['model_name']; ?></option>
+                    <?php } ?>
+                    </select>
+                    <div id="<?php echo $i+1; ?>_Model_em" class="errorMessage" style="display:none"></div>
+            </div>
+            <!--<div class=" span4">
+                <label><abbr title="required">*</abbr> Make / Model of the Car</label>
+                <input type="text" class="span12" maxLength="25" value="<?php //echo isset($getCarWashServiceDetails[$i])?$getCarWashServiceDetails[$i]['make_of_car']:''; ?>" id="<?php echo $i+1; ?>_MakeOfCar">
+                <div id="<?php //echo $i+1; ?>_MakeOfCar_em" class="errorMessage" style="display:none"></div>
+            </div>-->
             <div class=" span4">
                 <label> Exterior Color</label>
                 <input type="text" class="span12" maxLength="25"  value="<?php echo isset($getCarWashServiceDetails[$i])?$getCarWashServiceDetails[$i]['exterior_color']:''; ?>" id="<?php echo $i+1; ?>_ExteriorColor">
@@ -78,4 +108,20 @@
         if($("#2_State").val()=='')
         $("#2_State").val('35');
     });
+    
+    function ModelChange(obj,rowNo){
+        var queryString = 'MakeId=' + obj.value+'&RowNo='+rowNo;
+        ajaxRequest('/user/getModel', queryString, getModelhandler);
+
+    }
+    
+    function getModelhandler(data) {
+        if (data.status == 'success') {
+            $("#"+data.RowNo+"_modelDev").html(data.html);
+            //$('#homeServicesMainDiv').hide();
+            //$('#ServiceMainDiv').show();
+            //$('#ServiceMainDiv').html(data.data);
+
+        }
+    }
 </script>

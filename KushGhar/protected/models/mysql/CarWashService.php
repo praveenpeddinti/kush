@@ -6,6 +6,7 @@ class CarWashService extends CActiveRecord {
     public $CustId;
     public $total_cars;
     public $make_of_car;
+    public $model_of_car;
     public $order_number;
     public $order_id;
     public $different_location;
@@ -41,10 +42,11 @@ class CarWashService extends CActiveRecord {
     public function addCarWashService($model,$cId,$DL) {
         try {
             $servicesDetails = new CarWashService();
-            $orderNo="KG000".$cId.gmdate("Y-m-d", time());
+            //$orderNo="KG000".$cId.gmdate("Y-m-d", time());
             
             if($model->TotalCars>1){
-            $make_of_car = explode(',', $model->MakeOfCar);
+            $make_of_car = explode(',', $model->Make);
+            $model_of_car = explode(',', $model->Model);
             $exterior_color = explode(',', $model->ExteriorColor);
             //$interior_cleaning = explode(',', $model->InteriorCleaning);
             //$shampoo_seats = explode(',', $model->ShampooSeats);
@@ -78,7 +80,7 @@ class CarWashService extends CActiveRecord {
                     $pin_code[$i];
                 }*/
                 
-                $query = "insert into  KG_Car_cleaning_service(ServiceId,CustId,total_cars,different_location,week_days,carservice_start_time,service_no_of_times,make_of_car,order_number,exterior_color,address_line1,address_line2,alternate_phone,address_state,address_city,address_pin_code,status,create_timestamp,update_timestamp) values(2,$cId,$model->TotalCars,$DL,'$model->WeekDays','$model->ServiceStartTime','$model->NumberOfTimesServices','$make_of_car[$i]','$orderNo','$exterior_color[$i]','$address1[$i]','$address2[$i]','$alternate_phone[$i]','$state[$i]','$city[$i]','$pin_code[$i]','0','$create_timestamp','$update_timestamp')";
+                $query = "insert into  KG_Car_cleaning_service(ServiceId,CustId,total_cars,different_location,week_days,carservice_start_time,service_no_of_times,make_of_car,model_of_car,exterior_color,address_line1,address_line2,alternate_phone,address_state,address_city,address_pin_code,status,create_timestamp,update_timestamp) values(2,$cId,$model->TotalCars,$DL,'$model->WeekDays','$model->ServiceStartTime','$model->NumberOfTimesServices','$make_of_car[$i]','$model_of_car[$i]','$exterior_color[$i]','$address1[$i]','$address2[$i]','$alternate_phone[$i]','$state[$i]','$city[$i]','$pin_code[$i]','0','$create_timestamp','$update_timestamp')";
             
             $result1 = YII::app()->db->createCommand($query)->execute();
            
@@ -86,11 +88,12 @@ class CarWashService extends CActiveRecord {
             }
            
             }else{
-            $orderNo="KG000".$cId.gmdate("Y-m-d", time());
+            //$orderNo="KG000".$cId.gmdate("Y-m-d", time());
             $servicesDetails->CustId = $cId;
             $servicesDetails->ServiceId = 2;
             $servicesDetails->total_cars = $model->TotalCars;
-            $servicesDetails->make_of_car = rtrim($model->MakeOfCar,",");
+            $servicesDetails->make_of_car = rtrim($model->Make,",");
+            $servicesDetails->model_of_car = rtrim($model->Model,",");
             //$servicesDetails->order_number = $orderNo;
             $servicesDetails->different_location = $DL;
             $servicesDetails->week_days = $model->WeekDays;

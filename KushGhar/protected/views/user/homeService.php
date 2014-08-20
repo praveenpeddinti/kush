@@ -468,6 +468,7 @@ $(document).ready(function() {
     function submitCarWashCleaning() {
         var dumpcars='';
         var makeofcar = "";
+        var modelofcar = "";
         var color = "";
         var differentAddress = "";
         var address1 = "";
@@ -528,16 +529,24 @@ $(document).ready(function() {
 
         if($("#DifferentLocation").val()=='1'){
         for (var i = 1; i <= dumpcars; i++) {
-            if ($("#" + i + "_MakeOfCar").val() == "") {
-                $("#" + i + "_MakeOfCar_em").show();
-                $("#" + i + "_MakeOfCar_em").addClass('errorMessage');
-                $("#" + i + "_MakeOfCar_em").text("Please Enter Make / Model of the Car");
+            if ($("#" + i + "_Make").val() == "") {
+                $("#" + i + "_Make_em").show();
+                $("#" + i + "_Make_em").addClass('errorMessage');
+                $("#" + i + "_Make_em").text("Please 1Select Make");
                 return false;
             } else {
-                $("#" + i + "_MakeOfCar_em").hide();
+                $("#" + i + "_Make_em").hide();
 
             }
+            if ($("#" + i + "_Model").val() == "") {
+                $("#" + i + "_Model_em").show();
+                $("#" + i + "_Model_em").addClass('errorMessage');
+                $("#" + i + "_Model_em").text("Please Select Model");
+                return false;
+            } else {
+                $("#" + i + "_Model_em").hide();
 
+            }
             if (($("#" + i + "_ExteriorColor").val() != "") && (!$("#" + i + "_ExteriorColor").val().match(/^[a-zA-Z]+$/))) {
                 $("#" + i + "_ExteriorColor_em").show();
                 $("#" + i + "_ExteriorColor_em").addClass('errorMessage');
@@ -624,13 +633,19 @@ $(document).ready(function() {
             //Pin Code validation end
 
               if (makeofcar == "") {
-                    makeofcar = $("#" + i + "_MakeOfCar").val();
+                    makeofcar = $("#" + i + "_Make").val();
                 } else if (makeofcar != "") {
-                    makeofcar = makeofcar+"," + $("#" + i + "_MakeOfCar").val();
+                    makeofcar = makeofcar+"," + $("#" + i + "_Make").val();
                 }
                 //makeofcar = makeofcar+ $("#" + i + "_MakeOfCar").val()+",";
-                $('#CarWashForm_MakeOfCar').val(makeofcar);
-
+                $('#CarWashForm_Make').val(makeofcar);
+                
+                if (modelofcar == "") {
+                    modelofcar = $("#" + i + "_Model").val();
+                } else if (modelofcar != "") {
+                    modelofcar = modelofcar+"," + $("#" + i + "_Model").val();
+                }
+                $('#CarWashForm_Model').val(modelofcar);
                 /*if (color == "") {
                     color = $("#" + i + "_ExteriorColor").val()+",";
                 } else if (color != "") {
@@ -703,13 +718,23 @@ $(document).ready(function() {
 
         if($("#DifferentLocation").val()=='0'){
         for (var i = 1; i <= dumpcars; i++) {
-            if ($("#" + i + "_MakeOfCar").val() == "") {
-                $("#" + i + "_MakeOfCar_em").show();
-                $("#" + i + "_MakeOfCar_em").addClass('errorMessage');
-                $("#" + i + "_MakeOfCar_em").text("Please Enter Make / Model of the Car");
+            if ($("#" + i + "_Make").val() == "") {
+                $("#" + i + "_Make_em").show();
+                $("#" + i + "_Make_em").addClass('errorMessage');
+                $("#" + i + "_Make_em").text("Please Select Make");
                 return false;
             } else {
-                $("#" + i + "_MakeOfCar_em").hide();
+                $("#" + i + "_Make_em").hide();
+
+            }
+            
+            if ($("#" + i + "_Model").val() == "") {
+                $("#" + i + "_Model_em").show();
+                $("#" + i + "_Model_em").addClass('errorMessage');
+                $("#" + i + "_Model_em").text("Please Select Model");
+                return false;
+            } else {
+                $("#" + i + "_Model_em").hide();
 
             }
 
@@ -807,9 +832,10 @@ $(document).ready(function() {
                 } else if (makeofcar != "") {
                     makeofcar = makeofcar + $("#" + i + "_MakeOfCar").val();
                 }*/
-                makeofcar = makeofcar + $("#" + i + "_MakeOfCar").val()+",";
-                $('#CarWashForm_MakeOfCar').val(makeofcar);
-
+                makeofcar = makeofcar + $("#" + i + "_Make").val()+",";
+                $('#CarWashForm_Make').val(makeofcar);
+                modelofcar = modelofcar + $("#" + i + "_Model").val()+",";
+                $('#CarWashForm_Model').val(modelofcar);
               /*if (color == "") {
                     color = $("#" + i + "_ExteriorColor").val()+",";
                 } else if (color != "") {

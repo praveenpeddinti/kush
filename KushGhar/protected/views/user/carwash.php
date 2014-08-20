@@ -30,6 +30,8 @@
 <?php echo $form->hiddenField($model, 'City'); ?>
 <?php echo $form->hiddenField($model, 'State'); ?>
 <?php echo $form->hiddenField($model, 'PinCode'); ?>
+<?php echo $form->hiddenField($model, 'Make'); ?>
+<?php echo $form->hiddenField($model, 'Model'); ?>
 
 
 <fieldset>

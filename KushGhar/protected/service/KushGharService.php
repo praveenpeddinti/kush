@@ -717,9 +717,21 @@ class KushGharService {
     public function getAllCarModels($makeId,$startLimit, $endLimit){
         return CarModels::model()->getAllCarModels($makeId,$startLimit, $endLimit);
     }
+    public function getSelectedCarModels($makeName){
+        return CarModels::model()->getSelectedCarModels($makeName);
+    }
     public function getMakes() {
         try {
             $result = CarMakes::model()->getAllMakes();
+        } catch (Exception $ex) {
+            error_log("=============exception occurred in Makes=============" . $ex->getMessage());
+        }
+        return $result;
+    }
+    
+    public function getModels() {
+        try {
+            $result = CarModels::model()->getAllModels();
         } catch (Exception $ex) {
             error_log("=============exception occurred in Makes=============" . $ex->getMessage());
         }

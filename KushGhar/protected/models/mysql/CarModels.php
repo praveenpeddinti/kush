@@ -90,6 +90,27 @@ class CarModels extends CActiveRecord {
             error_log("############Error Occurred in Add new nodel Details= #############" . $ex->getMessage());
         }
     }
+    
+    public function getAllModels() {
+        try {
+            $Criteria = new CDbCriteria();
+            $Criteria->order = 'model_name ASC';
+            $makesData = CarModels::model()->findAll($Criteria);
+        } catch (Exception $ex) {
+            
+        }
+        return $makesData;
+    }
+    
+    public function getSelectedCarModels($makeName){
+        try{            
+            $query="select * from KG_Car_model where make_name='$makeName'";
+            $result = Yii::app()->db->createCommand($query)->queryAll();
+        }catch(Exception $ex){
+            error_log("################Exception Occurred  get All Registered Contacts##############".$ex->getMessage());
+        }
+        return $result;
+    }
 }
 
 ?>

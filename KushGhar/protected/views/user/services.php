@@ -13,6 +13,7 @@
                         <?php echo $form->hiddenField($model, 'PriceFlag', array('value'=>$PriceFlag)); ?> 
                         <?php echo $form->hiddenField($model, 'ContactAddress', array('value'=>$customerAddressDetails->address_line1)); ?> 
                         <?php echo $form->hiddenField($model,'state',array('value'=>$customerAddressDetails->address_state));?>
+                        <?php echo $form->hiddenField($model,'city',array('value'=>$customerAddressDetails->address_city));?>
 
 
                             <!--<input type="hidden" id="HouseCleaning" value="<?php echo $HouseCleaning;?>" >-->
@@ -230,7 +231,7 @@
             $('#HouseCleaningForm_Address2').attr('readOnly', false);
             $('#HouseCleaningForm_AlternatePhone').attr('readOnly', false);
             $('#HouseCleaningForm_State').attr('disabled', false);
-            $('#HouseCleaningForm_City').attr('readOnly', false);
+            $('#HouseCleaningForm_City').attr('disabled', false);
             $('#HouseCleaningForm_PinCode').attr('readOnly', false);
         
             
@@ -241,7 +242,7 @@
             $('#HouseCleaningForm_Address2').attr('readOnly', true);
             $('#HouseCleaningForm_AlternatePhone').attr('readOnly', true);
             $('#HouseCleaningForm_State').attr('disabled', true);
-            $('#HouseCleaningForm_City').attr('readOnly', true);
+            $('#HouseCleaningForm_City').attr('disabled', true);
             $('#HouseCleaningForm_PinCode').attr('readOnly', true);
             $('#HouseCleaningForm_Address1').val('<?php echo $customerAddressDetails->address_line1;?>');
             $('#HouseCleaningForm_Address2').val('<?php echo $customerAddressDetails->address_line2;?>');
@@ -249,6 +250,7 @@
             $('#HouseCleaningForm_State').val('<?php echo $customerAddressDetails->address_state;?>');
             $('#HouseCleaningForm_state').val('<?php echo $customerAddressDetails->address_state;?>');
             $('#HouseCleaningForm_City').val('<?php echo $customerAddressDetails->address_city;?>');
+            $('#HouseCleaningForm_city').val('<?php echo $customerAddressDetails->address_city;?>');
             $('#HouseCleaningForm_PinCode').val('<?php echo $customerAddressDetails->address_pin_code;?>');
         }
         if($('#HouseCleaningForm_ServiceStartTime').val()!=''){
@@ -257,7 +259,7 @@
             $('#HouseCleaningForm_Address2').attr('readOnly', false);
             $('#HouseCleaningForm_AlternatePhone').attr('readOnly', false);
             $('#HouseCleaningForm_State').attr('disabled', false);
-            $('#HouseCleaningForm_City').attr('readOnly', false);
+            $('#HouseCleaningForm_City').attr('disabled', false);
             $('#HouseCleaningForm_PinCode').attr('readOnly', false);
             $('#HouseCleaningForm_Address1').val('<?php echo $getServiceDetails["H_address1"];?>');
             $('#HouseCleaningForm_Address2').val('<?php echo $getServiceDetails["H_address2"];?>');
@@ -315,7 +317,7 @@
                 $('#HouseCleaningForm_Address2').attr('readOnly', false);
                 $('#HouseCleaningForm_AlternatePhone').attr('readOnly', false);
                 $('#HouseCleaningForm_State').attr('disabled', false);
-                $('#HouseCleaningForm_City').attr('readOnly', false);
+                $('#HouseCleaningForm_City').attr('disabled', false);
                 $('#HouseCleaningForm_PinCode').attr('readOnly', false);
             }
             else{
@@ -331,7 +333,8 @@
                 $('#HouseCleaningForm_AlternatePhone').attr('readOnly',  true);
                 $('#HouseCleaningForm_State').attr('disabled',  true);
                 $('#HouseCleaningForm_state').val('<?php echo $customerAddressDetails->address_state; ?>');
-                $('#HouseCleaningForm_City').attr('readOnly',  true);
+                $('#HouseCleaningForm_City').attr('disabled',  true);
+                $('#HouseCleaningForm_city').val('<?php echo $customerAddressDetails->address_city;?>');
                 $('#HouseCleaningForm_PinCode').attr('readOnly',  true);
             }
          });   

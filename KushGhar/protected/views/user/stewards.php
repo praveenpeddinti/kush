@@ -13,7 +13,8 @@ $form = $this->beginWidget('CActiveForm', array(
 <?php echo $form->hiddenField($model1, 'StewardCleaning', array('value'=>$StewardCleaning)); ?>
 <?php echo $form->hiddenField($model1, 'PriceFlag', array('value'=>$PriceFlag)); ?> 
 <?php echo $form->hiddenField($model1, 'ContactAddress', array('value'=>$customerAddressDetails->address_line1)); ?> 
- <?php echo $form->hiddenField($model1,'state',array('value'=>$customerAddressDetails->address_state));?>
+<?php echo $form->hiddenField($model1,'state',array('value'=>$customerAddressDetails->address_state));?>
+<?php echo $form->hiddenField($model1,'city',array('value'=>$customerAddressDetails->address_city));?>
 <?php echo $form->error($model1, 'error'); ?>
 <fieldset>
     <div class=" row-fluid borderB">
@@ -206,7 +207,7 @@ $form = $this->beginWidget('CActiveForm', array(
             $('#StewardCleaningForm_Address2').attr('readOnly', false);
             $('#StewardCleaningFom_AlternatePhone').attr('readOnly', false);
             $('#StewardCleaningForm_State').attr('disabled', false);
-            $('#StewardCleaningForm_City').attr('readOnly', false);
+            $('#StewardCleaningForm_City').attr('disabled', false);
             $('#StewardCleaningForm_PinCode').attr('readOnly', false);
             
         }else{
@@ -216,7 +217,7 @@ $form = $this->beginWidget('CActiveForm', array(
             $('#StewardCleaningForm_Address2').attr('readOnly', true);
             $('#StewardCleaningForm_AlternatePhone').attr('readOnly', true);
             $('#StewardCleaningForm_State').attr('disabled', true);
-            $('#StewardCleaningForm_City').attr('readOnly', true);
+            $('#StewardCleaningForm_City').attr('disabled', true);
             $('#StewardCleaningForm_PinCode').attr('readOnly', true);
             $('#StewardCleaningForm_Address1').val('<?php echo $customerAddressDetails->address_line1;?>');
             $('#StewardCleaningForm_Address2').val('<?php echo $customerAddressDetails->address_line2;?>');
@@ -224,6 +225,7 @@ $form = $this->beginWidget('CActiveForm', array(
             $('#StewardCleaningForm_State').val('<?php echo $customerAddressDetails->address_state;?>');
             $('#StewardCleaningForm_state').val('<?php echo $customerAddressDetails->address_state;?>');
             $('#StewardCleaningForm_City').val('<?php echo $customerAddressDetails->address_city;?>');
+            $('#StewardCleaningForm_city').val('<?php echo $customerAddressDetails->address_city;?>');
             $('#StewardCleaningForm_PinCode').val('<?php echo $customerAddressDetails->address_pin_code;?>');
         }
         if($('#StewardCleaningForm_StartTime').val()!=''){
@@ -232,7 +234,7 @@ $form = $this->beginWidget('CActiveForm', array(
             $('#StewardCleaningForm_Address2').attr('readOnly', false);
             $('#StewardCleaningFom_AlternatePhone').attr('readOnly', false);
             $('#StewardCleaningForm_State').attr('disabled', false);
-            $('#StewardCleaningForm_City').attr('readOnly', false);
+            $('#StewardCleaningForm_City').attr('disabled', false);
             $('#StewardCleaningForm_PinCode').attr('readOnly', false);
             $('#StewardCleaningForm_Address1').val('<?php echo $getServiceDetails["S_address1"];?>');
             $('#StewardCleaningForm_Address2').val('<?php echo $getServiceDetails["S_address2"];?>');
@@ -290,7 +292,7 @@ $form = $this->beginWidget('CActiveForm', array(
                 $('#StewardCleaningForm_Address2').attr('readOnly', false);
                 $('#StewardCleaningForm_AlternatePhone').attr('readOnly', false);
                 $('#StewardCleaningForm_State').attr('disabled', false);
-                $('#StewardCleaningForm_City').attr('readOnly', false);
+                $('#StewardCleaningForm_City').attr('disabled', false);
                 $('#StewardCleaningForm_PinCode').attr('readOnly', false);
             }
             else{
@@ -306,7 +308,8 @@ $form = $this->beginWidget('CActiveForm', array(
                 $('#StewardCleaningForm_AlternatePhone').attr('readOnly',  true);
                 $('#StewardCleaningForm_State').attr('disabled',  true);
                 $('#StewardCleaningForm_state').val('<?php echo $customerAddressDetails->address_state; ?>');
-                $('#StewardCleaningForm_City').attr('readOnly',  true);
+                $('#StewardCleaningForm_City').attr('disabled',  true);
+                $('#StewardCleaningForm_city').val('<?php echo $customerAddressDetails->address_city; ?>');
                 $('#StewardCleaningForm_PinCode').attr('readOnly',  true);
             }
          });

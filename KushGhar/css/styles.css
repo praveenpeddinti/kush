@@ -518,7 +518,7 @@ input.serachInput::-ms-reveal { width : 0; height: 0;}
 .fridge{background-position: center -535px;}
 .woven{background-position: center -244px;}
 .pooja{background-position: center 5px;}
-.cupboard{background-position: center 5px;}
+.cupboard{background-position: center top;}
 .dashed_left_border{ border-left:1px dashed #ccc}
 .window_cleaning  label, .fridge  label, .woven label, .cupboard label{ display:inline-block}
 .Additional_S .row-fluid [class*="span"]{ margin-left:0px;}

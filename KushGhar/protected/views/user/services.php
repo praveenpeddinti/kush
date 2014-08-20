@@ -107,7 +107,7 @@
                                             </div>
                                                 <div id="WindowGrillsTooltip" class="Additional_S_price" style="display:none">Cost of Services is<br/> <b>Rs.<label>250</label>/-</b></div>
                                             </div>
-                                            <div class="span3 cupboard dashed_left_border" style="min-height: 121px"><?php echo $form->label($model, 'Cupboard  Cleaning'); ?>
+                                            <div class="span3 cupboard dashed_left_border" style="min-height: 121px"><?php echo $form->label($model, 'Cupboard Interior Cleaning'); ?>
                                             <div class="switch switch-large" id="CupBoard" data-on-label="Yes" data-off-label="No">
                                                 <?php echo $form->checkBox($model, 'CupBoard', array('id' => 'HouseCleaningForm_CupBoard')); ?>
                                             </div>

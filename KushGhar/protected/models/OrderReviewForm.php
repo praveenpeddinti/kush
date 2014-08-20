@@ -16,6 +16,7 @@ class OrderReviewForm extends CFormModel {
     public $rate_us;
     public $quality_of_service;
     public $ServiceType;
+    public $Disclaimer;
     
     
     /**
@@ -26,7 +27,7 @@ class OrderReviewForm extends CFormModel {
              
             //array('HouseCleaning', 'required', 'message' => 'Please enter a value for {attribute}.'),
              
-            array('OrderNumber,ServiceType, CustID, Rating,Feedback,Id,arrive_on_time,professional_appearance,rate_us,quality_of_service', 'safe'),
+            array('OrderNumber,ServiceType, CustID, Rating,Feedback,Id,arrive_on_time,professional_appearance,rate_us,quality_of_service,Disclaimer', 'safe'),
         );
     }
 

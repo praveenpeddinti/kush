@@ -24,13 +24,20 @@ class OrderReviews extends CActiveRecord {
         return 'KG_Customer_reviews';
     }
     public function addCustomerReview($model) {
-        try { 
-            error_log("----------------------".$model->arrive_on_time."=====".$model->professional_appearance);
+        try {            
             $customerReviews = new OrderReviews();
             $customerReviews->CustId = Yii::app()->session['UserId'];
             $customerReviews->order_number = $model->OrderNumber;
-            $customerReviews->Team_Arrive_Time = $model->arrive_on_time;
-            $customerReviews->Team_Professional_Appearance = $model->professional_appearance;
+            $customerReviews->Team_Arrive_Time = $_POST['arrive_on_time'];
+            $customerReviews->Team_Professional_Appearance = $_POST['professional_appearance'];
+            $customerReviews->Office_Staff_Rating=$_POST['officeStaff'];
+            $customerReviews->Home_Service_Rating=$_POST['homeService'];
+            $customerReviews->Overall_Experience=$_POST['overAllExp'];
+            $customerReviews->Service_Vacuuming_Rating=$_POST['vaccuming'];
+            $customerReviews->Service_Dusting_Rating=$_POST['dusting'];
+            $customerReviews->Service_Moping_Rating=$_POST['moping'];
+            $customerReviews->Service_TrashDisposal_rating=$_POST['trash'];
+            $customerReviews->Service_Addional_Rating=$_POST['aservices'];
             $customerReviews->feedback = $model->Feedback;
             $customerReviews->rating = $model->Rating;
             $customerReviews->service_type=$model->ServiceType;

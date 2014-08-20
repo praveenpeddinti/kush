@@ -21,7 +21,7 @@
     
        
     $(function(){
-        getCollectionDataWithPagination('/site/customerFeedback1','getServices', 'abusedWords_tbody',1,2,'');
+        getCollectionDataWithPagination('/site/customerFeedback1','getServices', 'abusedWords_tbody',1,5,'');
     });
     
     

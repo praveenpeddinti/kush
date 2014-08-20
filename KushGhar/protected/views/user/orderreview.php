@@ -81,20 +81,26 @@
             <?php echo $reviewForm->error($model, 'Feedback'); ?>
         </div>
     </div>
+<div class="row-fluid" id="ques7">
+        <div class=" span12">
+            <input type="checkbox" id="chkDisclaimer">
+            <?php echo $reviewForm->label($model, 'Disclaimer'); ?>
+            <?php echo $reviewForm->error($model, 'Disclaimer'); ?>
+        </div>
+    </div>
  <?php $this->endWidget(); ?>
          <div style="text-align: right">
              <?php echo CHtml::Button('Save',array('id' => 'save','class' => 'btn btn-primary','onclick'=>'save();')); ?>
          </div>
 <script type="text/javascript">
     var value1=-1;var value2=-1;var value3a=-1;var value3b=-1;var value3c=-1;
-    var value4a=-1;var value4b=-1;var value4c=-1;var value4d=-1;
+    var value4a=-1;var value4b=-1;var value4c=-1;var value4d=-1;var value4e=-1;
     function save(){
         if(validate()){
-         scrollPleaseWait("inviteSpinLoader","invite-form")
+         scrollPleaseWait("inviteSpinLoader","invite-form");
          var data = $("#review-form").serialize();
-         data+='&ques1='+value1+'&ques2='+value2+'&ques3a='+value3a+'&ques3b='+value3b+'&ques3c='+value3c+'&ques4a='+value4a+'&ques4b='+value4b+'&ques4c='+value4c+'&ques4d='+value4d;
-         //alert("--------"+data);exit();
-            ajaxRequest('/user/orderreviewsave', data, reviewHandler)
+         alert(data);
+        ajaxRequest('/user/orderreviewsave', data, reviewHandler)
         }
     }
     function reviewHandler(data)
@@ -104,8 +110,11 @@
                     $("#OrderReviewForm_error_em_").removeClass('errorMessage');
                     $("#OrderReviewForm_error_em_").addClass('alert alert-success');
                     $("#OrderReviewForm_error_em_").text(data.error);
-                    $("#OrderReviewForm_error_em_").fadeOut(20000, "");
-                    window.location.href = '<?php echo Yii::app()->request->baseUrl; ?>/user/order';
+                    $("#OrderReviewForm_error_em_").fadeOut(3000);
+                    setTimeout(function() {
+                        window.location.href = '<?php echo Yii::app()->request->baseUrl; ?>/user/order';
+                    }, 3000);  
+                    
         }
         if(data.status == 'error'){
             var lengthvalue=data.error.length;
@@ -129,6 +138,7 @@
         } 
     function validate(){
     var type='<?php echo $ServiceType ?>';
+    
         var ques1 = $('input[name="arrive_on_time"]');
         for (var i = 0; i < ques1.length; i++) {
             if (ques1[i].checked == true) 
@@ -173,7 +183,7 @@
             $("#OrderReviewForm_professional_appearance_em_").hide();
             $("#OrderReviewForm_rate_us_em_").show();
             $("#OrderReviewForm_rate_us_em_").addClass('errorMessage');
-            $("#OrderReviewForm_rate_us_em_").text("Please enter your ratiing for the Home service");
+            $("#OrderReviewForm_rate_us_em_").text("Please enter your rating for the Home service");
             return false;
         } 
         var ques3c=$('input[name="overAllExp"]');
@@ -230,6 +240,11 @@
             if (ques4d[i].checked == true) 
                   value4d=ques4d[i].value;
         }
+        var ques4e=$('input[name="aservices"]');
+        for (var i = 0; i < ques4e.length; i++) {
+            if (ques4e[i].checked == true) 
+                  value4e=ques4e[i].value;
+        }
         if(value4d==-1){
             $("#OrderReviewForm_rate_us_em_").hide();
             $("#OrderReviewForm_quality_of_service_em_").show();
@@ -248,12 +263,19 @@
             }
             return false;
         }
+        if($("#chkDisclaimer").is(':checked')!=true){
+            $("#OrderReviewForm_Feedback_em_").hide();
+            $("#OrderReviewForm_Disclaimer_em_").show();
+            $("#OrderReviewForm_Disclaimer_em_").addClass('errorMessage');
+            $("#OrderReviewForm_Disclaimer_em_").text("Please Accept the Disclaimer"); 
+            return false;
+        }
         else
         {
             if($("#OrderReviewForm_Rating").val()==''){
                 $("#OrderReviewForm_Rating").val("1");
             }
-            $("#OrderReviewForm_Feedback_em_").hide();
+            $("#OrderReviewForm_Disclaimer_em_").hide();
             return true;
         }
     }

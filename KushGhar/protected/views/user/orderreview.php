@@ -93,7 +93,8 @@
          scrollPleaseWait("inviteSpinLoader","invite-form")
          var data = $("#review-form").serialize();
          data+='&ques1='+value1+'&ques2='+value2+'&ques3a='+value3a+'&ques3b='+value3b+'&ques3c='+value3c+'&ques4a='+value4a+'&ques4b='+value4b+'&ques4c='+value4c+'&ques4d='+value4d;
-         ajaxRequest('/user/orderreviewsave', data, reviewHandler)
+         //alert("--------"+data);exit();
+            ajaxRequest('/user/orderreviewsave', data, reviewHandler)
         }
     }
     function reviewHandler(data)

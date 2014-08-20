@@ -4,6 +4,16 @@ class OrderReviews extends CActiveRecord {
     public $order_number;
     public $service_type;
     public $is_publish;
+    public $Team_Arrive_Time;
+    public $Team_Professional_Appearance;
+    public $Office_Staff_Rating;
+    public $Home_Service_Rating;
+    public $Overall_Experience;
+    public $Service_Vacuuming_Rating;
+    public $Service_Dusting_Rating;
+    public $Service_Moping_Rating;
+    public $Service_TrashDisposal_rating;
+    public $Service_Addional_Rating;
     public $rating;
     public $feedback;
     public $create_timestamp;
@@ -15,9 +25,12 @@ class OrderReviews extends CActiveRecord {
     }
     public function addCustomerReview($model) {
         try { 
+            error_log("----------------------".$model->arrive_on_time."=====".$model->professional_appearance);
             $customerReviews = new OrderReviews();
             $customerReviews->CustId = Yii::app()->session['UserId'];
             $customerReviews->order_number = $model->OrderNumber;
+            $customerReviews->Team_Arrive_Time = $model->arrive_on_time;
+            $customerReviews->Team_Professional_Appearance = $model->professional_appearance;
             $customerReviews->feedback = $model->Feedback;
             $customerReviews->rating = $model->Rating;
             $customerReviews->service_type=$model->ServiceType;

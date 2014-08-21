@@ -35,7 +35,7 @@ class StewardCleaningForm extends CFormModel {
     public $StewardCleaning;
     public $PriceFlag;
     public $state;
-    
+    public $city;
     
     /**
      * Declares the validation rules.
@@ -53,7 +53,7 @@ class StewardCleaningForm extends CFormModel {
             ),
             //array('AttendPeople', 'numerical', 'integerOnly'=>true),
             //array('AttendPeople', 'length', 'min'=>5),*/
-            array('PriceFlag, HouseCleaning, CarCleaning, StewardCleaning, EventType, EventName, ServiceStartTime, totalStewards,StartTime, EndTime, AttendPeople, Appetizers, Dinner, Dessert, Beverage, PostDinner, DurationHours, ServiceHours, totalStewards,DifferentAddress, Address1, Address2, State, City, PinCode,AlternatePhone,  Status, ServicesId,state, Id', 'safe'),
+            array('PriceFlag, HouseCleaning, CarCleaning, StewardCleaning, EventType, EventName, ServiceStartTime, totalStewards,StartTime, EndTime, AttendPeople, Appetizers, Dinner, Dessert, Beverage, PostDinner, DurationHours, ServiceHours, totalStewards,DifferentAddress, Address1, Address2, State, City, PinCode,AlternatePhone,  Status, ServicesId,state,city, Id', 'safe'),
         );
     }
 

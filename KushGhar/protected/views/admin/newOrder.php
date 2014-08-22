@@ -30,7 +30,7 @@
                                         </td>
                                         <td><center><?php echo $row['amount'];?></center></td>
                                         <td nowrap>
-                                        <select class="span10 action" onchange="orderAction(<?php echo $row['id']; ?>,<?php echo $row['status']; ?>,this);">
+                                        <select class="span12 action" onchange="orderAction(<?php echo $row['id']; ?>,<?php echo $row['status']; ?>,this);">
                                             <option <?php if($row['status']=="0") echo "selected=\"selected\""; ?> value="Open">Open</option>
                                             <option <?php if($row['status']=="1") echo "selected=\"selected\""; ?> value="Schedule">Schedule</option>
                                             <option <?php if($row['status']=="3") echo "selected=\"selected\""; ?> value="Close">Close</option>

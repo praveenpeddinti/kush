@@ -78,7 +78,7 @@
             if($('#SettingsForm_make_name').val()==''){
                 $("#SettingsForm_make_name_em_").show();
             $("#SettingsForm_make_name_em_").addClass('errorMessage');
-            $("#SettingsForm_make_name_em_").text("Please select the make");
+            $("#SettingsForm_make_name_em_").text("Please select Make");
             return false;
             }
         }
@@ -86,13 +86,13 @@
             $("#SettingsForm_make_name_em_").hide();
             $("#SettingsForm_model_name_em_").show();
             $("#SettingsForm_model_name_em_").addClass('errorMessage');
-            $("#SettingsForm_model_name_em_").text("Please Enter the name");
+            $("#SettingsForm_model_name_em_").text("Please enter a value for Model Name.");
             return false;
         }
        if(prev==present){
             $("#SettingsForm_model_name_em_").show();
             $("#SettingsForm_model_name_em_").addClass('errorMessage');
-            $("#SettingsForm_model_name_em_").text("Please Modify the name and then click on save");
+            $("#SettingsForm_model_name_em_").text("Please Modify the model name and then click on save");
             return false;
         }
         else{

@@ -20,13 +20,13 @@
                                             <td><?php echo $row['phone']; ?></td>
                                             <td><?php echo $row['location']; ?></td>
                                             <td><?php $datee = explode(" ",$row['create_timestamp']);echo $datee[0]; ?></td>
-                                            <td id="status_<?php echo $row['Id']; ?>">
+                                            <td id="status_<?php echo $row['Id']; ?>" nowrap>
                                                 <?php 
                                                 if($row['invite']==0){$status = 'Not Invited';} 
                                                 if($row['invite']==1){$status = 'Invited';} 
                                                 if($row['invite']==2){$status = 'Re-Invited';} 
                                             echo $status; ?></td>
-                                            <td>
+                                            <td nowrap>
                                             <input id="usera_<?php echo $row['Id']; ?>" invite-id="<?php echo $row['Id']; ?>" invite-status="<?php echo $row['invite']; ?>" invite-email="<?php echo $row['email_address']; ?>" type="button" value=" " class="<? if ($row['invite'] == '0') echo 'icon_invite'; if ($row['invite'] == '1') echo 'icon_reinvite'; if ($row['invite'] == '2') echo 'icon_reinvite';?>" alt="Invite" title="Invite"/>
                                             <input id="user_<?php echo $row['Id']; ?>" data-id="<?php echo $row['Id']; ?>" data-status="<?php echo $row['status']; ?>" type="button" value=" " class="<? if ($row['status'] == '1') echo 'icon_delete'; ?>" alt="Delete" title="Delete"/>
                                             </td>

@@ -11,7 +11,7 @@
             <div class=" span4">
                 <label><abbr title="required">*</abbr> Make</label>
                 <select name="<?php echo $i+1; ?>_Make" id="<?php echo $i+1; ?>_Make" class="span12" onchange="ModelChange(this,'<?php echo $i+1; ?>');">
-                    <option value="">Select </option>
+                    <option value="">Select Make </option>
                     <?php foreach ($Make as $make) { ?>
                     <?php 
                     $make_status = isset($getCarWashServiceDetails[$i])?$getCarWashServiceDetails[$i]['make_of_car']:'';
@@ -27,7 +27,7 @@
                 
                 ?>
                 <select <?php echo $model_select; ?> name="<?php echo $i+1; ?>_Model" id="<?php echo $i+1; ?>_Model" class="span12">
-                    <option value="">Select </option>
+                    <option value="">Select Model</option>
                     <?php foreach ($Model as $modelName) { ?>
                     <?php 
                     $model_status = isset($getCarWashServiceDetails[$i])?$getCarWashServiceDetails[$i]['model_of_car']:'';

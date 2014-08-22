@@ -67,13 +67,13 @@
         if($('#SettingsForm_make_name').val()==''){
             $("#SettingsForm_make_name_em_").show();
             $("#SettingsForm_make_name_em_").addClass('errorMessage');
-            $("#SettingsForm_make_name_em_").text("Please Enter the name");
+            $("#SettingsForm_make_name_em_").text("Please enter a value for Make Name.");
             return false;
         }   
         if(prev==present){
             $("#SettingsForm_make_name_em_").show();
             $("#SettingsForm_make_name_em_").addClass('errorMessage');
-            $("#SettingsForm_make_name_em_").text("Please Modify the name and then click on save");
+            $("#SettingsForm_make_name_em_").text("Please Modify the Make name and then click on save");
             return false;
         }
         else{

@@ -15,13 +15,13 @@
         </td>
         <td><?php echo $row['phone']; ?></td>
         <td><?php echo $row['Location']; ?></td>
-        <td><?php $datee = explode(" ",$row['RegisteredOn']);echo $datee[0];?></td> 
+        <td nowrap><?php $datee = explode(" ",$row['RegisteredOn']);echo $datee[0];?></td> 
         <td id="status_<?php echo $row['vid']; ?>">
             <?php 
                 if($row['status']==1){$status = 'Active';} 
                 if($row['status']==0){$status = 'InActive';}
                 echo $status; ?></td>
-        <td>
+        <td nowrap>
             <input id="usera_<?php echo $row['vid']; ?>" data-id="<?php echo $row['vid']; ?>" invite-status="<?php echo $row['status']; ?>" type="button" value=" " class="<? if ($row['status'] == '0') echo 'icon_inactive'; if ($row['status'] == '1') echo 'icon_active';?>" alt="Status" title="Change Status"/>
             <input id="userview_<?php echo $row['vid']; ?>" data-id="<?php echo $row['vid']; ?>"  type="button" value=" " class="icon_view" alt="View" title="View"/>
         </td>

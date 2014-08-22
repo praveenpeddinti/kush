@@ -1,3 +1,19 @@
+<?php
+$address;
+ if($customerAddressDetails['address_line1']=='')
+     $addressline1="";
+ else
+     $addressline1=$customerAddressDetails['address_line1'].", ";
+ if($customerAddressDetails['address_line2']=='')
+     $addressline2="";
+ else
+     $addressline2=$customerAddressDetails['address_line2'].", ";
+ if($customerAddressDetails['address_city']=='')
+     $addresscity="";
+ else
+     $addresscity=$customerAddressDetails['address_city'];
+  $address=$addressline1.$addressline2.$addresscity;
+?>
 <div id="errormessage"></div>
 <input type="hidden" value="<?php echo $id ?>" id="rowId">
 <table border="0">
@@ -20,7 +36,7 @@
     <tr>
         <td><label>Address </label></td>
         <td>:</td>
-        <td><label><?php echo $customerAddressDetails['address_line1']." ".$customerAddressDetails['address_line2']." ".$customerAddressDetails['address_city']." ".$customerAddressDetails['address_state']; ?></label></td>
+        <td><label><?php echo $address; ?></label></td>
     </tr>
 </table>
 <table border="0">

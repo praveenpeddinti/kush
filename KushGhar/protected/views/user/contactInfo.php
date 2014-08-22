@@ -7,7 +7,7 @@
             	<ul class="main">
                     <li class="active" title="Account"><a href="/user/basicinfo" ><span class="KGaccounts"> </span></a></li>
                             <li class="" title="Services"><a href="/user/homeservice"  ><span class="KGservices"> </span></a></li>
-                            <li class="" title="Payment"><a href="/user/paymentinfo" ><span class="KGpayment"> </span></a></li>
+                            <li class="" title="Payment"><a href="#" ><span class="KGpayment"> </span></a></li>
                     
                 </ul>
 
@@ -73,7 +73,7 @@
                                  ?>
                                <li><a href="homeService"> <i class="fa fa-wrench"></i> Services</a></li>
                                 <li><a href="priceQuote"> <i class="fa fa-user"></i> Price Quote</a></li>
-                                <li><a href="paymentInfo"> <i class="fa fa-credit-card"></i> Payment Info
+                                <li><a href="#"> <i class="fa fa-credit-card"></i> Payment Info
 <!--                                    <div class="<?php echo $statusClassForPayment;?>"> </div>-->
                                 </a></li>
                                 <li><a href="basicinfo"> <i class="fa fa-file-text-o"></i> Basic Info
@@ -122,6 +122,7 @@
          'htmlOptions' => array('enctype' => 'multipart/form-data'),
         //'action'=>"/user/basicinfo"
 )); ?>
+          <?php echo $form->error($model, 'error',array('value'=>'Hide')); ?>
            <fieldset>
     <?php echo $form->hiddenField($model,'Id'); ?>
     <div class="row-fluid">
@@ -239,8 +240,15 @@
     function addContactInformationhandler(data){
     scrollPleaseWaitClose('contactInfoSpinLoader');
     if(data.status=='success'){
-     
-window.location.href='paymentInfo';
+        $("#ContactInfoForm_error_em_").show(1000);
+        $("#ContactInfoForm_error_em_").removeClass('errorMessage');
+        $("#ContactInfoForm_error_em_").addClass('alert alert-success');
+        $("#ContactInfoForm_error_em_").text("Contact Information saved successfully");
+        $("#ContactInfoForm_error_em_").fadeOut(2000);
+        setTimeout(function() {
+            window.location.href = '#';
+            //window.location.href='paymentInfo';
+        }, 3000);
     }else{
          var error=[];
             if(typeof(data.error)=='string'){

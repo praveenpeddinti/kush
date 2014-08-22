@@ -40,13 +40,13 @@
         }
     }
     function rescheduleHandler(data)
-    { 
+    { alert("data.status"+data.status);
         if(data.status =='success'){
             $("#SettingsForm_error_em_").show(1000);
                     $("#SettingsForm_error_em_").removeClass('errorMessage');
                     $("#SettingsForm_error_em_").addClass('alert alert-success');
                     $("#SettingsForm_error_em_").text(data.error);
-                    $("#SettingsForm_error_em_").fadeOut(20000, "");
+                    $("#SettingsForm_error_em_").fadeOut(2000, "");
                     setTimeout(function() {
 	      window.location.href = '<?php echo Yii::app()->request->baseUrl; ?>/settings/carModels?MakeId='+$('#SettingsForm_makeId').val();
 	    }, 3000);

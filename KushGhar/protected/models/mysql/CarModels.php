@@ -80,9 +80,10 @@ class CarModels extends CActiveRecord {
             error_log("############Error Occurred in update model Details= #############" . $ex->getMessage());
         }
     }
-    public function newModel($model){
+    public function newModel($model,$makename){
         try{
-            $query="INSERT INTO KG_Car_model (make_id,model_name) VALUES (".$model->make_name.",'".$model->model_name."')";
+            $query="INSERT INTO KG_Car_model (make_id,make_name,model_name) VALUES (".$model->make_name.",'".$makename."','".$model->model_name."')";
+            error_log($query);
             $result = YII::app()->db->createCommand($query)->execute();
             if($result>0) return "success";
             else return "failure";
@@ -90,6 +91,17 @@ class CarModels extends CActiveRecord {
             error_log("############Error Occurred in Add new nodel Details= #############" . $ex->getMessage());
         }
     }
+
+    public function getMakeNameByID($id){
+        try{
+            $query="select make_name from KG_Car_make where id=".$id;
+            $result = YII::app()->db->createCommand($query)->queryRow();
+        } catch (Exception $ex) {
+            error_log("############Error Occurred in Get make name by Id #############" . $ex->getMessage());
+        }
+        return $result;
+    }
+
     
     public function getAllModels() {
         try {

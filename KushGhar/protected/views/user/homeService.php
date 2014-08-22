@@ -8,7 +8,7 @@
                         <ul class="main">
                             <li class="" title="Account"><a href="/user/basicinfo" ><span class="KGaccounts"> </span></a></li>
                             <li class="active" title="Services"><a href="/user/homeservice"  ><span class="KGservices"> </span></a></li>
-                            <li class="" title="Payment"><a href="/user/paymentinfo" ><span class="KGpayment"> </span></a></li>
+                            <li class="" title="Payment"><a href="#" ><span class="KGpayment"> </span></a></li>
                         </ul>
                     </div>
                     <div class="sub_menu ">
@@ -64,7 +64,7 @@
                                 ?>
                                 <li class="active"><a href="homeService"> <i class="fa fa-wrench"></i> Services</a></li>
                                 <li><a href="priceQuote"> <i class="fa fa-user"></i> Price Quote</a></li>
-                                <li><a href="paymentInfo"> <i class="fa fa-credit-card"></i> Payment Info
+                                <li><a href="#"> <i class="fa fa-credit-card"></i> Payment Info
 <!--                                    <div class="<?php echo $statusClassForPayment;?>"> </div>-->
                                 </a></li>
                                 <li><a href="basicinfo"> <i class="fa fa-file-text-o"></i> Basic Info

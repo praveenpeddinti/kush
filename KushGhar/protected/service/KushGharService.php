@@ -749,8 +749,8 @@ class KushGharService {
     public function UpdateModel($model){
         return CarModels::model()->UpdateModel($model);
     }
-    public function newModel($model){
-        return CarModels::model()->newModel($model);
+    public function newModel($model,$makename){
+        return CarModels::model()->newModel($model,$makename);
     }
     public function getFullVendorDetails($id){
         return InviteUser::model()->getFullVendorDetails($id);
@@ -763,5 +763,8 @@ class KushGharService {
     }
     public function sendorderScheduleStatus($id,$status,$vendorVals){
         return OrderDetails::model()->sendorderScheduleStatus($id,$status,$vendorVals);
+    }
+    public function getMakeNameByID($id){
+        return CarModels::model()->getMakeNameByID($id);
     }
 } ?>

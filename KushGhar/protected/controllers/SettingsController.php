@@ -162,10 +162,11 @@ class SettingsController extends Controller {
         $formName = $request->getParam('SettingsForm');
         if ($formName != '') {
             $EditForm->attributes = $request->getParam('SettingsForm');
+            $makename=  $this->kushGharService->getMakeNameByID($EditForm->make_name);
             $modelName = $this->kushGharService->checkNewModelExistInModelTable($EditForm->model_name,$EditForm->makeId);
             if($modelName=='No model'){
                 if($EditForm->id=='')
-                    $result=  $this->kushGharService->newModel($EditForm);
+                    $result=  $this->kushGharService->newModel($EditForm,$makename['make_name']);
                 else
                     $result = $this->kushGharService->UpdateModel($EditForm);
                 $obj = array('status' => 'success', 'data' => $result, 'error' => 'Make Name Updated Successfully.');

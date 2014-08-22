@@ -8,7 +8,7 @@
                         <ul class="main">
                             <li class="active"><a href="/user/basicinfo" ><span class="KGaccounts"> </span></a></li>
                             <li class=""><a href="/site/cleaning"  ><span class="KGservices"> </span></a></li>
-                            <li class=""><a href="/user/paymentinfo" ><span class="KGpayment"> </span></a></li>
+                            <li class=""><a href="#" ><span class="KGpayment"> </span></a></li>
                             
                         </ul>
 
@@ -85,7 +85,7 @@
                                  ?>
                                 <li><a href="<?php echo YII::app()->params['SERVER_URL'];?>/user/homeService"> <i class="fa fa-user"></i> Service Details</a></li>
                                 <li><a href="<?php echo YII::app()->params['SERVER_URL'];?>/user/priceQuote"> <i class="fa fa-user"></i> Price Quote</a></li>
-                                <li><a href="<?php echo YII::app()->params['SERVER_URL'];?>/user/paymentInfo"> <i class="fa fa-credit-card"></i> Payment Info</a>
+                                <li><a href="<?php echo YII::app()->params['SERVER_URL'];?>/#"> <i class="fa fa-credit-card"></i> Payment Info</a>
                                     <div class="<?php echo $statusClassForPayment;?>"> </div>
                                 </li>
                                 <li><a href="<?php echo YII::app()->params['SERVER_URL'];?>/user/basicinfo"> <i class="fa fa-user"></i> Basic Info</a>

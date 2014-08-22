@@ -1,33 +1,43 @@
+<div id="errormessage"></div>
 <input type="hidden" value="<?php echo $id ?>" id="rowId">
 <table border="0">
-    <tr><th><h3 align="left">Customer Details</h3></th></tr>
+    <tr><th colspan="3"><h3 align="left">Customer Details</h3></th></tr>
     <tr>
         <td><label>Customer Name</label></td>
+        <td>:</td>
         <td><label><?php echo $customerDetails['first_name']; ?></label></td>
     </tr>
     <tr>
         <td><label>Contact Number</label></td>
+        <td>:</td>
         <td><label><?php echo $customerDetails['phone']; ?></label></td>
+    </tr>
+    <tr>
         <td><label>Email ID</label></td>
+        <td>:</td>
         <td><label><?php echo $customerDetails['email_address']; ?></label></td>
     </tr>
     <tr>
         <td><label>Address </label></td>
+        <td>:</td>
         <td><label><?php echo $customerAddressDetails['address_line1']." ".$customerAddressDetails['address_line2']." ".$customerAddressDetails['address_city']." ".$customerAddressDetails['address_state']; ?></label></td>
     </tr>
 </table>
 <table border="0">
-    <tr><th><h3 align="left">Service Details</h3></th></tr>
+    <tr><th colspan="3"><h3 align="left">Service Details</h3></th></tr>
     <tr>
         <td><label>Service Requested date</label></td>
+        <td>:</td>
         <td><label><?php echo $OrderDetails['service_date']; ?></label></td>
     </tr>
     <tr>
         <td><label>Order Number</label></td>
+        <td>:</td>
         <td><label><?php echo $OrderDetails['order_number']; ?></label></td>
     </tr>
     <tr>
         <td><label>Service Type</label></td>
+        <td>:</td>
         <td><label><?php 
         if($OrderDetails['ServiceId']=='1'){$serviceName='House Cleaning';}
         if($OrderDetails['ServiceId']=='2'){$serviceName='Car Wash';}
@@ -36,13 +46,14 @@
         ?></label></td>
     </tr>
 </table>
-<table border="0">
-    <tr><th><h3 align="left">Vendors</h3></th></tr>
+<table border="0" width="100%">
+    <tr><th colspan="3"><h3 align="left">Vendor Details</h3></th></tr>
     <tr>
-        <td><label>Active Vendors</label></td>
-        <td>
-        <select multiple="multiple" name="Vendors" id="multiple_vendors">
-            <option value="">Select </option>
+        <td style="width: 20%" ><label>Active Vendors</label></td>
+        <td style="width: 5%">:</td>
+        <td style="width: 75%">
+            <select multiple="multiple" name="Vendors" id="multiple_vendors" style="width: 75%">
+            <!--<option value="">Select </option>-->
             <?php foreach ($vendors as $row) { ?>
             <option value="<?php echo $row['vendor_id']; ?>"><?php echo $row['first_name']; ?></option>
             <?php } ?>
@@ -51,8 +62,9 @@
         </td>
     </tr>
     <tr>
-        <td><label>Assigned Vendors</label></td>
-        <td><textarea id="assignedVendors"></textarea></td>
+        <td style="width: 20%"><label>Assigned Vendors</label></td>
+        <td style="width: 5%">:</td>
+        <td style="width: 75%"><textarea id="assignedVendors" style="width: 95%" readonly=""></textarea></td>
     </tr>
 </table>
 <input type="button" class="btn btn-primary" value="Schedule" onclick="ScheduleClick();">
@@ -73,6 +85,7 @@
     });
 });
 function ScheduleClick(){
+    if(validate()){
     var data = "Id=" + $("#rowId").val() + "&vendorVals=" + $("#VendorValues").val();
     $.ajax({
                 type: 'POST',
@@ -90,6 +103,17 @@ function ScheduleClick(){
                 error: function(data) { 
                 }
             });
+            }
+    }
+    function validate(){
+    if($("#assignedVendors").val()==''){
+        $("#errormessage").removeClass('alert alert-success');
+        $("#errormessage").addClass('errorMessage');
+        $("#errormessage").text('Select vendors to assign the order');
+            return false;
+    }
+    else
+        return true;
 }
 function activeFormHandler2(data, rowNos,value) {
         if (value == 'Schedule') {

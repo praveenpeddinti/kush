@@ -17,9 +17,9 @@
         <?php echo $editModelForm->dropDownList($model, 'make_name', CHtml::listData($makes, 'id', 'make_name'), array('prompt'=>'Select Make','options' => array($getmodelDetails['make_Id'] => array('selected' => 'selected')), 'class' => 'span12')); ?>
         <?php echo $editModelForm->error($model,'make_name'); ?>
         </div>
-        <div class=" span4">
+        <div class=" span8">
             <?php echo $editModelForm->label($model, '<abbr title="required">*</abbr> Model Name'); ?>
-            <?php echo $editModelForm->textField($model, 'model_name', array('value'=>$getmodelDetails['model_name'] ,'class' => 'span10')); ?>
+            <?php echo $editModelForm->textField($model, 'model_name', array('value'=>$getmodelDetails['model_name'] ,'class' => 'span6')); ?>
             <?php echo $editModelForm->error($model, 'model_name'); ?>
         </div>
     </div>
@@ -78,7 +78,7 @@
             if($('#SettingsForm_make_name').val()==''){
                 $("#SettingsForm_make_name_em_").show();
             $("#SettingsForm_make_name_em_").addClass('errorMessage');
-            $("#SettingsForm_make_name_em_").text("Please select the make");
+            $("#SettingsForm_make_name_em_").text("Please Select Make");
             return false;
             }
         }
@@ -86,13 +86,13 @@
             $("#SettingsForm_make_name_em_").hide();
             $("#SettingsForm_model_name_em_").show();
             $("#SettingsForm_model_name_em_").addClass('errorMessage');
-            $("#SettingsForm_model_name_em_").text("Please Enter the name");
+            $("#SettingsForm_model_name_em_").text("Please enter a value for Model Name");
             return false;
         }
        if(prev==present){
             $("#SettingsForm_model_name_em_").show();
             $("#SettingsForm_model_name_em_").addClass('errorMessage');
-            $("#SettingsForm_model_name_em_").text("Please Modify the name and then click on save");
+            $("#SettingsForm_model_name_em_").text("Please Modify the Model Name and then click on save");
             return false;
         }
         else{

@@ -11,9 +11,9 @@
  echo $editMakeForm->hiddenField($model,'makeId', array('value'=>$getmakeDetails['id'])); 
 ?>
     <div class="row-fluid">
-        <div class=" span4">
+        <div class=" span12">
             <?php echo $editMakeForm->label($model, '<abbr title="required">*</abbr> Make Name'); ?>
-            <?php echo $editMakeForm->textField($model, 'make_name', array('value'=>$getmakeDetails['make_name'] ,'class' => 'span10')); ?>
+            <?php echo $editMakeForm->textField($model, 'make_name', array('value'=>$getmakeDetails['make_name'] ,'class' => 'span5')); ?>
             <?php echo $editMakeForm->error($model, 'make_name'); ?>
         </div>
     </div>
@@ -73,7 +73,7 @@
         if(prev==present){
             $("#SettingsForm_make_name_em_").show();
             $("#SettingsForm_make_name_em_").addClass('errorMessage');
-            $("#SettingsForm_make_name_em_").text("Please Modify the Make name and then click on save");
+            $("#SettingsForm_make_name_em_").text("Please Modify the Make Name and then click on save");
             return false;
         }
         else{

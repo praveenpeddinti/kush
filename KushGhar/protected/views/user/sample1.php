@@ -27,14 +27,16 @@
                 
                 ?>
                 <select <?php echo $model_select; ?> name="<?php echo $i+1; ?>_Model" id="<?php echo $i+1; ?>_Model" class="span12">
+
                     <option value="">Select Model</option>
+                    <?php if(isset($getCarWashServiceDetails[$i])){?>
                     <?php foreach ($Model as $modelName) { ?>
                     <?php 
                     $model_status = isset($getCarWashServiceDetails[$i])?$getCarWashServiceDetails[$i]['model_of_car']:'';
                     $modelselected = $model_status==$modelName['model_name']?'selected':''; ?>
                     
                     <option  <?php echo $modelselected; ?> value="<?php echo $modelName['model_name']; ?>"><?php echo $modelName['model_name']; ?></option>
-                    <?php } ?>
+                    <?php } }?>
                     </select>
                     <div id="<?php echo $i+1; ?>_Model_em" class="errorMessage" style="display:none"></div>
             </div>

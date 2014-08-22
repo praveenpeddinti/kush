@@ -11,16 +11,16 @@
     $months[ $i ] = $i;
  ?>
     <div class="row-fluid">
-    <div class=" span4">
+    <div class=" span6">
         <?php echo $form->label($model, '<abbr title="required">*</abbr> Total Service Hours'); ?>
-        <?php echo $form->dropDownList($model,'TotalServiceHours', array(''=>'Select','1' => '1', '1.5' => '1.5','2' => '2', '2.5' => '2.5','3' => '3', '3.5' => '3.5','4' => '4', '4.5' => '4.5','5' => '5', '5.5' => '5.5','6' => '6', '6.5' => '6.5'
-            ,'7' => '7', '7.5' => '7.5','8' => '8', '8.5' => '8.5','9' => '9', '9.5' => '9.5','10' => '10', '10.5' => '10.5','11' => '11', '11.5' => '11.5','12' => '12'), array('class' => 'span8'));?>
+        <?php echo $form->dropDownList($model,'TotalServiceHours', array(''=>'Select Total Service Hours','1' => '1', '1.5' => '1.5','2' => '2', '2.5' => '2.5','3' => '3', '3.5' => '3.5','4' => '4', '4.5' => '4.5','5' => '5', '5.5' => '5.5','6' => '6', '6.5' => '6.5'
+            ,'7' => '7', '7.5' => '7.5','8' => '8', '8.5' => '8.5','9' => '9', '9.5' => '9.5','10' => '10', '10.5' => '10.5','11' => '11', '11.5' => '11.5','12' => '12'), array('class' => 'span12'));?>
         <?php echo $form->error($model,'TotalServiceHours'); ?>
         
     </div>
-        <div class=" span5">
+        <div class=" span6">
         <?php echo $form->label($model, '<abbr title="required">*</abbr> Total Service People'); ?>
-        <?php echo $form->dropDownList($model,'TotalServicePeople',$months, array('prompt'=>'Select','class' => 'span8'));?>
+        <?php echo $form->dropDownList($model,'TotalServicePeople',$months, array('prompt'=>'Select Total Service People','class' => 'span12'));?>
         
         <?php echo $form->error($model,'TotalServicePeople'); ?>
         
@@ -45,13 +45,13 @@
         if (($('#OrderForm_TotalServiceHours').val() == '')) {
             $("#OrderForm_TotalServiceHours_em_").show();
             $("#OrderForm_TotalServiceHours_em_").addClass('errorMessage');
-            $("#OrderForm_TotalServiceHours_em_").text("Select Total Service Hours");
+            $("#OrderForm_TotalServiceHours_em_").text("Please Select Total Service Hours");
                 return false;
         }else if (($('#OrderForm_TotalServicePeople').val() == '')) {
             $("#OrderForm_TotalServiceHours_em_").hide();
             $("#OrderForm_TotalServicePeople_em_").show();
             $("#OrderForm_TotalServicePeople_em_").addClass('errorMessage');
-            $("#OrderForm_TotalServicePeople_em_").text("Select Total Service People");
+            $("#OrderForm_TotalServicePeople_em_").text("Please Select Total Service People");
                 return false;
        }else {
             $("#OrderForm_TotalServiceHours_em_").hide();

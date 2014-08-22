@@ -41,7 +41,7 @@
                             <div id="tablewidget"  style="margin: auto;"><div id="message" style="display:none"></div>
                                 <div class="row-fluid">
                                     <div class="span4">
-                                        <label>Services</label>
+                                        <label>Service</label>
                                         <select id="serviceType" class="span12">
                                             <option value="">Select Service</option>
                                             <option value="1">House Cleaning</option>

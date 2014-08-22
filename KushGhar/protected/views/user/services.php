@@ -30,7 +30,7 @@
                                 <div class="row-fluid">
                                     <div class=" span4">
                                         <?php echo $form->label($model, 'HouseType'); ?>
-                                        <?php echo $form->dropDownList($model,'HouseType', array(''=>'Select','Apartment' => 'Apartment', 'Villa'=>'Villa','Independent House' => 'Independent House', 'Commercial'=>'Commercial'), array('class' => 'span12','options' => array($getServiceDetails['house_type'] => array('selected' => 'selected'))));?>
+                                        <?php echo $form->dropDownList($model,'HouseType', array(''=>'Select House Type','Apartment' => 'Apartment', 'Villa'=>'Villa','Independent House' => 'Independent House', 'Commercial'=>'Commercial'), array('class' => 'span12','options' => array($getServiceDetails['house_type'] => array('selected' => 'selected'))));?>
                                     </div>  
                                     <div class=" span4">
                                         <?php echo $form->label($model, 'Square Feets'); ?>

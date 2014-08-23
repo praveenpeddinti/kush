@@ -40,7 +40,7 @@
 
                                         <input id="userview_<?php echo $row['id']; ?>" data-id="<?php echo $row['id']; ?>" service-id="<?php echo $row['ServiceId']; ?>" vendors="<?php echo $row['assign_vendors']; ?>" type="button" value=" " class="icon_view" alt="View" title="View"/>
                                         <?php if($row['status']==1 && $row['ServiceId']==1) {?>
-                                        <input id="print_<?php echo $row['id']; ?>" data-id="<?php echo $row['order_number']; ?>" vendors="<?php echo $row['assign_vendors']; ?>" class="icon-print" alt="Print order" type="button">
+                                        <i class="i_print_icon"><input id="print_<?php echo $row['id']; ?>" data-id="<?php echo $row['order_number']; ?>" vendors="<?php echo $row['assign_vendors']; ?>" alt="Print Order" type="button" title="Print Order"></i>
                                         <?php } ?>
                                         </td>
                                             

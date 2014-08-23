@@ -659,7 +659,7 @@ $this->pageTitle="KushGhar-Basic Info";
             $custId=$serviceDetails[0]['CustId'];
             $customerDetails = $this->kushGharService->getCustomerDetails($custId);
             $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($custId);
-            $renderHtml=  $this->renderPartial("printOrder",array("customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails,"serviceDetails"=>$serviceDetails,"vendors"=>$vendorDetails),true);
+            $renderHtml=  $this->renderPartial("printOrder",array("customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails,"serviceDetails"=>$serviceDetails,"vendors"=>$vendorDetails,"OrderNumber"=>$_POST['Id']),true);
             $obj=array('status'=>'success','html'=>$renderHtml);
             $renderScript=  $this->rendering($obj);
             echo $renderScript;

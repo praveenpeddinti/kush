@@ -292,24 +292,33 @@ $this->pageTitle="KushGhar-Basic Info";
     
     public function actionViewData() {
         try {
-                         
+                if(!empty($_POST['Vendors'])){error_log("-------------enter view controller");
+                    $vendordetails = $this->kushGharService->getVendorDetails($_POST['Id'],$_POST['Vendors']);
+                    
+                    }else{
+                       $vendordetails = ''; 
+                    }         
                 if($_POST['ServiceId']==1){
                 $servicedetails = $this->kushGharService->getOrderHServicesDetails($_POST['Id']);
                 $CustId = $servicedetails['CustId'];
+                $ServiceDate = $servicedetails['houseservice_start_time'];
                 }
                 if($_POST['ServiceId']==2){
                 $servicedetails = $this->kushGharService->getOrderCServicesDetails($_POST['Id']);
                 foreach($servicedetails as $ee){
                 $CustId = $ee['CustId'];
+                $ServiceDate = $ee['carservice_start_time'];
                 
             }
                 }
                 if($_POST['ServiceId']==3){
                 $servicedetails = $this->kushGharService->getOrderSServicesDetails($_POST['Id']);
                 $CustId = $servicedetails['CustId'];
+                $ServiceDate = $servicedetails['start_time'];
                 }
                 $customerDetails = $this->kushGharService->getCustomerDetails($CustId);
-                $renderHtml = $this->renderPartial('viewData', array('userDetails1' => $customerDetails,'services'=>$servicedetails,'serviceId'=>$_POST['ServiceId']), true);
+                $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($CustId);
+                $renderHtml = $this->renderPartial('viewData', array('userDetails1' => $customerDetails,'services'=>$servicedetails,'serviceId'=>$_POST['ServiceId'],'Vendors'=>$vendordetails,'ServiceDate'=>$ServiceDate,'customerAddressDetails'=>$customerAddressDetails), true);
                 $obj = array('status' => 'success', 'html' => $renderHtml);
                 $renderScript = $this->rendering($obj);
                 echo $renderScript;

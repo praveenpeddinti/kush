@@ -767,4 +767,8 @@ class KushGharService {
     public function getMakeNameByID($id){
         return CarModels::model()->getMakeNameByID($id);
     }
+    
+    public function getVendorDetails($Id,$vendors) {
+        return OrderDetails::model()->getVendorDetails($Id,$vendors);
+    }
 } ?>

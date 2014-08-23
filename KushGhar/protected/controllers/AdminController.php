@@ -651,4 +651,20 @@ $this->pageTitle="KushGhar-Basic Info";
         $obj = array('status' => 'error', 'data' => '', 'error' => $changeUserStatus);
         echo CJSON::encode($obj);
     }
+    public function actionPrintOrder(){
+        try{
+            $this->pageTitle="KushGhar-Admin Order Print";
+            $vendorDetails=  $this->kushGharService->getVendorDetails($_POST['Id'],$_POST['vendors']);
+            $serviceDetails=  $this->kushGharService->getServiceDetailsofHouseCleaning($_POST['Id']);
+            $custId=$serviceDetails[0]['CustId'];
+            $customerDetails = $this->kushGharService->getCustomerDetails($custId);
+            $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($custId);
+            $renderHtml=  $this->renderPartial("printOrder",array("customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails,"serviceDetails"=>$serviceDetails,"vendors"=>$vendorDetails),true);
+            $obj=array('status'=>'success','html'=>$renderHtml);
+            $renderScript=  $this->rendering($obj);
+            echo $renderScript;
+        } catch (Exception $ex) {
+            error_log("#######Exception Occured#######". $ex->getMessage());
+        }
+       }
  }

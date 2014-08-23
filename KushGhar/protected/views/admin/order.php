@@ -129,6 +129,18 @@
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->
                 </div><!-- /.modal -->
+                <div id="myModalOrderPrint" class="modal fade" >
+                    <div class="modal-dialog" style="width: 1000px">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h3 id="myModalLabel">Print the Order</h3>
+                            </div>
+                            <div class="modal-body" id="myModalOrderPrintDiv" style="padding:15px;">
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
             </article>
         </div>
     </section>
@@ -150,14 +162,37 @@
     }
      $(document).ready(function() {
        $('#userTable tr td input').live('click', function() {
+           var id1=$(this).attr('id');
             var id = $(this).attr('data-id');
             var ServiceId = $(this).attr('service-id');
-            if(id>0){
+            if(id1.indexOf("view") > -1){
                 statusChangeUser(Number(id), Number(ServiceId));
             }
-            
+            else if(id1.indexOf("print") > -1){
+            var vendors=$(this).attr('vendors');    
+            print(Number(id),vendors);
+            }
         });
     });
+    function print(id,vendors){
+        var data = "Id=" + id+"&vendors="+vendors;
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: '<?php echo Yii::app()->createAbsoluteUrl("/admin/printOrder"); ?>',
+                data: data,
+                success: function(data) {
+                    $("#myModalOrderPrint").modal({ backdrop: 'static', keyboard: false,show:false });
+                    $("#myModalOrderPrintDiv").html(data.html);
+                    $('#myModalOrderPrint').modal('show');
+                },
+                error: function(data) { 
+                   alert("Error occured.please try again");
+
+                }
+            });
+        
+    }
     function statusChangeUser(rowNos, ServiceId) {
         
         

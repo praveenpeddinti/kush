@@ -289,6 +289,16 @@ class HouseCleaningService extends CActiveRecord {
         }
         return $result;
     }
+    public function getServiceDetailsofHouseCleaning($orderId){
+        try{
+            $query="select * from KG_House_cleaning_service where order_number=".$orderId;
+            $result = YII::app()->db->createCommand($query)->queryAll();
+        } catch (Exception $ex) {
+            error_log("getServiceDetailsofHouseCleaning Exception occured==" . $ex->getMessage());
+        }
+        return $result;
+    }
+    
 
 }
 ?>

@@ -37,7 +37,10 @@
                                             <option <?php if($row['status']=="2") echo "selected=\"selected\""; ?> value="Cancel">Cancel</option>
                                           </select>     
                                         <!--<input id="usera_<?php echo $row['id']; ?>" invite-id="<?php echo $row['id']; ?>" invite-status="<?php echo $row['status']; ?>"  type="button" value=" " class="<? if ($row['status'] == '0') echo 'icon_active'; if ($row['status'] == '1') echo 'icon_inactive'; if ($row['status'] == '2') echo 'icon_delete';?>" alt="Status" title="Status"/>-->
-                                        <input id="user_<?php echo $row['id']; ?>" data-id="<?php echo $row['id']; ?>" service-id="<?php echo $row['ServiceId']; ?>" type="button" value=" " class="icon_view" alt="View" title="View"/>
+                                        <input id="userview_<?php echo $row['id']; ?>" data-id="<?php echo $row['id']; ?>" service-id="<?php echo $row['ServiceId']; ?>" type="button" value=" " class="icon_view" alt="View" title="View"/>
+                                        <?php if($row['status']==1 && $row['ServiceId']==1) {?>
+                                        <input id="print_<?php echo $row['id']; ?>" data-id="<?php echo $row['order_number']; ?>" vendors="<?php echo $row['assign_vendors']; ?>" class="icon-print" alt="Print order" type="button">
+                                        <?php } ?>
                                         </td>
                                             
                                                     </tr>

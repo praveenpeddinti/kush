@@ -1,78 +1,78 @@
-<div class="paddinground">
+    <?php
+        $address;
+ if($customerAddressDetails['address_line1']=='')
+     $addressline1="";
+ else
+     $addressline1=$customerAddressDetails['address_line1'].", ";
+ if($customerAddressDetails['address_line2']=='')
+     $addressline2="";
+ else
+     $addressline2=$customerAddressDetails['address_line2'].", ";
+ if($customerAddressDetails['address_city']=='')
+     $addresscity="";
+ else
+     $addresscity=$customerAddressDetails['address_city'].", ";
+ if($customerAddressDetails['address_pin_code']=='')
+     $addressPin="";
+ else
+     $addressPin=$customerAddressDetails['address_pin_code'];
+ if($customerAddressDetails['address_landmark']=='')
+     $addresslandmark="";
+ else
+     $addresslandmark="Landmark : ".$customerAddressDetails['address_landmark'];
+  $address=$addressline1.$addressline2.$addresscity.$addressPin;
+    ?>
+    <label>Kushghar Management Services Private Limited</label>
     <div class="row-fluid">
-        
-        <div class="span6">
-            <div class="pull-right">
-                <table border="0">
-                <tr><th colspan="2">Service Details</th></tr>
-               <?php if($serviceId==1){ 
-                 if ($services['squarefeets'] != 0) { ?>
+        <div class="span12">
+            <h2>Customer Details</h2>
+            <table border="1" style="width: 100%" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td>Square Feet </td>
+                    <td><label><b>Customer Name </b></td><td colspan="3"><?php echo $userDetails1['first_name']." ".$userDetails1['last_name'];?></label></td>
+                </tr>
+                <tr>
+                <td><label><b>Contact No </b></td><td><?php echo $userDetails1['phone'];?></label></td>
+                <td><label><b>Email ID </b></td><td><?php echo $userDetails1['email_address'];?></label></td></tr>
+                <tr>
+                    <td><label><b>Address</b></label></td>
+                    <td colspan="3"><label><?php echo $address."\n".$addresslandmark;?></label></td>
+                </tr>
+            </table>
+            
+            
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+            <?php if($serviceId==1){ ?>
+            <table border="1" style="width: 100%" cellpadding="0" cellspacing="0">
+                <tr><th align="left" colspan="4">No of Rooms</th><th align="left">Square feet area</th></tr>
+                <tr>
+                    <td><label>Bedroom <?php echo  "<b>" .$services['total_bedRooms'] . "</b>"; ?></label></td>
+                    <td><label>Bathroom <?php echo "<b>" .$services['total_bathRooms']. "</b>"; ?></label></td>
+                    <td><label>Living room <?php echo "<b>" .$services['total_livingRooms']. "</b>"; ?></label></td>
+                    <td><label>Kitchen <?php echo "<b>" .$services['total_kitchens']. "</b>";?></label></td>
                     <td><?php echo "<b>" . $services['squarefeets'] . "</b>"; ?></td>
                 </tr>
-                <?php } ?>
-                <?php if (!empty($services['total_livingRooms'])) { ?>
-                <tr>
-                    <td>Total Living Room(s) </td>
-                    <td><?php echo "<b>" . $services['total_livingRooms'] . "</b>"; ?></td>
-                </tr>
-                <?php } ?>
-                <?php if (!empty($services['total_bedRooms'])) { ?>
-                <tr>
-                    <td>Total Bed Room(s)</td>
-                    <td><?php echo "<b>" . $services['total_bedRooms'] . "</b>"; ?></td>
-                </tr>
-                <?php } ?>
-                <?php if (!empty($services['total_kitchens'])) { ?>
-                <tr>
-                    <td>Total Kitchen(s)</td>
-                    <td><?php echo "<b>" . $services['total_kitchens'] . "</b>"; ?></td>
-                </tr>
-                <?php } ?>
-                <?php if (!empty($services['total_bathRooms'])) { ?>
-                <tr>
-                    <td>Total Bath Room(s)</td>
-                    <td><?php echo "<b>" . $services['total_bathRooms'] . "</b>"; ?></td>
-                </tr>
-                <?php } ?>
-                <?php if ($services['pooja_room_cleaning'] != 0) { ?>
-                <tr>
-                    <td>Pooja Room</td>
-                    <td><?php echo "<b>" . $services['pooja_room_cleaning'] . "</b>"; ?></td>
-                </tr>
-                <?php } ?>
-                <?php if( ($services['window_grills'] != 0) ||  ($services['fridge_interior'] != 0) || ($services['microwave_oven_interior'] != 0) || ($services['pooja_room_cleaning'] != 0) ){?>
-                                    
-                <tr>
-                    <td valign='top'>Additional Services are</td>
-                </tr>
-                <tr>
-                    <td><b><?php if ($services['window_grills'] == 1) echo " Window grills cleaning<br>"; ?>
-                        <?php if ($services['cupboard_cleaning'] == 1) echo " Cupboard cleaning<br>"; ?>
-                        <?php if ($services['fridge_interior'] == 1) echo " Fridge interior cleaning<br>"; ?>
-                        <?php if ($services['microwave_oven_interior'] == 1) echo " Micro wave oven interior cleaning<br>"; ?>
-                        <?php if ($services['pooja_room_cleaning'] == 1) echo " Pooja room cleaning<br>"; ?>
-                    </b></td>
-                </tr>
-               <?php } }?>
-                <?php if($serviceId==2){?> 
-                <tr>
-                    <td>Total Cars</td>
+                
+            </table>
+            <?php }?>
+            <?php if($serviceId==2){ ?>
+            <table border="1" style="width: 100%" cellpadding="0" cellspacing="0">
+                <tr><th colspan="2">Total Cars</th>
                     <td><?php echo "<b>" . count($services) . "</b>"; ?></td>
                 </tr>
                 <?php foreach ($services as $cw) { ?>
-                <tr>
-                    <td>Make / Model of the Car</td>
-                    <td><?php echo "<b>" . $cw['make_of_car'] . "</b>"; ?></td>
-                </tr>
-                <?php if ($cw['exterior_cleaning'] != 0) { ?>
-                <tr>
-                    <td>Exterior Color</td>
+                <tr><th>Make</th><th>Model</th><th>Exterior Color</th></tr>
+                <tr><td><?php echo "<b>" . $cw['make_of_car'] . "</b>"; ?></td>
+                    <td><?php echo "<b>" . $cw['model_of_car'] . "</b>"; ?></td>
                     <td><?php echo "<b>" . $cw['exterior_color'] . "</b>"; ?></td>
                 </tr>
-                <?php } } }?>
-                <?php if($serviceId==3){?> 
+                <?php }?>
+            </table>
+            <?php }?>
+            <?php if($serviceId==3){ ?>
+            <table border="1" style="width: 100%" cellpadding="0" cellspacing="0">
                 <tr>
                     <td>Event Name </td>
                     <td>
@@ -110,18 +110,30 @@
 
                    </b> </td>
                 </tr>
-                <?php }}?>
-                </table> 
-            </div>
-        </div>
-        <div class=" span6 pull-right">
-            <table border="0">
-                <tr><th colspan="2">Customer Details</th></tr>
-                <tr><td>Name:<td><?php echo $userDetails1['first_name']." ".$userDetails1['last_name'];?></td></tr>
-                <tr><td>Email:<td><?php echo $userDetails1['email_address'];?></td></tr>
-                <tr><td>Phone:<td><?php echo $userDetails1['phone'];?></td></tr>
+                <?php }?>
+                
             </table>
+            <?php }?>
         </div>
-    </div>    
-</div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+            <h2>Service Schedule</h2>
+            <label>Service requested date:<?php echo $ServiceDate;?></label>
+            <?php if(!empty($Vendors)){ ?>
+            <table border="1" style="width: 100%" cellpadding="0" cellspacing="0">
+                <tr><th align="left">Team members:</th></tr>
+                <tr>
+               <?php for($i=0;$i<count($Vendors);$i++){?>
+                    
+                    <td><?php echo 1+$i.")&nbsp;&nbsp;".$Vendors[$i]['first_name']." ".$Vendors[$i]['last_name'];?></td>
+                   
+                   
+               <?php  }?>
+                    </tr> 
+            </table>
+            <?php }?>
+        </div>
+    </div>
+  
                                     

@@ -271,7 +271,7 @@ public function sendorderStatus($id,$val){
     
     public function getVendorDetails($Id,$vendors) {
         try {
-            $query = "select o.CustId,o.service_date,v.vendor_id,v.first_name from KG_Order_details o,KG_vendor_individual v where v.vendor_id in ($vendors) and o.id=$Id";
+            $query = "select o.CustId,o.service_date,v.vendor_id,v.first_name,v.last_name from KG_Order_details o,KG_vendor_individual v where v.vendor_id in ($vendors) and o.id=$Id";
             $result = YII::app()->db->createCommand($query)->queryAll();
             
         } catch (Exception $ex) {

@@ -23,9 +23,8 @@ $address;
   $address=$addressline1.$addressline2.$addresscity.$addressPin;
  ?>
 <html>
-    <body style="padding: 10px">
-        
-        <div id="print" style="padding: 10px">
+    <body>
+        <div id="print">
             <div class="container">
                 <section>
                     <table border="1" style="width: 100%" cellpadding="0" cellspacing="0">
@@ -41,15 +40,15 @@ $address;
                                 <td colspan="3" style="padding:5px;"><label><?php echo $customerDetails['first_name']." ".$customerDetails['midle_name']." ".$customerDetails['last_name']; ?></label></td>
                                 
                             </tr>
-                            <tr  style="padding:10px;">
+                            <tr style="padding:10px;">
                                 <td style="width: 20%;padding:5px"><label><b>Contact Number</b></label></td>
                                 <td style="width: 30%;padding:5px"><label><?php echo $customerDetails['phone']; ?></label></td>
                                 <td style="width: 20%;padding:5px"><label><b>Email ID</b></label></td>
                                 <td style="width: 30%;padding:5px"><label><?php echo $customerDetails->email_address; ?></label></td>
                             </tr>
                             <tr>
-                                <td><label><b>Address</b></label></td>
-                                <td colspan="3"><label><?php echo $address."\n".$addresslandmark;?></label></td>
+                                <td style="padding:5px;"><label><b>Address</b></label></td>
+                                <td style="padding:5px;" colspan="3"><label><?php echo $address."\n".$addresslandmark;?></label></td>
                             </tr>
                             <tr  style="padding:10px;">
                                 <td style="padding:5px;"><label><b>No. of Rooms</b></label></td>
@@ -98,7 +97,6 @@ $address;
                     <table border="1" style="width: 100%" cellpadding="0" cellspacing="0">
                             <tr  style="padding:10px;">
                                 <td colspan="5" style="padding:5px;"><label><b>(1) Did our team arrive on time?</b></label><br>
-                                
                                 <input type="checkbox"> Yes &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <input type="checkbox"> No</td>
                                 
@@ -181,7 +179,7 @@ $address;
                             <tr  style="padding:10px;">
                                 <td colspan="5" style="padding:5px;"><label><b>(5) Suggestions / Complaints (Your feedback will help us to identify areas we need to improve as well as letting us know what else you expect from us for better service. Your feedback really does count!)</b></label>
                                     <br>
-                                    <textarea rows="3" cols="100" ></textarea></td>
+                                    <textarea style="height:70px;width:98%"></textarea></td>
                             </tr>
                             </table>
                     <table border="0" style="width: 100%" cellpadding="0" cellspacing="0">

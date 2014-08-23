@@ -165,11 +165,14 @@
            var id1=$(this).attr('id');
             var id = $(this).attr('data-id');
             var ServiceId = $(this).attr('service-id');
+
+            var vendors = $(this).attr('vendors');
+           
             if(id1.indexOf("view") > -1){
-                statusChangeUser(Number(id), Number(ServiceId));
+                statusChangeUser(Number(id), Number(ServiceId), vendors);
             }
             else if(id1.indexOf("print") > -1){
-            var vendors=$(this).attr('vendors');    
+           
             print(Number(id),vendors);
             }
         });
@@ -193,10 +196,9 @@
             });
         
     }
-    function statusChangeUser(rowNos, ServiceId) {
+    function statusChangeUser(rowNos, ServiceId, vendors) {
+         var data = "Id=" + rowNos + "&ServiceId=" + ServiceId+ "&Vendors=" + vendors;
         
-        
-        var data = "Id=" + rowNos + "&ServiceId=" + ServiceId;
             $.ajax({
                 type: 'POST',
                 dataType: 'json',

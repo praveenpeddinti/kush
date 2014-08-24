@@ -157,7 +157,7 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                 <h3 id="myModalLabel">Customer Feedback Form</h3>
                             </div>
-                            <div class="modal-body" id="modalBodyReviewDiv" >
+                            <div class="modal-body" id="modalBodyReviewDiv" style="padding: 20px"  >
                             
                             </div>
                         </div><!-- /.modal-content -->

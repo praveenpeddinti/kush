@@ -175,7 +175,7 @@ public function sendorderStatus($id,$val){
             $result = "success"; 
     }
     public function getServiceType($id){
-        $query="select ServiceId from KG_Order_details where order_number=".$id;
+        $query="select ServiceId,CustId from KG_Order_details where order_number=".$id;
         $result = YII::app()->db->createCommand($query)->queryRow();
         return $result;
     }

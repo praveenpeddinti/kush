@@ -11,6 +11,7 @@
  echo $reviewForm->hiddenField($model,'Rating');
  echo $reviewForm->hiddenField($model,'OrderNumber', array('value'=>$OrderNumber));
  echo $reviewForm->hiddenField($model,'ServiceType',array('value'=>$ServiceType));
+ echo $reviewForm->hiddenField($model,'CustID',array('value'=>$CustId));
 ?>
 <div class="row-fluid" id="ques1">
     <div class="span12">
@@ -105,6 +106,7 @@
     }
     function reviewHandler(data)
     { 
+        var sess= '<?php echo $this->session['Type']; ?>';
         if(data.status =='success'){
             $("#OrderReviewForm_error_em_").show(1000);
                     $("#OrderReviewForm_error_em_").removeClass('errorMessage');
@@ -112,7 +114,11 @@
                     $("#OrderReviewForm_error_em_").text(data.error);
                     $("#OrderReviewForm_error_em_").fadeOut(3000);
                     setTimeout(function() {
-                        window.location.href = '<?php echo Yii::app()->request->baseUrl; ?>/user/order';
+                        if(sess=='Customer')
+                            window.location.href = '<?php echo Yii::app()->request->baseUrl; ?>/user/order';
+                        else if(sess=='Admin'){
+                            window.location.href ='<?php echo Yii::app()->request->baseUrl; ?>/admin/order';
+                    }
                     }, 3000);  
                     
         }

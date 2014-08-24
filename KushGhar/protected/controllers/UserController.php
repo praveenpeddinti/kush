@@ -1498,11 +1498,12 @@ class UserController extends Controller {
             $id=$_POST['Id'];
             $getServiceType = $this->kushGharService->getServiceType($id);
             $type=$getServiceType['ServiceId'];
+            $custId=$getServiceType['CustId'];
             $getReviewExist=$this->kushGharService->getReviewExist($id);
             if($getReviewExist>=1){
                 $renderHtml="You have already done your review for this order";
             }else{
-            $renderHtml=  $this->renderPartial('orderreview',array("model"=>$Model, "OrderNumber"=>$id,"ServiceType"=>$type),true);
+            $renderHtml=  $this->renderPartial('orderreview',array("model"=>$Model, "OrderNumber"=>$id,"ServiceType"=>$type,"CustId"=>$custId),true);
             }
             $obj=array('status'=>'success','html'=>$renderHtml);
             $renderScript=  $this->rendering($obj);

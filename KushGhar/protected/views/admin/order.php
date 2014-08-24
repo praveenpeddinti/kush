@@ -141,6 +141,19 @@
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->
                 </div><!-- /.modal -->
+                <div id="myModalReview" class="modal fade" >
+                    <div class="modal-dialog" style="width: 800px">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h3 id="myModalLabel">Customer Feedback Form</h3>
+                            </div>
+                            <div class="modal-body" id="modalBodyReviewDiv" style="padding: 20px" >
+                            
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
             </article>
         </div>
     </section>
@@ -168,12 +181,15 @@
 
             var vendors = $(this).attr('vendors');
            
-            if(id1.indexOf("view") > -1){
+            if(id1.indexOf("userview") > -1){
                 statusChangeUser(Number(id), Number(ServiceId), vendors);
             }
             else if(id1.indexOf("print") > -1){
            
             print(Number(id),vendors);
+            }
+            else if(id1.indexOf("Review") > -1){
+                review(Number(id));
             }
         });
     });
@@ -357,5 +373,23 @@ function getCollectionDataWithPagination(URL,CollectionName, MainDiv, CurrentPag
                 if(callback!=''){
                     callback();
                 }
+    }
+    function review(id){
+    var data = "Id=" + id;
+            $.ajax({
+                type: 'POST',
+                dataType: 'json', 
+                url: '<?php echo Yii::app()->createAbsoluteUrl("/user/orderreview"); ?>',
+                data: data,
+                success: function(data) {
+                    $("#myModalReview").modal({ backdrop: 'static', keyboard: false,show:false });
+                    $("#modalBodyReviewDiv").html(data.html);
+                    $('#myModalReview').modal('show');
+                },
+                error: function(data) { 
+                   alert("Error occured.please try again");
+
+                }
+            });
     }
 </script>

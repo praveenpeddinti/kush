@@ -43,7 +43,7 @@
                                         <i class="i_print_icon"><input id="print_<?php echo $row['id']; ?>" data-id="<?php echo $row['order_number']; ?>" vendors="<?php echo $row['assign_vendors']; ?>" alt="Print Order" type="button" title="Print Order"></i>
                                         <?php } ?>
                                         <?php if($row['status']==3) {?>
-                                        <input id="Review_<?php echo $row['id']; ?>" data-id="<?php echo $row['order_number']; ?>" vendors="<?php echo $row['assign_vendors']; ?>" alt="Print Order" type="button" title="Write review on behalf of customer"></i>
+                                        <input id="Review_<?php echo $row['id']; ?>" data-id="<?php echo $row['order_number']; ?>" vendors="<?php echo $row['assign_vendors']; ?>" class="icon_edit" type="button" title="Write review on behalf of customer"></i>
                                         <?php } ?>
                                         </td>
                                             

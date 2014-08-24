@@ -100,7 +100,6 @@
         if(validate()){
          scrollPleaseWait("inviteSpinLoader","invite-form");
          var data = $("#review-form").serialize();
-         alert(data);
         ajaxRequest('/user/orderreviewsave', data, reviewHandler)
         }
     }

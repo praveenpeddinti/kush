@@ -469,8 +469,10 @@ ul.header_profile{ list-style:none; margin:0; padding:0}
 .nav > li > a:hover.vendor_b{ background: none;}
 .icon_delete{background:url(../images/delete.png) no-repeat left top; width:16px; height:16px; border:0; cursor:pointer}
 .icon_inactive{background:url(../images/in_active_user.png) no-repeat left top; width:16px; height:16px; border:0; cursor:pointer}
-.icon_invite{background:url(../images/user_plus.png) no-repeat left top; width:16px; height:16px; border:0; cursor:pointer}
-.icon_reinvite{background:url(../images/re_invite.png) no-repeat left top; width:16px; height:16px; border:0; cursor:pointer}
+.icon_notinvite{background:url(../images/not_invite.png) no-repeat left top; width:16px; height:16px; border:0; cursor:pointer}
+.icon_invite{background:url(../images/invite.png) no-repeat left top; width:16px; height:16px; border:0; cursor:pointer}
+.icon_reinvite{background:url(../images/reinvite.png) no-repeat left top; width:16px; height:16px; border:0; cursor:pointer}
+.icon_review{background:url(../images/review.png) no-repeat left top; width:16px; height:16px; border:0; cursor:pointer}
 .icon_edit{background:url(../images/edit.gif) no-repeat left top; width:16px; height:16px; border:0; cursor:pointer}
 .i_print_icon input[type="button"]{ background:url(../images/printer.png) no-repeat left top; width:16px; height:16px; border:0; cursor:pointer}
 .modal-header p{margin:0px;padding:5px;line-height:15px;font-size:14px;color:#333;text-align:center;}
@@ -520,7 +522,7 @@ input.serachInput::-ms-reveal { width : 0; height: 0;}
 .fridge{background-position: center -535px;}
 .woven{background-position: center -244px;}
 .pooja{background-position: center 5px;}
-.cupboard{background-position: center top;}
+.cupboard{background-position: center -824px;}
 .dashed_left_border{ border-left:1px dashed #ccc}
 .window_cleaning  label, .fridge  label, .woven label, .cupboard label{ display:inline-block}
 .Additional_S .row-fluid [class*="span"]{ margin-left:0px;}

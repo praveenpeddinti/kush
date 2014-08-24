@@ -35,7 +35,7 @@
                                             <input id="cancel_<?php echo $row['id']; ?>" data-id="<?php echo $row['order_number']; ?>" type="button" value=" " class="<? echo 'icon_inactive'; ?>" alt="Cancel" title="Cancel"/>
                                          <?php } ?> 
                                             <?php if($row['status']==3) {?>
-                                            <input id="review_<?php echo $row['id']; ?>" data-id="<?php echo $row['order_number']; ?>"  type="button" value=" " class="<? echo 'icon_reinvite';?>" alt="Review / Feedback" title="Review / Feedback"/>
+                                            <input id="review_<?php echo $row['id']; ?>" data-id="<?php echo $row['order_number']; ?>"  type="button" value=" " class="<? echo 'icon_review';?>" alt="Review / Feedback" title="Review / Feedback"/>
                                          <?php } ?> 
                                          </td>
                                             

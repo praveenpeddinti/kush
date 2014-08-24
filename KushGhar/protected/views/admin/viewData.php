@@ -22,20 +22,20 @@
      $addresslandmark="Landmark : ".$customerAddressDetails['address_landmark'];
   $address=$addressline1.$addressline2.$addresscity.$addressPin;
     ?>
-    <label>Kushghar Management Services Private Limited</label>
-    <div class="row-fluid">
+  <div class="row-fluid">
         <div class="span12">
-            <h2>Customer Details</h2>
+            <div style="text-align: center; background-color: #e5e5e5;">
+                    <center><h3 style="padding: 0px">Customer Details</h3></center></div>
             <table border="1" style="width: 100%" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td><label><b>Customer Name </b></td><td colspan="3"><?php echo $userDetails1['first_name']." ".$userDetails1['last_name'];?></label></td>
+                    <td><b>Customer Name </b></td><td colspan="3"><?php echo $userDetails1['first_name']." ".$userDetails1['last_name'];?></td>
                 </tr>
                 <tr>
-                <td><label><b>Contact No </b></td><td><?php echo $userDetails1['phone'];?></label></td>
-                <td><label><b>Email ID </b></td><td><?php echo $userDetails1['email_address'];?></label></td></tr>
+                <td><b>Contact No </b></td><td><?php echo $userDetails1['phone'];?></td>
+                <td><b>Email ID </b></td><td><?php echo $userDetails1['email_address'];?></td></tr>
                 <tr>
-                    <td><label><b>Address</b></label></td>
-                    <td colspan="3"><label><?php echo $address."\n".$addresslandmark;?></label></td>
+                    <td><b>Address</b></td>
+                    <td colspan="3"><?php echo $address."\n".$addresslandmark;?></td>
                 </tr>
             </table>
             
@@ -118,11 +118,12 @@
     </div>
     <div class="row-fluid">
         <div class="span12">
-            <h2>Service Schedule</h2>
-            <label>Service requested date:<?php echo $ServiceDate;?></label>
+            <div style="text-align: center; background-color: #e5e5e5;">
+            <center><h3 style="padding: 0px">Service Schedule</h3></center></div>
             <?php if(!empty($Vendors)){ ?>
             <table border="1" style="width: 100%" cellpadding="0" cellspacing="0">
-                <tr><th align="left">Team members:</th></tr>
+                <tr><td align="left"><b>Service requested date:</b></td><td colspan="2"><?php echo $ServiceDate;?></td></tr>
+                <tr><td colspan="3" align="left"><b>Team members:</b></td></tr>
                 <tr>
                <?php for($i=0;$i<count($Vendors);$i++){?>
                     

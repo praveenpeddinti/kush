@@ -47,19 +47,20 @@ $address;
                                 <td colspan="3" style="padding-left:5px;"><label><?php echo $address."\n".$addresslandmark;?></label></td>
                             </tr>
                             <tr>
-                                <td style="padding-left:5px;"><label><b>No. of Rooms</b></label></td>
-                                <td colspan="3" style="padding-left:0px;"><table border="1" style="width:100%" cellpadding="0" cellspacing="0">
-                                        <tr>
-                                            <td style="width: 8%"><label><b>Living Room(s)</b> </label> </td>
-                                            <td style="width: 2%;text-align: center; "><label><?php echo $serviceDetails[0]['total_livingRooms']; ?></label></td>
-                                            <td style="width: 8%"><label><b>Bed Room(s)</b> </label> </td>
-                                            <td style="width: 2%;text-align: center;"><label><?php echo $serviceDetails[0]['total_bedRooms']; ?></label></td>
-                                            <td style="width: 8%"><label><b>Bath Room(s)</b> </label> </td>
-                                            <td style="width: 2%;text-align: center;"><label><?php echo $serviceDetails[0]['total_bathRooms']; ?></label></td>
-                                            <td style="width: 8%"><label><b>Kitchen</b></label> </td>
-                                            <td style="width: 2%;text-align: center;"><label><?php echo $serviceDetails[0]['total_kitchens']; ?></label></td>
-                                            <td style="width: 8%"><label><b>Square Feet Area</b></label> </td>
-                                            <td style="width: 2%;text-align: center;"><label><?php echo $serviceDetails[0]['squarefeets']; ?></label></td>
+                                <td colspan="2" style="padding-left:5px;"><label><b>No. of Rooms</b></label></td>
+                                <td style="padding-left:5px;"><label><b>Square Feet Area</b></label></td>
+                                <td style="padding-left:5px;"><label><?php echo $serviceDetails[0]['squarefeets']; ?></label></td>
+                            </tr>
+                            <tr>
+                               <td colspan="4"><table style="width:100%" cellpadding="0" cellspacing="0">
+                                            <td style="border-right:1px solid #000;width: 8%;padding-left:5px"><label><b>Living Room(s)</b> </label> </td>
+                                            <td style="border-right:1px solid #000;width: 2%;padding-left:5px"><label><?php echo $serviceDetails[0]['total_livingRooms']; ?></label></td>
+                                            <td style="border-right:1px solid #000;width: 8%;padding-left:5px"><label><b>Bed Room(s)</b> </label> </td>
+                                            <td style="border-right:1px solid #000;width: 2%;padding-left:5px"><label><?php echo $serviceDetails[0]['total_bedRooms']; ?></label></td>
+                                            <td style="border-right:1px solid #000;width: 8%;padding-left:5px"><label><b>Bath Room(s)</b> </label> </td>
+                                            <td style="border-right:1px solid #000;width: 2%;padding-left:5px"><label><?php echo $serviceDetails[0]['total_bathRooms']; ?></label></td>
+                                            <td style="border-right:1px solid #000;width: 8%;padding-left:5px"><label><b>Kitchen</b></label> </td>
+                                            <td style="width: 2%;padding-left:5px"><label><?php echo $serviceDetails[0]['total_kitchens']; ?></label></td>
                                         </tr>
                                     </table></td>
                             </tr>

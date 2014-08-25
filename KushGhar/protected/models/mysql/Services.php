@@ -22,6 +22,18 @@ class Services extends CActiveRecord {
         return $serviceTypes;
     }
     
+    
+    public function getFeedbackPublished(){
+        try{
+            $query = "select count(*) as count from KG_Customer_reviews where is_publish =1";
+            $result = Yii::app()->db->createCommand($query)->queryRow();
+        } catch (Exception $ex) {
+            error_log("##########Exception Occurred retrieve Data count#############" . $ex->getMessage());
+        }
+        return $result['count'];
+    }
+    
+    
     public function getFeedbacksTotal5() {
         try {
             $query = "select cr.CustId,CONCAT(c.first_name, ' ', c.last_name, ' ',if(ISNULL(c.middle_name),'',c.middle_name)) Name,cr.is_publish,cr.rating,cr.feedback from KG_Customer c,KG_Customer_reviews cr where c.customer_id = cr.CustId and cr.is_publish=1 ORDER BY cr.create_timestamp DESC limit 5";

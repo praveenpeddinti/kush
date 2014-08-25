@@ -29,7 +29,7 @@ $address;
                 <section>
                     <h3 align="center" style="padding: 0px">Kushghar Management Services Private Limited</h3>
                     <div style="text-align: center; background-color: #e5e5e5;">
-                    <center><h3 style="padding: 0px">Customer Details</h3></center></div> 
+                    <center><label style="padding: 0px;font-weight:bold;font-size: 18px;">Customer Details</label></center></div> 
                     <table border="1" style="width: 100%;" cellpadding="0" cellspacing="0">
                             <tr>
                                 <td style="width: 20%;padding-left:5px"><label><b>Customer Name</b></label></td>
@@ -65,20 +65,21 @@ $address;
                                     </table></td>
                             </tr>
                     </table>
-                    <div style="text-align: center; background-color: #e5e5e5;"><center><h3 style="padding: 0px">Service Schedule</h3></center></div>
+                    <div style="text-align: center; background-color: #e5e5e5;"><center>
+                            <label style="padding: 0px;font-weight:bold;font-size: 18px;">Service Schedule</label></center></div>
                     <table border="1" style="width:100%" cellpadding="0" cellspacing="0">
                             <tr>
                                 <td style="width: 25%;padding-left:5px"><label><b>Service scheduled date</b></label></td>
                                 <td style="width: 25%;padding-left:5px"><label><?php echo $serviceDetails[0]['houseservice_start_time']; ?></label></td>
-                                <td style="width: 25%;padding-left:5px;"><label><b>Order Number:</b></label></td>
+                                <td style="width: 25%;padding-left:5px;"><label><b>Order Number</b></label></td>
                                 <td style="width: 25%;padding-left:5px;"><b><?php echo $OrderNumber ?></b></label></td>
                                 
                             </tr>
                             <tr>
-                                <td style="padding:3px;"><label><b>Service attended date:</b></label></td>
+                                <td style="padding:3px;"><label><b>Service attended date</b></label></td>
                                 <td >&nbsp;</td>
-                                <td ><label><b>From Time:</b></label></td>
-                                <td><label><b>To Time:</b></label></td>
+                                <td ><label><b>From Time</b></label></td>
+                                <td><label><b>To Time</b></label></td>
                             </tr>
                             <tr>
                                 <td style="padding-left:5px;"><label><b>Team members:</b></label></td>
@@ -91,18 +92,32 @@ $address;
                                 ?></td>
                             </tr>
                     </table>
-                    <div style="text-align: center; background-color: #e5e5e5;"><center><h3 style="padding: 0px">Service Feedback</h3></center></div>
+                    <div style="text-align: center; background-color: #e5e5e5;">
+                        <center><label style="padding: 0px;font-weight:bold;font-size: 18px;">Service Feedback</label></center></div>
                     <table border="1" style="width: 100%" cellpadding="0" cellspacing="0">
                             <tr>
                                 <td colspan="5" style="padding-left:5px;"><label><b>(1) Did our team arrive on time?</b></label>
-                                <input type="checkbox"> Yes &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <input type="checkbox"> No</td>
+                                    <table  cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <td style="padding-top:4px"><span style="border:1px solid #000;display:inline-block;padding:8px;"></span></td>
+                                            <td style="padding-left:5px">Yes</td>
+                                            <td style="padding-left:20px;padding-top:4px"><span style="border:1px solid #000;display:inline-block;padding:8px;"></span></td>
+                                            <td style="padding-left:5px">No</td>
+                                        </tr>
+                                    </table>
+                                    </td>
                                 
                             </tr>
                             <tr>
                                 <td colspan="5" style="padding-left:5px;"><label><b>(2) Did our team members have a professional appearance?</b></label>
-                                    <input type="checkbox"> Yes &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <input type="checkbox"> No</td>
+                                 <table  cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <td style="padding-top:4px"><span style="border:1px solid #000;display:inline-block;padding:8px;"></span></td>
+                                            <td style="padding-left:5px">Yes</td>
+                                            <td style="padding-left:20px;padding-top:4px"><span style="border:1px solid #000;display:inline-block;padding:8px;"></span></td>
+                                            <td style="padding-left:5px">No</td>
+                                        </tr>
+                                    </table>
                             </tr>
                             <tr>
                                 <td colspan="5" style="padding-left:5px;"><label><b>(3) How would you rate us?</b></label></td>
@@ -114,26 +129,27 @@ $address;
                                 <td style="text-align: center;width: 20%;">Fair</td>
                                 <td style="text-align: center;width: 20%;">Poor</td>
                             </tr>
+                            
                             <tr>
-                                <td style="width: 20%;padding-left:5px;"><label>Office Staff</label></td>
-                                <td style="text-align: center;width: 20%;"><input type="checkbox"/></td>
-                                <td style="text-align: center;width: 20%;"><input type="checkbox"/></td>
-                                <td style="text-align: center;width: 20%;"><input type="checkbox"/></td>
-                                <td style="text-align: center;width: 20%;"><input type="checkbox"/></td>
+                                <td style="width: 20%;padding-left:5px">Office Staff</td>
+                                <td style="text-align: center;width: 20%;padding:6px 0 0"><span style="border:1px solid #000;display:inline-block;padding:8px;"></span></td>
+                                <td style="text-align: center;width: 20%;padding:6px 0 0"><span style="border:1px solid #000;display:inline-block;padding:8px;"></span></td>
+                                <td style="text-align: center;width: 20%;padding:6px 0 0"><span style="border:1px solid #000;display:inline-block;padding:8px;"></span></td>
+                                <td style="text-align: center;width: 20%;padding:6px 0 0"><span style="border:1px solid #000;display:inline-block;padding:8px;"></span></td>
                             </tr>
                             <tr>
-                                <td style="padding-left:5px;"><label>Home Service</label></td>
-                                <td style="text-align: center;width: 20%;"><input type="checkbox"/></td>
-                                <td style="text-align: center;width: 20%;"><input type="checkbox"/></td>
-                                <td style="text-align: center;width: 20%;"><input type="checkbox"/></td>
-                                <td style="text-align: center;width: 20%;"><input type="checkbox"/></td>
+                                <td style="padding-left:5px;">Home Service</td>
+                                 <td style="text-align: center;width: 20%;padding:6px 0 0"><span style="border:1px solid #000;display:inline-block;padding:8px;"></span></td>
+                                <td style="text-align: center;width: 20%;padding:6px 0 0"><span style="border:1px solid #000;display:inline-block;padding:8px;"></span></td>
+                                <td style="text-align: center;width: 20%;padding:6px 0 0"><span style="border:1px solid #000;display:inline-block;padding:8px;"></span></td>
+                                <td style="text-align: center;width: 20%;padding:6px 0 0"><span style="border:1px solid #000;display:inline-block;padding:8px;"></span></td>
                             </tr>
                             <tr>
-                                <td style="padding-left:5px;"><label>Overall Experience</label></td>
-                                <td style="text-align: center;width: 20%;"><input type="checkbox"/></td>
-                                <td style="text-align: center;width: 20%;"><input type="checkbox"/></td>
-                                <td style="text-align: center;width: 20%;"><input type="checkbox"/></td>
-                                <td style="text-align: center;width: 20%;"><input type="checkbox"/></td>
+                                <td style="padding-left:5px;">Overall Experience</td>
+                                 <td style="text-align: center;width: 20%;padding:6px 0 0"><span style="border:1px solid #000;display:inline-block;padding:8px;"></span></td>
+                                <td style="text-align: center;width: 20%;padding:6px 0 0"><span style="border:1px solid #000;display:inline-block;padding:8px;"></span></td>
+                                <td style="text-align: center;width: 20%;padding:6px 0 0"><span style="border:1px solid #000;display:inline-block;padding:8px;"></span></td>
+                                <td style="text-align: center;width: 20%;padding:6px 0 0"><span style="border:1px solid #000;display:inline-block;padding:8px;"></span></td>
                             </tr>
                             <tr>
                                 <td colspan="5" style="padding-left:5px;"><label><b>(4) How would you rate the quality of the services you have received from Kushghar housemen?</b></label></td>
@@ -147,43 +163,43 @@ $address;
                             </tr>
                             <tr>
                                 <td style="padding-left: 5px;"><label>Vacuuming</label></td>
-                                <td style="text-align: center;width: 20%;"><input type="checkbox"/></td>
-                                <td style="text-align: center;width: 20%;"><input type="checkbox"/></td>
-                                <td style="text-align: center;width: 20%;"><input type="checkbox"/></td>
-                                <td style="text-align: center;width: 20%;"><input type="checkbox"/></td>
+                                 <td style="text-align: center;width: 20%;padding:6px 0 0"><span style="border:1px solid #000;display:inline-block;padding:8px;"></span></td>
+                                <td style="text-align: center;width: 20%;padding:6px 0 0"><span style="border:1px solid #000;display:inline-block;padding:8px;"></span></td>
+                                <td style="text-align: center;width: 20%;padding:6px 0 0"><span style="border:1px solid #000;display:inline-block;padding:8px;"></span></td>
+                                <td style="text-align: center;width: 20%;padding:6px 0 0"><span style="border:1px solid #000;display:inline-block;padding:8px;"></span></td>
                             </tr>
                             <tr>
                                 <td style="padding-left:5px;"><label>Dusting</label></td>
-                                <td style="text-align: center;width: 20%;"><input type="checkbox"/></td>
-                                <td style="text-align: center;width: 20%;"><input type="checkbox"/></td>
-                                <td style="text-align: center;width: 20%;"><input type="checkbox"/></td>
-                                <td style="text-align: center;width: 20%;"><input type="checkbox"/></td>
+                                 <td style="text-align: center;width: 20%;padding:6px 0 0"><span style="border:1px solid #000;display:inline-block;padding:8px;"></span></td>
+                                <td style="text-align: center;width: 20%;padding:6px 0 0"><span style="border:1px solid #000;display:inline-block;padding:8px;"></span></td>
+                                <td style="text-align: center;width: 20%;padding:6px 0 0"><span style="border:1px solid #000;display:inline-block;padding:8px;"></span></td>
+                                <td style="text-align: center;width: 20%;padding:6px 0 0"><span style="border:1px solid #000;display:inline-block;padding:8px;"></span></td>
                             </tr>
                             <tr>
                                 <td style="padding-left:5px;"><label>Kitchen</label></td>
-                                <td style="text-align: center;width: 20%;"><input type="checkbox"/></td>
-                                <td style="text-align: center;width: 20%;"><input type="checkbox"/></td>
-                                <td style="text-align: center;width: 20%;"><input type="checkbox"/></td>
-                                <td style="text-align: center;width: 20%;"><input type="checkbox"/></td>
+                                 <td style="text-align: center;width: 20%;padding:6px 0 0"><span style="border:1px solid #000;display:inline-block;padding:8px;"></span></td>
+                                <td style="text-align: center;width: 20%;padding:6px 0 0"><span style="border:1px solid #000;display:inline-block;padding:8px;"></span></td>
+                                <td style="text-align: center;width: 20%;padding:6px 0 0"><span style="border:1px solid #000;display:inline-block;padding:8px;"></span></td>
+                                <td style="text-align: center;width: 20%;padding:6px 0 0"><span style="border:1px solid #000;display:inline-block;padding:8px;"></span></td>
                             </tr>
                             <tr>
                                 <td style="padding-left:5px;"><label>Bathrooms</label></td>
-                                <td style="text-align: center;width: 20%;"><input type="checkbox"/></td>
-                                <td style="text-align: center;width: 20%;"><input type="checkbox"/></td>
-                                <td style="text-align: center;width: 20%;"><input type="checkbox"/></td>
-                                <td style="text-align: center;width: 20%;"><input type="checkbox"/></td>
+                                 <td style="text-align: center;width: 20%;padding:6px 0 0"><span style="border:1px solid #000;display:inline-block;padding:8px;"></span></td>
+                                <td style="text-align: center;width: 20%;padding:6px 0 0"><span style="border:1px solid #000;display:inline-block;padding:8px;"></span></td>
+                                <td style="text-align: center;width: 20%;padding:6px 0 0"><span style="border:1px solid #000;display:inline-block;padding:8px;"></span></td>
+                                <td style="text-align: center;width: 20%;padding:6px 0 0"><span style="border:1px solid #000;display:inline-block;padding:8px;"></span></td>
                             </tr>
                             <tr>
                                 <td colspan="5" style="padding-left:5px;"><label><b>(5) Suggestions / Complaints (Your feedback will help us to identify areas we need to improve as well as letting us know what else you expect from us for better service. Your feedback really does count!)</b></label>
-                                    <textarea style="width:98%;height: 60px"></textarea></td>
+                                    <textarea style="width:98%;height: 100px"></textarea></td>
                             </tr>
                             </table>
                     <table border="0" style="width: 100%" cellpadding="0" cellspacing="0">
                             <tr>
-                                <td colspan="5" style="padding-left:5px;"><label><u><b>Disclaimer </b></u><b>:</b></label>
+                                <td colspan="5" style="padding-left:5px;"><label><u><b>Disclaimer</b></u><b> :</b></label>
                                 I have checked and confirmed that there are no losses / damages during House cleaning done by Kushghar Team.</td>
                             </tr>
-                            <tr><td colspan="5" style="text-align: right;padding:10px 15px 0 0;">
+                            <tr><td colspan="5" style="text-align: right;padding:60px 15px 0 0;">
                             <b>Customer's Signature</b></td></tr>
                     </table>
                 </section>

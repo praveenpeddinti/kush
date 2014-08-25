@@ -48,9 +48,10 @@
                                
                                 <div class="row-fluid">
                                     <div class=" span3">
-                                        <?php $Rooms = array();
+                                        <?php $Rooms = array(); 
                                         for( $i = 0; $i <= 5; ++$i )
                                         $Rooms[ $i ] = $i;
+                                        
                                         ?>
                                         <?php echo $form->label($model, 'Living room(s)'); ?>
 
@@ -64,7 +65,7 @@
                                         <?php echo $form->label($model, 'Bedroom(s)'); ?>
                                         <?php //echo $form->dropDownList($model,'BedRooms', $Rooms, array('options'=>array($getServiceDetails['total_bedRooms'] => array('selected' => 'selected')), 'class' => 'span12'));?>
 
-                                        <?php echo $form->dropDownList($model,'BedRooms', array('1' => '1', '0'=>'0','2' => '2', '3'=>'3', '4'=>'4', '5'=>'5'), array('class' => 'span12','options' => array($getServiceDetails['total_bedRooms'] => array('selected' => 'selected'))));?>
+                                        <?php echo $form->dropDownList($model,'BedRooms', array('1' => '1', '0'=>'0','2' => '2', '3'=>'3', '4'=>'4', '5'=>'5', '6'=>'6','7' => '7', '8'=>'8', '9'=>'9', '10'=>'10'), array('class' => 'span12','options' => array($getServiceDetails['total_bedRooms'] => array('selected' => 'selected'))));?>
                                         
                                     </div>
                                     <div class=" span3">
@@ -80,7 +81,7 @@
 
                                         <?php //echo $form->dropDownList($model,'BathRooms', $Rooms, array('options' => array($getServiceDetails['total_bathRooms'] => array('selected' => 'selected')), 'class' => 'span12'));?>
 
-                                            <?php echo $form->dropDownList($model,'BathRooms', array('1' => '1', '0'=>'0','2' => '2', '3'=>'3', '4'=>'4', '5'=>'5'), array('class' => 'span12','options' => array($getServiceDetails['total_bathRooms'] => array('selected' => 'selected'))));?>
+                                            <?php echo $form->dropDownList($model,'BathRooms', array('1' => '1', '0'=>'0','2' => '2', '3'=>'3', '4'=>'4', '5'=>'5', '6'=>'6','7' => '7', '8'=>'8', '9'=>'9', '10'=>'10'), array('class' => 'span12','options' => array($getServiceDetails['total_bathRooms'] => array('selected' => 'selected'))));?>
                                         
                                     </div>
                                     

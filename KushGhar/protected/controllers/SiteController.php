@@ -149,19 +149,18 @@ class SiteController extends Controller {
         try {
             if (isset($_GET['getServices_page'])) {
                 $inviteForm = new InviteForm;
-                //$totaluser = $this->kushGharService->getTotalUsers($_GET['uname'],$_GET['phone'],$_GET['status']);
-                $totaluser = 3;
+                $totalFeedbacks = $this->kushGharService->getFeedbackPublished();
                 $startLimit = ((int) $_GET['getServices_page'] - 1) * (int) $_GET['pageSize'];
                 $endLimit = $_GET['pageSize'];
-                if(count($totaluser)==0)
+                if(count($totalFeedbacks)==0)
                 {
-                 $obj=  array('status' => 'success', 'html' => 0, 'totalCount' => $totaluser);
+                 $obj=  array('status' => 'success', 'html' => 0, 'totalCount' => $totalFeedbacks);
                 }
                 else
                 {
                 $getServices = $this->kushGharService->getFeedbacks($startLimit, $endLimit);
-                $renderHtml = $this->renderPartial('customerFeedback1', array('getServices' => $getServices, 'totalCount' => $totaluser), true);
-                $obj = array('status' => 'success', 'html' => $renderHtml, 'totalCount' => $totaluser);
+                $renderHtml = $this->renderPartial('customerFeedback1', array('getServices' => $getServices, 'totalCount' => $totalFeedbacks), true);
+                $obj = array('status' => 'success', 'html' => $renderHtml, 'totalCount' => $totalFeedbacks);
                
                 }
                  $renderScript = $this->rendering($obj);

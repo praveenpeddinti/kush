@@ -680,6 +680,9 @@ class KushGharService {
      * @Praveen feedback details show in home page 
      */
 
+    public function getFeedbackPublished(){
+        return Services::model()->getFeedbackPublished();
+    }
     public function getFeedbacksTotal5() {
         return Services::model()->getFeedbacksTotal5();
     }

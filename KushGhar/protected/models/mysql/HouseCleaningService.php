@@ -15,6 +15,7 @@ class HouseCleaningService extends CActiveRecord {
     public $total_bathRooms;
     public $status;
     public $window_grills;
+    public $cupboard_cleaning;
     public $fridge_interior;
     public $microwave_oven_interior;
     public $pooja_room_cleaning;
@@ -28,6 +29,7 @@ class HouseCleaningService extends CActiveRecord {
     public $H_pincode;
     public $create_timestamp;
     public $update_timestamp;
+   
   
  
     public static function model($className=__CLASS__) {
@@ -53,6 +55,7 @@ class HouseCleaningService extends CActiveRecord {
             $servicesDetails->total_kitchens = $model->Kitchens;
             $servicesDetails->total_bathRooms = $model->BathRooms;
             $servicesDetails->window_grills = $model->WindowGrills;
+            $servicesDetails->cupboard_cleaning=$model->CupBoard;
             $servicesDetails->fridge_interior = $model->FridgeInterior;
             $servicesDetails->microwave_oven_interior = $model->MicroWaveOven;
             $servicesDetails->pooja_room_cleaning = $model->PoojaRoom;
@@ -102,6 +105,7 @@ class HouseCleaningService extends CActiveRecord {
             $servicesDetails->total_kitchens = $model->Kitchens;
             $servicesDetails->total_bathRooms = $model->BathRooms;
             $servicesDetails->window_grills = $model->WindowGrills;
+            $servicesDetails->cupboard_cleaning=$model->CupBoard;
             $servicesDetails->fridge_interior = $model->FridgeInterior;
             $servicesDetails->microwave_oven_interior = $model->MicroWaveOven;
             $servicesDetails->pooja_room_cleaning = $model->PoojaRoom;

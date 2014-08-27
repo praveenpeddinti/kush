@@ -202,7 +202,7 @@
    <div class="row-fluid">
    <div class="span12">
     <div class="pull-right">
-        <?php echo CHtml::ajaxButton('Continue',array('user/contactInfo'), array(
+        <?php echo CHtml::ajaxButton('Save',array('user/contactInfo'), array(
             'type' => 'POST',
             'dataType' => 'json',
             'beforeSend' => 'function(){

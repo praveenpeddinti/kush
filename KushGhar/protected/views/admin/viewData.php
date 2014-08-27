@@ -59,14 +59,14 @@
             <?php }?>
             <?php if($serviceId==2){ ?>
             <table border="1" style="width: 100%" cellpadding="0" cellspacing="0">
-                <tr><th colspan="2">Total Cars</th>
+                <tr><td colspan="2">Total Cars</td>
                     <td><?php echo "<b>" . count($services) . "</b>"; ?></td>
                 </tr>
                 <?php foreach ($services as $cw) { ?>
                 <tr><th>Make</th><th>Model</th><th>Exterior Color</th></tr>
-                <tr><td><?php echo "<b>" . $cw['make_of_car'] . "</b>"; ?></td>
-                    <td><?php echo "<b>" . $cw['model_of_car'] . "</b>"; ?></td>
-                    <td><?php echo "<b>" . $cw['exterior_color'] . "</b>"; ?></td>
+                <tr><td style="text-align: center"><?php echo $cw['make_of_car']; ?></td>
+                    <td style="text-align: center"><?php echo $cw['model_of_car']; ?></td>
+                    <td style="text-align: center"><?php echo $cw['exterior_color']; ?></td>
                 </tr>
                 <?php }?>
             </table>
@@ -122,19 +122,27 @@
             <center><h3 style="padding: 0px">Service Schedule</h3></center></div>
             <?php if(!empty($Vendors)){ ?>
             <table border="1" style="width: 100%" cellpadding="0" cellspacing="0">
-                <tr><td align="left"><b>Service requested date:</b></td><td colspan="2"><?php echo $ServiceDate;?></td></tr>
-                <tr><td colspan="3" align="left"><b>Team members:</b></td></tr>
+                <tr><td align="left" style="width: 30%"><b>Service requested date:</b></td><td><?php echo $ServiceDate;?></td></tr>
+                <tr><td colspan="2" align="left"><b>Team members:</b></td></tr>
                 <tr>
-               <?php for($i=0;$i<count($Vendors);$i++){?>
+                    <td colspan="2">
+                        <table border="0" style="width: 100%" cellpadding="0" cellspacing="0">
                     
+                    <?php for($i=0;$i<count($Vendors);$i++){?>
+                <?php if($i%3==0){?>    
+                <tr>
                     <td><?php echo 1+$i.")&nbsp;&nbsp;".$Vendors[$i]['first_name']." ".$Vendors[$i]['last_name'];?></td>
-                   
-                   
+                <?php } else {?>
+                    <td><?php echo 1+$i.")&nbsp;&nbsp;".$Vendors[$i]['first_name']." ".$Vendors[$i]['last_name'];?></td>
+                <?php }?>
                <?php  }?>
-                    </tr> 
+                   
+                </tr>
+           
             </table>
+                </td>
+                </tr>
+                </table>
             <?php }?>
         </div>
     </div>
-  
-                                    

@@ -87,7 +87,7 @@ $address;
                                 <?php 
                                     for($i=0;$i<sizeof($vendors);$i++)
                                     { 
-                                       echo ($i+1).") ".$vendors[$i]['first_name']." ";
+                                       echo ($i+1).") ".$vendors[$i]['first_name']." ".$vendors[$i]['last_name']." ";
                                     } 
                                 ?></td>
                             </tr>

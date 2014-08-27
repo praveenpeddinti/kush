@@ -84,7 +84,7 @@
     </div>
 <div class="row-fluid" id="ques7">
         <div class=" span12">
-            <input type="checkbox" id="chkDisclaimer"><label><u><b>Disclaimer</b></u><b></b></label>
+            <input type="checkbox" id="chkDisclaimer">&nbsp;&nbsp;&nbsp;<u><b>Disclaimer </b></u><b>:</b>
             I have checked and confirmed that there are no losses / damages during House cleaning done by Kushghar Team.
             <?php echo $reviewForm->error($model, 'Disclaimer'); ?>
             

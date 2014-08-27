@@ -180,9 +180,9 @@
             var ServiceId = $(this).attr('service-id');
 
             var vendors = $(this).attr('vendors');
-           
+            var Type ="orders";
             if(id1.indexOf("userview") > -1){
-                statusChangeUser(Number(id), Number(ServiceId), vendors);
+                statusChangeUser(Number(id), Number(ServiceId), vendors,Type);
             }
             else if(id1.indexOf("print") > -1){
            
@@ -212,8 +212,8 @@
             });
         
     }
-    function statusChangeUser(rowNos, ServiceId, vendors) {
-         var data = "Id=" + rowNos + "&ServiceId=" + ServiceId+ "&Vendors=" + vendors;
+    function statusChangeUser(rowNos, ServiceId, vendors,Type) {
+         var data = "Id=" + rowNos + "&ServiceId=" + ServiceId+ "&Vendors=" + vendors+ "&Type=" + Type;
         
             $.ajax({
                 type: 'POST',

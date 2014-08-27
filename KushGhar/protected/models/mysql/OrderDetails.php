@@ -139,7 +139,7 @@ public function sendorderStatus($id,$val){
     
     public function getOrderHServicesDetails($oId) {
         try {
-            $query = "SELECT * FROM KG_House_cleaning_service WHERE order_id = $oId ORDER BY Id DESC LIMIT 1";
+            $query = "SELECT * FROM KG_House_cleaning_service WHERE order_number = $oId ORDER BY Id DESC LIMIT 1";
             $result = YII::app()->db->createCommand($query)->queryRow();
         } catch (Exception $ex) {
             error_log("getServiceDetailsById Exception occured==" . $ex->getMessage());
@@ -149,7 +149,7 @@ public function sendorderStatus($id,$val){
     
     public function getOrderSServicesDetails($oId) {
         try {
-            $query = "SELECT * FROM KG_Stewards_cleaning_service WHERE order_id = $oId ORDER BY Id DESC LIMIT 1";
+            $query = "SELECT * FROM KG_Stewards_cleaning_service WHERE order_number = $oId ORDER BY Id DESC LIMIT 1";
             $result = YII::app()->db->createCommand($query)->queryRow();
         } catch (Exception $ex) {
             error_log("getServiceDetailsById Exception occured==" . $ex->getMessage());
@@ -159,7 +159,7 @@ public function sendorderStatus($id,$val){
     
     public function getOrderCServicesDetails($oId) {
         try {
-            $query = "SELECT * FROM KG_Car_cleaning_service WHERE order_id = $oId ORDER BY Id ASC";
+            $query = "SELECT * FROM KG_Car_cleaning_service WHERE order_number = $oId ORDER BY Id ASC";
             
             $result = YII::app()->db->createCommand($query)->queryAll();
             
@@ -271,7 +271,7 @@ public function sendorderStatus($id,$val){
     
     public function getVendorDetails($Id,$vendors) {
         try {
-            $query = "select o.CustId,o.service_date,v.vendor_id,v.first_name,v.last_name from KG_Order_details o,KG_vendor_individual v where v.vendor_id in ($vendors) and o.id=$Id";
+            $query = "select o.CustId,o.service_date,v.vendor_id,v.first_name,v.last_name from KG_Order_details o,KG_vendor_individual v where v.vendor_id in ($vendors) and o.order_number=$Id";
             $result = YII::app()->db->createCommand($query)->queryAll();
             
         } catch (Exception $ex) {

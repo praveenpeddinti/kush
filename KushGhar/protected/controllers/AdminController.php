@@ -292,12 +292,18 @@ $this->pageTitle="KushGhar-Basic Info";
     
     public function actionViewData() {
         try {
-                if(!empty($_POST['Vendors'])){error_log("-------------enter view controller");
+                if(!empty($_POST['Vendors'])){
                     $vendordetails = $this->kushGharService->getVendorDetails($_POST['Id'],$_POST['Vendors']);
                     
                     }else{
                        $vendordetails = ''; 
-                    }         
+                    }   
+                if($_POST['Type']=='review'){
+                    $reviewdetails = $this->kushGharService->getReviewDetails($_POST['Id']);
+                    
+                    }else{
+                       $reviewdetails = ''; 
+                    }
                 if($_POST['ServiceId']==1){
                 $servicedetails = $this->kushGharService->getOrderHServicesDetails($_POST['Id']);
                 $CustId = $servicedetails['CustId'];
@@ -318,7 +324,7 @@ $this->pageTitle="KushGhar-Basic Info";
                 }
                 $customerDetails = $this->kushGharService->getCustomerDetails($CustId);
                 $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($CustId);
-                $renderHtml = $this->renderPartial('viewData', array('userDetails1' => $customerDetails,'services'=>$servicedetails,'serviceId'=>$_POST['ServiceId'],'Vendors'=>$vendordetails,'ServiceDate'=>$ServiceDate,'customerAddressDetails'=>$customerAddressDetails), true);
+                $renderHtml = $this->renderPartial('viewData', array('userDetails1' => $customerDetails,'services'=>$servicedetails,'serviceId'=>$_POST['ServiceId'],'Vendors'=>$vendordetails,'ServiceDate'=>$ServiceDate,'customerAddressDetails'=>$customerAddressDetails,'Type'=>$_POST['Type'],'reviewDetails'=>$reviewdetails), true);
                 $obj = array('status' => 'success', 'html' => $renderHtml);
                 $renderScript = $this->rendering($obj);
                 echo $renderScript;

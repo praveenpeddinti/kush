@@ -48,6 +48,18 @@
                         </div>
                     </div>    
                 </div>
+                <div id="myModalOrder" class="modal fade" >
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h3 id="myModalLabel">View Details for Order</h3>
+                            </div>
+                            <div class="modal-body" id="myModalOrderDiv" style="padding:15px;">
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
             </article>
         </div>
     </section>
@@ -57,9 +69,20 @@ $(document).ready(function() {
         $('#userTable tr td input').live('click', function() {
             var id = $(this).attr('id');
             var id2 = $(this).attr('review-id');
+            var id1 = $(this).attr('data-id');
+            var ServiceId = $(this).attr('service-id');
+            var Type ="review";
+            var vendors = $(this).attr('vendors');
             var inviteStatus = $(this).attr('comment-status');
             var x = document.getElementById(id).checked;
+            if(id.indexOf("userview") > -1){
+                statusChangeUser(Number(id1), Number(ServiceId), vendors,Type);
+            }
+            else if(id.indexOf("print") > -1){
+           
             commentPublish(Number(id2), Number(inviteStatus), x);
+            }
+            
             
         });
     });
@@ -134,6 +157,27 @@ $(document).ready(function() {
                     },
                 error: function(data) { // if error occured
                     //alert("Error occured.please try again");
+
+                }
+            });
+        
+    }
+    
+    
+    function statusChangeUser(rowNos, ServiceId, vendors,Type) {
+         var data = "Id=" + rowNos + "&ServiceId=" + ServiceId+ "&Vendors=" + vendors+ "&Type=" + Type;
+           $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: '<?php echo Yii::app()->createAbsoluteUrl("/admin/viewData"); ?>',
+                data: data,
+                success: function(data) {
+                    $("#myModalOrder").modal({ backdrop: 'static', keyboard: false,show:false });
+                    $("#myModalOrderDiv").html(data.html);
+                    $('#myModalOrder').modal('show');
+                },
+                error: function(data) { 
+                   alert("Error occured.please try again");
 
                 }
             });

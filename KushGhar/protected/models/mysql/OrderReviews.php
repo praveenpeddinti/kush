@@ -80,7 +80,10 @@ class OrderReviews extends CActiveRecord {
     }
     public function getAllUsersReviews($startLimit, $endLimit){
         try{
-            $query = "select cr.id,CONCAT_WS(' ',c.first_name,c.middle_name,c.last_name) as UserName,cr.rating,cr.feedback,cr.is_publish,o.CustId,o.ServiceId from KG_Customer c inner join KG_Customer_reviews cr on c.customer_id=cr.CustId inner join KG_Order_details o on o.order_number=cr.order_number ORDER BY cr.create_timestamp DESC limit ".$startLimit. ",".$endLimit;
+            //old$query = "select cr.id,o.id as ID,CONCAT_WS(' ',c.first_name,c.middle_name,c.last_name) as UserName,cr.rating,cr.feedback,cr.is_publish,cr.order_number,o.CustId,o.ServiceId,o.assign_vendors from KG_Customer c inner join KG_Customer_reviews cr on c.customer_id=cr.CustId inner join KG_Order_details o on o.order_number=cr.order_number ORDER BY cr.create_timestamp DESC limit ".$startLimit. ",".$endLimit;
+           
+            $query = "select cr.*,o.id as ID,CONCAT_WS(' ',c.first_name,c.middle_name,c.last_name) as UserName,o.CustId,o.ServiceId,o.assign_vendors from KG_Customer c inner join KG_Customer_reviews cr on c.customer_id=cr.CustId inner join KG_Order_details o on o.order_number=cr.order_number ORDER BY cr.create_timestamp DESC limit ".$startLimit. ",".$endLimit;
+           
             $result = Yii::app()->db->createCommand($query)->queryAll();
         } catch (Exception $ex) {
             error_log("##########Exception Occurred retrieve Data#############" . $ex->getMessage());
@@ -111,6 +114,16 @@ class OrderReviews extends CActiveRecord {
                 $result = "success";
         }catch(Exception $ex){
              error_log("################Exception Occurred  changeContactStatus##############".$ex->getMessage());
+        }
+        return $result;
+    }
+    
+    public function getReviewDetails($OId){
+        try{
+            $query = "select * from KG_Customer_reviews where order_number=$OId";
+            $result = Yii::app()->db->createCommand($query)->queryRow();
+        } catch (Exception $ex) {
+            error_log("##########Exception Occurred retrieve Data count#############" . $ex->getMessage());
         }
         return $result;
     }

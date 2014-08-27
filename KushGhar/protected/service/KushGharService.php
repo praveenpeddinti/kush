@@ -776,4 +776,9 @@ class KushGharService {
     public function getVendorDetails($Id,$vendors) {
         return OrderDetails::model()->getVendorDetails($Id,$vendors);
     }
+    public function getReviewDetails($OId) {
+        return OrderReviews::model()->getReviewDetails($OId);
+    }
+    
+    
 } ?>

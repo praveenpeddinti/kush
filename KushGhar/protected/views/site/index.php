@@ -112,6 +112,9 @@
         </div>
     </section>
     <script type="text/javascript">
+        $(document).ready(function(){
+            $('.carousel').carousel({interval:3000});
+        });
         $(function() {
             var showPopover = function() {
                 $(this).popover('show');

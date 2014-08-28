@@ -13,6 +13,7 @@ class HouseCleaningService extends CActiveRecord {
     public $total_bedRooms;
     public $total_kitchens;
     public $total_bathRooms;
+    public $other_rooms;
     public $status;
     public $window_grills;
     public $cupboard_cleaning;
@@ -54,6 +55,7 @@ class HouseCleaningService extends CActiveRecord {
             $servicesDetails->total_bedRooms = $model->BedRooms;
             $servicesDetails->total_kitchens = $model->Kitchens;
             $servicesDetails->total_bathRooms = $model->BathRooms;
+            $servicesDetails->other_rooms = $model->OtherRooms;
             $servicesDetails->window_grills = $model->WindowGrills;
             $servicesDetails->cupboard_cleaning=$model->CupBoard;
             $servicesDetails->fridge_interior = $model->FridgeInterior;
@@ -104,6 +106,7 @@ class HouseCleaningService extends CActiveRecord {
             $servicesDetails->total_bedRooms = $model->BedRooms;
             $servicesDetails->total_kitchens = $model->Kitchens;
             $servicesDetails->total_bathRooms = $model->BathRooms;
+            $servicesDetails->other_rooms = $model->OtherRooms;
             $servicesDetails->window_grills = $model->WindowGrills;
             $servicesDetails->cupboard_cleaning=$model->CupBoard;
             $servicesDetails->fridge_interior = $model->FridgeInterior;

@@ -47,44 +47,53 @@
                                 
                                
                                 <div class="row-fluid">
-                                    <div class=" span3">
+                                    <div class=" span2">
                                         <?php $Rooms = array(); 
                                         for( $i = 0; $i <= 5; ++$i )
                                         $Rooms[ $i ] = $i;
                                         
                                         ?>
-                                        <?php echo $form->label($model, 'Living room(s)'); ?>
-
-                                        <?php //echo $form->dropDownList($model,'LivingRooms', $Rooms, array('options' => array($getServiceDetails['total_livingRooms'] => array('selected' => 'selected')), 'class' => 'span12'));?>
-
-                                        <?php echo $form->dropDownList($model,'LivingRooms', array('1' => '1', '0'=>'0','2' => '2', '3'=>'3', '4'=>'4', '5'=>'5'), array('class' => 'span12','options' => array($getServiceDetails['total_livingRooms'] => array('selected' => 'selected'))));?>
-                                        
-                                    </div>
-                                    <div class=" span3">
-
-                                        <?php echo $form->label($model, 'Bedroom(s)'); ?>
-                                        <?php //echo $form->dropDownList($model,'BedRooms', $Rooms, array('options'=>array($getServiceDetails['total_bedRooms'] => array('selected' => 'selected')), 'class' => 'span12'));?>
-
-                                        <?php echo $form->dropDownList($model,'BedRooms', array('1' => '1', '0'=>'0','2' => '2', '3'=>'3', '4'=>'4', '5'=>'5', '6'=>'6','7' => '7', '8'=>'8', '9'=>'9', '10'=>'10'), array('class' => 'span12','options' => array($getServiceDetails['total_bedRooms'] => array('selected' => 'selected'))));?>
-                                        
-                                    </div>
-                                    <div class=" span3">
                                         <?php echo $form->label($model, 'Kitchen(s)'); ?>
 
                                         <?php //echo $form->dropDownList($model,'Kitchens', $Rooms, array('options' => array($getServiceDetails['total_kitchens'] => array('selected' => 'selected')), 'class' => 'span12'));?>
 
-                                        <?php echo $form->dropDownList($model,'Kitchens', array('1' => '1', '0'=>'0','2' => '2', '3'=>'3', '4'=>'4', '5'=>'5'), array('class' => 'span12','options' => array($getServiceDetails['total_kitchens'] => array('selected' => 'selected'))));?>
+                                        <?php echo $form->dropDownList($model,'Kitchens', array('1' => '1','2' => '2', '3'=>'3', '4'=>'4', '5'=>'5', '0'=>'None'), array('class' => 'span12','options' => array($getServiceDetails['total_kitchens'] => array('selected' => 'selected'))));?>
                                         
                                     </div>
-                                    <div class=" span3">
+                                    <div class=" span2">
                                         <?php echo $form->label($model, 'Bathroom(s)'); ?>
 
                                         <?php //echo $form->dropDownList($model,'BathRooms', $Rooms, array('options' => array($getServiceDetails['total_bathRooms'] => array('selected' => 'selected')), 'class' => 'span12'));?>
 
-                                            <?php echo $form->dropDownList($model,'BathRooms', array('1' => '1', '0'=>'0','2' => '2', '3'=>'3', '4'=>'4', '5'=>'5', '6'=>'6','7' => '7', '8'=>'8', '9'=>'9', '10'=>'10'), array('class' => 'span12','options' => array($getServiceDetails['total_bathRooms'] => array('selected' => 'selected'))));?>
+                                            <?php echo $form->dropDownList($model,'BathRooms', array('1' => '1','2' => '2', '3'=>'3', '4'=>'4', '5'=>'5', '6'=>'6','7' => '7', '8'=>'8', '9'=>'9', '10'=>'10', '0'=>'None'), array('class' => 'span12','options' => array($getServiceDetails['total_bathRooms'] => array('selected' => 'selected'))));?>
                                         
                                     </div>
                                     
+                                    <div class=" span2">
+
+                                        <?php echo $form->label($model, 'Bedroom(s)'); ?>
+                                        <?php //echo $form->dropDownList($model,'BedRooms', $Rooms, array('options'=>array($getServiceDetails['total_bedRooms'] => array('selected' => 'selected')), 'class' => 'span12'));?>
+
+                                        <?php echo $form->dropDownList($model,'BedRooms', array('1' => '1', '2' => '2', '3'=>'3', '4'=>'4', '5'=>'5', '6'=>'6','7' => '7', '8'=>'8', '9'=>'9', '10'=>'10', '0'=>'None'), array('class' => 'span12','options' => array($getServiceDetails['total_bedRooms'] => array('selected' => 'selected'))));?>
+                                        
+                                    </div>
+                                    <div class=" span3">
+                                           
+                                            <?php echo $form->label($model, 'Living room(s)'); ?>
+
+                                        <?php //echo $form->dropDownList($model,'LivingRooms', $Rooms, array('options' => array($getServiceDetails['total_livingRooms'] => array('selected' => 'selected')), 'class' => 'span12'));?>
+
+                                        <?php echo $form->dropDownList($model,'LivingRooms', array('1' => '1','2' => '2', '3'=>'3', '4'=>'4', '5'=>'5', '0'=>'None'), array('class' => 'span10','options' => array($getServiceDetails['total_livingRooms'] => array('selected' => 'selected'))));?>
+                                        
+                                    </div>
+                                    <div class=" span2">
+
+                                        <?php echo $form->label($model, 'Other'); ?>
+                                        <?php //echo $form->dropDownList($model,'BedRooms', $Rooms, array('options'=>array($getServiceDetails['total_bedRooms'] => array('selected' => 'selected')), 'class' => 'span12'));?>
+
+                                        <?php echo $form->dropDownList($model,'OtherRooms', array(''=>'None','1' => '1', '2' => '2', '3'=>'3', '4'=>'4', '5'=>'5', '6'=>'6','7' => '7', '8'=>'8', '9'=>'9', '10'=>'10'), array('class' => 'span12','options' => array($getServiceDetails['other_rooms'] => array('selected' => 'selected'))));?>
+                                        
+                                    </div>
                                    <div class="row-fluid">
                                        <div class="span12">
                                          <?php echo $form->error($model, 'LivingRooms'); ?>  
@@ -127,18 +136,24 @@
                                                 </div>
                                                 <div id="MicroWaveOvenTooltip" class="Additional_S_price" style="display:none">Cost of Services is<br/> <b>Rs.<label>250</label>/-</b></div>
                                             </div>
-                                            <div class="span3 pooja" style="min-height: 121px">
+                                            <!--<div class="span3 pooja" style="min-height: 121px">
                                                 <label>Pooja Room Cleaning</label>
                                                 <div class="switch switch-large" id="PoojaRoom" data-on-label="Yes" data-off-label="No">
-                                                <?php echo $form->checkBox($model, 'PoojaRoom', array('id' => 'HouseCleaningForm_PoojaRoom')); ?>
+                                                <?php //echo $form->checkBox($model, 'PoojaRoom', array('id' => 'HouseCleaningForm_PoojaRoom')); ?>
                                                 </div>
-                                            </div>
+                                            </div>-->
                                         </div>
                                     </div><hr>
                                     
                                     <div class="row-fluid" id="diffDiv" style="display: none">
                                     <div class="span12">
-                                        <div class="pull-right">
+                                        <div class="span6">
+                                            <label>Pooja Room Cleaning</label>
+                                            <div class="switch switch-large" id="PoojaRoom" data-on-label="Yes" data-off-label="No">
+                                            <?php echo $form->checkBox($model, 'PoojaRoom', array('id' => 'HouseCleaningForm_PoojaRoom')); ?>
+                                            </div>
+                                        </div>
+                                        <div class="span6 pull-right">
                                         <label>Same as Contact Info Address</label>
                                         <div class="switch switch-large" id="DifferentAddress" data-on-label="Yes" data-off-label="No">
                                         <?php echo $form->checkBox($model, 'DifferentAddress', array('id' => 'HouseCleaningForm_DifferentAddress')); ?>

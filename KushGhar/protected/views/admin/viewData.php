@@ -151,18 +151,7 @@
     
     if($reviewDetails['Team_Arrive_Time']=='1'){$Team_Arrive_Time = 'Yes';}else{$Team_Arrive_Time = 'No';} 
     if($reviewDetails['Team_Professional_Appearance']=='1'){$Team_Professional_Appearance = 'Yes';}else{$Team_Professional_Appearance = 'No';} 
-    if($reviewDetails['Office_Staff_Rating']=='1')$Office_Staff_Rating = 'Excellent';else if($reviewDetails['Office_Staff_Rating']=='2') $Office_Staff_Rating = 'Good';
-    else if($reviewDetails['Office_Staff_Rating']=='3')$Office_Staff_Rating = 'Fair';else if($reviewDetails['Office_Staff_Rating']=='4') $Office_Staff_Rating = 'Poor';
-    else $Office_Staff_Rating = '';
-    if($reviewDetails['Home_Service_Rating']=='1')$Home_Service_Rating = 'Excellent';else if($reviewDetails['Home_Service_Rating']=='2') $Home_Service_Rating = 'Good';
-    else if($reviewDetails['Office_Staff_Rating']=='3')$Home_Service_Rating = 'Fair';else if($reviewDetails['Home_Service_Rating']=='4') $Home_Service_Rating = 'Poor';
-    else $Home_Service_Rating = '';
-    if($reviewDetails['Overall_Experience']=='1')$Overall_Experience = 'Excellent';else if($reviewDetails['Overall_Experience']=='2') $Overall_Experience = 'Good';
-    else if($reviewDetails['Overall_Experience']=='3')$Overall_Experience = 'Fair';else if($reviewDetails['Overall_Experience']=='4') $Overall_Experience = 'Poor';
-    else $Overall_Experience = '';
-    if($reviewDetails['Service_Vacuuming_Rating']=='1')$Service_Vacuuming_Rating = 'Excellent';else if($reviewDetails['Service_Vacuuming_Rating']=='2') $Service_Vacuuming_Rating = 'Good';
-    else if($reviewDetails['Service_Vacuuming_Rating']=='3')$Service_Vacuuming_Rating = 'Fair';else if($reviewDetails['Service_Vacuuming_Rating']=='4') $Service_Vacuuming_Rating = 'Poor';
-    else $Service_Vacuuming_Rating = '';
+    
     ?>
 <div class="row-fluid">
         <div class="span12">
@@ -181,9 +170,9 @@
                 <tr>
                     <td colspan="4">
                         <table style="width:100%" cellpadding="0" cellspacing="0">
-                            <tr><td style="border-right:1px solid #000;">Office staff</td><td style="border-right:1px solid #000;"><?php echo $Office_Staff_Rating;?></td>
-                            <td style="border-right:1px solid #000;">Home Service</td><td style="border-right:1px solid #000;"><?php echo $Home_Service_Rating;?></td>
-                            <td style="border-right:1px solid #000;">Overall Experience</td><td><?php echo $Overall_Experience;?></td>
+                            <tr><td style="border-right:1px solid #000;">Office staff</td><td style="border-right:1px solid #000;"><b><?php echo $reviewDetails['Office_Staff_Rating'];?></b></td>
+                            <td style="border-right:1px solid #000;">Home Service</td><td style="border-right:1px solid #000;"><b><?php echo $reviewDetails['Home_Service_Rating'];?></b></td>
+                            <td style="border-right:1px solid #000;">Overall Experience</td><td><b><?php echo $reviewDetails['Overall_Experience'];?></b></td>
                             </tr>
                         </table>                          
                     </td>
@@ -194,10 +183,12 @@
                 <tr>
                     <td colspan="4">
                         <table style="width:100%" cellpadding="0" cellspacing="0">
-                            <tr><td style="border-right:1px solid #000;">Vacuuming</td><td style="border-right:1px solid #000;"><?php echo $Service_Vacuuming_Rating;?></td>
-                            <td style="border-right:1px solid #000;">Dusting</td><td style="border-right:1px solid #000;">Good</td>
-                            <td style="border-right:1px solid #000;">Kitchen</td><td>Good</td>
-                            <td style="border-right:1px solid #000;">Bathrooms</td><td>Good</td>
+                            <tr ><td style="border-right:1px solid #000;border-bottom:1px solid #000;">Vacuuming</td><td style="border-right:1px solid #000;border-bottom:1px solid #000;"><b><?php echo $reviewDetails['Service_Vacuuming_Rating'];?></b></td>
+                            <td style="border-right:1px solid #000;border-bottom:1px solid #000;">Dusting</td><td style="border-right:1px solid #000;border-bottom:1px solid #000;"><b><?php echo $reviewDetails['Service_Dusting_Rating'];?></b></td>
+                            <td style="border-right:1px solid #000;border-bottom:1px solid #000;">Mopping</td><td style="border-right:1px solid #000;border-bottom:1px solid #000;"><b><?php echo $reviewDetails['Service_Moping_Rating'];?></b></td>
+                            </tr><tr border="1">
+                            <td style="border-right:1px solid #000;">Trash Disposal</td><td style="border-right:1px solid #000;"><b><?php echo $reviewDetails['Service_TrashDisposal_rating'];?></b></td>
+                            <td style="border-right:1px solid #000;">Additional services(If Any)</td><td colspan="3" style="border-right:1px solid #000;"><b><?php echo $reviewDetails['Service_Addional_Rating'];?></b></td>
                             </tr>
                         </table>                          
                     </td>

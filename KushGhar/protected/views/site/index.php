@@ -23,14 +23,15 @@
                                         <div class="active item"><a href="/user/registration" style="border:0px; text-decoration:none;"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/b1.jpg" ></a></div>
                                         <div class="item"><a href="http://gadgets.ndtv.com/internet/features/kushghar-household-help-is-only-a-click-away-547111" target="_blank"  style="border:0px; text-decoration:none;"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/b3.jpg" ></a></div>
                                         <div class="item"><a href="http://gadgets.ndtv.com/internet/news/a-crowdfunding-project-to-make-domestic-chores-simple-and-help-the-underprivileged-543598" target="_blank" style="border:0px; text-decoration:none;"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/b2.jpg" ></a></div>
-                                        <div class="item">
+                                        <div class="item" style="height:250px">
                                             <a href="/site/customerFeedback" style="border:0px; text-decoration:none;">
-                                            <h2>Customer FeedBack</h2>
-                                            <table id="userTable" class="table table-hover">
+                                            
+                                            <table id="userTable" class="table table-hover" style="margin:20px">
                                             <tbody id="abusedWords_tbody">
-                                            <?php if (sizeof($getServices) <= 0) { ?>
+                                                <tr><th style="text-align: center;color:#F58220">Customer FeedBack</th><tr>
+                                                <?php if (sizeof($getServices) <= 0) { ?>
                                             <tr id="noRecordsTR">
-                                            <td>
+                                            <td style="text-align: center">
                                             <span class="text-error"> <b>No records found</b></span>
                                             </td>
                                             </tr>

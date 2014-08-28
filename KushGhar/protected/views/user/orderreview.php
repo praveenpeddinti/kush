@@ -34,9 +34,9 @@
         <?php echo $reviewForm->label($model,'<abbr title="required">*</abbr><b>How would you rate Us ?</b> '); ?>
         <table class="table_feedback">
             <tr><th></th><th>Excellent</th><th>Good</th><th>Fair</th><th>Poor</th></tr>
-            <tr><td style="text-align: left;">Office staff</td><td><input type="radio" value="1" name="officeStaff"/></td><td><input type="radio" value="2" name="officeStaff"/></td><td><input type="radio" value="3" name="officeStaff"/></td><td><input type="radio" value="4" name="officeStaff"/></td></tr>
-            <tr><td style="text-align: left;">Home Service</td><td><input type="radio" value="1" name="homeService"/></td><td><input type="radio" value="2" name="homeService"/></td><td><input type="radio" value="3" name="homeService"/></td><td><input type="radio" value="4" name="homeService"/></td></tr>
-            <tr><td style="text-align: left;">Overall Experience</td><td><input type="radio" value="1" name="overAllExp"/></td><td><input type="radio" value="2" name="overAllExp"/></td><td><input type="radio" value="3" name="overAllExp"/></td><td><input type="radio" value="4" name="overAllExp"/></td></tr>
+            <tr><td style="text-align: left;">Office staff</td><td><input type="radio" value="Excellent" name="officeStaff"/></td><td><input type="radio" value="Good" name="officeStaff"/></td><td><input type="radio" value="Fair" name="officeStaff"/></td><td><input type="radio" value="Poor" name="officeStaff"/></td></tr>
+            <tr><td style="text-align: left;">Home Service</td><td><input type="radio" value="Excellent" name="homeService"/></td><td><input type="radio" value="Good" name="homeService"/></td><td><input type="radio" value="Fair" name="homeService"/></td><td><input type="radio" value="Poor" name="homeService"/></td></tr>
+            <tr><td style="text-align: left;">Overall Experience</td><td><input type="radio" value="Excellent" name="overAllExp"/></td><td><input type="radio" value="Good" name="overAllExp"/></td><td><input type="radio" value="Fair" name="overAllExp"/></td><td><input type="radio" value="Poor" name="overAllExp"/></td></tr>
         </table>
         <?php echo $reviewForm->error($model, 'rate_us'); ?>
     </div>
@@ -47,11 +47,11 @@
         <?php echo $reviewForm->label($model,'<abbr title="required">*</abbr><b>How would you rate the quality of the service you have received from KushGhar housemen ? </b>'); ?>
         <table class="table_feedback">
             <tr><th></th><th>Excellent</th><th>Good</th><th>Fair</th><th>Poor</th></tr>
-            <tr><td style="text-align: left;">Vacuuming</td><td><input type="radio" value="1" name="vaccuming"/></td><td><input type="radio" value="2" name="vaccuming"/></td><td><input type="radio" value="3" name="vaccuming"/></td><td><input type="radio" value="4" name="vaccuming"/></td></tr>
-            <tr><td style="text-align: left;">Dusting</td><td><input type="radio" value="1" name="dusting"/></td><td><input type="radio" value="2" name="dusting"/></td><td><input type="radio" value="3" name="dusting"/></td><td><input type="radio" value="4" name="dusting"/></td></tr>
-            <tr><td style="text-align: left;">Moping</td><td><input type="radio" value="1" name="moping"/></td><td><input type="radio" value="2" name="moping"/></td><td><input type="radio" value="3" name="moping"/></td><td><input type="radio" value="4" name="moping"/></td></tr>
-            <tr><td style="text-align: left;">Trash Disposal</td><td><input type="radio" value="1" name="trash"/></td><td><input type="radio" value="2" name="trash"/></td><td><input type="radio" value="3" name="trash"/></td><td><input type="radio" value="4" name="trash"/></td></tr>
-            <tr><td style="text-align: left;">Additional services(If Any)</td><td><input type="radio" value="1" name="aservices"/></td><td><input type="radio" value="2" name="aservices"/></td><td><input type="radio" value="3" name="aservices"/></td><td><input type="radio" value="4" name="aservices"/></td></tr>
+            <tr><td style="text-align: left;">Vacuuming</td><td><input type="radio" value="Excellent" name="vaccuming"/></td><td><input type="radio" value="Good" name="vaccuming"/></td><td><input type="radio" value="Fair" name="vaccuming"/></td><td><input type="radio" value="Poor" name="vaccuming"/></td></tr>
+            <tr><td style="text-align: left;">Dusting</td><td><input type="radio" value="Excellent" name="dusting"/></td><td><input type="radio" value="Good" name="dusting"/></td><td><input type="radio" value="Fair" name="dusting"/></td><td><input type="radio" value="Poor" name="dusting"/></td></tr>
+            <tr><td style="text-align: left;">Moping</td><td><input type="radio" value="Excellent" name="moping"/></td><td><input type="radio" value="Good" name="moping"/></td><td><input type="radio" value="Fair" name="moping"/></td><td><input type="radio" value="Poor" name="moping"/></td></tr>
+            <tr><td style="text-align: left;">Trash Disposal</td><td><input type="radio" value="Excellent" name="trash"/></td><td><input type="radio" value="Good" name="trash"/></td><td><input type="radio" value="Fair" name="trash"/></td><td><input type="radio" value="Poor" name="trash"/></td></tr>
+            <tr><td style="text-align: left;">Additional services(If Any)</td><td><input type="radio" value="Excellent" name="aservices"/></td><td><input type="radio" value="Good" name="aservices"/></td><td><input type="radio" value="Fair" name="aservices"/></td><td><input type="radio" value="Poor" name="aservices"/></td></tr>
         </table>
         <?php echo $reviewForm->error($model, 'quality_of_service'); ?>
     </div>
@@ -101,6 +101,7 @@
         if(validate()){
          scrollPleaseWait("inviteSpinLoader","invite-form");
          var data = $("#review-form").serialize();
+         alert(data);
         ajaxRequest('/user/orderreviewsave', data, reviewHandler)
         }
     }

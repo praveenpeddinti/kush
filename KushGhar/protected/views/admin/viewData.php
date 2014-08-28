@@ -25,7 +25,7 @@
   <div class="row-fluid">
         <div class="span12">
             <div style="text-align: center; background-color: #e5e5e5;">
-                    <center><h3 style="padding: 0px">Customer Details<?php echo $Type;?></h3></center></div>
+                    <center><h3 style="padding: 0px">Customer Details</h3></center></div>
             <table border="1" style="width: 100%" cellpadding="0" cellspacing="0">
                 <tr>
                     <td><b>Customer Name </b></td><td colspan="3"><?php echo $userDetails1['first_name']." ".$userDetails1['last_name'];?></td>

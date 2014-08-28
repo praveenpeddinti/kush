@@ -106,6 +106,10 @@ function inviteMailHandler(data)
             var lengthvalue=data.error.length;
             var msg=data.data;
             var error=[];
+            $("#InviteForm_FirstName_em_").hide();
+            $("#InviteForm_LastName_em_").hide();
+            $("#InviteForm_Email_em_").hide();
+            $("#InviteForm_Phone_em_").hide();
             $("#InviteForm_error_em_").removeClass('alert alert-success');
             $("#InviteForm_error_em_").addClass('errorMessage');
             if(typeof(data.error)== 'string') {
@@ -114,6 +118,7 @@ function inviteMailHandler(data)
                     var error = eval(data.error);
                 }
                 $.each(error, function(key, val) {
+                    $("#InviteForm_error_em_").hide();
                     if ($("#" + key + "_em_")) {
                         $("#"+key+"_em_").text(val);
                         $("#"+key+"_em_").show();

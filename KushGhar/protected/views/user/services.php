@@ -144,23 +144,21 @@
                                             </div>-->
                                         </div>
                                     </div><hr>
-                                    
-                                    <div class="row-fluid" id="diffDiv" style="display: none">
-                                    <div class="span12">
-                                        <div class="span6">
+                                    <div class="row-fluid">
+                                    <div class="span6">
                                             <label>Pooja Room Cleaning</label>
                                             <div class="switch switch-large" id="PoojaRoom" data-on-label="Yes" data-off-label="No">
                                             <?php echo $form->checkBox($model, 'PoojaRoom', array('id' => 'HouseCleaningForm_PoojaRoom')); ?>
                                             </div>
-                                        </div>
-                                        <div class="span6 pull-right">
+                                    </div>
+                                    <div class="span6 pull-right" id="diffDiv" style="display: none">
                                         <label>Same as Contact Info Address</label>
                                         <div class="switch switch-large" id="DifferentAddress" data-on-label="Yes" data-off-label="No">
                                         <?php echo $form->checkBox($model, 'DifferentAddress', array('id' => 'HouseCleaningForm_DifferentAddress')); ?>
                                         </div>
                                         </div>
-                                      </div>
                                     </div>
+                                    
                                     <div class="row-fluid">
             <div class=" span4">
                 <label><abbr title="required">*</abbr> Address Line1</label>

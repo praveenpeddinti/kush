@@ -4,7 +4,7 @@
             <div class="paddinground" style="height:380px">
                 <h2>Customer FeedBack</h2>
                 <table id="userTable" class="table table-hover">
-                    <thead><tr><th nowrap>Customer Name</th><th nowrap><center>Rating</center></th><th>Comments</th></tr></thead>
+                    <thead><tr><th width="30px" nowrap>Customer Name</th><th width="20px" nowrap><center>Rating</center></th><th>Comments</th></tr></thead>
                     <tbody id="abusedWords_tbody">
                          
                     </tbody>

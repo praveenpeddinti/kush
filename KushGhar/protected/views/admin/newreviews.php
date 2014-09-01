@@ -6,7 +6,7 @@
     </tr>
     <?php } else { foreach ($userDetails as $row) { ?>
     <tr id="row_<?php echo $row['id'];?>" class="odd">
-        <td nowrap><?php echo $row['UserName']."--".$row['order_number']; ?></td>
+        <td nowrap><?php echo $row['UserName']; ?></td>
         <td nowrap><?php   if($row['ServiceId']==1){$type="House Cleaning";}
                     if($row['ServiceId']==2){$type="Car Wash";}
                     if($row['ServiceId']==3){$type="Stewards Services";}
@@ -24,7 +24,7 @@
             </span><div style="display:none;width:400px" id="Comments<?echo $row['id'];?>__div" class="table_tooltip" ></div>
          </td>
          <td>
-             <input id="comment_<?php echo $row['id']; ?>" review-id="<?php echo $row['id']; ?>" comment-status="<?php echo $row['is_publish']; ?>" <? if ($row['is_publish'] == '1') echo 'checked';?> type="checkbox" />
+             <input type="checkbox" id="comment_<?php echo $row['id']; ?>" review-id="<?php echo $row['id']; ?>" comment-status="<?php echo $row['is_publish']; ?>" <? if ($row['is_publish'] == '1'){ echo 'checked="true"';}else{echo '';} ?>  />
              <input id="userview_<?php echo $row['id']; ?>" data-id="<?php echo $row['order_number']; ?>" service-id="<?php echo $row['ServiceId']; ?>" vendors="<?php echo $row['assign_vendors']; ?>" type="button" value=" " class="icon_view" alt="View" title="View"/>
                                         
                                         

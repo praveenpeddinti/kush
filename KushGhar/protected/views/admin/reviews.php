@@ -78,7 +78,7 @@ $(document).ready(function() {
             if(id.indexOf("userview") > -1){
                 statusChangeUser(Number(id1), Number(ServiceId), vendors,Type);
             }
-            else if(id.indexOf("print") > -1){
+            else if(id.indexOf("comment") > -1){
            
             commentPublish(Number(id2), Number(inviteStatus), x);
             }

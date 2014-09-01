@@ -1,7 +1,7 @@
 <script type="text/javascript">
     function adminloginhandler(data) {
         if (data.status == 'success') {//alert("sucesss===========");
-            window.location.href='<?php echo Yii::app()->request->baseUrl; ?>/admin/dashboard';
+            window.location.href='<?php echo Yii::app()->request->baseUrl; ?>/admin/order';
         } else {
             var error = [];
 

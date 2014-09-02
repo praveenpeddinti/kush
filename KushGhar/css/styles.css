@@ -559,7 +559,7 @@ input.serachInput::-ms-reveal { width : 0; height: 0;}
 .comesoon{margin:-73px 0 0px 73px;color: #FFFFFF;font-size: 18px;}
 .mainSoon{text-align:center;color: #F58220;font-size: 18px;}
 .icon_active{background:url(../images/active_user.png) no-repeat left top; width:16px; height:16px; border:0; cursor:pointer}
-.icon_view{background:url(../images/view.png) no-repeat left top; width:16px; height:16px; border:0; cursor:pointer}
+.icon_view{background:url(../images/view.png) no-repeat left top; width:16px; height:16px; border:0; cursor:pointer;margin: 3px 0 0 3px;}
 .carousel-indicators {list-style: none outside none;margin: 0;position: absolute;right: 15px;bottom: 15px;z-index: 5;}
 .carousel-indicators li {background-color:#ccc;border-radius: 5px;display: block;float: left;height: 10px;margin-left: 5px;text-indent: -999px;width: 10px;}
 .carousel-control{ top:50%}

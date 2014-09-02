@@ -44,7 +44,7 @@
 <?php if($ServiceType==1){?>
 <div class="row-fluid" id="Hc_ques4">
     <div class="span12">
-        <?php echo $reviewForm->label($model,'<abbr title="required">*</abbr><b>How would you rate the quality of the service you have received from KushGhar housemen ? </b>'); ?>
+        <label><abbr title="required">*</abbr><b>How would you rate the quality of the service you have received from KushGhar housemen ? </b></label>
         <table class="table_feedback">
             <tr><th></th><th>Excellent</th><th>Good</th><th>Fair</th><th>Poor</th></tr>
             <tr><td style="text-align: left;">Vacuuming</td><td><input type="radio" value="Excellent" name="vaccuming"/></td><td><input type="radio" value="Good" name="vaccuming"/></td><td><input type="radio" value="Fair" name="vaccuming"/></td><td><input type="radio" value="Poor" name="vaccuming"/></td></tr>
@@ -77,7 +77,7 @@
 <br>
     <div class="row-fluid" id="ques6">
         <div class=" span12">
-            <?php echo $reviewForm->label($model, '<b><abbr title="required">*</abbr> Feel free to share any comments or suggestions you may have</b>...'); ?>
+            <label><abbr title="required">*</abbr><b> Suggestions / Complaints (Your feedback will help us to identify areas we need to improve as well as letting us know what else you expect from us for better service. Your feedback really does count!)</b></label>
             <?php echo $reviewForm->textArea($model,'Feedback',array('maxlength' => 250, 'class' => 'span12')); ?>
             <?php echo $reviewForm->error($model, 'Feedback'); ?>
         </div>
@@ -85,7 +85,7 @@
 <div class="row-fluid" id="ques7">
         <div class=" span12">
             <input type="checkbox" id="chkDisclaimer">&nbsp;&nbsp;&nbsp;<u><b>Disclaimer </b></u><b>:</b>
-            I have checked and confirmed that there are no losses / damages during House cleaning done by Kushghar Team.
+            I have checked and confirmed that there are no losses / damages during House cleaning done by KushGhar Team.
             <?php echo $reviewForm->error($model, 'Disclaimer'); ?>
             
         </div>

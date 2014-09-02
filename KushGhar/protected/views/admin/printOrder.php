@@ -27,7 +27,7 @@ $address;
         <div id="print">
             <div class="container">
                 <section>
-                    <h3 align="center" style="padding: 0px">Kushghar Management Services Private Limited</h3>
+                    <h3 align="center" style="padding: 0px">KushGhar Management Services Private Limited</h3>
                     <div style="text-align: center; background-color: #e5e5e5;">
                     <center><label style="padding: 0px;font-weight:bold;font-size: 18px;">Customer Details</label></center></div> 
                     <table border="1" style="width: 100%;" cellpadding="0" cellspacing="0">
@@ -152,7 +152,7 @@ $address;
                                 <td style="text-align: center;width: 20%;padding:6px 0 0"><span style="border:1px solid #000;display:inline-block;padding:8px;"></span></td>
                             </tr>
                             <tr>
-                                <td colspan="5" style="padding-left:5px;"><label><b>(4) How would you rate the quality of the services you have received from Kushghar housemen?</b></label></td>
+                                <td colspan="5" style="padding-left:5px;"><label><b>(4) How would you rate the quality of the services you have received from KushGhar housemen?</b></label></td>
                             </tr>
                             <tr>
                                 <td style="padding-left :5px;"></td>
@@ -197,7 +197,7 @@ $address;
                     <table border="0" style="width: 100%" cellpadding="0" cellspacing="0">
                             <tr>
                                 <td colspan="5" style="padding-left:5px;"><label><u><b>Disclaimer</b></u><b> :</b></label>
-                                I have checked and confirmed that there are no losses / damages during House cleaning done by Kushghar Team.</td>
+                                I have checked and confirmed that there are no losses / damages during House cleaning done by KushGhar Team.</td>
                             </tr>
                             <tr><td colspan="5" style="text-align: right;padding:60px 15px 0 0;">
                             <b>Customer's Signature</b></td></tr>

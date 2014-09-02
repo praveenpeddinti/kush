@@ -55,7 +55,7 @@
                         <input type="hidden" id="VV" value="<?php echo $this->session['UserType'];?>" >
                         <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/service_banner3.jpg" class="service_banner" />
                         <div class="paddinground">
-                            <h2>What services does Kushghar offer?</h2>
+                            <h2>What services does KushGhar offer?</h2>
                             <div class="static_page_heading"></div>
                             <div class="row-fluid">
                                 <div class="span12">

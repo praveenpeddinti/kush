@@ -93,6 +93,12 @@
                                     <td><?php echo "<b>" . $getServiceDetails['total_bathRooms'] . "</b>"; ?></td>
                                 </tr>
                                 <?php } ?>
+                                <?php if (!empty($getServiceDetails['other_rooms'])) { ?>
+                                <tr>
+                                    <td>Other Room(s)</td>
+                                    <td><?php echo "<b>" . $getServiceDetails['other_rooms'] . "</b>"; ?></td>
+                                </tr>
+                                <?php } ?>
                                 
                                 <?php if( ($getServiceDetails['window_grills'] != 0) || ($getServiceDetails['cupboard_cleaning'] != 0) || ($getServiceDetails['fridge_interior'] != 0) || ($getServiceDetails['microwave_oven_interior'] != 0) || ($getServiceDetails['pooja_room_cleaning'] != 0) ){?>
                                 <tr>
@@ -473,6 +479,12 @@
                                                                         <td><?php echo "<b>" . $getServiceDetails['total_bathRooms'] . "</b>"; ?></td>
                                                                     </tr>
                                                                 <?php } ?>
+                                                                <?php if (!empty($getServiceDetails['other_rooms'])) { ?>
+                                                                    <tr>
+                                                                        <td>Other Room(s)</td>
+                                                                        <td><?php echo "<b>" . $getServiceDetails['other_rooms'] . "</b>"; ?></td>
+                                                                    </tr>
+                                                                    <?php } ?>    
         
                                                                 <?php if( ($getServiceDetails['window_grills'] != 0) || ($getServiceDetails['cupboard_cleaning'] != 0) || ($getServiceDetails['fridge_interior'] != 0) || ($getServiceDetails['microwave_oven_interior'] != 0) || ($getServiceDetails['pooja_room_cleaning'] != 0) ){?>
                                 <tr>

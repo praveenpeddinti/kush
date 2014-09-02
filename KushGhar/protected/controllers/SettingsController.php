@@ -131,7 +131,8 @@ class SettingsController extends Controller {
     public function actionCarModels(){
         try {
             $this->pageTitle="KushGhar-Settings";
-            $this->render('carModels',array('makeId' => $_REQUEST['MakeId']));
+            $makename=  $this->kushGharService->getMakeNameByID($_REQUEST['MakeId']);
+            $this->render('carModels',array('makeId' => $_REQUEST['MakeId'],'MakeName'=>$makename['make_name']));
         } catch (Exception $ex) {
             error_log("#########Exception Occurred########" . $ex->getMessage());
         }
@@ -162,7 +163,7 @@ class SettingsController extends Controller {
         $formName = $request->getParam('SettingsForm');
         if ($formName != '') {
             $EditForm->attributes = $request->getParam('SettingsForm');
-            $makename=  $this->kushGharService->getMakeNameByID($EditForm->make_name);
+            $makename=  $this->kushGharService->getMakeNameByID($EditForm->makeId);
             $modelName = $this->kushGharService->checkNewModelExistInModelTable($EditForm->model_name,$EditForm->makeId);
             if($modelName=='No model'){
                 if($EditForm->id=='')

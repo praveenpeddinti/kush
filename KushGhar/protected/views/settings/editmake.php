@@ -13,7 +13,7 @@
     <div class="row-fluid">
         <div class=" span12">
             <?php echo $editMakeForm->label($model, '<abbr title="required">*</abbr> Make Name'); ?>
-            <?php echo $editMakeForm->textField($model, 'make_name', array('value'=>$getmakeDetails['make_name'] ,'class' => 'span5')); ?>
+            <?php echo $editMakeForm->textField($model, 'make_name', array('value'=>$getmakeDetails['make_name'] ,'class' => 'span5','maxlength' => 25)); ?>
             <?php echo $editMakeForm->error($model, 'make_name'); ?>
         </div>
     </div>

@@ -27,14 +27,13 @@
             <article>
                 <div class="row-fluid" style="height:480px">
                     <div class="span12">
-                        <h4 class="paddingL20">Car Models</h4>
+                        <h4 class="paddingL20">Car Models of <?php echo $MakeName;?></h4>
                         <div id="TC" style="display:none"></div>                       
                         <div class="paddinground">    
                             <div id="InviteInfoSpinLoader"></div>
                             <div id="tablewidget"  style="margin: auto;"><div id="message" style="display:none"></div>
                                <input type="button" id="btnNewModel" class="btn btn-primary" value="New Model" onclick="newModel()"/>
                                 <div class="table-responsive"> <table id="userTable" class="table table-hover usermanagement_table">
-
                                        <thead><tr><th>Model Name</th><th>Actions</th></tr></thead>
                                     <tbody id="abusedWords_tbody">
 

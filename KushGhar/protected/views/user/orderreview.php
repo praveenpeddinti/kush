@@ -34,7 +34,7 @@
         <?php echo $reviewForm->label($model,'<abbr title="required">*</abbr><b>How would you rate Us ?</b> '); ?>
         <table class="table_feedback">
             <tr><th></th><th>Excellent</th><th>Good</th><th>Fair</th><th>Poor</th></tr>
-            <tr><td style="text-align: left;">Office staff</td><td><input type="radio" value="Excellent" name="officeStaff"/></td><td><input type="radio" value="Good" name="officeStaff"/></td><td><input type="radio" value="Fair" name="officeStaff"/></td><td><input type="radio" value="Poor" name="officeStaff"/></td></tr>
+            <tr><td style="text-align: left;">Office Staff</td><td><input type="radio" value="Excellent" name="officeStaff"/></td><td><input type="radio" value="Good" name="officeStaff"/></td><td><input type="radio" value="Fair" name="officeStaff"/></td><td><input type="radio" value="Poor" name="officeStaff"/></td></tr>
             <tr><td style="text-align: left;">Home Service</td><td><input type="radio" value="Excellent" name="homeService"/></td><td><input type="radio" value="Good" name="homeService"/></td><td><input type="radio" value="Fair" name="homeService"/></td><td><input type="radio" value="Poor" name="homeService"/></td></tr>
             <tr><td style="text-align: left;">Overall Experience</td><td><input type="radio" value="Excellent" name="overAllExp"/></td><td><input type="radio" value="Good" name="overAllExp"/></td><td><input type="radio" value="Fair" name="overAllExp"/></td><td><input type="radio" value="Poor" name="overAllExp"/></td></tr>
         </table>
@@ -101,8 +101,7 @@
         if(validate()){
          scrollPleaseWait("inviteSpinLoader","invite-form");
          var data = $("#review-form").serialize();
-         alert(data);
-        ajaxRequest('/user/orderreviewsave', data, reviewHandler)
+         ajaxRequest('/user/orderreviewsave', data, reviewHandler)
         }
     }
     function reviewHandler(data)
@@ -178,7 +177,7 @@
             $("#OrderReviewForm_professional_appearance_em_").hide();
             $("#OrderReviewForm_rate_us_em_").show();
             $("#OrderReviewForm_rate_us_em_").addClass('errorMessage');
-            $("#OrderReviewForm_rate_us_em_").text("Please enter your rating for the Office staff");
+            $("#OrderReviewForm_rate_us_em_").text("Please enter your rating for the Office Staff");
             return false;
         } 
         var ques3b=$('input[name="homeService"]');
@@ -190,7 +189,7 @@
             $("#OrderReviewForm_professional_appearance_em_").hide();
             $("#OrderReviewForm_rate_us_em_").show();
             $("#OrderReviewForm_rate_us_em_").addClass('errorMessage');
-            $("#OrderReviewForm_rate_us_em_").text("Please enter your rating for the Home service");
+            $("#OrderReviewForm_rate_us_em_").text("Please enter your rating for the Home Service");
             return false;
         } 
         var ques3c=$('input[name="overAllExp"]');
@@ -202,7 +201,7 @@
             $("#OrderReviewForm_professional_appearance_em_").hide();
             $("#OrderReviewForm_rate_us_em_").show();
             $("#OrderReviewForm_rate_us_em_").addClass('errorMessage');
-            $("#OrderReviewForm_rate_us_em_").text("Please enter your rate for the Overall Experience");
+            $("#OrderReviewForm_rate_us_em_").text("Please enter your rating for the Overall Experience");
             return false;
         } 
        if(type==1){
@@ -215,7 +214,7 @@
             $("#OrderReviewForm_rate_us_em_").hide();
             $("#OrderReviewForm_quality_of_service_em_").show();
             $("#OrderReviewForm_quality_of_service_em_").addClass('errorMessage');
-            $("#OrderReviewForm_quality_of_service_em_").text("Please enter your rate for the Vaccuming");
+            $("#OrderReviewForm_quality_of_service_em_").text("Please enter your rating for the Vaccuming");
             return false;
         } 
         var ques4b=$('input[name="dusting"]');
@@ -227,7 +226,7 @@
             $("#OrderReviewForm_rate_us_em_").hide();
             $("#OrderReviewForm_quality_of_service_em_").show();
             $("#OrderReviewForm_quality_of_service_em_").addClass('errorMessage');
-            $("#OrderReviewForm_quality_of_service_em_").text("Please enter your rate for the dusting");
+            $("#OrderReviewForm_quality_of_service_em_").text("Please enter your rating for the Dusting");
             return false;
         } 
         var ques4c=$('input[name="moping"]');
@@ -239,7 +238,7 @@
             $("#OrderReviewForm_rate_us_em_").hide();
             $("#OrderReviewForm_quality_of_service_em_").show();
             $("#OrderReviewForm_quality_of_service_em_").addClass('errorMessage');
-            $("#OrderReviewForm_quality_of_service_em_").text("Please enter your rate for the moping");
+            $("#OrderReviewForm_quality_of_service_em_").text("Please enter your rating for the Moping");
             return false;
         } 
         var ques4d=$('input[name="trash"]');
@@ -256,7 +255,7 @@
             $("#OrderReviewForm_rate_us_em_").hide();
             $("#OrderReviewForm_quality_of_service_em_").show();
             $("#OrderReviewForm_quality_of_service_em_").addClass('errorMessage');
-            $("#OrderReviewForm_quality_of_service_em_").text("Please enter your rate for the trash disposal");
+            $("#OrderReviewForm_quality_of_service_em_").text("Please enter your rating for the Trash Disposal");
             return false;
         } }
         if (($('#OrderReviewForm_Feedback').val() == '')) {
@@ -264,7 +263,7 @@
             $("#OrderReviewForm_rate_us_em_").hide();
             $("#OrderReviewForm_Feedback_em_").show();
             $("#OrderReviewForm_Feedback_em_").addClass('errorMessage');
-            $("#OrderReviewForm_Feedback_em_").text("Please Enter your feedback or suggestion");
+            $("#OrderReviewForm_Feedback_em_").text("Please enter your Comments or Suggestions");
             if($("#OrderReviewForm_Rating").val()==''){
                 $("#OrderReviewForm_Rating").val("1");
             }
@@ -274,7 +273,7 @@
             $("#OrderReviewForm_Feedback_em_").hide();
             $("#OrderReviewForm_Disclaimer_em_").show();
             $("#OrderReviewForm_Disclaimer_em_").addClass('errorMessage');
-            $("#OrderReviewForm_Disclaimer_em_").text("Please Accept the Disclaimer"); 
+            $("#OrderReviewForm_Disclaimer_em_").text("Please accept the Disclaimer"); 
             return false;
         }
         else

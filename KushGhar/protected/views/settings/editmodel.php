@@ -14,12 +14,12 @@
     <div class="row-fluid">
         <div class="span4">
         <?php echo $editModelForm->labelEx($model,'Make'); ?>
-        <?php echo $editModelForm->dropDownList($model, 'make_name', CHtml::listData($makes, 'id', 'make_name'), array('prompt'=>'Select Make','options' => array($getmodelDetails['make_Id'] => array('selected' => 'selected')), 'class' => 'span12')); ?>
+        <?php echo $editModelForm->dropDownList($model, 'make_name', CHtml::listData($makes, 'id', 'make_name'), array('prompt'=>'Select Make','options' => array($make => array('selected' => 'selected')), 'class' => 'span12')); ?>
         <?php echo $editModelForm->error($model,'make_name'); ?>
         </div>
         <div class=" span8">
             <?php echo $editModelForm->label($model, '<abbr title="required">*</abbr> Model Name'); ?>
-            <?php echo $editModelForm->textField($model, 'model_name', array('value'=>$getmodelDetails['model_name'] ,'class' => 'span6')); ?>
+            <?php echo $editModelForm->textField($model, 'model_name', array('value'=>$getmodelDetails['model_name'] ,'class' => 'span6','maxlength' => 25)); ?>
             <?php echo $editModelForm->error($model, 'model_name'); ?>
         </div>
     </div>
@@ -29,7 +29,6 @@
          </div>
 <script type="text/javascript">
     $(document).ready(function() { 
-        if($('#SettingsForm_id').val()!='')
         $('#SettingsForm_make_name').attr('disabled', true);
     });
     function saveChanges(){

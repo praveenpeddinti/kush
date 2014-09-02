@@ -163,8 +163,10 @@ if($serviceType == 3) {?>
                     $("#OrderRescheduleForm_error_em_").removeClass('errorMessage');
                     $("#OrderRescheduleForm_error_em_").addClass('alert alert-success');
                     $("#OrderRescheduleForm_error_em_").text(data.error);
-                    $("#OrderRescheduleForm_error_em_").fadeOut(20000, "");
-                    window.location.href = '<?php echo Yii::app()->request->baseUrl; ?>/user/order';
+                    $("#OrderRescheduleForm_error_em_").fadeOut(3000);
+                    setTimeout(function() {
+                        window.location.href = '<?php echo Yii::app()->request->baseUrl; ?>/user/order';
+                    }, 3000);   
         }
         if(data.status == 'error'){
             var lengthvalue=data.error.length;

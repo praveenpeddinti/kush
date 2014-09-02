@@ -164,11 +164,11 @@
                                 <?php echo $form->error($model, 'Phone'); ?>
 
                                 <label><?php echo $form->labelEx($model, '<abbr title="required">*</abbr> password'); ?></label>
-                                <?php echo $form->passwordField($model, 'Password', array('class' => 'span12', 'maxLength' => 100)); ?>
+                                <?php echo $form->passwordField($model, 'Password', array('class' => 'span12', 'maxLength' => 20)); ?>
                                 <?php echo $form->error($model, 'Password'); ?>
 
                                 <label> <?php echo $form->labelEx($model, '<abbr title="required">*</abbr> Confirm Password'); ?></label>
-                                <?php echo $form->passwordField($model, 'RepeatPassword', array('class' => 'span12', 'maxLength' => 100)); ?>
+                                <?php echo $form->passwordField($model, 'RepeatPassword', array('class' => 'span12', 'maxLength' => 20)); ?>
                                 <?php echo $form->error($model, 'RepeatPassword'); ?>
                                 <center>
                                    

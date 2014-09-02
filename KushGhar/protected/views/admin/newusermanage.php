@@ -14,7 +14,7 @@
                                             <td>
                                                 <span id="Comments<?echo $row['cid'];?>__view" style="display: block;cursor:none" onmouseover="showTooltip(this.id,'<?echo $row['email_address'];?>')" onmouseout="showTooltipdown(this.id)">
                 <?php $len= strlen($row['email_address']);
-                    if($len>15){echo substr($row['email_address'],0,15).'...';}else{echo $row['email_address'];}?>
+                    if($len>20){echo substr($row['email_address'],0,20).'...';}else{echo $row['email_address'];}?>
             </span><div style="display:none;" id="Comments<?echo $row['cid'];?>__div" class="table_tooltip" ></div>
                                             </td>
                                             <td><?php echo $row['phone']; ?></td>

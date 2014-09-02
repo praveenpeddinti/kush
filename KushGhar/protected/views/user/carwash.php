@@ -149,6 +149,7 @@
                 $('.AddressFieldsOneCarDiv').hide();
                 $('.AddressFieldsOneCarDiv').hide();
                 $('.AddressFieldsMultiCarDiv').show();
+                $('#<?php echo $j; ?>_City').val("<?php echo $rw['address_city'];?>");
             <?}else{?>
                 //$("#DifferentLocationDiv").show();    
                 $('#DifferentLocation').val('0');  

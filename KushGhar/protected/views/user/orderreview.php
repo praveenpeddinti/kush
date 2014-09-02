@@ -15,7 +15,7 @@
 ?>
 <div class="row-fluid" id="ques1">
     <div class="span12">
-        <?php echo $reviewForm->label($model,'<abbr title="required">*</abbr><b>Did our team arrive on time ? </b>'); ?>
+        <label><abbr title="required">*</abbr><b>Did our team arrive on time ? </b></label>
         <input type="radio" value="1" name="arrive_on_time" /> Yes
         <input type="radio" value="0" name="arrive_on_time"/> No
         <?php echo $reviewForm->error($model, 'arrive_on_time'); ?>
@@ -23,7 +23,7 @@
 </div><br>
 <div class="row-fluid" id="ques2">
     <div class="span12">
-        <?php echo $reviewForm->label($model,'<abbr title="required">*</abbr><b>Did our team members have professional appearance ?</b> '); ?>
+        <label><abbr title="required">*</abbr><b>Did our team members have professional appearance ?</b></label>
         <input type="radio" value="1" name="professional_appearance" /> Yes
         <input type="radio" value="0" name="professional_appearance" /> No
         <?php echo $reviewForm->error($model, 'professional_appearance'); ?>
@@ -31,7 +31,7 @@
 </div><br>
 <div class="row-fluid" id="ques3">
     <div class="span12">
-        <?php echo $reviewForm->label($model,'<abbr title="required">*</abbr><b>How would you rate Us ?</b> '); ?>
+        <label><abbr title="required">*</abbr><b>How would you rate Us ?</b></label>
         <table class="table_feedback">
             <tr><th></th><th>Excellent</th><th>Good</th><th>Fair</th><th>Poor</th></tr>
             <tr><td style="text-align: left;">Office Staff</td><td><input type="radio" value="Excellent" name="officeStaff"/></td><td><input type="radio" value="Good" name="officeStaff"/></td><td><input type="radio" value="Fair" name="officeStaff"/></td><td><input type="radio" value="Poor" name="officeStaff"/></td></tr>

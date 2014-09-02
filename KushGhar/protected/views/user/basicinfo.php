@@ -256,12 +256,12 @@
                                 <div class="row-fluid">
                                     <div class=" span4">
                                        <?php echo $form->label($updatedPassword, 'Password'); ?>
-                                <?php echo $form->passwordField($updatedPassword, 'Password', array('maxLength' => 50, 'class' => 'span12')); ?>
+                                <?php echo $form->passwordField($updatedPassword, 'Password', array('maxLength' => 20, 'class' => 'span12')); ?>
                                 <?php echo $form->error($updatedPassword, 'Password'); ?>
                                     </div>
                                     <div class=" span4">
                                         <?php echo $form->label($updatedPassword, 'Confirm Password'); ?>
-                                        <?php echo $form->passwordField($updatedPassword, 'ConfirmPassword', array('maxLength' => 50, 'class' => 'span12')); ?>
+                                        <?php echo $form->passwordField($updatedPassword, 'ConfirmPassword', array('maxLength' => 20, 'class' => 'span12')); ?>
                                         <?php echo $form->error($updatedPassword, 'ConfirmPassword'); ?>
                                     </div>
                                     <div class=" span4">

@@ -34,7 +34,7 @@
                             <div id="tablewidget"  style="margin: auto;"><div id="message" style="display:none"></div>
                                 <div class="table-responsive"> <table id="userTable" class="table table-hover usermanagement_table">
 
-                                        <thead><tr><th>Name</th><th nowrap>Service Type</th><th>Rating</th><th>Feedback</th><th nowrap>Is publish</th></tr></thead>
+                                        <thead><tr><th>Name</th><th nowrap>Service Type</th><th>Rating</th><th>Feedback</th><th nowrap>Actions</th></tr></thead>
                                     <tbody id="abusedWords_tbody">
 
                                     </tbody>
@@ -119,11 +119,13 @@ $(document).ready(function() {
     var divId='';
     var textData='';
     function showTooltip(id,textData){
-       var dumpdata='';
+        var newstr = textData.replace('~', "'");
+        var newstr1 = newstr.replace('%~', '"');
+        var dumpdata='';
        var textData1 =document.getElementById(id).innerHTML;
        if(textData1.length>=10){
            if(moveTextToTextbox==''){
-               dumpdata=textData;}else{dumpdata=moveTextToTextbox;}
+               dumpdata=newstr1;}else{dumpdata=moveTextToTextbox;}
            }else{
                dumpdata=textData1;
            }

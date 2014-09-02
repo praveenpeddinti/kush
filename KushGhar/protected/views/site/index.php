@@ -38,9 +38,9 @@
                                             <?php } else {
                                             foreach ($getServices as $row) { ?>
                                             <tr>
-                                            <td><center>
+                                            <td style="padding-left: 30px">
                                                 <?php $len= strlen($row['feedback']);
-                                                if($len>=20){echo substr($row['feedback'],0,20).'...';}else{echo $row['feedback'];}?></center>
+                                                if($len>=50){echo substr($row['feedback'],0,50).'...';}else{echo $row['feedback'];}?>
                                             </td>
                                             </tr>
                                             <?php } } ?>  

@@ -35,11 +35,11 @@
                                 <div class="row-fluid">
                                     <div class="span4">
                                         <label>User Name</label>
-                                        <input type="text" id="userName" class="span12"/>
+                                        <input type="text" id="userName" class="span12" maxlength="50"/>
                                     </div>
                                     <div class="span3">
                                         <label>Location</label>
-                                        <input type="text" id="Location" class="span12"/>
+                                        <input type="text" id="Location" class="span12" maxlength="20"/>
                                     </div>
                                     <div class="span3">
                                         <label>Status</label>

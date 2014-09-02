@@ -192,11 +192,11 @@
                                 <div class="row-fluid">
                                     <div class="span4">
                                         <label>User Name</label>
-                                        <input type="text" id="userName" class="span12"/>
+                                        <input type="text" id="userName" class="span12" maxlength="50"/>
                                     </div>
                                     <div class="span3">
                                         <label>Phone</label>
-                                        <input type="text" id="phone" class="span12"/>
+                                        <input type="text" id="phone" class="span12" maxlength="10" onkeypress = "return isNumberKey(event);"/>
                                     </div>
                                     <div class="span3">
                                         <label>Status</label>

@@ -31,7 +31,7 @@
 </div><br>
 <div class="row-fluid" id="ques3">
     <div class="span12">
-        <label><abbr title="required">*</abbr><b>How would you rate Us ?</b></label>
+        <label><abbr title="required">*</abbr><b>How would you rate us ?</b></label>
         <table class="table_feedback">
             <tr><th></th><th>Excellent</th><th>Good</th><th>Fair</th><th>Poor</th></tr>
             <tr><td style="text-align: left;">Office Staff</td><td><input type="radio" value="Excellent" name="officeStaff"/></td><td><input type="radio" value="Good" name="officeStaff"/></td><td><input type="radio" value="Fair" name="officeStaff"/></td><td><input type="radio" value="Poor" name="officeStaff"/></td></tr>

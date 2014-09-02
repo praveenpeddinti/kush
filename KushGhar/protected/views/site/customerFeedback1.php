@@ -16,7 +16,7 @@
                             <img src="<?php echo $url; ?>"></center>
                         </td>
                         
-                        <td ><?php echo $row['feedback'];?></td>
+                        <td style="word-break: break-all;"><?php echo $row['feedback'];?></td>
                         </tr>
                         <?php } } ?>  
                     

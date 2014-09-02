@@ -108,7 +108,7 @@
             window.location.href ='<?php echo Yii::app()->request->baseUrl; ?>/vendor/vendorBasicInformation';
         }
         else{
-            window.location.href ='<?php echo Yii::app()->request->baseUrl; ?>/site/index';
+            window.location.href ='<?php echo Yii::app()->request->baseUrl; ?>/site/registration';
         }
     }
     

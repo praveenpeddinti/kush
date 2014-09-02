@@ -229,7 +229,7 @@ class SiteController extends Controller {
         }
     }
     public function actionRegistration() {
-        $this->session['Type'] = 'Customer';
+//        $this->session['Type'] = 'Customer';
         $model = new RegistrationForm;
         $modelLogin = new LoginForm;
         $modelSample = new SampleForm;
@@ -238,6 +238,7 @@ class SiteController extends Controller {
         //$getServices = $this->kushGharService->getServices();
 
         if ($formName != '') {
+            $this->session['Type'] = 'Customer';
             $model->attributes = $request->getParam('RegistrationForm');
             $errors = CActiveForm::validate($model);
             if ($errors != '[]') {

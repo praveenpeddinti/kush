@@ -53,7 +53,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="close_click()">×</button>
                                 <h3 id="myModalLabel">Edit Model</h3>
                             </div>
                             <div class="modal-body" id="modelBodyDiv1" style="padding:15px;">
@@ -198,6 +198,9 @@
 
                 }
             });
+    }
+    function close_click(){
+    window.location.href = '<?php echo Yii::app()->request->baseUrl; ?>/settings/carModels?MakeId='+makeId;
     }
 </script>
 

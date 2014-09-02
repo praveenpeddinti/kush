@@ -28,7 +28,7 @@
                                             
                                             <table id="userTable" class="table table-hover" style="margin:20px">
                                             <tbody id="abusedWords_tbody">
-                                                <tr><th style="text-align: center;color:#F58220">Customer FeedBack</th><tr>
+                                                <tr><th style="text-align: center;color:#F58220">Customer Feedback</th><tr>
                                                 <?php if (sizeof($getServices) <= 0) { ?>
                                             <tr id="noRecordsTR">
                                             <td style="text-align: center">

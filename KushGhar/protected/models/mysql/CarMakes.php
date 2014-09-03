@@ -93,6 +93,7 @@ class CarMakes extends CActiveRecord {
         try {
             $Criteria = new CDbCriteria();
             $Criteria->order = 'make_name ASC';
+            $Criteria->condition='status=1';
             $makesData = CarMakes::model()->findAll($Criteria);
         } catch (Exception $ex) {
             

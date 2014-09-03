@@ -106,6 +106,7 @@ class CarModels extends CActiveRecord {
         try {
             $Criteria = new CDbCriteria();
             $Criteria->order = 'model_name ASC';
+            $Criteria->condition='status=1';
             $makesData = CarModels::model()->findAll($Criteria);
         } catch (Exception $ex) {
             
@@ -115,7 +116,7 @@ class CarModels extends CActiveRecord {
     
     public function getSelectedCarModels($makeName){
         try{            
-            $query="select * from KG_Car_model where make_name='$makeName'";
+            $query="select * from KG_Car_model where make_name='$makeName' and status=1";
             $result = Yii::app()->db->createCommand($query)->queryAll();
         }catch(Exception $ex){
             error_log("################Exception Occurred  get All Registered Contacts##############".$ex->getMessage());

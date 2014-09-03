@@ -212,7 +212,7 @@
                dumpdata=textData1;
            }
        divId=id.replace(/view/i, "div");
-       if(textData.length>=15){
+       if(textData.length>=20){
            document.getElementById(divId).style.display='block';
            document.getElementById(divId).innerHTML=dumpdata;
        }else{document.getElementById(divId).style.display='none';}

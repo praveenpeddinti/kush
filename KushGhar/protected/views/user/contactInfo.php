@@ -272,7 +272,7 @@ function isNumberKey(evt)
   {
     var e = evt || window.event; //window.event is safer, thanks @ThiefMaster
     var charCode = e.which || e.keyCode;
-
+    
     if (charCode > 31 && (charCode < 45 || charCode > 57 ) )
     return false;
     if (e.shiftKey) return false;

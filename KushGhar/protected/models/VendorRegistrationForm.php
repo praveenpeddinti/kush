@@ -24,23 +24,23 @@ class VendorRegistrationForm extends CFormModel {
     public function rules() {
         return array(
             // First Name, Email, Phone, Password and Repeat Password are required
-            array('Email,Phone, Password, RepeatPassword', 'required', 'message' => 'Please enter a value for {attribute}.'),
-            array('vendorType', 'required', 'message' => 'Please Select Vendor Type.'),
+            array('Email,Phone, Password, RepeatPassword', 'required', 'message' => 'Please enter {attribute}.'),
+            array('vendorType', 'required', 'message' => 'Please select Vendor Type.'),
             //array('AFirstName', 'required', 'message' => 'Please enter a value for Primary Contact First Name.'),
             //array('ALastName', 'required', 'message' => 'Please enter a value for Primary Contact Last Name.'),
             array('vendorType', 'ext.YiiConditionalValidator.YiiConditionalValidator',
                 'if' => array(
                 array('vendorType', 'compare', 'compareValue'=>"1")),
                 'then' => array(
-                array('FirstName,LastName,', 'required','message' => 'Please enter a value for {attribute}.'),
-                array('FirstName,LastName,', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain Alphabet and space'),),
+                array('FirstName,LastName,', 'required','message' => 'Please enter {attribute}.'),
+                array('FirstName,LastName,', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain alphabet and space'),),
             ),
             array('vendorType', 'ext.YiiConditionalValidator.YiiConditionalValidator',
                 'if' => array(
                 array('vendorType', 'compare', 'compareValue'=>"")),
                 'then' => array(
-                array('FirstName,LastName,', 'required','message' => 'Please enter a value for {attribute}.'),
-                array('FirstName,LastName,', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain Alphabet and space'),),
+                array('FirstName,LastName,', 'required','message' => 'Please enter {attribute}.'),
+                array('FirstName,LastName,', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain alphabet and space'),),
             ),
 
             array('vendorType', 'ext.YiiConditionalValidator.YiiConditionalValidator',
@@ -48,7 +48,7 @@ class VendorRegistrationForm extends CFormModel {
                 array('vendorType', 'compare', 'compareValue'=>"2")),
                 'then' => array(
                 array('PrimaryContactFirstName, PrimaryContactLastName,AgencyName', 'required'),
-                array('PrimaryContactFirstName,PrimaryContactLastName,AgencyName', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain Alphabet and space'),),
+                array('PrimaryContactFirstName,PrimaryContactLastName,AgencyName', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain alphabet and space'),),
             ),
             // Email has to be a valid email addressAFirstName,ALastName,AgencyName,
             array('Email', 'email'),

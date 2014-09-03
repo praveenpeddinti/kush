@@ -93,7 +93,7 @@ class SettingsController extends Controller {
         echo CJSON::encode($obj);
     }
     public function actionEditMake(){
-        try{            error_log("Edit ctrler==============");
+        try{            
             $Model = new SettingsForm;
             $getmakeDetails=$this->kushGharService->getMakeDetails($_POST['Id']);
             $renderHtml=  $this->renderPartial('editmake',array("model"=>$Model,"getmakeDetails"=>$getmakeDetails),true);
@@ -106,7 +106,6 @@ class SettingsController extends Controller {
     }
     public function actionNewMake(){
         try{
-                        error_log("New ctller==========");
             $Model = new SettingsForm;
             $renderHtml=  $this->renderPartial('newmake',array("model"=>$Model),true);
             $obj=array('status'=>'success','html'=>$renderHtml);
@@ -126,10 +125,10 @@ class SettingsController extends Controller {
             $makeName = $this->kushGharService->checkNewMakeExistInMakeTable($EditForm->make_name);
             if($makeName=='No make'){
                 $result = $this->kushGharService->UpdateMake($EditForm);
-                $obj = array('status' => 'success', 'data' => $result, 'error' => 'Make Name Updated Successfully.');
+                $obj = array('status' => 'success', 'data' => $result, 'error' => 'Make Name updated successfully.');
             } else{
                 $result = 'failure';
-                $errors = array("SettingsForm_error" => 'Make already Exists.');
+                $errors = array("SettingsForm_error" => 'Make Name already exists.');
                 $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
             }
         }
@@ -145,10 +144,10 @@ class SettingsController extends Controller {
             $makeName = $this->kushGharService->checkNewMakeExistInMakeTable($NewForm->model_name);
             if($makeName=='No make'){
                 $result=  $this->kushGharService->NewMake($NewForm);
-                $obj = array('status' => 'success', 'data' => $result, 'error' => 'Make Name Added Successfully.');
+                $obj = array('status' => 'success', 'data' => $result, 'error' => 'Make Name added successfully.');
             } else{
                 $result = 'failure';
-                $errors = array("SettingsForm_error" => 'Make already Exists.');
+                $errors = array("SettingsForm_error" => 'Make Name already exists.');
                 $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
             }
         }
@@ -198,10 +197,10 @@ class SettingsController extends Controller {
                     $result=  $this->kushGharService->newModel($EditForm,$makename['make_name']);
                 else
                     $result = $this->kushGharService->UpdateModel($EditForm);
-                $obj = array('status' => 'success', 'data' => $result, 'error' => 'Make Name Updated Successfully.');
+                $obj = array('status' => 'success', 'data' => $result, 'error' => 'Make Name updated successfully.');
             } else{
                 $result = 'failure';
-                $errors = array("SettingsForm_error" => 'Model already Exists.');
+                $errors = array("SettingsForm_error" => 'Model already exists.');
                 $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
             }
         }

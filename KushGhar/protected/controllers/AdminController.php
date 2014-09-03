@@ -105,7 +105,7 @@ class AdminController extends Controller {
                     }
                     else{
                         $result = "failure";
-                        $errors = array("InviteForm_error" => 'User Exist.');
+                        $errors = array("InviteForm_error" => 'User exist.');
                         $obj = array('status' => 'error', 'data' => '', 'error' => $errors); 
                     }
                     if ($result == "success") {
@@ -146,7 +146,7 @@ class AdminController extends Controller {
                 $mailSendStatusw=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
                         $obj = array('status' => 'success', 'data' => $result, 'error' => 'Invitation sent Successfully.');
                     } else {
-                        $errors = array("InviteForm_error" => 'User already Invited.');
+                        $errors = array("InviteForm_error" => 'User already invited.');
                         $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
                     }
                 }
@@ -538,9 +538,9 @@ $this->pageTitle="KushGhar-Basic Info";
                                         //$sendMailToUser=new CommonUtility;
                                         //$sendMailToUser->actionSendmail($messageview1,$params1, $subject, $to1,$employerEmail);
                                         //$mailSendStatusw=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
-                                        $error.="User Invited Successfully->".$var[3]."\n";                                        
+                                        $error.="User invited successfully->".$var[3]."\n";                                        
                                     } else {
-                                        $error.="User Already invited ->".$var[3]."\n";
+                                        $error.="User already invited ->".$var[3]."\n";
                                     }
                                 } else {
                                     $error.="Sorry,Column did not match! ->".$line;
@@ -606,11 +606,11 @@ $this->pageTitle="KushGhar-Basic Info";
                     if($result=='success')
                     {
                         //Mailing functionality
-                        $obj = array('status' => 'success', 'data' => $result, 'error' => 'Service Status is changed Successfully.');
+                        $obj = array('status' => 'success', 'data' => $result, 'error' => 'Service status is changed successfully.');
                     }
                     else
                     {
-                        $errors = array("OrderForm_error" => 'Service Failed.');
+                        $errors = array("OrderForm_error" => 'Service failed.');
                         $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
                     }
                     $renderScript = $this->rendering($obj);
@@ -619,7 +619,7 @@ $this->pageTitle="KushGhar-Basic Info";
             }
             else
             {
-                $errors = array("OrderForm_error" => 'Service Failed.');
+                $errors = array("OrderForm_error" => 'Service failed.');
                 $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
             }
         }

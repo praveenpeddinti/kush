@@ -5,7 +5,7 @@
             $("#BulkForm_error_em_").show();
             $("#BulkForm_error_em_").removeClass('errorMessage');
             $("#BulkForm_error_em_").addClass('alert alert-success');
-            $("#BulkForm_error_em_").text('Invitation(s) sent Successfully.');
+            $("#BulkForm_error_em_").text('Invitation(s) sent successfully.');
             $("#BulkForm_error_em_").fadeOut(6000);
             
             //window.location.href='contactInfo';

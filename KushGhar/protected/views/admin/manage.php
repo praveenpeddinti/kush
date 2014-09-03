@@ -2,11 +2,9 @@
     var pageno;
     function adminloginhandler(data) {
         if (data.status == 'success') {
-            //alert("sucesss===========");
             window.location.href = 'dashboard';
         } else {
             var error = [];
-
             if (typeof (data.error) == 'string') {
                 var error = eval("(" + data.error.toString() + ")");
             } else {
@@ -35,8 +33,6 @@
         return true;
     }
     function inviteUser(rowNos, status,email) {
-        //scrollPleaseWait("InviteInfoSpinLoader","contactInfo-form");
-        
         var data = "Id=" + rowNos + "&status=" + status+ "&email=" + email;
             
             $.ajax({
@@ -48,15 +44,13 @@
                     //scrollPleaseWaitClose('InviteInfoSpinLoader');
                     $('#message').show();
                     $("#message").addClass('alert alert-success');
-                    $("#message").text('Invitation sent Successfully.');
+                    $("#message").text('Invitation sent successfully.');
                     $("#message").fadeOut(6000, "");
                     //$('#usera_' + rowNos).remove();
                     activeFormHandler2(data, status, rowNos);
                     
                 },
                 error: function(data) { // if error occured
-                    
-
                 }
             });
     }
@@ -67,7 +61,7 @@
         var phone = $("#phone").val();
         var status1 = $("#status").val();
         if (status == 1) {
-            var statusData = 'Do you want to Delete?';
+            var statusData = 'Do you want to delete?';
         } 
         /*else {
             var statusData = 'Do you want to change Inactive to Active?';
@@ -85,7 +79,7 @@
                     //activeFormHandler(data, status, rowNos);
                     $('#message').show();
                     $("#message").addClass('alert alert-success');
-                    $("#message").text('Delete user Successfully.');
+                    $("#message").text('Delete user successfully.');
                     $("#message").fadeOut(6000, "");
                     $('#row_' + rowNos).remove();
                     getCollectionDataWithPagination('/admin/newManage','userDetails', 'abusedWords_tbody',pageno,5,uname,phone,status1, '');
@@ -150,18 +144,14 @@
 </script>
 
 <div class="container">
-    
     <section>
         <div class="container minHeight">
             <aside>
                 <div class="asideBG">
                     <div class="left_nav">
                         <ul class="main">
-                            <!--<li class="active"><a href="#"  ><span class="KGservices"> </span></a></li>
-                            <li class=""><a href="#" ><span class="KGpayment"> </span></a></li>-->
                             <li class="active"><a href="#" ><span class="KGaccounts"> </span></a></li>
                         </ul>
-
                     </div>
                     <div class="sub_menu ">
                         <div id="accounts" class="collapse in">
@@ -176,8 +166,6 @@
                                 <li><a href="/settings/carMakes"> <i class="fa fa-cog"></i> Settings</a></li>
                             </ul>
                         </div>
-
-
                     </div>
                 </div>
             </aside>
@@ -185,7 +173,6 @@
                 <div class="row-fluid" style="height:480px">
                     <div class="span12">
                         <h4 class="paddingL20">Invitation Management</h4>
-                        
                         <div class="paddinground">    
                             <div id="InviteInfoSpinLoader"></div>
                             <div id="tablewidget"  style="margin: auto;"><div id="message" style="display:none"></div>
@@ -213,20 +200,14 @@
                                     </div>
                                 </div>
                                 <table id="userTable" class="table table-hover">
-
                                     <thead><tr><th>Name</th><th>Email Address</th><th>Phone</th><th>Location</th><th nowrap>Invited Date</th><th>Status</th><th>Actions</th></tr></thead>
                                     <tbody id="abusedWords_tbody">
-                                        
                                     </tbody>
                                 </table>
                                 <div class="pagination pagination-right">
                                     <div id="pagination"></div>  
-
                                 </div>
                             </div>  
-                            
-                        
-                                
                         </div>
                     </div>    
                 </div>
@@ -244,7 +225,6 @@
             var inviteStatus = $(this).attr('invite-status');
             var inviteEmail = $(this).attr('invite-email');
            
-        
             if(id>0){
                 statusChangeUser(Number(id), Number(status));
             }
@@ -257,7 +237,6 @@
     $(function(){
         getCollectionDataWithPagination('/admin/newManage','userDetails', 'abusedWords_tbody',1,5,'','','20', '');
     });
-    
     
     
 function ajaxRequest(url, queryString,callback,dataType,beforeSendCallback) { 
@@ -324,7 +303,6 @@ function getCollectionDataWithPaginationHandler(data,URL,CollectionName,MainDiv,
             }
     }
     function search(){
-       // alert("enter===="+$("#orderNo").val());
         var uname = $("#userName").val();
         var phone = $("#phone").val();
         var status = $("#status").val();

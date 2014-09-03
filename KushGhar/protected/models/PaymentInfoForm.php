@@ -26,15 +26,15 @@ class PaymentInfoForm extends CFormModel {
     public function rules() {
         return array(
             // name, email, subject and body are required
-            array('cardHolderName, cardNumber, FirstName, LastName, Phone, Address1', 'required', 'message' => 'Please enter a value for {attribute}.'),
+            array('cardHolderName, cardNumber, FirstName, LastName, Phone, Address1', 'required', 'message' => 'Please enter {attribute}.'),
             // Card holde name must be Alphabet and space
-            array('cardHolderName', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain Alphabet and space'),
+            array('cardHolderName', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain alphabet and space'),
             array('cardNumber', 'match', 'pattern' => '/^[X0-9]+$/', 'message' => '{attribute} can only contain numbers'),
             //array('cardNumber', 'numerical'),
             array('cardNumber', 'length', 'min'=>16),
-            array(' expiryMonth, expiryYear', 'required', 'message' => 'Please Select Expiry Date'),
-            array('cardType', 'required', 'message' => 'Please Select {attribute}.'),
-            array('FirstName, LastName', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain Alphabet and space'),
+            array(' expiryMonth, expiryYear', 'required', 'message' => 'Please select Expiry Date'),
+            array('cardType', 'required', 'message' => 'Please select {attribute}.'),
+            array('FirstName, LastName', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain alphabet and space'),
             array('Phone', 'numerical', 'integerOnly'=>true),
             array('Phone', 'length', "min" => "10"),
             array('cardType, cardHolderName, cardNumber, expiryMonth, expiryYear, FirstName, LastName, Phone, Address1, Address2, Id', 'safe'),

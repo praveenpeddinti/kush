@@ -24,16 +24,16 @@ class ContactInfoForm extends CFormModel {
     public function rules() {
         return array(
             // name, email, subject and body are required
-            array('Phone, Address1, PinCode, Landmark', 'required', 'message' => 'Please enter a value for {attribute}.'),
+            array('Phone, Address1, PinCode, Landmark', 'required', 'message' => 'Please enter {attribute}.'),
             // email has to be a valid email address
             array('Email', 'email'),
             array('Phone, AlternatePhone', 'numerical', 'integerOnly'=>true),
             array('Phone, AlternatePhone', 'length', "min" => "10"),
-            array('City', 'match', 'pattern' => '/^[a-zA-Z0-9\s]+$/', 'message' => '{attribute} can only contain Alphabet and digits'),
+            array('City', 'match', 'pattern' => '/^[a-zA-Z0-9\s]+$/', 'message' => '{attribute} can only contain alphabet and digits'),
             array('PinCode', 'numerical', 'integerOnly'=>true),
             array('PinCode', 'length', 'min'=>6),
             //array('cardNumber', 'length', 'min'=>6),
-            array('State, City', 'required', 'message' => 'Please Select {attribute}.'),
+            array('State, City', 'required', 'message' => 'Please select {attribute}.'),
             array('Email, Phone, AlternatePhone, Address1, Address2, State, City, PinCode, Landmark, Id', 'safe'),
         );
     }

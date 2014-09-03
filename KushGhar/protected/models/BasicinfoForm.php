@@ -29,14 +29,14 @@ class BasicinfoForm extends CFormModel {
     public function rules() {
         return array(
             // name, email, subject and body are required
-            array('FirstName, LastName','required', 'message' => 'Please enter a value for {attribute}.'),
+            array('FirstName, LastName','required', 'message' => 'Please enter {attribute}.'),
             //array('foundKushgharBy', 'required', 'message' => 'Please Select one.'),
             array('foundKushgharBy', 'ext.YiiConditionalValidator.YiiConditionalValidator',
                 'if' => array(
                 array('foundKushgharBy', 'compare', 'compareValue'=>"Other")),
                 'then' => array(
-                array('foundKushgharByOther', 'required','message' => 'Please enter a value for Other source.'),
-                array('foundKushgharByOther', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => 'Other Source can only contain Alphabet and space'),),
+                array('foundKushgharByOther', 'required','message' => 'Please enter Specify Other Source.'),
+                array('foundKushgharByOther', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => 'Specify Other Source can only contain alphabet and space'),),
             ),
 //            array('foundKushgharByOther','required','message'=>'Other source is required '),
             // password needs to be authenticated
@@ -58,7 +58,7 @@ class BasicinfoForm extends CFormModel {
             //),
             //array('IdentityProof','compare','compareAttribute'=>'Select Proof of Identify','operator'=>'<', 'operator'=>'=','allowEmpty'=>false,'message'=>'{attribute} must be greater than "{compareValue}".')
             // First Name, Last Name must be Alphabet and space
-            array('FirstName, MiddleName, LastName', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain Alphabet and space'),
+            array('FirstName, MiddleName, LastName', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain alphabet and space'),
             array('FirstName, MiddleName, LastName,Password,RepeatPassword,IdentityProof,Number,Gender,profilePicture,uIdDocument,dateOfBirth,foundKushgharBy,foundKushgharByOther,Id', 'safe'),
         );
     }

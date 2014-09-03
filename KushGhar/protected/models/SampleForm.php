@@ -16,7 +16,7 @@ class SampleForm extends CFormModel {
     public function rules() {
         return array(
             // First Name, Email, Phone, Password and Repeat Password are required
-            array('Email', 'required', 'message' => 'Please enter a value for {attribute}.'),
+            array('Email', 'required', 'message' => 'Please enter {attribute}.'),
             // email has to be a valid email address
             array('Email', 'email'),
             array('Email,Phone', 'safe'),

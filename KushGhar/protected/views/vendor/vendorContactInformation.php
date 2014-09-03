@@ -192,7 +192,7 @@ function addVendorContactInformationhandler(data){
        $("#VendorContactInformationForm_error_em_").show();
             $("#VendorContactInformationForm_error_em_").removeClass('errorMessage');
             $("#VendorContactInformationForm_error_em_").addClass('alert alert-success');
-            $("#VendorContactInformationForm_error_em_").text('Vendor Profile updated successfully');
+            $("#VendorContactInformationForm_error_em_").text('Vendor profile updated successfully');
             $("#VendorContactInformationForm_error_em_").fadeOut(6000);
             //document.getElementById('cc').innerHTML="<div style='height:460px;'><center><h1>Profile updated successfully </h1></center></div>";
             setTimeout(function() {

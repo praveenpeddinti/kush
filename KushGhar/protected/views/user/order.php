@@ -271,7 +271,7 @@ function getCollectionDataWithPagination(URL,CollectionName, MainDiv, CurrentPag
                     //activeFormHandler(data, status, rowNos);
                     $('#message').show();
                     $("#message").addClass('alert alert-success');
-                    $("#message").text('Order cancelled  Successfully.');
+                    $("#message").text('Order cancelled successfully.');
                     $("#message").fadeOut(6000, "");
                     $('#row_' + rowNos).remove();
                     getCollectionDataWithPagination('/user/newOrder','userDetails', 'abusedWords_tbody',1,5,'','', '');

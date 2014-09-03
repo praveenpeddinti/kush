@@ -41,18 +41,18 @@ class VendorBasicInformationForm extends CFormModel {
                 array('vendorType', 'compare', 'compareValue'=>"1")),
                 'then' => array(
                 array('FirstName,LastName,', 'required'),
-                array(' Services', 'required', 'message' => 'Please Select Services'),
+                array(' Services', 'required', 'message' => 'Please select Services'),
                 //array('Services', 'compare', 'operator'=>'!=', 'compareValue'=>'', 'message'=>'Please Selecst Services'),
                
-                array('FirstName,MiddleName,LastName,', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain Alphabet and space'),),
+                array('FirstName,MiddleName,LastName,', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain alphabet and space'),),
             ),
             array('vendorType', 'ext.YiiConditionalValidator.YiiConditionalValidator',
                 'if' => array(
                 array('vendorType', 'compare', 'compareValue'=>"2")),
                 'then' => array(
                 array('PrimaryContactFirstName, PrimaryContactLastName,AgencyName', 'required'),
-                array(' Services', 'required', 'message' => 'Please Select Services'),
-                array('PrimaryContactFirstName,PrimaryContactMiddleName,PrimaryContactLastName,AgencyName', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain Alphabet and space'),),
+                array(' Services', 'required', 'message' => 'Please select Services'),
+                array('PrimaryContactFirstName,PrimaryContactMiddleName,PrimaryContactLastName,AgencyName', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain alphabet and space'),),
             ),
             //array('IdentityProof','compare','compareAttribute'=>'Select Proof of Identify','operator'=>'<', 'operator'=>'=','allowEmpty'=>false,'message'=>'{attribute} must be greater than "{compareValue}".')
             // First Name, Last Name must be Alphabet and space

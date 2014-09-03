@@ -33,8 +33,8 @@ class InviteForm extends CFormModel
                 'if' => array(
                 array('InviteType', 'compare', 'compareValue'=>"0")),
                 'then' => array(
-                 array('FirstName,LastName,Email,Phone', 'required','message'=>'Please enter a value for {attribute}.'),
-                    array('FirstName, LastName', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain Alphabet and space'),
+                 array('FirstName,LastName,Email,Phone', 'required','message'=>'Please enter {attribute}.'),
+                    array('FirstName, LastName', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain alphabet and space'),
                  array('Email', 'email'),),
                 ),
                 array('Phone', 'numerical', 'integerOnly'=>true),

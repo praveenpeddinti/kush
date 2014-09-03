@@ -16,12 +16,11 @@ class updatedPasswordForm extends CFormModel {
     public function rules() {
         return array(
 
-             array('Password, ConfirmPassword', 'required', 'message' => 'Please enter a value for {attribute}.'),
+             array('Password, ConfirmPassword', 'required', 'message' => 'Please enter {attribute}.'),
             array('Password', 'required', 'on' => 'insert'),
             array('ConfirmPassword', 'compare', 'compareAttribute' => 'Password',
-                'message' => ' Password  and Confirm Password must be match'
+                'message' => ' Password and Confirm Password need to be same'
             ),
-            
             array('Password,ConfirmPassword', 'safe'),
         );
     }

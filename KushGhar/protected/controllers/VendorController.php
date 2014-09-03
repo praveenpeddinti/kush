@@ -236,7 +236,7 @@ class VendorController extends Controller {
                     $message = Yii::t('translation', 'Thank you for contacting us. We will respond to you as soon as possible');
                     $obj = array('status' => 'success', 'message' => $message, 'error' => '');
                 } else {
-                    $message = Yii::t('translation', 'Already User Existed');
+                    $message = Yii::t('translation', 'Already user existed');
                     $obj = array('status' => 'error', 'message' => '', 'error' => $message);
                 }
             }
@@ -299,7 +299,7 @@ class VendorController extends Controller {
                     $message = Yii::t('translation', 'Thank you for contacting us. We will respond to you as soon as possible');
                     $obj = array('status' => 'success', 'message' => $message, 'error' => '');
                 } else {
-                    $message = Yii::t('translation', 'Already User Existed');
+                    $message = Yii::t('translation', 'Already user existed');
                     $obj = array('status' => 'error', 'message' => '', 'error' => $message);
                 }
             }
@@ -426,7 +426,7 @@ class VendorController extends Controller {
                     $message = array("RegistrationForm_error" => 'Password is updated successfully');
                     $obj = array('status' => 'success', 'data' => $message, 'error' => '');
                 } else {
-                    $message = array("RegistrationForm_error" => 'Already User Existed.');
+                    $message = array("RegistrationForm_error" => 'Already user existed.');
                     $obj = array('status' => 'error', 'data' => '', 'error' => $message);
                 }
             }

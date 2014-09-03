@@ -20,7 +20,7 @@ class RegistrationForm extends CFormModel {
     public function rules() {
         return array(
             // First Name, Email, Phone, Password and Repeat Password are required
-            array('FirstName,LastName,Email,Phone, Password, RepeatPassword', 'required', 'message' => 'Please enter a value for {attribute}.'),
+            array('FirstName,LastName,Email,Phone, Password, RepeatPassword', 'required', 'message' => 'Please enter {attribute}.'),
             // Email has to be a valid email address
             array('Email', 'email'),
             // Phone min 10 digits
@@ -31,11 +31,11 @@ class RegistrationForm extends CFormModel {
             //array('Password', 'authenticate'),
             array('Password', 'required', 'on' => 'insert'),
             array('RepeatPassword', 'compare', 'compareAttribute' => 'Password',
-                'message' => ' Password  and Confirm Password need to be same'
+                'message' => ' Password and Confirm Password need to be same'
 
             ),
             // First Name, Last Name must be Alphabet and space
-            array('FirstName, LastName', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain Alphabet and space'),
+            array('FirstName, LastName', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain alphabet and space'),
             
             array('FirstName,LastName,Email,Phone,Password,RepeatPassword,Id', 'safe'),
         );

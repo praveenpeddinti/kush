@@ -45,13 +45,13 @@
         if (($('#OrderForm_TotalServiceHours').val() == '')) {
             $("#OrderForm_TotalServiceHours_em_").show();
             $("#OrderForm_TotalServiceHours_em_").addClass('errorMessage');
-            $("#OrderForm_TotalServiceHours_em_").text("Please Select Total Service Hours");
+            $("#OrderForm_TotalServiceHours_em_").text("Please select Total Service Hours");
                 return false;
         }else if (($('#OrderForm_TotalServicePeople').val() == '')) {
             $("#OrderForm_TotalServiceHours_em_").hide();
             $("#OrderForm_TotalServicePeople_em_").show();
             $("#OrderForm_TotalServicePeople_em_").addClass('errorMessage');
-            $("#OrderForm_TotalServicePeople_em_").text("Please Select Total Service People");
+            $("#OrderForm_TotalServicePeople_em_").text("Please select Total Service People");
                 return false;
        }else {
             $("#OrderForm_TotalServiceHours_em_").hide();
@@ -69,8 +69,6 @@
             $("#OrderForm_error_em_").text(data.error);
             $("#OrderForm_error_em_").fadeOut(60000, "");
             activeFormHandler2(data, rowNos,'Cancel')
-            //$("#OrderForm_error_em_").hide();
-//            window.location.href = '<?php echo Yii::app()->request->baseUrl; ?>/admin/order';
             $('#myModalOrderClose').modal('hide');
         }
     } 

@@ -253,14 +253,14 @@ class SiteController extends Controller {
                     $this->session['UserId'] = $getUserDetails->customer_id;
                 } else {
                     $result = "failed";
-                    $errors = array("RegistrationForm_error" => 'User Already Exists.');
+                    $errors = array("RegistrationForm_error" => 'User already exists.');
                     $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
                 }
                 if ($result == "success") {
                     $message = array("RegistrationForm_error" => 'Registration successfully.');
                     $obj = array('status' => 'success', 'data' => $message, 'error' => '');
                 } else {
-                    $message = array("RegistrationForm_error" => 'User Already Exists.');
+                    $message = array("RegistrationForm_error" => 'User already exists.');
                     $obj = array('status' => 'error', 'data' => '', 'error' => $message);
                 }
             }
@@ -334,9 +334,9 @@ class SiteController extends Controller {
                 $mailSendStatusw=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
                          
                         
-                        $obj = array('status' => 'success', 'data' => $result, 'error' => 'Invitation sent Successfully.');
+                        $obj = array('status' => 'success', 'data' => $result, 'error' => 'Invitation sent successfully.');
                     } else {
-                        $errors = array("InviteForm_error" => 'User already Invited.');
+                        $errors = array("InviteForm_error" => 'User already invited.');
                         $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
                     }
                 }
@@ -470,7 +470,7 @@ class SiteController extends Controller {
                         //$this->session['Type']='Vendor';
                     }else {
                          $result="fail";
-                        $message = array("VendorRegistrationForm_error" => 'Vendor Already Exists.');
+                        $message = array("VendorRegistrationForm_error" => 'Vendor already exists.');
                         $obj = array('status' => 'error', 'data' => '', 'error' => $message);
                 }
 
@@ -486,7 +486,7 @@ class SiteController extends Controller {
                         $this->session['VendorType'] = $model->vendorType;
                     }else {
                     $result="fail";
-                    $message = array("VendorRegistrationForm_error" => 'Vendor Already Exists.');
+                    $message = array("VendorRegistrationForm_error" => 'Vendor already exists.');
                     $obj = array('status' => 'error', 'data' => '', 'error' => $message);
                 }
                 }
@@ -494,7 +494,7 @@ class SiteController extends Controller {
                     $message = array("VendorRegistrationForm_error" => 'Registration successfully.');
                     $obj = array('status' => 'success', 'data' => $message, 'error' => '');
                 } else {
-                    $message = array("VendorRegistrationForm_error" => 'Vendor Already Exists.');
+                    $message = array("VendorRegistrationForm_error" => 'Vendor already exists.');
                     $obj = array('status' => 'error', 'data' => '', 'error' => $message);
                 }
             }

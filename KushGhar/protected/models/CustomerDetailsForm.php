@@ -36,18 +36,18 @@ class CustomerDetailsForm extends CFormModel {
     public function rules() {
         return array(
             // name, email, subject and body are required
-            array('FirstName, LastName,Email,Phone,AlternatePhone,Address1, City, PinCode, Landmark,cardHolderName, cardNumber', 'required', 'message' => 'Please enter a value for {attribute}.'),
+            array('FirstName, LastName,Email,Phone,AlternatePhone,Address1, City, PinCode, Landmark,cardHolderName, cardNumber', 'required', 'message' => 'Please enter {attribute}.'),
            // First Name, Last Name must be Alphabet and space
-            array('FirstName, MiddleName, LastName, cardHolderName', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain Alphabet and space'),
+            array('FirstName, MiddleName, LastName, cardHolderName', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain alphabet and space'),
 
             // Email has to be a valid email address
             array('Email', 'email'),
             array('Phone,AlternatePhone', 'numerical', 'integerOnly'=>true),
             array('Phone,AlternatePhone', 'length', "min" => "10"),
-            array('City', 'match', 'pattern' => '/^[a-zA-Z0-9\s]+$/', 'message' => '{attribute} can only contain Alphabet and digits'),
+            array('City', 'match', 'pattern' => '/^[a-zA-Z0-9\s]+$/', 'message' => '{attribute} can only contain alphabet and digits'),
             array('PinCode', 'numerical', 'integerOnly'=>true),
             //array('cardNumber', 'length', 'min'=>6),
-            array('State,cardType,expiryMonth,expiryYear', 'required', 'message' => 'Please Select {attribute}.'),
+            array('State,cardType,expiryMonth,expiryYear', 'required', 'message' => 'Please select {attribute}.'),
             array('cardNumber', 'match', 'pattern' => '/^[X0-9]+$/', 'message' => '{attribute} can only contain numbers'),
             //array('cardNumber', 'numerical'),
             array('cardNumber', 'length', 'min'=>16),

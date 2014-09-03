@@ -194,7 +194,7 @@
         if(isNaN(obj.value) || obj.value <= 0) { 
             $("#CarWashForm_TotalCars_em_").show();
             $("#CarWashForm_TotalCars_em_").addClass('errorMessage');
-            $("#CarWashForm_TotalCars_em_").text("Please Enter +ve Number.");
+            $("#CarWashForm_TotalCars_em_").text("Please enter +ve Number.");
             return false;
         }else{
             $("#CarWashForm_TotalCars_em_").hide();

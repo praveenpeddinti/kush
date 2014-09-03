@@ -76,13 +76,18 @@
                     if($address_city=='Hyderabad'){
                       $selected1 = 'selected'; 
                     }else{
-                        $selected1 = 'selected';
+                      $selected1 = '';   
+                    }
+                    if($address_city=='Secunderabad'){
+                        $selected2 = 'selected';
+                    }else {
+                        $selected2 = '';
                     }
                     //$selected = $address_state==$course['Id']?'selected':''; ?>
                 <select name="<?php echo $i+1; ?>_City" id="<?php echo $i+1; ?>_City" class="span12" >
                     <option value="">Select City</option>
                     <option <?php echo $selected1; ?> value="Hyderabad">Hyderabad</option>
-                    <option <?php echo $selected1; ?> value="Secunderabad">Secunderabad</option>
+                    <option <?php echo $selected2; ?> value="Secunderabad">Secunderabad</option>
                 </select>
                 <div id="<?php echo $i+1; ?>_City_em" class="errorMessage" style="display:none"></div>
            </div>

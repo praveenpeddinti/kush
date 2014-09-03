@@ -20,7 +20,7 @@ class VendorLoginForm extends CFormModel
 	public function rules()
 	{
 		return array(
-			array('UserId, Password', 'required','message'=>'Please enter a value for {attribute}.'),
+			array('UserId, Password', 'required','message'=>'Please enter {attribute}.'),
                     
                         array('UserId, Password, VendorType', 'safe'),
                        

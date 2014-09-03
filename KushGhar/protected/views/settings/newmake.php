@@ -64,7 +64,7 @@ $newMakeForm=$this->beginWidget('CActiveForm', array(
         if($('#SettingsForm_model_name').val()==''){
             $("#SettingsForm_model_name_em_").show();
             $("#SettingsForm_model_name_em_").addClass('errorMessage');
-            $("#SettingsForm_model_name_em_").text("Please enter a value for Make Name.");
+            $("#SettingsForm_model_name_em_").text("Please enter Make Name.");
             return false;
         }   
         else{

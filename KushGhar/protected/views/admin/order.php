@@ -1,16 +1,12 @@
 <div class="container">
-    <!--<div id="instant_notifications" class="instant_notification">Basic Information</div>-->
     <section>
         <div class="container minHeight">
             <aside>
                 <div class="asideBG">
                     <div class="left_nav">
                         <ul class="main">
-                            <!--<li ><a href="#"  ><span class="KGservices"> </span></a></li>
-                            <li class=""><a href="#" ><span class="KGpayment"> </span></a></li>-->
                             <li class="active"><a href="#" ><span class="KGaccounts"> </span></a></li>
                         </ul>
-
                     </div>
                     <div class="sub_menu ">
                         <div id="accounts" class="collapse in">
@@ -25,8 +21,6 @@
                                 <li><a href="/settings/carMakes"> <i class="fa fa-cog"></i> Settings</a></li>
                             </ul>
                         </div>
-                        
-                       
                     </div>
                 </div>
             </aside>
@@ -34,8 +28,6 @@
                 <div class="row-fluid" style="height:480px">
                     <div class="span12">
                         <h4 class="paddingL20">Customer Order Details</h4>
-                        
-                        <!--<div id="TC" style="display:none"></div>-->                       
                         <div class="paddinground">    
                             <div id="InviteInfoSpinLoader"></div>
                             <div id="tablewidget"  style="margin: auto;"><div id="message" style="display:none"></div>
@@ -68,40 +60,15 @@
                                         <input type="button" class="btn btn-primary" name="Search" value="Search" onclick="search();"/>
                                     </div>
                                 </div>
-
-                                <!--<label>Service name:</label><input type="text" id="serviceType" />-->
-                                
                                 <table id="userTable" class="table table-hover">
-
                                     <thead><tr><th nowrap>Order #</th><th nowrap>Service Name</th><th>Status</th><th nowrap>Service Date</th><th><center>Amount</center></th><th>Actions</th></tr></thead>
                                     <tbody id="abusedWords_tbody">
-                                    <?php //for($i=0;$i<sizeof($orderDetails);$i++){
-                                        //$serviceName='';
-                                    ?>
-                                    <!--<tr>
-                                        <td>
-                                            <?php //if($orderDetails[$i]['ServiceId']=='1'){$serviceName='House Cleaning';}
-                                           // if($orderDetails[$i]['ServiceId']=='2'){$serviceName='Car Wash';}
-                                           // if($orderDetails[$i]['ServiceId']=='3'){$serviceName='Stewards Services';}
-                                           // echo $serviceName;
-                                           ?>
-                                        </td>
-                                        <td><?php //echo $orderDetails[$i]['order_number'];?></td>
-                                        <td><?php //echo 'Open'?></td>
-                                        <td><?php //echo $orderDetails[$i]['amount'];?></td>
-                                    </tr>-->
-                                            
-                                    <?php //}?>    
                                     </tbody>
                                 </table>
                                 <div class="pagination pagination-right">
                                     <div id="pagination"></div>  
-
                                 </div>
                             </div>  
-                            
-                        
-                                
                         </div>
                     </div>    
                 </div>
@@ -233,9 +200,8 @@
         
     }
     function inviteUser(rowNos, status,value) {
-        //scrollPleaseWait("InviteInfoSpinLoader","contactInfo-form");
         var data = "Id=" + rowNos + "&status=" + status+"&value="+value;
-            
+           
           if(value=='Close'){
               $.ajax({
                 type: 'POST',
@@ -282,7 +248,7 @@
                     //scrollPleaseWaitClose('InviteInfoSpinLoader');
                     $('#message').show();
                     $("#message").addClass('alert alert-success');
-                    $("#message").text('Service Status is changed Successfully.');
+                    $("#message").text('Service status is changed successfully.');
                     $("#message").fadeOut(6000);
                     //$('#usera_' + rowNos).remove();
                     activeFormHandler2(data, status, rowNos,value);

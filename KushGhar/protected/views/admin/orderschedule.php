@@ -111,7 +111,7 @@ function ScheduleClick(){
                 success: function(data) {
                     $('#message').show();
                     $("#message").addClass('alert alert-success');
-                    $("#message").text('Service Status is changed Successfully.');
+                    $("#message").text('Service status is changed successfully.');
                     $("#message").fadeOut(6000);
                     activeFormHandler2(data, $("#rowId").val(),'Schedule');
                     $('#myModalOrderSchedule').modal('hide');

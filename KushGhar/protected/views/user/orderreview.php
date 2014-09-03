@@ -265,7 +265,7 @@
             $("#OrderReviewForm_Feedback_em_").addClass('errorMessage');
             $("#OrderReviewForm_Feedback_em_").text("Please enter your Comments or Suggestions");
             if($("#OrderReviewForm_Rating").val()==''){
-                $("#OrderReviewForm_Rating").val("1");
+                $("#OrderReviewForm_Rating").val("3");
             }
             return false;
         }
@@ -279,7 +279,7 @@
         else
         {
             if($("#OrderReviewForm_Rating").val()==''){
-                $("#OrderReviewForm_Rating").val("1");
+                $("#OrderReviewForm_Rating").val("3");
             }
             $("#OrderReviewForm_Disclaimer_em_").hide();
             return true;

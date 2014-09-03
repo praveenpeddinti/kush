@@ -77,9 +77,9 @@ $address;
                             </tr>
                             <tr>
                                 <td style="padding:3px;"><label><b>Service attended date</b></label></td>
-                                <td >&nbsp;</td>
-                                <td ><label><b>From Time</b></label></td>
-                                <td><label><b>To Time</b></label></td>
+                                <td style="padding-left:5px">&nbsp;</td>
+                                <td style="padding-left:5px"><label><b>From Time</b></label></td>
+                                <td style="padding-left:5px"><label><b>To Time</b></label></td>
                             </tr>
                             <tr>
                                 <td style="padding-left:5px;"><label><b>Team members:</b></label></td>

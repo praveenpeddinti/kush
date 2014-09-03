@@ -8,7 +8,7 @@ if ($totalCount <= 0) { ?>
     <?php } else { 
         foreach ($userDetails as $row) {?>
         <tr id="row_<?php echo $row['id'];?>" class="odd">
-        <td><?php echo $row['make_name']; ?></td>
+        <td id="make_<?php echo $row['id'];?>"><?php echo $row['make_name']; ?></td>
         <td>
             <input id="userstatus_<?php echo $row['id']; ?>" data-id="<?php echo $row['id']; ?>" invite-status="<?php echo $row['status']; ?>" type="button" value=" " class="<? if ($row['status'] == '0') echo 'icon_inactive'; if ($row['status'] == '1') echo 'icon_active';?>" alt="Status" title="Change Status"/>
             <input id="useredit_<?php echo $row['id']; ?>" data-id="<?php echo $row['id']; ?>"  type="button" value=" " class="icon_edit" alt="View" title="Edit"/>

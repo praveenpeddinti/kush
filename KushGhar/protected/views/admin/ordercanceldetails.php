@@ -68,9 +68,16 @@
             $("#OrderForm_error_em_").addClass('alert alert-success');
             $("#OrderForm_error_em_").text(data.error);
             $("#OrderForm_error_em_").fadeOut(60000, "");
+            activeFormHandler2(data, rowNos,'Cancel')
             //$("#OrderForm_error_em_").hide();
-            window.location.href = '<?php echo Yii::app()->request->baseUrl; ?>/admin/order';
+//            window.location.href = '<?php echo Yii::app()->request->baseUrl; ?>/admin/order';
+            $('#myModalOrderClose').modal('hide');
         }
     } 
+    function activeFormHandler2(data, rowNos,value) {
+        if (value == 'Cancel') {
+            $('#status_' + rowNos).text('Cancel');
+        } 
+    }
     
 </script>

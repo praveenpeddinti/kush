@@ -24,8 +24,7 @@
 <script type="text/javascript">
     function saveChanges(){
         if(validate()){
-            scrollPleaseWait("inviteSpinLoader","editMakeForm")
-            var data = $("#editMakeForm").serialize();
+            var data = $("#editMakeForm").serialize();alert(data);
             ajaxRequest('/settings/editMakeSave', data, rescheduleHandler)
         }
     }
@@ -37,8 +36,11 @@
             $("#SettingsForm_error_em_").addClass('alert alert-success');
             $("#SettingsForm_error_em_").text(data.error);
             $("#SettingsForm_error_em_").fadeOut(3000);
+            activeFormHandler2($("#SettingsForm_make_name").val(), $("#SettingsForm_makeId").val(),'Edit');
             setTimeout(function() {
-	      window.location.href = '<?php echo Yii::app()->request->baseUrl; ?>/settings/carMakes';
+                $('#myModalforgot1').modal('hide');
+                $('#myModalforgot').modal('hide');
+	      //window.location.href = '<?php echo Yii::app()->request->baseUrl; ?>/settings/carMakes';
 	    }, 3000);
         }
         if(data.status == 'error'){
@@ -61,7 +63,12 @@
             });
         }
     } 
-    function validate(){
+    function activeFormHandler2(data, rowNos,value) {
+        if (value == 'Edit') {
+            $('#make_' + rowNos).text(data);
+        } 
+    }
+    function validate(){alert("New");
         var prev="<?php echo isset($getmakeDetails['make_name'])?$getmakeDetails['make_name']:''?>";
         var present=$('#SettingsForm_make_name').val();
         if($('#SettingsForm_make_name').val()==''){

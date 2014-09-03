@@ -189,7 +189,7 @@ function statusChange(rowNos, status) {
     function newMake(){
         $.ajax({
                 dataType: 'json',
-                url: '<?php echo Yii::app()->createAbsoluteUrl("/settings/editmake"); ?>',
+                url: '<?php echo Yii::app()->createAbsoluteUrl("/settings/newmake"); ?>',
                 success: function(data) {
                     $("#myModalforgot").modal({ backdrop: 'static', keyboard: false,show:false });
                     $("#modelBodyNew").html(data.html);

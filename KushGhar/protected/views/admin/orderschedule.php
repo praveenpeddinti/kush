@@ -109,12 +109,12 @@ function ScheduleClick(){
                 url: '<?php echo Yii::app()->createAbsoluteUrl("/admin/orderScheduleStatus"); ?>',
                 data: data,
                 success: function(data) {
-                    window.location.href='order';
                     $('#message').show();
                     $("#message").addClass('alert alert-success');
                     $("#message").text('Service Status is changed Successfully.');
                     $("#message").fadeOut(6000);
                     activeFormHandler2(data, $("#rowId").val(),'Schedule');
+                    $('#myModalOrderSchedule').modal('hide');
                 },
                 error: function(data) { 
                 }

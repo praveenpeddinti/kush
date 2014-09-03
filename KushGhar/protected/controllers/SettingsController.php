@@ -93,11 +93,9 @@ class SettingsController extends Controller {
         echo CJSON::encode($obj);
     }
     public function actionEditMake(){
-        try{
+        try{            error_log("Edit ctrler==============");
             $Model = new SettingsForm;
-            if(isset($_POST['Id'])) $id=$_POST['Id'];
-            else $id=-1;
-            $getmakeDetails=$this->kushGharService->getMakeDetails($id);
+            $getmakeDetails=$this->kushGharService->getMakeDetails($_POST['Id']);
             $renderHtml=  $this->renderPartial('editmake',array("model"=>$Model,"getmakeDetails"=>$getmakeDetails),true);
             $obj=array('status'=>'success','html'=>$renderHtml);
             $renderScript=  $this->rendering($obj);
@@ -106,6 +104,19 @@ class SettingsController extends Controller {
             error_log("####### Exception Occurred in editing the make ##########".$ex->getMessage());
         }
     }
+    public function actionNewMake(){
+        try{
+                        error_log("New ctller==========");
+            $Model = new SettingsForm;
+            $renderHtml=  $this->renderPartial('newmake',array("model"=>$Model),true);
+            $obj=array('status'=>'success','html'=>$renderHtml);
+            $renderScript=  $this->rendering($obj);
+            echo $renderScript;
+        } catch (Exception $ex) {
+            error_log("####### Exception Occurred in editing the make ##########".$ex->getMessage());
+        }
+    }
+
     public function actionEditMakeSave(){
         $EditForm = new SettingsForm();
         $request = yii::app()->getRequest();
@@ -114,10 +125,7 @@ class SettingsController extends Controller {
             $EditForm->attributes = $request->getParam('SettingsForm');
             $makeName = $this->kushGharService->checkNewMakeExistInMakeTable($EditForm->make_name);
             if($makeName=='No make'){
-                if($EditForm->makeId=='')
-                    $result=  $this->kushGharService->NewMake($EditForm);
-                else
-                    $result = $this->kushGharService->UpdateMake($EditForm);
+                $result = $this->kushGharService->UpdateMake($EditForm);
                 $obj = array('status' => 'success', 'data' => $result, 'error' => 'Make Name Updated Successfully.');
             } else{
                 $result = 'failure';
@@ -128,6 +136,26 @@ class SettingsController extends Controller {
         $renderScript = $this->rendering($obj);
         echo $renderScript;
     }
+    public function actionNewMakeSave(){
+        $NewForm = new SettingsForm();
+        $request = yii::app()->getRequest();
+        $formName = $request->getParam('SettingsForm');
+        if ($formName != '') {
+            $NewForm->attributes = $request->getParam('SettingsForm');
+            $makeName = $this->kushGharService->checkNewMakeExistInMakeTable($NewForm->model_name);
+            if($makeName=='No make'){
+                $result=  $this->kushGharService->NewMake($NewForm);
+                $obj = array('status' => 'success', 'data' => $result, 'error' => 'Make Name Added Successfully.');
+            } else{
+                $result = 'failure';
+                $errors = array("SettingsForm_error" => 'Make already Exists.');
+                $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
+            }
+        }
+        $renderScript = $this->rendering($obj);
+        echo $renderScript;
+    }
+
     public function actionCarModels(){
         try {
             $this->pageTitle="KushGhar-Settings";

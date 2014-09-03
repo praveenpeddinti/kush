@@ -81,7 +81,7 @@ class CarMakes extends CActiveRecord {
     }
     public function NewMake($model){
         try{
-            $query="INSERT INTO KG_Car_make (make_name) VALUES ('".$model->make_name."')";
+            $query="INSERT INTO KG_Car_make (make_name) VALUES ('".$model->model_name."')";
             $result = YII::app()->db->createCommand($query)->execute();
             if($result>0) return "success";
             else return "failure";

@@ -171,7 +171,7 @@
                                 </div>
                                 <div id="Agency" style="display:none">
                                     <?php echo $form->label($model, '<abbr title="required">*</abbr> Agency Name'); ?>
-                                    <?php echo $form->textField($model, 'AgencyName', array('class' => 'span12', 'maxLength' => 100)); ?>
+                                    <?php echo $form->textField($model, 'AgencyName', array('class' => 'span12', 'maxLength' => 50)); ?>
                                     <?php echo $form->error($model, 'AgencyName'); ?>
                                     <?php echo $form->label($model, '<abbr title="required">*</abbr> Primary Contact First Name') ?>
                                     <?php echo $form->textField($model, 'PrimaryContactFirstName', array('class' => 'span12', 'maxLength' => 50)); ?>
@@ -228,7 +228,7 @@
                                 <?php echo $form->textField($modelLogin, 'UserId', array('class' => 'span12',  'maxLength' => 100)); ?>
                                 <?php echo $form->error($modelLogin, 'UserId'); ?>
                                 <?php echo $form->labelEx($modelLogin, '<abbr title="required">*</abbr> password'); ?>
-                                <?php echo $form->passwordField($modelLogin, 'Password', array('class' => 'span12', 'maxLength' => 100)); ?>
+                                <?php echo $form->passwordField($modelLogin, 'Password', array('class' => 'span12', 'maxLength' => 20)); ?>
                                 <?php echo $form->error($modelLogin, 'Password'); ?>
                                 <div class="row-fluid paddingB20">
                                     <div class="span6">

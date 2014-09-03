@@ -58,7 +58,7 @@
                                 <?php echo $form->textField($adminLogin, 'UserId', array('class' => 'span12', 'maxLength' => 100)); ?>
                                 <?php echo $form->error($adminLogin, 'UserId'); ?>
                                 <?php echo $form->labelEx($adminLogin, '<abbr title="required">*</abbr> password'); ?>
-                                <?php echo $form->passwordField($adminLogin, 'Password', array('class' => 'span12', 'maxLength' => 100)); ?>
+                                <?php echo $form->passwordField($adminLogin, 'Password', array('class' => 'span12', 'maxLength' => 20)); ?>
                                 <?php echo $form->error($adminLogin, 'Password'); ?>
                                 <center>
                                     <?php

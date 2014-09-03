@@ -208,7 +208,7 @@
                                 <?php echo $form1->error($modelLogin, 'UserId'); ?>
 
                                 <?php echo $form1->labelEx($modelLogin, '<abbr title="required">*</abbr> password'); ?>
-                                <?php echo $form1->passwordField($modelLogin, 'Password', array('class' => 'span12', 'maxLength' => 100)); ?>
+                                <?php echo $form1->passwordField($modelLogin, 'Password', array('class' => 'span12', 'maxLength' => 20)); ?>
                                 <?php echo $form1->error($modelLogin, 'Password'); ?>
                                 <center>
                                     
@@ -249,7 +249,7 @@
                                             <div class="row-fluid">
                                             <div class="span12">
                                               <?php echo $form->label($modelSample,'Email'); ?>
-   <?php echo $form->textField($modelSample,'Email', array( 'class'=>'span12')); ?>
+   <?php echo $form->textField($modelSample,'Email', array( 'class'=>'span12', 'maxLength' => 100)); ?>
    <?php echo $form->error($modelSample,'Email'); ?>
                                              </div>
                                             </div>

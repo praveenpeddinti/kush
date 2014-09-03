@@ -24,7 +24,7 @@
 <script type="text/javascript">
     function saveChanges(){
         if(validate()){
-            var data = $("#editMakeForm").serialize();alert(data);
+            var data = $("#editMakeForm").serialize();
             ajaxRequest('/settings/editMakeSave', data, rescheduleHandler)
         }
     }
@@ -68,7 +68,7 @@
             $('#make_' + rowNos).text(data);
         } 
     }
-    function validate(){alert("New");
+    function validate(){
         var prev="<?php echo isset($getmakeDetails['make_name'])?$getmakeDetails['make_name']:''?>";
         var present=$('#SettingsForm_make_name').val();
         if($('#SettingsForm_make_name').val()==''){

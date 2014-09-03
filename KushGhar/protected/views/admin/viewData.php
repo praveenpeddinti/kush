@@ -131,9 +131,9 @@
                     <?php for($i=0;$i<count($Vendors);$i++){?>
                 <?php if($i%3==0){?>    
                 <tr>
-                    <td><?php echo 1+$i.")&nbsp;&nbsp;".$Vendors[$i]['first_name']." ".$Vendors[$i]['last_name'];?></td>
+                    <td style="width: 33.3%"><?php echo 1+$i.")&nbsp;&nbsp;".$Vendors[$i]['first_name']." ".$Vendors[$i]['last_name'];?></td>
                 <?php } else {?>
-                    <td><?php echo 1+$i.")&nbsp;&nbsp;".$Vendors[$i]['first_name']." ".$Vendors[$i]['last_name'];?></td>
+                    <td style="width: 33.3%"><?php echo 1+$i.")&nbsp;&nbsp;".$Vendors[$i]['first_name']." ".$Vendors[$i]['last_name'];?></td>
                 <?php }?>
                <?php  }?>
                    
@@ -159,7 +159,7 @@
             <center><h3 style="padding: 0px">Service Feedback</h3></center></div>
             <table border="1" style="width: 100%" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td colspan="4">Did our team arrive on time? <b><?echo $Team_Arrive_Time;?></b></td>
+                    <td colspan="4">Did our team arrive on time? <b><?php echo $Team_Arrive_Time;?></b></td>
                 </tr>
                 <tr>
                     <td colspan="4">Did our team members have a professional appearance?<b> <?php echo $Team_Professional_Appearance;?></b></td>
@@ -177,6 +177,7 @@
                         </table>                          
                     </td>
                 </tr>
+                <?php if($serviceId==1) {?>
                 <tr>
                     <td colspan="4"><b>How would you rate the quality of the services you have received from KushGhar housemen?</b></td>
                 </tr>
@@ -188,11 +189,12 @@
                             <td style="border-right:1px solid #000;border-bottom:1px solid #000;">Mopping</td><td style="border-right:1px solid #000;border-bottom:1px solid #000;"><b><?php echo $reviewDetails['Service_Moping_Rating'];?></b></td>
                             </tr><tr border="1">
                             <td style="border-right:1px solid #000;">Trash Disposal</td><td style="border-right:1px solid #000;"><b><?php echo $reviewDetails['Service_TrashDisposal_rating'];?></b></td>
-                            <td style="border-right:1px solid #000;">Additional services(If Any)</td><td colspan="3" style="border-right:1px solid #000;"><b><?php echo $reviewDetails['Service_Addional_Rating'];?></b></td>
+                            <td style="border-right:1px solid #000;">Additional services(If Any)</td><td colspan="3" style="border-right:1px solid #000;"><b><?php if($reviewDetails['Service_Addional_Rating']==-1) echo "No Additional services took";else echo $reviewDetails['Service_Addional_Rating'];?></b></td>
                             </tr>
                         </table>                          
                     </td>
-                </tr>                
+                </tr> 
+                <?php }?>
             </table>
                        
         </div>

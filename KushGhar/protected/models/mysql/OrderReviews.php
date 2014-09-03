@@ -46,7 +46,10 @@ class OrderReviews extends CActiveRecord {
             $customerReviews->Service_Dusting_Rating=$_POST['dusting'];
             $customerReviews->Service_Moping_Rating=$_POST['moping'];
             $customerReviews->Service_TrashDisposal_rating=$_POST['trash'];
+            if(isset($_POST['aservices']))
             $customerReviews->Service_Addional_Rating=$_POST['aservices'];
+            else
+              $customerReviews->Service_Addional_Rating="-1";  
             }
             else{
             $customerReviews->Service_Vacuuming_Rating="-1";

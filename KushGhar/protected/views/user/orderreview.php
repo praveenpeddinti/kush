@@ -1,3 +1,5 @@
+<link href="../../../css/jRating.jquery.css" rel="stylesheet" type="text/css"/>
+<script src="../../../js/jRating.jquery.js" type="text/javascript"></script>
 <?php 
  $reviewForm=$this->beginWidget('CActiveForm', array(
                                                                 'id'=>'review-form',
@@ -74,6 +76,7 @@
             <?php // echo $reviewForm->error($model, 'Rating'); ?>
         </div>
     </div>
+<div class="basic" data-average="0" data-id="1" id="rating2" data-rate="0"></div>
 <br>
     <div class="row-fluid" id="ques6">
         <div class=" span12">
@@ -142,7 +145,7 @@
                 });
             }
         } 
-    function validate(){
+    function validate(){var rating = $('#rating1').data('data-rate');alert("Rate=========="+rating);
     var type='<?php echo $ServiceType ?>';
     
         var ques1 = $('input[name="arrive_on_time"]');
@@ -286,9 +289,14 @@
         }
     }
     $(document).ready(function() { 
+        $('#rating2').jRating({
+            showRateInfo:true,
+            canRateAgain:true,
+            rateMax : 10,
+            nbRates : 100,
+        });
         $('#Rating1').barrating({ 
             showSelectedRating:false,
-            initialRating:3,
             onSelect:function (value){
                 $("#OrderReviewForm_Rating").val(value);
             }

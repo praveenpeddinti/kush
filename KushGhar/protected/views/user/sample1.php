@@ -70,11 +70,19 @@
         </div>
         <div class="row-fluid">
             <div class=" span4">
-                <label><abbr title="required">*</abbr> City</label>
+                <label><abbr title="required">*</abbr> City</label><?php //echo "-----".isset($getCarWashServiceDetails[$i])?$getCarWashServiceDetails[$i]['address_city']:'';?>
+                <?php 
+                    $address_city = isset($getCarWashServiceDetails[$i])?$getCarWashServiceDetails[$i]['address_city']:'';
+                    if($address_city=='Hyderabad'){
+                      $selected1 = 'selected'; 
+                    }else{
+                        $selected1 = 'selected';
+                    }
+                    //$selected = $address_state==$course['Id']?'selected':''; ?>
                 <select name="<?php echo $i+1; ?>_City" id="<?php echo $i+1; ?>_City" class="span12" >
                     <option value="">Select City</option>
-                    <option value="Hyderabad">Hyderabad</option>
-                    <option value="Secunderabad">Secunderabad</option>
+                    <option <?php echo $selected1; ?> value="Hyderabad">Hyderabad</option>
+                    <option <?php echo $selected1; ?> value="Secunderabad">Secunderabad</option>
                 </select>
                 <div id="<?php echo $i+1; ?>_City_em" class="errorMessage" style="display:none"></div>
            </div>

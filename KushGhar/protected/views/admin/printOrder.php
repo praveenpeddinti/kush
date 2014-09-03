@@ -191,7 +191,7 @@ $address;
                             </tr>
                             <tr>
                                 <td colspan="5" style="padding-left:5px;"><label><b>(5) Suggestions / Complaints (Your feedback will help us to identify areas we need to improve as well as letting us know what else you expect from us for better service. Your feedback really does count!)</b></label>
-                                    <textarea style="width:98%;height: 100px"></textarea></td>
+                                    <textarea style="border:1px solid #000;width:98%;height: 100px"></textarea></td>
                             </tr>
                             </table>
                     <table border="0" style="width: 100%" cellpadding="0" cellspacing="0">
@@ -199,7 +199,7 @@ $address;
                                 <td colspan="5" style="padding-left:5px;"><label><u><b>Disclaimer</b></u><b> :</b></label>
                                 I have checked and confirmed that there are no losses / damages during House cleaning done by KushGhar Team.</td>
                             </tr>
-                            <tr><td colspan="5" style="text-align: right;padding:60px 15px 0 0;">
+                            <tr><td colspan="5" style="text-align: right;padding:50px 15px 0 0;">
                             <b>Customer's Signature</b></td></tr>
                     </table>
                 </section>

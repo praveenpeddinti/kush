@@ -289,6 +289,7 @@
     }
     $(document).ready(function() { 
         $('#Rating1').barrating({ 
+            initialRating:3,
             showSelectedRating:false,
             onSelect:function (value){
                 $("#OrderReviewForm_Rating").val(value);

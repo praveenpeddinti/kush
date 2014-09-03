@@ -369,6 +369,7 @@ $form = $this->beginWidget('CActiveForm', array(
             step:30,
             minDate:date,
             scrollMonth:false,
+            scrollInput:false,
             defaultDate:date,
             yearStart:cyear,
             yearEnd:eyear
@@ -384,7 +385,8 @@ $form = $this->beginWidget('CActiveForm', array(
                 minDate:$('#StewardCleaningForm_StartTime').val()?$('#StewardCleaningForm_StartTime').val():false
                 })
             },
-            scrollMonth:false
+            scrollMonth:false,
+            scrollInput:false
     });
     var showPopover = function () {
         $(this).popover('show');

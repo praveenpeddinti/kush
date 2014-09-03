@@ -408,6 +408,7 @@
             minDate:date,
             formatDate:'Y/m/d',
             scrollMonth:false,
+            scrollInput:false,
             timepicker:false,
             closeOnDateSelect:true,
             defaultDate:date,

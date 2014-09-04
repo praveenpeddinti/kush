@@ -25,7 +25,7 @@
             <span id="Comments<?echo $row['id'];?>__view"  style="display: block;cursor:none" onmouseover="showTooltip(this.id,'<?echo $feedbackData;?>')" onmouseout="showTooltipdown(this.id)">
                 <?php $len= strlen($row['feedback']);
                     if($len>=20){echo substr($row['feedback'],0,20).'...';}else{echo $row['feedback'];}?>
-            </span><div style="word-break:break-all;display:none;width:400px" id="Comments<?echo $row['id'];?>__div" class="table_tooltip" ></div>
+            </span><div style="word-break:break-all;margin-left:-60px;display:none;width:400px" id="Comments<?echo $row['id'];?>__div" class="table_tooltip" ></div>
          </td>
          <td>
              <input type="checkbox" id="comment_<?php echo $row['id']; ?>" review-id="<?php echo $row['id']; ?>" comment-status="<?php echo $row['is_publish']; ?>" <? if ($row['is_publish'] == '1'){ echo 'checked="true"';}else{echo '';} ?>  alt="Publish" title="Publish"/>

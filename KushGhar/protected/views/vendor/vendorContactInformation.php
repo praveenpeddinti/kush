@@ -7,7 +7,7 @@
             	<ul class="main">
                     <li class="active"><a href="/vendor/vendorBasicinformation" ><span class="KGaccounts"> </span></a></li>
                             <li class=""><a href="/site/cleaning"  ><span class="KGservices"> </span></a></li>
-                            <li class=""><a href="#" ><span class="KGpayment"> </span></a></li>
+<!--                            <li class=""><a href="#" ><span class="KGpayment"> </span></a></li>-->
                 </ul>
 
             </div>
@@ -41,25 +41,25 @@
 <!--                                    <div class=<?php // echo '"'.$statusClassForContact.'"' ?>></div>-->
                                 </li>
               
-                    <li ><a href="#"> <i class="fa fa-credit-card"></i> Payment Info</a>
-<!--                        <div class="status_info3"></div>-->
-                    </li>
+<!--                    <li ><a href="#"> <i class="fa fa-credit-card"></i> Payment Info</a>
+                        <div class="status_info3"></div>
+                    </li>-->
                 </ul>
             </div>
-            <div id="payment" class="collapse">
+<!--            <div id="payment" class="collapse">
             	<div class="selected_tab">payment</div>
             	<ul class="l_menu_sub_menu">
                 	<li class="active"><a href="#"> <i class="fa fa-user"></i> Basic Info</a> <div class="status_info1"> </div></li>
                     <li ><a href="#"> <i class="fa fa-phone"></i> Contact Info</a> <div class="status_info2"> </div></li>
                     <li ><a href="#"> <i class="fa fa-credit-card"></i> Payment Info</a> <div class="status_info3"> </div></li>
                 </ul>
-            </div>
+            </div>-->
             <div id="services" class="collapse">
             	<div class="selected_tab">services</div>
             	<ul class="l_menu_sub_menu">
                 	<li class="active"><a href="#"> <i class="fa fa-user"></i> Basic Info</a> <div class="status_info1"> </div></li>
                     <li ><a href="#"> <i class="fa fa-phone"></i> Contact Info</a> <div class="status_info2"> </div></li>
-                    <li ><a href="#"> <i class="fa fa-credit-card"></i> Payment Info</a> <div class="status_info3"> </div></li>
+<!--                    <li ><a href="#"> <i class="fa fa-credit-card"></i> Payment Info</a> <div class="status_info3"> </div></li>-->
                 </ul>
             </div>
             </div>
@@ -122,23 +122,20 @@
         <?php echo $form->error($model,'Address2'); ?>
     </div>
     </div>
-
+               
     <div class="row-fluid">
-    <div class=" span6">
+    <div class=" span4">
+    <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> city'); ?>
+        <?php echo $form->dropDownList($model,'City',array(''=>'Select City','Hyderabad' => 'Hyderabad', 'Secunderabad'=>'Secunderabad'), array('class' => 'span12','options' => array($getVendorAddress->address_city => array('selected' => 'selected'))));?>
+        <?php echo $form->error($model,'City'); ?>
+   </div>
+    <div class=" span4">
     <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> state'); ?>
         <?php //echo $form->textField($model,'State',array('value'=>$customerAddressDetails->address_state,'class'=>'span12')); ?>
-        
         <?php echo $form->dropDownList($model, 'State', CHtml::listData($States, 'Id', 'StateName'), array('prompt'=>'Select State','options' => array($getVendorAddress->address_state => array('selected' => 'selected')), 'class' => 'span12')); ?>
         <?php echo $form->error($model,'State'); ?>
    </div>
-      <div class=" span6">
-    <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> city'); ?>
-        <?php echo $form->textField($model,'City',array('value'=>$getVendorAddress->address_city, 'maxLength' => 25, 'class'=>'span12')); ?>
-        <?php echo $form->error($model,'City'); ?>
-   </div>
-   </div>
-   <div class="row-fluid">
-    <div class=" span12">
+   <div class=" span4">
     <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> pin code'); ?>
         <?php echo $form->textField($model,'PinCode',array('value'=>$getVendorAddress->address_pin_code,'class'=>'span12', 'maxLength' => 6, 'onkeypress' => 'return isNumberKey(event);')); ?>
         <?php echo $form->error($model,'PinCode'); ?>

@@ -8,7 +8,7 @@
                         <ul class="main">
                             <li class="active"><a href="/vendor/vendorBasicinformation" ><span class="KGaccounts"> </span></a></li>
                             <li class=""><a href="/site/cleaning"  ><span class="KGservices"> </span></a></li>
-                            <li class=""><a href="#" ><span class="KGpayment"> </span></a></li>
+<!--                            <li class=""><a href="#" ><span class="KGpayment"> </span></a></li>-->
                             
                         </ul>
 
@@ -43,25 +43,25 @@
 <!--                                    <div class=<?php // echo '"'.$statusClassForContact.'"' ?>></div>-->
                                    
                                 </li>
-                                <li ><a href="#"> <i class="fa fa-credit-card"></i> Payment Info</a>
-<!--                                   <div class="status_info3"></div>-->
-                                </li>
+<!--                                <li ><a href="#"> <i class="fa fa-credit-card"></i> Payment Info</a>
+                                   <div class="status_info3"></div>
+                                </li>-->
                             </ul>
                         </div>
-                        <div id="payment" class="collapse">
+<!--                        <div id="payment" class="collapse">
                             <div class="selected_tab">payment</div>
                             <ul class="l_menu_sub_menu">
                                 <li class=""><a href="#"> <i class="fa fa-user"></i> Basic Info</a></li>
                                 <li ><a href="#"> <i class="fa fa-phone"></i> Contact Info</a> </li>
                                 <li ><a href="#"> <i class="fa fa-credit-card"></i> Payment Info</a> </li>
                             </ul>
-                        </div>
+                        </div>-->
                         <div id="services" class="collapse">
                             <div class="selected_tab">services</div>
                             <ul class="l_menu_sub_menu">
                                 <li class=""><a href="#"> <i class="fa fa-user"></i> Basic Info</a> </li>
                                 <li ><a href="#"> <i class="fa fa-phone"></i> Contact Info</a></li>
-                                <li ><a href="#"> <i class="fa fa-credit-card"></i> Payment Info</a> </li>
+<!--                                <li ><a href="#"> <i class="fa fa-credit-card"></i> Payment Info</a> </li>-->
                             </ul>
                         </div>
                     </div>

@@ -176,7 +176,7 @@
                 </td>
             </tr>
             <tr><td colspan="2">
-                <h2> Thank you for your order. For any future communication, please quote your order number. Our executive will contact you shortly.</h2>
+                <h4> Thank you for your order. For any future communication, please quote your order number. Our executive will contact you shortly.</h4>
                 </td></tr>
             </table>
             

@@ -242,7 +242,7 @@ class InviteUser extends CActiveRecord {
     }
     public function getFullUserDetails($id){
         try{
-        $query="select c.customer_id as cid, CONCAT_WS(' ',first_name,middle_name,last_name) as UserName , c.email_address , c.phone , c.create_timestamp , ca.address_line1,ca.address_line2,ca.address_city , c.status  from KG_Customer c join KG_customer_address ca on ca.customer_id=c.customer_id where c.customer_id=".$id ;
+        $query="select c.customer_id as cid, CONCAT_WS(' ',first_name,middle_name,last_name) as UserName , c.email_address , c.phone , c.create_timestamp , ca.address_line1,ca.address_line2,ca.address_city , c.status,c.profilePicture from KG_Customer c join KG_customer_address ca on ca.customer_id=c.customer_id where c.customer_id=".$id ;
         $result = Yii::app()->db->createCommand($query)->queryRow();
         } catch (Exception $ex) {
             error_log("################Exception Occurred  get Full Details Contacts##############".$ex->getMessage());
@@ -434,7 +434,7 @@ class InviteUser extends CActiveRecord {
     }
     public function getFullVendorDetails($id){
         try{
-        $query="select c.vendor_individual_id as cid, CONCAT_WS(' ',first_name,middle_name,last_name) as UserName , c.email_address , c.phone , c.create_timestamp , ca.address_line1,ca.address_line2,ca.address_city , c.status  from KG_vendor_individual c join KG_vendor_address ca on ca.vendor_address_id=c.vendor_id where c.vendor_individual_id=".$id ;
+        $query="select c.vendor_individual_id as cid, CONCAT_WS(' ',first_name,middle_name,last_name) as UserName , c.email_address , c.phone , c.create_timestamp , ca.address_line1,ca.address_line2,ca.address_city , c.status,c.profilePicture  from KG_vendor_individual c join KG_vendor_address ca on ca.vendor_address_id=c.vendor_id where c.vendor_individual_id=".$id ;
         error_log("Query=========".$query);
         $result = Yii::app()->db->createCommand($query)->queryRow();
         } catch (Exception $ex) {

@@ -18,7 +18,10 @@ $address;
 ?>
 
 <table style="padding: 20px; width: 100%; ">
-        <tr style="width:100%;"><td style="vertical-align: super; width: 20%;">Name</td><td style="vertical-align: top; width: 5%;">:</td><td style="width:75%;"><?php echo $userAllDetails['UserName']; ?></td></tr>
+    <tr>
+        <td width="80%">
+            <table>
+                <tr style="width:100%;"><td style="vertical-align: super; width: 20%;">Name</td><td style="vertical-align: top; width: 5%;">:</td><td style="width:75%;"><?php echo $userAllDetails['UserName']; ?></td></tr>
         <tr style="width:100%;"><td style="vertical-align: super; width: 20%;">Email </td><td style="vertical-align: top; width: 5%;">:</td><td style="width:75%;"><?php echo $userAllDetails['email_address']; ?></td></tr>
         <tr style="width:100%;"><td style="vertical-align: super; width: 20%;">Phone </td><td style="vertical-align: top; width: 5%;">:</td><td style="width:75%;"> <?php echo $userAllDetails['phone']; ?></td></tr>
         <?php if($address!='') { ?>
@@ -32,5 +35,11 @@ $address;
         echo $status; ?></td>
     
     </tr>
+            </table>
+        </td>
+        <td>
+            <div class="thumbnail" style="width: 150px; height: 150px;margin-bottom:10px">
+                <img style="width:150px;height:150px" src="<?php echo $userAllDetails['profilePicture'];  ?>" /></div>
+        </td>
+    </tr>
     </table>
-    

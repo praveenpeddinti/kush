@@ -244,7 +244,9 @@
                                                                         'validateOnSubmit'=>true,
                                                                 )
                                                         )); ?>
-                                                        <?php echo $form->error($modelSample,'error'); ?>
+                <div style="padding-left: 20px;">
+                    <?php echo $form->error($modelSample,'error'); ?>
+                </div>
                                             <div class="logindiv">
                                             <div class="row-fluid">
                                             <div class="span12">

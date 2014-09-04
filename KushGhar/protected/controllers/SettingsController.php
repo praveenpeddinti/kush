@@ -167,6 +167,8 @@ class SettingsController extends Controller {
     public function actionEditModel(){
         try{
             $Model = new SettingsForm;
+            unset($EditForm);
+            $EditForm = new SettingsForm();
             if(isset($_POST['Id'])) $id=$_POST['Id'];
             else $id=-1;
             $makes=$this->kushGharService->getMakes();

@@ -470,9 +470,9 @@ $this->pageTitle="KushGhar-Basic Info";
     public function findUploadedPath() {
         try {
             $path = dirname(__FILE__);
-            $pathArray = explode('\\', $path);
+            $pathArray = explode('/', $path);
             $appendPath = "";
-            for ($i = count($pathArray) - 3; $i > 0; $i--) {
+            for ($i = count($pathArray)-3; $i > 0; $i--) {
             $appendPath = "/" . $pathArray[$i] . $appendPath;
         }
         $originalPath = $appendPath;
@@ -483,30 +483,30 @@ $this->pageTitle="KushGhar-Basic Info";
     }
     public function actionFileUpload(){
         Yii::import("ext.EAjaxUpload.qqFileUploader");
-        $error="\n";
         $folder = $this->findUploadedPath() . '/sampleDownloadFiles/UploadFiles/'; // folder for uploaded files
         $allowedExtensions = array("csv"); //array("jpg","jpeg","gif","exe","mov" and etc...
         $sizeLimit = 15 * 1024 * 1024; // maximum file size in bytes
         $uploader = new qqFileUploader($allowedExtensions, $sizeLimit);
         $result = $uploader->handleUpload($folder);
         $return = CJSON::encode($result);
-        $fileSize = filesize($folder . $result['filename']); //GETTING FILE SIZE
-        $fileName = $result['filename']; //GETTING FILE NAME
-        try {
-            $folder=$folder.$fileName;
-            if (NULL!=(fopen($folder, 'r')) ){
+        echo $return;
+    }
+    public function actionCsvUpload(){
+        try {            
+            $folder=$this->findUploadedPath() .$_POST['filename'];
+            if (NULL!=(fopen($folder, 'r'))){
                 $fileuploadpath = $this->findUploadedPath();
-                $dest = $fileuploadpath . '/sampleDownloadFiles/UploadFiles/' . $fileName;
+                $dest = $fileuploadpath . $_POST['filename'];
                 $col = 0;
                 $csvFile = file($dest);
                 $i = 0;
                 $status = "success";
                 if(sizeof($csvFile)>1){
-                    foreach ($csvFile as $key => $line) {
+                   foreach ($csvFile as $key => $line) {
                         if ($key >= 1) {
                               $var = explode(",", $line);
                             if (count($var) <= 1) {
-                                $error.="Delimiter mismatch! => ".$line;
+                               $error.="Delimiter mismatch! => ".$line."<br>";
                             } else {
                                 if ($var[0] != "" && $var[1] != "" && $var[2] != "" && $var[3] != "") {
                                     $inviteUser = $this->kushGharService->checkNewUserExistInInviteTable($var[3]);
@@ -538,12 +538,12 @@ $this->pageTitle="KushGhar-Basic Info";
                                         //$sendMailToUser=new CommonUtility;
                                         //$sendMailToUser->actionSendmail($messageview1,$params1, $subject, $to1,$employerEmail);
                                         //$mailSendStatusw=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
-                                        $error.="User invited successfully->".$var[3]."\n";                                        
+                                        $error.="User invited successfully->".$var[3]."<br>";  
                                     } else {
-                                        $error.="User already invited ->".$var[3]."\n";
+                                        $error.="User already invited ->".$var[3]."<br>";
                                     }
                                 } else {
-                                    $error.="Sorry,Column did not match! ->".$line;
+                                    $error.="Sorry,Column did not match! ->".$line."<br>";
                                 }
                             }
                         }
@@ -562,10 +562,8 @@ $this->pageTitle="KushGhar-Basic Info";
             error_log("***********************" . $e->getMessage());
         }
         error_log($error);
-        $errors = array("InviteForm_error" => $error);
-        error_log("Errors=======".print_r($errors, true));
-        $obj = array('status' => 'success', 'error' => $errors);
-        error_log("Errors=======".print_r($obj, true));
+        //$errors = array("InviteForm_error" => $error);
+        $obj = array('status' => 'success', 'error' => $error);
         $renderScript = $this->rendering($obj);
         echo $renderScript; // it's array
     }

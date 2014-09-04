@@ -130,53 +130,53 @@
                                 </div>
                            </div>  
                                 <div id="multiple" style="display:none;">
-                                    <label>
+<!--                                    <label>
                                         Multiple Invite needs a CSV file and the functionality will be implemented as soon as possible
-                                    </label>
+                                    </label>-->
                             <?php
-//                            $form = $this->beginWidget('CActiveForm', array(
-//                                    'id' => 'multiple-invite',
-//                                    'enableClientValidation' => true,
-//                                    'clientOptions' => array(
-//                                    'validateOnSubmit' => true,
-//                                    ),
-//                                    'htmlOptions' => array('enctype' => 'multipart/form-data'),
-//                                ));?><fieldset>
-                                  <?php // $link = '<div id="schedule_download">Download sample CSV file</div>';
-//                                    echo CHtml::link($link, array('/admin/downloadCSVFile')); 
-//                                    ?><br>
+                            $form = $this->beginWidget('CActiveForm', array(
+                                    'id' => 'multiple-invite',
+                                    'enableClientValidation' => true,
+                                    'clientOptions' => array(
+                                    'validateOnSubmit' => true,
+                                    ),
+                                    'htmlOptions' => array('enctype' => 'multipart/form-data'),
+                                ));?><fieldset>
+                                    <input type="hidden" id="CsvFileName"></input>
+                                  <?php $link = '<div id="schedule_download">Download sample CSV file</div>';
+                                    echo CHtml::link($link, array('/admin/downloadCSVFile')); 
+                                    ?><br>
                                         <?php
-//                                   $this->widget('ext.EAjaxUpload.EAjaxUpload', array(
-//                                                        'id' => 'csvfile',
-//                                                        'config' => array(
-//                                                            'multiple' => false,
-//                                                            'action' => Yii::app()->createUrl('admin/fileUpload'),
-//                                                            'allowedExtensions' => array("csv"), //array("jpg","jpeg","gif","exe","mov" and etc...
-//
-//                                                            'sizeLimit' => 15 * 1024 * 1024, // maximum file size in bytes
-////                                                          'minSizeLimit'=>10*1024,// minimum file size in bytes
-//                                                            'onComplete' => "js:function(id, fileName, responseJSON){
-//                                    var data = eval(responseJSON);
-//
-//                                    globalProfilePic = '/sampleDownloadFiles/UploadFiles/'+data.filename;
-//                                    $('#CsvFileName').val('/sampleDownloadFiles/UploadFiles/'+data.filename);
-//                                    }
-//                                    ",
-////                                                            'messages'=>array(
-////                                                                              'typeError'=>"{file} has invalid extension. Only {extensions} are allowed.",
-////                                                                              'sizeError'=>"{file} is too large, maximum file size is {sizeLimit}.",
-////                                                                              'minSizeError'=>"{file} is too small, minimum file size is {minSizeLimit}.",
-////                                                                              'emptyError'=>"{file} is empty, please select files again without it.",
-////                                                                              'onLeave'=>"The files are being uploaded, if you leave now the upload will be cancelled."
-////                                                                             ),
-//                                                            'showMessage' => "js:function(message){  commonErrorDiv(message,'common_error');}"
-//                                                        )
-//                                                    ));
-//                                   
-//                                                    ?>
-                                    <?php // echo $inviteFriends->error($inviteModel, 'error'); ?>
+                                   $this->widget('ext.EAjaxUpload.EAjaxUpload', array(
+                                                        'id' => 'csvfile',
+                                                        'config' => array(
+                                                            'multiple' => false,
+                                                            'action' => Yii::app()->createUrl('admin/fileUpload'),
+                                                            'allowedExtensions' => array("csv"), //array("jpg","jpeg","gif","exe","mov" and etc...
+                                                            'sizeLimit' => 15 * 1024 * 1024, // maximum file size in bytes
+//                                                          'minSizeLimit'=>10*1024,// minimum file size in bytes
+                                                            'onComplete' => "js:function(id, fileName, responseJSON){
+                                    var data = eval(responseJSON);
+                                    $('#CsvFileName').val('/sampleDownloadFiles/UploadFiles/'+data.filename);
+                                    uploadNow();
+                                     }
+                                    ",
+//                                                            'messages'=>array(
+//                                                                              'typeError'=>"{file} has invalid extension. Only {extensions} are allowed.",
+//                                                                              'sizeError'=>"{file} is too large, maximum file size is {sizeLimit}.",
+//                                                                              'minSizeError'=>"{file} is too small, minimum file size is {minSizeLimit}.",
+//                                                                              'emptyError'=>"{file} is empty, please select files again without it.",
+//                                                                              'onLeave'=>"The files are being uploaded, if you leave now the upload will be cancelled."
+//                                                                             ),
+                                                            'showMessage' => "js:function(message){  commonErrorDiv(message,'common_error')}"
+                                                        )
+                                                    ));
+                                   
+                                                    ?>
+                                   
                                     </fieldset>
-                                     <?php // $this->endWidget(); ?>
+                                    <div id="ErrorMsgDiv" style="display:none"></div>
+                                     <?php $this->endWidget(); ?>
                                 </div>
                                 </div>
                         </div>
@@ -199,6 +199,18 @@
             document.getElementById('singleInvite').style.display='none';
         }
     }
+    function uploadNow(){
+        scrollPleaseWait("inviteSpinLoader","invite-form");
+        var data = "filename=" + $('#CsvFileName').val();
+        ajaxRequest('/admin/csvUpload', data,BulkinviteMailHandler)
+    }
+    function BulkinviteMailHandler(data){
+        scrollPleaseWaitClose('inviteSpinLoader');
+        if(data.status=='success'){
+           document.getElementById('ErrorMsgDiv').style.display='block';
+            $('#ErrorMsgDiv').html(data.error);
+        }
+    }
     function inviteClick() {
         scrollPleaseWait("inviteSpinLoader","invite-form")
          var data = $("#invite-friends").serialize();
@@ -211,9 +223,10 @@ function inviteMailHandler(data)
                     $("#InviteForm_error_em_").removeClass('errorMessage');
                     $("#InviteForm_error_em_").addClass('alert alert-success');
                     $("#InviteForm_error_em_").text(data.error);
-                    $("#InviteForm_error_em_").fadeOut(20000, "");
-                    window.location.href = '<?php echo Yii::app()->request->baseUrl; ?>/admin/dashboard';
-                   
+                    $("#InviteForm_error_em_").fadeOut(3000);
+                    setTimeout(function() {
+                        window.location.href = '<?php echo Yii::app()->request->baseUrl; ?>/admin/dashboard';
+                    }, 3000);
         }
         if(data.status == 'error'){
             var lengthvalue=data.error.length;

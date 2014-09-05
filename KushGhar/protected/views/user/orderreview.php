@@ -60,7 +60,7 @@
 <br>
     <div class="row-fluid" id="ques5">
         <div class=" span2">
-            <?php echo $reviewForm->label($model, '<abbr title="required">*</abbr><b> Rating</b>'); ?></div>
+            <label><abbr title="required">*</abbr><b>Rating</b></label></div>
             <div class="basic" data-average="0" data-id="1" id="rating2" data-rate="0"></div>
             <?php echo $reviewForm->error($model, 'Rating'); ?>
     </div>
@@ -107,7 +107,7 @@
                     setTimeout(function() {
                             $("#myModalReview").modal('hide');
                     }
-                    }, 3000);  
+                    , 3000);  
                     
         }
         if(data.status == 'error'){

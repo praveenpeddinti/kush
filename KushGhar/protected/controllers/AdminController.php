@@ -470,6 +470,7 @@ $this->pageTitle="KushGhar-Basic Info";
     public function findUploadedPath() {
         try {
             $path = dirname(__FILE__);
+            $path=str_replace('\\','/',$path);
             $pathArray = explode('/', $path);
             $appendPath = "";
             for ($i = count($pathArray)-3; $i > 0; $i--) {
@@ -509,6 +510,11 @@ $this->pageTitle="KushGhar-Basic Info";
                                $error.="Delimiter mismatch! => ".$line."<br>";
                             } else {
                                 if ($var[0] != "" && $var[1] != "" && $var[2] != "" && $var[3] != "") {
+                                    $var[0]=str_replace('"','',$var[0]);
+                                    $var[1]=str_replace('"','',$var[1]);
+                                    $var[2]=str_replace('"','',$var[2]);
+                                    $var[3]=str_replace('"','',$var[3]);
+                                    $var[4]=str_replace('"','',$var[4]);
                                     $inviteUser = $this->kushGharService->checkNewUserExistInInviteTable($var[3]);
                                     $custUser = $this->kushGharService->checkNewUserExistInCustomerTable($var[3]);
                                     if( ($inviteUser=='No user') && ($custUser=='No user')){

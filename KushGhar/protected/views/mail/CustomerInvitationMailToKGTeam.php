@@ -38,6 +38,9 @@
                                             Email: <?php echo $Email;?>
                                         </p>
                                         <p style="font-size:14px;line-height:1.7;">
+                                            Email: <?php echo $City;?>
+                                        </p>
+                                        <p style="font-size:14px;line-height:1.7;">
                                             Phone: <?php echo $Phone;?>
                                         </p>
                                         <p style="font-size:14px;line-height:1.7;">

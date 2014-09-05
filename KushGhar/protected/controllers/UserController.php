@@ -1143,6 +1143,7 @@ class UserController extends Controller {
                 $to1 = $inviteFriends->Email;
                 $name = $inviteFriends->FirstName . ' ' . $inviteFriends->LastName;
                 $phone = $inviteFriends->Phone;
+                $city = $inviteFriends->City;
                 $location = $inviteFriends->Location;
                 $referrer=$inviteFriends->Referrer;
                 $subject ='KushGhar Invitation';
@@ -1161,7 +1162,7 @@ class UserController extends Controller {
                 //$Logo = YII::app()->params['SERVER_URL'] . "/images/color_logo.png";
                 //$employerEmail = "no-reply@kushghar.com";
                 $messageview="CustomerInvitationMailToKGTeam";
-                $params = array('Logo' => $Logo, 'Name' =>$name, 'Email' =>$to1, 'Phone'=>$phone, 'Location'=>$location);
+                $params = array('Logo' => $Logo, 'Name' =>$name, 'Email' =>$to1, 'City' =>$city, 'Phone'=>$phone, 'Location'=>$location);
                 //$params = '';
                 $sendMailToUser=new CommonUtility;
                 $sendMailToUser->actionSendmail($messageview1,$params1, $subject, $to1,$employerEmail);

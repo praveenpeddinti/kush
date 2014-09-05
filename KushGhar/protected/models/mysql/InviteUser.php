@@ -5,6 +5,7 @@ class InviteUser extends CActiveRecord {
     public $first_name;
     public $last_name;
     public $email_address;
+    public $city;
     public $phone;
     public $status;
     public $invite;
@@ -61,6 +62,7 @@ class InviteUser extends CActiveRecord {
                 $user->last_name = stripcslashes($model->LastName);
                 $user->email_address = stripcslashes($model->Email);
                 $user->phone = stripcslashes($model->Phone);
+                $user->city = stripcslashes($model->City);
                 $user->type = stripcslashes($type);
                 $user->services = $selectedOptions;
                 $user->invite = 0;
@@ -416,6 +418,7 @@ class InviteUser extends CActiveRecord {
                 $user->first_name = stripcslashes($model->FirstName);
                 $user->last_name = stripcslashes($model->LastName);
                 $user->email_address = stripcslashes($model->Email);
+                $user->city = stripcslashes($model->City);
                 $user->phone = stripcslashes($model->Phone);
                 $user->type = stripcslashes($type);
                 $user->invite = 1;

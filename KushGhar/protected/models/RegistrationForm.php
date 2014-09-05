@@ -13,14 +13,16 @@ class RegistrationForm extends CFormModel {
     public $Phone;
     public $Password;
     public $RepeatPassword;
-    
+    public $City;
+
+
     /**
      * Declares the validation rules.
      */
     public function rules() {
         return array(
             // First Name, Email, Phone, Password and Repeat Password are required
-            array('FirstName,LastName,Email,Phone, Password, RepeatPassword', 'required', 'message' => 'Please enter {attribute}.'),
+            array('FirstName,LastName,Email,Phone, Password, RepeatPassword, City', 'required', 'message' => 'Please enter {attribute}.'),
             // Email has to be a valid email address
             array('Email', 'email'),
             // Phone min 10 digits
@@ -37,7 +39,7 @@ class RegistrationForm extends CFormModel {
             // First Name, Last Name must be Alphabet and space
             array('FirstName, LastName', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain alphabet and space'),
             
-            array('FirstName,LastName,Email,Phone,Password,RepeatPassword,Id', 'safe'),
+            array('FirstName,LastName,Email,Phone,Password,RepeatPassword,City,Id', 'safe'),
         );
     }
 

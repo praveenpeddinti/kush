@@ -30,13 +30,18 @@
                     </div>
              </div>
               <div class='row-fluid'>
-                 <div class='span6'>
+                 <div class='span4'>
                     <?php echo $inviteform->label($inviteModel,'<abbr title="required">*</abbr> Email'); ?>
                     <?php echo $inviteform->textField($inviteModel,'Email', array( 'class'=>'span12', 'maxLength' => 100)); ?>
                     <?php echo $inviteform->error($inviteModel,'Email'); ?>
                  </div>
+                 <div class="span4">
+                    <label><?php echo $inviteform->label($inviteModel, '<abbr title="required">*</abbr> City'); ?></label>
+                    <?php echo $inviteform->dropDownList($inviteModel,'City', array(''=>'Select City','Hyderabad' => 'Hyderabad', 'Secunderabad'=>'Secunderabad'), array('class' => 'span12'));?>
+                    <?php echo $inviteform->error($inviteModel, 'City'); ?>
+                 </div>
                   
-                  <div class='span6'>
+                  <div class='span4'>
                     <?php echo $inviteform->label($inviteModel,'Location'); ?>
                     <?php echo $inviteform->dropDownList($inviteModel,'Location', array(''=>'Select Location','AG Colony'=>'AG Colony','Ameerpet'=>'Ameerpet','Banjara Hills'=>'Banjara Hills','Begumpet'=>'Begumpet','Bharath Nagar'=>'Bharath Nagar','Chikalguda'=>'Chikalguda','Domalguda'=>'Domalguda',
                         'Gachibowli'=>'Gachibowli','Hitech City'=>'Hitech City','JNTU'=>'JNTU','Jubilee Hills'=>'Jubilee Hills','Kalyan Nagar'=>'Kalyan Nagar','Khairatabad'=>'Khairatabad','Kondapur'=>'Kondapur',

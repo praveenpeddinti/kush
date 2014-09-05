@@ -347,6 +347,17 @@ class KushGharService {
     public function getAllUsers($startLimit, $endLimit,$uname,$phone,$status) {
         return InviteUser::model()->getAllUsers($startLimit, $endLimit,$uname,$phone,$status);
     }
+    
+    /*
+     * Invoice management details
+     */
+    public function getTotalInvoice($oNumber,$invoiceNo,$status) {
+        return InvoiceDetails::model()->getTotalInvoice($oNumber,$invoiceNo,$status);
+    }
+
+    public function getAllInvoice($startLimit, $endLimit,$oNumber,$invoiceNo,$status) {
+        return InvoiceDetails::model()->getAllInvoice($startLimit, $endLimit,$oNumber,$invoiceNo,$status);
+    }
 
     public function getStatusUser($id, $val) {
         return InviteUser::model()->getStatusUser($id, $val);
@@ -792,6 +803,17 @@ class KushGharService {
     }
     public function getInvoiceDetails($OrderId){
         return InvoiceDetails::model()->getInvoiceDetails($OrderId);
+    }
+    
+    /*
+     * Payment details for Invoice
+     */
+    public function getTotalPayments(){
+        return InvoiceDetails::model()->getTotalPayments();
+    }
+    
+    public function getAllPayments($startLimit, $endLimit) {
+        return InvoiceDetails::model()->getAllPayments($startLimit, $endLimit);
     }
     
 } ?>

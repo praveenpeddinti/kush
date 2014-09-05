@@ -61,7 +61,90 @@ class InvoiceDetails extends CActiveRecord {
             error_log("getServiceDetailsById Exception occured==" . $ex->getMessage());
         }
         return $result;
+    }
+    
+    public function getTotalPayments(){
+        try{
+            $query = "select count(*) as count,sum(Amount) as amount from KG_Invoice_details";
+            $result = Yii::app()->db->createCommand($query)->queryRow();
+        }catch(Exception $ex){
+            error_log("################Exception Occurred  get Registered Contacts##############".$ex->getMessage());
+        }
+        return $result;
+    }
+    
+    
+    public function getAllPayments($start,$end){
+        try{  
+            $query = "select * from KG_Invoice_details ORDER BY OrderId DESC limit ".$start. ",".$end;
+            $result = Yii::app()->db->createCommand($query)->queryAll();
+        }catch(Exception $ex){
+            error_log("################Exception Occurred  get All Registered Contacts##############".$ex->getMessage());
+        }
+        return $result;
+    }
+    
+   
+    public function getTotalInvoice($oNumber,$invoiceNo,$status){
+        try{
+            
+            if(($oNumber=='')&&($invoiceNo=='')&&($status=='20'))
+                $query = "select count(*) as count from KG_Invoice_details";
+            else if(($oNumber=='')&&($invoiceNo=='')&&($status!='20'))
+                $query="select count(*) as count from KG_Invoice_details where Status=".$status;
+            else if(($oNumber!='')&&($invoiceNo=='')&&($status=='20'))
+                $query="select count(*) as count from KG_Invoice_details where OrderId = ".$oNumber;
+            else if(($oNumber=='')&&($invoiceNo!='')&&($status=='20'))
+                $query="select count(*) as count from KG_Invoice_details where InvoiceNumber like '%".$invoiceNo."%'";
+            else if(($oNumber=='')&&($invoiceNo!='')&&($status!='20'))
+                $query="select count(*) as count from KG_Invoice_details where Status =".$status." and InvoiceNumber like '%".$invoiceNo."%'";
+            else if(($oNumber!='')&&($invoiceNo=='')&&($status!='20'))
+                $query="select count(*) as count from KG_Invoice_details where OrderId = ".$oNumber." and Status =".$status;
+            else if(($oNumber!='')&&($invoiceNo!='')&&($status=='20'))
+                $query="select count(*) as count from KG_Invoice_details where OrderId = ".$oNumber." and InvoiceNumber like '%".$invoiceNo."%'";
+            else if(($oNumber!='')&&($invoiceNo!='')&&($status!='20'))
+                $query="select count(*) as count from KG_Invoice_details where OrderId = ".$oNumber." and InvoiceNumber like '%".$invoiceNo."%' and Status=".$status;
+           
+//            $query = "SELECT count(*) as count FROM KG_InvitationUsers";
+                  
+            $result = Yii::app()->db->createCommand($query)->queryRow();
+        
+        }catch(Exception $ex){
+            error_log("################Exception Occurred  getAllContacts##############".$ex->getMessage());
+        }
+        return $result['count'];
     } 
+   public function getAllInvoice($start,$end,$oNumber,$invoiceNo,$status){
+        try{     
+            if(($oNumber=='')&&($invoiceNo=='')&&($status=='20'))
+                $query = "select * from KG_Invoice_details ORDER BY id DESC limit ".$start. ",".$end;
+            else if(($oNumber=='')&&($invoiceNo=='')&&($status!='20'))
+                $query="select * from KG_Invoice_details where Status=".$status. " ORDER BY id DESC limit ".$start. ",".$end;
+            else if(($oNumber!='')&&($invoiceNo=='')&&($status=='20'))
+                $query="select * from KG_Invoice_details where OrderId = ".$oNumber." ORDER BY id DESC limit ".$start. ",".$end;
+            else if(($oNumber=='')&&($invoiceNo!='')&&($status=='20'))
+                $query="select * from KG_Invoice_details where InvoiceNumber like '%".$invoiceNo."%' ORDER BY id DESC limit ".$start. ",".$end;
+            else if(($oNumber=='')&&($invoiceNo!='')&&($status!='20'))
+                $query="select * from KG_Invoice_details where Status=".$oNumber." and InvoiceNumber like '%".$invoiceNo."%' ORDER BY id DESC limit ".$start. ",".$end;
+            else if(($oNumber!='')&&($invoiceNo=='')&&($status!='20'))
+                $query="select * from KG_Invoice_details where OrderId = ".$oNumber." and Status=".$status." ORDER BY id DESC limit ".$start. ",".$end;
+            else if(($oNumber!='')&&($invoiceNo!='')&&($status=='20'))
+                $query="select * from KG_Invoice_details where OrderId = ".$oNumber." and InvoiceNumber like '%".$invoiceNo."%' ORDER BY id DESC limit ".$start. ",".$end;
+            else if(($oNumber!='')&&($invoiceNo!='')&&($status!='20'))
+                $query="select * from KG_Invoice_details where OrderId = ".$oNumber." and InvoiceNumber like '%".$invoiceNo."%' and Status=".$status." ORDER BY id DESC limit ".$start. ",".$end;
+           
+//            $query = "SELECT * FROM KG_InvitationUsers where status =1 ORDER BY id DESC limit ".$start. ",".$end;
+            $result = Yii::app()->db->createCommand($query)->queryAll();
+        
+        }catch(Exception $ex){
+            error_log("################Exception Occurred  getAllContacts##############".$ex->getMessage());
+        }
+        return $result;
+    }
+    
+    
+    
+    
 public function sendorderStatus($id,$val){
         if($val==0){$status=0;}
         if($val==1){$status=1;}
@@ -80,146 +163,5 @@ public function sendorderStatus($id,$val){
     }
     
     
-    public function getOrderHServicesDetails($oId) {
-        try {
-            $query = "SELECT * FROM KG_House_cleaning_service WHERE order_number = $oId ORDER BY Id DESC LIMIT 1";
-            $result = YII::app()->db->createCommand($query)->queryRow();
-        } catch (Exception $ex) {
-            error_log("getServiceDetailsById Exception occured==" . $ex->getMessage());
-        }
-        return $result;
-    }
     
-    public function getOrderSServicesDetails($oId) {
-        try {
-            $query = "SELECT * FROM KG_Stewards_cleaning_service WHERE order_number = $oId ORDER BY Id DESC LIMIT 1";
-            $result = YII::app()->db->createCommand($query)->queryRow();
-        } catch (Exception $ex) {
-            error_log("getServiceDetailsById Exception occured==" . $ex->getMessage());
-        }
-        return $result;
-    }
-    
-    public function getOrderCServicesDetails($oId) {
-        try {
-            $query = "SELECT * FROM KG_Car_cleaning_service WHERE order_number = $oId ORDER BY Id ASC";
-            
-            $result = YII::app()->db->createCommand($query)->queryAll();
-            
-        } catch (Exception $ex) {
-            error_log("getServiceDetailsById Exception occured==" . $ex->getMessage());
-        }
-        return $result;
-    }
-    public function cancelUserOrderStatus($id){
-        $query="update KG_Order_details set status=2 where order_number=".$id;
-        $result1 = YII::app()->db->createCommand($query)->execute();
-        if($result1>0)
-            $result = "success"; 
-    }
-    public function getServiceType($id){
-        $query="select ServiceId,CustId from KG_Order_details where order_number=".$id;
-        $result = YII::app()->db->createCommand($query)->queryRow();
-        return $result;
-    }
-    public function rescheduleHouseCleaning($serviceTime,$OrderNumber){
-        $query="update KG_House_cleaning_service set houseservice_start_time='".$serviceTime."' where order_number=".$OrderNumber;
-        $query1="update KG_Order_details set status=0, service_date='".$serviceTime."' where order_number=".$OrderNumber;
-        $result = YII::app()->db->createCommand($query)->execute();
-        $result1 = YII::app()->db->createCommand($query1)->execute();
-        if($result>0||$result1>0)
-         return "success";
-        else 
-            return "failure";
-    }
-    public function rescheduleCarWah($serviceTime,$OrderNumber){
-        $query="update KG_Car_cleaning_service set carservice_start_time='".$serviceTime."' where order_number=".$OrderNumber;
-        $query1="update KG_Order_details set status=0, service_date='".$serviceTime."' where order_number=".$OrderNumber;
-        $result = YII::app()->db->createCommand($query)->execute();
-        $result1 = YII::app()->db->createCommand($query1)->execute();
-        if($result>0||$result1>0)
-         return "success";
-        else 
-            return "failure";
-    }
-    public function rescheduleStewards($startTime,$endTime,$Duration,$OrderNumber){
-        $query="update KG_Stewards_cleaning_service set start_time='".$startTime."' , end_time='".$endTime."' ,service_hours=".$Duration." where order_number=".$OrderNumber;
-        $query1="update KG_Order_details set status=0, service_date='".$startTime."' where order_number=".$OrderNumber;
-        $result = YII::app()->db->createCommand($query)->execute();
-        $result1 = YII::app()->db->createCommand($query1)->execute();
-        if($result>0||$result1>0)
-         return "success";
-        else 
-            return "failure";
-    }
-    public function getServiceDetails($ordernumber,$type){
-        
-        try{
-            if($type==1){
-                $query="SELECT * FROM KG_House_cleaning_service where order_number=".$ordernumber;
-            }
-            else if($type==2){
-                $query="SELECT * FROM KG_Car_cleaning_service where order_number=".$ordernumber;
-            }
-            else if($type==3){
-                $query="SELECT * FROM KG_Stewards_cleaning_service where order_number=".$ordernumber;
-            }
-            $result = YII::app()->db->createCommand($query)->queryRow();
-        }
-        catch (Exception $ex) {
-            error_log("getServiceDetailsById Exception occured==" . $ex->getMessage());
-        }
-        return $result;
-    }
-    /*
-     * @Praveen Order status is closed that time store the total time and total peoples in DB 4-Aug-14
-     */
-    public function sendorderStatusWithTimeAndPeople($model,$val){
-       $result = "failed";
-        try{
-            $InviteObj = OrderDetails::model()->findByAttributes(array('id'=>$model->OrderNo));
-            $InviteObj->status = $val;
-            $InviteObj->total_service_hours = $model->TotalServiceHours;
-            $InviteObj->total_service_people = $model->TotalServicePeople;
-            if($InviteObj->update())
-                $result = "success";
-        }catch(Exception $ex){
-             error_log("################Exception Occurred  changeContactStatus##############".$ex->getMessage());
-        }
-        return $result;
-    }
-    public function getOrderDetailsById($id){
-        try{
-            $query="SELECT * FROM KG_Order_details where id=".$id;
-            $result = YII::app()->db->createCommand($query)->queryRow();
-        }
-        catch (Exception $ex) {
-            error_log("getServiceDetailsById Exception occured==" . $ex->getMessage());
-        }
-        return $result;
-    }
-    public function sendorderScheduleStatus($id,$status,$vendorVals){
-        $result = "failed";
-        try{
-            $InviteObj = OrderDetails::model()->findByAttributes(array('id'=>$id));
-            $InviteObj->status = $status;
-            $InviteObj->assign_vendors=$vendorVals;
-            if($InviteObj->update())
-                $result = "success";
-        }catch(Exception $ex){
-             error_log("################Exception Occurred  changeContactStatus##############".$ex->getMessage());
-        }
-        return $result;
-    }
-    
-    public function getVendorDetails($Id,$vendors) {
-        try {
-            $query = "select o.CustId,o.service_date,v.vendor_id,v.first_name,v.last_name from KG_Order_details o,KG_vendor_individual v where v.vendor_id in ($vendors) and o.order_number=$Id";
-            $result = YII::app()->db->createCommand($query)->queryAll();
-            
-        } catch (Exception $ex) {
-            error_log("getServiceDetailsById Exception occured==" . $ex->getMessage());
-        }
-        return $result;
-    }
 }?>

@@ -1,37 +1,6 @@
 <script type="text/javascript">
-    var pageno;
-    function adminloginhandler(data) {
-        if (data.status == 'success') {
-            window.location.href = 'dashboard';
-        } else {
-            var error = [];
-            if (typeof (data.error) == 'string') {
-                var error = eval("(" + data.error.toString() + ")");
-            } else {
-                var error = eval(data.error);
-            }
-            $.each(error, function(key, val) {
-                if ($("#" + key + "_em_")) {
-                    $("#" + key + "_em_").text(val);
-                    $("#" + key + "_em_").show();
-                    $('#error').show();
-                    $("#" + key).parent().addClass('error');
-                }
-            });
-        }
-    }
-
-    function isNumberKey(evt)
-    {
-        var e = evt || window.event; //window.event is safer, thanks @ThiefMaster
-        var charCode = e.which || e.keyCode;
-
-        if (charCode > 31 && (charCode < 45 || charCode > 57))
-            return false;
-        if (e.shiftKey)
-            return false;
-        return true;
-    }
+    
+    
     function inviteUser(rowNos, status,email) {
         var data = "Id=" + rowNos + "&status=" + status+ "&email=" + email;
             
@@ -158,14 +127,14 @@
                             <div class="selected_tab">Dashboard</div>
                             <ul class="l_menu_sub_menu">
                                 <li><a href="/admin/dashboard"> <i class="fa fa-users"></i> Invite Friends</a></li>
-                                <li class="active"><a href="/admin/manage"> <i class="fa fa-users"></i> Invite Management</a></li>
+                                <li><a href="/admin/manage"> <i class="fa fa-users"></i> Invite Management</a></li>
                                 <li><a href="/admin/order"> <i class="fa fa-file-text"></i> Orders</a></li>
                                 <li><a href="/admin/usermanagement"> <i class="fa fa-user"></i> User Management</a></li>
                                 <li><a href="/admin/vendormanagement"> <i class="fa fa-user"></i> Vendor Management</a></li>
                                 <li><a href="/admin/reviews"> <i class="fa fa-user"></i> Review/Feedback</a></li>
                                 <li><a href="/settings/carMakes"> <i class="fa fa-cog"></i> Settings</a></li>
                                 <li><a href="/admin/payments"> <i class="fa fa-file"></i> Payments</a></li>
-                                <li><a href="/admin/invoice"> <i class="fa fa-list-alt"></i> Invoice Management</a></li>
+                                <li  class="active"><a href="/admin/invoice"> <i class="fa fa-list-alt"></i> Invoice Management</a></li>
                             </ul>
                         </div>
                     </div>
@@ -174,27 +143,26 @@
             <article>
                 <div class="row-fluid" style="height:480px">
                     <div class="span12">
-                        <h4 class="paddingL20">Invitation Management</h4>
+                        <h4 class="paddingL20">Invoice Management</h4>
                         <hr>
                         <div class="paddinground">    
                             <div id="InviteInfoSpinLoader"></div>
                             <div id="tablewidget"  style="margin: auto;"><div id="message" style="display:none"></div>
                                 <div class="row-fluid">
                                     <div class="span4">
-                                        <label>User Name</label>
-                                        <input type="text" id="userName" class="span12" maxlength="50"/>
+                                        <label>Order NUmber</label>
+                                        <input type="text" id="orderNumber" class="span12" maxlength="50"/>
                                     </div>
                                     <div class="span3">
-                                        <label>Phone</label>
-                                        <input type="text" id="phone" class="span12" maxlength="10" onkeypress = "return isNumberKey(event);"/>
+                                        <label>Invoice Number</label>
+                                        <input type="text" id="invoiceNo" class="span12" maxlength="25" />
                                     </div>
                                     <div class="span3">
                                         <label>Status</label>
                                         <select id="status" class="span12">
                                             <option value="20">All</option>
-                                            <option value="1">Invited</option>
-                                            <option value="0">Not Invited</option>
-                                            <option value="2">Re-Invited</option>
+                                            <option value="0">Open</option>
+                                            <option value="1">Paid</option>
                                         </select>
                                     </div>
                                     <div class="span2">
@@ -203,7 +171,7 @@
                                     </div>
                                 </div>
                                 <table id="userTable" class="table table-hover">
-                                    <thead><tr><th>Name</th><th>Email Address</th><th>Phone</th><th>Location</th><th nowrap>Invited Date</th><th>Status</th><th>Actions</th></tr></thead>
+                                    <thead><tr><th>Service</th><th>OrderId</th><th>InvoiceNumber</th><th nowrap>Amount</th><th>Status</th><th>Actions</th></tr></thead>
                                     <tbody id="abusedWords_tbody">
                                     </tbody>
                                 </table>
@@ -238,7 +206,7 @@
     });
     
     $(function(){
-        getCollectionDataWithPagination('/admin/newManage','userDetails', 'abusedWords_tbody',1,5,'','','20', '');
+        getCollectionDataWithPagination('/admin/viewInvoice','userDetails', 'abusedWords_tbody',1,5,'','','20', '');
     });
     
     
@@ -271,13 +239,13 @@ function ajaxRequest(url, queryString,callback,dataType,beforeSendCallback) {
         
     });
 }
-function getCollectionDataWithPagination(URL,CollectionName, MainDiv, CurrentPage, PageSize,uname,phone,status, callback){
+function getCollectionDataWithPagination(URL,CollectionName, MainDiv, CurrentPage, PageSize,oNumber,invoiceNo,status, callback){
     globalspace[MainDiv+'_page'] = Number(CurrentPage);
     globalspace[MainDiv+'_pageSize']=Number(PageSize);
-    globalspace[MainDiv+'_uname']=uname;
-    globalspace[MainDiv+'_phone']=phone;
+    globalspace[MainDiv+'_oNumber']=oNumber;
+    globalspace[MainDiv+'_invoiceNo']=invoiceNo;
     globalspace[MainDiv+'_status']=Number(status);
-    var newURL =  URL+"?"+CollectionName+"_page="+globalspace[MainDiv+'_page']+"&pageSize="+globalspace[MainDiv+'_pageSize']+"&uname="+globalspace[MainDiv+'_uname']+"&phone="+globalspace[MainDiv+'_phone']+"&status="+globalspace[MainDiv+'_status'];
+    var newURL =  URL+"?"+CollectionName+"_page="+globalspace[MainDiv+'_page']+"&pageSize="+globalspace[MainDiv+'_pageSize']+"&oNumber="+globalspace[MainDiv+'_oNumber']+"&invoiceNo="+globalspace[MainDiv+'_invoiceNo']+"&status="+globalspace[MainDiv+'_status'];
     var data = ""; 
     ajaxRequest(newURL,data,function(data){getCollectionDataWithPaginationHandler(data,URL,CollectionName,MainDiv,callback)});
 }
@@ -296,7 +264,7 @@ function getCollectionDataWithPaginationHandler(data,URL,CollectionName,MainDiv,
                     onPageClick: function(pageNumber, event) {
                         globalspace[MainDiv+'_page'] = pageNumber;
                         pageno=pageNumber;
-                        getCollectionDataWithPagination(URL,CollectionName, MainDiv, globalspace[MainDiv+'_page'], globalspace[MainDiv+'_pageSize'],globalspace[MainDiv+'_uname'],globalspace[MainDiv+'_phone'],globalspace[MainDiv+'_status'], callback)
+                        getCollectionDataWithPagination(URL,CollectionName, MainDiv, globalspace[MainDiv+'_page'], globalspace[MainDiv+'_pageSize'],globalspace[MainDiv+'_oNumber'],globalspace[MainDiv+'_invoiceNo'],globalspace[MainDiv+'_status'], callback)
                     }
 
                 });
@@ -306,32 +274,11 @@ function getCollectionDataWithPaginationHandler(data,URL,CollectionName,MainDiv,
             }
     }
     function search(){
-        var uname = $("#userName").val();
-        var phone = $("#phone").val();
+        var oNumber = $("#orderNumber").val();
+        var invoiceNo = $("#invoiceNo").val();
         var status = $("#status").val();
-        getCollectionDataWithPagination('/admin/newManage','userDetails', 'abusedWords_tbody',1,5,uname,phone,status,'');
+        getCollectionDataWithPagination('/admin/viewInvoice','userDetails', 'abusedWords_tbody',1,5,oNumber,invoiceNo,status,'');
    
     }
-    var  moveTextToTextbox='';
-    var divId='';
-    var textData='';
-    function showTooltip(id,textData){
-       var dumpdata='';
-       var textData1 =document.getElementById(id).innerHTML;
-       if(textData1.length>=10){
-           if(moveTextToTextbox==''){
-               dumpdata=textData;}else{dumpdata=moveTextToTextbox;}
-           }else{
-               dumpdata=textData1;
-           }
-       divId=id.replace(/view/i, "div");
-       if(textData.length>=20){
-           document.getElementById(divId).style.display='block';
-           document.getElementById(divId).innerHTML=dumpdata;
-       }else{document.getElementById(divId).style.display='none';}
-    }
-    function showTooltipdown(id){
-       divId=id.replace(/view/i, "div");
-       document.getElementById(divId).style.display='none';
-    }
+    
 </script>

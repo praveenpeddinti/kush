@@ -206,6 +206,41 @@ class AdminController extends Controller {
         echo CJSON::encode($obj);
     }
 
+    
+    public function actionInvoice() {
+        try {
+            $this->pageTitle="KushGhar-Invoice Management";
+            $this->render("invoice");
+        } catch (Exception $ex) {
+            error_log("#########Exception Occurred########" . $ex->getMessage());
+        }
+    }
+    
+    public function actionViewInvoice() {
+        try {
+            if (isset($_GET['userDetails_page'])) {
+                $totaluser = $this->kushGharService->getTotalInvoice($_GET['oNumber'],$_GET['invoiceNo'],$_GET['status']);
+                error_log("-----".$totaluser);
+                $startLimit = ((int) $_GET['userDetails_page'] - 1) * (int) $_GET['pageSize'];
+                $endLimit = $_GET['pageSize'];
+                if(count($totaluser)==0)
+                {error_log("---1--".count($totaluser));
+                 $obj=  array('status' => 'success', 'html' => 0, 'totalCount' => $totaluser);
+                }
+                else
+                {error_log("--2---".$totaluser);
+                $userDetails = $this->kushGharService->getAllInvoice($startLimit, $endLimit,$_GET['oNumber'],$_GET['invoiceNo'],$_GET['status']);
+                $renderHtml = $this->renderPartial('viewInvoice', array('userDetails' => $userDetails, 'totalCount' => $totaluser), true);
+                $obj = array('status' => 'success', 'html' => $renderHtml, 'totalCount' => $totaluser);
+               
+                }
+                 $renderScript = $this->rendering($obj);
+                echo $renderScript;
+            }
+        } catch (Exception $ex) {
+            error_log("#########Exception Occurred########" . $ex->getMessage());
+        }
+    }
     public function actionInviteStatus() {
         $email = $_POST['email'];
         
@@ -695,7 +730,9 @@ $this->pageTitle="KushGhar-Basic Info";
             error_log("#######Exception Occured#######". $ex->getMessage());
         }
        }
-       
+       /*
+        * Invoice 
+        */
     public function actionPrintInvoice(){
         try{
             $this->pageTitle="KushGhar-Admin Invoice Print";
@@ -711,4 +748,32 @@ $this->pageTitle="KushGhar-Basic Info";
             error_log("#######Exception Occured#######". $ex->getMessage());
         }
        }
+       
+       public function actionPayments() {
+        try {
+            $this->pageTitle="KushGhar-Payments";
+            $totaluser = $this->kushGharService->getTotalPayments();
+            $this->render("payments",array('totalCount' => $totaluser));
+        } catch (Exception $ex) {
+            error_log("#########Exception Occurred########" . $ex->getMessage());
+        }
+    }
+    
+    public function actionViewPayments(){
+        try {           
+                if (isset($_GET['userDetails_page'])) {
+                $totaluser = $this->kushGharService->getTotalPayments();
+                $startLimit = ((int) $_GET['userDetails_page'] - 1) * (int) $_GET['pageSize'];
+                $endLimit = $_GET['pageSize'];
+                $paymentDetails = $this->kushGharService->getAllPayments($startLimit, $endLimit);
+                $renderHtml = $this->renderPartial('viewPayments', array('userDetails' => $paymentDetails, 'totalCount' => $totaluser), true);
+                $obj = array('status' => 'success', 'html' => $renderHtml, 'totalCount' => $totaluser);
+                $renderScript = $this->rendering($obj);
+                echo $renderScript;
+            }
+        } catch (Exception $ex) {
+            error_log("######### Exception Occurred##########".$ex->getMessage());
+        }
+    }
+       
  }

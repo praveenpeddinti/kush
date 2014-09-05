@@ -101,8 +101,13 @@ $address;
     });
 });
 function ScheduleClick(){
+    var orderNo = <?php echo $OrderDetails['order_number']; ?>;
+    var CustId = <?php echo $OrderDetails['CustId']; ?>;
+    var ServiceId =<?php echo $OrderDetails['ServiceId']; ?>;
+    var Amount = <?php echo $OrderDetails['amount']; ?>;
+    
     if(validate()){
-    var data = "Id=" + $("#rowId").val() + "&vendorVals=" + $("#VendorValues").val();
+    var data = "Id=" + $("#rowId").val() + "&vendorVals=" + $("#VendorValues").val()+"&orderNo="+orderNo+"&CustId="+CustId+"&ServiceId="+ServiceId+"&Amount=" +Amount;
     $.ajax({
                 type: 'POST',
                 dataType: 'json',

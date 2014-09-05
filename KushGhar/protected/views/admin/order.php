@@ -108,6 +108,18 @@
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->
                 </div><!-- /.modal -->
+                <div id="myModalInvoicePrint" class="modal fade" >
+                    <div class="modal-dialog" style="width: 1000px">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h3 id="myModalLabel">Print the Invoice</h3>
+                            </div>
+                            <div class="modal-body" id="myModalInvoicePrintDiv" style="padding:15px;">
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
                 <div id="myModalReview" class="modal fade" >
                     <div class="modal-dialog" style="width: 800px">
                         <div class="modal-content">
@@ -145,6 +157,7 @@
            var id1=$(this).attr('id');
             var id = $(this).attr('data-id');
             var ServiceId = $(this).attr('service-id');
+            var CustId = $(this).attr('cust_id');
 
             var vendors = $(this).attr('vendors');
             var Type ="orders";
@@ -158,8 +171,31 @@
             else if(id1.indexOf("Review") > -1){
                 review(Number(id));
             }
+            else if(id1.indexOf("invoice") > -1){
+                invoice(Number(id),CustId,ServiceId);
+            }
         });
     });
+    
+    function invoice(OrderId,CustId,ServiceId){
+        var data = "OrderId=" + OrderId+"&CustId="+CustId+"&ServiceId="+ServiceId;
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: '<?php echo Yii::app()->createAbsoluteUrl("/admin/printInvoice"); ?>',
+                data: data,
+                success: function(data) {
+                    $("#myModalInvoicePrint").modal({ backdrop: 'static', keyboard: false,show:false });
+                    $("#myModalInvoicePrintDiv").html(data.html);
+                    $('#myModalInvoicePrint').modal('show');
+                },
+                error: function(data) { 
+                   alert("Error occured.please try again");
+
+                }
+            });
+        
+    }
     function print(id,vendors){
         var data = "Id=" + id+"&vendors="+vendors;
             $.ajax({

@@ -102,14 +102,14 @@ if($serviceType == 3) {?>
             if (($('#OrderRescheduleForm_StartTime').val() == '')) {
                 $("#OrderRescheduleForm_StartTime_em_").show();
                 $("#OrderRescheduleForm_StartTime_em_").addClass('errorMessage');
-                $("#OrderRescheduleForm_StartTime_em_").text("Please select Start Time");
+                $("#OrderRescheduleForm_StartTime_em_").text("Please select Event Start Time");
                 return false;
             }
             if (($('#OrderRescheduleForm_EndTime').val() == '')) {
                 $("#OrderRescheduleForm_StartTime_em_").hide();
                 $("#OrderRescheduleForm_EndTime_em_").show();
                 $("#OrderRescheduleForm_EndTime_em_").addClass('errorMessage');
-                $("#OrderRescheduleForm_EndTime_em_").text("Please select End Time");
+                $("#OrderRescheduleForm_EndTime_em_").text("Please select Event End Time");
                 return false;
             }
             var stDate = $('#OrderRescheduleForm_StartTime').val();
@@ -119,13 +119,13 @@ if($serviceType == 3) {?>
             if(strtPrev==stDate){
                 $("#OrderRescheduleForm_StartTime_em_").show();
                 $("#OrderRescheduleForm_StartTime_em_").addClass('errorMessage');
-                $("#OrderRescheduleForm_StartTime_em_").text("Please select another date to Service Date");
+                $("#OrderRescheduleForm_StartTime_em_").text("Event Start Time can only be configured post 2 days from current date");
                 return false;
             }
             if(endprev==enDate){
                 $("#OrderRescheduleForm_EndTime_em_").show();
                 $("#OrderRescheduleForm_EndTime_em_").addClass('errorMessage');
-                $("#OrderRescheduleForm_EndTime_em_").text("Please select another date to Service Date");
+                $("#OrderRescheduleForm_EndTime_em_").text("Event End Time can only be configured post 2 days from current date");
                 return false;
             }
             var stDateres1 = stDate.split(" ");
@@ -137,7 +137,7 @@ if($serviceType == 3) {?>
             {
                 $("#OrderRescheduleForm_StartTime_em_").show();
                 $("#OrderRescheduleForm_StartTime_em_").addClass('errorMessage');
-                $("#OrderRescheduleForm_StartTime_em_").text("Service Date can only be configured post 2 days from current date ");
+                $("#OrderRescheduleForm_StartTime_em_").text("Event Start Time can only be configured post 2 days from current date ");
                 return false;
             }
             var serviceEndDate = new Date(eTime[2],eTime[1]-1,eTime[0]);
@@ -145,7 +145,7 @@ if($serviceType == 3) {?>
             {
                 $("#OrderRescheduleForm_EndTime_em_").show();
                 $("#OrderRescheduleForm_EndTime_em_").addClass('errorMessage');
-                $("#OrderRescheduleForm_EndTime_em_").text("Service Date can only be configured post 2 days from current date");
+                $("#OrderRescheduleForm_EndTime_em_").text("Event End Time can only be configured post 2 days from current date");
                 return false;
             }
             else

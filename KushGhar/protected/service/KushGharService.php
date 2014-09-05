@@ -780,5 +780,18 @@ class KushGharService {
         return OrderReviews::model()->getReviewDetails($OId);
     }
     
+    /*
+     * @Invoice details
+     */
+    public function getInvoiceDetailsMaxId(){
+        return InvoiceDetails::model()->getInvoiceDetailsMaxId();
+    }
+    
+    public function storeInvoiceDetails($CustId,$ServiceId,$OrderNo,$Amount,$InvoiceNo){
+        return InvoiceDetails::model()->storeInvoiceDetails($CustId,$ServiceId,$OrderNo,$Amount,$InvoiceNo);
+    }
+    public function getInvoiceDetails($OrderId){
+        return InvoiceDetails::model()->getInvoiceDetails($OrderId);
+    }
     
 } ?>

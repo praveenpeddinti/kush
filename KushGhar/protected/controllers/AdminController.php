@@ -250,7 +250,7 @@ $this->pageTitle="KushGhar-Basic Info";
     }
     
     public function actionOrder() {
-        try {
+        try {error_log("------enter order1---");
             
             //$orderDetails = $this->kushGharService->getOrderDetailsinAdmin();
             $this->pageTitle="KushGhar-Orders";
@@ -262,7 +262,7 @@ $this->pageTitle="KushGhar-Basic Info";
     }
     
     public function actionNewOrder() {
-        try {
+        try {error_log("------enter order---");
             if (isset($_GET['userDetails_page'])) {
                 $totaluser = $this->kushGharService->getTotalOrders($_GET['serviceType'],$_GET['orderNo'],$_GET['status']);
                 $startLimit = ((int) $_GET['userDetails_page'] - 1) * (int) $_GET['pageSize'];
@@ -660,7 +660,16 @@ $this->pageTitle="KushGhar-Basic Info";
     }
     public function actionOrderScheduleStatus(){
         $status = 1;
+        $invoiceId = $this->kushGharService->getInvoiceDetailsMaxId();
+        if(empty($invoiceId['id'])){
+            $invoiceNumber ="KushGhar/14-15/1";
+        }else {
+            $NewinvoiceId=$invoiceId['id']+1;
+            $invoiceNumber ="KushGhar/14-15/".$NewinvoiceId;
+        }
+        
         $changeUserStatus = $this->kushGharService->sendorderScheduleStatus($_POST['Id'], $status,$_POST['vendorVals']);
+        $storeInvoiceOrder = $this->kushGharService->storeInvoiceDetails($_POST['CustId'],$_POST['ServiceId'],$_POST['orderNo'],$_POST['Amount'],$invoiceNumber);
         $obj = array('status' => 'error', 'data' => '', 'error' => $changeUserStatus);
         echo CJSON::encode($obj);
     }
@@ -673,6 +682,22 @@ $this->pageTitle="KushGhar-Basic Info";
             $customerDetails = $this->kushGharService->getCustomerDetails($custId);
             $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($custId);
             $renderHtml=  $this->renderPartial("printOrder",array("customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails,"serviceDetails"=>$serviceDetails,"vendors"=>$vendorDetails,"OrderNumber"=>$_POST['Id']),true);
+            $obj=array('status'=>'success','html'=>$renderHtml);
+            $renderScript=  $this->rendering($obj);
+            echo $renderScript;
+        } catch (Exception $ex) {
+            error_log("#######Exception Occured#######". $ex->getMessage());
+        }
+       }
+       
+    public function actionPrintInvoice(){
+        try{
+            $this->pageTitle="KushGhar-Admin Invoice Print";
+            $InvoiceDetails=  $this->kushGharService->getInvoiceDetails($_POST['OrderId']);
+            $customerDetails = $this->kushGharService->getCustomerDetails($_POST['CustId']);
+            $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($_POST['CustId']);
+            $renderHtml=  $this->renderPartial("printInvoice",array("customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails,"InvoiceDetails"=>$InvoiceDetails),true);
+            //$renderHtml=  $this->renderPartial("printInvoice",array("customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails),true);
             $obj=array('status'=>'success','html'=>$renderHtml);
             $renderScript=  $this->rendering($obj);
             echo $renderScript;

@@ -41,6 +41,7 @@
                                         <input id="userview_<?php echo $row['id']; ?>" data-id="<?php echo $row['order_number']; ?>" service-id="<?php echo $row['ServiceId']; ?>" vendors="<?php echo $row['assign_vendors']; ?>" type="button" value=" " class="icon_view" alt="View" title="View"/>
                                         <?php if($row['status']==1 && $row['ServiceId']==1) {?>
                                         <i class="i_print_icon"><input id="print_<?php echo $row['id']; ?>" data-id="<?php echo $row['order_number']; ?>" vendors="<?php echo $row['assign_vendors']; ?>" alt="Print Order" type="button" title="Print Order"></i>
+                                        <i class="i_invoice_icon"><input id="invoice_<?php echo $row['id']; ?>" data-id="<?php echo $row['order_number']; ?>" cust_id="<?php echo $row['CustId']; ?>" service-id="<?php echo $row['ServiceId']; ?>" alt="invoice" type="button" title="invoice"></i>
                                         <?php } ?>
                                         <?php if($row['status']==3) {?>
                                         <input id="Review_<?php echo $row['id']; ?>" data-id="<?php echo $row['order_number']; ?>" vendors="<?php echo $row['assign_vendors']; ?>" class="icon_edit" type="button" title="Write review on behalf of customer"></i>

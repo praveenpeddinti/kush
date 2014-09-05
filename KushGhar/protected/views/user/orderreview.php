@@ -1,5 +1,3 @@
-<link href="../../../css/jRating.jquery.css" rel="stylesheet" type="text/css"/>
-<script src="../../../js/jRating.jquery.js" type="text/javascript"></script>
 <?php 
  $reviewForm=$this->beginWidget('CActiveForm', array(
                                                                 'id'=>'review-form',
@@ -62,20 +60,11 @@
 <br>
     <div class="row-fluid" id="ques5">
         <div class=" span2">
-            <?php echo $reviewForm->label($model, '<b> Rating</b>'); ?></div>
-        <div class="span6">
-            <div class="input select rating-f">
-            <select id="Rating1" name="rating">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
-        </div>
-            <?php // echo $reviewForm->error($model, 'Rating'); ?>
-        </div>
+            <?php echo $reviewForm->label($model, '<abbr title="required">*</abbr><b> Rating</b>'); ?></div>
+            <div class="basic" data-average="0" data-id="1" id="rating2" data-rate="0"></div>
+            <?php echo $reviewForm->error($model, 'Rating'); ?>
     </div>
+
 <br>
     <div class="row-fluid" id="ques6">
         <div class=" span12">
@@ -116,10 +105,7 @@
                     $("#OrderReviewForm_error_em_").text(data.error);
                     $("#OrderReviewForm_error_em_").fadeOut(3000);
                     setTimeout(function() {
-                        if(sess=='Customer')
-                            window.location.href = '<?php echo Yii::app()->request->baseUrl; ?>/user/order';
-                        else if(sess=='Admin'){
-                            window.location.href ='<?php echo Yii::app()->request->baseUrl; ?>/admin/order';
+                            $("#myModalReview").modal('hide');
                     }
                     }, 3000);  
                     
@@ -260,15 +246,21 @@
             $("#OrderReviewForm_quality_of_service_em_").text("Please enter your rating for the Trash Disposal");
             return false;
         } }
+        if($("#OrderReviewForm_Rating").val()==''){
+            $("#OrderReviewForm_quality_of_service_em_").hide();
+            $("#OrderReviewForm_rate_us_em_").hide();
+            $("#OrderReviewForm_Rating_em_").show();
+            $("#OrderReviewForm_Rating_em_").addClass('errorMessage');
+            $("#OrderReviewForm_Rating_em_").text("Please rate overall experience with KushGhar"); 
+            return false;
+        }
         if (($('#OrderReviewForm_Feedback').val() == '')) {
             $("#OrderReviewForm_quality_of_service_em_").hide();
             $("#OrderReviewForm_rate_us_em_").hide();
+            $("#OrderReviewForm_Rating_em_").hide();
             $("#OrderReviewForm_Feedback_em_").show();
             $("#OrderReviewForm_Feedback_em_").addClass('errorMessage');
             $("#OrderReviewForm_Feedback_em_").text("Please enter your Comments or Suggestions");
-            if($("#OrderReviewForm_Rating").val()==''){
-                $("#OrderReviewForm_Rating").val("3");
-            }
             return false;
         }
         if($("#chkDisclaimer").is(':checked')!=true){
@@ -280,21 +272,22 @@
         }
         else
         {
-            if($("#OrderReviewForm_Rating").val()==''){
-                $("#OrderReviewForm_Rating").val("3");
-            }
+            $("#OrderReviewForm_Rating_em_").hide();
             $("#OrderReviewForm_Disclaimer_em_").hide();
             return true;
         }
     }
     $(document).ready(function() { 
-        $('#Rating1').barrating({ 
-            initialRating:3,
-            showSelectedRating:false,
-            onSelect:function (value){
-                $("#OrderReviewForm_Rating").val(value);
-            }
+        $('#rating2').jRating({
+            showRateInfo:true,
+            canRateAgain:true,
+            rateMax : 5,
+            nbRates : 100,
+            decimalLength :1,
+            onClick : function(element,rate) {
+                var ratingVal=Math.ceil(rate);
+                $("#OrderReviewForm_Rating").val(ratingVal);
+        }
         });
     });
-    
 </script>

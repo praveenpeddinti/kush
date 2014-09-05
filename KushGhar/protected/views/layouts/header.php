@@ -26,15 +26,14 @@
         <![endif]-->
         <!-- Fav and touch icons -->
         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.datetimepicker.js"></script>
-        
         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/common.js"> </script>
         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrap.js"> </script>
-         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrapSwitch.js"> </script>
-         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.simplePagination.js"> </script>
-         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/mobiscroll.custom-2.4.4.min.js"> </script>
+        <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrapSwitch.js"> </script>
+        <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.simplePagination.js"> </script>
+        <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/mobiscroll.custom-2.4.4.min.js"> </script>
         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/date.js"></script>
-         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.barrating.js"></script>
-         <script>
+        <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jRating.jquery.js"></script>
+        <script>
             // tooltip demo
             $('.tooltiplink').tooltip({
 

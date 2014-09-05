@@ -158,11 +158,11 @@
             var id = $(this).attr('data-id');
             var ServiceId = $(this).attr('service-id');
             var CustId = $(this).attr('cust_id');
-
+            var status=$(this).attr('status-id');
             var vendors = $(this).attr('vendors');
             var Type ="orders";
             if(id1.indexOf("userview") > -1){
-                statusChangeUser(Number(id), Number(ServiceId), vendors,Type);
+                statusChangeUser(Number(id), Number(ServiceId), vendors,Type,status);
             }
             else if(id1.indexOf("print") > -1){
            
@@ -215,8 +215,8 @@
             });
         
     }
-    function statusChangeUser(rowNos, ServiceId, vendors,Type) {
-         var data = "Id=" + rowNos + "&ServiceId=" + ServiceId+ "&Vendors=" + vendors+ "&Type=" + Type;
+    function statusChangeUser(rowNos, ServiceId, vendors,Type,Status) {
+         var data = "Id=" + rowNos + "&ServiceId=" + ServiceId+ "&Vendors=" + vendors+ "&Type=" + Type+"&status="+Status;
         
             $.ajax({
                 type: 'POST',

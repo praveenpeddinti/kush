@@ -1,3 +1,5 @@
+<html>
+<body>
 <table width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#262626" align="center">
     <tbody><tr>
             <td valign="top">
@@ -25,21 +27,42 @@
                                 <table width="630" cellspacing="0" cellpadding="0" border="0" align="center">
                                     <tbody>
                                     <td width="630" valign="top" align="left" style="font-family: Helvetica, Arial, sans-serif; font-size: 12px; line-height: 18px;">
-                                        <!--                <p style="font-size:16px;line-height:1.7;color:#666;padding:5px;font-weight:bold">{--COMPANYLOGO--}</p>color: #757887;-->
-                                        <!--<p style="font-size:14px;line-height:1.7;color:#666;font-weight:bold">Date: {--DATE--}</p>-->
-                                        <p style="font-size:14px;line-height:1.7;color:#666;font-weight:bold">Hi <?php echo $Name;?>, </p>  
-                   
-                                        <p style="font-size:14px;line-height:1.7;">Welcome to KushGhar.</p>
-                                        <p style="font-size:14px;line-height:1.7;">Your Credentials are</p>
-                                        <p style="font-size:14px;line-height:1.7;">User ID: <?php echo $Email;?></p>
-                                        <p style="font-size:14px;line-height:1.7;">Password: <?php echo $password;?></p>
+                                       <p style="font-size:14px;line-height:1.7;color:#666;font-weight:bold">Hi, </p>  
+                                        <p style="font-size:14px;line-height:1.7;">
+                                            New vendor invited details as follows
+                                        </p>
+                                        <?php if($VendorType==1) {?>
+                                            <p style="font-size:14px;line-height:1.7;">
+                                            Customer Name: <?php echo $Name;?>
+                                        </p>
+                                        <p style="font-size:14px;line-height:1.7;">
+                                            Email: <?php echo $EmailID;?>
+                                        </p>
+                                        <p style="font-size:14px;line-height:1.7;">
+                                            Phone: <?php echo $Phone;?>
+                                        </p>
+                    
+                                        <?php }
+                                        else if($VendorType==2){ ?>
                                         
-                                        <p style="font-size:14px;line-height:1.7;color:#666;"> KushGhar - Making people's lives better, one home at a time.</p>
-
-                                        
+                                        <p style="font-size:14px;line-height:1.7;">
+                                            Customer Name: <?php echo $Name;?>
+                                        </p>
+                                        <p style="font-size:14px;line-height:1.7;">
+                                            Agency Name: <?php echo $AgencyName;?>
+                                        </p>
+                                        <p style="font-size:14px;line-height:1.7;">
+                                            Email: <?php echo $EmailID;?>
+                                        </p>
+                                        <p style="font-size:14px;line-height:1.7;">
+                                            Phone: <?php echo $Phone;?>
+                                        </p>
+                                        <?php } ?> 
                                         <p style="font-size:16px;line-height:1.7;">
-                                            Regards,<br>
-                                            KushGhar.</p>
+                                            Thank you,<br/>
+                                            KushGhar.    
+                                        </p>
+
                                     </td>
                         </tr>
                         <tr>
@@ -76,10 +99,7 @@
             </td>
         </tr>
     </tbody></table><!-- END OF EMAIL WRAPPER -->
-
-</td>
-</tr>
-</tbody></table>
-
+    </body>
+    </html>
 
 

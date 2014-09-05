@@ -491,6 +491,21 @@ class SiteController extends Controller {
                 }
                 }
                 if ($result == "success") {
+                    $mess = "Welcome to KushGhar."."\r\n Your Credentials are"."\r\n UserID : " . $model->Email . "\r\n Password : ".$model->Password."\r\n\n";
+                    $Name=$model->FirstName.' '.$model->LastName;
+                    $to = $model->Email;
+                    $to1 = 'praveen.peddinti@gmail.com';
+                    $Logo = YII::app()->params['SERVER_URL'] . "/images/color_logo.png";
+                    $subject = 'Login Details';
+                    $subjectAdmin='New Vendor Registered Details';
+                    $messageview="VendorUserMail";
+                    $messageview1="VendorInvitationMailToKGTeam";
+                    $employerEmail = "no-reply@kushghar.com";
+                    $params = array('Logo' => $Logo, 'Email' =>$to,'Message'=>$mess,'Name'=>$Name,'password'=>$model->Password);
+                    $params1=array('Logo'=>$Logo,'Email'=>$to1,'Name'=>$Name,'EmailID'=>$to,'Phone'=>$model->Phone,'AgencyName'=>$model->AgencyName,'VendorType'=>$model->vendorType);
+                    $sendMailToUser=new CommonUtility;
+                    $sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
+                    $sendMailToUser->actionSendmail($messageview1, $params1, $subjectAdmin, $to1, $employerEmail);
                     $message = array("VendorRegistrationForm_error" => 'Registration successfully.');
                     $obj = array('status' => 'success', 'data' => $message, 'error' => '');
                 } else {

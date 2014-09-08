@@ -26,7 +26,9 @@
                                             <td nowrap>
                                             <input id="user_<?php echo $row['id']; ?>" data-id="<?php echo $row['id']; ?>" data-status="<?php echo $row['Status']; ?>" type="button" value=" " class="icon_notinvite" alt="Paid" title="Paid"/>
                                             </td>
-                                            <?php }?>
+                                            <?php }else {?>
+                                            <td nowrap></td>
+                                           <?php }?>
                                                     </tr>
         <?php }
     //}

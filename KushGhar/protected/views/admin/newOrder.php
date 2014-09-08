@@ -60,7 +60,7 @@
                                         <i class="i_print_icon"><input id="print_<?php echo $row['id']; ?>" data-id="<?php echo $row['order_number']; ?>" vendors="<?php echo $row['assign_vendors']; ?>" alt="Print Order" type="button" title="Print Order"></i>
                                         <?php } ?>
                                         <?php if($row['status']==1){ ?>
-                                        <i class="i_invoice_icon"><input id="invoice_<?php echo $row['id']; ?>" data-id="<?php echo $row['order_number']; ?>" cust_id="<?php echo $row['CustId']; ?>" service-id="<?php echo $row['ServiceId']; ?>" alt="Print Invoice" type="button" title="invoice"></i>
+                                        <i class="i_invoice_icon"><input id="invoice_<?php echo $row['id']; ?>" data-id="<?php echo $row['order_number']; ?>" cust_id="<?php echo $row['CustId']; ?>" service-id="<?php echo $row['ServiceId']; ?>" alt="Print Invoice" type="button" title="Print Invoice"></i>
                                         <?php }?>
                                         <?php if($row['status']==3) {?>
                                         <input id="Review_<?php echo $row['id']; ?>" data-id="<?php echo $row['order_number']; ?>" vendors="<?php echo $row['assign_vendors']; ?>" class="icon_edit" type="button" title="Write review on behalf of customer"></i>

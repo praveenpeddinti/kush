@@ -51,7 +51,7 @@ $address;
                                 </td>
                                 <td valign="top" style="padding-left:5px;"><label>Amount(Rs)</label></td>
                             </tr>
-                            <tr style="height:150px">
+                            <tr style="height:250px">
                                 <td valign="top" style="width: 60%;padding-left:5px">
                                     House cleaning                       
                                 </td>
@@ -86,8 +86,8 @@ $address;
                     
                     
                     <table border="1" style="width: 100%" cellpadding="0" cellspacing="0">
-                            <tr>
-                                <td colspan="5" style="padding-left:5px;"><label><b>*</b>
+                            <tr style="height:100px">
+                                <td valign="bottom" colspan="5" style="padding-left:5px;"><label><b>*</b>
                                 This is a system-generated document that does not require signature..</label></td>
                             </tr>
                             <tr>

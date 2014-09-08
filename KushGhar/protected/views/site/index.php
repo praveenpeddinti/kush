@@ -20,7 +20,7 @@
                                     </ol>
                                     <!-- Carousel items -->
                                     <div class="carousel-inner">
-                                        <div class="active item"><a href="/user/registration" style="border:0px; text-decoration:none;"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/b1.jpg" ></a></div>
+                                        <div class="active item"><a href="/site/registration" style="border:0px; text-decoration:none;"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/b1.jpg" ></a></div>
                                         <div class="item"><a href="http://gadgets.ndtv.com/internet/features/kushghar-household-help-is-only-a-click-away-547111" target="_blank"  style="border:0px; text-decoration:none;"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/b3.jpg" ></a></div>
                                         <div class="item"><a href="http://gadgets.ndtv.com/internet/news/a-crowdfunding-project-to-make-domestic-chores-simple-and-help-the-underprivileged-543598" target="_blank" style="border:0px; text-decoration:none;"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/b2.jpg" ></a></div>
                                         <div class="item" style="height:250px">

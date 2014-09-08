@@ -1,4 +1,4 @@
-<?php
+<?php 
 $address;
  if($customerAddressDetails['address_line1']=='')
      $addressline1="";
@@ -53,7 +53,11 @@ $address;
                             </tr>
                             <tr style="height:250px">
                                 <td valign="top" style="width: 60%;padding-left:5px">
-                                    House cleaning                       
+                                    <?php if($InvoiceDetails['ServiceId']=='1'){$serviceName='House Cleaning';}
+                                            if($InvoiceDetails['ServiceId']=='2'){$serviceName='Car Wash';}
+                                            if($InvoiceDetails['ServiceId']=='3'){$serviceName='Stewards Services';}
+                                            echo $serviceName;
+                                           ?>
                                 </td>
                                 <td valign="top" style="padding-left:5px;"><?php echo $InvoiceDetails['Amount'];?></td>
                             </tr>

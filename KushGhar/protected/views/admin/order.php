@@ -63,7 +63,7 @@
                                     </div>
                                 </div>
                                 <table id="userTable" class="table table-hover">
-                                    <thead><tr><th nowrap>Order #</th><th nowrap>Service Name</th><th>Status</th><th nowrap>Service Date</th><th><center>Amount</center></th><th>Actions</th></tr></thead>
+                                    <thead><tr><th nowrap>Order #</th><th nowrap>Service</th><th>Status</th><th nowrap>Service Date</th><th><center>Amount</center></th><th>Actions</th></tr></thead>
                                     <tbody id="abusedWords_tbody">
                                     </tbody>
                                 </table>

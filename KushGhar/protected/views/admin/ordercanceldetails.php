@@ -67,14 +67,16 @@
             $("#OrderForm_error_em_").removeClass('errorMessage');
             $("#OrderForm_error_em_").addClass('alert alert-success');
             $("#OrderForm_error_em_").text(data.error);
-            $("#OrderForm_error_em_").fadeOut(60000, "");
-            activeFormHandler2(data, rowNos,'Cancel')
-            $('#myModalOrderClose').modal('hide');
+            $("#OrderForm_error_em_").fadeOut(3000, "");
+            setTimeout(function() {
+                $('#myModalOrderClose').modal('hide');
+            }, 3000);
+            activeFormHandler2(data, $("#OrderForm_OrderNo").val(),'Close')
         }
     } 
     function activeFormHandler2(data, rowNos,value) {
-        if (value == 'Cancel') {
-            $('#status_' + rowNos).text('Cancel');
+        if (value == 'Close') {
+            $('#status_' + rowNos).text('Close');
         } 
     }
     

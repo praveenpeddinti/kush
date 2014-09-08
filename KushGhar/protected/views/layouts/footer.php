@@ -140,7 +140,7 @@ input.gsc-input {
             window.location.href ='<?php echo Yii::app()->request->baseUrl; ?>/user/homeService';
         }
         else if(sess=='Admin'){
-            window.location.href ='<?php echo Yii::app()->request->baseUrl; ?>/admin/dashboard';
+            window.location.href ='<?php echo Yii::app()->request->baseUrl; ?>/admin/order';
         }
         else if(sess=='Vendor'){
             window.location.href ='<?php echo Yii::app()->request->baseUrl; ?>/vendor/vendorBasicInformation';

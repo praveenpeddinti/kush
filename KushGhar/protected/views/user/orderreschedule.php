@@ -165,7 +165,7 @@ if($serviceType == 3) {?>
                     $("#OrderRescheduleForm_error_em_").text(data.error);
                     $("#OrderRescheduleForm_error_em_").fadeOut(3000);
                     setTimeout(function() {
-                        window.location.href = '<?php echo Yii::app()->request->baseUrl; ?>/user/order';
+                        $('#myModalforgot1').modal('hide');
                     }, 3000);   
         }
         if(data.status == 'error'){

@@ -122,7 +122,7 @@
             <center><h3 style="padding: 0px">Service Schedule</h3></center></div>
             <table border="1" style="width: 100%" cellpadding="0" cellspacing="0">
                 <tr><td align="left" style="width: 30%"><b>Service requested date:</b></td><td><?php echo $ServiceDate;?></td></tr>
-                <?php if($status==1||$status==3){ ?>
+                <?php if($status=='1'||$status=='3'){ ?>
                 <tr><td colspan="2" align="left"><b>Team members:</b></td></tr>
                 <tr>
                     <td colspan="2">

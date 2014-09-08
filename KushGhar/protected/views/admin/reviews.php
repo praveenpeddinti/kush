@@ -169,8 +169,8 @@ $(document).ready(function() {
     
     
     function statusChangeUser(rowNos, ServiceId, vendors,Type) {
-         var data = "Id=" + rowNos + "&ServiceId=" + ServiceId+ "&Vendors=" + vendors+ "&Type=" + Type;
-           $.ajax({
+         var data = "Id=" + rowNos + "&ServiceId=" + ServiceId+ "&Vendors=" + vendors+ "&Type=" + Type+"&status=3";
+        $.ajax({
                 type: 'POST',
                 dataType: 'json',
                 url: '<?php echo Yii::app()->createAbsoluteUrl("/admin/viewData"); ?>',

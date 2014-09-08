@@ -38,9 +38,10 @@ class InviteForm extends CFormModel
                     array('FirstName, LastName', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain alphabet and space'),
                  array('Email', 'email'),),
                 ),
+                //array('Phone', 'numerical', 'integerOnly'=>true),
+                //array('Phone', 'length', "min" => "10"),
+                array('Phone','numerical','integerOnly'=>true,'min'=>1111111111,'tooSmall'=>'{attribute} is too short(minimum is 10 characters)',),
                 array('City', 'required', 'message' => 'Please select {attribute}.'),
-                array('Phone', 'numerical', 'integerOnly'=>true),
-                array('Phone', 'length', "min" => "10"),
                 array('InviteType', 'ext.YiiConditionalValidator.YiiConditionalValidator',
                 'if' => array(
                 array('InviteType', 'compare', 'compareValue'=>"1")),

@@ -35,8 +35,9 @@ class PaymentInfoForm extends CFormModel {
             array(' expiryMonth, expiryYear', 'required', 'message' => 'Please select Expiry Date'),
             array('cardType', 'required', 'message' => 'Please select {attribute}.'),
             array('FirstName, LastName', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain alphabet and space'),
-            array('Phone', 'numerical', 'integerOnly'=>true),
-            array('Phone', 'length', "min" => "10"),
+            //array('Phone', 'numerical', 'integerOnly'=>true),
+            //array('Phone', 'length', "min" => "10"),
+            array('Phone','numerical','integerOnly'=>true,'min'=>1111111111,'tooSmall'=>'{attribute} is too short(minimum is 10 characters)',),
             array('cardType, cardHolderName, cardNumber, expiryMonth, expiryYear, FirstName, LastName, Phone, Address1, Address2, Id', 'safe'),
         );
     }

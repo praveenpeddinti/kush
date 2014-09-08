@@ -27,8 +27,9 @@ class RegistrationForm extends CFormModel {
             array('Email', 'email'),
             // Phone min 10 digits
             
-            array('Phone', 'numerical', 'integerOnly'=>true),
-            array('Phone', 'length', "min" => "10"),
+            //array('Phone', 'numerical', 'integerOnly'=>true),
+            //array('Phone', 'length', "min" => "10"),
+            array('Phone','numerical','integerOnly'=>true,'min'=>1111111111,'tooSmall'=>'{attribute} is too short(minimum is 10 characters)',),
             // password needs to be authenticated
             //array('Password', 'authenticate'),
             array('Password', 'required', 'on' => 'insert'),

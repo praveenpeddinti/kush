@@ -42,8 +42,9 @@ class CustomerDetailsForm extends CFormModel {
 
             // Email has to be a valid email address
             array('Email', 'email'),
-            array('Phone,AlternatePhone', 'numerical', 'integerOnly'=>true),
-            array('Phone,AlternatePhone', 'length', "min" => "10"),
+            //array('Phone,AlternatePhone', 'numerical', 'integerOnly'=>true),
+            //array('Phone,AlternatePhone', 'length', "min" => "10"),
+            array('Phone, AlternatePhone','numerical','integerOnly'=>true,'min'=>1111111111,'tooSmall'=>'{attribute} is too short(minimum is 10 characters)',),
             array('City', 'match', 'pattern' => '/^[a-zA-Z0-9\s]+$/', 'message' => '{attribute} can only contain alphabet and digits'),
             array('PinCode', 'numerical', 'integerOnly'=>true),
             //array('cardNumber', 'length', 'min'=>6),

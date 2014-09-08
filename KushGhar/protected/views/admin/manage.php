@@ -150,7 +150,7 @@
                 <div class="asideBG">
                     <div class="left_nav">
                         <ul class="main">
-                            <li class="active"><a href="#" ><span class="KGaccounts"> </span></a></li>
+                            <li class="active"  title="Account"><a href="#" ><span class="KGaccounts"> </span></a></li>
                         </ul>
                     </div>
                     <div class="sub_menu ">

@@ -150,7 +150,7 @@ label, abbr[title], abbr[data-original-title]{font-family:MuseoSlab500;}
 aside{width:300px; position:absolute; top:0; bottom:0; }
 .asideBG{}
 aside:after{ position:absolute; top:0; bottom:0;left:0; content:"" ;background:url(../images/aside_bg.png) repeat left top; border-right:1px solid #e1e1e1; width:300px;z-index:-1 }
-article{margin-left:300px;min-height: 480px}
+article{margin-left:300px;min-height: 525px}
 .left_nav{ width:100px;float:left}
 .left_nav ul.main{ display:block; min-height:100%; margin:0; list-style:none; padding:0;z-index:6;}
 .left_nav ul.main li{  margin:0; padding:0; display:block; z-index:11;border-bottom:2px solid #444b4c   }
@@ -475,7 +475,7 @@ ul.header_profile{ list-style:none; margin:0; padding:0}
 .icon_review{background:url(../images/review.png) no-repeat left top; width:16px; height:16px; border:0; cursor:pointer}
 .icon_edit{background:url(../images/edit.gif) no-repeat left top; width:16px; height:16px; border:0; cursor:pointer}
 .i_print_icon input[type="button"]{ background:url(../images/printer.png) no-repeat left top; width:16px; height:16px; border:0; cursor:pointer}
-.i_invoice_icon input[type="button"]{ background:url(../images/account_and_control.png) no-repeat left top; width:21px; height:25px; border:0; cursor:pointer}
+.i_invoice_icon input[type="button"]{ background:url(../images/invoice_icon.png) no-repeat left top; width:16px; height:16px; border:0; cursor:pointer}
 .modal-header p{margin:0px;padding:5px;line-height:15px;font-size:14px;color:#333;text-align:center;}
 .modal-header p.t_left{ text-align: left;}
 .errorMessageFont{color: #F7682A;margin-top: -5px;}

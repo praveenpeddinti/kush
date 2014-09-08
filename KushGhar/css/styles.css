@@ -469,7 +469,7 @@ ul.header_profile{ list-style:none; margin:0; padding:0}
 .nav > li > a:hover.vendor_b{ background: none;}
 .icon_delete{background:url(../images/delete.png) no-repeat left top; width:16px; height:16px; border:0; cursor:pointer}
 .icon_inactive{background:url(../images/in_active_user.png) no-repeat left top; width:16px; height:16px; border:0; cursor:pointer}
-.icon_notinvite{background:url(../images/not_invite.png) no-repeat left top; width:16px; height:16px; border:0; cursor:pointer}
+.icon_notinvite{background:url(../images/active_user.png) no-repeat left top; width:16px; height:16px; border:0; cursor:pointer}
 .icon_invite{background:url(../images/invite.png) no-repeat left top; width:16px; height:16px; border:0; cursor:pointer}
 .icon_reinvite{background:url(../images/reinvite.png) no-repeat left top; width:16px; height:16px; border:0; cursor:pointer}
 .icon_review{background:url(../images/review.png) no-repeat left top; width:16px; height:16px; border:0; cursor:pointer}

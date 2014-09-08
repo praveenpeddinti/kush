@@ -805,6 +805,10 @@ class KushGharService {
         return InvoiceDetails::model()->getInvoiceDetails($OrderId);
     }
     
+    public function getPaidInvoice($id, $val) {
+        return InvoiceDetails::model()->getPaidInvoice($id, $val);
+    }
+    
     /*
      * Payment details for Invoice
      */

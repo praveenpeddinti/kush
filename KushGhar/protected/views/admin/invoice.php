@@ -1,57 +1,34 @@
 <script type="text/javascript">
     
-    
-    function inviteUser(rowNos, status,email) {
-        var data = "Id=" + rowNos + "&status=" + status+ "&email=" + email;
-            
-            $.ajax({
-                type: 'POST',
-                dataType: 'json',
-                url: '<?php echo Yii::app()->createAbsoluteUrl("/admin/inviteStatus"); ?>',
-                data: data,
-                success: function(data) {
-                    //scrollPleaseWaitClose('InviteInfoSpinLoader');
-                    $('#message').show();
-                    $("#message").addClass('alert alert-success');
-                    $("#message").text('Invitation sent successfully.');
-                    $("#message").fadeOut(6000, "");
-                    //$('#usera_' + rowNos).remove();
-                    activeFormHandler2(data, status, rowNos);
-                    
-                },
-                error: function(data) { // if error occured
-                }
-            });
-    }
-
     function statusChangeUser(rowNos, status) {
-        //alert(status);
-        var uname = $("#userName").val();
-        var phone = $("#phone").val();
+        var oNumber = $("#orderNumber").val();
+        var invoiceNo = $("#invoiceNo").val();
         var status1 = $("#status").val();
-        if (status == 1) {
-            var statusData = 'Do you want to delete?';
-        } 
+        
+        //if (status == 1) {
+            var statusData = 'Do you want to Paid?';
+        //} 
         /*else {
             var statusData = 'Do you want to change Inactive to Active?';
         }*/
         var r = confirm(statusData);
         if (r == true) {
             var data = "Id=" + rowNos + "&status=" + status;
-            //alert(data);
             $.ajax({
                 type: 'POST',
                 dataType: 'json',
-                url: '<?php echo Yii::app()->createAbsoluteUrl("/admin/manageStatus"); ?>',
+                url: '<?php echo Yii::app()->createAbsoluteUrl("/admin/paidInvoice"); ?>',
                 data: data,
                 success: function(data) {
                     //activeFormHandler(data, status, rowNos);
                     $('#message').show();
                     $("#message").addClass('alert alert-success');
-                    $("#message").text('Delete user successfully.');
+                    $("#message").text('Invoice paid successfully.');
                     $("#message").fadeOut(6000, "");
-                    $('#row_' + rowNos).remove();
-                    getCollectionDataWithPagination('/admin/newManage','userDetails', 'abusedWords_tbody',pageno,5,uname,phone,status1, '');
+                    $('#paid_' + rowNos).text('Paid');
+                    $('#user_' + rowNos).remove();
+                    //$('#user_' + rowNos).hide();
+                    getCollectionDataWithPagination('/admin/viewInvoice','userDetails', 'abusedWords_tbody',pageno,5,uname,phone,status1, '');
                 },
                 error: function(data) { // if error occured
                     //alert("Error occured.please try again");
@@ -192,16 +169,17 @@
         $('#userTable tr td input').live('click', function() {
             var id = $(this).attr('data-id');
             var status = $(this).attr('data-status');
-            var id2 = $(this).attr('invite-id');
-            var inviteStatus = $(this).attr('invite-status');
-            var inviteEmail = $(this).attr('invite-email');
+            //var id2 = $(this).attr('invite-id');
+            //var inviteStatus = $(this).attr('invite-status');
+            //var inviteEmail = $(this).attr('invite-email');
            
             if(id>0){
+                alert("----2-----"+id+"------"+status);
                 statusChangeUser(Number(id), Number(status));
             }
-            if(id2>0){
-                inviteUser(Number(id2), Number(inviteStatus), inviteEmail);
-            }
+            //if(id2>0){
+            //    inviteUser(Number(id2), Number(inviteStatus), inviteEmail);
+            //}
         });
     });
     

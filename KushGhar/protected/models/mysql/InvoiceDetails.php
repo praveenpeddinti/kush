@@ -145,16 +145,14 @@ class InvoiceDetails extends CActiveRecord {
     
     
     
-public function sendorderStatus($id,$val){
-        if($val==0){$status=0;}
-        if($val==1){$status=1;}
-        if($val==2){$status=2;}
-        if($val==3){$status=3;}
+public function getPaidInvoice($id,$val){
+        if($val==0){$status=1;}
+        
         $result = "failed";
         try{
-            $InviteObj = OrderDetails::model()->findByAttributes(array('id'=>$id));
-            $InviteObj->status = $status;
-            if($InviteObj->update())
+            $InvoiceObj = InvoiceDetails::model()->findByAttributes(array('id'=>$id));
+            $InvoiceObj->Status = $status;
+            if($InvoiceObj->update())
                 $result = "success";
         }catch(Exception $ex){
              error_log("################Exception Occurred  changeContactStatus##############".$ex->getMessage());

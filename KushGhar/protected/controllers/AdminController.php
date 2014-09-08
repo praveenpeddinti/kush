@@ -775,5 +775,12 @@ $this->pageTitle="KushGhar-Basic Info";
             error_log("######### Exception Occurred##########".$ex->getMessage());
         }
     }
+    
+    public function actionPaidInvoice() {
+        $paidInvoice = $this->kushGharService->getPaidInvoice($_POST['Id'], $_POST['status']);
+        $obj = array('status' => 'error', 'data' => '', 'error' => $paidInvoice);
+        echo CJSON::encode($obj);
+    }
+    
        
  }

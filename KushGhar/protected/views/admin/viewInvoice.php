@@ -18,7 +18,7 @@
                                             <td><?php echo $row['OrderId']; ?></td>
                                             <td><?php echo $row['InvoiceNumber']; ?></td>
                                             <td><?php echo $row['Amount']; ?></td>
-                                            <td><?php if($row['Status']==1){$status = 'Paid';} 
+                                            <td id="paid_<?php echo $row['id']; ?>"><?php if($row['Status']==1){$status = 'Paid';} 
                                                 if($row['Status']==0){$status = 'Open';} 
                                                 echo $status; ?>
                                             </td>

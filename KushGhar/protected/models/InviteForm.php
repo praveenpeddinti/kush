@@ -34,10 +34,11 @@ class InviteForm extends CFormModel
                 'if' => array(
                 array('InviteType', 'compare', 'compareValue'=>"0")),
                 'then' => array(
-                 array('FirstName,LastName,Email,City,Phone', 'required','message'=>'Please enter {attribute}.'),
+                 array('FirstName,LastName,Email,Phone', 'required','message'=>'Please enter {attribute}.'),
                     array('FirstName, LastName', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain alphabet and space'),
                  array('Email', 'email'),),
                 ),
+                array('City', 'required', 'message' => 'Please select {attribute}.'),
                 array('Phone', 'numerical', 'integerOnly'=>true),
                 array('Phone', 'length', "min" => "10"),
                 array('InviteType', 'ext.YiiConditionalValidator.YiiConditionalValidator',

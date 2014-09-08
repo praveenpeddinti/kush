@@ -65,7 +65,7 @@ class InvoiceDetails extends CActiveRecord {
     
     public function getTotalPayments(){
         try{
-            $query = "select count(*) as count,sum(Amount) as amount from KG_Invoice_details";
+            $query = "select count(*) as count,sum(Amount) as amount from KG_Invoice_details where Status =1";
             $result = Yii::app()->db->createCommand($query)->queryRow();
         }catch(Exception $ex){
             error_log("################Exception Occurred  get Registered Contacts##############".$ex->getMessage());
@@ -76,7 +76,7 @@ class InvoiceDetails extends CActiveRecord {
     
     public function getAllPayments($start,$end){
         try{  
-            $query = "select * from KG_Invoice_details ORDER BY OrderId DESC limit ".$start. ",".$end;
+            $query = "select * from KG_Invoice_details WHERE status =1 ORDER BY OrderId DESC limit ".$start. ",".$end;
             $result = Yii::app()->db->createCommand($query)->queryAll();
         }catch(Exception $ex){
             error_log("################Exception Occurred  get All Registered Contacts##############".$ex->getMessage());

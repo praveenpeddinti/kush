@@ -14,13 +14,13 @@
                             <ul class="l_menu_sub_menu">
                                <li><a href="/admin/dashboard"> <i class="fa fa-users"></i> Invite Friends</a></li>
                                 <li><a href="/admin/manage"> <i class="fa fa-users"></i> Invite Management</a></li>
-                                <li><a href="/admin/order"> <i class="fa fa-file-text"></i> Orders</a></li>
                                 <li class="active"><a href="/admin/usermanagement"> <i class="fa fa-user"></i> User Management</a></li>
                                 <li><a href="/admin/vendormanagement"> <i class="fa fa-user"></i> Vendor Management</a></li>
                                 <li><a href="/admin/reviews"> <i class="fa fa-user"></i> Review/Feedback</a></li>
-                                <li><a href="/settings/carMakes"> <i class="fa fa-cog"></i> Settings</a></li>
-                                <li><a href="/admin/payments"> <i class="fa fa-file"></i> Payments</a></li>
+                                <li><a href="/admin/order"> <i class="fa fa-file-text"></i> Orders</a></li>
                                 <li><a href="/admin/invoice"> <i class="fa fa-list-alt"></i> Invoice Management</a></li>
+                                <li><a href="/admin/payments"> <i class="fa fa-file"></i> Payments</a></li>
+                                <li><a href="/settings/carMakes"> <i class="fa fa-cog"></i> Settings</a></li>
                             </ul>
                         </div>
                     </div>

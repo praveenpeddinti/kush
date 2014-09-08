@@ -6,7 +6,7 @@
         var status1 = $("#status").val();
         
         //if (status == 1) {
-            var statusData = 'Do you want to Paid?';
+            var statusData = 'Do you want to change status as Paid?';
         //} 
         /*else {
             var statusData = 'Do you want to change Inactive to Active?';
@@ -105,13 +105,13 @@
                             <ul class="l_menu_sub_menu">
                                 <li><a href="/admin/dashboard"> <i class="fa fa-users"></i> Invite Friends</a></li>
                                 <li><a href="/admin/manage"> <i class="fa fa-users"></i> Invite Management</a></li>
-                                <li><a href="/admin/order"> <i class="fa fa-file-text"></i> Orders</a></li>
                                 <li><a href="/admin/usermanagement"> <i class="fa fa-user"></i> User Management</a></li>
                                 <li><a href="/admin/vendormanagement"> <i class="fa fa-user"></i> Vendor Management</a></li>
                                 <li><a href="/admin/reviews"> <i class="fa fa-user"></i> Review/Feedback</a></li>
-                                <li><a href="/settings/carMakes"> <i class="fa fa-cog"></i> Settings</a></li>
-                                <li><a href="/admin/payments"> <i class="fa fa-file"></i> Payments</a></li>
+                                <li><a href="/admin/order"> <i class="fa fa-file-text"></i> Orders</a></li>
                                 <li  class="active"><a href="/admin/invoice"> <i class="fa fa-list-alt"></i> Invoice Management</a></li>
+                                <li><a href="/admin/payments"> <i class="fa fa-file"></i> Payments</a></li>
+                                <li><a href="/settings/carMakes"> <i class="fa fa-cog"></i> Settings</a></li>
                             </ul>
                         </div>
                     </div>
@@ -127,7 +127,7 @@
                             <div id="tablewidget"  style="margin: auto;"><div id="message" style="display:none"></div>
                                 <div class="row-fluid">
                                     <div class="span4">
-                                        <label>Order NUmber</label>
+                                        <label>Order Number</label>
                                         <input type="text" id="orderNumber" class="span12" maxlength="50"/>
                                     </div>
                                     <div class="span3">
@@ -148,7 +148,7 @@
                                     </div>
                                 </div>
                                 <table id="userTable" class="table table-hover">
-                                    <thead><tr><th>Service</th><th>OrderId</th><th>InvoiceNumber</th><th nowrap>Amount</th><th>Status</th><th>Actions</th></tr></thead>
+                                    <thead><tr><th>Service</th><th>Order #</th><th>InvoiceNumber</th><th nowrap>Amount</th><th>Status</th><th>Actions</th></tr></thead>
                                     <tbody id="abusedWords_tbody">
                                     </tbody>
                                 </table>
@@ -174,7 +174,7 @@
             //var inviteEmail = $(this).attr('invite-email');
            
             if(id>0){
-                alert("----2-----"+id+"------"+status);
+                
                 statusChangeUser(Number(id), Number(status));
             }
             //if(id2>0){

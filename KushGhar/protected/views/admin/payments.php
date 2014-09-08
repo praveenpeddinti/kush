@@ -18,13 +18,13 @@
                             <ul class="l_menu_sub_menu">
                                 <li><a href="/admin/dashboard"> <i class="fa fa-users"></i> Invite Friends</a></li>
                                 <li><a href="/admin/manage"> <i class="fa fa-users"></i> Invite Management</a></li>
-                                <li><a href="/admin/order"> <i class="fa fa-file-text"></i> Orders</a></li>
                                 <li><a href="/admin/usermanagement"> <i class="fa fa-user"></i> User Management</a></li>
                                 <li><a href="/admin/vendormanagement"> <i class="fa fa-user"></i> Vendor Management</a></li>
                                 <li><a href="/admin/reviews"> <i class="fa fa-user"></i> Review/Feedback</a></li>
-                                <li><a href="/settings/carMakes"> <i class="fa fa-cog"></i> Settings</a></li>
-                                <li class="active"><a href="/admin/payments"> <i class="fa fa-file"></i> Payments</a></li>
+                                <li><a href="/admin/order"> <i class="fa fa-file-text"></i> Orders</a></li>
                                 <li><a href="/admin/invoice"> <i class="fa fa-list-alt"></i> Invoice Management</a></li>
+                                <li class="active"><a href="/admin/payments"> <i class="fa fa-file"></i> Payments</a></li>
+                                <li><a href="/settings/carMakes"> <i class="fa fa-cog"></i> Settings</a></li>
                             </ul>
                         </div>
                     </div>
@@ -39,7 +39,7 @@
                             <div id="tablewidget"  style="margin: auto;">
                                 <div style="text-align:right"><label>Grand Total (Rs.): <?php echo $totalCount['amount'];?></label></div>
                                 <table id="userTable" class="table table-hover">
-                                    <thead><tr><th>Service</th><th>OrderId</th><th>InvoiceNumber</th><th nowrap>Amount</th><th>Status</th></tr></thead>
+                                    <thead><tr><th>Service</th><th>Order #</th><th>InvoiceNumber</th><th nowrap>Amount</th><th>Status</th></tr></thead>
                                     <tbody id="abusedWords_tbody">
                                     </tbody>
                                 </table>

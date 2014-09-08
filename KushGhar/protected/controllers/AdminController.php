@@ -359,6 +359,7 @@ $this->pageTitle="KushGhar-Basic Info";
                 }
                 $customerDetails = $this->kushGharService->getCustomerDetails($CustId);
                 $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($CustId);
+
                 $renderHtml = $this->renderPartial('viewData', array('userDetails1' => $customerDetails,'services'=>$servicedetails,'serviceId'=>$_POST['ServiceId'],'Vendors'=>$vendordetails,'ServiceDate'=>$ServiceDate,'customerAddressDetails'=>$customerAddressDetails,'Type'=>$_POST['Type'],'reviewDetails'=>$reviewdetails,'status'=>$_POST['status']), true);
                 $obj = array('status' => 'success', 'html' => $renderHtml);
                 $renderScript = $this->rendering($obj);

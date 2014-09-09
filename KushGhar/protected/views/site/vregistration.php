@@ -131,7 +131,9 @@
             document.getElementById('Individual').style.display = 'none';
         }
     }
-
+    $(document).ready(function() { 
+        $('#VendorType').bootstrapSwitch('setState', true);
+    });
 </script>
 
 
@@ -235,6 +237,7 @@
                                     <?php echo $form->label($modelLogin, 'Vendor type'); ?>
                                         <div class="switch switch-large vender_type" id="VendorType" data-on-label="Individual" data-off-label="Agency">
                                         <?php echo $form->checkBox($modelLogin, 'VendorType'); ?>
+                                            <?php error_log($form->checkBox($modelLogin, 'VendorType')); ?>
                                         </div>
                                     </div>
                                 </div>

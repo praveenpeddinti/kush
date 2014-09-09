@@ -577,8 +577,8 @@ $this->pageTitle="KushGhar-Basic Info";
                                         $to = 'praveen.peddinti@gmail.com';
                                         $messageview="CustomerInvitationMailToKGTeam";
                                         $params = array('Logo' => $Logo, 'Name' =>$name, 'Email' =>$to1, 'Phone'=>$phone, 'Location'=>$location);
-                                        //$sendMailToUser=new CommonUtility;
-                                        //$sendMailToUser->actionSendmail($messageview1,$params1, $subject, $to1,$employerEmail);
+                                        $sendMailToUser=new CommonUtility;
+                                        $sendMailToUser->actionSendmail($messageview1,$params1, $subject, $to1,$employerEmail);
                                         //$mailSendStatusw=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
                                         $error.="User invited successfully->".$var[3]."<br>";  
                                     } else {

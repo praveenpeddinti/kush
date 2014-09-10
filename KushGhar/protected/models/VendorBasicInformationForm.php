@@ -27,8 +27,14 @@ class VendorBasicInformationForm extends CFormModel {
     public $Tin;
     public $foundKushgharBy;
     public $Services;
-
-    /**
+    public $AddressProof;
+    public $AddressProofNumber;
+    public $AddrPfDocument;
+    public $clearanceProof;
+    public $clearanceProofNumber;
+    public $clrPfDocument;
+    public $foundKushgharBy;
+    /**ct one.'),
      * Declares the validation rules.
      */
     public function rules() {
@@ -57,7 +63,7 @@ class VendorBasicInformationForm extends CFormModel {
             //array('IdentityProof','compare','compareAttribute'=>'Select Proof of Identify','operator'=>'<', 'operator'=>'=','allowEmpty'=>false,'message'=>'{attribute} must be greater than "{compareValue}".')
             // First Name, Last Name must be Alphabet and space
             //array('FirstName, MiddleName, LastName', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain Alphabet and space'),
-            array('Services,FirstName, MiddleName, LastName,PrimaryContactFirstName,PrimaryContactMiddleName,PrimaryContactLastName,AgencyName,IdentityProof,Number,Gender,profilePicture,uIdDocument,dateOfBirth,Website,Pan,Tin,foundKushgharBy,Id,vendorType', 'safe'),
+            array('Services,FirstName, MiddleName, LastName,PrimaryContactFirstName,PrimaryContactMiddleName,PrimaryContactLastName,AgencyName,IdentityProof,Number,Gender,profilePicture,uIdDocument,dateOfBirth,Website,Pan,Tin,foundKushgharBy,Id,vendorType,AddressProof,AddressProofNumber,AddrPfDocument,clearanceProof,clearanceProofNumber,clrPfDocument', 'safe'),
         );
     }
 

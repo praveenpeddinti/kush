@@ -8,6 +8,12 @@ class VendorIndividualDocuments extends CActiveRecord {
     public $type_of_proof;
     public $proof_number;
     public $proof_image_file_location;
+    public $type_of_address;
+    public $address_number;
+    public $address_image_file_location;
+    public $type_of_clearance;
+    public $clearance_number;
+    public $clearance_image_file_location;
     public $create_timestamp;
     public $update_timestamp;
     
@@ -53,8 +59,6 @@ class VendorIndividualDocuments extends CActiveRecord {
     public function updateVendorDocuments($model, $VId) {
         try {
             $VendorObj = VendorIndividualDocuments::model()->findByAttributes(array('vendor_individual_id' => $VId));
-
-
             $VendorObj->type_of_proof = $model->IdentityProof;
             $VendorObj->proof_number = $model->Number;
             $VendorObj->proof_image_file_location = $model->uIdDocument;

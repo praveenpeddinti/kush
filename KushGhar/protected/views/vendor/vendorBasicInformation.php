@@ -131,31 +131,22 @@
                                     </div>
                                     </div>
                                     <?php } ?>
-                                
-                                 <div class="row-fluid">
-                                    <div class=" span4">
-                                        <?php echo $form->label($model, 'Proof of Identity'); ?>
-                                        <?php echo $form->dropDownList($model, 'IdentityProof', CHtml::listData($IdentityProof, 'Id', 'identifiability'), array('prompt'=>'Select Proof of Identity','options' => array($getVendorDocuments->type_of_proof => array('selected' => 'selected')), 'class' => 'span12')); ?>
-                                        <?php echo $form->error($model, 'IdentityProof'); ?>
+                                <div class="row-fluid paddingT10">
+                                    <div class="span4">
+                                        <?php echo $form->label($model, 'Gender'); ?>
+                                        <div class="switch switch-large" id="Gender" data-on-label="Male" data-off-label="Female">
+                                        <?php echo $form->checkBox($model, 'Gender', array('id' => 'BasicInfoForm_Gender')); ?>
+                                        </div>
+                                       
                                     </div>
-                                    <div class=" span4">
-                                        <?php echo $form->label($model, 'ID Number'); ?>
-                                        <?php echo $form->textField($model, 'Number', array('value' => $getVendorDocuments->proof_number, 'class' => 'span12', 'maxLength' => 25)); ?>
-                                        <?php echo $form->error($model, 'Number'); ?>
+<?php if(($getVendorDetailsType1->birth_date=='0000-00-00') || (empty($getVendorDetailsType1->birth_date))){ $birthdata ='';}else{$birthdata =date('d-m-Y', strtotime($getVendorDetailsType1->birth_date));}?>
+                                    
+                                    <div class="span4">
+                                        <?php echo $form->label($model, 'Date of Birth'); ?>
+                                        <?php echo $form->textField($model, 'dateOfBirth', array('value' => $birthdata, 'class' => 'span10 dob')); ?>
+                                        <?php echo $form->error($model, 'dateOfBirth'); ?>
                                     </div>
-                                     
-                                         
-                                         
-                                     <!--<div class="span4">
-                                         
-                                         <?php //echo $form->label($model, '<abbr title="required">*</abbr> Services'); ?>
-                                         <?php //echo $form->dropDownList($model, 'Services', CHtml::listData($getServices, 'Id', 'name'), array('prompt'=>'--Select Services--','options' => array($getServices->Id => array('selected' => 'selected')),  'class' => 'span12')); ?>
-                                         <?php //echo $form->dropDownList($model, 'Services', CHtml::listData($getServices, 'Id', 'name'), array('prompt'=>'Select Services','options' => array('1','3' => array('selected' => 'selected')),' multiple'=>'true', 'class' => 'span12')); ?>
-<?php //echo $form->dropDownList($model, 'Services', CHtml::listData($getServices,'Id','name'), array('prompt'=> 'Please Select', 'options' => array('1','3' => array('selected' => 'selected')), 'multiple' => 'multiple')); ?>                                          
-   <?php //echo $form->dropDownList($model,'Services', array(''=>'--Select Services--'), array('options' => array(in_array($getServices->Id, $documents) => array('selected' => 'selected')), 'class' => 'span12','multiple'=>'true'));?>
-                                         <?php echo $form->error($model,'Services'); ?>
-                                     </div>-->
-                                     <div class="span4">
+                                    <div class="span4">
                                     <?php echo $form->label($model, 'Select Services of Interest'); ?>
                                          <?php 
                                     
@@ -174,67 +165,7 @@
                                     <?php echo $form->error($model,'Services'); ?>     
                                          </div>
                                 </div>
-                                    <div class="row-fluid paddingT10">
-                                        <div class="span4">
-                                            <div class="form-group"><?php echo $form->label($model, 'Upload ID Proof'); ?>
-                                                <div class="control-group" style="position: relative">
-                                                    <div class="thumbnail" style="width: 150px; height: 150px;margin-bottom:10px"><img style="width:150px;height:150px" src="<?php if (!empty($this->session['UserId'])) {
-                                                        echo $getVendorDocuments->proof_image_file_location;
-                                                     } else {
-                                                        echo '/images/profile/none.jpg';
-                                                    } ?>"  id="uIdDocPreviewId"/>
-                                                    </div>
-                                                    <?php
-                                                    $this->widget('ext.EAjaxUpload.EAjaxUpload', array(
-                                                        'id' => 'VendorBasicInformationForm_uIdDocument',
-                                                        'config' => array(
-                                                            'multiple' => false,
-                                                            'action' => Yii::app()->createUrl('vendor/docUpload'),
-                                                            'allowedExtensions' => array("jpg", "jpeg", "gif", "png"), //array("jpg","jpeg","gif","exe","mov" and etc...
-                                                            'sizeLimit' => 15 * 1024 * 1024, // maximum file size in bytes
-//                                                          'minSizeLimit'=>10*1024,// minimum file size in bytes
-                                                            'onComplete' => "js:function(id, fileName, responseJSON){
-                                                             var data = eval(responseJSON);
-                                                             globaluIdDocument = '/images/documents/'+data.filename;
-                                                             $('#VendorBasicInformationForm_uIdDocument').val('/images/documents/'+data.filename);
-                                                             $('#uIdDocPreviewId').attr('src',globaluIdDocument);
-                                                              }",
-                                                            //'messages'=>array(
-                                                            //                  'typeError'=>"{file} has invalid extension. Only {extensions} are allowed.",
-                                                            //                  'sizeError'=>"{file} is too large, maximum file size is {sizeLimit}.",
-                                                            //                  'minSizeError'=>"{file} is too small, minimum file size is {minSizeLimit}.",
-                                                            //                  'emptyError'=>"{file} is empty, please select files again without it.",
-                                                            //                  'onLeave'=>"The files are being uploaded, if you leave now the upload will be cancelled."
-                                                            //                 ),
-                                                            'showMessage' => "js:function(message){  commonErrorDiv(message,'common_error');}"
-                                                        )
-                                                    ));
-                                                    ?>
-                                                </div>
-                                            </div>
-                                        </div>
-                                     </div>
-                                
-                                
-                                
-
-                                <div class="row-fluid paddingT10">
-                                    <div class="span4">
-                                        <?php echo $form->label($model, 'Gender'); ?>
-                                        <div class="switch switch-large" id="Gender" data-on-label="Male" data-off-label="Female">
-                                        <?php echo $form->checkBox($model, 'Gender', array('id' => 'BasicInfoForm_Gender')); ?>
-                                        </div>
-                                       
-                                    </div>
-<?php if(($getVendorDetailsType1->birth_date=='0000-00-00') || (empty($getVendorDetailsType1->birth_date))){ $birthdata ='';}else{$birthdata =date('d-m-Y', strtotime($getVendorDetailsType1->birth_date));}?>
-                                    
-                                    <div class="span4">
-                                        <?php echo $form->label($model, 'Date of Birth'); ?>
-                                        <?php echo $form->textField($model, 'dateOfBirth', array('value' => $birthdata, 'class' => 'span10 dob')); ?>
-                                        <?php echo $form->error($model, 'dateOfBirth'); ?>
-                                    </div>
-                                </div>
-                                <div class="row-fluid paddingT10">
+                                 <div class="row-fluid paddingT10">
                                     <div class="span4">
                                         <div class="form-group">
                                             <div class="form-group"><?php echo $form->label($model, 'Profile Picture'); ?>
@@ -280,17 +211,169 @@
                                         </div>
                                     </div>
                               </div>
+                                <hr>
+                                <div class="row-fluid">
+                                    <div class="span4">
+                                        <?php echo $form->label($model, 'Proof of Identity'); ?>
+                                        <?php echo $form->dropDownList($model, 'IdentityProof', CHtml::listData($IdentityProof, 'Id', 'identifiability'), array('prompt'=>'Select Proof of Identity','options' => array($getVendorDocuments->type_of_proof => array('selected' => 'selected')), 'class' => 'span12')); ?>
+                                        <?php echo $form->error($model, 'IdentityProof'); ?>
+                                    </div>
+                                    <div class="span4">
+                                        <?php echo $form->label($model, 'Proof of Address'); ?>
+                                        <?php echo $form->dropDownList($model, 'AddressProof', CHtml::listData($IdentityProof, 'Id', 'identifiability'), array('prompt'=>'Select Proof of Address','options' => array($getVendorDocuments->type_of_proof => array('selected' => 'selected')), 'class' => 'span12')); ?>
+                                        <?php echo $form->error($model, 'AddressProof'); ?>
+                                    </div>
+                                    <div class="span4">
+                                        <?php echo $form->label($model, 'Proof of Clearance'); ?>
+                                        <?php echo $form->dropDownList($model, 'clearanceProof', CHtml::listData($IdentityProof, 'Id', 'identifiability'), array('prompt'=>'Select Proof of Clearance','options' => array($getVendorDocuments->type_of_proof => array('selected' => 'selected')), 'class' => 'span12')); ?>
+                                        <?php echo $form->error($model, 'clearanceProof'); ?>
+                                    </div>
+                                </div>
+                                 <div class="row-fluid">
+                                    <div class=" span4">
+                                        <?php echo $form->label($model, 'ID Number'); ?>
+                                        <?php echo $form->textField($model, 'Number', array('value' => $getVendorDocuments->proof_number, 'class' => 'span12', 'maxLength' => 25)); ?>
+                                        <?php echo $form->error($model, 'Number'); ?>
+                                    </div>
+                                    <div class=" span4">
+                                        <?php echo $form->label($model, 'ID Number'); ?>
+                                        <?php echo $form->textField($model, 'AddressProofNumber', array('value' => $getVendorDocuments->proof_number, 'class' => 'span12', 'maxLength' => 25)); ?>
+                                        <?php echo $form->error($model, 'AddressProofNumber'); ?>
+                                    </div>
+                                     <div class="span4">
+                                            <?php echo $form->label($model, 'ID Number'); ?>
+                                        <?php echo $form->textField($model, 'clearanceProofNumber', array('value' => $getVendorDocuments->proof_number, 'class' => 'span12', 'maxLength' => 25)); ?>
+                                        <?php echo $form->error($model, 'clearanceProofNumber'); ?>
+                                        </div>
+                                </div>
+                                <div class="row-fluid">
+                                    <div class=" span4">
+                                        <div class="form-group"><?php echo $form->label($model, 'Upload Identity Proof'); ?>
+                                                <div class="control-group" style="position: relative">
+                                                    <div class="thumbnail" style="width: 150px; height: 150px;margin-bottom:10px"><img style="width:150px;height:150px" src="<?php if (!empty($this->session['UserId'])) {
+                                                        echo $getVendorDocuments->proof_image_file_location;
+                                                     } else {
+                                                        echo '/images/profile/none.jpg';
+                                                    } ?>"  id="uIdDocPreviewId"/>
+                                                    </div>
+                                                    <?php
+                                                    $this->widget('ext.EAjaxUpload.EAjaxUpload', array(
+                                                        'id' => 'VendorBasicInformationForm_uIdDocument',
+                                                        'config' => array(
+                                                            'multiple' => false,
+                                                            'action' => Yii::app()->createUrl('vendor/docUpload'),
+                                                            'allowedExtensions' => array("jpg", "jpeg", "gif", "png"), //array("jpg","jpeg","gif","exe","mov" and etc...
+                                                            'sizeLimit' => 15 * 1024 * 1024, // maximum file size in bytes
+//                                                          'minSizeLimit'=>10*1024,// minimum file size in bytes
+                                                            'onComplete' => "js:function(id, fileName, responseJSON){
+                                                             var data = eval(responseJSON);
+                                                             globaluIdDocument = '/images/documents/'+data.filename;
+                                                             $('#VendorBasicInformationForm_uIdDocument').val('/images/documents/'+data.filename);
+                                                             $('#uIdDocPreviewId').attr('src',globaluIdDocument);
+                                                              }",
+                                                            //'messages'=>array(
+                                                            //                  'typeError'=>"{file} has invalid extension. Only {extensions} are allowed.",
+                                                            //                  'sizeError'=>"{file} is too large, maximum file size is {sizeLimit}.",
+                                                            //                  'minSizeError'=>"{file} is too small, minimum file size is {minSizeLimit}.",
+                                                            //                  'emptyError'=>"{file} is empty, please select files again without it.",
+                                                            //                  'onLeave'=>"The files are being uploaded, if you leave now the upload will be cancelled."
+                                                            //                 ),
+                                                            'showMessage' => "js:function(message){  commonErrorDiv(message,'common_error');}"
+                                                        )
+                                                    ));
+                                                    ?>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div class=" span4">
+                                        <div class="form-group"><?php echo $form->label($model, 'Upload Address Proof'); ?>
+                                                <div class="control-group" style="position: relative">
+                                                    <div class="thumbnail" style="width: 150px; height: 150px;margin-bottom:10px"><img style="width:150px;height:150px" src="<?php if (!empty($this->session['UserId'])) {
+                                                        echo $getVendorDocuments->proof_image_file_location;
+                                                     } else {
+                                                        echo '/images/profile/none.jpg';
+                                                    } ?>"  id="AddrPfDocPreviewId"/>
+                                                    </div>
+                                                    <?php
+                                                    $this->widget('ext.EAjaxUpload.EAjaxUpload', array(
+                                                        'id' => 'VendorBasicInformationForm_AddrPfDocument',
+                                                        'config' => array(
+                                                            'multiple' => false,
+                                                            'action' => Yii::app()->createUrl('vendor/docUpload'),
+                                                            'allowedExtensions' => array("jpg", "jpeg", "gif", "png"), //array("jpg","jpeg","gif","exe","mov" and etc...
+                                                            'sizeLimit' => 15 * 1024 * 1024, // maximum file size in bytes
+//                                                          'minSizeLimit'=>10*1024,// minimum file size in bytes
+                                                            'onComplete' => "js:function(id, fileName, responseJSON){
+                                                             var data = eval(responseJSON);
+                                                             globalAddrPfDocument = '/images/documents/'+data.filename;
+                                                             $('#VendorBasicInformationForm_AddrPfDocument').val('/images/documents/'+data.filename);
+                                                             $('#AddrPfDocPreviewId').attr('src',globalAddrPfDocument);
+                                                              }",
+                                                            //'messages'=>array(
+                                                            //                  'typeError'=>"{file} has invalid extension. Only {extensions} are allowed.",
+                                                            //                  'sizeError'=>"{file} is too large, maximum file size is {sizeLimit}.",
+                                                            //                  'minSizeError'=>"{file} is too small, minimum file size is {minSizeLimit}.",
+                                                            //                  'emptyError'=>"{file} is empty, please select files again without it.",
+                                                            //                  'onLeave'=>"The files are being uploaded, if you leave now the upload will be cancelled."
+                                                            //                 ),
+                                                            'showMessage' => "js:function(message){  commonErrorDiv(message,'common_error');}"
+                                                        )
+                                                    ));
+                                                    ?>
+                                                </div>
+                                            </div>
+                                    </div>
+                                     <div class="span4">
+                                            <div class="form-group"><?php echo $form->label($model, 'Upload Clearance Proof'); ?>
+                                                <div class="control-group" style="position: relative">
+                                                    <div class="thumbnail" style="width: 150px; height: 150px;margin-bottom:10px"><img style="width:150px;height:150px" src="<?php if (!empty($this->session['UserId'])) {
+                                                        echo $getVendorDocuments->proof_image_file_location;
+                                                     } else {
+                                                        echo '/images/profile/none.jpg';
+                                                    } ?>"  id="ClrPfDocPreviewId"/>
+                                                    </div>
+                                                    <?php
+                                                    $this->widget('ext.EAjaxUpload.EAjaxUpload', array(
+                                                        'id' => 'VendorBasicInformationForm_clrPfDocument',
+                                                        'config' => array(
+                                                            'multiple' => false,
+                                                            'action' => Yii::app()->createUrl('vendor/docUpload'),
+                                                            'allowedExtensions' => array("jpg", "jpeg", "gif", "png"), //array("jpg","jpeg","gif","exe","mov" and etc...
+                                                            'sizeLimit' => 15 * 1024 * 1024, // maximum file size in bytes
+//                                                          'minSizeLimit'=>10*1024,// minimum file size in bytes
+                                                            'onComplete' => "js:function(id, fileName, responseJSON){
+                                                             var data = eval(responseJSON);
+                                                             globalclrPfDocument = '/images/documents/'+data.filename;
+                                                             $('#VendorBasicInformationForm_clrPfDocument').val('/images/documents/'+data.filename);
+                                                             $('#ClrPfDocPreviewId').attr('src',globalclrPfDocument);
+                                                              }",
+                                                            //'messages'=>array(
+                                                            //                  'typeError'=>"{file} has invalid extension. Only {extensions} are allowed.",
+                                                            //                  'sizeError'=>"{file} is too large, maximum file size is {sizeLimit}.",
+                                                            //                  'minSizeError'=>"{file} is too small, minimum file size is {minSizeLimit}.",
+                                                            //                  'emptyError'=>"{file} is empty, please select files again without it.",
+                                                            //                  'onLeave'=>"The files are being uploaded, if you leave now the upload will be cancelled."
+                                                            //                 ),
+                                                            'showMessage' => "js:function(message){  commonErrorDiv(message,'common_error');}"
+                                                        )
+                                                    ));
+                                                    ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                                <hr>
                                 <div class="row-fluid">
                                     <div class=" span4">
                                         <?php echo $form->label($model, ' web site'); ?>
                                         <?php echo $form->textField($model, 'Website', array('value' => $getVendorDetailsType1->website, 'maxLength' => 50, 'class' => 'span12')); ?>
                                         <?php echo $form->error($model, 'Website'); ?>
                                     </div>
-                                    <div class=" span4">
+<!--                                    <div class=" span4">
                                         <?php echo $form->label($model, 'Pan', array('class' => 'labelUpperCase')); ?>
                                         <?php echo $form->textField($model, 'Pan', array('value' => $getVendorDetailsType1->pan_card, 'class' => 'span12', 'maxLength' => 25)); ?>
                                         <?php echo $form->error($model, 'Pan'); ?>
-                                    </div>
+                                    </div>-->
                                     <div class=" span4">
                                         <?php echo $form->label($model, 'Tin', array('class' => 'labelUpperCase')); ?>
                                         <?php echo $form->textField($model, 'Tin', array('value' => $getVendorDetailsType1->tin_number, 'class' => 'span12', 'maxLength' => 25)); ?>

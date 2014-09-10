@@ -214,35 +214,35 @@
                                 <hr>
                                 <div class="row-fluid">
                                     <div class="span4">
-                                        <?php echo $form->label($model, 'Proof of Identity'); ?>
-                                        <?php echo $form->dropDownList($model, 'IdentityProof', CHtml::listData($IdentityProof, 'Id', 'identifiability'), array('prompt'=>'Select Proof of Identity','options' => array($getVendorDocuments->type_of_proof => array('selected' => 'selected')), 'class' => 'span12')); ?>
-                                        <?php echo $form->error($model, 'IdentityProof'); ?>
+                                        <?php echo $form->label($model, '<abbr title="required">*</abbr>Proof of Identity'); ?>
+                                        <?php echo $form->dropDownList($model,'Proof_of_Identity',array(''=>'Select Proof of Identity','PAN Card'=>'PAN Card','Driving License'=>'Driving License','Voter ID'=>'Voter ID'), array('options' => array($getVendorDocuments->type_of_proof => array('selected' => 'selected')), 'class' => 'span12'));?>
+                                        <?php echo $form->error($model, 'Proof_of_Identity'); ?>
                                     </div>
                                     <div class="span4">
-                                        <?php echo $form->label($model, 'Proof of Address'); ?>
-                                        <?php echo $form->dropDownList($model, 'AddressProof', CHtml::listData($IdentityProof, 'Id', 'identifiability'), array('prompt'=>'Select Proof of Address','options' => array($getVendorDocuments->type_of_proof => array('selected' => 'selected')), 'class' => 'span12')); ?>
-                                        <?php echo $form->error($model, 'AddressProof'); ?>
+                                        <?php echo $form->label($model, '<abbr title="required">*</abbr>Proof of Address'); ?>
+                                        <?php echo $form->dropDownList($model,'Proof_of_Address',array(''=>'Select Proof of Address','Aadhar Card'=>'Aadhar Card','Bank Account'=>'Bank Account','Passport'=>'Passport','Ration Card'=>'Ration Card'), array('options' => array($getVendorDocuments->type_of_address => array('selected' => 'selected')), 'class' => 'span12'));?>
+                                        <?php echo $form->error($model, 'Proof_of_Address'); ?>
                                     </div>
                                     <div class="span4">
-                                        <?php echo $form->label($model, 'Proof of Clearance'); ?>
-                                        <?php echo $form->dropDownList($model, 'clearanceProof', CHtml::listData($IdentityProof, 'Id', 'identifiability'), array('prompt'=>'Select Proof of Clearance','options' => array($getVendorDocuments->type_of_proof => array('selected' => 'selected')), 'class' => 'span12')); ?>
-                                        <?php echo $form->error($model, 'clearanceProof'); ?>
+                                        <?php echo $form->label($model, '<abbr title="required">*</abbr>Proof of Clearance'); ?>
+                                        <?php echo $form->dropDownList($model,'Proof_of_Clearance',array(''=>'Select Proof of Clearance','Clearance Form'=>'Clearance Form'), array('options' => array($getVendorDocuments->type_of_clearance => array('selected' => 'selected')), 'class' => 'span12'));?>
+                                        <?php echo $form->error($model, 'Proof_of_Clearance'); ?>
                                     </div>
                                 </div>
                                  <div class="row-fluid">
                                     <div class=" span4">
-                                        <?php echo $form->label($model, 'ID Number'); ?>
+                                        <?php echo $form->label($model, '<abbr title="required">*</abbr>ID Number'); ?>
                                         <?php echo $form->textField($model, 'Number', array('value' => $getVendorDocuments->proof_number, 'class' => 'span12', 'maxLength' => 25)); ?>
                                         <?php echo $form->error($model, 'Number'); ?>
                                     </div>
                                     <div class=" span4">
-                                        <?php echo $form->label($model, 'ID Number'); ?>
-                                        <?php echo $form->textField($model, 'AddressProofNumber', array('value' => $getVendorDocuments->proof_number, 'class' => 'span12', 'maxLength' => 25)); ?>
+                                        <?php echo $form->label($model, '<abbr title="required">*</abbr>ID Number'); ?>
+                                        <?php echo $form->textField($model, 'AddressProofNumber', array('value' => $getVendorDocuments->address_number, 'class' => 'span12', 'maxLength' => 25)); ?>
                                         <?php echo $form->error($model, 'AddressProofNumber'); ?>
                                     </div>
                                      <div class="span4">
                                             <?php echo $form->label($model, 'ID Number'); ?>
-                                        <?php echo $form->textField($model, 'clearanceProofNumber', array('value' => $getVendorDocuments->proof_number, 'class' => 'span12', 'maxLength' => 25)); ?>
+                                        <?php echo $form->textField($model, 'clearanceProofNumber', array('value' => $getVendorDocuments->clearance_number, 'class' => 'span12', 'maxLength' => 25)); ?>
                                         <?php echo $form->error($model, 'clearanceProofNumber'); ?>
                                         </div>
                                 </div>
@@ -261,12 +261,12 @@
                                                         'id' => 'VendorBasicInformationForm_uIdDocument',
                                                         'config' => array(
                                                             'multiple' => false,
-                                                            'action' => Yii::app()->createUrl('vendor/docUpload'),
+                                                            'action' => Yii::app()->createUrl('vendor/docUpload',array('proof'=>'Identity')),
                                                             'allowedExtensions' => array("jpg", "jpeg", "gif", "png"), //array("jpg","jpeg","gif","exe","mov" and etc...
                                                             'sizeLimit' => 15 * 1024 * 1024, // maximum file size in bytes
 //                                                          'minSizeLimit'=>10*1024,// minimum file size in bytes
                                                             'onComplete' => "js:function(id, fileName, responseJSON){
-                                                             var data = eval(responseJSON);
+                                                             var data = eval(responseJSON);alert(data.filename);
                                                              globaluIdDocument = '/images/documents/'+data.filename;
                                                              $('#VendorBasicInformationForm_uIdDocument').val('/images/documents/'+data.filename);
                                                              $('#uIdDocPreviewId').attr('src',globaluIdDocument);
@@ -289,7 +289,7 @@
                                         <div class="form-group"><?php echo $form->label($model, 'Upload Address Proof'); ?>
                                                 <div class="control-group" style="position: relative">
                                                     <div class="thumbnail" style="width: 150px; height: 150px;margin-bottom:10px"><img style="width:150px;height:150px" src="<?php if (!empty($this->session['UserId'])) {
-                                                        echo $getVendorDocuments->proof_image_file_location;
+                                                        echo $getVendorDocuments->address_image_file_location;
                                                      } else {
                                                         echo '/images/profile/none.jpg';
                                                     } ?>"  id="AddrPfDocPreviewId"/>
@@ -299,12 +299,12 @@
                                                         'id' => 'VendorBasicInformationForm_AddrPfDocument',
                                                         'config' => array(
                                                             'multiple' => false,
-                                                            'action' => Yii::app()->createUrl('vendor/docUpload'),
+                                                            'action' => Yii::app()->createUrl('vendor/docUpload',array('proof'=>'Address')),
                                                             'allowedExtensions' => array("jpg", "jpeg", "gif", "png"), //array("jpg","jpeg","gif","exe","mov" and etc...
                                                             'sizeLimit' => 15 * 1024 * 1024, // maximum file size in bytes
 //                                                          'minSizeLimit'=>10*1024,// minimum file size in bytes
                                                             'onComplete' => "js:function(id, fileName, responseJSON){
-                                                             var data = eval(responseJSON);
+                                                             var data = eval(responseJSON);alert(data.filename);
                                                              globalAddrPfDocument = '/images/documents/'+data.filename;
                                                              $('#VendorBasicInformationForm_AddrPfDocument').val('/images/documents/'+data.filename);
                                                              $('#AddrPfDocPreviewId').attr('src',globalAddrPfDocument);
@@ -327,7 +327,7 @@
                                             <div class="form-group"><?php echo $form->label($model, 'Upload Clearance Proof'); ?>
                                                 <div class="control-group" style="position: relative">
                                                     <div class="thumbnail" style="width: 150px; height: 150px;margin-bottom:10px"><img style="width:150px;height:150px" src="<?php if (!empty($this->session['UserId'])) {
-                                                        echo $getVendorDocuments->proof_image_file_location;
+                                                        echo $getVendorDocuments->clearance_image_file_location;
                                                      } else {
                                                         echo '/images/profile/none.jpg';
                                                     } ?>"  id="ClrPfDocPreviewId"/>
@@ -337,12 +337,12 @@
                                                         'id' => 'VendorBasicInformationForm_clrPfDocument',
                                                         'config' => array(
                                                             'multiple' => false,
-                                                            'action' => Yii::app()->createUrl('vendor/docUpload'),
+                                                            'action' => Yii::app()->createUrl('vendor/docUpload',array('proof'=>'Clearance')),
                                                             'allowedExtensions' => array("jpg", "jpeg", "gif", "png"), //array("jpg","jpeg","gif","exe","mov" and etc...
                                                             'sizeLimit' => 15 * 1024 * 1024, // maximum file size in bytes
 //                                                          'minSizeLimit'=>10*1024,// minimum file size in bytes
                                                             'onComplete' => "js:function(id, fileName, responseJSON){
-                                                             var data = eval(responseJSON);
+                                                             var data = eval(responseJSON);alert(data.filename);
                                                              globalclrPfDocument = '/images/documents/'+data.filename;
                                                              $('#VendorBasicInformationForm_clrPfDocument').val('/images/documents/'+data.filename);
                                                              $('#ClrPfDocPreviewId').attr('src',globalclrPfDocument);

@@ -59,9 +59,15 @@ class VendorIndividualDocuments extends CActiveRecord {
     public function updateVendorDocuments($model, $VId) {
         try {
             $VendorObj = VendorIndividualDocuments::model()->findByAttributes(array('vendor_individual_id' => $VId));
-            $VendorObj->type_of_proof = $model->IdentityProof;
+            $VendorObj->type_of_proof = $model->Proof_of_Identity;
             $VendorObj->proof_number = $model->Number;
             $VendorObj->proof_image_file_location = $model->uIdDocument;
+            $VendorObj->type_of_address=$model->Proof_of_Address;
+            $VendorObj->address_number=$model->AddressProofNumber;
+            $VendorObj->address_image_file_location=$model->AddrPfDocument;
+            $VendorObj->type_of_clearance=$model->Proof_of_Clearance;
+            $VendorObj->clearance_number=$model->clearanceProofNumber;
+            $VendorObj->clearance_image_file_location=$model->clrPfDocument;
             $VendorObj->update_timestamp = gmdate("Y-m-d H:i:s", time());
             if ($VendorObj->update()) {
                 $result = "success";

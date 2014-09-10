@@ -16,7 +16,7 @@ class VendorBasicInformationForm extends CFormModel {
     public $PrimaryContactLastName;
     public $AgencyName;
     public $vendorType;
-    public $IdentityProof;
+    public $Proof_of_Identity;
     public $Number;
     public $uIdDocument;
     public $Gender;
@@ -27,13 +27,13 @@ class VendorBasicInformationForm extends CFormModel {
     public $Tin;
     public $foundKushgharBy;
     public $Services;
-    public $AddressProof;
+    public $Proof_of_Address;
     public $AddressProofNumber;
     public $AddrPfDocument;
-    public $clearanceProof;
+    public $Proof_of_Clearance;
     public $clearanceProofNumber;
     public $clrPfDocument;
-    public $foundKushgharBy;
+    
     /**ct one.'),
      * Declares the validation rules.
      */
@@ -46,11 +46,20 @@ class VendorBasicInformationForm extends CFormModel {
                 'if' => array(
                 array('vendorType', 'compare', 'compareValue'=>"1")),
                 'then' => array(
-                array('FirstName,LastName,', 'required'),
+                array('FirstName,LastName,Number,AddressProofNumber', 'required'),
                 array(' Services', 'required', 'message' => 'Please select Services'),
-                //array('Services', 'compare', 'operator'=>'!=', 'compareValue'=>'', 'message'=>'Please Selecst Services'),
+                array('Proof_of_Identity,Proof_of_Address,Proof_of_Clearance','required','message'=>'Please select {attribute}'),
+//array('Services', 'compare', 'operator'=>'!=', 'compareValue'=>'', 'message'=>'Please Selecst Services'),
                
-                array('FirstName,MiddleName,LastName,', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain alphabet and space'),),
+                array('FirstName,MiddleName,LastName,', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain alphabet and space'),
+                    array('foundKushgharBy', 'ext.YiiConditionalValidator.YiiConditionalValidator',
+                'if' => array(
+                array('uIdDocument', 'compare', 'compareValue'=>"/images/profile/none.jpg")),
+                'then' => array(
+                array('uIdDocument', 'required','message' => 'Please Upload Identity Proof.'),
+                ),
+            ),
+                    ),
             ),
             array('vendorType', 'ext.YiiConditionalValidator.YiiConditionalValidator',
                 'if' => array(
@@ -63,7 +72,7 @@ class VendorBasicInformationForm extends CFormModel {
             //array('IdentityProof','compare','compareAttribute'=>'Select Proof of Identify','operator'=>'<', 'operator'=>'=','allowEmpty'=>false,'message'=>'{attribute} must be greater than "{compareValue}".')
             // First Name, Last Name must be Alphabet and space
             //array('FirstName, MiddleName, LastName', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain Alphabet and space'),
-            array('Services,FirstName, MiddleName, LastName,PrimaryContactFirstName,PrimaryContactMiddleName,PrimaryContactLastName,AgencyName,IdentityProof,Number,Gender,profilePicture,uIdDocument,dateOfBirth,Website,Pan,Tin,foundKushgharBy,Id,vendorType,AddressProof,AddressProofNumber,AddrPfDocument,clearanceProof,clearanceProofNumber,clrPfDocument', 'safe'),
+            array('Services,FirstName, MiddleName, LastName,PrimaryContactFirstName,PrimaryContactMiddleName,PrimaryContactLastName,AgencyName,Number,Gender,profilePicture,uIdDocument,dateOfBirth,Website,Pan,Tin,foundKushgharBy,Id,vendorType,AddressProofNumber,AddrPfDocument,clearanceProofNumber,clrPfDocument,Proof_of_Identity,Proof_of_Address,Proof_of_Clearance', 'safe'),
         );
     }
 

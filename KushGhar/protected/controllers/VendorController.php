@@ -168,9 +168,7 @@ class VendorController extends Controller {
     /**
      * User BaiscInfo Form Controller 
      */
-    public function actionVendorBasicInformation() {error_log("enter basic info====".$this->session['VendorType']."==".$this->session['UserId']);
-        error_log("picture=====".$this->session['LoginPic']);
-        
+    public function actionVendorBasicInformation() {
         $basicForm = new VendorBasicInformationForm;
         $updatedPasswordForm = new updatedPasswordForm;
         $Vid = $this->session['UserId'];
@@ -186,20 +184,13 @@ class VendorController extends Controller {
         $getVendorDetailsType1 = $this->kushGharService->getVendorDetailsWithAgency($Vid);
         
         }
-        error_log($getVendorDetailsType1->services."===== legth====");
         //$getVendorDocuments = $this->kushGharService->getVendorDocumentsWithIndividual($Vid);
         $Identity = $this->kushGharService->getIdentifyProof();
          $this->session['firstName']=$getVendorDetailsType1->first_name;      
         $request = yii::app()->getRequest();
         $formName = $request->getParam('VendorBasicInformationForm');
-        
-        
-        
-        if ($formName != '') {error_log("enter basic error info====");
+        if ($formName != '') {
             $basicForm->attributes = $request->getParam('VendorBasicInformationForm');
-            
-           
-           error_log($getVendorDetailsType1->services."===== legth====".sizeof($basicForm->Services));
             for($i=0;$i<sizeof($basicForm->Services);$i++)
                 {error_log("------------".$basicForm->Services[$i]."----");}
            
@@ -214,8 +205,20 @@ class VendorController extends Controller {
                 }
                 if ($this->session['docFileName'] == '') {
                     $basicForm->uIdDocument = $getVendorDocuments->proof_image_file_location;
+                    
+                    
                 } else {
                     $basicForm->uIdDocument = $this->session['docFileName'];
+                }
+                if ($this->session['AddrdocFileName'] == '') {
+                    $basicForm->AddrPfDocument=$getVendorDocuments->address_image_file_location;
+                } else {
+                    $basicForm->AddrPfDocument= $this->session['AddrdocFileName'];
+                }
+                if ($this->session['ClrdocFileName'] == '') {
+                    $basicForm->clrPfDocument=$getVendorDocuments->clearance_image_file_location;
+                } else {
+                    $basicForm->clrPfDocument= $this->session['ClrdocFileName'];
                 }
                 $this->session['LoginPic']=$this->session['fileName'];
                 //unset($this->session['fileName']);
@@ -335,7 +338,7 @@ class VendorController extends Controller {
             $dest = str_replace(' ', '', $finalImg_name_new);
             $_SESSION['oldfilename'] = $finalImg_name_new;
             $img = Yii::app()->simpleImage->load($folder . $result['filename']); // load file from the specified the path...
-            $img->resizeToHeight(50); // creating image height to 50...
+            $img->resizeToHeight(150); // creating image height to 50...
             $img->save($finalImg_name_new); // saving into the specified path...
             $finalImg_name = '/images/profile/' . $finalImg_name;
             $this->session['fileName'] = $finalImg_name;
@@ -368,10 +371,17 @@ class VendorController extends Controller {
             $dest = str_replace(' ', '', $finalImg_name_new);
             $_SESSION['oldfilename'] = $finalImg_name_new;
             $img = Yii::app()->simpleImage->load($folder . $result['filename']); // load file from the specified the path...
-            $img->resizeToHeight(50); // creating image height to 50...
+            $img->resizeToHeight(150); // creating image height to 50...
             $img->save($finalImg_name_new); // saving into the specified path...
             $finalImg_name = '/images/documents/' . $finalImg_name;
-            $this->session['docFileName'] = $finalImg_name;
+            $proofType=Yii::app()->getRequest()->getQuery('proof');
+            error_log("Proof type===================".$proofType);
+            if($proofType=='Identity')
+                $this->session['docFileName'] = $finalImg_name;
+            if($proofType=='Address')
+                $this->session['AddrdocFileName'] = $finalImg_name;
+            if($proofType=='Clearance')
+                $this->session['ClrdocFileName'] = $finalImg_name;
         } catch (Exception $e) {
             error_log("***********************" . $e->getMessage());
         }

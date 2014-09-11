@@ -965,12 +965,13 @@ class UserController extends Controller {
             //$priceRoom1 = (($getServiceDetails['total_livingRooms'] + $getServiceDetails['total_bedRooms']) * 125);
             //$priceRoom2 = (($getServiceDetails['total_bathRooms'] + $getServiceDetails['total_kitchens']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
             $priceAddServices = (($getServiceDetails['window_grills'] + $getServiceDetails['cupboard_cleaning'] + $getServiceDetails['fridge_interior'] + $getServiceDetails['microwave_oven_interior']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
+            $otherRoomsCost = ($getServiceDetails['other_rooms']*125);
             if( ($getServiceDetails['total_livingRooms']==1) && ($getServiceDetails['total_bedRooms']==1) && ($getServiceDetails['total_bathRooms']==1) || ($getServiceDetails['total_kitchens']==1))
                     {
                     $priceRoom1 = (($getServiceDetails['total_livingRooms'] + $getServiceDetails['total_bedRooms']) * 125);
                     $priceRoom2 = (($getServiceDetails['total_bathRooms'] + $getServiceDetails['total_kitchens']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
                     //$totalRoomsPrice = $priceRoom1 + $priceRoom2 ;
-                    $totalRoomsPrice = $priceRoom1 + $priceRoom2 ;
+                    $totalRoomsPrice = $otherRoomsCost+$priceRoom1 + $priceRoom2 ;
                     }else{$LR='';$BedR='';$BathR='';$KR='';
                          if($getServiceDetails['total_livingRooms']>1){
                              $LR = (($getServiceDetails['total_livingRooms']-1)*125);
@@ -987,7 +988,7 @@ class UserController extends Controller {
                     
                     $priceRoom1  = $LR+$BedR;
                     $priceRoom2 = $BathR+$KR;
-                    $totalRoomsPrice = $priceRoom1 + $priceRoom2 +750;
+                    $totalRoomsPrice = $otherRoomsCost+$priceRoom1 + $priceRoom2 +750;
                     //$totalRoomsPrice = 0 ;  
                     }
                     

@@ -45,7 +45,23 @@ class Registration extends CActiveRecord {
         }
         return $user;
     }
-
+    
+    public function checkAuthenticationAssumeCustomer($uname,$psw) {
+        // only checking with the email not the username; should have do with the username also... ;
+        try {
+            
+            $user = Registration::model()->findByAttributes(array(), 'email_address=:email_address  AND password_hash=:password_hash', array(':email_address' => $uname, ':password_hash' => md5($psw)));
+            
+            if (isset($user)) {
+                $user->update_timestamp = gmdate("Y-m-d H:i:s", time());
+                $user->update();
+            }
+        } catch (Exception $ex) {
+            error_log("#########EXCEPTION OCCURRED IN CHECK AUTENTICATION########" . $ex->getMessage());
+        }
+        return $user;
+    } 
+    
     public function getcheckEmailForPassword($model) {
         try {
             $user = Registration::model()->findByAttributes(array(), 'email_address=:email_address', array(':email_address' => $model->Email));
@@ -55,7 +71,7 @@ class Registration extends CActiveRecord {
         return $user;
     }
 
-    public function checkUserExist($model) {
+    public function checkUserExist($model) {error_log("------model-----");
         try {
             $user = Registration::model()->findByAttributes(array(), 'email_address=:email_address OR phone=:phone', array(':email_address' => $model->Email, ':phone' => $model->Phone));
             if (empty($user)) {

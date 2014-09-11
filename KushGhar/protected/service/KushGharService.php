@@ -4,27 +4,38 @@ class KushGharService {
 
     public function login($model, $role) {
         try {
-            //$user = array();
             if ($role == 'User') {
                 $user = Registration::model()->checkAuthentication($model);
             }
             if ($role == 'Admin') {
                 $user = Admin::model()->checkAuthentication($model);
             }
-            //if (!empty($user)) {
                 return $user;
-            //} else {
-            //    return "false";
-            //}
         } catch (Exception $ex) {
             error_log("=============exception occurred in login=============" . $ex->getMessage());
         }
         //return $user;
     }
 
+    public function adminAsCustomerlogin($uname,$psw, $role) {
+        try {error_log("---enter service--".$uname."==".$psw);
+            if ($role == 'User') {
+                $user = Registration::model()->checkAuthenticationAssumeCustomer($uname,$psw);
+            }
+            if ($role == 'Admin') {
+                $user = Admin::model()->checkAuthenticationBackToAdmin($uname,$psw);
+            }
+            return $user;
+        } catch (Exception $ex) {
+            error_log("=============exception occurred in login=============" . $ex->getMessage());
+        }
+        //return $user;
+    }
+    public function getAdminDetails($id) {
+        return Admin::model()->getAdminDetails($id);
+    }
     public function getcheckEmailForPassword($model) {
         try {
-            //$user = array();
             $user = Registration::model()->getcheckEmailForPassword($model);
             if (!empty($user)) {
                 return $user;
@@ -78,8 +89,8 @@ class KushGharService {
         }
     }
 
-    public function saveCustomerAddressDumpInfoDetails($cId) {
-        return ContactInfo::model()->saveCustomerAddressDumpInfoDetails($cId);
+    public function saveCustomerAddressDumpInfoDetails($location,$cId) {
+        return ContactInfo::model()->saveCustomerAddressDumpInfoDetails($location,$cId);
     }
 
     public function saveCustomerPaymentDumpInfoDetails($cId) {
@@ -99,12 +110,6 @@ class KushGharService {
         return Registration::model()->getCustomerDetails($id);
     }
 
-    //Basic Information Details Start methods
-    /* pra1public function saveCustomerBasicDetails($model,$cId){
-      error_log($model->FirstName."usersampleModel===".$model->Number);
-      return Basicinfo::model()->saveCustomerBasicDetails($model,$cId);
-      } */
-    //Basic Information Details Start methods
     //Basic Information Details Start methods
     public function saveCustomerInfoDetails($model, $cId) {
         return ContactInfo::model()->saveCustomerInfoDetails($model, $cId);
@@ -512,7 +517,6 @@ class KushGharService {
     
     //add House Service with parent id
     public function storeOrderDetailsOfHouse($cId,$parentId,$CustId,$orderNo,$serviceId,$amount,$servicedate) {
-        error_log("date==========".$servicedate);
         return OrderDetails::model()->storeOrderDetailsOfHouse($cId,$parentId,$CustId,$orderNo,$serviceId,$amount,$servicedate);
     }
       //Order Details queries end   

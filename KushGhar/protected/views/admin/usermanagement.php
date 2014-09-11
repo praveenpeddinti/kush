@@ -94,13 +94,32 @@
             var id1=$(this).attr('id');
             var id = $(this).attr('data-id');
             var inviteStatus = $(this).attr('invite-status');
-            if(id1.indexOf("view") > -1)
+            if(id1.indexOf("userview") > -1)
                 loadDetails(Number(id));
-            else
+            if(id1.indexOf("assumelogin") > -1)
+               loadCustomerLogin(Number(id));
+            if(id1.indexOf("usera") > -1)
                 statusChangeUser(Number(id), Number(inviteStatus));
         });
     });
     var pageno;
+    function loadCustomerLogin(id) {
+        var data = "UserId=" + UserId+"&Password=" + Password+"&Id="+id;
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: '<?php echo Yii::app()->createAbsoluteUrl("/site/login"); ?>',
+                data: data,
+                success: function(data) {
+                    window.location.href='<?php echo Yii::app()->request->baseUrl; ?>/user/homeService';
+                    
+                },
+                error: function(data) { 
+                   alert("Error occured.please try again");
+
+                }
+            });
+    }
     function loadDetails(id) {
             var data = "Id=" + id;
             $.ajax({

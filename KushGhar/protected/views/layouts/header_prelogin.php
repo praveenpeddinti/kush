@@ -137,6 +137,8 @@
 
                 <div class="pull-right">
                     <ul class=" pull-right header_profile">
+                        <?php if ($this->session['is_Assumed_By_Admin']==1) { ?><li id="backtoadmin" class=" pull-left back_to_admin">Admin logged in on behalf of <?php echo $this->session['firstName']; ?> <!--<a href="<?php //echo Yii::app()->request->baseUrl; ?>/site/adminlogin">Back to Admin</a>-->
+                        <input type="button" value="Back to Admin" class="btn" onclick="backToAdmin(1)" /></li><?php }?>
                         <li id="welcome" class=" pull-left welcome_text">Welcome <?php echo $this->session['firstName']; ?></li>
                         <li class=" pull-left  header_profile_settings dropdown">
 
@@ -194,4 +196,29 @@
     function SignInpopup(){
         window.location.href='<?php echo Yii::app()->request->baseUrl; ?>/site/registration?ClickBy=SignIn';
     }
+  
+    function backToAdmin(id){
+        alert("Back to Admin--"+id);
+        
+        var data = "Id="+id;
+        alert(data);
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: '<?php echo Yii::app()->createAbsoluteUrl("/site/adminlogin"); ?>',
+                data: data,
+                
+                success: function(data) {
+                    
+                    window.location.href='<?php echo Yii::app()->request->baseUrl; ?>/admin/order';
+                    
+                },
+                error: function(data) { 
+                    
+                   alert("Error occured.please try again");
+
+                }
+            });
+    }
 </script>
+

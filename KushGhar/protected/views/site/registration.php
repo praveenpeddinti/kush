@@ -145,6 +145,7 @@
                             <?php echo $form->error($model, 'error'); ?>
                             <fieldset>
                                 <?php echo $form->hiddenField($model, 'Id'); ?>
+                                <?php echo $form->hiddenField($model, 'Location',array('value'=>$getInviteUserDetail['location'])); ?>
                                 <input type="hidden" id="VV" value="<?php echo $one;?>" >
 
                                 <?php echo $form->label($model, '<abbr title="required">*</abbr> first name'); ?>

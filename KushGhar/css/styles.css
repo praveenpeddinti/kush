@@ -476,6 +476,7 @@ ul.header_profile{ list-style:none; margin:0; padding:0}
 .icon_edit{background:url(../images/edit.gif) no-repeat left top; width:16px; height:16px; border:0; cursor:pointer}
 .i_print_icon input[type="button"]{ background:url(../images/printer.png) no-repeat left top; width:16px; height:16px; border:0; cursor:pointer}
 .i_invoice_icon input[type="button"]{ background:url(../images/invoice_icon.png) no-repeat left top; width:16px; height:16px; border:0; cursor:pointer}
+.icon_login{background:url(../images/lock.png) no-repeat left top; width:16px; height:16px; border:0; cursor:pointer}
 .modal-header p{margin:0px;padding:5px;line-height:15px;font-size:14px;color:#333;text-align:center;}
 .modal-header p.t_left{ text-align: left;}
 .errorMessageFont{color: #F7682A;margin-top: -5px;}
@@ -583,3 +584,4 @@ input.serachInput::-ms-reveal { width : 0; height: 0;}
 p.jRatingInfos {position:absolute;z-index:9999;background:transparent url('../images/bg_jRatingInfos.png') no-repeat;
 	color:#fff;display:none;width:91px;height:29px;font-size:16px;text-align:center;padding-top:5px;}
 p.jRatingInfos span.maxRate {color:#fff;font-size:14px;}
+.back_to_admin{margin-top:35px; font-family:MuseoSlab700;font-size:18px; color:#fff; padding:0 106px 0 0}

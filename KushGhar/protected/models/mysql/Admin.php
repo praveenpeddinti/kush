@@ -41,30 +41,30 @@ class Admin extends CActiveRecord {
         }
         return $user;
     }
-    public function saveModel($model) {
-        try{
-        $admin = Admin::model()->findByAttributes(array('UserId' => $model->id));
-        $admin->FirstName = $model->firstName;
-                $admin->LastName = $model->lastName;
-                $admin->UserName = $model->userName;
-                if($admin->update()){
-                    if ($result = User::model()->updateProfile($model)) {
-                        ;
-                    }
-                }
-        }catch(Exception $ex){
-            error_log("############Error Occurred in saveModel Admin model###############".$ex->getMessage());
+    public function getAdminDetails($id) {
+        try {
+            $adminDetails = Admin::model()->findByAttributes(array('Id' => $id));
+        } catch (Exception $ex) {
+            error_log("############Error Occurred= in usergetDetails= #############" . $ex->getMessage());
         }
-        return $result;
+        return $adminDetails;
     }
-    public function getAdminDetails($userId){
-        try{
-        $query = "Select *, a.UserId,a.Logo,FirstName,LastName from Admin a JOIN User u on u.UserId = a.UserId where a.UserId = $userId";
-        $adminResult = YII::app()->db->createCommand($query)->queryRow();
-        }catch(Exception $ex){
-            error_log("############Error Occurred= in getAdminDetails= of Admin MODEL#############".$ex->getMessage());
+    
+    
+    public function checkAuthenticationBackToAdmin($uname,$psw) {
+        // only checking with the email not the username; should have do with the username also... ;
+        try {
+            
+            $admin = Admin::model()->findByAttributes(array(), 'email_address=:email_address  AND password_hash=:password_hash', array(':email_address' => $uname, ':password_hash' => md5($psw)));
+            
+            if (isset($admin)) {
+                $admin->update_timestamp = gmdate("Y-m-d H:i:s", time());
+                $admin->update();
+            }
+        } catch (Exception $ex) {
+            error_log("#########EXCEPTION OCCURRED IN CHECK AUTENTICATION########" . $ex->getMessage());
         }
-        return $adminResult;
+        return $admin;
     }
     
     

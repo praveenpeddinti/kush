@@ -172,6 +172,21 @@ class SiteController extends Controller {
     }
     
     public function actionLogin() {
+        
+        if(!empty($_POST['Id'])){
+            $customerDetails = $this->kushGharService->getCustomerDetails($_POST['Id']);
+            $result = $this->kushGharService->adminAsCustomerlogin($customerDetails->email_address,$customerDetails->password_salt, 'User');
+            $this->session['is_Assumed_By_Admin'] = 1;
+            $this->session['UserId'] = $result->customer_id;
+            $this->session['email'] = $result->email_address;
+            $this->session['firstName'] = $result->first_name;
+            $this->session['LoginPic'] = $result->profilePicture;
+            $this->session['Type'] = 'Customer';
+            $obj = array('status' => 'success', 'data' => $result, 'error' => '');
+            $this->pageTitle="KushGhar-Login";
+            $renderScript = $this->rendering($obj);
+            echo $renderScript;
+        }else{
         $model = new LoginForm;
         // if it is ajax validation request
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'login-form') {
@@ -192,6 +207,7 @@ class SiteController extends Controller {
                    if($result->status==1)
                    {
                     $ppp = md5($result->password_hash);
+                    $this->session['is_Assumed_By_Admin'] = 0;
                     $this->session['UserId'] = $result->customer_id;
                     $this->session['email'] = $result->email_address;
                     $this->session['firstName'] = $result->first_name;
@@ -226,7 +242,7 @@ class SiteController extends Controller {
             $this->pageTitle="KushGhar-Login";
             $renderScript = $this->rendering($obj);
             echo $renderScript;
-        }
+        }}
     }
     public function actionRegistration() {
 //        $this->session['Type'] = 'Customer';
@@ -248,7 +264,7 @@ class SiteController extends Controller {
                 if ($Dresult == 'No user') {
                     $result = $this->kushGharService->saveRegistrationData($model);
                     $getUserDetails = $this->kushGharService->getUserDetailsWithEmail($model->Email);
-                    $custAddressDetails = $this->kushGharService->saveCustomerAddressDumpInfoDetails($getUserDetails->customer_id);
+                    $custAddressDetails = $this->kushGharService->saveCustomerAddressDumpInfoDetails($model->Location,$getUserDetails->customer_id);
                     $paymentId = $this->kushGharService->saveCustomerPaymentDumpInfoDetails($getUserDetails->customer_id);
                     $this->session['UserId'] = $getUserDetails->customer_id;
                 } else {
@@ -445,8 +461,7 @@ class SiteController extends Controller {
         //$uname=$this->session['UserType'];
         $inviteForm = new InviteForm;
         $this->session['Type']='Vendor';
-        //error_log("id==con==".$_REQUEST['uname']."====".$this->session['Type']);
-       
+        
         $model = new VendorRegistrationForm;
         $modelLogin = new VendorLoginForm;
         $request = yii::app()->getRequest();
@@ -524,6 +539,24 @@ class SiteController extends Controller {
      * Displays the Admin login page
      */
     public function actionAdminLogin() {
+        
+        if(!empty($_POST['Id'])){
+            $adminDetails = $this->kushGharService->getAdminDetails($_POST['Id']);
+            $result = $this->kushGharService->adminAsCustomerlogin($adminDetails->email_address,$adminDetails->password_salt, 'Admin');
+            $this->session['is_Assumed_By_Admin'] = 0;
+            $this->session['UserId'] = $result->Id;
+            $this->session['email'] = $result->email_address;
+            $this->session['firstName'] = $result->first_name;
+            $this->session['LoginPic'] = $result->profilePicture;
+            $this->session['Type'] = 'Admin';
+            $obj = array('status' => 'success', 'data' => $result, 'error' => '');
+            $this->pageTitle="KushGhar-Login";
+            $renderScript = $this->rendering($obj);
+            echo $renderScript;
+        }else{
+        
+        
+        
         $model = new LoginForm;
         // if it is ajax validation request
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'login-form') {
@@ -542,6 +575,7 @@ class SiteController extends Controller {
                 if(isset($result)) {
                    
                     $ppp = md5($result->password_hash);
+                    $this->session['is_Assumed_By_Admin'] = 0;
                     $this->session['UserId'] = $result->Id;
                     $this->session['email'] = $result->email_address;
                     $this->session['firstName'] = $result->first_name;
@@ -561,6 +595,6 @@ class SiteController extends Controller {
             $this->render('adminlogin', array('adminLogin' => $model));
         }
     }
-
+    }
 
 }

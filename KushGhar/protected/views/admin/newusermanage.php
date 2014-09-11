@@ -27,6 +27,7 @@
                                             <td>
                                              <input id="usera_<?php echo $row['cid']; ?>" data-id="<?php echo $row['cid']; ?>" invite-status="<?php echo $row['status']; ?>" type="button" value=" " class="<? if ($row['status'] == '0') echo 'icon_inactive'; if ($row['status'] == '1') echo 'icon_active';?>" alt="Status" title="Change Status"/>
                                              <input id="userview_<?php echo $row['cid']; ?>" data-id="<?php echo $row['cid']; ?>"  type="button" value=" " class="icon_view" alt="View" title="View"/>
+                                             <input id="assumelogin_<?php echo $row['cid']; ?>" data-id="<?php echo $row['cid']; ?>"  type="button" value=" " class="icon_login" alt="Login as user" title="Login as user"/>
                                         
                                         </td>
                                           </tr>

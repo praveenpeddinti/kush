@@ -24,10 +24,11 @@ class ContactInfo extends CActiveRecord {
         return 'KG_customer_address';
     }
 
-    public function saveCustomerAddressDumpInfoDetails($cId) {
+    public function saveCustomerAddressDumpInfoDetails($location,$cId) {
         try {
             $sampleDetails = new ContactInfo();
             $sampleDetails->customer_id = $cId;
+            $sampleDetails->address_notes = $location;
             if ($sampleDetails->save()) {
                 $result = "success";
             } else {

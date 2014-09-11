@@ -11,6 +11,7 @@ class OrderDetails extends CActiveRecord {
     public $service_date;
     public $total_service_hours;
     public $total_service_people;
+    public $is_Created_By_Admin;
     public $create_timestamp;
     public $update_timestamp;
     public $assign_vendors;
@@ -59,6 +60,7 @@ class OrderDetails extends CActiveRecord {
     
     public function storeOrderDetailsOfHouse($cId,$parentId,$CustId,$orderNo,$serviceId,$amount,$serviceDate) {
                 try {
+                    error_log("----sessin----".$_SESSION['is_Assumed_By_Admin']);
                 $order = new OrderDetails();
                 $order->parent_id = $parentId+1;
                 $order->CustId = $cId;
@@ -67,6 +69,7 @@ class OrderDetails extends CActiveRecord {
                 $order->status = 0;
                 $order->service_date=$serviceDate;
                 $order->amount = $amount;
+                $order->is_Created_By_Admin = $_SESSION['is_Assumed_By_Admin'];
                 $order->create_timestamp = gmdate("Y-m-d H:i:s", time());
                 $order->update_timestamp = gmdate("Y-m-d H:i:s", time());
                 

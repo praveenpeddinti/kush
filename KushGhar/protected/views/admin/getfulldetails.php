@@ -1,4 +1,4 @@
-<?php
+<?php 
 $address;
  if($userAllDetails['address_line1']=='')
      $addressline1="";
@@ -42,4 +42,25 @@ $address;
                 <img style="width:150px;height:150px" src="<?php echo $userAllDetails['profilePicture'];  ?>" /></div>
         </td>
     </tr>
+</table>
+<table>
+    <?php if($UserType=='Vendor') {?>
+    <tr>
+        <td>
+            <label>Identity Proof</label>
+            <div class="thumbnail" style="width: 150px; height: 150px;margin-bottom:10px">
+                <img style="width:150px;height:150px" src="<?php echo isset ($userAllDetails['proof_image_file_location'])?$userAllDetails['proof_image_file_location']:'/images/profile/none.jpg';  ?>" /></div>
+        </td>
+        <td>
+            <label>Address Proof</label>
+            <div class="thumbnail" style="width: 150px; height: 150px;margin-bottom:10px">
+                <img style="width:150px;height:150px" src="<?php echo isset ($userAllDetails['address_image_file_location'])?$userAllDetails['address_image_file_location']:'/images/profile/none.jpg';  ?>" /></div>
+        </td>
+        <td>
+            <label>Clearance Proof</label>
+            <div class="thumbnail" style="width: 150px; height: 150px;margin-bottom:10px">
+                <img style="width:150px;height:150px" src="<?php echo isset($userAllDetails['clearance_image_file_location'])?$userAllDetails['clearance_image_file_location']:'/images/profile/none.jpg';  ?>" /></div>
+        </td>
+    </tr>
+    <?php }?>
     </table>

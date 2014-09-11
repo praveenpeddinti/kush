@@ -402,7 +402,7 @@ $this->pageTitle="KushGhar-Basic Info";
         try{
             $id=$_POST['Id'];
             $userAllDetails=$this->kushGharService->getFullUserDetails($id);
-            $renderHtml=  $this->renderPartial('getfulldetails',array('userAllDetails'=> $userAllDetails),true);
+            $renderHtml=  $this->renderPartial('getfulldetails',array('userAllDetails'=> $userAllDetails,'UserType'=>'user'),true);
             $obj=array('status'=>'success','html'=>$renderHtml);
             $renderScript=  $this->rendering($obj);
             echo $renderScript;
@@ -674,7 +674,7 @@ $this->pageTitle="KushGhar-Basic Info";
         try{
             $id=$_POST['Id'];
             $userAllDetails=$this->kushGharService->getFullVendorDetails($id);
-            $renderHtml=  $this->renderPartial('getfulldetails',array('userAllDetails'=> $userAllDetails),true);
+            $renderHtml=  $this->renderPartial('getfulldetails',array('userAllDetails'=> $userAllDetails,'UserType'=>'Vendor'),true);
             $obj=array('status'=>'success','html'=>$renderHtml);
             $renderScript=  $this->rendering($obj);
             echo $renderScript;

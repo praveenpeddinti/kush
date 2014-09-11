@@ -430,11 +430,10 @@ class SiteController extends Controller {
             } else {
                 if($model->VendorType==0){$model->VendorType=2;}
                 $result = $this->kushGharService->vendorLogin($model);
-                if ($result == "false") {
-                    $errors = array("VendorLoginForm_error" => 'Invalid User Id or Password.');
-                    $obj = array('status' => '', 'data' => '', 'error' => $errors);
-                } else {
-                    $this->session['VendorType'] = $model->VendorType;
+                if(isset($result)){ 
+                if($result->status==1)
+                   {
+                     $this->session['VendorType'] = $model->VendorType;
                     if($model->VendorType==2){$this->session['UserId'] = $result->vendor_id;}
                     if($model->VendorType==1){$this->session['UserId'] = $result->vendor_id;}
                     
@@ -443,7 +442,17 @@ class SiteController extends Controller {
                     $this->session['LoginPic'] = $result->profilePicture;
                     $this->session['Type'] ='Vendor';
                     $obj = array('status' => 'success', 'data' => $result, 'error' => '');
+                   }
+                   else if ($result->status==0)
+                   {
+                    $errors = array("VendorLoginForm_error" => 'Your acount is Inactive. Contact your administrator.');
+                    $obj = array('status' => '', 'data' => '', 'error' => $errors);
+                   }
                 }
+                else {
+                    $errors = array("VendorLoginForm_error" => 'Invalid User Id or Password.');
+                    $obj = array('status' => '', 'data' => '', 'error' => $errors);
+                } 
             }
             $this->pageTitle="KushGhar-Login";
             $renderScript = $this->rendering($obj);

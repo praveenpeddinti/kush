@@ -220,30 +220,30 @@
                                     </div>
                                     <div class="span4">
                                         <?php echo $form->label($model, '<abbr title="required">*</abbr>Proof of Address'); ?>
-                                        <?php echo $form->dropDownList($model,'Proof_of_Address',array(''=>'Select Proof of Address','Aadhar Card'=>'Aadhar Card','Bank Account'=>'Bank Account','Passport'=>'Passport','Ration Card'=>'Ration Card','Electricity Bill'=>'Electricity Bill'), array('options' => array($getVendorDocuments->type_of_address => array('selected' => 'selected')), 'class' => 'span12'));?>
+                                        <?php echo $form->dropDownList($model,'Proof_of_Address',array(''=>'Select Proof of Address','Aadhar Card'=>'Aadhar Card','Bank Account'=>'Bank Account','Passport'=>'Passport','Ration Card'=>'Ration Card','Govt. Issued Card'=>'Govt. Issued Card'), array('options' => array($getVendorDocuments->type_of_address => array('selected' => 'selected')), 'class' => 'span12'));?>
                                         <?php echo $form->error($model, 'Proof_of_Address'); ?>
                                     </div>
                                     <div class="span4">
                                         <?php echo $form->label($model, '<abbr title="required">*</abbr>Proof of Clearance'); ?>
-                                        <?php echo $form->dropDownList($model,'Proof_of_Clearance',array(''=>'Select Proof of Clearance','Clearance Form'=>'Clearance Form'), array('options' => array($getVendorDocuments->type_of_clearance => array('selected' => 'selected')), 'class' => 'span12'));?>
+                                        <?php echo $form->dropDownList($model,'Proof_of_Clearance',array(''=>'Select Proof of Clearance','Background Check'=>'Background Check'), array('options' => array($getVendorDocuments->type_of_clearance => array('selected' => 'selected')), 'class' => 'span12'));?>
                                         <?php echo $form->error($model, 'Proof_of_Clearance'); ?>
                                     </div>
                                 </div>
                                  <div class="row-fluid">
                                     <div class=" span4">
-                                        <?php echo $form->label($model, '<abbr title="required">*</abbr>ID Number'); ?>
-                                        <?php echo $form->textField($model, 'Number', array('value' => $getVendorDocuments->proof_number, 'class' => 'span12', 'maxLength' => 25)); ?>
-                                        <?php echo $form->error($model, 'Number'); ?>
+                                        <?php echo $form->label($model, '<abbr title="required">*</abbr>Identity Proof Number'); ?>
+                                        <?php echo $form->textField($model, 'Identity_proof_Number', array('value' => $getVendorDocuments->proof_number, 'class' => 'span12', 'maxLength' => 25)); ?>
+                                        <?php echo $form->error($model, 'Identity_proof_Number'); ?>
                                     </div>
                                     <div class=" span4">
-                                        <?php echo $form->label($model, '<abbr title="required">*</abbr>ID Number'); ?>
-                                        <?php echo $form->textField($model, 'AddressProofNumber', array('value' => $getVendorDocuments->address_number, 'class' => 'span12', 'maxLength' => 25)); ?>
-                                        <?php echo $form->error($model, 'AddressProofNumber'); ?>
+                                        <?php echo $form->label($model, '<abbr title="required">*</abbr>Address Proof Number'); ?>
+                                        <?php echo $form->textField($model, 'Address_Proof_Number', array('value' => $getVendorDocuments->address_number, 'class' => 'span12', 'maxLength' => 25)); ?>
+                                        <?php echo $form->error($model, 'Address_Proof_Number'); ?>
                                     </div>
                                      <div class="span4">
-                                            <?php echo $form->label($model, 'ID Number'); ?>
-                                        <?php echo $form->textField($model, 'clearanceProofNumber', array('value' => $getVendorDocuments->clearance_number, 'class' => 'span12', 'maxLength' => 25)); ?>
-                                        <?php echo $form->error($model, 'clearanceProofNumber'); ?>
+                                            <?php echo $form->label($model, 'Clearance Proof Number'); ?>
+                                        <?php echo $form->textField($model, 'Clearance_Proof_Number', array('value' => $getVendorDocuments->clearance_number, 'class' => 'span12', 'maxLength' => 25)); ?>
+                                        <?php echo $form->error($model, 'Clearance_Proof_Number'); ?>
                                         </div>
                                 </div>
                                 <div class="row-fluid">

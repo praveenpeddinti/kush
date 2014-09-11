@@ -4,6 +4,9 @@ class AdminController extends Controller {
 
     public function init(){
         parent::init();
+        if($this->session['Type']!='Admin'){
+            $this->redirect('/');
+        }
         if(!isset(Yii::app()->session['UserId']))
         {
             $this->redirect('/');
@@ -268,6 +271,7 @@ class AdminController extends Controller {
         try {
             $this->session->destroy();
             unset($_SESSION['UserId']);
+            unset($_SESSION['Type']);
             $this->pageTitle="KushGhar-Home";
             $this->redirect("/site/index");
         } catch (Exception $ex) {

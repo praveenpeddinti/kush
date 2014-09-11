@@ -25,6 +25,7 @@ class VendorIndividualRegistration extends CActiveRecord {
     public $create_timestamp;
     public $update_timestamp;
     public $found_kushghar_by;
+    public $status;
 
     public static function model($className = __CLASS__) {
         return parent::model($className);
@@ -97,6 +98,7 @@ class VendorIndividualRegistration extends CActiveRecord {
             $vendorDetails->phone = $model->Phone;
             $vendorDetails->password_hash = md5($model->Password);
             $vendorDetails->password_salt = $model->Password;
+            $vendorDetails->status=0;
             $vendorDetails->profilePicture = '/images/profile/none.jpg';
             $vendorDetails->create_timestamp = gmdate("Y-m-d H:i:s", time());
             $vendorDetails->update_timestamp = gmdate("Y-m-d H:i:s", time());

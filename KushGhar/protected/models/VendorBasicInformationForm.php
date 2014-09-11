@@ -17,7 +17,7 @@ class VendorBasicInformationForm extends CFormModel {
     public $AgencyName;
     public $vendorType;
     public $Proof_of_Identity;
-    public $Number;
+    public $Identity_proof_Number;
     public $uIdDocument;
     public $Gender;
     public $profilePicture;
@@ -28,10 +28,10 @@ class VendorBasicInformationForm extends CFormModel {
     public $foundKushgharBy;
     public $Services;
     public $Proof_of_Address;
-    public $AddressProofNumber;
+    public $Address_Proof_Number;
     public $AddrPfDocument;
     public $Proof_of_Clearance;
-    public $clearanceProofNumber;
+    public $Clearance_Proof_Number;
     public $clrPfDocument;
     
     /**ct one.'),
@@ -46,9 +46,9 @@ class VendorBasicInformationForm extends CFormModel {
                 'if' => array(
                 array('vendorType', 'compare', 'compareValue'=>"1")),
                 'then' => array(
-                array('FirstName,LastName,Number,AddressProofNumber', 'required'),
+                array('FirstName,LastName,Identity_proof_Number,Address_Proof_Number', 'required','message'=>'Please enter {attribute}.'),
                 array(' Services', 'required', 'message' => 'Please select Services'),
-                array('Proof_of_Identity,Proof_of_Address,Proof_of_Clearance','required','message'=>'Please select {attribute}'),
+                array('Proof_of_Identity,Proof_of_Address,Proof_of_Clearance','required','message'=>'Please select {attribute}.'),
 //array('Services', 'compare', 'operator'=>'!=', 'compareValue'=>'', 'message'=>'Please Selecst Services'),
                
                 array('FirstName,MiddleName,LastName,', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain alphabet and space'),
@@ -72,7 +72,7 @@ class VendorBasicInformationForm extends CFormModel {
             //array('IdentityProof','compare','compareAttribute'=>'Select Proof of Identify','operator'=>'<', 'operator'=>'=','allowEmpty'=>false,'message'=>'{attribute} must be greater than "{compareValue}".')
             // First Name, Last Name must be Alphabet and space
             //array('FirstName, MiddleName, LastName', 'match', 'pattern' => '/^[a-zA-Z\s]+$/', 'message' => '{attribute} can only contain Alphabet and space'),
-            array('Services,FirstName, MiddleName, LastName,PrimaryContactFirstName,PrimaryContactMiddleName,PrimaryContactLastName,AgencyName,Number,Gender,profilePicture,uIdDocument,dateOfBirth,Website,Pan,Tin,foundKushgharBy,Id,vendorType,AddressProofNumber,AddrPfDocument,clearanceProofNumber,clrPfDocument,Proof_of_Identity,Proof_of_Address,Proof_of_Clearance', 'safe'),
+            array('Services,FirstName, MiddleName, LastName,PrimaryContactFirstName,PrimaryContactMiddleName,PrimaryContactLastName,AgencyName,Identity_proof_Number,Gender,profilePicture,uIdDocument,dateOfBirth,Website,Pan,Tin,foundKushgharBy,Id,vendorType,Address_Proof_Number,AddrPfDocument,Clearance_Proof_Number,clrPfDocument,Proof_of_Identity,Proof_of_Address,Proof_of_Clearance', 'safe'),
         );
     }
 

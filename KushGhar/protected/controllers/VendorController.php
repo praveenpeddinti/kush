@@ -375,7 +375,6 @@ class VendorController extends Controller {
             $img->save($finalImg_name_new); // saving into the specified path...
             $finalImg_name = '/images/documents/' . $finalImg_name;
             $proofType=Yii::app()->getRequest()->getQuery('proof');
-            error_log("Proof type===================".$proofType);
             if($proofType=='Identity')
                 $this->session['docFileName'] = $finalImg_name;
             if($proofType=='Address')
@@ -453,6 +452,7 @@ class VendorController extends Controller {
         try {
             $this->session->destroy();
             unset ($_SESSION['UserId']);
+            unset($_SESSION['Type']);
             $this->pageTitle="KushGhar-Home";
             $this->redirect("/site/index");
         } catch (Exception $ex) {

@@ -306,10 +306,12 @@ class InviteUser extends CActiveRecord {
     public function ChangeVendorStatus($id, $val) {
        $result="failed";
        try{
-           if($val==1)
-                $query="update KG_vendor_individual set status=0 where vendor_id=".$id;
-           else if ($val==0)
-                $query="update KG_vendor_individual set status=1 where vendor_id=".$id;
+           if($val==1){
+                $query="update KG_vendor_individual set status=0 where vendor_individual_id=".$id;
+           }
+           else if ($val==0){
+                $query="update KG_vendor_individual set status=1 where vendor_individual_id=".$id;
+           }
            $result1 = YII::app()->db->createCommand($query)->execute();
            if($result1>0)
                $result = "success";

@@ -220,7 +220,7 @@
                                     </div>
                                     <div class="span4">
                                         <?php echo $form->label($model, '<abbr title="required">*</abbr>Proof of Address'); ?>
-                                        <?php echo $form->dropDownList($model,'Proof_of_Address',array(''=>'Select Proof of Address','Aadhar Card'=>'Aadhar Card','Bank Account'=>'Bank Account','Passport'=>'Passport','Ration Card'=>'Ration Card'), array('options' => array($getVendorDocuments->type_of_address => array('selected' => 'selected')), 'class' => 'span12'));?>
+                                        <?php echo $form->dropDownList($model,'Proof_of_Address',array(''=>'Select Proof of Address','Aadhar Card'=>'Aadhar Card','Bank Account'=>'Bank Account','Passport'=>'Passport','Ration Card'=>'Ration Card','Electricity Bill'=>'Electricity Bill'), array('options' => array($getVendorDocuments->type_of_address => array('selected' => 'selected')), 'class' => 'span12'));?>
                                         <?php echo $form->error($model, 'Proof_of_Address'); ?>
                                     </div>
                                     <div class="span4">
@@ -266,7 +266,7 @@
                                                             'sizeLimit' => 15 * 1024 * 1024, // maximum file size in bytes
 //                                                          'minSizeLimit'=>10*1024,// minimum file size in bytes
                                                             'onComplete' => "js:function(id, fileName, responseJSON){
-                                                             var data = eval(responseJSON);alert(data.filename);
+                                                             var data = eval(responseJSON);
                                                              globaluIdDocument = '/images/documents/'+data.filename;
                                                              $('#VendorBasicInformationForm_uIdDocument').val('/images/documents/'+data.filename);
                                                              $('#uIdDocPreviewId').attr('src',globaluIdDocument);
@@ -304,7 +304,7 @@
                                                             'sizeLimit' => 15 * 1024 * 1024, // maximum file size in bytes
 //                                                          'minSizeLimit'=>10*1024,// minimum file size in bytes
                                                             'onComplete' => "js:function(id, fileName, responseJSON){
-                                                             var data = eval(responseJSON);alert(data.filename);
+                                                             var data = eval(responseJSON);
                                                              globalAddrPfDocument = '/images/documents/'+data.filename;
                                                              $('#VendorBasicInformationForm_AddrPfDocument').val('/images/documents/'+data.filename);
                                                              $('#AddrPfDocPreviewId').attr('src',globalAddrPfDocument);
@@ -342,7 +342,7 @@
                                                             'sizeLimit' => 15 * 1024 * 1024, // maximum file size in bytes
 //                                                          'minSizeLimit'=>10*1024,// minimum file size in bytes
                                                             'onComplete' => "js:function(id, fileName, responseJSON){
-                                                             var data = eval(responseJSON);alert(data.filename);
+                                                             var data = eval(responseJSON);
                                                              globalclrPfDocument = '/images/documents/'+data.filename;
                                                              $('#VendorBasicInformationForm_clrPfDocument').val('/images/documents/'+data.filename);
                                                              $('#ClrPfDocPreviewId').attr('src',globalclrPfDocument);

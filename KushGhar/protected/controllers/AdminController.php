@@ -223,15 +223,14 @@ class AdminController extends Controller {
         try {
             if (isset($_GET['userDetails_page'])) {
                 $totaluser = $this->kushGharService->getTotalInvoice($_GET['oNumber'],$_GET['invoiceNo'],$_GET['status']);
-                error_log("-----".$totaluser);
                 $startLimit = ((int) $_GET['userDetails_page'] - 1) * (int) $_GET['pageSize'];
                 $endLimit = $_GET['pageSize'];
                 if(count($totaluser)==0)
-                {error_log("---1--".count($totaluser));
+                {
                  $obj=  array('status' => 'success', 'html' => 0, 'totalCount' => $totaluser);
                 }
                 else
-                {error_log("--2---".$totaluser);
+                {
                 $userDetails = $this->kushGharService->getAllInvoice($startLimit, $endLimit,$_GET['oNumber'],$_GET['invoiceNo'],$_GET['status']);
                 $renderHtml = $this->renderPartial('viewInvoice', array('userDetails' => $userDetails, 'totalCount' => $totaluser), true);
                 $obj = array('status' => 'success', 'html' => $renderHtml, 'totalCount' => $totaluser);
@@ -289,7 +288,7 @@ $this->pageTitle="KushGhar-Basic Info";
     }
     
     public function actionOrder() {
-        try {error_log("------enter order1---");
+        try {
             
             //$orderDetails = $this->kushGharService->getOrderDetailsinAdmin();
             $this->pageTitle="KushGhar-Orders";
@@ -301,7 +300,7 @@ $this->pageTitle="KushGhar-Basic Info";
     }
     
     public function actionNewOrder() {
-        try {error_log("------enter order---");
+        try {
             if (isset($_GET['userDetails_page'])) {
                 $totaluser = $this->kushGharService->getTotalOrders($_GET['serviceType'],$_GET['orderNo'],$_GET['status']);
                 $startLimit = ((int) $_GET['userDetails_page'] - 1) * (int) $_GET['pageSize'];

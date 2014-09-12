@@ -71,7 +71,7 @@ class Registration extends CActiveRecord {
         return $user;
     }
 
-    public function checkUserExist($model) {error_log("------model-----");
+    public function checkUserExist($model) {
         try {
             $user = Registration::model()->findByAttributes(array(), 'email_address=:email_address OR phone=:phone', array(':email_address' => $model->Email, ':phone' => $model->Phone));
             if (empty($user)) {

@@ -25,7 +25,7 @@ class Vendor extends CActiveRecord {
             $vendorDetails->update_timestamp = gmdate("Y-m-d H:i:s", time());
             if ($vendorDetails->save()) {
                 $id = $vendorDetails->primaryKey;
-                error_log("vendor ID=============".$id);
+               
             } 
         } catch (Exception $ex) {
             error_log("##########Exception Occurred saveData#############" . $ex->getMessage());

@@ -60,7 +60,6 @@ class OrderDetails extends CActiveRecord {
     
     public function storeOrderDetailsOfHouse($cId,$parentId,$CustId,$orderNo,$serviceId,$amount,$serviceDate) {
                 try {
-                    error_log("----sessin----".$_SESSION['is_Assumed_By_Admin']);
                 $order = new OrderDetails();
                 $order->parent_id = $parentId+1;
                 $order->CustId = $cId;

@@ -25,8 +25,7 @@ class Contact extends CActiveRecord {
         
         if ($user == false) {
 //                User::model()->updatePassword
-                error_log("====user NotExist");
-                $adminContact->Name = $model->Name;
+            $adminContact->Name = $model->Name;
             $adminContact->Email = $model->Email;
             $adminContact->Subject = $model->Subject;
             $adminContact->Body = $model->Body;
@@ -37,8 +36,7 @@ class Contact extends CActiveRecord {
             } else {
                 $result = "failed";
             }
-            error_log($model->Email."===checking===========");
-        
+            
             // save condition ...
             
 
@@ -53,7 +51,6 @@ class Contact extends CActiveRecord {
         // only checking with the email not the username; should have do with the username also... ;
         try {
             $user = Contact::model()->findByAttributes(array('Email' => $model->Email));
-            error_log("checking===========".$user);
             if (isset($user)) {
                 //$user->LastLoginOn = gmdate("Y-m-d H:i:s", time());
                 $user->update();

@@ -440,7 +440,6 @@ class InviteUser extends CActiveRecord {
     public function getFullVendorDetails($id){
         try{
         $query="select c.vendor_individual_id as cid, CONCAT_WS(' ',first_name,middle_name,last_name) as UserName , c.email_address , c.phone , c.create_timestamp , ca.address_line1,ca.address_line2,ca.address_city , c.status,c.profilePicture,cd.proof_image_file_location,cd.address_image_file_location,cd.clearance_image_file_location  from KG_vendor_individual c join KG_vendor_address ca on ca.vendor_address_id=c.vendor_id join KG_vendor_individual_documents cd on cd.vendor_individual_id=c.vendor_id where c.vendor_individual_id=".$id ;
-        error_log("Query=========".$query);
         $result = Yii::app()->db->createCommand($query)->queryRow();
         } catch (Exception $ex) {
             error_log("################Exception Occurred  get Full Details Contacts##############".$ex->getMessage());

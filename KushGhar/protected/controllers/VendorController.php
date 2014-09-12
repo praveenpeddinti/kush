@@ -224,7 +224,6 @@ class VendorController extends Controller {
                 //unset($this->session['fileName']);
                 //unset($this->session['docFileName']);
                 //$result = $this->kushGharService->updateRegistrationData($basicForm, $cId);
-                error_log("picture====".$this->session['LoginPic']);
                 $saveDocuments = $this->kushGharService->updateVendorDocuments($basicForm, $Vid);
                 if($VType==1){
                     $result = $this->kushGharService->updateVendorDetailsWithIndividual($basicForm, $Vid);
@@ -246,7 +245,7 @@ class VendorController extends Controller {
             $this->pageTitle="KushGhar-Basic Info";
             $renderScript = $this->rendering($obj);
             echo $renderScript;
-        } else {error_log("elsepppppppppp");
+        } else {
             //$this->render('basicinfo', array("model" => $basicForm, "IdentityProof" => $Identity, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails, "updatedPassword"=> $updatedPasswordForm));
         //}
         $this->pageTitle="KushGhar-Basic Info";
@@ -258,8 +257,7 @@ class VendorController extends Controller {
 /**
      * User Contact Information Form Controller
      */
-    public function actionVendorContactInformation() {error_log("entercontact info====".$this->session['VendorType']."==".$this->session['UserId']);
-        error_log("picture=====".$this->session['LoginPic']);
+    public function actionVendorContactInformation() {
         $contactForm = new VendorContactInformationForm;
         //$updatedPasswordForm = new updatedPasswordForm;
         $Vid = $this->session['UserId'];
@@ -280,7 +278,7 @@ class VendorController extends Controller {
         $this->session['LoginPic'] = $getVendorDetailsType1->profilePicture;
         $request = yii::app()->getRequest();
         $formName = $request->getParam('VendorContactInformationForm');
-        if ($formName != '') {error_log("enter contact error info====");
+        if ($formName != '') {
             $contactForm->attributes = $request->getParam('VendorContactInformationForm');
             $errors = CActiveForm::validate($contactForm);
             if ($errors != '[]') {
@@ -309,7 +307,7 @@ class VendorController extends Controller {
             $this->pageTitle="KushGhar-Contact Info";
             $renderScript = $this->rendering($obj);
             echo $renderScript;
-        } else {error_log("elsepppppppppp");
+        } else {
         $this->pageTitle="KushGhar-Contact Info";
             //$this->render('basicinfo', array("model" => $basicForm, "IdentityProof" => $Identity, "customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "customerPaymentDetails" => $customerPaymentDetails, "updatedPassword"=> $updatedPasswordForm));
         //}
@@ -319,7 +317,7 @@ class VendorController extends Controller {
     /**
      * File Profile picture function
      */
-    public function actionFileUpload() { error_log("enter uloading====");
+    public function actionFileUpload() { 
         Yii::import("ext.EAjaxUpload.qqFileUploader");
         $folder = $this->findUploadedPath() . '/images/profile/'; // folder for uploaded files
         $allowedExtensions = array("jpg", "jpeg", "gif", "png"); //array("jpg","jpeg","gif","exe","mov" and etc...
@@ -342,7 +340,7 @@ class VendorController extends Controller {
             $img->save($finalImg_name_new); // saving into the specified path...
             $finalImg_name = '/images/profile/' . $finalImg_name;
             $this->session['fileName'] = $finalImg_name;
-           error_log("enter uloading====".$finalImg_name);
+           
         } catch (Exception $e) {
             error_log("***********************" . $e->getMessage());
         }
@@ -398,7 +396,7 @@ class VendorController extends Controller {
                 $appendPath = "/" . $pathArray[$i] . $appendPath;
             }
             $originalPath = $appendPath;
-            error_log("--------------" . $originalPath);
+            
         } catch (Exception $ex) {
             error_log("#########Exception Occurred########$ex->getMessage()");
         }
@@ -409,7 +407,7 @@ class VendorController extends Controller {
  /**
      * Vendor Updated Password in Basic info page START
      */
-    public function actionUpdatedPsw() { error_log("enter-------");
+    public function actionUpdatedPsw() { 
         $model = new updatedPasswordForm;
         $VId = $this->session['UserId'];
         $VType = $this->session['VendorType'];
@@ -420,7 +418,7 @@ class VendorController extends Controller {
             $errors = CActiveForm::validate($model);
             if ($errors != '[]') {
                 $obj = array('status' => 'error', 'message' => '', 'error' => $errors);
-            } else {error_log("enter--ele-----");
+            } else {
                 if($VType==1){
                     $result = $this->kushGharService->getupdatedPasswordInVendor($model, $VId,$VType);
                 }

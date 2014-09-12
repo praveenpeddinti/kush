@@ -104,7 +104,8 @@
     });
     var pageno;
     function loadCustomerLogin(id) {
-        var data = "UserId=" + UserId+"&Password=" + Password+"&Id="+id;
+        var data = "Id="+id;
+        
             $.ajax({
                 type: 'POST',
                 dataType: 'json',

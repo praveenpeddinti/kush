@@ -198,10 +198,10 @@
     }
   
     function backToAdmin(id){
-        alert("Back to Admin--"+id);
+        
         
         var data = "Id="+id;
-        alert(data);
+        
             $.ajax({
                 type: 'POST',
                 dataType: 'json',

@@ -243,11 +243,11 @@ class KushGharService {
             } else {
                 $vendor = VendorAgencyRegistration ::model()->checkAuthentication($model);
             }
-            if (!empty($vendor)) {
+            //if (!empty($vendor)) {
                 return $vendor;
-            } else {
-                return "false";
-            }
+            //} else {
+            //    return "false";
+            //}
         } catch (Exception $ex) {
             error_log("=============exception occurred in login=============" . $ex->getMessage());
         }

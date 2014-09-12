@@ -311,23 +311,14 @@ class SiteController extends Controller {
 //                        $obj = array('status' => 'error', 'data' => '', 'error' => $errors); 
                     }
                     if ($result == "success") {
-
-                        //$to = $inviteForm->Email;
-                        //$name = $inviteForm->FirstName . ' ' . $inviteForm->LastName;
-                        //$name1 = $inviteForm->Email;
-                        //$subject = 'KushGhar Invitation';
-                        //$this->sendMailToUser($to, $name, $subject, '', 'KushGhar', 'no-reply@kushghar.com', 'sendInvitationMailToUser');
-                        //$this->sendMailToUser('no-reply@kushghar.com', $name, $name1, '', 'KushGhar', 'no-reply@kushghar.com', 'CustomerInvitationMailToKGTeam');
-                        
-                        
-                        
-                         /*
+                  /*
                   * Customer Mail Details
                   */
                         
                 $to1 = $inviteForm->Email;
                 $name = $inviteForm->FirstName . ' ' . $inviteForm->LastName;
                 $phone = $inviteForm->Phone;
+                $city = $inviteForm->City;
                 $location = $inviteForm->Location;
                 $subject ='KushGhar Invitation';
                 $Logo = YII::app()->params['SERVER_URL'] . "/images/color_logo.png";
@@ -338,20 +329,13 @@ class SiteController extends Controller {
                  * KG Team mail details
                  */
                 $to = 'praveen.peddinti@gmail.com';
-                //$subject ="Order placed";
-                //$Logo = YII::app()->params['SERVER_URL'] . "/images/color_logo.png";
-                //$employerEmail = "no-reply@kushghar.com";
                 $messageview="CustomerInvitationMailToKGTeam";
-                $params = array('Logo' => $Logo, 'Name' =>$name, 'Email' =>$to1, 'Phone'=>$phone, 'Location'=>$location);
-                
-                //$params = '';
+                $params = array('Logo' => $Logo, 'Name' =>$name, 'Email' =>$to1, 'City'=>$city, 'Phone'=>$phone, 'Location'=>$location);
                 $sendMailToUser=new CommonUtility;
                 $sendMailToUser->actionSendmail($messageview1,$params1, $subject, $to1,$employerEmail);
                 $mailSendStatusw=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
-                         
-                        
-                        $obj = array('status' => 'success', 'data' => $result, 'error' => 'Invitation sent successfully.');
-                    } else {
+                    $obj = array('status' => 'success', 'data' => $result, 'error' => 'Invitation sent successfully.');
+                } else {
                         $errors = array("InviteForm_error" => 'User already invited.');
                         $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
                     }

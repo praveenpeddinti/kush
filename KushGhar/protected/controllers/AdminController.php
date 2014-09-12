@@ -548,12 +548,13 @@ $this->pageTitle="KushGhar-Basic Info";
                             if (count($var) <= 1) {
                                $error.="Delimiter mismatch! => ".$line."<br>";
                             } else {
-                                if ($var[0] != "" && $var[1] != "" && $var[2] != "" && $var[3] != "") {
+                                if ($var[0] != "" && $var[1] != "" && $var[2] != "" && $var[3] != ""&&$var[5]!="") {
                                     $var[0]=str_replace('"','',$var[0]);
                                     $var[1]=str_replace('"','',$var[1]);
                                     $var[2]=str_replace('"','',$var[2]);
                                     $var[3]=str_replace('"','',$var[3]);
                                     $var[4]=str_replace('"','',$var[4]);
+                                    $var[5]=str_replace('"','',$var[5]);
                                     $inviteUser = $this->kushGharService->checkNewUserExistInInviteTable($var[3]);
                                     $custUser = $this->kushGharService->checkNewUserExistInCustomerTable($var[3]);
                                     if( ($inviteUser=='No user') && ($custUser=='No user')){
@@ -568,7 +569,8 @@ $this->pageTitle="KushGhar-Basic Info";
                                         $to1 = $var[3];
                                         $name = $var[0] . ' ' . $var[1];
                                         $phone = $var[2];
-                                        $location = $var[3];
+                                        $location = $var[4];
+                                        $city=$var[5];
                                         $subject ='KushGhar Invitation';
                                         $Logo = YII::app()->params['SERVER_URL'] ."/images/color_logo.png";
                                         $employerEmail = "no-reply@kushghar.com";
@@ -579,10 +581,10 @@ $this->pageTitle="KushGhar-Basic Info";
                                         /** KG Team mail details*/
                                         $to = 'praveen.peddinti@gmail.com';
                                         $messageview="CustomerInvitationMailToKGTeam";
-                                        $params = array('Logo' => $Logo, 'Name' =>$name, 'Email' =>$to1, 'Phone'=>$phone, 'Location'=>$location);
+                                        $params = array('Logo' => $Logo, 'Name' =>$name, 'Email' =>$to1, 'Phone'=>$phone, 'Location'=>$location,'City'=>$city);
                                         $sendMailToUser=new CommonUtility;
                                         $sendMailToUser->actionSendmail($messageview1,$params1, $subject, $to1,$employerEmail);
-                                        //$mailSendStatusw=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
+                                        $mailSendStatusw=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
                                         $error.="User invited successfully->".$var[3]."<br>";  
                                     } else {
                                         $error.="User already invited ->".$var[3]."<br>";
@@ -617,6 +619,7 @@ $this->pageTitle="KushGhar-Basic Info";
         $model->Phone=$var[2];
         $model->Email=$var[3];
         $model->Location=$var[4];
+        $model->City=$var[5];
         return $model;
     }
     public function actionOrdercanceldetails() {

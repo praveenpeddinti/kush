@@ -585,3 +585,9 @@ p.jRatingInfos {position:absolute;z-index:9999;background:transparent url('../im
 	color:#fff;display:none;width:91px;height:29px;font-size:16px;text-align:center;padding-top:5px;}
 p.jRatingInfos span.maxRate {color:#fff;font-size:14px;}
 .back_to_admin{margin-top:35px; font-family:MuseoSlab700;font-size:18px; color:#fff; padding:0 106px 0 0}
+.popupcontentstyle {
+   background: url("../images/template_images/content_area_bg.jpg") repeat-x scroll left top #F3F3F4;
+   border: 3px solid #FFFFFF;border-radius: 10px 10px 10px 10px;padding-right: 10px;
+}
+.overlay_close {margin-left: -20px;margin-top: -20px;position: absolute;}
+.search_div2 {clear: both;padding: 10px;}

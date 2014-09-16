@@ -46,13 +46,15 @@
         <div class="span12">
             <?php if($serviceId==1){ ?>
             <table border="1" style="width: 100%" cellpadding="0" cellspacing="0">
-                <tr><th align="left" colspan="4">No of Rooms</th><th align="left">Square feet area</th></tr>
+                <tr><th align="left" colspan="5">No of Rooms</th><th align="left">Square feet area</th></tr>
                 <tr>
                     <td><label>Bedroom <?php echo  "<b>" .$services['total_bedRooms'] . "</b>"; ?></label></td>
                     <td><label>Bathroom <?php echo "<b>" .$services['total_bathRooms']. "</b>"; ?></label></td>
                     <td><label>Living room <?php echo "<b>" .$services['total_livingRooms']. "</b>"; ?></label></td>
                     <td><label>Kitchen <?php echo "<b>" .$services['total_kitchens']. "</b>";?></label></td>
+                    <td><label>Other <?php echo "<b>" .$services['other_rooms']. "</b>";?></label></td>
                     <td><?php echo "<b>" . $services['squarefeets'] . "</b>"; ?></td>
+                    
                 </tr>
                 
             </table>
@@ -121,7 +123,7 @@
             <div style="text-align: center; background-color: #e5e5e5;">
             <center><h3 style="padding: 0px">Service Schedule</h3></center></div>
             <table border="1" style="width: 100%" cellpadding="0" cellspacing="0">
-                <tr><td align="left" style="width: 30%"><b>Service requested date:</b></td><td><?php echo $ServiceDate;?></td></tr>
+                <tr><td align="left" style="width: 35%"><b>Service requested date:</b></td><td><?php echo $ServiceDate;?></td></tr>
                 <?php if($status=='1'||$status=='3'){ ?>
                 <tr><td colspan="2" align="left"><b>Team members:</b></td></tr>
                 <tr>

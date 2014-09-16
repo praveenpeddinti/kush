@@ -305,6 +305,34 @@ class HouseCleaningService extends CActiveRecord {
         }
         return $result;
     }
+    /*
+     * @Praveen Update the Order in admin actions order tab
+     */
+    public function getUpdateOrderforServicesDetails($Orderno) {
+        try {
+            $query = "SELECT * FROM KG_House_cleaning_service WHERE order_number = $Orderno ORDER BY Id DESC LIMIT 1";
+            $result = YII::app()->db->createCommand($query)->queryRow();
+        } catch (Exception $ex) {
+            error_log("getServiceDetailsById Exception occured==" . $ex->getMessage());
+        }
+        return $result;
+    }
+    
+    public function updateorderStatusWithAdmin($model){
+       $result="failed";
+       try{
+           $query="update KG_House_cleaning_service set total_livingRooms=$model->LivingRooms,total_bedRooms=$model->BedRooms,total_kitchens=$model->Kitchens,total_bathRooms=$model->BathRooms,other_rooms=$model->OtherRooms where order_number=".$model->CustId;
+           $result1 = YII::app()->db->createCommand($query)->execute();
+           if($result1>0)
+               $result = "success";
+       } 
+       catch (Exception $ex) {
+           error_log("#########Exception occurred in changing status #########".$ex->getMessage());
+       }
+       return $result;
+    }
+    
+        
     
 
 }

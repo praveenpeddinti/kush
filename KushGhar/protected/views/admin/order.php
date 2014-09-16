@@ -135,6 +135,18 @@
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->
                 </div><!-- /.modal -->
+                <div id="myModalUpdateOrder" class="modal fade" >
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h3 id="myModalLabel">Update the Order</h3>
+                            </div>
+                            <div class="modal-body" id="myModalUpdateOrderDiv" style="padding:15px;">
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
             </article>
         </div>
     </section>
@@ -176,9 +188,31 @@
             else if(id1.indexOf("invoice") > -1){
                 invoice(Number(id),CustId,ServiceId);
             }
+            else if(id1.indexOf("UpdateOrder") > -1){
+                updateOrder(Number(id),vendors,ServiceId, status);
+            }
         });
     });
-    
+    function updateOrder(OrderNo, Amount, ServiceId, status) {
+        var data = "OrderNo=" + OrderNo + "&status=" + status+"&ServiceId="+ServiceId+"&Amount="+Amount;
+        $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: '<?php echo Yii::app()->createAbsoluteUrl("/admin/updateorderdetails"); ?>',
+                data: data,
+                success: function(data) {
+                    //scrollPleaseWaitClose('InviteInfoSpinLoader');
+                    $("#myModalUpdateOrder").modal({ backdrop: 'static', keyboard: false,show:false });
+                    $("#myModalUpdateOrderDiv").html(data.html);
+                    $('#myModalUpdateOrder').modal('show');
+                    
+                },
+                error: function(data) { // if error occured
+                    alert("Error occured.please try again");
+
+                }
+            });
+          } 
     function invoice(OrderId,CustId,ServiceId){
         var data = "OrderId=" + OrderId+"&CustId="+CustId+"&ServiceId="+ServiceId;
             $.ajax({

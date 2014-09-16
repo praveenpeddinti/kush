@@ -60,7 +60,9 @@ $address;
                                             <td style="border-right:1px solid #000;width: 8%;padding-left:5px"><label><b>Bath Room(s)</b> </label> </td>
                                             <td style="border-right:1px solid #000;width: 2%;padding-left:5px"><label><?php echo $serviceDetails[0]['total_bathRooms']; ?></label></td>
                                             <td style="border-right:1px solid #000;width: 8%;padding-left:5px"><label><b>Kitchen</b></label> </td>
-                                            <td style="width: 2%;padding-left:5px"><label><?php echo $serviceDetails[0]['total_kitchens']; ?></label></td>
+                                            <td style="border-right:1px solid #000;width: 2%;padding-left:5px"><label><?php echo $serviceDetails[0]['total_kitchens']; ?></label></td>
+                                            <td style="border-right:1px solid #000;width: 8%;padding-left:5px"><label><b>Other</b></label> </td>
+                                            <td style="width: 2%;padding-left:5px"><label><?php echo $serviceDetails[0]['other_rooms']; ?></label></td>
                                         </tr>
                                     </table></td>
                             </tr>

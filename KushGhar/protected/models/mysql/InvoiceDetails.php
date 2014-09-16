@@ -160,6 +160,27 @@ public function getPaidInvoice($id,$val){
         return $result;
     }
     
+    /*
+     * @Praveen Update the Order in admin actions order tab
+     */
+    public function updateorderAmountWithAdmin($model,$Amount,$Type){
+       $result="failed";
+       try{
+           if($Type=='Order'){
+                $query="update KG_Order_details set amount=$Amount,is_Created_By_Admin=1 where order_number=".$model->CustId;
+           }else if ($Type=='Invoice'){
+                $query="update KG_Invoice_details set amount=$Amount where OrderId=".$model->CustId;
+           }
+           $result1 = YII::app()->db->createCommand($query)->execute();
+           if($result1>0)
+               $result = "success";
+       } 
+       catch (Exception $ex) {
+           error_log("#########Exception occurred in changing status #########".$ex->getMessage());
+       }
+       return $result;
+    }
+    
     
     
 }?>

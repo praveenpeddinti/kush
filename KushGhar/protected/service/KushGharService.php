@@ -823,5 +823,18 @@ class KushGharService {
     public function getAllPayments($startLimit, $endLimit) {
         return InvoiceDetails::model()->getAllPayments($startLimit, $endLimit);
     }
+    /*
+     * @Praveen Update the Order in admin actions order tab
+     */
+    public function getUpdateOrderforServicesDetails($OrderNo) {
+        return HouseCleaningService::model()->getUpdateOrderforServicesDetails($OrderNo);
+    }
+    
+    public function updateorderStatusWithAdmin($model) {
+        return HouseCleaningService::model()->updateorderStatusWithAdmin($model);
+    }
+    public function updateorderAmountWithAdmin($model,$Amount,$Type) {
+        return InvoiceDetails::model()->updateorderAmountWithAdmin($model,$Amount,$Type);
+    }
     
 } ?>

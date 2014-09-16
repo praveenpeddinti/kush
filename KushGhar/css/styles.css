@@ -474,6 +474,7 @@ ul.header_profile{ list-style:none; margin:0; padding:0}
 .icon_reinvite{background:url(../images/reinvite.png) no-repeat left top; width:16px; height:16px; border:0; cursor:pointer}
 .icon_review{background:url(../images/review.png) no-repeat left top; width:16px; height:16px; border:0; cursor:pointer}
 .icon_edit{background:url(../images/edit.gif) no-repeat left top; width:16px; height:16px; border:0; cursor:pointer}
+.icon__order_edit{background:url(../images/edit.png) no-repeat left top; width:16px; height:16px; border:0; cursor:pointer}
 .i_print_icon input[type="button"]{ background:url(../images/printer.png) no-repeat left top; width:16px; height:16px; border:0; cursor:pointer}
 .i_invoice_icon input[type="button"]{ background:url(../images/invoice_icon.png) no-repeat left top; width:16px; height:16px; border:0; cursor:pointer}
 .icon_login{background:url(../images/lock.png) no-repeat left top; width:16px; height:16px; border:0; cursor:pointer}
@@ -591,3 +592,6 @@ p.jRatingInfos span.maxRate {color:#fff;font-size:14px;}
 }
 .overlay_close {margin-left: -20px;margin-top: -20px;position: absolute;}
 .search_div2 {clear: both;padding: 10px;}
+.btn_backAdmin, .btn_backAdmin:hover {
+    background: none repeat scroll 0 0 #444B4C;
+    color: #FFFFFF;}

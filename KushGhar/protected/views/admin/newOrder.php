@@ -28,8 +28,9 @@
                 echo $status; ?></td>
         <td><?php $datee = explode(" ",$row['service_date']);echo $datee[0];?>
         </td>
-        <td><center><?php echo $row['amount'];?></center></td>
+        <td style="text-align: center" id="amount_<?php echo $row['order_number']; ?>"><?php echo $row['amount'];?></td>
         <td nowrap>
+            
             <?php if($row['status']==0){ ?>
                 <select class="span12 action" onchange="orderAction(<?php echo $row['id']; ?>,<?php echo $row['status']; ?>,this);">
                     <option <?php if($row['status']=="0") echo "selected=\"selected\""; ?> value="Open">Open</option>
@@ -62,7 +63,10 @@
             <i class="i_invoice_icon"><input id="invoice_<?php echo $row['id']; ?>" data-id="<?php echo $row['order_number']; ?>" cust_id="<?php echo $row['CustId']; ?>" service-id="<?php echo $row['ServiceId']; ?>" alt="Print Invoice" type="button" title="Print Invoice"></i>
             <?php }?>
             <?php if($row['status']==3) {?>
-            <input id="Review_<?php echo $row['id']; ?>" data-id="<?php echo $row['order_number']; ?>" vendors="<?php echo $row['assign_vendors']; ?>" class="icon_edit" type="button" title="Write review on behalf of customer"></i>
+            <input id="Review_<?php echo $row['id']; ?>" data-id="<?php echo $row['order_number']; ?>" vendors="<?php echo $row['assign_vendors']; ?>" class="icon_edit" type="button" title="Write review on behalf of customer">
+            <?php } ?>
+            <?php if($row['ServiceId']==1) {?>
+            <input id="UpdateOrder_<?php echo $row['id']; ?>" data-id="<?php echo $row['order_number']; ?>" vendors="<?php echo $row['amount']; ?>" status-id="<?php echo $row['status']; ?>" service-id="<?php echo $row['ServiceId']; ?>" class="icon__order_edit" type="button" title="Edit">
             <?php } ?>
         </td>
     </tr>

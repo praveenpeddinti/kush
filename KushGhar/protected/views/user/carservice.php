@@ -138,7 +138,7 @@ minDate: mindate
           
         
    
-    function onTotalcars(obj){alert("--------------"+obj.value);
+    function onTotalcars(obj){//alert("--------------"+obj.value);
         $('#CarWashForm_DifferentLocation').val('0');
         //alert(obj.value);
         

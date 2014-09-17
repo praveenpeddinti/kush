@@ -26,6 +26,7 @@ class VendorIndividualRegistration extends CActiveRecord {
     public $update_timestamp;
     public $found_kushghar_by;
     public $status;
+    public $is_approved;
 
     public static function model($className = __CLASS__) {
         return parent::model($className);
@@ -187,6 +188,18 @@ class VendorIndividualRegistration extends CActiveRecord {
             
         }
         return $vendorsData;
+    }
+    public function ApproveVendor($id){
+        try{
+            $query="update KG_vendor_individual set status=1,is_approved=1 where vendor_individual_id=".$id;
+            $result1 = YII::app()->db->createCommand($query)->execute();
+           if($result1>0)
+               $result = "success";
+        } 
+        catch (Exception $ex){
+            error_log("############Exception occurred in approving vendor##########".$ex->getMessage());
+        }
+        return $result;
     }
 }
 ?>

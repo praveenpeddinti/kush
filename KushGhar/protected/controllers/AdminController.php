@@ -631,13 +631,13 @@ class AdminController extends Controller {
         echo CJSON::encode($obj);
     }
 
-    public function actionGetVendorFullDetails() {
+    public function actionGetVendorFullDetails(){
         try {
-            $id = $_POST['Id'];
-            $userAllDetails = $this->kushGharService->getFullVendorDetails($id);
-            $renderHtml = $this->renderPartial('getfulldetails', array('userAllDetails' => $userAllDetails, 'UserType' => 'Vendor'), true);
-            $obj = array('status' => 'success', 'html' => $renderHtml);
-            $renderScript = $this->rendering($obj);
+            $id=$_POST['Id'];
+            $userAllDetails=$this->kushGharService->getFullVendorDetails($id);
+            $renderHtml=  $this->renderPartial('getfulldetails',array('userAllDetails'=> $userAllDetails,'UserType'=>'Vendor'),true);
+            $obj=array('status'=>'success','html'=>$renderHtml,'clrDoc'=>$userAllDetails['clearance_image_file_location']);
+            $renderScript=  $this->rendering($obj);
             echo $renderScript;
         } catch (Exception $ex) {
             error_log("####### Exception Occurred in fetching full details ##########" . $ex->getMessage());
@@ -747,6 +747,30 @@ class AdminController extends Controller {
         echo CJSON::encode($obj);
     }
 
+    public function actionApproveVendor() {
+        $changeUserStatus = $this->kushGharService->ApproveVendor($_POST['Id']);
+        $userAllDetails=$this->kushGharService->getFullVendorDetails($_POST['Id']);
+        if($changeUserStatus=='success'){
+                    $mess = "Welcome to KushGhar."."\r\n Your Credentials are"."\r\n UserID : " . $userAllDetails['email_address'] . "\r\n Password : ".$userAllDetails['password_salt']."\r\n\n";
+                    $Name=$userAllDetails['UserName'];
+                    $to = $userAllDetails['email_address'];
+                    $Logo = YII::app()->params['SERVER_URL'] . "/images/color_logo.png";
+                    $subject = 'Kushghar Approval';
+                    $messageview="VendorUserMail";
+                    $employerEmail = "no-reply@kushghar.com";
+                    $params = array('Logo' => $Logo, 'Email' =>$to,'Message'=>$mess,'Name'=>$Name,'password'=>$userAllDetails['password_salt']);
+                    $sendMailToUser=new CommonUtility;
+                    $sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
+          }
+        $obj = array('status' => 'error', 'data' => '', 'error' => $changeUserStatus);
+        echo CJSON::encode($obj); 
+    }
+    public function actionUpdateClrPfDocument(){
+        $changeUserStatus = $this->kushGharService->UpdateClrPfDocument($_POST['Id'], $_POST['clrType'],$_POST['clrPfNumber'],$_POST['document']);
+        $obj = array('status' => 'error', 'data' => '', 'error' => $changeUserStatus);
+        echo CJSON::encode($obj); 
+    }
+ 
     /*
      * @Praveen Update the Order in admin actions order tab
      */

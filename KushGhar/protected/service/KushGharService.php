@@ -272,8 +272,8 @@ class KushGharService {
     /* VENDOR TYPE--------------Documents Details   */
 
     //Save dump details in vendor documents table for registration
-    public function saveVendorDocumentsDumpInfo($vendorIndividualId, $vTypeId) {
-        return VendorIndividualDocuments::model()->saveVendorDocumentsDumpInfo($vendorIndividualId, $vTypeId);
+    public function saveVendorDocumentsDumpInfo($vendorIndividualId, $model) {
+        return VendorIndividualDocuments::model()->saveVendorDocumentsDumpInfo($vendorIndividualId, $model);
     }
 
 //1. Update Vendor Documents Details from basic Information Controller action
@@ -822,6 +822,12 @@ class KushGharService {
     
     public function getAllPayments($startLimit, $endLimit) {
         return InvoiceDetails::model()->getAllPayments($startLimit, $endLimit);
+    }
+    public function UpdateClrPfDocument($id,$type,$number,$doc){
+        return VendorIndividualDocuments::model()->UpdateClrPfDocument($id,$type,$number,$doc);
+    }
+    public function ApproveVendor($id){
+        return VendorIndividualRegistration::model()->ApproveVendor($id);
     }
     /*
      * @Praveen Update the Order in admin actions order tab

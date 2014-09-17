@@ -17,17 +17,27 @@ class VendorRegistrationForm extends CFormModel {
     public $Phone;
     public $Password;
     public $RepeatPassword;
+    public $Proof_of_Identity;
+    public $Identity_proof_Number;
+    public $uIdDocument;
+    public $Proof_of_Address;
+    public $Address_Proof_Number;
+    public $AddrPfDocument;
+    public $Identity_proof_document;
+    public $Address_proof_document;
     
     /**
      * Declares the validation rules.
      */
     public function rules() {
         return array(
+            array('vendorType,FirstName,LastName,PrimaryContactFirstName,PrimaryContactLastName,AgencyName,Email,Phone,Password,RepeatPassword,Id,Proof_of_Identity,Identity_proof_Number,uIdDocument,Proof_of_Address,Address_Proof_Number,AddrPfDocument,Identity_proof_document,Address_proof_document', 'safe'),
             // First Name, Email, Phone, Password and Repeat Password are required
-            array('Email,Phone, Password, RepeatPassword', 'required', 'message' => 'Please enter {attribute}.'),
-            array('vendorType', 'required', 'message' => 'Please select Vendor Type.'),
+            array('Email,Phone, Password, RepeatPassword,Identity_proof_Number,Address_Proof_Number', 'required', 'message' => 'Please enter {attribute}.'),
+            array('vendorType,Proof_of_Identity,Proof_of_Address', 'required', 'message' => 'Please select {attribute}.'),
             //array('AFirstName', 'required', 'message' => 'Please enter a value for Primary Contact First Name.'),
             //array('ALastName', 'required', 'message' => 'Please enter a value for Primary Contact Last Name.'),
+            array('Identity_proof_document,Address_proof_document','required','message'=>'Please upload {attribute}'),
             array('vendorType', 'ext.YiiConditionalValidator.YiiConditionalValidator',
                 'if' => array(
                 array('vendorType', 'compare', 'compareValue'=>"1")),
@@ -64,7 +74,7 @@ class VendorRegistrationForm extends CFormModel {
                 'message' => 'Password  and Confirm Password need to be same'
             ),
             
-            array('vendorType,FirstName,LastName,PrimaryContactFirstName,PrimaryContactLastName,AgencyName,Email,Phone,Password,RepeatPassword,Id', 'safe'),
+            
         );
     }
 

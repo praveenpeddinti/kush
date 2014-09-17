@@ -22,8 +22,13 @@
                 if($row['status']==0){$status = 'InActive';}
                 echo $status; ?></td>
         <td nowrap>
-            <input id="usera_<?php echo $row['vid']; ?>" data-id="<?php echo $row['vid']; ?>" invite-status="<?php echo $row['status']; ?>" type="button" value=" " class="<? if ($row['status'] == '0') echo 'icon_inactive'; if ($row['status'] == '1') echo 'icon_active';?>" alt="Status" title="Change Status"/>
             <input id="userview_<?php echo $row['vid']; ?>" data-id="<?php echo $row['vid']; ?>"  type="button" value=" " class="icon_view" alt="View" title="View"/>
+            <?php if($row['is_approved']=='1'){ ?>
+            <input id="userstatus_<?php echo $row['vid']; ?>" data-id="<?php echo $row['vid']; ?>" invite-status="<?php echo $row['status']; ?>" type="button" value=" " class="<? if ($row['status'] == '0') echo 'icon_inactive'; if ($row['status'] == '1') echo 'icon_active';?>" alt="Status" title="Change Status"/>
+            <?php }?>
+            <?php if($row['is_approved']=='0'){ ?>
+            <input id="userapprove_<?php echo $row['vid']; ?>" data-id="<?php echo $row['vid']; ?>"  type="button" value=" " class="icon_invite" alt="Approve" title="Approve"/>
+            <?php }?>
         </td>
      </tr>
    <?php }

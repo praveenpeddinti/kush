@@ -472,9 +472,9 @@ class SiteController extends Controller {
                         $result = $this->kushGharService->saveVendorForIndividualData($model);
                         $getVendorDetailsType1 = $this->kushGharService->getVendorDetailsWithEmailIndividual($model->Email);
                         $vendorAddressDetails = $this->kushGharService->saveVendorAddressDumpInfo($getVendorDetailsType1->vendor_id, $model->vendorType);
-                        $vendorDocumentsDetails = $this->kushGharService->saveVendorDocumentsDumpInfo($getVendorDetailsType1->vendor_id, $model->vendorType);
-                        $this->session['UserId'] = $getVendorDetailsType1->vendor_id;
-                        $this->session['VendorType'] = $model->vendorType;
+                        $vendorDocumentsDetails = $this->kushGharService->saveVendorDocumentsDumpInfo($getVendorDetailsType1->vendor_id, $model);
+                        //$this->session['UserId'] = $getVendorDetailsType1->vendor_id;
+                        //$this->session['VendorType'] = $model->vendorType;
                         //$this->session['Type']='Vendor';
                     }else {
                          $result="fail";
@@ -490,8 +490,8 @@ class SiteController extends Controller {
                         $getVendorDetailsType1 = $this->kushGharService->getVendorDetailsWithEmailAgency($model->Email);
                         $vendorAddressDetails = $this->kushGharService->saveVendorAddressDumpInfo($getVendorDetailsType1->vendor_id, $model->vendorType);
                         $vendorDocumentsDetails = $this->kushGharService->saveVendorDocumentsDumpInfo($getVendorDetailsType1->vendor_id, $model->vendorType);
-                        $this->session['UserId'] = $getVendorDetailsType1->vendor_id;
-                        $this->session['VendorType'] = $model->vendorType;
+                        //$this->session['UserId'] = $getVendorDetailsType1->vendor_id;
+                        //$this->session['VendorType'] = $model->vendorType;
                     }else {
                     $result="fail";
                     $message = array("VendorRegistrationForm_error" => 'Vendor already exists.');
@@ -504,9 +504,9 @@ class SiteController extends Controller {
                     $to = $model->Email;
                     $to1 = 'praveen.peddinti@gmail.com';
                     $Logo = YII::app()->params['SERVER_URL'] . "/images/color_logo.png";
-                    $subject = 'Login Details';
+                    $subject = 'Waiting for Approval';
                     $subjectAdmin='New Vendor Registered Details';
-                    $messageview="VendorUserMail";
+                    $messageview="vendorInvitationMail";
                     $messageview1="VendorInvitationMailToKGTeam";
                     $employerEmail = "no-reply@kushghar.com";
                     $params = array('Logo' => $Logo, 'Email' =>$to,'Message'=>$mess,'Name'=>$Name,'password'=>$model->Password);
@@ -588,6 +588,57 @@ class SiteController extends Controller {
             $this->render('adminlogin', array('adminLogin' => $model));
         }
     }
+    }
+public function actionDocUpload() {
+        Yii::import("ext.EAjaxUpload.qqFileUploader");
+        $folder = $this->findUploadedPath() . '/images/documents/'; // folder for uploaded files
+        $allowedExtensions = array("jpg", "jpeg", "gif", "png"); //array("jpg","jpeg","gif","exe","mov" and etc...
+        $sizeLimit = 15 * 1024 * 1024; // maximum file size in bytes
+        $uploader = new qqFileUploader($allowedExtensions, $sizeLimit);
+        $result = $uploader->handleUpload($folder);
+        $return = CJSON::encode($result);
+        $fileSize = filesize($folder . $result['filename']); //GETTING FILE SIZE
+        $fileName = $result['filename']; //GETTING FILE NAME
+        $imgArr = explode(".", $fileName);
+        $finalImg_name = $result['filename'];
+        // creating small image from the Big one...
+        try {
+            $finalImg_name_new = $this->findUploadedPath() . '/images/documents/' . $finalImg_name;
+            $dest = str_replace(' ', '', $finalImg_name_new);
+            $_SESSION['oldfilename'] = $finalImg_name_new;
+            $img = Yii::app()->simpleImage->load($folder . $result['filename']); // load file from the specified the path...
+            //$img->resizeToHeight(150); // creating image height to 50...
+            $img->save($finalImg_name_new); // saving into the specified path...
+            $finalImg_name = '/images/documents/' . $finalImg_name;
+            $proofType=Yii::app()->getRequest()->getQuery('proof');
+            if($proofType=='Identity')
+                $this->session['docFileName'] = $finalImg_name;
+            if($proofType=='Address')
+                $this->session['AddrdocFileName'] = $finalImg_name;
+            if($proofType=='Clearance')
+                $this->session['ClrdocFileName'] = $finalImg_name;
+        } catch (Exception $e) {
+            error_log("***********************" . $e->getMessage());
+        }
+        echo $return; // it's array
+    }
+
+
+    function findUploadedPath() {
+
+        try {
+            $path = dirname(__FILE__);
+            $pathArray = explode('/', $path);
+            $appendPath = "";
+            for ($i = count($pathArray) - 3; $i > 0; $i--) {
+                $appendPath = "/" . $pathArray[$i] . $appendPath;
+            }
+            $originalPath = $appendPath;
+            error_log("--------------" . $originalPath);
+        } catch (Exception $ex) {
+            error_log("#########Exception Occurred########$ex->getMessage()");
+        }
+        return $originalPath;
     }
 
 }

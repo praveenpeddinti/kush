@@ -119,8 +119,78 @@
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                 <h3 id="myModalLabel">View Details for Vendor</h3>
-                            </div>
-                            <div class="modal-body" id="modelBodyDiv1" style="padding:15px;">
+                            </div><div class="modal-body" id="modelBodyDiv1" style="padding:15px;"></div>
+                            
+                            <div class="modal-body" id="modelBodyDiv2" style="padding:15px;display: none">
+                                <hr></hr>
+                                <div class="row-fluid">
+                                    <div class="span6">
+                                        <label>Proof of Clearance</label>
+                                        <select id="pf_Clr">
+                                            <option value="">Select Proof of Address</option>
+                                            <option value='Background Check'>Background Check</option>
+                                        </select>
+                                        <div class="errorMessage" id="type_error" style="display: none">
+                                            please select proof of clearance 
+                                        </div>
+                                    </div>
+                                    <div class="span6">
+                                        <label>Clearance Proof Number</label>
+                                        <input id="clrPfNumber" type="text" maxLength="25"></input>
+                                        <div class="errorMessage" id="number_error" style="display: none">
+                                            Please enter Clearance Proof Number
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row-fluid">
+                                    <div class="span6">
+                                        <div class="form-group"><label>Upload Clearance Proof</label>
+                    <div class="control-group" style="position: relative">
+                       <div class="thumbnail" style="width: 150px; height: 150px;margin-bottom:10px"><img style="width:150px;height:150px" src="/images/profile/none.jpg"  id="ClrDocPreviewId"/>
+                       </div>
+                        <?php
+                          $this->widget('ext.EAjaxUpload.EAjaxUpload', array(
+                                'id' => 'document',
+                                'config' => array(
+                                'multiple' => false,
+                                'action' => Yii::app()->createUrl('site/docUpload',array('proof'=>'Identity')),
+                                'allowedExtensions' => array("jpg", "jpeg", "gif", "png"), //array("jpg","jpeg","gif","exe","mov" and etc...
+                                'sizeLimit' => 15 * 1024 * 1024, // maximum file size in bytes
+//                              'minSizeLimit'=>10*1024,// minimum file size in bytes
+                                'onComplete' => "js:function(id, fileName, responseJSON){
+                                 var data = eval(responseJSON);
+                                 globaluIdDocument = '/images/documents/'+data.filename;
+                                 $('#document').val('/images/documents/'+data.filename);
+                                 $('#clrpfpreview').val('/images/documents/'+data.filename);                                                             
+                                 $('#ClrDocPreviewId').attr('src',globaluIdDocument);
+                                }",
+                                //'messages'=>array(
+                                //'typeError'=>"{file} has invalid extension. Only {extensions} are allowed.",
+                                // 'sizeError'=>"{file} is too large, maximum file size is {sizeLimit}.",
+                                // 'minSizeError'=>"{file} is too small, minimum file size is {minSizeLimit}.",
+                                // 'emptyError'=>"{file} is empty, please select files again without it.",
+                                //'onLeave'=>"The files are being uploaded, if you leave now the upload will be cancelled."
+                                // ),
+                                'showMessage' => "js:function(message){  commonErrorDiv(message,'common_error');}"
+                             )
+                            ));
+                          ?>
+                        <div class="errorMessage" id="upload_error" style="display: none">
+                                            Please Upload Clearance Proof
+                                        </div>
+                       <?php //echo $form->error($model, 'Identity_proof_document'); ?>
+                      </div>
+                    </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="row-fluid">
+                                    <div class="span9">
+                                    </div>
+                                    <div class="span3">
+                                        <input type="button" value="Update" class="btn btn-primary" onClick="Update()"/>
+                                    </div>
+                                </div>
                             </div>
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->
@@ -137,10 +207,29 @@
             var inviteStatus = $(this).attr('invite-status');
              if(id1.indexOf("view") > -1)
                 loadDetails(Number(id));
-            else
+             if(id1.indexOf("approve")>-1)
+                approveVendor(Number(id));
+             if(id1.indexOf("status")>-1)
                 statusChangevendorUser(Number(id), Number(inviteStatus));
         });
     });
+    function approveVendor(id){
+        scrollPleaseWait("inviteSpinLoader");
+        var data="Id="+id;
+        $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: '<?php echo Yii::app()->createAbsoluteUrl("/admin/approveVendor"); ?>',
+                data: data,
+                success: function(data) {
+                   window.location.href='<?php echo Yii::app()->request->baseUrl; ?>/admin/vendormanagement';
+                },
+                error: function(data) { 
+                   alert("Error occured.please try again");
+
+                }
+            });
+    }
     function loadDetails(id) {
             var data = "Id=" + id;
             $.ajax({
@@ -150,6 +239,11 @@
                 data: data,
                 success: function(data) {
                     $("#myModalforgot1").modal({ backdrop: 'static', keyboard: false,show:false });
+                    if(data.clrDoc==null){
+                        $('#clrPfNumber').val('');
+                        document.getElementById('ClrDocPreviewId').src='/images/profile/none.jpg';
+                        $('#modelBodyDiv2').show(); }
+                    else{$('#modelBodyDiv2').hide();}
                     $("#modelBodyDiv1").html(data.html);
                     $('#myModalforgot1').modal('show');
                 },

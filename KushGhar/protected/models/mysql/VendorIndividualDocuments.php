@@ -27,12 +27,17 @@ class VendorIndividualDocuments extends CActiveRecord {
     }
 
     //New Vendor Individual Registration
-    public function saveVendorDocumentsDumpInfo($vendorIndividualId,$vTypeId) {
+    public function saveVendorDocumentsDumpInfo($vendorIndividualId,$model) {
     try {
             $vendorDetails = new VendorIndividualDocuments();
             $vendorDetails->vendor_individual_id = $vendorIndividualId;
-            $vendorDetails->vendor_id = $vTypeId;
-            $vendorDetails->proof_image_file_location = '/images/profile/none.jpg';
+            $vendorDetails->vendor_id = $model->vendorType;
+            $vendorDetails->type_of_proof = $model->Proof_of_Identity;
+            $vendorDetails->proof_number = $model->Identity_proof_Number;
+            $vendorDetails->proof_image_file_location = $model->Identity_proof_document;
+            $vendorDetails->type_of_address=$model->Proof_of_Address;
+            $vendorDetails->address_number=$model->Address_Proof_Number;
+            $vendorDetails->address_image_file_location=$model->Address_proof_document;
             $vendorDetails->update_timestamp = gmdate("Y-m-d H:i:s", time());
             if ($vendorDetails->save()) {
                 $result = "success";
@@ -78,6 +83,22 @@ class VendorIndividualDocuments extends CActiveRecord {
             error_log("##########Exception Occurred updateData#############" . $ex->getMessage());
         }
         return $result;
+    }
+    public function UpdateClrPfDocument($id,$type,$number,$doc){
+        try{
+            $VendorObj=VendorIndividualDocuments::model()->findByAttributes(array('vendor_individual_id'=>$id));
+            $VendorObj->type_of_clearance=$type;
+            $VendorObj->clearance_number=$number;
+            $VendorObj->clearance_image_file_location=$doc;
+            $VendorObj->update_timestamp = gmdate("Y-m-d H:i:s", time());
+            if ($VendorObj->update()) {
+                $result = "success";
+            } else {
+                $result = "failed";
+            }
+        }  catch (Exception $ex){
+            error_log("######## Exception occured in Update Clearance document########".$ex->getMessage());
+        }
     }
 
 }

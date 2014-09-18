@@ -236,24 +236,24 @@
                                 <div class="row-fluid">
                                     <div class="span6">
                                         <?php echo $form->label($model, '<abbr title="required">*</abbr>Proof of Identity'); ?>
-                                        <?php echo $form->dropDownList($model,'Proof_of_Identity',array(''=>'Select Proof of Identity','PAN Card'=>'PAN Card','Driving License'=>'Driving License','Voter ID'=>'Voter ID'), array('options' => array($getVendorDocuments->type_of_proof => array('selected' => 'selected')), 'class' => 'span12'));?>
+                                        <?php echo $form->dropDownList($model,'Proof_of_Identity',array(''=>'Select Proof of Identity','PAN Card'=>'PAN Card','Driving License'=>'Driving License','Voter ID'=>'Voter ID'), array('class' => 'span12'));?>
                                         <?php echo $form->error($model, 'Proof_of_Identity'); ?>
                                     </div>
                                     <div class="span6">
                                         <?php echo $form->label($model, '<abbr title="required">*</abbr>Proof of Address'); ?>
-                                        <?php echo $form->dropDownList($model,'Proof_of_Address',array(''=>'Select Proof of Address','Aadhar Card'=>'Aadhar Card','Bank Account'=>'Bank Account','Passport'=>'Passport','Ration Card'=>'Ration Card','Govt. Issued Card'=>'Govt. Issued Card'), array('options' => array($getVendorDocuments->type_of_address => array('selected' => 'selected')), 'class' => 'span12'));?>
+                                        <?php echo $form->dropDownList($model,'Proof_of_Address',array(''=>'Select Proof of Address','Aadhar Card'=>'Aadhar Card','Bank Account'=>'Bank Account','Passport'=>'Passport','Ration Card'=>'Ration Card','Govt. Issued Card'=>'Govt. Issued Card'), array( 'class' => 'span12'));?>
                                         <?php echo $form->error($model, 'Proof_of_Address'); ?>
                                     </div>
                                 </div>
                                  <div class="row-fluid">
                                     <div class=" span6">
                                         <?php echo $form->label($model, '<abbr title="required">*</abbr>Identity Proof Number'); ?>
-                                        <?php echo $form->textField($model, 'Identity_proof_Number', array('value' => $getVendorDocuments->proof_number, 'class' => 'span12', 'maxLength' => 25)); ?>
+                                        <?php echo $form->textField($model, 'Identity_proof_Number', array('class' => 'span12', 'maxLength' => 25)); ?>
                                         <?php echo $form->error($model, 'Identity_proof_Number'); ?>
                                     </div>
                                     <div class=" span6">
                                         <?php echo $form->label($model, '<abbr title="required">*</abbr>Address Proof Number'); ?>
-                                        <?php echo $form->textField($model, 'Address_Proof_Number', array('value' => $getVendorDocuments->address_number, 'class' => 'span12', 'maxLength' => 25)); ?>
+                                        <?php echo $form->textField($model, 'Address_Proof_Number', array('class' => 'span12', 'maxLength' => 25)); ?>
                                         <?php echo $form->error($model, 'Address_Proof_Number'); ?>
                                     </div>
                                 </div>

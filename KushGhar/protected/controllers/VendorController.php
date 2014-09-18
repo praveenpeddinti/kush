@@ -203,28 +203,10 @@ class VendorController extends Controller {
                 } else {
                     $basicForm->profilePicture = $this->session['fileName'];
                 }
-                if ($this->session['docFileName'] == '') {
-                    $basicForm->uIdDocument = $getVendorDocuments->proof_image_file_location;
-                    
-                    
-                } else {
-                    $basicForm->uIdDocument = $this->session['docFileName'];
-                }
-                if ($this->session['AddrdocFileName'] == '') {
-                    $basicForm->AddrPfDocument=$getVendorDocuments->address_image_file_location;
-                } else {
-                    $basicForm->AddrPfDocument= $this->session['AddrdocFileName'];
-                }
-                if ($this->session['ClrdocFileName'] == '') {
-                    $basicForm->clrPfDocument=$getVendorDocuments->clearance_image_file_location;
-                } else {
-                    $basicForm->clrPfDocument= $this->session['ClrdocFileName'];
-                }
                 $this->session['LoginPic']=$this->session['fileName'];
                 //unset($this->session['fileName']);
                 //unset($this->session['docFileName']);
                 //$result = $this->kushGharService->updateRegistrationData($basicForm, $cId);
-                $saveDocuments = $this->kushGharService->updateVendorDocuments($basicForm, $Vid);
                 if($VType==1){
                     $result = $this->kushGharService->updateVendorDetailsWithIndividual($basicForm, $Vid);
                 }
@@ -232,8 +214,6 @@ class VendorController extends Controller {
                     $result = $this->kushGharService->updateVendorDetailsWithAgency($basicForm, $Vid);
         
                 }
-
-
                 if ($result == "success") {
                     $message = Yii::t('translation', 'Thank you for contacting us. We will respond to you as soon as possible');
                     $obj = array('status' => 'success', 'message' => $message, 'error' => '');

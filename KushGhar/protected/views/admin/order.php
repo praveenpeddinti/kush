@@ -414,7 +414,7 @@ function getCollectionDataWithPagination(URL,CollectionName, MainDiv, CurrentPag
     }
     function review(id){
     var data = "Id=" + id;
-            $.ajax({
+                $.ajax({
                 type: 'POST',
                 dataType: 'json', 
                 url: '<?php echo Yii::app()->createAbsoluteUrl("/user/orderreview"); ?>',

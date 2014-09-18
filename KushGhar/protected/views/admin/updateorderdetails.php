@@ -47,6 +47,18 @@
             </div> 
         </div>
     </div>
+    <div class="row-fluid">
+            <div class="span4">
+                <table><tr><th>Order Total: </th><td><?php echo $Amt;?></td></tr>
+                </table>
+            </div>
+            <div id="updateCost" class="span8" style="display:none">
+                <table><tr><th>Updated Order Total: </th><td id="UTotalTd"></td></tr></table>
+            </div>
+            <!--<div id="updateCost" class="span6" style="display:block">
+            Updated Order Total 
+            </div>-->
+        </div>
 <?php $this->endWidget(); ?>
     <div style="text-align: right">
              <?php echo CHtml::Button('Update Order',array('id' => 'orderCancel','class' => 'btn btn-primary','onclick'=>'orderUpdate();')); ?>
@@ -54,9 +66,36 @@
 
 <script type="text/javascript">
     function orderUpdate(){
+        var UOrder='Yes';
+        
         var queryString = $("#updateorderdetails-form").serialize();
+        var r1 = Number($("#HouseCleaningForm_Kitchens").val());
+        var r2 = Number($("#HouseCleaningForm_BathRooms").val());
+        var r3 = Number($("#HouseCleaningForm_BedRooms").val());
+        var r4 = Number($("#HouseCleaningForm_LivingRooms").val());
+        var r5 = Number($("#HouseCleaningForm_OtherRooms").val());
+        var a1 = Number(<?php echo $getServiceDetails['window_grills'];?>);
+        var a2 = Number(<?php echo $getServiceDetails['cupboard_cleaning'];?>);
+        var a3 = Number(<?php echo $getServiceDetails['fridge_interior'];?>);
+        var a4 = Number(<?php echo $getServiceDetails['microwave_oven_interior'];?>);
+        var priceOne = Number(r1+r2);
+        var priceTwo = Number(r3+r4+r5);
+        var priceThree = Number(a1+a2+a3+a4);
+        var total = Number(((priceThree+priceOne)*250)+(priceTwo*125));
         if(orderValidate()){
+             $("#updateCost").show();
+             $("#UTotalTd").text(total);
+             if(UOrder=="Yes"){
+                var r=confirm("Updated Order Total is Rs. "+total+". Are you sure want to continue");
+            }else {
+                r=true;
+            }
+         if(r==true){   
          ajaxRequest('/admin/updateorderstatus', queryString, updateorderHandler)
+        }else{
+          $("#updateCost").hide(); 
+          
+        }
     }
     }
     function orderValidate(){
@@ -84,6 +123,7 @@
             setTimeout(function() {
                 $('#myModalUpdateOrder').modal('hide');
             }, 3000);
+                
             
         }
     } 

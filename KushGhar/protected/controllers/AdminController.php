@@ -305,7 +305,6 @@ class AdminController extends Controller {
             }
             $customerDetails = $this->kushGharService->getCustomerDetails($CustId);
             $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($CustId);
-
             $renderHtml = $this->renderPartial('viewData', array('userDetails1' => $customerDetails, 'services' => $servicedetails, 'serviceId' => $_POST['ServiceId'], 'Vendors' => $vendordetails, 'ServiceDate' => $ServiceDate, 'customerAddressDetails' => $customerAddressDetails, 'Type' => $_POST['Type'], 'reviewDetails' => $reviewdetails, 'status' => $_POST['status']), true);
             $obj = array('status' => 'success', 'html' => $renderHtml);
             $renderScript = $this->rendering($obj);
@@ -780,8 +779,9 @@ class AdminController extends Controller {
             $Model = new HouseCleaningForm;
             $orderNo = $_POST['OrderNo'];
             $status = $_POST['status'];
+            $amount = $_POST['Amount'];
             $getServiceDetails = $this->kushGharService->getUpdateOrderforServicesDetails($orderNo);
-            $renderHtml = $this->renderPartial("updateorderdetails", array("model" => $Model, 'getServiceDetails' => $getServiceDetails, "OrderNo" => $orderNo, "Status" => $status), true);
+            $renderHtml = $this->renderPartial("updateorderdetails", array("model" => $Model, 'getServiceDetails' => $getServiceDetails, "OrderNo" => $orderNo, "Status" => $status, "Amt" => $amount), true);
             $obj = array('status' => 'success', 'html' => $renderHtml);
             $renderScript = $this->rendering($obj);
             echo $renderScript;

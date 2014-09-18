@@ -271,21 +271,21 @@ class HouseCleaningService extends CActiveRecord {
     public function getOrderDetailsinAdmin($start,$end,$type,$orderNo,$status) {
         try {//$query = "SELECT * FROM KG_InvitationUsers where status =1 limit ".$start. ",".$end;
             if(($type=='0') && ($orderNo=='0') && ($status=='20')){
-             $query = "SELECT * FROM KG_Order_details WHERE ServiceId!='' limit ".$start. ",".$end;   
+             $query = "SELECT * FROM KG_Order_details WHERE ServiceId!='' ORDER BY id DESC limit ".$start. ",".$end;   
             }else if(($type!='0') && ($orderNo=='0') && ($status=='20')){
-             $query = "SELECT * FROM KG_Order_details WHERE ServiceId=".$type." limit ".$start. ",".$end;     
+             $query = "SELECT * FROM KG_Order_details WHERE ServiceId=".$type." ORDER BY id DESC limit ".$start. ",".$end;     
             }else if(($type=='0') && ($orderNo!='0') && ($status=='20')){
-             $query = "SELECT * FROM KG_Order_details WHERE order_number=".$orderNo." limit ".$start. ",".$end;     
+             $query = "SELECT * FROM KG_Order_details WHERE order_number=".$orderNo." ORDER BY id DESC limit ".$start. ",".$end;     
             }else if(($type=='0') && ($orderNo=='0') && ($status!='20')){
-             $query = "SELECT * FROM KG_Order_details WHERE ServiceId!='' and status=".$status." limit ".$start. ",".$end;     
+             $query = "SELECT * FROM KG_Order_details WHERE ServiceId!='' and status=".$status." ORDER BY id DESC limit ".$start. ",".$end;     
             }else if(($type!='0') && ($orderNo!='0') && ($status=='20')){
-             $query = "SELECT * FROM KG_Order_details WHERE ServiceId=".$type." and order_number=".$orderNo." limit ".$start. ",".$end;     
+             $query = "SELECT * FROM KG_Order_details WHERE ServiceId=".$type." and order_number=".$orderNo." ORDER BY id DESC limit ".$start. ",".$end;     
             }else if(($type!='0') && ($orderNo=='0') && ($status!=='20')){
-             $query = "SELECT * FROM KG_Order_details WHERE ServiceId=".$type." and status=".$status." limit ".$start. ",".$end;     
+             $query = "SELECT * FROM KG_Order_details WHERE ServiceId=".$type." and status=".$status." ORDER BY id DESC limit ".$start. ",".$end;     
             }else if(($type=='0') && ($orderNo!='0') && ($status!=='20')){
-             $query = "SELECT * FROM KG_Order_details WHERE order_number=".$orderNo." and status=".$status." limit ".$start. ",".$end;     
+             $query = "SELECT * FROM KG_Order_details WHERE order_number=".$orderNo." and status=".$status." ORDER BY id DESC limit ".$start. ",".$end;     
             }else{
-               $query = "SELECT * FROM KG_Order_details WHERE ServiceId=$type and order_number=".$orderNo." and status=".$status." limit ".$start. ",".$end;  
+               $query = "SELECT * FROM KG_Order_details WHERE ServiceId=$type and order_number=".$orderNo." and status=".$status." ORDER BY id DESC limit ".$start. ",".$end;  
             }
             
             

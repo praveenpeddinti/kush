@@ -1506,7 +1506,7 @@ class UserController extends Controller {
             if($getReviewExist>=1){
                 $renderHtml="You have already done your review for this order";
             }else{
-            $renderHtml=  $this->renderPartial('orderreview',array("model"=>$Model, "OrderNumber"=>$id,"ServiceType"=>$type,"CustId"=>$custId,"pageno"=>$_POST['pageno']),true);
+            $renderHtml=  $this->renderPartial('orderreview',array("model"=>$Model, "OrderNumber"=>$id,"ServiceType"=>$type,"CustId"=>$custId),true);
             }
             $obj=array('status'=>'success','html'=>$renderHtml);
             $renderScript=  $this->rendering($obj);

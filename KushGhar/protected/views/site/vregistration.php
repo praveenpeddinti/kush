@@ -128,7 +128,7 @@
         document.getElementById('VendorRegistrationForm_Email_em_').innerHTML = '';
         document.getElementById('VendorRegistrationForm_Phone_em_').innerHTML = '';
         document.getElementById('VendorRegistrationForm_Password_em_').innerHTML = '';
-        document.getElementById('VendorRegistrationForm_RepeatPassword_em_').innerHTML = '';
+        document.getElementById('VendorRegistrationForm_ConfirmPassword_em_').innerHTML = '';
         if (id == 1) {
             document.getElementById('Individual').style.display = 'block';
             document.getElementById('Agency').style.display = 'none';
@@ -228,9 +228,9 @@
                                         <?php echo $form->error($model, 'Password'); ?>
                                     </div>
                                     <div class="span6">
-                                        <label> <?php echo $form->labelEx($model, '<abbr title="required">*</abbr> Repeat Password'); ?></label>
-                                        <?php echo $form->passwordField($model, 'RepeatPassword', array('class' => 'span12', 'maxLength' => 20)); ?>
-                                        <?php echo $form->error($model, 'RepeatPassword'); ?>
+                                        <label> <?php echo $form->labelEx($model, '<abbr title="required">*</abbr> Confirm Password'); ?></label>
+                                        <?php echo $form->passwordField($model, 'ConfirmPassword', array('class' => 'span12', 'maxLength' => 20)); ?>
+                                        <?php echo $form->error($model, 'ConfirmPassword'); ?>
                                     </div>
                                 </div>
                                 <div class="row-fluid">

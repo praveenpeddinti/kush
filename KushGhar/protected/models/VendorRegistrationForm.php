@@ -16,7 +16,7 @@ class VendorRegistrationForm extends CFormModel {
     public $Email;
     public $Phone;
     public $Password;
-    public $RepeatPassword;
+    public $ConfirmPassword;
     public $Proof_of_Identity;
     public $Identity_proof_Number;
     public $uIdDocument;
@@ -31,9 +31,9 @@ class VendorRegistrationForm extends CFormModel {
      */
     public function rules() {
         return array(
-            array('vendorType,FirstName,LastName,PrimaryContactFirstName,PrimaryContactLastName,AgencyName,Email,Phone,Password,RepeatPassword,Id,Proof_of_Identity,Identity_proof_Number,uIdDocument,Proof_of_Address,Address_Proof_Number,AddrPfDocument,Identity_proof_document,Address_proof_document', 'safe'),
+            array('vendorType,FirstName,LastName,PrimaryContactFirstName,PrimaryContactLastName,AgencyName,Email,Phone,Password,ConfirmPassword,Id,Proof_of_Identity,Identity_proof_Number,uIdDocument,Proof_of_Address,Address_Proof_Number,AddrPfDocument,Identity_proof_document,Address_proof_document', 'safe'),
             // First Name, Email, Phone, Password and Repeat Password are required
-            array('Email,Phone, Password, RepeatPassword,Identity_proof_Number,Address_Proof_Number', 'required', 'message' => 'Please enter {attribute}.'),
+            array('Email,Phone, Password, ConfirmPassword,Identity_proof_Number,Address_Proof_Number', 'required', 'message' => 'Please enter {attribute}.'),
             array('vendorType,Proof_of_Identity,Proof_of_Address', 'required', 'message' => 'Please select {attribute}.'),
             //array('AFirstName', 'required', 'message' => 'Please enter a value for Primary Contact First Name.'),
             //array('ALastName', 'required', 'message' => 'Please enter a value for Primary Contact Last Name.'),
@@ -70,7 +70,7 @@ class VendorRegistrationForm extends CFormModel {
             // password needs to be authenticated
             //array('Password', 'authenticate'),
             array('Password', 'required', 'on' => 'insert'),
-            array('RepeatPassword', 'compare', 'compareAttribute' => 'Password',
+            array('ConfirmPassword', 'compare', 'compareAttribute' => 'Password',
                 'message' => 'Password  and Confirm Password need to be same'
             ),
             

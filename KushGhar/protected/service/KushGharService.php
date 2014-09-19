@@ -569,11 +569,11 @@ class KushGharService {
     public function getOrderDetailsForCustomer($start,$end,$type,$orderNo,$cId) {
         return HouseCleaningService::model()->getOrderDetailsForCustomer($start,$end,$type,$orderNo,$cId);
     }
-    public function getRegisteredUser($uname,$location,$status){
-        return InviteUser::model()->getRegisteredUser($uname,$location,$status);
+    public function getRegisteredUser($uname,$city,$location,$status){
+        return InviteUser::model()->getRegisteredUser($uname,$city,$location,$status);
     }
-    public function getAllRegisteredUsers($startLimit, $endLimit,$uname,$location,$status) {
-        return InviteUser::model()->getAllRegisteredUsers($startLimit, $endLimit,$uname,$location,$status);
+    public function getAllRegisteredUsers($startLimit, $endLimit,$uname,$city,$location,$status) {
+        return InviteUser::model()->getAllRegisteredUsers($startLimit, $endLimit,$uname,$city,$location,$status);
     }
     public function ChangeStatusUser($id, $val) {
         return InviteUser::model()->ChangeStatusUser($id, $val);

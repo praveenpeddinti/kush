@@ -47,6 +47,7 @@ class ContactInfo extends CActiveRecord {
             $sampleDetails->address_line1 = $model->Address1;
             $sampleDetails->address_line2 = $model->Address2;
             $sampleDetails->alternate_phone = $model->AlternatePhone;
+            $sampleDetails->address_notes = $model->Location;
             $sampleDetails->address_state = $model->State;
             $sampleDetails->address_city = $model->City;
             $sampleDetails->address_pin_code = $model->PinCode;

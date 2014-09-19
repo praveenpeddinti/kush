@@ -326,10 +326,10 @@ class AdminController extends Controller {
     public function actionNewUserManage() {
         try {
             if (isset($_GET['userDetails_page'])) {
-                $totaluser = $this->kushGharService->getRegisteredUser($_GET['uname'], $_GET['location'], $_GET['status']);
+                $totaluser = $this->kushGharService->getRegisteredUser($_GET['uname'], $_GET['city'], $_GET['location'], $_GET['status']);
                 $startLimit = ((int) $_GET['userDetails_page'] - 1) * (int) $_GET['pageSize'];
                 $endLimit = $_GET['pageSize'];
-                $userDetails = $this->kushGharService->getAllRegisteredUsers($startLimit, $endLimit, $_GET['uname'], $_GET['location'], $_GET['status']);
+                $userDetails = $this->kushGharService->getAllRegisteredUsers($startLimit, $endLimit, $_GET['uname'], $_GET['city'], $_GET['location'], $_GET['status']);
                 $renderHtml = $this->renderPartial('newusermanage', array('userDetails' => $userDetails, 'totalCount' => $totaluser), true);
                 $obj = array('status' => 'success', 'html' => $renderHtml, 'totalCount' => $totaluser);
                 $renderScript = $this->rendering($obj);

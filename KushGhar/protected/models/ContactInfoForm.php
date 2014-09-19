@@ -13,6 +13,7 @@ class ContactInfoForm extends CFormModel {
     public $AlternatePhone;
     public $Address1;
     public $Address2;
+    public $Location;
     public $State;
     public $City;
     public $PinCode;
@@ -33,12 +34,12 @@ class ContactInfoForm extends CFormModel {
             //'then' => array('Phone, AlternatePhone', 'length', "min" => "10"),
              //   ),
             array('Phone, AlternatePhone','numerical','integerOnly'=>true,'min'=>1111111111,'tooSmall'=>'{attribute} is too short(minimum is 10 characters)',),
-            array('City', 'match', 'pattern' => '/^[a-zA-Z0-9\s]+$/', 'message' => '{attribute} can only contain alphabet and digits'),
+            array('Location', 'match', 'pattern' => '/^[a-zA-Z0-9\s]+$/', 'message' => '{attribute} can only contain alphabet and digits'),
             array('PinCode', 'numerical', 'integerOnly'=>true),
             array('PinCode', 'length', 'min'=>6),
             //array('cardNumber', 'length', 'min'=>6),
             array('State, City', 'required', 'message' => 'Please select {attribute}.'),
-            array('Email, Phone, AlternatePhone, Address1, Address2, State, City, PinCode, Landmark, Id', 'safe'),
+            array('Email, Phone, AlternatePhone, Address1, Address2, Location, State, City, PinCode, Landmark, Id', 'safe'),
         );
     }
 

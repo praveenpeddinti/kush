@@ -140,7 +140,7 @@ class SiteController extends Controller {
     public function actionCustomerFeedback() {
         $inviteForm = new InviteForm;
         //$getServices = $this->kushGharService->getFeedbacks();
-        $this->pageTitle="KushGhar-House Cleaning";
+        $this->pageTitle="KushGhar-Customer Feedback";
         //$this->render('customerFeedback',array("inviteModel" => $inviteForm, "getServices"=>$getServices));
         $this->render('customerFeedback',array("inviteModel" => $inviteForm));
     }

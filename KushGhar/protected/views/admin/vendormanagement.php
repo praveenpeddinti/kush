@@ -52,7 +52,7 @@
                                         <input type="text" id="userName" class="span12" maxlength="50"/>
                                     </div>
                                     <div class="span3">
-                                        <label>Location</label>
+                                        <label>City</label>
                                         <input type="text" id="location" class="span12" maxlength="20"/>
                                     </div>
                                     <div class="span3">
@@ -69,7 +69,7 @@
                                     </div>
                                 </div>
                                 <table id="userTable" class="table table-hover"  >
-                                    <thead><tr><th>Name</th><th>Email Address</th><th>Phone</th><th>Location</th><th nowrap>Reg# On</th><th>Status</th><th>Actions</th></tr></thead>
+                                    <thead><tr><th>Name</th><th>Email Address</th><th>Phone</th><th>City</th><th nowrap>Reg# On</th><th>Status</th><th>Actions</th></tr></thead>
                                     <tbody id="abusedWords_tbody">
                                     </tbody>
                                 </table>

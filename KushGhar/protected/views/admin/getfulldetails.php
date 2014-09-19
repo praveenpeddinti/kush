@@ -13,8 +13,14 @@ $address;
      $addresscity="";
  }
  else
-     $addresscity=$userAllDetails['address_city'];
- $address=$addressline1.$addressline2.$addresscity;
+     $addresscity=$userAllDetails['address_city'].", ";
+ if($userAllDetails['address_notes']=='')
+ {
+     $addresslocation="";
+ }
+ else
+     $addresslocation=$userAllDetails['address_notes'];
+ $address=$addressline1.$addressline2.$addresscity.$addresslocation;
 ?>
 
 <table style="padding: 20px; width: 100%; ">

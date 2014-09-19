@@ -35,13 +35,17 @@
                             <div id="InviteInfoSpinLoader"></div>
                             <div id="tablewidget"  style="margin: auto;"><div id="message" style="display:none"></div>
                                 <div class="row-fluid">
-                                    <div class="span4">
+                                    <div class="span3">
                                         <label>User Name</label>
                                         <input type="text" id="userName" class="span12" maxlength="50"/>
                                     </div>
-                                    <div class="span3">
+                                    <div class="span2">
                                         <label>Location</label>
                                         <input type="text" id="Location" class="span12" maxlength="20"/>
+                                    </div>
+                                    <div class="span2">
+                                        <label>City</label>
+                                        <input type="text" id="City" class="span12" maxlength="20"/>
                                     </div>
                                     <div class="span3">
                                         <label>Status</label>
@@ -58,7 +62,7 @@
                                 </div>
                                <div class="table-responsive"> <table id="userTable" class="table table-hover usermanagement_table">
 
-                                    <thead><tr><th>Name</th><th>Email Address</th><th>Phone</th><th>Location</th><th>Status</th><th>Actions</th></tr></thead>
+                                    <thead><tr><th>Name</th><th>Email Address</th><th>Phone</th><th>Location</th><th>City</th><th>Status</th><th>Actions</th></tr></thead>
                                     <tbody id="abusedWords_tbody">
 
                                     </tbody>
@@ -182,15 +186,16 @@
         }
     }
     $(function(){
-        getCollectionDataWithPagination('/admin/newusermanage','userDetails', 'abusedWords_tbody',1,5,'','','20','');
+        getCollectionDataWithPagination('/admin/newusermanage','userDetails', 'abusedWords_tbody',1,5,'','','','20','');
     });
-    function getCollectionDataWithPagination(URL,CollectionName, MainDiv, CurrentPage, PageSize,uname,location,status,callback){
+    function getCollectionDataWithPagination(URL,CollectionName, MainDiv, CurrentPage, PageSize,uname,location,city,status,callback){
         globalspace[MainDiv+'_page'] = Number(CurrentPage);
         globalspace[MainDiv+'_pageSize']=Number(PageSize);
         globalspace[MainDiv+'_uname']=uname;
         globalspace[MainDiv+'_location']=location;
+        globalspace[MainDiv+'_city']=city;
         globalspace[MainDiv+'_status']=Number(status);
-        var newURL =  URL+"?"+CollectionName+"_page="+globalspace[MainDiv+'_page']+"&pageSize="+globalspace[MainDiv+'_pageSize']+"&uname="+globalspace[MainDiv+'_uname']+"&location="+globalspace[MainDiv+'_location']+"&status="+globalspace[MainDiv+'_status'];
+        var newURL =  URL+"?"+CollectionName+"_page="+globalspace[MainDiv+'_page']+"&pageSize="+globalspace[MainDiv+'_pageSize']+"&uname="+globalspace[MainDiv+'_uname']+"&location="+globalspace[MainDiv+'_location']+"&city="+globalspace[MainDiv+'_city']+"&status="+globalspace[MainDiv+'_status'];
         var data = "";  
         ajaxRequest(newURL,data,function(data){getCollectionDataWithPaginationHandler(data,URL,CollectionName,MainDiv,callback)});
     }
@@ -206,7 +211,7 @@
                     onPageClick: function(pageNumber, event) {
                         globalspace[MainDiv+'_page'] = pageNumber;
                         pageno=pageNumber;
-                        getCollectionDataWithPagination(URL,CollectionName, MainDiv, globalspace[MainDiv+'_page'], globalspace[MainDiv+'_pageSize'],globalspace[MainDiv+'_uname'],globalspace[MainDiv+'_location'],globalspace[MainDiv+'_status'], callback)
+                        getCollectionDataWithPagination(URL,CollectionName, MainDiv, globalspace[MainDiv+'_page'], globalspace[MainDiv+'_pageSize'],globalspace[MainDiv+'_uname'],globalspace[MainDiv+'_location'],globalspace[MainDiv+'_city'],globalspace[MainDiv+'_status'], callback)
                     }
                 });
             if(callback!=''){
@@ -217,8 +222,9 @@
        // alert("enter===="+$("#orderNo").val());
         var uname = $("#userName").val();
         var location = $("#Location").val();
+        var city = $("#City").val();
         var status = $("#status").val();
-        getCollectionDataWithPagination('/admin/newusermanage','userDetails', 'abusedWords_tbody',1,5,uname,location,status,'');
+        getCollectionDataWithPagination('/admin/newusermanage','userDetails', 'abusedWords_tbody',1,5,uname,location,city,status,'');
    
     }
     var  moveTextToTextbox='';

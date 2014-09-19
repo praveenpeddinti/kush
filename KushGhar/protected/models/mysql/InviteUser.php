@@ -177,49 +177,81 @@ class InviteUser extends CActiveRecord {
         }
         return $result;
     }
-    public function getRegisteredUser($uname,$location,$status){
+    public function getRegisteredUser($uname,$city,$location,$status){
         try{
-            if(($uname=='')&&($location=='')&&($status=='20'))
+            if(($uname=='')&&($city=='')&&($status=='20')&&($location==''))
                 $query = "select count(*) as count from KG_Customer";
-            else if(($uname=='')&&($location=='')&&($status!='20'))
+            else if(($uname=='')&&($location=='')&&($status!='20')&&($location==''))
                 $query="select count(*) as count from KG_Customer where status=".$status;
-            else if(($uname!='')&&($location=='')&&($status=='20'))
+            else if(($uname!='')&&($city=='')&&($status=='20')&&($location==''))
                 $query="select count(*) as count from KG_Customer where CONCAT_WS(' ',first_name,middle_name,last_name) like '%".$uname."%'";
-            else if(($uname=='')&&($location!='')&&($status=='20'))
-                $query="select count(*) as count from KG_Customer c,KG_customer_address a where c.customer_id=a.customer_id and a.address_city like '%".$location."%'";
-            else if(($uname=='')&&($location!='')&&($status!='20'))
-                $query="select count(*) as count from KG_Customer c,KG_customer_address a where c.customer_id=a.customer_id and c.status=".$status." and a.address_city like '%".$location."%'";
-            else if(($uname!='')&&($location=='')&&($status!='20'))
-                $query="select count(*) as count from KG_Customer where CONCAT_WS(' ',first_name,middle_name,last_name) like '%".$uname."%' and status=".$status;
-            else if(($uname!='')&&($location!='')&&($status=='20'))
-                $query="select count(*) as count from KG_Customer c,KG_customer_address a where c.customer_id=a.customer_id and CONCAT_WS(' ',c.first_name,c.middle_name,c.last_name) like '%".$uname."%' and a.address_city like '%".$location."%'";
-            else if(($uname!='')&&($location!='')&&($status!='20'))
-                $query="select count(*) as count from KG_Customer c,KG_customer_address a where c.customer_id=a.customer_id and CONCAT_WS(' ',c.first_name,c.middle_name,c.last_name) like '%".$uname."%' and a.address_city like '%".$location."%' and c.status=".$status;
-           
-            $result = Yii::app()->db->createCommand($query)->queryRow();
+            else if(($uname=='')&&($city!='')&&($status=='20')&&($location==''))
+                $query="select count(*) as count from KG_Customer c,KG_customer_address a where c.customer_id=a.customer_id and a.address_city like '%".$city."%'";
+            else if(($uname=='')&&($city!='')&&($status!='20')&&($location==''))
+                $query="select count(*) as count from KG_Customer c,KG_customer_address a where c.customer_id=a.customer_id and c.status=".$status." and a.address_city like '%".$city."%'";
+            else if(($uname!='')&&($city=='')&&($status!='20')&&($location==''))
+                $query="select count(*) as count from KG_Customer where CONCAT_WS(' ',first_name,middle_name,last_name) like '%".$uname."%' and c.status=".$status;
+            else if(($uname!='')&&($city!='')&&($status=='20')&&($location==''))
+                $query="select count(*) as count from KG_Customer c,KG_customer_address a where c.customer_id=a.customer_id and CONCAT_WS(' ',c.first_name,c.middle_name,c.last_name) like '%".$uname."%' and a.address_city like '%".$city."%'";
+            else if(($uname!='')&&($city!='')&&($status!='20')&&($location==''))
+                $query="select count(*) as count from KG_Customer c,KG_customer_address a where c.customer_id=a.customer_id and CONCAT_WS(' ',c.first_name,c.middle_name,c.last_name) like '%".$uname."%' and a.address_city like '%".$city."%' and c.status=".$status;
+           else if(($uname=='')&&($city=='')&&($status=='20')&&($location!=''))
+                $query="select count(*) as count from KG_Customer c,KG_customer_address a where c.customer_id=a.customer_id and a.address_notes like '%".$location."%'";
+           else if(($uname!='')&&($city=='')&&($status=='20')&&($location!=''))
+                $query="select count(*) as count from KG_Customer c,KG_customer_address a where c.customer_id=a.customer_id and CONCAT_WS(' ',first_name,middle_name,last_name) like '%".$uname."%' and a.address_notes like '%".$location."%'";
+           else if(($uname=='')&&($city!='')&&($status=='20')&&($location!=''))
+                $query="select count(*) as count from KG_Customer c,KG_customer_address a where c.customer_id=a.customer_id and a.address_city like '%".$city."%' and a.address_notes like '%".$location."%'";
+           else if(($uname=='')&&($city=='')&&($status!='20')&&($location!=''))
+                $query="select count(*) as count from KG_Customer c,KG_customer_address a where c.customer_id=a.customer_id and c.status=".$status." and a.address_notes like '%".$location."%'";
+           else if(($uname!='')&&($city=='')&&($status!='20')&&($location!=''))
+                $query="select count(*) as count from KG_Customer c,KG_customer_address a where c.customer_id=a.customer_id and CONCAT_WS(' ',first_name,middle_name,last_name) like '%".$uname."%' and c.status=".$status." and a.address_notes like '%".$location."%'";
+           else if(($uname=='')&&($city!='')&&($status!='20')&&($location!=''))
+                $query="select count(*) as count from KG_Customer c,KG_customer_address a where c.customer_id=a.customer_id and a.address_city like '%".$city."%' and c.status=".$status." and a.address_notes like '%".$location."%'";
+           else if(($uname!='')&&($city!='')&&($status=='20')&&($location!=''))
+                $query="select count(*) as count from KG_Customer c,KG_customer_address a where c.customer_id=a.customer_id and CONCAT_WS(' ',first_name,middle_name,last_name) like '%".$uname."%' and a.address_city like '%".$city."%' and a.address_notes like '%".$location."%'";
+           else if(($uname!='')&&($city!='')&&($status!='20')&&($location!=''))
+                $query="select count(*) as count from KG_Customer c,KG_customer_address a where c.customer_id=a.customer_id and CONCAT_WS(' ',first_name,middle_name,last_name) like '%".$uname."%' and a.address_city like '%".$city."%' and c.status=".$status." and a.address_notes like '%".$location."%'";
+               
+           $result = Yii::app()->db->createCommand($query)->queryRow();
         }catch(Exception $ex){
             error_log("################Exception Occurred  get Registered Contacts##############".$ex->getMessage());
         }
         return $result['count'];
     }
-    public function getAllRegisteredUsers($start,$end,$uname,$location,$status){
+    public function getAllRegisteredUsers($start,$end,$uname,$city,$location,$status){
         try{  
-            if(($uname=='')&&($location=='')&&($status=='20'))
-                $query = "select c.customer_id as cid, CONCAT_WS(' ',first_name,middle_name,last_name) as UserName , c.email_address , c.phone , c.create_timestamp , ca.address_city as Location , c.status  from KG_Customer c join KG_customer_address ca on ca.customer_id=c.customer_id ORDER BY c.create_timestamp DESC limit ".$start. ",".$end;
-            else if(($uname=='')&&($location=='')&&($status!='20'))
-                $query="select c.customer_id as cid, CONCAT_WS(' ',first_name,middle_name,last_name) as UserName , c.email_address , c.phone , c.create_timestamp , ca.address_city as Location , c.status  from KG_Customer c join KG_customer_address ca on ca.customer_id=c.customer_id and c.status=".$status." ORDER BY c.create_timestamp DESC limit ".$start. ",".$end;
-            else if(($uname!='')&&($location=='')&&($status=='20'))
-                $query="select c.customer_id as cid, CONCAT_WS(' ',first_name,middle_name,last_name) as UserName , c.email_address , c.phone , c.create_timestamp , ca.address_city as Location , c.status  from KG_Customer c join KG_customer_address ca on ca.customer_id=c.customer_id and CONCAT_WS(' ',first_name,middle_name,last_name) like '%".$uname."%' ORDER BY c.create_timestamp DESC limit ".$start. ",".$end;
-            else if(($uname=='')&&($location!='')&&($status=='20'))
-                $query="select c.customer_id as cid, CONCAT_WS(' ',first_name,middle_name,last_name) as UserName , c.email_address , c.phone , c.create_timestamp , ca.address_city as Location , c.status  from KG_Customer c join KG_customer_address ca on ca.customer_id=c.customer_id and ca.address_city like '%".$location."%' ORDER BY c.create_timestamp DESC limit ".$start. ",".$end;
-            else if(($uname=='')&&($location!='')&&($status!='20'))
-                $query="select c.customer_id as cid, CONCAT_WS(' ',first_name,middle_name,last_name) as UserName , c.email_address , c.phone , c.create_timestamp , ca.address_city as Location , c.status  from KG_Customer c join KG_customer_address ca on ca.customer_id=c.customer_id and c.status=".$status." and ca.address_city like '%".$location."%' ORDER BY c.create_timestamp DESC limit ".$start. ",".$end;
-            else if(($uname!='')&&($location=='')&&($status!='20'))
-                $query="select c.customer_id as cid, CONCAT_WS(' ',first_name,middle_name,last_name) as UserName , c.email_address , c.phone , c.create_timestamp , ca.address_city as Location , c.status  from KG_Customer c join KG_customer_address ca on ca.customer_id=c.customer_id and CONCAT_WS(' ',first_name,middle_name,last_name) like '%".$uname."%' and status=".$status." ORDER BY c.create_timestamp DESC limit ".$start. ",".$end;
-            else if(($uname!='')&&($location!='')&&($status=='20'))
-                $query="select c.customer_id as cid, CONCAT_WS(' ',first_name,middle_name,last_name) as UserName , c.email_address , c.phone , c.create_timestamp , ca.address_city as Location , c.status  from KG_Customer c join KG_customer_address ca on ca.customer_id=c.customer_id and CONCAT_WS(' ',c.first_name,c.middle_name,c.last_name) like '%".$uname."%' and ca.address_city like '%".$location."%' ORDER BY c.create_timestamp DESC limit ".$start. ",".$end;
-            else if(($uname!='')&&($location!='')&&($status!='20'))
-                $query="select c.customer_id as cid, CONCAT_WS(' ',first_name,middle_name,last_name) as UserName , c.email_address , c.phone , c.create_timestamp , ca.address_city as Location , c.status  from KG_Customer c join KG_customer_address ca on ca.customer_id=c.customer_id and CONCAT_WS(' ',c.first_name,c.middle_name,c.last_name) like '%".$uname."%' and ca.address_city like '%".$location."%' and c.status=".$status." ORDER BY c.create_timestamp DESC limit ".$start. ",".$end;
+            if(($uname=='')&&($location=='')&&($status=='20')&&($city==''))
+                $query = "select c.customer_id as cid, CONCAT_WS(' ',first_name,middle_name,last_name) as UserName , c.email_address , c.phone , c.create_timestamp , ca.address_notes as Location , ca.address_city as City, c.status  from KG_Customer c join KG_customer_address ca on ca.customer_id=c.customer_id ORDER BY c.create_timestamp DESC limit ".$start. ",".$end;
+            else if(($uname=='')&&($city=='')&&($status!='20')&&($location==''))
+                $query="select c.customer_id as cid, CONCAT_WS(' ',first_name,middle_name,last_name) as UserName , c.email_address , c.phone , c.create_timestamp , ca.address_notes as Location , ca.address_city as City , c.status  from KG_Customer c join KG_customer_address ca on ca.customer_id=c.customer_id and c.status=".$status." ORDER BY c.create_timestamp DESC limit ".$start. ",".$end;
+            else if(($uname!='')&&($city=='')&&($status=='20')&&($location==''))
+                $query="select c.customer_id as cid, CONCAT_WS(' ',first_name,middle_name,last_name) as UserName , c.email_address , c.phone , c.create_timestamp , ca.address_notes as Location , ca.address_city as City, c.status  from KG_Customer c join KG_customer_address ca on ca.customer_id=c.customer_id and CONCAT_WS(' ',first_name,middle_name,last_name) like '%".$uname."%' ORDER BY c.create_timestamp DESC limit ".$start. ",".$end;
+            else if(($uname=='')&&($city!='')&&($status=='20')&&($location==''))
+                $query="select c.customer_id as cid, CONCAT_WS(' ',first_name,middle_name,last_name) as UserName , c.email_address , c.phone , c.create_timestamp , ca.address_notes as Location , ca.address_city as City , c.status  from KG_Customer c join KG_customer_address ca on ca.customer_id=c.customer_id and ca.address_city like '%".$city."%' ORDER BY c.create_timestamp DESC limit ".$start. ",".$end;
+            else if(($uname=='')&&($city!='')&&($status!='20')&&($location==''))
+                $query="select c.customer_id as cid, CONCAT_WS(' ',first_name,middle_name,last_name) as UserName , c.email_address , c.phone , c.create_timestamp , ca.address_notes as Location , ca.address_city as City , c.status  from KG_Customer c join KG_customer_address ca on ca.customer_id=c.customer_id and c.status=".$status." and ca.address_city like '%".$city."%' ORDER BY c.create_timestamp DESC limit ".$start. ",".$end;
+            else if(($uname!='')&&($city=='')&&($status!='20')&&($location==''))
+                $query="select c.customer_id as cid, CONCAT_WS(' ',first_name,middle_name,last_name) as UserName , c.email_address , c.phone , c.create_timestamp , ca.address_notes as Location , ca.address_city as City , c.status  from KG_Customer c join KG_customer_address ca on ca.customer_id=c.customer_id and CONCAT_WS(' ',first_name,middle_name,last_name) like '%".$uname."%' and c.status=".$status." ORDER BY c.create_timestamp DESC limit ".$start. ",".$end;
+            else if(($uname!='')&&($city!='')&&($status=='20')&&($location==''))
+                $query="select c.customer_id as cid, CONCAT_WS(' ',first_name,middle_name,last_name) as UserName , c.email_address , c.phone , c.create_timestamp , ca.address_notes as Location , ca.address_city as City , c.status  from KG_Customer c join KG_customer_address ca on ca.customer_id=c.customer_id and CONCAT_WS(' ',c.first_name,c.middle_name,c.last_name) like '%".$uname."%' and ca.address_city like '%".$city."%' ORDER BY c.create_timestamp DESC limit ".$start. ",".$end;
+            else if(($uname!='')&&($city!='')&&($status!='20')&&($location==''))
+                $query="select c.customer_id as cid, CONCAT_WS(' ',first_name,middle_name,last_name) as UserName , c.email_address , c.phone , c.create_timestamp , ca.address_notes as Location , ca.address_city as City , c.status  from KG_Customer c join KG_customer_address ca on ca.customer_id=c.customer_id and CONCAT_WS(' ',c.first_name,c.middle_name,c.last_name) like '%".$uname."%' and ca.address_city like '%".$city."%' and c.status=".$status." ORDER BY c.create_timestamp DESC limit ".$start. ",".$end;
+            else if(($uname=='')&&($city=='')&&($status=='20')&&($location!=''))
+                $query="select c.customer_id as cid, CONCAT_WS(' ',first_name,middle_name,last_name) as UserName , c.email_address , c.phone , c.create_timestamp , ca.address_notes as Location , ca.address_city as City , c.status  from KG_Customer c join KG_customer_address ca on ca.customer_id=c.customer_id and ca.address_notes like '%".$location."%' ORDER BY c.create_timestamp DESC limit ".$start. ",".$end;
+            else if(($uname!='')&&($city=='')&&($status=='20')&&($location!=''))
+                $query="select c.customer_id as cid, CONCAT_WS(' ',first_name,middle_name,last_name) as UserName , c.email_address , c.phone , c.create_timestamp , ca.address_notes as Location , ca.address_city as City , c.status  from KG_Customer c join KG_customer_address ca on ca.customer_id=c.customer_id and CONCAT_WS(' ',c.first_name,c.middle_name,c.last_name) like '%".$uname."%' and ca.address_notes like '%".$location."%' ORDER BY c.create_timestamp DESC limit ".$start. ",".$end;
+            else if(($uname=='')&&($city!='')&&($status=='20')&&($location!=''))
+                $query="select c.customer_id as cid, CONCAT_WS(' ',first_name,middle_name,last_name) as UserName , c.email_address , c.phone , c.create_timestamp , ca.address_notes as Location , ca.address_city as City , c.status  from KG_Customer c join KG_customer_address ca on ca.customer_id=c.customer_id and ca.address_city like '%".$city."%' and ca.address_notes like '%".$location."%' ORDER BY c.create_timestamp DESC limit ".$start. ",".$end;
+            else if(($uname=='')&&($city=='')&&($status!='20')&&($location!=''))
+                $query="select c.customer_id as cid, CONCAT_WS(' ',first_name,middle_name,last_name) as UserName , c.email_address , c.phone , c.create_timestamp , ca.address_notes as Location , ca.address_city as City , c.status  from KG_Customer c join KG_customer_address ca on ca.customer_id=c.customer_id and c.status=".$status." and ca.address_notes like '%".$location."%' ORDER BY c.create_timestamp DESC limit ".$start. ",".$end;
+            else if(($uname!='')&&($city=='')&&($status!='20')&&($location!=''))
+                $query="select c.customer_id as cid, CONCAT_WS(' ',first_name,middle_name,last_name) as UserName , c.email_address , c.phone , c.create_timestamp , ca.address_notes as Location , ca.address_city as City , c.status  from KG_Customer c join KG_customer_address ca on ca.customer_id=c.customer_id and CONCAT_WS(' ',c.first_name,c.middle_name,c.last_name) like '%".$uname."%' and c.status=".$status." and ca.address_notes like '%".$location."%' ORDER BY c.create_timestamp DESC limit ".$start. ",".$end;
+            else if(($uname=='')&&($city!='')&&($status!='20')&&($location!=''))
+                $query="select c.customer_id as cid, CONCAT_WS(' ',first_name,middle_name,last_name) as UserName , c.email_address , c.phone , c.create_timestamp , ca.address_notes as Location , ca.address_city as City , c.status  from KG_Customer c join KG_customer_address ca on ca.customer_id=c.customer_id and ca.address_city like '%".$city."%' and c.status=".$status." and ca.address_notes like '%".$location."%' ORDER BY c.create_timestamp DESC limit ".$start. ",".$end;
+            else if(($uname!='')&&($city!='')&&($status=='20')&&($location!=''))
+                $query="select c.customer_id as cid, CONCAT_WS(' ',first_name,middle_name,last_name) as UserName , c.email_address , c.phone , c.create_timestamp , ca.address_notes as Location , ca.address_city as City , c.status  from KG_Customer c join KG_customer_address ca on ca.customer_id=c.customer_id and CONCAT_WS(' ',c.first_name,c.middle_name,c.last_name) like '%".$uname."%' and ca.address_city like '%".$city."%' and ca.address_notes like '%".$location."%' ORDER BY c.create_timestamp DESC limit ".$start. ",".$end;
+            else if(($uname!='')&&($city!='')&&($status!='20')&&($location!=''))
+                $query="select c.customer_id as cid, CONCAT_WS(' ',first_name,middle_name,last_name) as UserName , c.email_address , c.phone , c.create_timestamp , ca.address_notes as Location , ca.address_city as City , c.status  from KG_Customer c join KG_customer_address ca on ca.customer_id=c.customer_id and CONCAT_WS(' ',c.first_name,c.middle_name,c.last_name) like '%".$uname."%' and ca.address_city like '%".$city."%' and ca.address_notes like '%".$location."%' and c.status=".$status." ORDER BY c.create_timestamp DESC limit ".$start. ",".$end;
             $result = Yii::app()->db->createCommand($query)->queryAll();
         }catch(Exception $ex){
             error_log("################Exception Occurred  get All Registered Contacts##############".$ex->getMessage());
@@ -244,7 +276,7 @@ class InviteUser extends CActiveRecord {
     }
     public function getFullUserDetails($id){
         try{
-        $query="select c.customer_id as cid, CONCAT_WS(' ',first_name,middle_name,last_name) as UserName , c.email_address , c.phone , c.create_timestamp , ca.address_line1,ca.address_line2,ca.address_city , c.status,c.profilePicture from KG_Customer c join KG_customer_address ca on ca.customer_id=c.customer_id where c.customer_id=".$id ;
+        $query="select c.customer_id as cid, CONCAT_WS(' ',first_name,middle_name,last_name) as UserName , c.email_address , c.phone , c.create_timestamp , ca.address_line1,ca.address_line2,ca.address_city, ca.address_notes, c.status,c.profilePicture from KG_Customer c join KG_customer_address ca on ca.customer_id=c.customer_id where c.customer_id=".$id ;
         $result = Yii::app()->db->createCommand($query)->queryRow();
         } catch (Exception $ex) {
             error_log("################Exception Occurred  get Full Details Contacts##############".$ex->getMessage());

@@ -151,16 +151,22 @@
 
 
     <div class="row-fluid">
-    <div class=" span6">
+    <div class=" span4">
     <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> address line1'); ?>
         <?php echo $form->textField($model,'Address1',array('value'=>$customerAddressDetails->address_line1, 'maxLength' => 100, 'class'=>'span12')); ?>
         <?php echo $form->error($model,'Address1'); ?>
 
    </div>
-    <div class=" span6">
+    <div class=" span4">
         <?php echo $form->labelEx($model,'address Line2'); ?>
         <?php echo $form->textField($model,'Address2',array('value'=>$customerAddressDetails->address_line2, 'maxLength' => 100, 'class'=>'span12')); ?>
         <?php echo $form->error($model,'Address2'); ?>
+    </div>
+    <div class=" span4">
+        <?php echo $form->labelEx($model,'Location'); ?>
+        <?php echo $form->textField($model,'Location',array('value'=>$customerAddressDetails->address_notes, 'maxLength' => 25, 'class'=>'span12')); ?>
+        <?php echo $form->error($model,'Location'); ?>
+
     </div>
     </div>
 

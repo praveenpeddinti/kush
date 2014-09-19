@@ -19,6 +19,7 @@
                                             </td>
                                             <td><?php echo $row['phone']; ?></td>
                                             <td><?php echo $row['Location']; ?></td>
+                                            <td><?php echo $row['City']; ?></td>
                                             <td id="status_<?php echo $row['cid']; ?>">
                                                 <?php 
                                                 if($row['status']==1){$status = 'Active';} 

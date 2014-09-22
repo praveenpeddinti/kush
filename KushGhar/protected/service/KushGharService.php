@@ -243,12 +243,8 @@ class KushGharService {
             } else {
                 $vendor = VendorAgencyRegistration ::model()->checkAuthentication($model);
             }
-            //if (!empty($vendor)) {
-                return $vendor;
-            //} else {
-            //    return "false";
-            //}
-        } catch (Exception $ex) {
+            return $vendor;
+            } catch (Exception $ex) {
             error_log("=============exception occurred in login=============" . $ex->getMessage());
         }
         //return $user;

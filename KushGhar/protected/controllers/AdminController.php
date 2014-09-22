@@ -778,12 +778,13 @@ class AdminController extends Controller {
      */
 
     public function actionUpdateorderdetails() {
-        try {
+        try {error_log("--------------------");
             $Model = new HouseCleaningForm;
             $orderNo = $_POST['OrderNo'];
             $status = $_POST['status'];
             $amount = $_POST['Amount'];
             $getServiceDetails = $this->kushGharService->getUpdateOrderforServicesDetails($orderNo);
+            error_log("-------------2-------");
             $renderHtml = $this->renderPartial("updateorderdetails", array("model" => $Model, 'getServiceDetails' => $getServiceDetails, "OrderNo" => $orderNo, "Status" => $status, "Amt" => $amount), true);
             $obj = array('status' => 'success', 'html' => $renderHtml);
             $renderScript = $this->rendering($obj);

@@ -544,6 +544,7 @@ input.serachInput::-ms-reveal { width : 0; height: 0;}
 .price tr th{ background:#f4f4f4; color:#333333; font-size:16px;}
 .price tr th.total{ color:#F60; font-size:16px;}
 .Additional_S_price{ padding: 5px; margin: 5px; border: 1px solid #ccc;text-align: center }
+.LR{padding: 5px; margin: 5px; border: 1px solid #ccc;text-align: center; width:38px }
 .Additional_S_price label{ color:#F58220;display:inherit }
 /* custom styles */
 .checkbox, .radio {

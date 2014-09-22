@@ -154,19 +154,16 @@
 
 <script type="text/javascript">
     function orderAction(id2,inviteStatus,obj){
-       /*if(obj.value=="Close")
-           var r=confirm("Are you sure want to close the order");
-       else*/ if(obj.value=="Cancel")
-           var r=confirm("Are you sure want to cancel the order");
-       else 
-           r=true;
-       //var r = confirm(msg);
-       if(r==true)
-       {
-    inviteUser(Number(id2), Number(inviteStatus),obj.value);
-       }
+        if(obj.value=="Cancel")
+            var r=confirm("Are you sure want to cancel the order");
+        else 
+            r=true;
+        if(r==true) {
+            inviteUser(Number(id2), Number(inviteStatus),obj.value);
+        }
     }
-     $(document).ready(function() {
+
+    $(document).ready(function() {
        $('#userTable tr td input').live('click', function() {
            var id1=$(this).attr('id');
             var id = $(this).attr('data-id');
@@ -230,7 +227,6 @@
 
                 }
             });
-        
     }
     function print(id,vendors){
         var data = "Id=" + id+"&vendors="+vendors;
@@ -249,11 +245,9 @@
 
                 }
             });
-        
     }
     function statusChangeUser(rowNos, ServiceId, vendors,Type,Status) {
          var data = "Id=" + rowNos + "&ServiceId=" + ServiceId+ "&Vendors=" + vendors+ "&Type=" + Type+"&status="+Status;
-        
             $.ajax({
                 type: 'POST',
                 dataType: 'json',
@@ -269,7 +263,6 @@
 
                 }
             });
-        
     }
     function inviteUser(rowNos, status,value) {
         var data = "Id=" + rowNos + "&status=" + status+"&value="+value;
@@ -331,7 +324,6 @@
             }
     }
     function activeFormHandler2(data, status, rowNos,value) {
-//alert(value+"==order_number---------"+status+"==="+rowNos);
         if (value == 'Schedule') {
             $('#status_' + rowNos).text('Schedule');
         } else if (value == 'Cancel') {
@@ -350,7 +342,6 @@
         }
     }
     function search(){
-       // alert("enter===="+$("#orderNo").val());
         var sType = $("#serviceType").val();
         var orderNo = $("#orderNo").val();
         var status = $("#status").val();

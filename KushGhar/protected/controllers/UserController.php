@@ -862,8 +862,8 @@ class UserController extends Controller {
                 $employerEmail = "no-reply@kushghar.com";
                 $messageview1="InvitationMail";
                 
-                //$mess1 = 'http://113.193.178.88:6060/site/registration?Uname=' . $inviteFriends->Email . "\r\n\n";
-                $mess1 = 'http://www.kushghar.com/site/registration?Uname=' . $inviteFriends->Email . "\r\n\n";
+                $mess1 = 'http://113.193.178.88:6060/site/registration?Uname=' . $inviteFriends->Email . "\r\n\n";
+                //$mess1 = 'http://www.kushghar.com/site/registration?Uname=' . $inviteFriends->Email . "\r\n\n";
                 $params1 = array('Logo' => $Logo, 'Name' =>$name, 'Message' =>$mess1);
                 /*
                  * KG Team mail details

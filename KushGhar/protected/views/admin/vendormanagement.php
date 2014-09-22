@@ -315,12 +315,12 @@
     }
     function activeFormHandler(data, status, rowNos) {
         if (status == 1) {
-            $('#usera_' + rowNos).attr('class', 'icon_inactive');
-            $('#usera_' + rowNos).attr('invite-status', '0');
+            $('#userstatus_' + rowNos).attr('class', 'icon_inactive');
+            $('#userstatus_' + rowNos).attr('invite-status', '0');
             $('#status_' + rowNos).text('InActive');
         } else {
-            $('#usera_' + rowNos).attr('class', 'icon_active');
-            $('#usera_' + rowNos).attr('invite-status', '1');
+            $('#userstatus_' + rowNos).attr('class', 'icon_active');
+            $('#userstatus_' + rowNos).attr('invite-status', '1');
             $('#status_' + rowNos).text('Active');
         }
         if (data.status == 'success') {
@@ -413,4 +413,3 @@
        document.getElementById(divId).style.display='none';
     }
 </script>
-

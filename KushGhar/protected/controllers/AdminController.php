@@ -493,6 +493,7 @@ class AdminController extends Controller {
                 $fileuploadpath = $this->findUploadedPath();
                 $dest = $fileuploadpath . $_POST['filename'];
                 $col = 0;
+                $error='';
                 $csvFile = file($dest);
                 $i = 0;
                 $status = "success";
@@ -537,21 +538,23 @@ class AdminController extends Controller {
                                         $messageview = "CustomerInvitationMailToKGTeam";
                                         $params = array('Logo' => $Logo, 'Name' => $name, 'Email' => $to1, 'Phone' => $phone, 'Location' => $location, 'City' => $city);
                                         $sendMailToUser = new CommonUtility;
-                                        $sendMailToUser->actionSendmail($messageview1, $params1, $subject, $to1, $employerEmail);
-                                        $mailSendStatusw = $sendMailToUser->actionSendmail($messageview, $params, $subject, $to, $employerEmail);
-                                        $error.="User invited successfully->" . $var[3] . "<br>";
-                                    } else {
-                                        $error.="User already invited ->" . $var[3] . "<br>";
+                                        //$sendMailToUser->actionSendmail($messageview1, $params1, $subject, $to1, $employerEmail);
+                                        //$mailSendStatusw = $sendMailToUser->actionSendmail($messageview, $params, $subject, $to, $employerEmail);
+                                        $error.="<label style='color:green;'>User invited successfully->" . $var[3] . "</label>";
                                     }
-                                } else {
-                                    $error.="Sorry,Column did not match! ->" . $line . "<br>";
+                                     else {
+                                          $error.="<label class='errorMessage'>User already invited ->". $var[3] . "</label>";
+                                    }
+                                }
+                                else{
+                                    $error.="<label class='errorMessage'>Sorry,Column did not match! ->" . $line . "</label>";
                                 }
                             }
                         }
                         $i++;
                     }
                 } else {
-                    $error.="Sorry, File format is wrong....";
+                    $error.="<label class='errorMessage'>Sorry, File format is wrong....</label>";
                 }
                 if ($dest != "") {
                     if (file_exists($dest)) {

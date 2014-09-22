@@ -538,8 +538,8 @@ class AdminController extends Controller {
                                         $messageview = "CustomerInvitationMailToKGTeam";
                                         $params = array('Logo' => $Logo, 'Name' => $name, 'Email' => $to1, 'Phone' => $phone, 'Location' => $location, 'City' => $city);
                                         $sendMailToUser = new CommonUtility;
-                                        //$sendMailToUser->actionSendmail($messageview1, $params1, $subject, $to1, $employerEmail);
-                                        //$mailSendStatusw = $sendMailToUser->actionSendmail($messageview, $params, $subject, $to, $employerEmail);
+                                        $sendMailToUser->actionSendmail($messageview1, $params1, $subject, $to1, $employerEmail);
+                                        $mailSendStatusw = $sendMailToUser->actionSendmail($messageview, $params, $subject, $to, $employerEmail);
                                         $error.="<label style='color:green;'>User invited successfully->" . $var[3] . "</label>";
                                     }
                                      else {

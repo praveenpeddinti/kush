@@ -279,14 +279,15 @@
                                                              $('#VendorRegistrationForm_Identity_proof_document').val('/images/documents/'+data.filename);                                                             
                                                              $('#uIdDocPreviewId').attr('src',globaluIdDocument);
                                                               }",
-                                                            //'messages'=>array(
-                                                            //                  'typeError'=>"{file} has invalid extension. Only {extensions} are allowed.",
-                                                            //                  'sizeError'=>"{file} is too large, maximum file size is {sizeLimit}.",
-                                                            //                  'minSizeError'=>"{file} is too small, minimum file size is {minSizeLimit}.",
-                                                            //                  'emptyError'=>"{file} is empty, please select files again without it.",
-                                                            //                  'onLeave'=>"The files are being uploaded, if you leave now the upload will be cancelled."
-                                                            //                 ),
-                                                            'showMessage' => "js:function(message){  commonErrorDiv(message,'common_error');}"
+                                                            'messages'=>array(
+                                                                              'typeError'=>"Only {extensions} files are allowed.",
+                                                                              'sizeError'=>"{file} is too large, maximum file size is {sizeLimit}.",
+                                                                              'minSizeError'=>"{file} is too small, minimum file size is {minSizeLimit}.",
+                                                                              'emptyError'=>"{file} is empty, please select files again without it.",
+                                                                              'onLeave'=>"The files are being uploaded, if you leave now the upload will be cancelled."
+                                                                             ),
+                                                            'showMessage' => "js:function(message){ $('#upload_error_div').html(message);
+                                                            $('#upload_error_div').show();}"
                                                         )
                                                     ));
                                                     ?>
@@ -315,14 +316,15 @@
                                                              $('#VendorRegistrationForm_Address_proof_document').val('/images/documents/'+data.filename);        
                                                              $('#AddrPfDocPreviewId').attr('src',globalAddrPfDocument);
                                                               }",
-                                                            //'messages'=>array(
-                                                            //                  'typeError'=>"{file} has invalid extension. Only {extensions} are allowed.",
-                                                            //                  'sizeError'=>"{file} is too large, maximum file size is {sizeLimit}.",
-                                                            //                  'minSizeError'=>"{file} is too small, minimum file size is {minSizeLimit}.",
-                                                            //                  'emptyError'=>"{file} is empty, please select files again without it.",
-                                                            //                  'onLeave'=>"The files are being uploaded, if you leave now the upload will be cancelled."
-                                                            //                 ),
-                                                            'showMessage' => "js:function(message){  commonErrorDiv(message,'common_error');}"
+                                                            'messages'=>array(
+                                                                              'typeError'=>"Only {extensions} files are allowed.",
+                                                                              'sizeError'=>"{file} is too large, maximum file size is {sizeLimit}.",
+                                                                              'minSizeError'=>"{file} is too small, minimum file size is {minSizeLimit}.",
+                                                                              'emptyError'=>"{file} is empty, please select files again without it.",
+                                                                              'onLeave'=>"The files are being uploaded, if you leave now the upload will be cancelled."
+                                                                             ),
+                                                            'showMessage' => "js:function(message){ $('#upload_error_div').html(message);
+                                                            $('#upload_error_div').show();}"
                                                         )
                                                     ));
                                                     ?>
@@ -331,6 +333,9 @@
                                                 </div>
                                             </div>
                                     </div>
+                                </div>
+                                <div class="span12">
+                                    <div id="upload_error_div" class="errorMessage" style="display: none"></div>
                                 </div>
                                 <center>
                                  <?php

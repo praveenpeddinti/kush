@@ -163,7 +163,7 @@
                                          </div>
                                 </div>
                                  <div class="row-fluid paddingT10">
-                                    <div class="span4">
+                                    <div class="span12">
                                         <div class="form-group">
                                             <div class="form-group"><?php echo $form->label($model, 'Profile Picture'); ?>
                                                 <div class="control-group" style="position: relative">
@@ -190,14 +190,15 @@
                                     $('#profilePicPreviewId').attr('src',globalProfilePic);
                                     }
                                     ",
-                                                            //'messages'=>array(
-                                                            //                  'typeError'=>"{file} has invalid extension. Only {extensions} are allowed.",
-                                                            //                  'sizeError'=>"{file} is too large, maximum file size is {sizeLimit}.",
-                                                            //                  'minSizeError'=>"{file} is too small, minimum file size is {minSizeLimit}.",
-                                                            //                  'emptyError'=>"{file} is empty, please select files again without it.",
-                                                            //                  'onLeave'=>"The files are being uploaded, if you leave now the upload will be cancelled."
-                                                            //                 ),
-                                                            'showMessage' => "js:function(message){  commonErrorDiv(message,'common_error');}"
+                                                            'messages'=>array(
+                                                                              'typeError'=>"Only {extensions} are allowed.",
+                                                                              'sizeError'=>"{file} is too large, maximum file size is {sizeLimit}.",
+                                                                              'minSizeError'=>"{file} is too small, minimum file size is {minSizeLimit}.",
+                                                                              'emptyError'=>"{file} is empty, please select files again without it.",
+                                                                              'onLeave'=>"The files are being uploaded, if you leave now the upload will be cancelled."
+                                                                             ),
+                                                            'showMessage' => "js:function(message){ $('#upload_error_div').html(message);
+                                                            $('#upload_error_div').show();}"
                                                         )
                                                     ));
                                                     ?>
@@ -206,6 +207,7 @@
                                             </div>
 
                                         </div>
+                                        <div id="upload_error_div" class="errorMessage" style="display: none"></div>
                                     </div>
                               </div>
                                 <hr>

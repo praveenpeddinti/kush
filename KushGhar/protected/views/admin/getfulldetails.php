@@ -1,28 +1,28 @@
-<?php 
+<?php
 $address;
  if($userAllDetails['address_line1']=='')
      $addressline1="";
  else
      $addressline1=$userAllDetails['address_line1'].", ";
- if($userAllDetails['address_line2']=='')
+if($userAllDetails['address_line2']=='')
      $addressline2="";
  else
      $addressline2=$userAllDetails['address_line2'].", ";
  if($userAllDetails['address_city']=='')
- {
      $addresscity="";
- }
  else
      $addresscity=$userAllDetails['address_city'].", ";
- if($userAllDetails['address_notes']=='')
- {
-     $addresslocation="";
- }
- else
-     $addresslocation=$userAllDetails['address_notes'];
- $address=$addressline1.$addressline2.$addresscity.$addresslocation;
+if($UserType!='Vendor')
+{
+    if($userAllDetails['address_notes']=='')
+        $addresslocation="";
+    else
+        $addresslocation=$userAllDetails['address_notes'];
+    $address=$addressline1.$addressline2.$addresscity.$addresslocation;
+  }
+  else
+    $address=$addressline1.$addressline2.$addresscity;
 ?>
-
 <table style="padding: 20px; width: 100%; ">
     <tr>
         <td width="80%">
@@ -38,8 +38,7 @@ $address;
     <?php 
         if($userAllDetails['status']==1){$status = 'Active';} 
         if($userAllDetails['status']==0){$status = 'InActive';} 
-        echo $status; ?></td>
-    
+        echo $status;?></td>
     </tr>
             </table>
         </td>

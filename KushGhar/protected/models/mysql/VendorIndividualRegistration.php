@@ -183,6 +183,7 @@ class VendorIndividualRegistration extends CActiveRecord {
         try {
             $Criteria = new CDbCriteria();
             $Criteria->order = 'vendor_id ASC';
+            $Criteria->condition = 'status=1';
             $vendorsData = VendorIndividualRegistration::model()->findAll($Criteria);
         } catch (Exception $ex) {
             

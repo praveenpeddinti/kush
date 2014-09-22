@@ -24,7 +24,7 @@ $address;
  ?>
 <html>
     <body>
-        <div id="print">
+        <div id="printInvoice">
             <div class="container">
                 <section>
                     <table width="100%" cellspacing="0" cellpadding="0" border="0" >
@@ -111,7 +111,7 @@ $address;
 <script type="text/javascript">
     function showReportPrintDivData()
     {
-        var printContent1 = document.getElementById('print').innerHTML;
+        var printContent1 = document.getElementById('printInvoice').innerHTML;
         var newWin=window.open('','','width=1000,height=600,left=0,top=0,resize=no,scrollbars=yes,location=no');
         newWin.document.open();
         newWin.document.write('<!DOCTYPE html><html dir="ltr" lang="en-US"><body onload="window.print()" style="background:#fff;border:0px solid #000;margin:0;padding:0;">'+printContent1+'</div></div></body></body></html>');

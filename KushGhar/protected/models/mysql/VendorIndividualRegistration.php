@@ -142,7 +142,9 @@ class VendorIndividualRegistration extends CActiveRecord {
             $VendorObj->first_name = $model->FirstName;
             $VendorObj->last_name = $model->LastName;
             $VendorObj->middle_name = $model->MiddleName;
+            if (!empty($model->dateOfBirth)) {
             $VendorObj->birth_date = date('Y-m-d', strtotime($model->dateOfBirth));
+            }
             $VendorObj->profilePicture = $model->profilePicture;
             $VendorObj->services = $selectedOptions;
             $VendorObj->vendor_gender = $model->Gender;

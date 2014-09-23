@@ -123,7 +123,7 @@ class Registration extends CActiveRecord {
 
     //Update Registration Data
     public function updateRegistrationData($model, $cId) {
-        try {
+        try {error_log("--------DOB----".$model->dateOfBirth);
             $RegObj = Registration::model()->findByAttributes(array('customer_id' => $cId));
 
             $RegObj->first_name = $model->FirstName;
@@ -138,7 +138,9 @@ class Registration extends CActiveRecord {
             //$RegObj->uIdNumber = $model->Number;
             //$RegObj->uIdDocument = $model->uIdDocument;
             //$RegObj->birth_date = $model->dateOfBirth;
+            if (!empty($model->dateOfBirth)) {
             $RegObj->birth_date = date('Y-m-d', strtotime($model->dateOfBirth));
+            }
             $RegObj->found_kushghar_by = $model->foundKushgharBy;
             $RegObj->found_kushghar_by_other=$model->foundKushgharByOther;
 

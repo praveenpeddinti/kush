@@ -136,7 +136,9 @@ class VendorAgencyRegistration extends CActiveRecord {
             $VendorObj->last_name = $model->PrimaryContactLastName;
             $VendorObj->middle_name = $model->PrimaryContactMiddleName;
             $VendorObj->legal_name = $model->AgencyName;
+            if (!empty($model->dateOfBirth)) {
             $VendorObj->birth_date = date('Y-m-d', strtotime($model->dateOfBirth));
+            }
             $VendorObj->profilePicture = $model->profilePicture;
             $VendorObj->vendor_gender = $model->Gender;
             $VendorObj->pan_card = $model->Pan;

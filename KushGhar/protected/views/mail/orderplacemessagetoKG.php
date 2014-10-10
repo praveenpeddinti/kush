@@ -70,6 +70,10 @@
                                     echo $totalRoomsPrice; ?>
                                                 </td>
                                             </tr>
+                                            <tr>
+                                        <td>Scheduled time</td>
+                                        <td><?php echo $HouseService['houseservice_start_time'];?></td>
+                                    </tr>
                                             <?php }?>
                                             <?php if($CarService!=0){?>
                                             <tr><td><b>Car cleaning service cost :</b>  </td>
@@ -79,6 +83,12 @@
                                                     
                                                 </td>
                                             </tr>
+                                            <?php $startTime='';foreach ($CarService as $cw) { 
+                                            $startTime=$cw['carservice_start_time']; }?>
+                                            <tr>
+                                        <td>Scheduled time</td>
+                                        <td><?php echo $startTime;?></td>
+                                    </tr>
                                             <?php }?>
                                             <?php if($StewardService!=0){?>
                                             <tr><td><b>Stewards service cost :</b>  </td>
@@ -89,6 +99,10 @@
                                                     
                                                 </td>
                                             </tr>
+                                            <tr>
+                                        <td>Scheduled time</td>
+                                        <td><?php echo $StewardService['start_time'];?></td>
+                                    </tr>
                                             <?php }?>
                                             <tr><td><b>Total Cost(Service Tax Included) :</b></td><td><b>
                                                 <?php // $serviceTax = ((($totalRoomsPrice + $totalcarPrice + $Stotal) * 12.36) / 100); 

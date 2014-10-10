@@ -25,9 +25,12 @@
                                             <?php if($row['Status']=='0'){?>
                                             <td nowrap>
                                             <input id="user_<?php echo $row['id']; ?>" data-id="<?php echo $row['id']; ?>" data-status="<?php echo $row['Status']; ?>" type="button" value=" " class="icon_notinvite" alt="Paid" title="Paid"/>
+                                            <i class="i_invoice_icon"><input id="invoice_<?php echo $row['id']; ?>" data-id="<?php echo $row['OrderId']; ?>" cust_id="<?php echo $row['CustId']; ?>" service-id="<?php echo $row['ServiceId']; ?>" alt="Print Invoice" type="button" title="Print Invoice"></i>
                                             </td>
                                             <?php }else {?>
-                                            <td nowrap></td>
+                                            <td nowrap>
+                                                <i class="i_invoice_icon"><input id="invoice_<?php echo $row['id']; ?>" data-id="<?php echo $row['OrderId']; ?>" cust_id="<?php echo $row['CustId']; ?>" service-id="<?php echo $row['ServiceId']; ?>" alt="Print Invoice" type="button" title="Print Invoice"></i>
+                                            </td>
                                            <?php }?>
                                                     </tr>
         <?php }

@@ -159,6 +159,18 @@
                         </div>
                     </div>    
                 </div>
+                <div id="myModalInvoicePrint" class="modal fade" >
+                    <div class="modal-dialog" style="width: 1000px">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h3 id="myModalLabel">Print the Invoice</h3>
+                            </div>
+                            <div class="modal-body" id="myModalInvoicePrintDiv" style="padding:15px;">
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
             </article>
         </div>
     </section>
@@ -169,14 +181,24 @@
         $('#userTable tr td input').live('click', function() {
             var id = $(this).attr('data-id');
             var status = $(this).attr('data-status');
+            var id1=$(this).attr('id');
+            var ServiceId = $(this).attr('service-id');
+            var CustId = $(this).attr('cust_id');
             //var id2 = $(this).attr('invite-id');
             //var inviteStatus = $(this).attr('invite-status');
             //var inviteEmail = $(this).attr('invite-email');
            
-            if(id>0){
-                
+            if(id1.indexOf("user") > -1){
                 statusChangeUser(Number(id), Number(status));
             }
+            else if(id1.indexOf("invoice") > -1){
+                invoice(Number(id),CustId,ServiceId);
+            }
+        
+        /*if(id>0){
+                
+                statusChangeUser(Number(id), Number(status));
+            }*/
             //if(id2>0){
             //    inviteUser(Number(id2), Number(inviteStatus), inviteEmail);
             //}
@@ -257,6 +279,25 @@ function getCollectionDataWithPaginationHandler(data,URL,CollectionName,MainDiv,
         var status = $("#status").val();
         getCollectionDataWithPagination('/admin/viewInvoice','userDetails', 'abusedWords_tbody',1,5,oNumber,invoiceNo,status,'');
    
+    }
+    
+    function invoice(OrderId,CustId,ServiceId){
+        var data = "OrderId=" + OrderId+"&CustId="+CustId+"&ServiceId="+ServiceId;
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: '<?php echo Yii::app()->createAbsoluteUrl("/admin/printInvoice"); ?>',
+                data: data,
+                success: function(data) {
+                    $("#myModalInvoicePrint").modal({ backdrop: 'static', keyboard: false,show:false });
+                    $("#myModalInvoicePrintDiv").html(data.html);
+                    $('#myModalInvoicePrint').modal('show');
+                },
+                error: function(data) { 
+                   alert("Error occured.please try again");
+
+                }
+            });
     }
     
 </script>

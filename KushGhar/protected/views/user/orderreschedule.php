@@ -77,18 +77,7 @@ if($serviceType == 3) {?>
             if(prev==present){
                 $("#OrderRescheduleForm_ServiceStartTime_em_").show();
                 $("#OrderRescheduleForm_ServiceStartTime_em_").addClass('errorMessage');
-                $("#OrderRescheduleForm_ServiceStartTime_em_").text("Service Date can only be configured post 2 days from current date");
-                return false;
-            }
-            var date=new Date.today().addDays(2);
-            var sdate=$("#OrderRescheduleForm_ServiceStartTime").val();
-            var sdatee=sdate.split("-");
-            var servicedate=new Date(sdatee[2],sdatee[1]-1,sdatee[0]);
-            if(servicedate < date)
-            {
-                $("#OrderRescheduleForm_ServiceStartTime_em_").show();
-                $("#OrderRescheduleForm_ServiceStartTime_em_").addClass('errorMessage');
-                $("#OrderRescheduleForm_ServiceStartTime_em_").text("Service Date can only be configured post 2 days from current date ");
+                $("#OrderRescheduleForm_ServiceStartTime_em_").text("Please change Service Date and then click on Reschedule");
                 return false;
             }
             else
@@ -96,6 +85,18 @@ if($serviceType == 3) {?>
                 $("#OrderRescheduleForm_ServiceStartTime_em_").hide();
                 return true;
             }
+            var date=new Date.today().addDays(2);
+            var sdate=$("#OrderRescheduleForm_ServiceStartTime").val();
+           var sdatee=sdate.split("-");
+            var servicedate=new Date(sdatee[2],sdatee[1]-1,sdatee[0]);
+            /*if(servicedate < date)
+            {
+                $("#OrderRescheduleForm_ServiceStartTime_em_").show();
+                $("#OrderRescheduleForm_ServiceStartTime_em_").addClass('errorMessage');
+                $("#OrderRescheduleForm_ServiceStartTime_em_").text("Service Date can only be configured post 2 days from current date ");
+                return false;
+            }*/
+            
         }
         if(($("#OrderRescheduleForm_ServiceType").val()==3))
         {
@@ -116,36 +117,10 @@ if($serviceType == 3) {?>
             var enDate = $('#OrderRescheduleForm_EndTime').val();
             var strtPrev="<?php echo isset($getserviceDetails['start_time'])?$getserviceDetails['start_time']:''?>";
             var endprev="<?php echo isset($getserviceDetails['end_time'])?$getserviceDetails['end_time']:''?>"
-            if(strtPrev==stDate){
+            if((strtPrev==stDate)&&(endprev==enDate)){
                 $("#OrderRescheduleForm_StartTime_em_").show();
                 $("#OrderRescheduleForm_StartTime_em_").addClass('errorMessage');
-                $("#OrderRescheduleForm_StartTime_em_").text("Event Start Time can only be configured post 2 days from current date");
-                return false;
-            }
-            if(endprev==enDate){
-                $("#OrderRescheduleForm_EndTime_em_").show();
-                $("#OrderRescheduleForm_EndTime_em_").addClass('errorMessage');
-                $("#OrderRescheduleForm_EndTime_em_").text("Event End Time can only be configured post 2 days from current date");
-                return false;
-            }
-            var stDateres1 = stDate.split(" ");
-            var enDateres1 = enDate.split(" ");
-            var sTime = stDateres1[0].split("-");
-            var eTime = enDateres1[0].split("-");
-            var stewardservicedate=new Date(sTime[2],sTime[1]-1,sTime[0]);
-            if(stewardservicedate < date)
-            {
-                $("#OrderRescheduleForm_StartTime_em_").show();
-                $("#OrderRescheduleForm_StartTime_em_").addClass('errorMessage');
-                $("#OrderRescheduleForm_StartTime_em_").text("Event Start Time can only be configured post 2 days from current date ");
-                return false;
-            }
-            var serviceEndDate = new Date(eTime[2],eTime[1]-1,eTime[0]);
-            if(serviceEndDate < date)
-            {
-                $("#OrderRescheduleForm_EndTime_em_").show();
-                $("#OrderRescheduleForm_EndTime_em_").addClass('errorMessage');
-                $("#OrderRescheduleForm_EndTime_em_").text("Event End Time can only be configured post 2 days from current date");
+                $("#OrderRescheduleForm_StartTime_em_").text("Please change Service Dates and then click on Reschedule");
                 return false;
             }
             else
@@ -154,6 +129,28 @@ if($serviceType == 3) {?>
                 $("#OrderRescheduleForm_EndTime_em_").hide();
                 return true;
             }
+            var stDateres1 = stDate.split(" ");
+            var enDateres1 = enDate.split(" ");
+            var sTime = stDateres1[0].split("-");
+            var eTime = enDateres1[0].split("-");
+            var stewardservicedate=new Date(sTime[2],sTime[1]-1,sTime[0]);
+            var serviceEndDate = new Date(eTime[2],eTime[1]-1,eTime[0]);
+            /*if(stewardservicedate < date)
+            {
+                $("#OrderRescheduleForm_StartTime_em_").show();
+                $("#OrderRescheduleForm_StartTime_em_").addClass('errorMessage');
+                $("#OrderRescheduleForm_StartTime_em_").text("Event Start Time can only be configured post 2 days from current date ");
+                return false;
+            }
+            
+            if(serviceEndDate < date)
+            {
+                $("#OrderRescheduleForm_EndTime_em_").show();
+                $("#OrderRescheduleForm_EndTime_em_").addClass('errorMessage');
+                $("#OrderRescheduleForm_EndTime_em_").text("Event End Time can only be configured post 2 days from current date");
+                return false;
+            }*/
+            
         }
     }
     function rescheduleHandler(data)
@@ -245,7 +242,7 @@ if($serviceType == 3) {?>
     }
     $(document).ready(function() {
     $(function () {
-       var date=new Date.today().addDays(2);
+       var date=new Date.today();
        var cyear=date.getFullYear();
        var eyear=cyear+1;
        $('#OrderRescheduleForm_ServiceStartTime').datetimepicker({

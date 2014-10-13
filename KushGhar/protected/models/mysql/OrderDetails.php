@@ -202,8 +202,11 @@ public function sendorderStatus($id,$val){
             return "failure";
     }
     public function rescheduleStewards($startTime,$endTime,$Duration,$OrderNumber){
+        $noOfStewardsQuery="select no_of_stewards from Kushghar.KG_Stewards_cleaning_service where order_number=".$OrderNumber;
+        $noOfStewards=YII::app()->db->createCommand($noOfStewardsQuery)->queryRow();
+        $amt=$Duration * $noOfStewards['no_of_stewards'] * 200;
         $query="update KG_Stewards_cleaning_service set start_time='".$startTime."' , end_time='".$endTime."' ,service_hours=".$Duration." where order_number=".$OrderNumber;
-        $query1="update KG_Order_details set status=0, service_date='".$startTime."' where order_number=".$OrderNumber;
+        $query1="update KG_Order_details set status=0, service_date='".$startTime."' , amount=".$amt." where order_number=".$OrderNumber;
         $result = YII::app()->db->createCommand($query)->execute();
         $result1 = YII::app()->db->createCommand($query1)->execute();
         if($result>0||$result1>0)

@@ -116,15 +116,44 @@ if($serviceType == 3) {?>
             var stDate = $('#OrderRescheduleForm_StartTime').val();
             var enDate = $('#OrderRescheduleForm_EndTime').val();
             var strtPrev="<?php echo isset($getserviceDetails['start_time'])?$getserviceDetails['start_time']:''?>";
-            var endprev="<?php echo isset($getserviceDetails['end_time'])?$getserviceDetails['end_time']:''?>"
+            var endprev="<?php echo isset($getserviceDetails['end_time'])?$getserviceDetails['end_time']:''?>";
+             var stDateres1 = stDate.split(" ");
+            var enDateres1 = enDate.split(" ");
+           var sTime = stDateres1[0].split("-");
+            var stDateres = sTime[2]+"/"+sTime[1]+"/"+sTime[0];
+            var eTime = enDateres1[0].split("-");
+            var enDateres = eTime[2]+"/"+eTime[1]+"/"+eTime[0];
+            var stDate1 = new Date(stDateres);
+            var enDate1 = new Date(enDateres);
+
+            var compDate = stDate1 - enDate1;
+            var startDateValuecmp = stDate1.getTime();
+            var endDateValuecmp = enDate1.getTime();
             if((strtPrev==stDate)&&(endprev==enDate)){
-                $("#OrderRescheduleForm_StartTime_em_").show();
-                $("#OrderRescheduleForm_StartTime_em_").addClass('errorMessage');
-                $("#OrderRescheduleForm_StartTime_em_").text("Please change Service Dates and then click on Reschedule");
+                $("#OrderRescheduleForm_error_em_").show();
+                $("#OrderRescheduleForm_error_em_").addClass('errorMessage');
+                $("#OrderRescheduleForm_error_em_").text("Please change Service Dates and then click on Reschedule");
                 return false;
+            }
+            if (compDate == 0) {
+            var stTimeres = stDateres1[1].split(":");
+            var enTimeres = enDateres1[1].split(":");
+            if (Math.round(stTimeres[0]) > Math.round(enTimeres[0])) {
+                $("#OrderRescheduleForm_error_em_").show();
+                $("#OrderRescheduleForm_error_em_").addClass('errorMessage');
+                $("#OrderRescheduleForm_error_em_").text("Event End Time cannot be less than Event Start Time");
+                return false;
+                }
+            }
+            if (startDateValuecmp > endDateValuecmp) {
+            $("#OrderRescheduleForm_error_em_").show();
+            $("#OrderRescheduleForm_error_em_").addClass('errorMessage');
+            $("#OrderRescheduleForm_error_em_").text("Event End Date cannot be less than Event Start Date");
+            return false;
             }
             else
             {
+                $("#OrderRescheduleForm_error_em_").hide();
                 $("#OrderRescheduleForm_StartTime_em_").hide();
                 $("#OrderRescheduleForm_EndTime_em_").hide();
                 return true;

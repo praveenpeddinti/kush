@@ -361,7 +361,7 @@ $form = $this->beginWidget('CActiveForm', array(
         
     });
     $(function () {
-        var date=new Date.today().addDays(2);
+        var date=new Date();
         var cyear=date.getFullYear();
         var eyear=cyear+1;
         $('#StewardCleaningForm_StartTime').datetimepicker({

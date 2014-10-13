@@ -339,13 +339,13 @@ $(document).ready(function() {
        var sdate=$("#HouseCleaningForm_ServiceStartTime").val();
        var sdatee=sdate.split("-");
        var servicedate=new Date(sdatee[2],sdatee[1]-1,sdatee[0]);
-       if(servicedate < date)
+       /*if(servicedate < date)
            {
                 $("#HouseCleaningForm_ServiceStartTime_em_").show();
                 $("#HouseCleaningForm_ServiceStartTime_em_").addClass('errorMessage');
                 $("#HouseCleaningForm_ServiceStartTime_em_").text("Service Date can only be configured post 2 days from current date ");
                 return false;
-           }
+           }*/
       if (($('#HouseCleaningForm_LivingRooms').val() == '0') && ($('#HouseCleaningForm_BedRooms').val() == '0') && ($('#HouseCleaningForm_Kitchens').val() == '0') && ($('#HouseCleaningForm_BathRooms').val() == '0')) {
             $("#HouseCleaningForm_ServiceStartTime_em_").hide();
             $("#HouseCleaningForm_WeekDays_em_").hide();
@@ -519,13 +519,13 @@ $(document).ready(function() {
              var sdate=$("#CarWashForm_ServiceStartTime").val();
              var sdatee=sdate.split("-");
              var servicedate=new Date(sdatee[2],sdatee[1]-1,sdatee[0]);
-             if(servicedate < date)
+             /*if(servicedate < date)
              {
                  $("#CarWashForm_ServiceStartTime_em_").show();
                  $("#CarWashForm_ServiceStartTime_em_").addClass('errorMessage');
                  $("#CarWashForm_ServiceStartTime_em_").text("Service Date can only be configured post 2 days from current date ");
                  return false;
-             }
+             }*/
 
         if($("#DifferentLocation").val()=='1'){
         for (var i = 1; i <= dumpcars; i++) {
@@ -1036,7 +1036,7 @@ function onTotalStewards(obj) {
 
              var date=new Date.today().addDays(2);
              var servicedate=new Date(sTime[2],sTime[1]-1,sTime[0]);
-             if(servicedate < date)
+             /*if(servicedate < date)
              {
                  $("#StewardCleaningForm_EventType_em_").hide();
                  $("#StewardCleaningForm_EventName_em_").hide();
@@ -1044,16 +1044,16 @@ function onTotalStewards(obj) {
                  $("#StewardCleaningForm_StartTime_em_").addClass('errorMessage');
                  $("#StewardCleaningForm_StartTime_em_").text("Service can only be configured post 2 days from current date ");
                  return false;
-             }
+             }*/
              var serviceEndDate = new Date(eTime[2],eTime[1]-1,eTime[0]);
-             if(serviceEndDate < date)
+            /* if(serviceEndDate < date)
              {
                  $("#StewardCleaningForm_StartTime_em_").hide();
                  $("#StewardCleaningForm_EndTime_em_").show();
                  $("#StewardCleaningForm_EndTime_em_").addClass('errorMessage');
                  $("#StewardCleaningForm_EndTime_em_").text("Service can only be configured post 2 days from current date");
                  return false;
-             }
+             }*/
         if (compDate == 0) {
             var stTimeres = stDateres1[1].split(":");
             var enTimeres = enDateres1[1].split(":");

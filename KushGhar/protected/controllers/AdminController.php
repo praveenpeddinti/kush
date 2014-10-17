@@ -800,33 +800,35 @@ class AdminController extends Controller {
         $request = yii::app()->getRequest();
         $model->attributes = $request->getParam('HouseCleaningForm');
         $priceAddServices = (($model->WindowGrills + $model->CupBoard + $model->FridgeInterior + $model->MicroWaveOven) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
-        $otherRoomsCost = ($model->OtherRooms * YII::app()->params['ADDITIONAL_SERVICE_COST1']);
-        if (($model->LivingRooms == 1) && ($model->BedRooms == 1) && ($model->BathRooms == 1) && ($model->Kitchens == 1)) {
-            $priceRoom1 = (($model->LivingRooms + $model->BedRooms) * YII::app()->params['ADDITIONAL_SERVICE_COST1']);
-            $priceRoom2 = (($model->BathRooms + $model->Kitchens) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
-            $totalRoomsPrice = $otherRoomsCost + $priceRoom1 + $priceRoom2;
-        } else {
-            $LR = '';
-            $BedR = '';
-            $BathR = '';
-            $KR = '';
-            if ($model->LivingRooms > 1) {
-                $LR = (($model->LivingRooms - 1) * YII::app()->params['ADDITIONAL_SERVICE_COST1']);
-            }
-            if ($model->BedRooms > 1) {
-                $BedR = (($model->BedRooms - 1) * YII::app()->params['ADDITIONAL_SERVICE_COST1']);
-            }
-            if ($model->BathRooms > 1) {
-                $BathR = (($model->BathRooms - 1) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
-            }
-            if ($model->Kitchens > 1) {
-                $KR = (($model->Kitchens - 1) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
-            }
+        //$otherRoomsCost = ($model->OtherRooms * YII::app()->params['ADDITIONAL_SERVICE_COST1']);
+//        if (($model->LivingRooms == 1) && ($model->BedRooms == 1) && ($model->BathRooms == 1) && ($model->Kitchens == 1)) {
+//            $priceRoom1 = (($model->LivingRooms + $model->BedRooms) * YII::app()->params['ADDITIONAL_SERVICE_COST1']);
+//            $priceRoom2 = (($model->BathRooms + $model->Kitchens) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
+//            $totalRoomsPrice = $otherRoomsCost + $priceRoom1 + $priceRoom2;
+//        } else {
+//            $LR = '';
+//            $BedR = '';
+//            $BathR = '';
+//            $KR = '';
+//            if ($model->LivingRooms > 1) {
+//                $LR = (($model->LivingRooms - 1) * YII::app()->params['ADDITIONAL_SERVICE_COST1']);
+//            }
+//            if ($model->BedRooms > 1) {
+//                $BedR = (($model->BedRooms - 1) * YII::app()->params['ADDITIONAL_SERVICE_COST1']);
+//            }
+//            if ($model->BathRooms > 1) {
+//                $BathR = (($model->BathRooms - 1) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
+//            }
+//            if ($model->Kitchens > 1) {
+//                $KR = (($model->Kitchens - 1) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
+//            }
 
-            $priceRoom1 = $LR + $BedR;
-            $priceRoom2 = $BathR + $KR;
-            $totalRoomsPrice = $otherRoomsCost + $priceRoom1 + $priceRoom2 + 750;
-        }
+            //$priceRoom1 = $LR + $BedR;
+            //$priceRoom2 = $BathR + $KR;
+            $sqft=($model->SquareFeets<1000)?1000:$model->SquareFeets;
+            $totalRoomsPrice=$sqft*1.5;
+            //$totalRoomsPrice = $otherRoomsCost + $priceRoom1 + $priceRoom2 + 750;
+        //}
 
         $totalRoomsPrice+= $priceAddServices;
         if ($model->Status > 0) {

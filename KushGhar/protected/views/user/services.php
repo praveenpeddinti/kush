@@ -29,8 +29,11 @@ $form = $this->beginWidget('CActiveForm', array(
             <?php echo $form->dropDownList($model, 'HouseType', array('' => 'Select House Type', 'Apartment' => 'Apartment', 'Villa' => 'Villa', 'Independent House' => 'Independent House', 'Commercial' => 'Commercial'), array('class' => 'span12', 'options' => array($getServiceDetails['house_type'] => array('selected' => 'selected')))); ?>
         </div>  
         <div class=" span4">
-            <?php echo $form->label($model, 'Square Feets'); ?>
-            <?php echo $form->dropDownList($model, 'SquareFeets', array('' => 'Select Range', '500-750' => '500-750', '750-1000' => '750-1000', '1000-1500' => '1000-1500', '1500-2000' => '1500-2000', '2000 and more' => '2000 and more '), array('class' => 'span12', 'options' => array($getServiceDetails['squarefeets'] => array('selected' => 'selected')))); ?>
+            <label><abbr title="required">*</abbr> Square Feets</label>
+            <?php // echo $form->label($model, 'Square Feets'); ?>
+            <?php echo $form->textField($model, 'SquareFeets', array('value' => $getServiceDetails['squarefeets'], 'maxLength' => '5', 'class' => 'span12', 'onkeypress' => 'return isNumberKey(event);')); ?>
+            <?php echo $form->error($model, 'SquareFeets'); ?>
+            <?php // echo $form->dropDownList($model, 'SquareFeets', array('' => 'Select Range', '500-750' => '500-750', '750-1000' => '750-1000', '1000-1500' => '1000-1500', '1500-2000' => '1500-2000', '2000 and more' => '2000 and more '), array('class' => 'span12', 'options' => array($getServiceDetails['squarefeets'] => array('selected' => 'selected')))); ?>
         </div>
         <div class="span4">
             <label><abbr title="required">*</abbr> Service Date</label>
@@ -46,28 +49,28 @@ $form = $this->beginWidget('CActiveForm', array(
                 $Rooms[$i] = $i;
             ?>
             <?php echo $form->label($model, 'Kitchen(s)'); ?>
-            <?php echo $form->dropDownList($model, 'Kitchens', array('1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '0' => 'None'), array('class' => 'span12', 'onchange' => 'javascript:onChangeKitchen(this.value);', 'options' => array($getServiceDetails['total_kitchens'] => array('selected' => 'selected')))); ?>
-            <div id="KitchenTooltip" class="Additional_S_price" style="display:none"></div>
+            <?php echo $form->dropDownList($model, 'Kitchens', array('1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '0' => 'None'), array('class' => 'span12', 'options' => array($getServiceDetails['total_kitchens'] => array('selected' => 'selected')))); ?>
+            <!--<div id="KitchenTooltip" class="Additional_S_price" style="display:none"></div>-->
         </div>
         <div class=" span2">
             <?php echo $form->label($model, 'Bathroom(s)'); ?>
-            <?php echo $form->dropDownList($model, 'BathRooms', array('1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9', '10' => '10', '0' => 'None'), array('class' => 'span12', 'onchange' => 'javascript:onChangeBathRoom(this.value);', 'options' => array($getServiceDetails['total_bathRooms'] => array('selected' => 'selected')))); ?>
-            <div id="BathRoomTooltip" class="Additional_S_price" style="display:none"></div>
+            <?php echo $form->dropDownList($model, 'BathRooms', array('1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9', '10' => '10', '0' => 'None'), array('class' => 'span12', 'options' => array($getServiceDetails['total_bathRooms'] => array('selected' => 'selected')))); ?>
+            <!--<div id="BathRoomTooltip" class="Additional_S_price" style="display:none"></div>-->
         </div>                                    
         <div class=" span2">
             <?php echo $form->label($model, 'Bedroom(s)'); ?>
-            <?php echo $form->dropDownList($model, 'BedRooms', array('1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9', '10' => '10', '0' => 'None'), array('class' => 'span12', 'onchange' => 'javascript:onChangeBedRoom(this.value);', 'options' => array($getServiceDetails['total_bedRooms'] => array('selected' => 'selected')))); ?>
-            <div id="BedRoomTooltip" class="Additional_S_price" style="display:none"></div>
+            <?php echo $form->dropDownList($model, 'BedRooms', array('1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9', '10' => '10', '0' => 'None'), array('class' => 'span12', 'options' => array($getServiceDetails['total_bedRooms'] => array('selected' => 'selected')))); ?>
+            <!--<div id="BedRoomTooltip" class="Additional_S_price" style="display:none"></div>-->
         </div>
         <div class=" span3">                                           
             <?php echo $form->label($model, 'Living room(s)'); ?>
-            <?php echo $form->dropDownList($model, 'LivingRooms', array('1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '0' => 'None'), array('class' => 'span10', 'onchange' => 'javascript:onChangeLivingRoom(this.value);', 'options' => array($getServiceDetails['total_livingRooms'] => array('selected' => 'selected')))); ?>
-            <div id="LivingRoomTooltip" class="Additional_S_price LR" style="display:none"></div>
+            <?php echo $form->dropDownList($model, 'LivingRooms', array('1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '0' => 'None'), array('class' => 'span10', 'options' => array($getServiceDetails['total_livingRooms'] => array('selected' => 'selected')))); ?>
+            <!--<div id="LivingRoomTooltip" class="Additional_S_price LR" style="display:none"></div>-->
         </div>
         <div class=" span2">
             <?php echo $form->label($model, 'Other'); ?>
-            <?php echo $form->dropDownList($model, 'OtherRooms', array('0' => 'None', '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9', '10' => '10'), array('class' => 'span12', 'onchange' => 'javascript:onChangeOther(this.value);', 'options' => array($getServiceDetails['other_rooms'] => array('selected' => 'selected')))); ?>
-            <div id="OtherTooltip" class="Additional_S_price" style="display:none"></div>
+            <?php echo $form->dropDownList($model, 'OtherRooms', array('0' => 'None', '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9', '10' => '10'), array('class' => 'span12', 'options' => array($getServiceDetails['other_rooms'] => array('selected' => 'selected')))); ?>
+            <!--<div id="OtherTooltip" class="Additional_S_price" style="display:none"></div>-->
         </div>
         <div class="row-fluid">
             <div class="span12">
@@ -165,16 +168,16 @@ $form = $this->beginWidget('CActiveForm', array(
 <script type="text/javascript">
 
     $(document).ready(function() {
-        var kitchencount = "<?php echo isset($getServiceDetails['total_kitchens']) ? $getServiceDetails['total_kitchens'] : '1' ?>";
-        onChangeKitchen(kitchencount);
-        var Bathroomcount = "<?php echo isset($getServiceDetails['total_bathRooms']) ? $getServiceDetails['total_bathRooms'] : '1' ?>";
-        onChangeBathRoom(Bathroomcount);
-        var Bedroomcount = "<?php echo isset($getServiceDetails['total_bedRooms']) ? $getServiceDetails['total_bedRooms'] : '1' ?>";
-        onChangeBedRoom(Bedroomcount);
-        var Livingroomcount = "<?php echo isset($getServiceDetails['total_livingRooms']) ? $getServiceDetails['total_livingRooms'] : '1' ?>";
-        onChangeLivingRoom(Livingroomcount);
-        var Otherroomcount = "<?php echo isset($getServiceDetails['other_rooms']) ? $getServiceDetails['other_rooms'] : '0' ?>";
-        onChangeOther(Otherroomcount);
+//        var kitchencount = "<?php // echo isset($getServiceDetails['total_kitchens']) ? $getServiceDetails['total_kitchens'] : '1' ?>";
+//        onChangeKitchen(kitchencount);
+//        var Bathroomcount = "<?php // echo isset($getServiceDetails['total_bathRooms']) ? $getServiceDetails['total_bathRooms'] : '1' ?>";
+//        onChangeBathRoom(Bathroomcount);
+//        var Bedroomcount = "<?php // echo isset($getServiceDetails['total_bedRooms']) ? $getServiceDetails['total_bedRooms'] : '1' ?>";
+//        onChangeBedRoom(Bedroomcount);
+//        var Livingroomcount = "<?php //echo isset($getServiceDetails['total_livingRooms']) ? $getServiceDetails['total_livingRooms'] : '1' ?>";
+//        onChangeLivingRoom(Livingroomcount);
+//        var Otherroomcount = "<?php //echo isset($getServiceDetails['other_rooms']) ? $getServiceDetails['other_rooms'] : '0' ?>";
+//        onChangeOther(Otherroomcount);
 
         if ($("#HouseCleaningForm_State").val() == '')
             $("#HouseCleaningForm_State").val('35');
@@ -342,36 +345,36 @@ $form = $this->beginWidget('CActiveForm', array(
 
     });
 
-    function onChangeKitchen(value) {
-        var amt = 250 * value;
-        var text = "Cost of Services is<br/> <b>Rs.<label>" + amt + "</label>/-</b>";
-        $("#KitchenTooltip").html(text);
-        $("#KitchenTooltip").show();
-    }
-    function onChangeBathRoom(value) {
-        var amt = 250 * value;
-        var text = "Cost of Services is<br/> <b>Rs.<label>" + amt + "</label>/-</b>";
-        $("#BathRoomTooltip").html(text);
-        $("#BathRoomTooltip").show();
-    }
-    function onChangeBedRoom(value) {
-        var amt = 125 * value;
-        var text = "Cost of Services is<br/> <b>Rs.<label>" + amt + "</label>/-</b>";
-        $("#BedRoomTooltip").html(text);
-        $("#BedRoomTooltip").show();
-    }
-    function onChangeLivingRoom(value) {
-        var amt = 125 * value;
-        var text = "Cost of Services is<br/> <b>Rs.<label>" + amt + "</label>/-</b>";
-        $("#LivingRoomTooltip").html(text);
-        $("#LivingRoomTooltip").show();
-    }
-    function onChangeOther(value) {
-        var amt = 125 * value;
-        var text = "Cost of Services is<br/> <b>Rs.<label>" + amt + "</label>/-</b>";
-        $("#OtherTooltip").html(text);
-        $("#OtherTooltip").show();
-    }
+//    function onChangeKitchen(value) {
+//        var amt = 250 * value;
+//        var text = "Cost of Services is<br/> <b>Rs.<label>" + amt + "</label>/-</b>";
+//        $("#KitchenTooltip").html(text);
+//        $("#KitchenTooltip").show();
+//    }
+//    function onChangeBathRoom(value) {
+//        var amt = 250 * value;
+//        var text = "Cost of Services is<br/> <b>Rs.<label>" + amt + "</label>/-</b>";
+//        $("#BathRoomTooltip").html(text);
+//        $("#BathRoomTooltip").show();
+//    }
+//    function onChangeBedRoom(value) {
+//        var amt = 125 * value;
+//        var text = "Cost of Services is<br/> <b>Rs.<label>" + amt + "</label>/-</b>";
+//        $("#BedRoomTooltip").html(text);
+//        $("#BedRoomTooltip").show();
+//    }
+//    function onChangeLivingRoom(value) {
+//        var amt = 125 * value;
+//        var text = "Cost of Services is<br/> <b>Rs.<label>" + amt + "</label>/-</b>";
+//        $("#LivingRoomTooltip").html(text);
+//        $("#LivingRoomTooltip").show();
+//    }
+//    function onChangeOther(value) {
+//        var amt = 125 * value;
+//        var text = "Cost of Services is<br/> <b>Rs.<label>" + amt + "</label>/-</b>";
+//        $("#OtherTooltip").html(text);
+//        $("#OtherTooltip").show();
+//    }
 
     $(function() {
         var date = new Date;

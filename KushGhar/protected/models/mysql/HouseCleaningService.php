@@ -321,7 +321,7 @@ class HouseCleaningService extends CActiveRecord {
     public function updateorderStatusWithAdmin($model){
        $result="failed";
        try{
-           $query="update KG_House_cleaning_service set total_livingRooms=$model->LivingRooms,total_bedRooms=$model->BedRooms,total_kitchens=$model->Kitchens,total_bathRooms=$model->BathRooms,other_rooms=$model->OtherRooms where order_number=".$model->CustId;
+           $query="update KG_House_cleaning_service set total_livingRooms=$model->LivingRooms,total_bedRooms=$model->BedRooms,total_kitchens=$model->Kitchens,total_bathRooms=$model->BathRooms,other_rooms=$model->OtherRooms,squarefeets=$model->SquareFeets where order_number=".$model->CustId;
            $result1 = YII::app()->db->createCommand($query)->execute();
            if($result1>0)
                $result = "success";

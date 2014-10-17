@@ -18,12 +18,14 @@
             <tr>
                 <td><b>House cleaning service cost :</b>  </td>
                 <td><?php
-                $priceRoom1 = (($HouseService['total_livingRooms'] + $HouseService['total_bedRooms']) * YII::app()->params['ADDITIONAL_SERVICE_COST1']);
-                $priceRoom2 = (($HouseService['total_bathRooms'] + $HouseService['total_kitchens']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
+                //$priceRoom1 = (($HouseService['total_livingRooms'] + $HouseService['total_bedRooms']) * YII::app()->params['ADDITIONAL_SERVICE_COST1']);
+                //$priceRoom2 = (($HouseService['total_bathRooms'] + $HouseService['total_kitchens']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
                 $priceAddServices = (($HouseService['window_grills'] + $HouseService['cupboard_cleaning'] + $HouseService['fridge_interior'] + $HouseService['microwave_oven_interior']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
-                $otherRoomsCost = ($HouseService['other_rooms']*YII::app()->params['ADDITIONAL_SERVICE_COST1']);
-                $totalRoomsPrice = $priceRoom1 + $priceRoom2 + $otherRoomsCost;
-                if($totalRoomsPrice < 750) {$totalRoomsPrice = 750;}
+                //$otherRoomsCost = ($HouseService['other_rooms']*YII::app()->params['ADDITIONAL_SERVICE_COST1']);
+                //$totalRoomsPrice = $priceRoom1 + $priceRoom2 + $otherRoomsCost;
+                $sqft=($HouseService['squarefeets']<1000)?1000:$HouseService['squarefeets'];
+                $totalRoomsPrice=$sqft*1.5;
+                //if($totalRoomsPrice < 750) {$totalRoomsPrice = 750;}
                 $totalRoomsPrice+= $priceAddServices;
                 echo $totalRoomsPrice; ?>
                 </td>

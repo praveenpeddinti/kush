@@ -316,18 +316,23 @@ $(document).ready(function() {
      */
     function submitHouseCleaning() {
         var queryString = $('#services-form').serialize();
-        if (($('#HouseCleaningForm_SquareFeets').val() == '0') || ($('#HouseCleaningForm_SquareFeets').val() == '00')) {
+        if (($('#HouseCleaningForm_SquareFeets').val() == '0') || ($('#HouseCleaningForm_SquareFeets').val() == '')) {
             $("#HouseCleaningForm_SquareFeets_em_").show();
-//            $("#HouseCleaningForm_SquareFeets_em_").addClass('errorMessage');
-//            $("#HouseCleaningForm_SquareFeets_em_").text("Please Enter Numbers only");
+            $("#HouseCleaningForm_SquareFeets_em_").addClass('errorMessage');
+            $("#HouseCleaningForm_SquareFeets_em_").text("Please enter Square Feet");
             return false;
         }
-//        if (isNaN($('#HouseCleaningForm_SquareFeets').val())) {
-//            $("#HouseCleaningForm_SquareFeets_em_").show();
-//            $("#HouseCleaningForm_SquareFeets_em_").addClass('errorMessage');
-//            $("#HouseCleaningForm_SquareFeets_em_").text("Please Enter Numbers only");
-//            return false;
-//        }
+        if (isNaN($('#HouseCleaningForm_SquareFeets').val())||$('#HouseCleaningForm_SquareFeets').val()<0) {
+            $("#HouseCleaningForm_SquareFeets_em_").show();
+            $("#HouseCleaningForm_SquareFeets_em_").addClass('errorMessage');
+            $("#HouseCleaningForm_SquareFeets_em_").text("Please enter Numbers only");
+            return false;
+        }
+        if($('#HouseCleaningForm_SquareFeets').val()<300){
+            $("#HouseCleaningForm_SquareFeets_em_").show();
+            $("#HouseCleaningForm_SquareFeets_em_").addClass('errorMessage');
+            $("#HouseCleaningForm_SquareFeets_em_").text("Minimum 300 Square Feet is allowed");
+         }
        if ($("#HouseCleaningForm_ServiceStartTime").val() == "") {
            $("#HouseCleaningForm_SquareFeets_em_").hide();
                 $("#HouseCleaningForm_ServiceStartTime_em_").show();
@@ -346,14 +351,14 @@ $(document).ready(function() {
                 $("#HouseCleaningForm_ServiceStartTime_em_").text("Service Date can only be configured post 2 days from current date ");
                 return false;
            }*/
-      if (($('#HouseCleaningForm_LivingRooms').val() == '0') && ($('#HouseCleaningForm_BedRooms').val() == '0') && ($('#HouseCleaningForm_Kitchens').val() == '0') && ($('#HouseCleaningForm_BathRooms').val() == '0')) {
-            $("#HouseCleaningForm_ServiceStartTime_em_").hide();
-            $("#HouseCleaningForm_WeekDays_em_").hide();
-            $("#HouseCleaningForm_LivingRooms_em_").show();
-             $("#HouseCleaningForm_LivingRooms_em_").addClass('errorMessage');
-            $("#HouseCleaningForm_LivingRooms_em_").text("You have choosen 0 rooms at your house, Please choose atleast one kind of room.");
-            return false;
-        }
+//      if (($('#HouseCleaningForm_LivingRooms').val() == '0') && ($('#HouseCleaningForm_BedRooms').val() == '0') && ($('#HouseCleaningForm_Kitchens').val() == '0') && ($('#HouseCleaningForm_BathRooms').val() == '0')) {
+//            $("#HouseCleaningForm_ServiceStartTime_em_").hide();
+//            $("#HouseCleaningForm_WeekDays_em_").hide();
+//            $("#HouseCleaningForm_LivingRooms_em_").show();
+//             $("#HouseCleaningForm_LivingRooms_em_").addClass('errorMessage');
+//            $("#HouseCleaningForm_LivingRooms_em_").text("You have choosen 0 rooms at your house, Please choose atleast one kind of room.");
+//            return false;
+//        }
         if ($('#HouseCleaningForm_Address1').val()=='') {
             $("#HouseCleaningForm_Address1_em_").show();
             $("#HouseCleaningForm_Address1_em_").addClass('errorMessage');
@@ -437,7 +442,7 @@ $(document).ready(function() {
             }else{
                 queryString += '&Type=' + type+'&ContactInfo=No';
             }
- 
+            
             ajaxRequest('/user/services', queryString, addHouseCleaningServicehandler);
         }
     }

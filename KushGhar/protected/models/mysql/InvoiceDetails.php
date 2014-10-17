@@ -32,20 +32,31 @@ class InvoiceDetails extends CActiveRecord {
     
     public function storeInvoiceDetails($CustId,$ServiceId,$OrderNo,$Amount,$InvoiceNo) {
                 try {
-                $invoice = new InvoiceDetails();
-                $invoice->CustId = $CustId;
-                $invoice->ServiceId = $ServiceId;
-                $invoice->OrderId = $OrderNo;
-                $invoice->Status = 0;
-                $invoice->Amount = $Amount;
-                $invoice->InvoiceNumber = $InvoiceNo;
-                $invoice->create_timestamp = gmdate("Y-m-d H:i:s", time());
-                $invoice->update_timestamp = gmdate("Y-m-d H:i:s", time());
-                
-                if (!$invoice->save())
-                    $result = "false";//return CHtml::errorSummary($this);
-                else
-                    $result = "success";
+                    $result = "false";
+                    $invoiceDetails= $this->getInvoiceDetails($OrderNo);
+                    if($invoiceDetails!=NULL){
+                        $servicesDetails = InvoiceDetails::model()->findByAttributes(array(), 'OrderId=:OrderId', array(':OrderId' => $OrderNo));
+                        $servicesDetails->CustId = $CustId;
+                        $servicesDetails->ServiceId = $ServiceId;
+                        $servicesDetails->Status = 0;
+                        $servicesDetails->Amount = $Amount;
+                        $servicesDetails->update_timestamp = gmdate("Y-m-d H:i:s", time());
+                        if ($servicesDetails->update())
+                           $result = "success";//return CHtml::errorSummary($this);
+                    }
+                    else{
+                        $invoice = new InvoiceDetails();
+                        $invoice->CustId = $CustId;
+                        $invoice->ServiceId = $ServiceId;
+                        $invoice->OrderId = $OrderNo;
+                        $invoice->Status = 0;
+                        $invoice->Amount = $Amount;
+                        $invoice->InvoiceNumber = $InvoiceNo;
+                        $invoice->create_timestamp = gmdate("Y-m-d H:i:s", time());
+                        $invoice->update_timestamp = gmdate("Y-m-d H:i:s", time());
+                        if (!$invoice->save())
+                            $result = "success";//return CHtml::errorSummary($this);
+                    }
             } catch (Exception $ex) {
                 error_log("=====Exception occurred in saveModel====" . $ex->getMessage());
             }

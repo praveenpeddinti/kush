@@ -331,7 +331,8 @@ $(document).ready(function() {
         if($('#HouseCleaningForm_SquareFeets').val()<300){
             $("#HouseCleaningForm_SquareFeets_em_").show();
             $("#HouseCleaningForm_SquareFeets_em_").addClass('errorMessage');
-            $("#HouseCleaningForm_SquareFeets_em_").text("Minimum 300 Square Feet is allowed");
+            $("#HouseCleaningForm_SquareFeets_em_").text("Square Feet should be minimum 300");
+            return false;
          }
        if ($("#HouseCleaningForm_ServiceStartTime").val() == "") {
            $("#HouseCleaningForm_SquareFeets_em_").hide();

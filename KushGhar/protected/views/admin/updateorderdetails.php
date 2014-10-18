@@ -178,6 +178,12 @@ $form = $this->beginWidget('CActiveForm', array(
             $("#HouseCleaningForm_SquareFeets_em_").text("Please enter Numbers only");
             return false;
         }
+        if($('#HouseCleaningForm_SquareFeets').val()<300){
+            $("#HouseCleaningForm_SquareFeets_em_").show();
+            $("#HouseCleaningForm_SquareFeets_em_").addClass('errorMessage');
+            $("#HouseCleaningForm_SquareFeets_em_").text("Square Feet should be minimum 300");
+            return false;
+         }
 //        var previous_LR = Number(<?php //echo $getServiceDetails['total_livingRooms']; ?>);
 //        var previous_BedR = Number(<?php //echo $getServiceDetails['total_bedRooms']; ?>);
 //        var previous_KR = Number(<?php //echo $getServiceDetails['total_kitchens']; ?>);

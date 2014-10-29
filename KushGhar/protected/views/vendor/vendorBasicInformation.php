@@ -357,7 +357,6 @@
         $('#Gender').on('switch-change', function (e, data) {
             var $el = $(data.el)
             , value = data.value;
-            alert("value=="+value);
             if(value == true)
                 $("#VendorBasicInformationForm_Sex").val('1');
             else
@@ -560,7 +559,7 @@ return false;
     }
 
     function RegisteruserProfile_ajaxProfilePicUpload(){
-        alert("enter file");
+        
         $.ajaxFileUpload(
         {
             type:'POST',

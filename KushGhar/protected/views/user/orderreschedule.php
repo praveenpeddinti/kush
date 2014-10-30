@@ -53,6 +53,7 @@ if($serviceType == 3) {?>
 <script type="text/javascript">
     function reschedule(){
         if(validate()){
+            $("#reschedule").attr('disabled','disabled');  
             scrollPleaseWait("inviteSpinLoader","invite-form")
             var data = $("#reschedule-form").serialize();
             data+= '&Type=' + $("#OrderRescheduleForm_ServiceType").val()+'&OrderNumber='+$("#OrderRescheduleForm_OrderNumber").val();
@@ -60,6 +61,7 @@ if($serviceType == 3) {?>
     }
     }
     function validate(){
+        var date=new Date;
            if(($("#OrderRescheduleForm_ServiceType").val()==1)||($("#OrderRescheduleForm_ServiceType").val()==2))
         {
             if (($('#OrderRescheduleForm_ServiceStartTime').val() == '')) {
@@ -85,7 +87,6 @@ if($serviceType == 3) {?>
                 $("#OrderRescheduleForm_ServiceStartTime_em_").hide();
                 return true;
             }
-            var date=new Date.today().addDays(2);
             var sdate=$("#OrderRescheduleForm_ServiceStartTime").val();
            var sdatee=sdate.split("-");
             var servicedate=new Date(sdatee[2],sdatee[1]-1,sdatee[0]);
@@ -151,6 +152,20 @@ if($serviceType == 3) {?>
             $("#OrderRescheduleForm_error_em_").text("Event End Date cannot be less than Event Start Date");
             return false;
             }
+            
+            var stDateres1 = stDate.split(" ");
+            var enDateres1 = enDate.split(" ");
+            var sTime = stDateres1[0].split("-");
+            var eTime = enDateres1[0].split("-");
+            var stewardservicedate=new Date(sTime[2],sTime[1]-1,sTime[0],stTimeres[0],stTimeres[1],date.getSeconds());
+            var serviceEndDate = new Date(eTime[2],eTime[1]-1,eTime[0],enTimeres[0],enTimeres[1],date.getSeconds());
+            if(stewardservicedate < date)
+            {
+                $("#OrderRescheduleForm_StartTime_em_").show();
+                $("#OrderRescheduleForm_StartTime_em_").addClass('errorMessage');
+                $("#OrderRescheduleForm_StartTime_em_").text("Event Start Time can be configured only from current date ");
+                return false;
+            }
             else
             {
                 $("#OrderRescheduleForm_error_em_").hide();
@@ -158,38 +173,28 @@ if($serviceType == 3) {?>
                 $("#OrderRescheduleForm_EndTime_em_").hide();
                 return true;
             }
-            var stDateres1 = stDate.split(" ");
-            var enDateres1 = enDate.split(" ");
-            var sTime = stDateres1[0].split("-");
-            var eTime = enDateres1[0].split("-");
-            var stewardservicedate=new Date(sTime[2],sTime[1]-1,sTime[0]);
-            var serviceEndDate = new Date(eTime[2],eTime[1]-1,eTime[0]);
-            /*if(stewardservicedate < date)
-            {
-                $("#OrderRescheduleForm_StartTime_em_").show();
-                $("#OrderRescheduleForm_StartTime_em_").addClass('errorMessage');
-                $("#OrderRescheduleForm_StartTime_em_").text("Event Start Time can only be configured post 2 days from current date ");
-                return false;
-            }
-            
             if(serviceEndDate < date)
             {
                 $("#OrderRescheduleForm_EndTime_em_").show();
                 $("#OrderRescheduleForm_EndTime_em_").addClass('errorMessage');
-                $("#OrderRescheduleForm_EndTime_em_").text("Event End Time can only be configured post 2 days from current date");
+                $("#OrderRescheduleForm_EndTime_em_").text("Event End Time can be configured only from current date");
                 return false;
-            }*/
+            }
+            
+            
             
         }
     }
     function rescheduleHandler(data)
     { 
         if(data.status =='success'){
+            
             $("#OrderRescheduleForm_error_em_").show(1000);
                     $("#OrderRescheduleForm_error_em_").removeClass('errorMessage');
                     $("#OrderRescheduleForm_error_em_").addClass('alert alert-success');
                     $("#OrderRescheduleForm_error_em_").text(data.error);
                     $("#OrderRescheduleForm_error_em_").fadeOut(3000);
+                    $("#reschedule").removeAttr('disabled');alert("Enabled========");
                     setTimeout(function() {
                         $('#myModalforgot1').modal('hide');
                     }, 3000);   

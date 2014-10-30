@@ -156,13 +156,12 @@ class InvoiceDetails extends CActiveRecord {
     
     
     
-public function getPaidInvoice($id,$val){
-        if($val==0){$status=1;}
-        
+public function getPaidInvoice($id,$val,$newVal){
+        //if($val==0){$status=1;}
         $result = "failed";
         try{
             $InvoiceObj = InvoiceDetails::model()->findByAttributes(array('id'=>$id));
-            $InvoiceObj->Status = $status;
+            $InvoiceObj->Status = $newVal;
             if($InvoiceObj->update())
                 $result = "success";
         }catch(Exception $ex){

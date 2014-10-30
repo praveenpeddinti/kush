@@ -445,11 +445,109 @@ class VendorController extends Controller {
             error_log("#########Exception Occurred########$ex->getMessage()");
         }
     }
+    public function actionOrder() {
+        try {
+          $cId = $this->session['UserId'];
+          $orderDetails = $this->kushGharService->getOrderDetails($cId);
+          $this->pageTitle="KushGhar-Order";
+          $this->render("order", array("orderDetails" => $orderDetails));
+            //$this->render("order", array("orderDetails" => $orderDetails));
+        } catch (Exception $ex) {
+            error_log("#########Exception Occurred########" . $ex->getMessage());
+        }
+    }
     
-    
-    
-    
-    
+    public function actionNewOrder() {
+        try {$cId = $this->session['UserId'];
+            if (isset($_GET['userDetails_page'])) {
+                $totaluser = $this->kushGharService->getTotalOrdersForVendor($_GET['serviceType'],$_GET['orderNo'],$cId);
+                $startLimit = ((int) $_GET['userDetails_page'] - 1) * (int) $_GET['pageSize'];
+                $endLimit = $_GET['pageSize'];
+                $userDetails = $this->kushGharService->getOrderDetailsForVendor($startLimit, $endLimit,$_GET['serviceType'],$_GET['orderNo'],$cId);
+                $renderHtml = $this->renderPartial('newOrder', array('userDetails' => $userDetails, 'totalCount' => $totaluser), true);
+                $obj = array('status' => 'success', 'html' => $renderHtml, 'totalCount' => $totaluser);
+                $renderScript = $this->rendering($obj);
+                echo $renderScript;
+            }
+        } catch (Exception $ex) {
+            error_log("#########Exception Occurred########" . $ex->getMessage());
+        }
+    }
+        public function actionVendorData() {
+        try {
+            if (!empty($_POST['Vendors'])) {
+                $vendordetails = $this->kushGharService->getVendorDetails($_POST['Id'], $_POST['Vendors']);
+            } else {
+                $vendordetails = '';
+            }
+            if ($_POST['Type'] == 'review') {
+                $reviewdetails = $this->kushGharService->getReviewDetails($_POST['Id']);
+            } else {
+                $reviewdetails = '';
+            }
+            if ($_POST['ServiceId'] == 1) {
+                $servicedetails = $this->kushGharService->getOrderHServicesDetails($_POST['Id']);
+                $CustId = $servicedetails['CustId'];
+                $ServiceDate = $servicedetails['houseservice_start_time'];
+            }
+            if ($_POST['ServiceId'] == 2) {
+                $servicedetails = $this->kushGharService->getOrderCServicesDetails($_POST['Id']);
+                foreach ($servicedetails as $ee) {
+                    $CustId = $ee['CustId'];
+                    $ServiceDate = $ee['carservice_start_time'];
+                }
+            }
+            if ($_POST['ServiceId'] == 3) {
+                $servicedetails = $this->kushGharService->getOrderSServicesDetails($_POST['Id']);
+                $CustId = $servicedetails['CustId'];
+                $ServiceDate = $servicedetails['start_time'];
+            }
+            $customerDetails = $this->kushGharService->getCustomerDetails($CustId);
+            $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($CustId);
+            $renderHtml = $this->renderPartial('vendorData', array('userDetails1' => $customerDetails, 'services' => $servicedetails, 'serviceId' => $_POST['ServiceId'], 'Vendors' => $vendordetails, 'ServiceDate' => $ServiceDate, 'customerAddressDetails' => $customerAddressDetails, 'Type' => $_POST['Type'], 'reviewDetails' => $reviewdetails, 'status' => $_POST['status']), true);
+            $obj = array('status' => 'success', 'html' => $renderHtml);
+            $renderScript = $this->rendering($obj);
+            echo $renderScript;
+        } catch (Exception $ex) {
+            error_log("#########Exception Occurred########" . $ex->getMessage());
+        }
+    } 
+    public function actionOrderCloseDetails(){
+         try {
+            $Model = new OrderForm;
+            $id = $_POST['Id'];
+            $renderHtml = $this->renderPartial('orderCloseDetails', array("model" => $Model, "OrderNumber" => $id), true);
+            $obj = array('status' => 'success', 'html' => $renderHtml);
+            $renderScript = $this->rendering($obj);
+            echo $renderScript;
+        } catch (Exception $ex) {
+            error_log("####### Exception Occurred in Order Re-Scheduling ##########" . $ex->getMessage());
+        }
+    }
+    function actionOrderclosestatus(){
+        $orderCancelStatusWithHoursForm = new OrderForm;
+        $request = yii::app()->getRequest();
+        $formName = $request->getParam('OrderForm');
+        if ($formName != '') {
+            $orderCancelStatusWithHoursForm->attributes = $request->getParam('OrderForm');
+            $errors = CActiveForm::validate($orderCancelStatusWithHoursForm);
+            if ($errors != '[]') {
+                $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
+            } else {
+                $result = $this->kushGharService->sendorderStatusWithTimeAndPeople($orderCancelStatusWithHoursForm, 3);
+                if ($result == 'success') {
+                    //Mailing functionality
+                    $obj = array('status' => 'success', 'data' => $result, 'error' => 'Service status is changed successfully.');
+                } else {
+                    $errors = array("OrderForm_error" => 'Service failed.');
+                    $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
+                }
+                $renderScript = $this->rendering($obj);
+                echo $renderScript;
+            }
+        } else {
+            $errors = array("OrderForm_error" => 'Service failed.');
+            $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
+        }
+    }
 }
-
-

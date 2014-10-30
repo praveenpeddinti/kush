@@ -43,6 +43,10 @@
 <!--                                    <div class=<?php // echo '"'.$statusClassForContact.'"' ?>></div>-->
                                    
                                 </li>
+                                <li ><a href="order"> <i class="fa fa-phone"></i> Orders</a>
+<!--                                    <div class=<?php // echo '"'.$statusClassForContact.'"' ?>></div>-->
+                                   
+                                </li>
 <!--                                <li ><a href="#"> <i class="fa fa-credit-card"></i> Payment Info</a>
                                    <div class="status_info3"></div>
                                 </li>-->
@@ -61,6 +65,7 @@
                             <ul class="l_menu_sub_menu">
                                 <li class=""><a href="#"> <i class="fa fa-user"></i> Basic Info</a> </li>
                                 <li ><a href="#"> <i class="fa fa-phone"></i> Contact Info</a></li>
+                                 <li ><a href="#"> <i class="fa fa-phone"></i> Orders</a></li>
 <!--                                <li ><a href="#"> <i class="fa fa-credit-card"></i> Payment Info</a> </li>-->
                             </ul>
                         </div>

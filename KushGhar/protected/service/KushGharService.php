@@ -805,8 +805,8 @@ class KushGharService {
         return InvoiceDetails::model()->getInvoiceDetails($OrderId);
     }
     
-    public function getPaidInvoice($id, $val) {
-        return InvoiceDetails::model()->getPaidInvoice($id, $val);
+    public function getPaidInvoice($id, $val,$newVal) {
+        return InvoiceDetails::model()->getPaidInvoice($id, $val,$newVal);
     }
     
     /*
@@ -837,6 +837,12 @@ class KushGharService {
     }
     public function updateorderAmountWithAdmin($model,$Amount,$Type) {
         return InvoiceDetails::model()->updateorderAmountWithAdmin($model,$Amount,$Type);
+    }
+     public function getTotalOrdersForVendor($stype,$orderNo,$vId) {
+        return OrderDetails::model()->getTotalOrdersForVendor($stype,$orderNo,$vId);
+    }
+    public function getOrderDetailsForVendor($start,$end,$type,$orderNo,$vId) {
+        return HouseCleaningService::model()->getOrderDetailsForVendor($start,$end,$type,$orderNo,$vId);
     }
     
 } ?>

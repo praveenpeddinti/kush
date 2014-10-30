@@ -18,21 +18,30 @@
                                             <td><?php echo $row['OrderId']; ?></td>
                                             <td><?php echo $row['InvoiceNumber']; ?></td>
                                             <td><?php echo $row['Amount']; ?></td>
-                                            <td id="paid_<?php echo $row['id']; ?>"><?php if($row['Status']==1){$status = 'Paid';} 
-                                                if($row['Status']==0){$status = 'Open';} 
+                                            <td id="paid_<?php echo $row['id']; ?>"><?php if($row['Status']==0){$status = 'Open';} 
+                                                if($row['Status']==1){$status = 'Paid';} 
+                                                if($row['Status']==2){$status = 'FreeService';}
                                                 echo $status; ?>
-                                            </td>
-                                            <?php if($row['Status']=='0'){?>
-                                            <td nowrap>
-                                            <input id="user_<?php echo $row['id']; ?>" data-id="<?php echo $row['id']; ?>" data-status="<?php echo $row['Status']; ?>" type="button" value=" " class="icon_notinvite" alt="Paid" title="Paid"/>
+                                            </td>                                
+                                            <td id="user_<?php echo $row['id']; ?>">
+                                                <?php if ($row['Status'] == 0) { ?>
+                                                    <select class="span9 action"  onchange="statusChangeUser(<?php echo $row['id']; ?>,<?php echo $row['Status']; ?>, this);">
+                                                        <option <?php if ($row['Status'] == "0") echo "selected=\"selected\""; ?> value="0">Open</option>
+                                                        <option <?php if ($row['Status'] == "1") echo "selected=\"selected\""; ?> value="1">Paid</option>
+                                                        <option <?php if ($row['Status'] == "2") echo "selected=\"selected\""; ?> value="2">Free Service</option>
+                                                    </select>  
+                                                <?php } else if ($row['Status'] == 1) { ?>
+                                                    <select class="span9 action"  onchange="statusChangeUser(<?php echo $row['id']; ?>,<?php echo $row['Status']; ?>, this);">
+                                                        <option <?php if ($row['Status'] == "1") echo "selected=\"selected\""; ?> value="1">Paid</option>
+                                                    </select>  
+                                                <?php } else if ($row['Status'] == 2) { ?>
+                                                    <select class="span9 action"  onchange="statusChangeUser(<?php echo $row['id']; ?>,<?php echo $row['Status']; ?>, this);">
+                                                        <option <?php if ($row['Status'] == "2") echo "selected=\"selected\""; ?> value="2">Free Service</option>
+                                                    </select>  
+                                                <?php } ?>
                                             <i class="i_invoice_icon"><input id="invoice_<?php echo $row['id']; ?>" data-id="<?php echo $row['OrderId']; ?>" cust_id="<?php echo $row['CustId']; ?>" service-id="<?php echo $row['ServiceId']; ?>" alt="Print Invoice" type="button" title="Print Invoice"></i>
                                             </td>
-                                            <?php }else {?>
-                                            <td nowrap>
-                                                <i class="i_invoice_icon"><input id="invoice_<?php echo $row['id']; ?>" data-id="<?php echo $row['OrderId']; ?>" cust_id="<?php echo $row['CustId']; ?>" service-id="<?php echo $row['ServiceId']; ?>" alt="Print Invoice" type="button" title="Print Invoice"></i>
-                                            </td>
-                                           <?php }?>
-                                                    </tr>
-        <?php }
+                                           </tr>
+                                    <?php }
     //}
 } ?>

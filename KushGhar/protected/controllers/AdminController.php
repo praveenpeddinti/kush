@@ -745,7 +745,7 @@ class AdminController extends Controller {
     }
 
     public function actionPaidInvoice() {
-        $paidInvoice = $this->kushGharService->getPaidInvoice($_POST['Id'], $_POST['status']);
+        $paidInvoice = $this->kushGharService->getPaidInvoice($_POST['Id'], $_POST['pstatus'],$_POST['nstatus']);
         $obj = array('status' => 'error', 'data' => '', 'error' => $paidInvoice);
         echo CJSON::encode($obj);
     }

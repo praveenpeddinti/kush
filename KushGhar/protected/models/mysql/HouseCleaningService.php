@@ -267,6 +267,18 @@ class HouseCleaningService extends CActiveRecord {
         }
         return $result;
     }
+    public function getOrderDetailsForVendor($start,$end,$type,$orderNo,$vId) {
+        try {
+            // $query = "SELECT * FROM KG_Order_details WHERE ServiceId!='' and CustId = $cId limit ".$start. ",".$end;
+            $query="select * from KG_Order_details where find_in_set('".$vId."',assign_vendors)<>0 limit ".$start. ",".$end;
+
+           $result = YII::app()->db->createCommand($query)->queryAll();
+
+        } catch (Exception $ex) {
+            error_log("getOrderDetails Exception occured==" . $ex->getMessage());
+        }
+        return $result;
+    }
 
     public function getOrderDetailsinAdmin($start,$end,$type,$orderNo,$status) {
         try {//$query = "SELECT * FROM KG_InvitationUsers where status =1 limit ".$start. ",".$end;

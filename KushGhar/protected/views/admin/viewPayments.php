@@ -21,8 +21,9 @@
                                             <td><?php echo $row['OrderId']; ?></td>
                                             <td><?php echo $row['InvoiceNumber']; ?></td>
                                             <td><?php echo $row['Amount']; ?></td>
-                                            <td><?php if($row['Status']==1){$status = 'Paid';} 
-                                                if($row['Status']==0){$status = 'Open';} 
+                                            <td><?php if($row['Status']==0){$status = 'Open';} 
+                                                if($row['Status']==1){$status = 'Paid';} 
+                                                if($row['Status']==2){$status = 'Free Service';}
                                                 echo $status; ?>
                                             </td> 
                                         </tr>

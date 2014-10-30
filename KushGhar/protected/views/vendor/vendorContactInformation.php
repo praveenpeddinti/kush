@@ -40,6 +40,10 @@
                                 <li  class="active"><a href="vendorContactInformation"> <i class="fa fa-phone"></i> Contact Info</a>
 <!--                                    <div class=<?php // echo '"'.$statusClassForContact.'"' ?>></div>-->
                                 </li>
+                                <li ><a href="order"> <i class="fa fa-phone"></i> Orders</a>
+<!--                                    <div class=<?php // echo '"'.$statusClassForContact.'"' ?>></div>-->
+                                   
+                                </li>
               
 <!--                    <li ><a href="#"> <i class="fa fa-credit-card"></i> Payment Info</a>
                         <div class="status_info3"></div>

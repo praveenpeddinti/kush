@@ -1,33 +1,39 @@
 <script type="text/javascript">
     
-    function statusChangeUser(rowNos, status) {
+    function statusChangeUser(rowNos, pStatus,nStatus) {
         var oNumber = $("#orderNumber").val();
         var invoiceNo = $("#invoiceNo").val();
         var status1 = $("#status").val();
         
         //if (status == 1) {
-            var statusData = 'Do you want to change status as Paid?';
+            //var statusData = 'Do you want to change status as Paid?';
         //} 
         /*else {
             var statusData = 'Do you want to change Inactive to Active?';
         }*/
-        var r = confirm(statusData);
-        if (r == true) {
-            var data = "Id=" + rowNos + "&status=" + status;
+        //var r = confirm(statusData);
+        //if (r == true) {
+            var data = "Id=" + rowNos + "&pstatus=" + pStatus+"&nstatus="+nStatus.value;
             $.ajax({
                 type: 'POST',
                 dataType: 'json',
                 url: '<?php echo Yii::app()->createAbsoluteUrl("/admin/paidInvoice"); ?>',
                 data: data,
                 success: function(data) {
-                    //activeFormHandler(data, status, rowNos);
+                    //activeFormHandler(data,nStatus.value, rowNos);
                     $('#message').show();
                     $("#message").addClass('alert alert-success');
-                    $("#message").text('Invoice paid successfully.');
+                    $("#message").text('Invoice status changed successfully.');
                     $("#message").fadeOut(6000, "");
-                    $('#paid_' + rowNos).text('Paid');
-                    $('#user_' + rowNos).remove();
+                    if(nStatus.value==0)            
+                        $('#paid_' + rowNos).text('Open');
+                    if(nStatus.value==1)            
+                        $('#paid_' + rowNos).text('Paid');
+                    if(nStatus.value==2)            
+                        $('#paid_' + rowNos).text('Free Service');
+                    //$('#user_' + rowNos).remove();
                     //$('#user_' + rowNos).hide();
+                    //activeFormHandler(data,nStatus.value, rowNos);
                     getCollectionDataWithPagination('/admin/viewInvoice','userDetails', 'abusedWords_tbody',pageno,5,uname,phone,status1, '');
                 },
                 error: function(data) { // if error occured
@@ -35,9 +41,9 @@
 
                 }
             });
-        } else {
+        //} else {
             //alert("Cancel!");
-        }
+        //}
     }
 
 
@@ -140,6 +146,7 @@
                                             <option value="20">All</option>
                                             <option value="0">Open</option>
                                             <option value="1">Paid</option>
+                                            <option value="2">Free Service</option>
                                         </select>
                                     </div>
                                     <div class="span2">
@@ -148,7 +155,7 @@
                                     </div>
                                 </div>
                                 <table id="userTable" class="table table-hover">
-                                    <thead><tr><th>Service</th><th>Order #</th><th>InvoiceNumber</th><th nowrap>Amount</th><th>Status</th><th>Actions</th></tr></thead>
+                                    <thead><tr><th>Service</th><th nowrap>Order #</th><th>InvoiceNumber</th><th nowrap>Amount</th><th>Status</th><th>Actions</th></tr></thead>
                                     <tbody id="abusedWords_tbody">
                                     </tbody>
                                 </table>
@@ -189,19 +196,11 @@
             //var inviteEmail = $(this).attr('invite-email');
            
             if(id1.indexOf("user") > -1){
-                statusChangeUser(Number(id), Number(status));
+               statusChangeUser(Number(id), Number(status));
             }
             else if(id1.indexOf("invoice") > -1){
                 invoice(Number(id),CustId,ServiceId);
             }
-        
-        /*if(id>0){
-                
-                statusChangeUser(Number(id), Number(status));
-            }*/
-            //if(id2>0){
-            //    inviteUser(Number(id2), Number(inviteStatus), inviteEmail);
-            //}
         });
     });
     
@@ -299,5 +298,4 @@ function getCollectionDataWithPaginationHandler(data,URL,CollectionName,MainDiv,
                 }
             });
     }
-    
 </script>

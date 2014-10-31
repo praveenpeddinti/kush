@@ -236,6 +236,15 @@ class CarWashService extends CActiveRecord {
         }
         return $result;
     }
+    public function getCarWashDetailsByOrderNumber($orderNumber){
+        try{
+            $query="select * from KG_Car_cleaning_service where order_number=".$orderNumber;
+            $result = YII::app()->db->createCommand($query)->queryAll();
+        } catch (Exception $ex) {
+            error_log("######Exception occurred in getting car wash details by order number####".$ex->getMessage());
+        }
+        return $result;
+    }
 
 }
 ?>

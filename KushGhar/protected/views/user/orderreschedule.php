@@ -9,8 +9,9 @@
                                                         )); 
  echo $rescheduleForm->error($model, 'error',array('value'=>'Hide')); 
  echo $rescheduleForm->hiddenField($model,'ServiceType', array('value'=>$serviceType)); 
- echo $rescheduleForm->hiddenField($model,'OrderNumber', array('value'=>$OrderNumber));
-if($serviceType == 3) {?>
+ echo $rescheduleForm->hiddenField($model,'OrderNumber', array('value'=>$OrderNumber));?>
+ <div id="inviteSpinLoader"></div>
+     <?php if($serviceType == 3) {?>
     <div class="row-fluid">
         <div class=" span4">
             <?php echo $rescheduleForm->label($model, '<abbr title="required">*</abbr> Event Start Time'); ?>
@@ -53,7 +54,8 @@ if($serviceType == 3) {?>
 <script type="text/javascript">
     function reschedule(){
         if(validate()){
-            $("#reschedule").attr('disabled','disabled');  
+            scrollPleaseWait("inviteSpinLoader","reschedule-form");
+           // $("#reschedule").attr('disabled','disabled');  
             scrollPleaseWait("inviteSpinLoader","invite-form")
             var data = $("#reschedule-form").serialize();
             data+= '&Type=' + $("#OrderRescheduleForm_ServiceType").val()+'&OrderNumber='+$("#OrderRescheduleForm_OrderNumber").val();
@@ -186,7 +188,7 @@ if($serviceType == 3) {?>
         }
     }
     function rescheduleHandler(data)
-    { 
+    {  scrollPleaseWaitClose('inviteSpinLoader');
         if(data.status =='success'){
             
             $("#OrderRescheduleForm_error_em_").show(1000);
@@ -194,7 +196,7 @@ if($serviceType == 3) {?>
                     $("#OrderRescheduleForm_error_em_").addClass('alert alert-success');
                     $("#OrderRescheduleForm_error_em_").text(data.error);
                     $("#OrderRescheduleForm_error_em_").fadeOut(3000);
-                    $("#reschedule").removeAttr('disabled');alert("Enabled========");
+                   // $("#reschedule").removeAttr('disabled');alert("Enabled========");
                     setTimeout(function() {
                         $('#myModalforgot1').modal('hide');
                     }, 3000);   

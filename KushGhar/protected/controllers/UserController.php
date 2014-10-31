@@ -1056,110 +1056,81 @@ class UserController extends Controller {
                         $result = $this->kushGharService->rescheduleStewards($rescheduleForm->StartTime,$rescheduleForm->EndTime,$rescheduleForm->DurationHours,$_POST['OrderNumber']);
                     if($result=='success')
                     {
-                      $cId = $this->session['UserId'];
-        $genOrderNo = '';
-        $HOrder='';$COrder='';$SOrder='';
-        $customerDetails = $this->kushGharService->getCustomerDetails($cId);
-        $customerServicesHouse = $this->kushGharService->getcustomerServicesHouse($cId);
-        $customerServicesCar = $this->kushGharService->getcustomerServicesCar($cId);
-        $customerServicesStewards = $this->kushGharService->getcustomerServicesStewards($cId);
-        $getOrderDetailsMaxParentId = $this->kushGharService->getOrderDetailsMaxParentId();
-        $genOrderNo = $getOrderDetailsMaxParentId['id'];
-        $getOrderNumber='';
-        $getServiceDetails='0';
-        $getStewardsServiceDetails='0';
-        $getCarWashServiceDetails='0';
-        $getTotalCars ='';
-        $totalSeats=0;
-        $servicedate='';
-        if($customerServicesHouse=='Yes Service') {
-            $getServiceDetails = $this->kushGharService->getDetails($cId);
-            $priceAddServices = (($getServiceDetails['window_grills'] + $getServiceDetails['cupboard_cleaning'] + $getServiceDetails['fridge_interior'] + $getServiceDetails['microwave_oven_interior']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
-            //$otherRoomsCost = ($getServiceDetails['other_rooms']*YII::app()->params['ADDITIONAL_SERVICE_COST1']);
-//            if( ($getServiceDetails['total_livingRooms']==1) && ($getServiceDetails['total_bedRooms']==1) && ($getServiceDetails['total_bathRooms']==1) && ($getServiceDetails['total_kitchens']==1))
-//                    {
-//                    $priceRoom1 = (($getServiceDetails['total_livingRooms'] + $getServiceDetails['total_bedRooms']) * YII::app()->params['ADDITIONAL_SERVICE_COST1']);
-//                    $priceRoom2 = (($getServiceDetails['total_bathRooms'] + $getServiceDetails['total_kitchens']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
-//                    $totalRoomsPrice = $otherRoomsCost+$priceRoom1 + $priceRoom2 ;
-//                    }else{$LR='';$BedR='';$BathR='';$KR='';
-//                         if($getServiceDetails['total_livingRooms']>1){
-//                             $LR = (($getServiceDetails['total_livingRooms']-1)*YII::app()->params['ADDITIONAL_SERVICE_COST1']);
-//                         }
-//                         if($getServiceDetails['total_bedRooms']>1){
-//                             $BedR = (($getServiceDetails['total_bedRooms']-1)*YII::app()->params['ADDITIONAL_SERVICE_COST1']);
-//                         }
-//                         if($getServiceDetails['total_bathRooms']>1){
-//                             $BathR = (($getServiceDetails['total_bathRooms']-1)* YII::app()->params['ADDITIONAL_SERVICE_COST']);
-//                         }
-//                         if($getServiceDetails['total_kitchens']>1){
-//                             $KR = (($getServiceDetails['total_kitchens']-1)* YII::app()->params['ADDITIONAL_SERVICE_COST']);
-//                         }
+                        $cId = $this->session['UserId'];
+                        $HOrder='';$COrder='';$SOrder='';
+                        $customerDetails = $this->kushGharService->getCustomerDetails($cId);
+                        $getServiceDetails='0';
+                        $getStewardsServiceDetails='0';
+                        $getCarWashServiceDetails='0';
+                        $getTotalCars ='';
+                        $totalSeats=0;
+                        $servicedate='';
+                        if($_POST['Type']==1) {
+                            $getServiceDetails = $this->kushGharService->getHSDetailsByOrderNumber($_POST['OrderNumber']);
+                            $priceAddServices = (($getServiceDetails['window_grills'] + $getServiceDetails['cupboard_cleaning'] + $getServiceDetails['fridge_interior'] + $getServiceDetails['microwave_oven_interior']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
+                            //$otherRoomsCost = ($getServiceDetails['other_rooms']*YII::app()->params['ADDITIONAL_SERVICE_COST1']);
+//                           if( ($getServiceDetails['total_livingRooms']==1) && ($getServiceDetails['total_bedRooms']==1) && ($getServiceDetails['total_bathRooms']==1) && ($getServiceDetails['total_kitchens']==1))
+//                           {
+//                               $priceRoom1 = (($getServiceDetails['total_livingRooms'] + $getServiceDetails['total_bedRooms']) * YII::app()->params['ADDITIONAL_SERVICE_COST1']);
+//                               $priceRoom2 = (($getServiceDetails['total_bathRooms'] + $getServiceDetails['total_kitchens']) * YII::app()->params['ADDITIONAL_SERVICE_COST']);
+//                               $totalRoomsPrice = $otherRoomsCost+$priceRoom1 + $priceRoom2 ;
+//                           }else{$LR='';$BedR='';$BathR='';$KR='';
+//                          if($getServiceDetails['total_livingRooms']>1){
+//                              $LR = (($getServiceDetails['total_livingRooms']-1)*YII::app()->params['ADDITIONAL_SERVICE_COST1']);
+//                          }
+//                          if($getServiceDetails['total_bedRooms']>1){
+//                              $BedR = (($getServiceDetails['total_bedRooms']-1)*YII::app()->params['ADDITIONAL_SERVICE_COST1']);
+//                          }
+//                          if($getServiceDetails['total_bathRooms']>1){
+//                              $BathR = (($getServiceDetails['total_bathRooms']-1)* YII::app()->params['ADDITIONAL_SERVICE_COST']);
+//                          }
+//                          if($getServiceDetails['total_kitchens']>1){
+//                              $KR = (($getServiceDetails['total_kitchens']-1)* YII::app()->params['ADDITIONAL_SERVICE_COST']);
+//                          }
                     
-//                    $priceRoom1  = $LR+$BedR;
-//                    $priceRoom2 = $BathR+$KR;
-//                    $totalRoomsPrice = $otherRoomsCost+$priceRoom1 + $priceRoom2 +750;
-//            if($getServiceDetails['squarefeets']<1000)
-//                $sqft=1000;
-//            else
-//                $sqft=$getServiceDetails['squarefeets'];
-            $sqft=($getServiceDetails['squarefeets']<1000)?1000:$getServiceDetails['squarefeets'];
-            $totalRoomsPrice=$sqft*1.5;
+//                          $priceRoom1  = $LR+$BedR;
+//                          $priceRoom2 = $BathR+$KR;
+//                          $totalRoomsPrice = $otherRoomsCost+$priceRoom1 + $priceRoom2 +750;
+                            $sqft=($getServiceDetails['squarefeets']<1000)?1000:$getServiceDetails['squarefeets'];
+                            $totalRoomsPrice=$sqft*1.5;
                    // }
-                    
-                    $totalRoomsPrice+= $priceAddServices;
+                            $totalRoomsPrice+= $priceAddServices;
 //            $serviceTaxPrice = (($priceRoom1+$priceRoom2+$priceAddServices)*12.36)/100;
-            
-            $getOrderDetailsMaxParentIdH = $this->kushGharService->getOrderDetailsMaxParentId();
-            $getOrderNumber = $getOrderDetailsMaxParentIdH['order_number'];
-            $genOrderNo = $genOrderNo+1;
-            $HOrder = $genOrderNo;
-        }else{$getServiceDetails='0';}
-        
-        if($customerServicesCar=='Yes Service') {
-            
-            $getCarWashServiceDetails = $this->kushGharService->getCarWashDetails($cId);
-            foreach($getCarWashServiceDetails as $ee){
-                $getTotalCars = $ee['total_cars'];
-                $totalSeats= $totalSeats+$ee['shampoo_seats'];
-                $servicedate=$ee['carservice_start_time'];
-            }
-            $totalCPrice=$getTotalCars*500+$totalSeats;
-            $getOrderDetailsMaxParentIdC = $this->kushGharService->getOrderDetailsMaxParentId();
-            
-            foreach($getCarWashServiceDetails as $ee){
-                $getOrderNumber = $getOrderDetailsMaxParentIdC['order_number'];
-                }
-                $genOrderNo = $genOrderNo+1;
-                $COrder = $genOrderNo;
-        }else{$getCarWashServiceDetails='0';}
-        
-        if($customerServicesStewards=='Yes Service'){
-            $getStewardsServiceDetails = $this->kushGharService->getStewardsDetails($cId);
-            $totalSPrice = ($getStewardsServiceDetails['service_hours'] * $getStewardsServiceDetails['no_of_stewards'] * 200);
-            
-             $getOrderDetailsMaxParentIdS = $this->kushGharService->getOrderDetailsMaxParentId();
-            $getOrderNumber = $getOrderDetailsMaxParentIdS['order_number'];
-            $genOrderNo = $genOrderNo+1;
-            $SOrder = $genOrderNo;
-        }else{$getStewardsServiceDetails='0';}
+                            $HOrder = $_POST['OrderNumber'];
+                        }else{$getServiceDetails='0';}
+                        if($_POST['Type']==2) {
+                            $getCarWashServiceDetails = $this->kushGharService->getCarWashDetailsByOrderNumber($_POST['OrderNumber']);
+                            foreach($getCarWashServiceDetails as $ee){
+                                $getTotalCars = $ee['total_cars'];
+                                $totalSeats= $totalSeats+$ee['shampoo_seats'];
+                                $servicedate=$ee['carservice_start_time'];
+                            }
+                            $totalCPrice=$getTotalCars*500+$totalSeats;
+                            $COrder =$_POST['OrderNumber'];
+                        }else{$getCarWashServiceDetails='0';}
+                        if($_POST['Type']==3){
+                            $getStewardsServiceDetails = $this->kushGharService->getStewardsDetailsByOrderNumber($_POST['OrderNumber']);
+                            $totalSPrice = ($getStewardsServiceDetails['service_hours'] * $getStewardsServiceDetails['no_of_stewards'] * 200);
+                            $SOrder = $_POST['OrderNumber'];
+                        }else{$getStewardsServiceDetails='0';}
                         //Mailing functionality
                         $to1 = $customerDetails['email_address'];
-                        $subject1 =$getOrderNumber." Order placed";
+                        $subject1 =$_POST['OrderNumber']." Order Rescheduled";
                         $Logo = YII::app()->params['SERVER_URL'] . "/images/color_logo.png";
                         $employerEmail = "no-reply@kushghar.com";
-                        $messageview1="ordereplacemessage";
+                        $messageview1="orderreplacemessage";
                         $params1 = array('Logo' => $Logo, "customerDetails" => $customerDetails, 'HouseService'=>$getServiceDetails,'CarService'=>$getCarWashServiceDetails,'StewardService'=>$getStewardsServiceDetails,'getCars'=>$getTotalCars,'HO'=>$HOrder,'CO'=>$COrder,'SO'=>$SOrder);
                         /*
                         * KG Team mail details
                         */
                         $to = 'praveen.peddinti@gmail.com';
-                        $subject ="Order placed";
+                        $subject =$_POST['OrderNumber']."Admin Order Rescheduled";
                         $messageview="orderreplacemessagetoKG";
                         $params = array('Logo' => $Logo, 'Message' =>$customerDetails, 'HouseService'=>$getServiceDetails,'CarService'=>$getCarWashServiceDetails,'StewardService'=>$getStewardsServiceDetails,'getCars'=>$getTotalCars);       
                         //$params = '';
                         $sendMailToUser=new CommonUtility;
-                        //$sendMailToUser->actionSendmail($messageview1,$params1, $subject1, $to1,$employerEmail);
-                        //$mailSendStatus=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
+                        $sendMailToUser->actionSendmail($messageview1,$params1, $subject1, $to1,$employerEmail);
+                        $mailSendStatus=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
                         $obj = array('status' => 'success', 'data' => $result, 'error' => 'Re-Scheduled Successfully.');
                     }
                     else

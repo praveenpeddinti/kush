@@ -234,6 +234,15 @@ class StewardsCleaningService extends CActiveRecord {
         }
         return $result;
     }
+    public function getStewardsDetailsByOrderNumber($orderNumber){
+        try{
+            $query="select * from KG_Stewards_cleaning_service where order_number=".$orderNumber;
+            $result = YII::app()->db->createCommand($query)->queryRow();
+        } catch (Exception $ex) {
+            error_log("######Error occurred in stewards details by order number#####".$ex->getMessage());
+        }
+        return $result;
+    }
 
 }
 ?>

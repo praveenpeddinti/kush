@@ -343,7 +343,15 @@ class HouseCleaningService extends CActiveRecord {
        }
        return $result;
     }
-    
+    public function getHSDetailsByOrderNumber($orderNumber){
+        try{
+            $query="select * from KG_House_cleaning_service where order_number=".$orderNumber;
+            $result = YII::app()->db->createCommand($query)->queryRow();
+        } catch (Exception $ex) {
+            error_log("#######Exception rraised in getting house cleaning details by Order number####");
+        }
+        return $result;
+    }
         
     
 

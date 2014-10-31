@@ -844,5 +844,14 @@ class KushGharService {
     public function getOrderDetailsForVendor($start,$end,$type,$orderNo,$vId) {
         return HouseCleaningService::model()->getOrderDetailsForVendor($start,$end,$type,$orderNo,$vId);
     }
+    public function getHSDetailsByOrderNumber($orderNumber){
+        return HouseCleaningService::model()->getHSDetailsByOrderNumber($orderNumber);
+    }
+    public function getCarWashDetailsByOrderNumber($orderNumber){
+        return CarWashService::model()->getCarWashDetailsByOrderNumber($orderNumber);
+    }
+    public function getStewardsDetailsByOrderNumber($orderNumber){
+        return StewardsCleaningService::model()->getStewardsDetailsByOrderNumber($orderNumber);
+    }
     
 } ?>

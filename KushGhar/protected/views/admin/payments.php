@@ -95,7 +95,7 @@ function getCollectionDataWithPagination(URL,CollectionName, MainDiv, CurrentPag
     globalspace[MainDiv+'_pageSize']=Number(PageSize);
     
     var newURL =  URL+"?"+CollectionName+"_page="+globalspace[MainDiv+'_page']+"&pageSize="+globalspace[MainDiv+'_pageSize'];
-    var data = ""; 
+        var data = ""; 
     ajaxRequest(newURL,data,function(data){getCollectionDataWithPaginationHandler(data,URL,CollectionName,MainDiv,callback)});
 }
 function getCollectionDataWithPaginationHandler(data,URL,CollectionName,MainDiv,callback){

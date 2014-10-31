@@ -844,5 +844,81 @@ class AdminController extends Controller {
         $renderScript = $this->rendering($obj);
         echo $renderScript;
     }
-
+     public function actionGenerateXLS(){
+        try{   
+            $objPHPExcel = new PHPExcel();
+            $objPHPExcel->createSheet(1);
+            $objPHPExcel->setActiveSheetIndex(0);
+            $objPHPExcel->getActiveSheet()->setTitle('User List');
+            $objPHPExcel->setActiveSheetIndex(0)->setCellValue('A1', ' Users List');
+            $objPHPExcel->getActiveSheet()->getStyle('A1:D1')->getFont()->setBold(true);
+            $objPHPExcel->getActiveSheet()->getPageSetup()->setRowsToRepeatAtTopByStartAndEnd(9, 1);
+            $objPHPExcel->getActiveSheet()->mergeCells('A1:D1');
+            // setting cell perperty to display border
+            $styleThinBlackBorderOutline = array(
+            'borders' => array(
+            'allborders' => array(
+            'style' => PHPExcel_Style_Border::BORDER_THIN,
+            'color' => array('argb' => 'FF000000'),
+            ),
+            ),
+            );
+            $styleThickBorderOutline = array(
+            'borders' => array(
+            'outline' => array(
+            'style' => PHPExcel_Style_Border::BORDER_THICK,
+            'color' => array('argb' => 'FF000000'),
+                    ),
+                ),
+            );
+            $style = array(
+                'alignment' => array(
+                'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+                )
+            );
+            $usersDataCount=  $this->kushGharService->getUserExcelDataCount();
+            $usersData=  $this->kushGharService->GetAllUserExcelData();
+            $objPHPExcel->getActiveSheet()->getStyle('A1:D1')->applyFromArray($styleThinBlackBorderOutline);
+            $objPHPExcel->getActiveSheet()->getStyle('A1:D1')->applyFromArray($style);
+            $objPHPExcel->getActiveSheet()->getStyle('A1:D1')->getFont()->setSize(18);
+            $objPHPExcel->getActiveSheet()
+                    ->setCellValue('A2','User Name')
+                    ->setCellValue('B2','Email Address')
+                    ->setCellValue('C2','Phone Number')
+                    ->setCellValue('D2','Registered Date');
+            $objPHPExcel->getActiveSheet()->getStyle('A2:D2')->getFont()->setBold(true);
+            $objPHPExcel->getActiveSheet()->getStyle('A2:D2')->getFont()->setSize(14);
+            if($usersDataCount>0){
+                $rowCount = 3; 
+                foreach ($usersData as $row){
+                    $objPHPExcel->getActiveSheet()
+                        ->setCellValue('A'.$rowCount,$row['UserName'])
+                        ->setCellValue('B'.$rowCount,$row['email_address'])
+                        ->setCellValue('C'.$rowCount,$row['phone'])
+                        ->setCellValue('D'.$rowCount,$row['RegisteredOn']);
+                    $rowCount++;
+                }
+            }
+            else {
+                $objPHPExcel->getActiveSheet()->setCellValue('A3','No User Data exists');
+            }
+            $objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(30);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(40);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('C')->setWidth(20);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('D')->setWidth(25);
+            // Rename worksheet
+            $objPHPExcel->getActiveSheet()->setTitle('Users');
+            // Set active sheet index to the first sheet, so Excel opens this as the first sheet
+            $objPHPExcel->setActiveSheetIndex(0);
+            // Redirect output to a client’s web browser (Excel2007) ...
+            header('Content-Type: application/vnd.ms-excel');
+            header('Content-Disposition: attachment;filename="UsersList.xls"');
+            header('Cache-Control: max-age=0');
+            $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+            $objWriter->save('php://output');
+            Yii::app()->end();
+        } catch (PHPExcel_Exception $ex) {
+            error_log("############Exception occurred in GenerateXLS ###############" . $ex->getMessage());
+        } 
+    }
 }

@@ -5,7 +5,7 @@
 <div class="container">
     <section>
         <div class="container minHeight">
-            <aside>
+            <aside>   
                 <div class="asideBG">
                     <div class="left_nav">
                         <ul class="main">

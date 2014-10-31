@@ -3,7 +3,7 @@
  </script>
 
 <div class="container">
-    <section>
+    <section>    
         <div class="container minHeight">
             <aside>   
                 <div class="asideBG">

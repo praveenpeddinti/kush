@@ -57,136 +57,31 @@ if($serviceType == 3) {?>
             scrollPleaseWait("inviteSpinLoader","invite-form")
             var data = $("#reschedule-form").serialize();
             data+= '&Type=' + $("#OrderRescheduleForm_ServiceType").val()+'&OrderNumber='+$("#OrderRescheduleForm_OrderNumber").val();
-            alert("--------"+data);
             ajaxRequest('/user/ordercancelmanage', data, rescheduleHandler)
     }
     }
     function validate(){
-           if(($("#OrderRescheduleForm_ServiceType").val()==1)||($("#OrderRescheduleForm_ServiceType").val()==2))
-        {
-            if (($('#OrderRescheduleForm_ServiceStartTime').val() == '')) {
-                $("#OrderRescheduleForm_ServiceStartTime_em_").show();
-                $("#OrderRescheduleForm_ServiceStartTime_em_").addClass('errorMessage');
-                $("#OrderRescheduleForm_ServiceStartTime_em_").text("Please select Service Date");
+           if (($('#OrderRescheduleForm_Reason').val() == '')) {
+                $("#OrderRescheduleForm_Reason_em_").show();
+                $("#OrderRescheduleForm_Reason_em_").addClass('errorMessage');
+                $("#OrderRescheduleForm_Reason_em_").text("Please enter Reason");
                 return false;
-            }
-            if($("#OrderRescheduleForm_ServiceType").val()==1)
-                var prev="<?php echo isset($getserviceDetails['houseservice_start_time'])?$getserviceDetails['houseservice_start_time']:''?>";
-            else
-                var prev="<?php echo isset($getserviceDetails['carservice_start_time'])?$getserviceDetails['carservice_start_time']:''?>";
-            var present=$('#OrderRescheduleForm_ServiceStartTime').val();
-
-            if(prev==present){
-                $("#OrderRescheduleForm_ServiceStartTime_em_").show();
-                $("#OrderRescheduleForm_ServiceStartTime_em_").addClass('errorMessage');
-                $("#OrderRescheduleForm_ServiceStartTime_em_").text("Please change Service Date and then click on Reschedule");
+            }else if ( (!$("#OrderRescheduleForm_Reason").val().match(/[A-Za-z0-9\s\.\,]$/)) ) {
+                
+                $("#OrderRescheduleForm_Reason_em_").hide();
+                $("#OrderRescheduleForm_Reason_em_").show();
+                $("#OrderRescheduleForm_Reason_em_").addClass('errorMessage');
+                $("#OrderRescheduleForm_Reason_em_").text("Please enter only alphabets, numbers, dots and space ");
                 return false;
-            }
-            else
-            {
-                $("#OrderRescheduleForm_ServiceStartTime_em_").hide();
+           
+            }else {
+                $("#OrderRescheduleForm_em_").hide();
                 return true;
             }
-            var date=new Date.today().addDays(2);
-            var sdate=$("#OrderRescheduleForm_ServiceStartTime").val();
-           var sdatee=sdate.split("-");
-            var servicedate=new Date(sdatee[2],sdatee[1]-1,sdatee[0]);
-            /*if(servicedate < date)
-            {
-                $("#OrderRescheduleForm_ServiceStartTime_em_").show();
-                $("#OrderRescheduleForm_ServiceStartTime_em_").addClass('errorMessage');
-                $("#OrderRescheduleForm_ServiceStartTime_em_").text("Service Date can only be configured post 2 days from current date ");
-                return false;
-            }*/
-            
         }
-        if(($("#OrderRescheduleForm_ServiceType").val()==3))
-        {
-            if (($('#OrderRescheduleForm_StartTime').val() == '')) {
-                $("#OrderRescheduleForm_StartTime_em_").show();
-                $("#OrderRescheduleForm_StartTime_em_").addClass('errorMessage');
-                $("#OrderRescheduleForm_StartTime_em_").text("Please select Event Start Time");
-                return false;
-            }
-            if (($('#OrderRescheduleForm_EndTime').val() == '')) {
-                $("#OrderRescheduleForm_StartTime_em_").hide();
-                $("#OrderRescheduleForm_EndTime_em_").show();
-                $("#OrderRescheduleForm_EndTime_em_").addClass('errorMessage');
-                $("#OrderRescheduleForm_EndTime_em_").text("Please select Event End Time");
-                return false;
-            }
-            var stDate = $('#OrderRescheduleForm_StartTime').val();
-            var enDate = $('#OrderRescheduleForm_EndTime').val();
-            var strtPrev="<?php echo isset($getserviceDetails['start_time'])?$getserviceDetails['start_time']:''?>";
-            var endprev="<?php echo isset($getserviceDetails['end_time'])?$getserviceDetails['end_time']:''?>";
-             var stDateres1 = stDate.split(" ");
-            var enDateres1 = enDate.split(" ");
-           var sTime = stDateres1[0].split("-");
-            var stDateres = sTime[2]+"/"+sTime[1]+"/"+sTime[0];
-            var eTime = enDateres1[0].split("-");
-            var enDateres = eTime[2]+"/"+eTime[1]+"/"+eTime[0];
-            var stDate1 = new Date(stDateres);
-            var enDate1 = new Date(enDateres);
-
-            var compDate = stDate1 - enDate1;
-            var startDateValuecmp = stDate1.getTime();
-            var endDateValuecmp = enDate1.getTime();
-            if((strtPrev==stDate)&&(endprev==enDate)){
-                $("#OrderRescheduleForm_error_em_").show();
-                $("#OrderRescheduleForm_error_em_").addClass('errorMessage');
-                $("#OrderRescheduleForm_error_em_").text("Please change Service Dates and then click on Reschedule");
-                return false;
-            }
-            if (compDate == 0) {
-            var stTimeres = stDateres1[1].split(":");
-            var enTimeres = enDateres1[1].split(":");
-            if (Math.round(stTimeres[0]) > Math.round(enTimeres[0])) {
-                $("#OrderRescheduleForm_error_em_").show();
-                $("#OrderRescheduleForm_error_em_").addClass('errorMessage');
-                $("#OrderRescheduleForm_error_em_").text("Event End Time cannot be less than Event Start Time");
-                return false;
-                }
-            }
-            if (startDateValuecmp > endDateValuecmp) {
-            $("#OrderRescheduleForm_error_em_").show();
-            $("#OrderRescheduleForm_error_em_").addClass('errorMessage');
-            $("#OrderRescheduleForm_error_em_").text("Event End Date cannot be less than Event Start Date");
-            return false;
-            }
-            else
-            {
-                $("#OrderRescheduleForm_error_em_").hide();
-                $("#OrderRescheduleForm_StartTime_em_").hide();
-                $("#OrderRescheduleForm_EndTime_em_").hide();
-                return true;
-            }
-            var stDateres1 = stDate.split(" ");
-            var enDateres1 = enDate.split(" ");
-            var sTime = stDateres1[0].split("-");
-            var eTime = enDateres1[0].split("-");
-            var stewardservicedate=new Date(sTime[2],sTime[1]-1,sTime[0]);
-            var serviceEndDate = new Date(eTime[2],eTime[1]-1,eTime[0]);
-            /*if(stewardservicedate < date)
-            {
-                $("#OrderRescheduleForm_StartTime_em_").show();
-                $("#OrderRescheduleForm_StartTime_em_").addClass('errorMessage');
-                $("#OrderRescheduleForm_StartTime_em_").text("Event Start Time can only be configured post 2 days from current date ");
-                return false;
-            }
-            
-            if(serviceEndDate < date)
-            {
-                $("#OrderRescheduleForm_EndTime_em_").show();
-                $("#OrderRescheduleForm_EndTime_em_").addClass('errorMessage');
-                $("#OrderRescheduleForm_EndTime_em_").text("Event End Time can only be configured post 2 days from current date");
-                return false;
-            }*/
-            
-        }
-    }
     function rescheduleHandler(data)
-    { alert("-------resccc-----"+data.toSource());
-        if(data.status =='success'){alert("---suc----"+data.status);
+    { 
+        if(data.status =='success'){
             $("#OrderRescheduleForm_error_em_").show(1000);
                     $("#OrderRescheduleForm_error_em_").removeClass('errorMessage');
                     $("#OrderRescheduleForm_error_em_").addClass('alert alert-success');

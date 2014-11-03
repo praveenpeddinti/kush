@@ -113,10 +113,26 @@
                 $("#OrderRescheduleForm_ServiceStartTime_em_").addClass('errorMessage');
                 $("#OrderRescheduleForm_ServiceStartTime_em_").text("Please change Service Date and then click on Reschedule");
                 return false;
+            }else if (($('#OrderRescheduleForm_Reason').val() == '')) {
+                $("#OrderRescheduleForm_ServiceStartTime_em_").hide();
+                $("#OrderRescheduleForm_Reason_em_").show();
+                $("#OrderRescheduleForm_Reason_em_").addClass('errorMessage');
+                $("#OrderRescheduleForm_Reason_em_").text("Please enter Reason");
+                return false;
+            }
+            else if ( (!$("#OrderRescheduleForm_Reason").val().match(/[A-Za-z0-9\s\.\,]$/)) ) {
+                $("#OrderRescheduleForm_ServiceStartTime_em_").hide();
+                $("#OrderRescheduleForm_Reason_em_").hide();
+                $("#OrderRescheduleForm_Reason_em_").show();
+                $("#OrderRescheduleForm_Reason_em_").addClass('errorMessage');
+                $("#OrderRescheduleForm_Reason_em_").text("Please enter only alphabets, numbers, dots and space ");
+                return false;
+           
             }
             else
             {
                 $("#OrderRescheduleForm_ServiceStartTime_em_").hide();
+                $("#OrderRescheduleForm_Reason_em_").hide();
                 return true;
             }
             var sdate=$("#OrderRescheduleForm_ServiceStartTime").val();
@@ -146,6 +162,22 @@
                 $("#OrderRescheduleForm_EndTime_em_").text("Please select Event End Time");
                 return false;
             }
+            if (($('#OrderRescheduleForm_Reason').val() == '')) {
+                //$("#OrderRescheduleForm_ServiceStartTime_em_").hide();
+                $("#OrderRescheduleForm_Reason_em_").show();
+                $("#OrderRescheduleForm_Reason_em_").addClass('errorMessage');
+                $("#OrderRescheduleForm_Reason_em_").text("Please enter Reason");
+                return false;
+            }
+            else if ( (!$("#OrderRescheduleForm_Reason").val().match(/[A-Za-z0-9\s\.\,]$/)) ) {
+                //$("#OrderRescheduleForm_ServiceStartTime_em_").hide();
+                //$("#OrderRescheduleForm_Reason_em_").hide();
+                $("#OrderRescheduleForm_Reason_em_").show();
+                $("#OrderRescheduleForm_Reason_em_").addClass('errorMessage');
+                $("#OrderRescheduleForm_Reason_em_").text("Please enter only alphabets, numbers, dots and space ");
+                return false;
+           
+            }
             var stDate = $('#OrderRescheduleForm_StartTime').val();
             var enDate = $('#OrderRescheduleForm_EndTime').val();
             var strtPrev="<?php echo isset($getserviceDetails['start_time'])?$getserviceDetails['start_time']:''?>";
@@ -164,6 +196,7 @@
             var endDateValuecmp = enDate1.getTime();
             if((strtPrev==stDate)&&(endprev==enDate)){
                 $("#OrderRescheduleForm_error_em_").show();
+                $("#OrderRescheduleForm_Reason_em_").hide();
                 $("#OrderRescheduleForm_error_em_").addClass('errorMessage');
                 $("#OrderRescheduleForm_error_em_").text("Please change Service Dates and then click on Reschedule");
                 return false;
@@ -173,6 +206,7 @@
             var enTimeres = enDateres1[1].split(":");
             if (Math.round(stTimeres[0]) > Math.round(enTimeres[0])) {
                 $("#OrderRescheduleForm_error_em_").show();
+                $("#OrderRescheduleForm_Reason_em_").hide();
                 $("#OrderRescheduleForm_error_em_").addClass('errorMessage');
                 $("#OrderRescheduleForm_error_em_").text("Event End Time cannot be less than Event Start Time");
                 return false;
@@ -180,6 +214,7 @@
             }
             if (startDateValuecmp > endDateValuecmp) {
             $("#OrderRescheduleForm_error_em_").show();
+            $("#OrderRescheduleForm_Reason_em_").hide();
             $("#OrderRescheduleForm_error_em_").addClass('errorMessage');
             $("#OrderRescheduleForm_error_em_").text("Event End Date cannot be less than Event Start Date");
             return false;
@@ -194,6 +229,7 @@
             if(stewardservicedate < date)
             {
                 $("#OrderRescheduleForm_StartTime_em_").show();
+                $("#OrderRescheduleForm_Reason_em_").hide();
                 $("#OrderRescheduleForm_StartTime_em_").addClass('errorMessage');
                 $("#OrderRescheduleForm_StartTime_em_").text("Event Start Time can be configured only from current date ");
                 return false;
@@ -202,12 +238,14 @@
             {
                 $("#OrderRescheduleForm_error_em_").hide();
                 $("#OrderRescheduleForm_StartTime_em_").hide();
+                $("#OrderRescheduleForm_Reason_em_").hide();
                 $("#OrderRescheduleForm_EndTime_em_").hide();
                 return true;
             }
             if(serviceEndDate < date)
             {
                 $("#OrderRescheduleForm_EndTime_em_").show();
+                $("#OrderRescheduleForm_Reason_em_").hide();
                 $("#OrderRescheduleForm_EndTime_em_").addClass('errorMessage');
                 $("#OrderRescheduleForm_EndTime_em_").text("Event End Time can be configured only from current date");
                 return false;

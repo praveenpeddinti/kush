@@ -1032,7 +1032,7 @@ class UserController extends Controller {
             error_log("####### Exception Occurred in Order Re-Scheduling ##########".$ex->getMessage());
         }
    }
-   public function actionOrderCancelManage(){error_log("------------fffffff----");
+   public function actionOrderCancelManage(){
        //$changeUserStatus = $this->kushGharService->cancelUserOrderStatus($_POST['Id']);
        //$obj = array('status' => 'error', 'data' => '', 'error' => $changeUserStatus);
        //echo CJSON::encode($obj);
@@ -1045,16 +1045,15 @@ class UserController extends Controller {
                 if ($errors != '[]') {
                     $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
                 } else
-                {error_log("--reason--1----".$rescheduleForm->Reason);
+                {
                     //if($_POST['Type']==1)
-                        $result = $this->kushGharService->rescheduleHouseCleaning('31-10-2014',$rescheduleForm->Reason,$_POST['OrderNumber']);
+                        $result = $this->kushGharService->cancelUserOrderStatus($rescheduleForm->Reason,$_POST['OrderNumber']);
                     //else if($_POST['Type']==2)
                      //   $result = $this->kushGharService->rescheduleCarWah($rescheduleForm->ServiceStartTime,$rescheduleForm->Reason,$_POST['OrderNumber']);  
                     //else if($_POST['Type']==3)
                     //    $result = $this->kushGharService->rescheduleStewards($rescheduleForm->StartTime,$rescheduleForm->EndTime,$rescheduleForm->DurationHours,$rescheduleForm->Reason,$_POST['OrderNumber']);
                     
                         $obj = array('status' => 'success', 'data' => $result, 'error' => 'Cancel Successfully.');
-                    error_log("--reason--2----".$rescheduleForm->Reason);
                     
                     $renderScript = $this->rendering($obj);
                 echo $renderScript;
@@ -1094,7 +1093,7 @@ class UserController extends Controller {
                 if ($errors != '[]') {
                     $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
                 } else
-                {error_log("--reason------".$rescheduleForm->Reason);
+                {
                     if($_POST['Type']==1)
                         $result = $this->kushGharService->rescheduleHouseCleaning($rescheduleForm->ServiceStartTime,$rescheduleForm->Reason,$_POST['OrderNumber']);
                     else if($_POST['Type']==2)

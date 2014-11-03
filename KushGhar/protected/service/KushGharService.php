@@ -643,8 +643,8 @@ class KushGharService {
     public function checkNewUserExistInCustomerTable($email) {
         return Registration::model()->checkNewUserExistInCustomerTable($email);
     }
-    public function cancelUserOrderStatus($id) {
-        return OrderDetails::model()->cancelUserOrderStatus($id);
+    public function cancelUserOrderStatus($reason,$id) {
+        return OrderDetails::model()->cancelUserOrderStatus($reason,$id);
     }
     public function getServiceType($id){
         return OrderDetails::model()->getServiceType($id);

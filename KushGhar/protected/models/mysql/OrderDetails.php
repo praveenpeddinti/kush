@@ -179,8 +179,8 @@ public function sendorderStatus($id,$val){
         }
         return $result;
     }
-    public function cancelUserOrderStatus($id){
-        $query="update KG_Order_details set status=2 where order_number=".$id;
+    public function cancelUserOrderStatus($reason,$id){
+        $query="update KG_Order_details set status=2, reason='".$reason."', update_timestamp=now() where order_number=".$id;
         $result1 = YII::app()->db->createCommand($query)->execute();
         if($result1>0)
             $result = "success"; 
@@ -192,7 +192,7 @@ public function sendorderStatus($id,$val){
     }
     public function rescheduleHouseCleaning($serviceTime,$reason,$OrderNumber){
         $query="update KG_House_cleaning_service set houseservice_start_time='".$serviceTime."' where order_number=".$OrderNumber;
-        $query1="update KG_Order_details set status=0, service_date='".$serviceTime."', reason='".$reason."' where order_number=".$OrderNumber;
+        $query1="update KG_Order_details set status=0, service_date='".$serviceTime."', reason='".$reason."', update_timestamp=now() where order_number=".$OrderNumber;
         $result = YII::app()->db->createCommand($query)->execute();
         $result1 = YII::app()->db->createCommand($query1)->execute();
         if($result>0||$result1>0)
@@ -202,7 +202,7 @@ public function sendorderStatus($id,$val){
     }
     public function rescheduleCarWah($serviceTime,$reason,$OrderNumber){
         $query="update KG_Car_cleaning_service set carservice_start_time='".$serviceTime."' where order_number=".$OrderNumber;
-        $query1="update KG_Order_details set status=0, service_date='".$serviceTime."', reason='".$reason."' where order_number=".$OrderNumber;
+        $query1="update KG_Order_details set status=0, service_date='".$serviceTime."', reason='".$reason."', update_timestamp=now() where order_number=".$OrderNumber;
         $result = YII::app()->db->createCommand($query)->execute();
         $result1 = YII::app()->db->createCommand($query1)->execute();
         if($result>0||$result1>0)
@@ -215,7 +215,7 @@ public function sendorderStatus($id,$val){
         $noOfStewards=YII::app()->db->createCommand($noOfStewardsQuery)->queryRow();
         $amt=$Duration * $noOfStewards['no_of_stewards'] * 200;
         $query="update KG_Stewards_cleaning_service set start_time='".$startTime."' , end_time='".$endTime."' ,service_hours=".$Duration." where order_number=".$OrderNumber;
-        $query1="update KG_Order_details set status=0, service_date='".$startTime."' , amount=".$amt.", reason='".$reason."' where order_number=".$OrderNumber;
+        $query1="update KG_Order_details set status=0, service_date='".$startTime."' , amount=".$amt.", reason='".$reason."', update_timestamp=now() where order_number=".$OrderNumber;
         $result = YII::app()->db->createCommand($query)->execute();
         $result1 = YII::app()->db->createCommand($query1)->execute();
         if($result>0||$result1>0)

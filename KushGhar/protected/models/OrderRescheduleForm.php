@@ -11,6 +11,7 @@ class OrderRescheduleForm extends CFormModel {
     public $EndTime;
     public $DurationHours;
     public $ServiceStartTime;
+    public $Reason;
     
     
     
@@ -22,7 +23,7 @@ class OrderRescheduleForm extends CFormModel {
              
             //array('HouseCleaning', 'required', 'message' => 'Please enter a value for {attribute}.'),
              
-            array('StartTime, EndTime, DurationHours,ServiceStartTime,ServiceType', 'safe'),
+            array('StartTime, EndTime, DurationHours,ServiceStartTime,ServiceType,Reason', 'safe'),
         );
     }
 

@@ -9,27 +9,9 @@
                                                         )); 
  echo $rescheduleForm->error($model, 'error',array('value'=>'Hide')); 
  echo $rescheduleForm->hiddenField($model,'ServiceType', array('value'=>$serviceType)); 
- echo $rescheduleForm->hiddenField($model,'OrderNumber', array('value'=>$OrderNumber));?>
- <div id="inviteSpinLoader"></div>
-     <?php if($serviceType == 3) {?>
-    <div class="row-fluid">
-        <div class=" span4">
-            <?php echo $rescheduleForm->label($model, '<abbr title="required">*</abbr> Event Start Time'); ?>
-            <?php echo $rescheduleForm->textField($model, 'StartTime', array('value'=>$getserviceDetails['start_time'] ,'onchange' => 'javascript:onChangeTime();', 'class' => 'span10','readonly'=>'true')); ?>
-            <?php echo $rescheduleForm->error($model, 'StartTime'); ?>
-        </div>
-        <div class=" span4">
-            <?php echo $rescheduleForm->label($model, '<abbr title="required">*</abbr> Event End Time'); ?>
-            <?php echo $rescheduleForm->textField($model, 'EndTime', array('value'=>$getserviceDetails['end_time'],'onchange' => 'javascript:onChangeTime();','class' => 'span10','readonly'=>'true')); ?>
-            <?php echo $rescheduleForm->error($model, 'EndTime'); ?>
-        </div>
-        <div class=" span4">
-            <?php echo $rescheduleForm->label($model, 'DurationHour(s)'); ?>
-            <?php echo $rescheduleForm->textField($model, 'DurationHours', array('value'=>$getserviceDetails['service_hours'],'class' => 'span4', 'readonly'=>'true')); ?>
-
-        </div> 
-        
-    </div>
+ echo $rescheduleForm->hiddenField($model,'OrderNumber', array('value'=>$OrderNumber));
+if($serviceType == 3) {?>
+    
 <div class="row-fluid">
     <div class=" span12">
         <?php $model->Reason=$getserviceDetails['reason'];?>
@@ -41,13 +23,7 @@
 
    </div>
 <?php } else if($serviceType==1) { ?>
-<div class="row-fluid">
-    <div class="span10">
-    <label><abbr title="required">*</abbr> Service Date</label>
-    <?php  echo $rescheduleForm->textField($model, 'ServiceStartTime', array('value'=>$getserviceDetails['houseservice_start_time'],'class' => 'span4','readOnly'=>'true')); ?>
-    <?php echo $rescheduleForm->error($model, 'ServiceStartTime'); ?>
-</div>
-    </div>
+
 <div class="row-fluid">
     <div class=" span12">
         <?php $model->Reason=$getserviceDetails['reason'];?>
@@ -59,13 +35,7 @@
 
    </div>
     <?php } else if($serviceType==2){ ?>
-<div class="row-fluid">
-    <div class="span10">
-    <label><abbr title="required">*</abbr> Service Date</label>
-    <?php  echo $rescheduleForm->textField($model, 'ServiceStartTime', array('value'=>$getserviceDetails['carservice_start_time'],'class' => 'span4','readOnly'=>'true')); ?>
-    <?php echo $rescheduleForm->error($model, 'ServiceStartTime'); ?>
-</div>
-    </div>
+
 <div class="row-fluid">
     <div class=" span12">
         <?php $model->Reason=$getserviceDetails['reason'];?>
@@ -84,16 +54,14 @@
 <script type="text/javascript">
     function reschedule(){
         if(validate()){
-            scrollPleaseWait("inviteSpinLoader","reschedule-form");
-           // $("#reschedule").attr('disabled','disabled');  
             scrollPleaseWait("inviteSpinLoader","invite-form")
             var data = $("#reschedule-form").serialize();
             data+= '&Type=' + $("#OrderRescheduleForm_ServiceType").val()+'&OrderNumber='+$("#OrderRescheduleForm_OrderNumber").val();
-            ajaxRequest('/user/orderrescheduledate', data, rescheduleHandler)
+            alert("--------"+data);
+            ajaxRequest('/user/ordercancelmanage', data, rescheduleHandler)
     }
     }
     function validate(){
-        var date=new Date;
            if(($("#OrderRescheduleForm_ServiceType").val()==1)||($("#OrderRescheduleForm_ServiceType").val()==2))
         {
             if (($('#OrderRescheduleForm_ServiceStartTime').val() == '')) {
@@ -119,6 +87,7 @@
                 $("#OrderRescheduleForm_ServiceStartTime_em_").hide();
                 return true;
             }
+            var date=new Date.today().addDays(2);
             var sdate=$("#OrderRescheduleForm_ServiceStartTime").val();
            var sdatee=sdate.split("-");
             var servicedate=new Date(sdatee[2],sdatee[1]-1,sdatee[0]);
@@ -184,20 +153,6 @@
             $("#OrderRescheduleForm_error_em_").text("Event End Date cannot be less than Event Start Date");
             return false;
             }
-            
-            var stDateres1 = stDate.split(" ");
-            var enDateres1 = enDate.split(" ");
-            var sTime = stDateres1[0].split("-");
-            var eTime = enDateres1[0].split("-");
-            var stewardservicedate=new Date(sTime[2],sTime[1]-1,sTime[0],stTimeres[0],stTimeres[1],date.getSeconds());
-            var serviceEndDate = new Date(eTime[2],eTime[1]-1,eTime[0],enTimeres[0],enTimeres[1],date.getSeconds());
-            if(stewardservicedate < date)
-            {
-                $("#OrderRescheduleForm_StartTime_em_").show();
-                $("#OrderRescheduleForm_StartTime_em_").addClass('errorMessage');
-                $("#OrderRescheduleForm_StartTime_em_").text("Event Start Time can be configured only from current date ");
-                return false;
-            }
             else
             {
                 $("#OrderRescheduleForm_error_em_").hide();
@@ -205,28 +160,38 @@
                 $("#OrderRescheduleForm_EndTime_em_").hide();
                 return true;
             }
+            var stDateres1 = stDate.split(" ");
+            var enDateres1 = enDate.split(" ");
+            var sTime = stDateres1[0].split("-");
+            var eTime = enDateres1[0].split("-");
+            var stewardservicedate=new Date(sTime[2],sTime[1]-1,sTime[0]);
+            var serviceEndDate = new Date(eTime[2],eTime[1]-1,eTime[0]);
+            /*if(stewardservicedate < date)
+            {
+                $("#OrderRescheduleForm_StartTime_em_").show();
+                $("#OrderRescheduleForm_StartTime_em_").addClass('errorMessage');
+                $("#OrderRescheduleForm_StartTime_em_").text("Event Start Time can only be configured post 2 days from current date ");
+                return false;
+            }
+            
             if(serviceEndDate < date)
             {
                 $("#OrderRescheduleForm_EndTime_em_").show();
                 $("#OrderRescheduleForm_EndTime_em_").addClass('errorMessage');
-                $("#OrderRescheduleForm_EndTime_em_").text("Event End Time can be configured only from current date");
+                $("#OrderRescheduleForm_EndTime_em_").text("Event End Time can only be configured post 2 days from current date");
                 return false;
-            }
-            
-            
+            }*/
             
         }
     }
     function rescheduleHandler(data)
-    {  scrollPleaseWaitClose('inviteSpinLoader');
-        if(data.status =='success'){
-            
+    { alert("-------resccc-----"+data.toSource());
+        if(data.status =='success'){alert("---suc----"+data.status);
             $("#OrderRescheduleForm_error_em_").show(1000);
                     $("#OrderRescheduleForm_error_em_").removeClass('errorMessage');
                     $("#OrderRescheduleForm_error_em_").addClass('alert alert-success');
                     $("#OrderRescheduleForm_error_em_").text(data.error);
                     $("#OrderRescheduleForm_error_em_").fadeOut(3000);
-                   // $("#reschedule").removeAttr('disabled');alert("Enabled========");
                     setTimeout(function() {
                         $('#myModalforgot1').modal('hide');
                     }, 3000);   

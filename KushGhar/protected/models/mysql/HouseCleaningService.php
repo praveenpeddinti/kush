@@ -248,7 +248,6 @@ class HouseCleaningService extends CActiveRecord {
         try {
             $query = "SELECT * FROM KG_Order_details WHERE CustId = $Id and ServiceId!='' ORDER BY Id ASC";
             $result = YII::app()->db->createCommand($query)->queryAll();
-            
         } catch (Exception $ex) {
             error_log("getOrderDetails Exception occured==" . $ex->getMessage());
         }
@@ -352,7 +351,19 @@ class HouseCleaningService extends CActiveRecord {
         }
         return $result;
     }
-        
+    public function getOrderDetailsCronJob() {
+        try {
+            $query = "select o.CustId,o.ServiceId,o.order_number,MAX(o.service_date) as Servicedate,c.customer_id,c.email_address from KG_Order_details o,KG_Customer c where o.CustId=c.customer_id and o.ServiceId=1 and o.ServiceId!='null' group by o.CustId order by CustId DESC";
+           $result = YII::app()->db->createCommand($query)->queryAll();
+           
+           //error_log("--model---------".print_r($result,true));
+           
+            
+        } catch (Exception $ex) {
+            error_log("getOrderDetails Exception occured==" . $ex->getMessage());
+        }
+        return $result;
+    }    
     
 
 }

@@ -734,8 +734,8 @@ class AdminController extends Controller {
                 $startLimit = ((int) $_GET['userDetails_page'] - 1) * (int) $_GET['pageSize'];
                 $endLimit = $_GET['pageSize'];
                 $paymentDetails = $this->kushGharService->getAllPayments($startLimit, $endLimit);
-                $renderHtml = $this->renderPartial('viewPayments', array('userDetails' => $paymentDetails, 'totalCount' => $totaluser), true);
-                $obj = array('status' => 'success', 'html' => $renderHtml, 'totalCount' => $totaluser);
+                $renderHtml = $this->renderPartial('viewPayments', array('userDetails' => $paymentDetails, 'totalCount' => $totaluser['count']), true);
+                $obj = array('status' => 'success', 'html' => $renderHtml, 'totalCount' => $totaluser['count']);
                 $renderScript = $this->rendering($obj);
                 echo $renderScript;
             }

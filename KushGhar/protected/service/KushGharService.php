@@ -649,14 +649,14 @@ class KushGharService {
     public function getServiceType($id){
         return OrderDetails::model()->getServiceType($id);
     }
-    public function rescheduleHouseCleaning($serviceTime,$OrderNumber){
-        return OrderDetails::model()->rescheduleHouseCleaning($serviceTime,$OrderNumber);
+    public function rescheduleHouseCleaning($serviceTime,$reason,$OrderNumber){
+        return OrderDetails::model()->rescheduleHouseCleaning($serviceTime,$reason,$OrderNumber);
     }
-    public function rescheduleCarWah($serviceTime,$OrderNumber){
-        return OrderDetails::model()->rescheduleCarWah($serviceTime,$OrderNumber);
+    public function rescheduleCarWah($serviceTime,$reason,$OrderNumber){
+        return OrderDetails::model()->rescheduleCarWah($serviceTime,$reason,$OrderNumber);
     }
-    public function rescheduleStewards($startTime,$endTime,$duration,$OrderNumber){
-        return OrderDetails::model()->rescheduleStewards($startTime,$endTime,$duration,$OrderNumber);
+    public function rescheduleStewards($startTime,$endTime,$duration,$reason,$OrderNumber){
+        return OrderDetails::model()->rescheduleStewards($startTime,$endTime,$duration,$reason,$OrderNumber);
     }
     public function getServiceDetails($ordernumber,$type){
         return OrderDetails::model()->getServiceDetails($ordernumber,$type);
@@ -852,6 +852,11 @@ class KushGharService {
     }
     public function getStewardsDetailsByOrderNumber($orderNumber){
         return StewardsCleaningService::model()->getStewardsDetailsByOrderNumber($orderNumber);
+    }
+    
+    /*praveen cronjobs*/
+    public function getOrderDetailsCronJob() {
+        return HouseCleaningService::model()->getOrderDetailsCronJob();
     }
     
 } ?>

@@ -18,17 +18,12 @@ return array(
         'application.models.*',
         'application.models.mysql.*',
         'application.components.*',
-//                'application.renderscripts.*',
-
+        'application.extensions.*',
         'application.service.*',
         'application.renderscript.*',        
         'application.beans.*',
-        'application.mail.*',
-
-     
-
-   
-
+        //'ext.yii-mail.YiiMailMessage',    
+         
 	),
 
 	'modules'=>array(
@@ -46,7 +41,12 @@ return array(
 	// application components
 	'components'=>array(
             
-             
+             'mail' => array(
+             'class' => 'ext.yii-mail.YiiMail',
+             'viewPath' => 'application.views.mail',
+             'logging' => true,
+             'dryRun' => false
+             ),
         
 
 		'theme'=>'bootstrap', // requires you to copy the theme under your themes directory
@@ -56,12 +56,7 @@ return array(
                 'bootstrap.gii',
             ),
         ),
-    ),
-                 'bootstrap'=>array(
-        'class'=>'ext.bootstrap.components.Bootstrap', 
-        'responsiveCss'=>true// assuming you extracted bootstrap under extensions
-    ),
-            
+    ),  
 		// uncomment the following to enable URLs in path-format
 		
 		'urlManager'=>array(
@@ -81,12 +76,11 @@ return array(
 		// uncomment the following to use a MySQL database
 		
 		'db'=>array(
-		'connectionString' => 'mysql:host=10.10.73.103;dbname=CoActive',
+			'connectionString' => 'mysql:host=10.10.73.101;dbname=Kushghar',
 			'emulatePrepare' => true,
 			'username' => 'root',
 			'password' => 'techo2',
 			'charset' => 'utf8',
-		
 		),
 		
 
@@ -113,8 +107,5 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
-                
- 'HC21UserId'=>2
-//                'SERVER_URL'=>'http://115.248.17.86',
-	),
+         ),
 );

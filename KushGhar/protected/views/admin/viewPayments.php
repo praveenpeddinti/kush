@@ -1,5 +1,5 @@
 
-<?php if ($totalCount['count'] <= 0) { ?>
+<?php if ($totalCount <= 0) { ?>
                                         <tr id="noRecordsTR">
                                             <td colspan="6">
                                                 <span class="text-error"> <b>No records found</b></span>

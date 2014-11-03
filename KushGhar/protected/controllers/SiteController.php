@@ -6,6 +6,16 @@ class SiteController extends Controller {
      * This is the default action index call our site
     */
     public function actionIndex() {
+        $today = date("d-m-Y"); 
+        $t="29-10-2014";
+        $date1=date_create("2013-03-15");
+        $date2=date_create("2013-12-12");
+        $diff=date_diff($date1,$date2);
+        $rrr=$diff->format("%R%a days");
+        if($t==$today){
+        error_log($t."--if---date=====".$rrr);}else{
+            error_log($t."--else---date=====".$today);
+        }
         $this->session['UserType']='';
         $this->pageTitle="KushGhar-Home";
         $getServices = $this->kushGharService->getFeedbacksTotal5();
@@ -639,6 +649,40 @@ public function actionDocUpload() {
             error_log("#########Exception Occurred########$ex->getMessage()");
         }
         return $originalPath;
+    }
+    
+    /**
+     * This is the default action index call our site
+    */
+    public function actionCronjobs() {
+        
+        $orderDetails = $this->kushGharService->getOrderDetailsCronJob();
+                
+        //error_log("---------".print_r($orderDetails,true));
+        foreach($orderDetails as $rows){
+            $today = date("d-m-Y");
+            $service_date=$rows['Servicedate'];
+            $date1=date_create("$today");
+            $date2=date_create("$service_date");
+            $diff=date_diff($date2,$date1);
+            $rrr=(int)$diff->format("%R%a");
+            if($rrr==30){
+            error_log("------------if--------".$rows['email_address']."-------$rrr");
+            }else{
+                error_log("----------else----------".$rows['email_address']."-------$rrr");
+            }
+        }
+        /*$today = date("d-m-Y"); 
+        $t="29-10-2014";
+        $date1=date_create("2013-03-15");
+        $date2=date_create("2013-12-12");
+        $diff=date_diff($date1,$date2);
+        $rrr=$diff->format("%R%a days");
+        if($t==$today){
+        error_log($t."--if---date=ggg====".$rrr);}else{
+            error_log($t."--else---dateggg=====".$today);
+        }*/
+        
     }
 
 }

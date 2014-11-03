@@ -190,9 +190,9 @@ public function sendorderStatus($id,$val){
         $result = YII::app()->db->createCommand($query)->queryRow();
         return $result;
     }
-    public function rescheduleHouseCleaning($serviceTime,$OrderNumber){
+    public function rescheduleHouseCleaning($serviceTime,$reason,$OrderNumber){
         $query="update KG_House_cleaning_service set houseservice_start_time='".$serviceTime."' where order_number=".$OrderNumber;
-        $query1="update KG_Order_details set status=0, service_date='".$serviceTime."' where order_number=".$OrderNumber;
+        $query1="update KG_Order_details set status=0, service_date='".$serviceTime."', reason='".$reason."' where order_number=".$OrderNumber;
         $result = YII::app()->db->createCommand($query)->execute();
         $result1 = YII::app()->db->createCommand($query1)->execute();
         if($result>0||$result1>0)
@@ -200,9 +200,9 @@ public function sendorderStatus($id,$val){
         else 
             return "failure";
     }
-    public function rescheduleCarWah($serviceTime,$OrderNumber){
+    public function rescheduleCarWah($serviceTime,$reason,$OrderNumber){
         $query="update KG_Car_cleaning_service set carservice_start_time='".$serviceTime."' where order_number=".$OrderNumber;
-        $query1="update KG_Order_details set status=0, service_date='".$serviceTime."' where order_number=".$OrderNumber;
+        $query1="update KG_Order_details set status=0, service_date='".$serviceTime."', reason='".$reason."' where order_number=".$OrderNumber;
         $result = YII::app()->db->createCommand($query)->execute();
         $result1 = YII::app()->db->createCommand($query1)->execute();
         if($result>0||$result1>0)
@@ -210,12 +210,12 @@ public function sendorderStatus($id,$val){
         else 
             return "failure";
     }
-    public function rescheduleStewards($startTime,$endTime,$Duration,$OrderNumber){
+    public function rescheduleStewards($startTime,$endTime,$Duration,$reason,$OrderNumber){
         $noOfStewardsQuery="select no_of_stewards from Kushghar.KG_Stewards_cleaning_service where order_number=".$OrderNumber;
         $noOfStewards=YII::app()->db->createCommand($noOfStewardsQuery)->queryRow();
         $amt=$Duration * $noOfStewards['no_of_stewards'] * 200;
         $query="update KG_Stewards_cleaning_service set start_time='".$startTime."' , end_time='".$endTime."' ,service_hours=".$Duration." where order_number=".$OrderNumber;
-        $query1="update KG_Order_details set status=0, service_date='".$startTime."' , amount=".$amt." where order_number=".$OrderNumber;
+        $query1="update KG_Order_details set status=0, service_date='".$startTime."' , amount=".$amt.", reason='".$reason."' where order_number=".$OrderNumber;
         $result = YII::app()->db->createCommand($query)->execute();
         $result1 = YII::app()->db->createCommand($query1)->execute();
         if($result>0||$result1>0)
@@ -227,13 +227,13 @@ public function sendorderStatus($id,$val){
         
         try{
             if($type==1){
-                $query="SELECT * FROM KG_House_cleaning_service where order_number=".$ordernumber;
+                $query="SELECT h.*,o.reason FROM KG_House_cleaning_service h,KG_Order_details o where h.order_number=o.order_number and h.order_number=".$ordernumber;
             }
             else if($type==2){
-                $query="SELECT * FROM KG_Car_cleaning_service where order_number=".$ordernumber;
+                $query="SELECT c.*,o.reason FROM KG_Car_cleaning_service c,KG_Order_details o where c.order_number=o.order_number and c.order_number=".$ordernumber;
             }
             else if($type==3){
-                $query="SELECT * FROM KG_Stewards_cleaning_service where order_number=".$ordernumber;
+                $query="SELECT s.*,o.reason FROM KG_Stewards_cleaning_service s,KG_Order_details o where s.order_number=o.order_number and s.order_number=".$ordernumber;
             }
             $result = YII::app()->db->createCommand($query)->queryRow();
         }

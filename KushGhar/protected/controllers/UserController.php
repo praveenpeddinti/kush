@@ -1017,10 +1017,57 @@ class UserController extends Controller {
             echo $exc->getTraceAsString();
         }
    }
-   public function actionOrderCancelManage(){
-       $changeUserStatus = $this->kushGharService->cancelUserOrderStatus($_POST['Id']);
-       $obj = array('status' => 'error', 'data' => '', 'error' => $changeUserStatus);
-       echo CJSON::encode($obj);
+   public function actionOrderCancel(){
+       try{
+           $Model = new OrderRescheduleForm;
+            $id=$_POST['Id'];
+            $getServiceType = $this->kushGharService->getServiceType($id);
+            $type=$getServiceType['ServiceId'];
+            $getserviceDetails=$this->kushGharService->getServiceDetails($id,$type);
+            $renderHtml=  $this->renderPartial('ordercancel',array("model"=>$Model, "serviceType" => $type,"OrderNumber"=>$id,"getserviceDetails"=>$getserviceDetails),true);
+            $obj=array('status'=>'success','html'=>$renderHtml);
+            $renderScript=  $this->rendering($obj);
+            echo $renderScript;
+        } catch (Exception $ex) {
+            error_log("####### Exception Occurred in Order Re-Scheduling ##########".$ex->getMessage());
+        }
+   }
+   public function actionOrderCancelManage(){error_log("------------fffffff----");
+       //$changeUserStatus = $this->kushGharService->cancelUserOrderStatus($_POST['Id']);
+       //$obj = array('status' => 'error', 'data' => '', 'error' => $changeUserStatus);
+       //echo CJSON::encode($obj);
+   $rescheduleForm = new OrderRescheduleForm;
+       $request = yii::app()->getRequest();
+       $formName = $request->getParam('OrderRescheduleForm');
+       if ($formName != '') {
+                $rescheduleForm->attributes = $request->getParam('OrderRescheduleForm');
+                $errors = CActiveForm::validate($rescheduleForm);
+                if ($errors != '[]') {
+                    $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
+                } else
+                {error_log("--reason--1----".$rescheduleForm->Reason);
+                    //if($_POST['Type']==1)
+                        $result = $this->kushGharService->rescheduleHouseCleaning('31-10-2014',$rescheduleForm->Reason,$_POST['OrderNumber']);
+                    //else if($_POST['Type']==2)
+                     //   $result = $this->kushGharService->rescheduleCarWah($rescheduleForm->ServiceStartTime,$rescheduleForm->Reason,$_POST['OrderNumber']);  
+                    //else if($_POST['Type']==3)
+                    //    $result = $this->kushGharService->rescheduleStewards($rescheduleForm->StartTime,$rescheduleForm->EndTime,$rescheduleForm->DurationHours,$rescheduleForm->Reason,$_POST['OrderNumber']);
+                    
+                        $obj = array('status' => 'success', 'data' => $result, 'error' => 'Cancel Successfully.');
+                    error_log("--reason--2----".$rescheduleForm->Reason);
+                    
+                    $renderScript = $this->rendering($obj);
+                echo $renderScript;
+                }
+            }
+            else
+            {
+                $errors = array("RescheduleForm_error" => 'Cancel2 Failed.');
+                $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
+            }
+        
+       
+       
    }
    public function actionOrderReschedule(){
        try{
@@ -1047,13 +1094,13 @@ class UserController extends Controller {
                 if ($errors != '[]') {
                     $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
                 } else
-                {
+                {error_log("--reason------".$rescheduleForm->Reason);
                     if($_POST['Type']==1)
-                        $result = $this->kushGharService->rescheduleHouseCleaning($rescheduleForm->ServiceStartTime,$_POST['OrderNumber']);
+                        $result = $this->kushGharService->rescheduleHouseCleaning($rescheduleForm->ServiceStartTime,$rescheduleForm->Reason,$_POST['OrderNumber']);
                     else if($_POST['Type']==2)
-                        $result = $this->kushGharService->rescheduleCarWah($rescheduleForm->ServiceStartTime,$_POST['OrderNumber']);  
+                        $result = $this->kushGharService->rescheduleCarWah($rescheduleForm->ServiceStartTime,$rescheduleForm->Reason,$_POST['OrderNumber']);  
                     else if($_POST['Type']==3)
-                        $result = $this->kushGharService->rescheduleStewards($rescheduleForm->StartTime,$rescheduleForm->EndTime,$rescheduleForm->DurationHours,$_POST['OrderNumber']);
+                        $result = $this->kushGharService->rescheduleStewards($rescheduleForm->StartTime,$rescheduleForm->EndTime,$rescheduleForm->DurationHours,$rescheduleForm->Reason,$_POST['OrderNumber']);
                     if($result=='success')
                     {
                         $cId = $this->session['UserId'];
@@ -1222,5 +1269,5 @@ class UserController extends Controller {
         } catch (Exception $ex) {
             error_log("######### Exception Occurred##########".$ex->getMessage());
         }
-   }
+   }   
 }

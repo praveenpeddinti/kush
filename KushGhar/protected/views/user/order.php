@@ -142,7 +142,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h3 id="myModalLabel">Re-Schedule Order</h3>
+                                <h3 id="myModalLabel22">Re-Schedule Order</h3>
                             </div>
                             <div class="modal-body" id="modelBodyDiv1" style="padding:15px;">
                             
@@ -256,7 +256,7 @@ function getCollectionDataWithPagination(URL,CollectionName, MainDiv, CurrentPag
                     callback();
                 }
     }
-    function statusChangeUser(rowNos) {
+    /*function statusChangeUser(rowNos) {
         var statusData = 'Are you sure want to cancel your order?';
         var r = confirm(statusData);
         if (r == true) {
@@ -265,7 +265,7 @@ function getCollectionDataWithPagination(URL,CollectionName, MainDiv, CurrentPag
             $.ajax({
                 type: 'POST',
                 dataType: 'json',
-                url: '<?php echo Yii::app()->createAbsoluteUrl("/user/ordercancelmanage"); ?>',
+                url: '<?php //echo Yii::app()->createAbsoluteUrl("/user/ordercancelmanage"); ?>',
                 data: data,
                 success: function(data) {
                     //activeFormHandler(data, status, rowNos);
@@ -275,6 +275,31 @@ function getCollectionDataWithPagination(URL,CollectionName, MainDiv, CurrentPag
                     $("#message").fadeOut(6000, "");
                     $('#row_' + rowNos).remove();
                     getCollectionDataWithPagination('/user/newOrder','userDetails', 'abusedWords_tbody',1,5,'','', '');
+                },
+                error: function(data) { // if error occured
+                    alert("Error occured.please try again");
+
+                }
+            });
+        } 
+    }*/
+    function statusChangeUser(rowNos) {
+        var statusData = 'Are you sure want to cancel your order?';
+        var r = confirm(statusData);
+        if (r == true) {
+            var data = "Id=" + rowNos;
+            //alert(data);
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: '<?php echo Yii::app()->createAbsoluteUrl("/user/ordercancel"); ?>',
+                data: data,
+                success: function(data) {
+                    $("#myModalforgot1").modal({ backdrop: 'static', keyboard: false,show:false });
+                    $("#modelBodyDiv1").html(data.html);
+                    $("#myModalLabel22").text("Cancel");
+                    
+                    $('#myModalforgot1').modal('show');
                 },
                 error: function(data) { // if error occured
                     alert("Error occured.please try again");

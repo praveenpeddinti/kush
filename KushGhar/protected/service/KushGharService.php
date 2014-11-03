@@ -858,5 +858,12 @@ class KushGharService {
     public function getOrderDetailsCronJob() {
         return HouseCleaningService::model()->getOrderDetailsCronJob();
     }
+     public function GetAllUserExcelData(){
+        return InviteUser::model()->GetAllUserExcelData();
+    }
+    public function getUserExcelDataCount(){
+        return InviteUser::model()->getUserExcelDataCount();
+    }
+
     
 } ?>

@@ -478,6 +478,24 @@ class InviteUser extends CActiveRecord {
         }
         return $result;
     }
+    public function GetAllUserExcelData(){
+        try{
+            $query="select customer_id as UserId,CONCAT_WS(' ',first_name,middle_name,last_name) as UserName,email_address,phone,create_timestamp as RegisteredOn from KG_Customer";
+            $result = Yii::app()->db->createCommand($query)->queryAll();
+        } catch (Exception $ex) {
+            error_log("#########Exception raised in get Al user data for excel########".$ex->getMessage());
+        }
+        return $result;
+    }
+    public function getUserExcelDataCount(){
+        try{
+            $query="select count(*) as count from KG_Customer";
+            $result = Yii::app()->db->createCommand($query)->queryRow();
+        } catch (Exception $ex) {
+            error_log("#######Exception raised in Get user count for excel data#######".$ex->getMessage());
+        }
+        return $result['count'];
+    }
 }
 
 ?>

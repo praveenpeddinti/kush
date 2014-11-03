@@ -60,6 +60,16 @@
                                         <input type="button" class="btn btn-primary" name="Search" value="Search" onclick="search();"/>
                                     </div>
                                 </div>
+                                <div class="row-fluid">
+                                    <div class="span12">
+                                    <div class="span10">
+                                        &nbsp;
+                                    </div>
+                                        <div class="span2">
+                                            <input type="button" class="btn btn-primary" name="Export" value="Export" onclick="exportxlsCLick();"/>
+                                        </div>
+                                    </div>
+                                </div>
                                <div class="table-responsive"> <table id="userTable" class="table table-hover usermanagement_table">
 
                                     <thead><tr><th>Name</th><th>Email Address</th><th>Phone</th><th>Location</th><th>City</th><th>Status</th><th>Actions</th></tr></thead>
@@ -217,6 +227,9 @@
             if(callback!=''){
                 callback();
         }
+    }
+    function exportxlsCLick(){
+        window.location.href = "/admin/generateXLS";
     }
     function search(){
        // alert("enter===="+$("#orderNo").val());

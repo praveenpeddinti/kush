@@ -318,6 +318,7 @@ function getCollectionDataWithPagination(URL,CollectionName, MainDiv, CurrentPag
                 success: function(data) {
                     $("#myModalforgot1").modal({ backdrop: 'static', keyboard: false,show:false });
                     $("#modelBodyDiv1").html(data.html);
+                    $("#myModalLabel22").text("Reschedule");
                     $('#myModalforgot1').modal('show');
                 },
                 error: function(data) { 

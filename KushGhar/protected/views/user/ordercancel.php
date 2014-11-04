@@ -49,7 +49,7 @@ if($serviceType == 3) {?>
 <?php }
  $this->endWidget(); ?>
          <div style="text-align: right">
-             <?php echo CHtml::Button('Reschedule',array('id' => 'reschedule','class' => 'btn btn-primary','onclick'=>'reschedule();')); ?>
+             <?php echo CHtml::Button('Cancel',array('id' => 'reschedule','class' => 'btn btn-primary','onclick'=>'reschedule();')); ?>
          </div>
 <script type="text/javascript">
     function reschedule(){

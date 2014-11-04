@@ -256,7 +256,59 @@ class AdminController extends Controller {
         }
     }
 
-    public function actionOrderStatus() {
+    
+    
+    /*
+     * @praveen reason textarea added in cancel the order
+     */
+    public function actionOrderCancel(){
+       try{
+           $Model = new OrderRescheduleForm;
+            $id=$_POST['ONo'];
+            $getServiceType = $this->kushGharService->getServiceType($id);
+            $type=$getServiceType['ServiceId'];
+            $rowNos=$getServiceType['id'];
+            $getserviceDetails=$this->kushGharService->getServiceDetails($id,$type);
+            $renderHtml=  $this->renderPartial('ordercancel',array("model"=>$Model, "serviceType" => $type,"OrderNumber"=>$id,"getserviceDetails"=>$getserviceDetails,"rowNo"=>$rowNos),true);
+            $obj=array('status'=>'success','html'=>$renderHtml);
+            $renderScript=  $this->rendering($obj);
+            echo $renderScript;
+        } catch (Exception $ex) {
+            error_log("####### Exception Occurred in Order Re-Scheduling ##########".$ex->getMessage());
+        }
+   }
+   
+   public function actionOrderStatus(){
+       //oldcode$changeUserStatus = $this->kushGharService->cancelUserOrderStatus($_POST['Id']);
+       //$obj = array('status' => 'error', 'data' => '', 'error' => $changeUserStatus);
+       //echo CJSON::encode($obj);
+   $rescheduleForm = new OrderRescheduleForm;
+       $request = yii::app()->getRequest();
+       $formName = $request->getParam('OrderRescheduleForm');
+       if ($formName != '') {
+                $rescheduleForm->attributes = $request->getParam('OrderRescheduleForm');
+                $errors = CActiveForm::validate($rescheduleForm);
+                if ($errors != '[]') {
+                    $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
+                } else
+                {
+                    $result = $this->kushGharService->cancelUserOrderStatus($rescheduleForm->Reason,$_POST['OrderNumber']);
+                    $obj = array('status' => 'success', 'data' => $_POST['rowNo'], 'error' => 'Cancel Successfully.');
+                    
+                    $renderScript = $this->rendering($obj);
+                echo $renderScript;
+                }
+            }
+            else
+            {
+                $errors = array("RescheduleForm_error" => 'Cancel2 Failed.');
+                $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
+            }
+        
+       
+       
+   }
+    /*public function actionOrderStatus() {
         if ($_POST['value'] == 'Open') {
             $status = 0;
         }
@@ -272,7 +324,7 @@ class AdminController extends Controller {
         $changeUserStatus = $this->kushGharService->sendorderStatus($_POST['Id'], $status);
         $obj = array('status' => 'error', 'data' => '', 'error' => $changeUserStatus);
         echo CJSON::encode($obj);
-    }
+    }*/
 
     public function actionViewData() {
         try {

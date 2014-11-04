@@ -91,7 +91,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h3 id="myModalLabel">Schedule the Order</h3>
+                                <h3 id="myModalLabel22">Schedule the Order</h3>
                             </div>
                             <div class="modal-body" id="myModalOrderScheduleDiv" style="padding:15px;">
                             </div>
@@ -153,13 +153,13 @@
 </div>
 
 <script type="text/javascript">
-    function orderAction(id2,inviteStatus,obj){
+    function orderAction(ONo,id2,inviteStatus,obj){
         if(obj.value=="Cancel")
             var r=confirm("Are you sure want to cancel the order");
         else 
             r=true;
         if(r==true) {
-            inviteUser(Number(id2), Number(inviteStatus),obj.value);
+            inviteUser(Number(id2), Number(inviteStatus),obj.value,Number(ONo));
         }
     }
 
@@ -264,8 +264,8 @@
                 }
             });
     }
-    function inviteUser(rowNos, status,value) {
-        var data = "Id=" + rowNos + "&status=" + status+"&value="+value;
+    function inviteUser(rowNos, status,value,ONo) {
+        var data = "Id=" + rowNos + "&status=" + status+"&value="+value+"&ONo="+ONo;
            
           if(value=='Close'){
               $.ajax({
@@ -303,11 +303,11 @@
                 }
             });
         }
-        else{
-              $.ajax({
+        else{alert(data+"===");
+              /*$.ajax({
                 type: 'POST',
                 dataType: 'json',
-                url: '<?php echo Yii::app()->createAbsoluteUrl("/admin/orderStatus"); ?>',
+                url: '<?php //echo Yii::app()->createAbsoluteUrl("/admin/orderStatus"); ?>',
                 data: data,
                 success: function(data) {
                     //scrollPleaseWaitClose('InviteInfoSpinLoader');
@@ -320,10 +320,30 @@
                 },
                 error: function(data) { // if error occured
                 }
+            });*/
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: '<?php echo Yii::app()->createAbsoluteUrl("/admin/orderCancel"); ?>',
+                data: data,
+                success: function(data) {
+                    $("#myModalOrderSchedule").modal({ backdrop: 'static', keyboard: false,show:false });
+                    $("#myModalOrderScheduleDiv").html(data.html);
+                    $("#myModalLabel22").text("Cancel the Order");
+                    
+                    $('#myModalOrderSchedule').modal('show');
+                    
+                },
+                error: function(data) { // if error occured
+                    alert("Error occured.please try again");
+
+                }
             });
             }
+    
+    
     }
-    function activeFormHandler2(data, status, rowNos,value) {
+    function activeFormHandler2(data, status, rowNos,value) {alert("----enter handler--1--"+data.status+"==2="+status+"==3=="+rowNos+"==4=="+value);
         if (value == 'Schedule') {
             $('#status_' + rowNos).text('Schedule');
         } else if (value == 'Cancel') {

@@ -14,7 +14,9 @@ $address;
      $addresscity=$customerAddressDetails['address_city'];
   $address=$addressline1.$addressline2.$addresscity;
 ?>
+<div id="inviteSpinLoader"></div>
 <div id="errormessage"></div>
+<form id='order-scheduleform'>
 <input type="hidden" value="<?php echo $id ?>" id="rowId">
 <table border="0">
     <tr><th colspan="3"><h3 align="left">Customer Details</h3></th></tr>
@@ -84,6 +86,7 @@ $address;
     </tr>
 </table>
 <input type="button" class="btn btn-primary" value="Schedule" onclick="ScheduleClick();">
+</form>
 <script type="text/javascript">
     $(document).ready(function() {
     $('#multiple_vendors').change(function(){
@@ -107,6 +110,7 @@ function ScheduleClick(){
     var Amount = <?php echo $OrderDetails['amount']; ?>;
     
     if(validate()){
+        scrollPleaseWait("inviteSpinLoader","order-scheduleform");
     var data = "Id=" + $("#rowId").val() + "&vendorVals=" + $("#VendorValues").val()+"&orderNo="+orderNo+"&CustId="+CustId+"&ServiceId="+ServiceId+"&Amount=" +Amount;
     $.ajax({
                 type: 'POST',

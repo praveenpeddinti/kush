@@ -675,7 +675,36 @@ class AdminController extends Controller {
         }
 
         $changeUserStatus = $this->kushGharService->sendorderScheduleStatus($_POST['Id'], $status, $_POST['vendorVals']);
-        $storeInvoiceOrder = $this->kushGharService->storeInvoiceDetails($_POST['CustId'], $_POST['ServiceId'], $_POST['orderNo'], $_POST['Amount'], $invoiceNumber);
+        $storeInvoiceOrder = $this->kushGharService->storeInvoiceDetails($_POST['CustId'], $_POST['ServiceId'], $_POST['orderNo'], $_POST['Amount'], $invoiceNumber);      
+        //Mailing functionality
+        $orderDetails = $this->kushGharService->getOrderDetailsById($_POST['Id']);
+        $customerDetails=  $this->kushGharService->getCustomerDetails($orderDetails['CustId']); 
+        $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($orderDetails['CustId']);
+        $to1 = $customerDetails['email_address'];
+        $subject1 =$orderDetails['order_number']. " Order Scheduled";
+        $Logo = YII::app()->params['SERVER_URL'] . "/images/color_logo.png";
+        $employerEmail = "no-reply@kushghar.com";
+        $messageview1="orderschedulemessage";
+        $params1 = array("Logo" => $Logo, "orderDetails" => $orderDetails,"Vendors"=>$_POST['vendorVals']);
+        $sendMailToUser=new CommonUtility;
+        $sendMailToUser->actionSendmail($messageview1,$params1, $subject1, $to1,$employerEmail);
+        /*
+        * Vendor mailing details
+        */
+        
+        $vendorslist=$_POST['vendorVals'];
+        $individualVendor= explode(",", $vendorslist);
+        $count=count($individualVendor);
+        for($i=0; $i<$count; $i++){  
+            $vendorDetails=$this->kushGharService->getVendorDetailsWithIndividual($individualVendor[$i]);
+            $to = $vendorDetails['email_address'];
+            $subject =$orderDetails['order_number']. " Order Scheduled";
+            $Logo = YII::app()->params['SERVER_URL'] . "/images/color_logo.png";
+            $messageview="vendororderschedulemessage";
+            $params = array("Logo" => $Logo, "orderDetails" => $orderDetails,"customerDetails" => $customerDetails,"customerAddressDetails" => $customerAddressDetails); 
+            $sendMailToUser=new CommonUtility;
+            $mailSendStatus=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
+        }
         $obj = array('status' => 'error', 'data' => '', 'error' => $changeUserStatus);
         echo CJSON::encode($obj);
     }
@@ -779,13 +808,12 @@ class AdminController extends Controller {
      */
 
     public function actionUpdateorderdetails() {
-        try {error_log("--------------------");
+        try {
             $Model = new HouseCleaningForm;
             $orderNo = $_POST['OrderNo'];
             $status = $_POST['status'];
             $amount = $_POST['Amount'];
             $getServiceDetails = $this->kushGharService->getUpdateOrderforServicesDetails($orderNo);
-            error_log("-------------2-------");
             $renderHtml = $this->renderPartial("updateorderdetails", array("model" => $Model, 'getServiceDetails' => $getServiceDetails, "OrderNo" => $orderNo, "Status" => $status, "Amt" => $amount), true);
             $obj = array('status' => 'success', 'html' => $renderHtml);
             $renderScript = $this->rendering($obj);

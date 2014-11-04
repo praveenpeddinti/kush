@@ -28,7 +28,8 @@
                                             <table><?php $totalRoomsPrice='0';$totalcarPrice='0';$Stotal='0';?>
                                                  <tr><td colspan="2">Hi,</td></tr>
                                                  <tr><td colspan="2">&nbsp;</td></tr>
-                                                 <tr><td colspan="2">User has rescheduled the order for some</td></tr>
+                                                 <tr><td colspan="2">User has rescheduled the order for the reason that <b><?php echo $Reason; ?></b></td>
+                                                 </tr>
                                     <tr><td colspan="2">Customer Order details as follows:</td></tr>
                                     <tr><td><b>Customer :</b></td><td><?php echo $Message['first_name'];?></td></tr>
                                     <tr><td><b>Phone :</b></td><td><?php echo $Message['phone'];?></td></tr>

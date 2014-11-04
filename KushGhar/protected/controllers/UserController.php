@@ -1170,9 +1170,9 @@ class UserController extends Controller {
                         * KG Team mail details
                         */
                         $to = 'praveen.peddinti@gmail.com';
-                        $subject =$_POST['OrderNumber']."Admin Order Rescheduled";
+                        $subject =$_POST['OrderNumber']." Order Rescheduled";
                         $messageview="orderreplacemessagetoKG";
-                        $params = array('Logo' => $Logo, 'Message' =>$customerDetails, 'HouseService'=>$getServiceDetails,'CarService'=>$getCarWashServiceDetails,'StewardService'=>$getStewardsServiceDetails,'getCars'=>$getTotalCars);       
+                        $params = array('Logo' => $Logo, 'Message' =>$customerDetails, 'Reason'=>$rescheduleForm->Reason,'HouseService'=>$getServiceDetails,'CarService'=>$getCarWashServiceDetails,'StewardService'=>$getStewardsServiceDetails,'getCars'=>$getTotalCars);       
                         //$params = '';
                         $sendMailToUser=new CommonUtility;
                         $sendMailToUser->actionSendmail($messageview1,$params1, $subject1, $to1,$employerEmail);

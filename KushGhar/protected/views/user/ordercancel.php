@@ -80,7 +80,7 @@ if($serviceType == 3) {?>
             }
         }
     function rescheduleHandler(data)
-    { 
+    {    
         if(data.status =='success'){
             $("#OrderRescheduleForm_error_em_").show(1000);
                     $("#OrderRescheduleForm_error_em_").removeClass('errorMessage');

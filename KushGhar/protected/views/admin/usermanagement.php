@@ -30,6 +30,7 @@
                 <div class="row-fluid" style="height:480px">
                     <div class="span12">
                         <h4 class="paddingL20">User Management</h4>
+                        <hr>
                         <div id="TC" style="display:none"></div>                       
                         <div class="paddinground">    
                             <div id="InviteInfoSpinLoader"></div>

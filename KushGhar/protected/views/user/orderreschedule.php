@@ -33,7 +33,7 @@
 <div class="row-fluid">
     <div class=" span12">
         <?php $model->Reason=$getserviceDetails['reason'];?>
-    <?php echo $rescheduleForm->labelEx($model,'Reason'); ?>
+    <?php echo $rescheduleForm->labelEx($model,'<abbr title="required">*</abbr> Reason'); ?>
         <?php echo $rescheduleForm->textArea($model,'Reason',array('maxlength' => 150, 'class' => 'span12')); ?>
         <?php echo $rescheduleForm->error($model,'Reason'); ?>
 
@@ -51,7 +51,7 @@
 <div class="row-fluid">
     <div class=" span12">
         <?php $model->Reason=$getserviceDetails['reason'];?>
-    <?php echo $rescheduleForm->labelEx($model,'Reason'); ?>
+    <?php echo $rescheduleForm->labelEx($model,'<abbr title="required">*</abbr> Reason'); ?>
         <?php echo $rescheduleForm->textArea($model,'Reason',array('maxlength' => 150, 'class' => 'span12')); ?>
         <?php echo $rescheduleForm->error($model,'Reason'); ?>
 
@@ -69,7 +69,7 @@
 <div class="row-fluid">
     <div class=" span12">
         <?php $model->Reason=$getserviceDetails['reason'];?>
-    <?php echo $rescheduleForm->labelEx($model,'Reason'); ?>
+    <?php echo $rescheduleForm->labelEx($model,'<abbr title="required">*</abbr> Reason'); ?>
         <?php echo $rescheduleForm->textArea($model,'Reason',array('maxlength' => 150, 'class' => 'span12')); ?>
         <?php echo $rescheduleForm->error($model,'Reason'); ?>
 
@@ -79,7 +79,7 @@
 <?php }
  $this->endWidget(); ?>
          <div style="text-align: right">
-             <?php echo CHtml::Button('Reschedule',array('id' => 'reschedule','class' => 'btn btn-primary','onclick'=>'reschedule();')); ?>
+             <?php echo CHtml::Button('Submit',array('id' => 'reschedule','class' => 'btn btn-primary','onclick'=>'reschedule();')); ?>
          </div>
 <script type="text/javascript">
     function reschedule(){

@@ -297,7 +297,7 @@ function getCollectionDataWithPagination(URL,CollectionName, MainDiv, CurrentPag
                 success: function(data) {
                     $("#myModalforgot1").modal({ backdrop: 'static', keyboard: false,show:false });
                     $("#modelBodyDiv1").html(data.html);
-                    $("#myModalLabel22").text("Cancel");
+                    $("#myModalLabel22").text("Cancel the order");
                     
                     $('#myModalforgot1').modal('show');
                 },
@@ -318,7 +318,7 @@ function getCollectionDataWithPagination(URL,CollectionName, MainDiv, CurrentPag
                 success: function(data) {
                     $("#myModalforgot1").modal({ backdrop: 'static', keyboard: false,show:false });
                     $("#modelBodyDiv1").html(data.html);
-                    $("#myModalLabel22").text("Reschedule");
+                    $("#myModalLabel22").text("Re-Schedule the order");
                     $('#myModalforgot1').modal('show');
                 },
                 error: function(data) { 

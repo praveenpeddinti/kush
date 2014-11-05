@@ -309,7 +309,7 @@ class AdminController extends Controller {
        
        
    }
-    /*public function actionOrderStatus() {
+    public function actionOrderOpenStatus() {
         if ($_POST['value'] == 'Open') {
             $status = 0;
         }
@@ -325,7 +325,7 @@ class AdminController extends Controller {
         $changeUserStatus = $this->kushGharService->sendorderStatus($_POST['Id'], $status);
         $obj = array('status' => 'error', 'data' => '', 'error' => $changeUserStatus);
         echo CJSON::encode($obj);
-    }*/
+    }
 
     public function actionViewData() {
         try {

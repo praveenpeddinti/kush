@@ -79,7 +79,7 @@
                                         </tr>
                                         <tr>
                                             <td colspan="3"><b>Grand total</b></td>
-                                            <td><b>1500</b></td>
+                                            <td><b><?php echo $orderDetails['amount'];?></b></td>
                                         </tr>
                                     </table>
                                             </td>

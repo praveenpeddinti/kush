@@ -30,9 +30,9 @@
     <td><center><?php echo $row['amount'];?></center></td>
     <td>
         <input id="userview_<?php echo $row['id']; ?>" row-id="<?php echo $row['id']; ?>" data-id="<?php echo $row['order_number']; ?>" service-id="<?php echo $row['ServiceId']; ?>" status-id="<?php echo $row['status']; ?>" vendors="<?php echo $row['assign_vendors']; ?>" type="button" value=" " class="icon_view" alt="View" title="View"/>
-        <?php if($row['status']==1) { ?> 
-             <input id="orderClose_<?php echo $row['id']; ?>" row-id="<?php echo $row['id']; ?>" data-id="<?php echo $row['order_number']; ?>" service-id="<?php echo $row['ServiceId']; ?>" status-id="<?php echo $row['status']; ?>" vendors="<?php echo $row['assign_vendors']; ?>" type="button" value=" " class="icon_inactive" alt="Close Order" title="Close Order"/>
-        <?php }?>
+        <?php //if($row['status']==1) { ?> 
+             <!--<input id="orderClose_<?php //echo $row['id']; ?>" row-id="<?php //cho $row['id']; ?>" data-id="<?php //echo $row['order_number']; ?>" service-id="<?php //echo $row['ServiceId']; ?>" status-id="<?php //echo $row['status']; ?>" vendors="<?php //echo $row['assign_vendors']; ?>" type="button" value=" " class="icon_inactive" alt="Close Order" title="Close Order"/>-->
+        <?php //}?>
     </td>
 </tr>
 <?php }

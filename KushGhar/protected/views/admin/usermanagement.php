@@ -37,19 +37,19 @@
                                 <div class="row-fluid">
                                     <div class="span3">
                                         <label>User Name</label>
-                                        <input type="text" id="userName" class="span12" maxlength="50"/>
+                                        <input type="text" id="userName" class="span12" maxlength="50" onKeydown="Javascript: if (event.keyCode==13) search();"/>
                                     </div>
                                     <div class="span2">
                                         <label>Location</label>
-                                        <input type="text" id="Location" class="span12" maxlength="20"/>
+                                        <input type="text" id="Location" class="span12" maxlength="20" onKeydown="Javascript: if (event.keyCode==13) search();"/>
                                     </div>
                                     <div class="span2">
                                         <label>City</label>
-                                        <input type="text" id="City" class="span12" maxlength="20"/>
+                                        <input type="text" id="City" class="span12" maxlength="20" onKeydown="Javascript: if (event.keyCode==13) search();"/>
                                     </div>
                                     <div class="span3">
                                         <label>Status</label>
-                                        <select id="status" class="span12">
+                                        <select id="status" class="span12" onchange ="search();">
                                             <option value="20">All</option>
                                             <option value="1">Active</option>
                                             <option value="0">InActive</option>

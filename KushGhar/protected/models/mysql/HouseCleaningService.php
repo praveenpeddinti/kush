@@ -256,7 +256,7 @@ class HouseCleaningService extends CActiveRecord {
 
     public function getOrderDetailsForCustomer($start,$end,$type,$orderNo,$cId) {
         try {//$query = "SELECT * FROM KG_InvitationUsers where status =1 limit ".$start. ",".$end;
-             $query = "SELECT * FROM KG_Order_details WHERE ServiceId!='' and CustId = $cId limit ".$start. ",".$end;
+             $query = "SELECT * FROM KG_Order_details WHERE ServiceId!='' and CustId = $cId ORDER BY id DESC limit ".$start. ",".$end;
             
 
            $result = YII::app()->db->createCommand($query)->queryAll();
@@ -269,7 +269,7 @@ class HouseCleaningService extends CActiveRecord {
     public function getOrderDetailsForVendor($start,$end,$type,$orderNo,$vId) {
         try {
             // $query = "SELECT * FROM KG_Order_details WHERE ServiceId!='' and CustId = $cId limit ".$start. ",".$end;
-            $query="select * from KG_Order_details where find_in_set('".$vId."',assign_vendors)<>0 limit ".$start. ",".$end;
+            $query="select * from KG_Order_details where status=1 and find_in_set('".$vId."',assign_vendors)<>0 limit ".$start. ",".$end;
 
            $result = YII::app()->db->createCommand($query)->queryAll();
 

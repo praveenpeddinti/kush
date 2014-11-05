@@ -77,6 +77,7 @@ class AdminController extends Controller {
                         $to1 = $inviteFriends->Email;
                         $name = $inviteFriends->FirstName . ' ' . $inviteFriends->LastName;
                         $phone = $inviteFriends->Phone;
+                        $city = $inviteFriends->City;
                         $location = $inviteFriends->Location;
                         $subject = 'KushGhar Invitation';
 
@@ -92,7 +93,7 @@ class AdminController extends Controller {
                          */
                         $to = 'praveen.peddinti@gmail.com';
                         $messageview = "CustomerInvitationMailToKGTeam";
-                        $params = array('Logo' => $Logo, 'Name' => $name, 'Email' => $to1, 'Phone' => $phone, 'Location' => $location);
+                        $params = array('Logo' => $Logo, 'Name' => $name, 'Email' => $to1, 'Phone' => $phone, 'City' => $city, 'Location' => $location);
                         //$params = '';
                         $sendMailToUser = new CommonUtility;
                         $sendMailToUser->actionSendmail($messageview1, $params1, $subject, $to1, $employerEmail);

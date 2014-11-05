@@ -128,22 +128,21 @@ class InvoiceDetails extends CActiveRecord {
    public function getAllInvoice($start,$end,$oNumber,$invoiceNo,$status){
         try{     
             if(($oNumber=='')&&($invoiceNo=='')&&($status=='20'))
-                $query = "select * from KG_Invoice_details ORDER BY id DESC limit ".$start. ",".$end;
+                $query = "select * from KG_Invoice_details ORDER BY OrderId DESC limit ".$start. ",".$end;
             else if(($oNumber=='')&&($invoiceNo=='')&&($status!='20'))
-                $query="select * from KG_Invoice_details where Status=".$status. " ORDER BY id DESC limit ".$start. ",".$end;
+                $query="select * from KG_Invoice_details where Status=".$status. " ORDER BY OrderId DESC limit ".$start. ",".$end;
             else if(($oNumber!='')&&($invoiceNo=='')&&($status=='20'))
-                $query="select * from KG_Invoice_details where OrderId = ".$oNumber." ORDER BY id DESC limit ".$start. ",".$end;
+                $query="select * from KG_Invoice_details where OrderId = ".$oNumber." ORDER BY OrderId DESC limit ".$start. ",".$end;
             else if(($oNumber=='')&&($invoiceNo!='')&&($status=='20'))
-                $query="select * from KG_Invoice_details where InvoiceNumber like '%".$invoiceNo."%' ORDER BY id DESC limit ".$start. ",".$end;
+                $query="select * from KG_Invoice_details where InvoiceNumber like '%".$invoiceNo."%' ORDER BY OrderId DESC limit ".$start. ",".$end;
             else if(($oNumber=='')&&($invoiceNo!='')&&($status!='20'))
-                $query="select * from KG_Invoice_details where Status=".$oNumber." and InvoiceNumber like '%".$invoiceNo."%' ORDER BY id DESC limit ".$start. ",".$end;
+                $query="select * from KG_Invoice_details where Status=".$oNumber." and InvoiceNumber like '%".$invoiceNo."%' ORDER BY OrderId DESC limit ".$start. ",".$end;
             else if(($oNumber!='')&&($invoiceNo=='')&&($status!='20'))
-                $query="select * from KG_Invoice_details where OrderId = ".$oNumber." and Status=".$status." ORDER BY id DESC limit ".$start. ",".$end;
+                $query="select * from KG_Invoice_details where OrderId = ".$oNumber." and Status=".$status." ORDER BY OrderId DESC limit ".$start. ",".$end;
             else if(($oNumber!='')&&($invoiceNo!='')&&($status=='20'))
-                $query="select * from KG_Invoice_details where OrderId = ".$oNumber." and InvoiceNumber like '%".$invoiceNo."%' ORDER BY id DESC limit ".$start. ",".$end;
+                $query="select * from KG_Invoice_details where OrderId = ".$oNumber." and InvoiceNumber like '%".$invoiceNo."%' ORDER BY OrderId DESC limit ".$start. ",".$end;
             else if(($oNumber!='')&&($invoiceNo!='')&&($status!='20'))
-                $query="select * from KG_Invoice_details where OrderId = ".$oNumber." and InvoiceNumber like '%".$invoiceNo."%' and Status=".$status." ORDER BY id DESC limit ".$start. ",".$end;
-           
+                $query="select * from KG_Invoice_details where OrderId = ".$oNumber." and InvoiceNumber like '%".$invoiceNo."%' and Status=".$status." ORDER BY OrderId DESC limit ".$start. ",".$end;
 //            $query = "SELECT * FROM KG_InvitationUsers where status =1 ORDER BY id DESC limit ".$start. ",".$end;
             $result = Yii::app()->db->createCommand($query)->queryAll();
         

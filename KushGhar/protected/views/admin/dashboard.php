@@ -228,7 +228,8 @@
          ajaxRequest('/admin/dashboard', data,inviteMailHandler)
 }
 function inviteMailHandler(data)
-    { scrollPleaseWaitClose('inviteSpinLoader');
+    { 
+        scrollPleaseWaitClose('inviteSpinLoader');
         if(data.status =='success'){
             $("#InviteForm_error_em_").show(1000);
                     $("#InviteForm_error_em_").removeClass('errorMessage');

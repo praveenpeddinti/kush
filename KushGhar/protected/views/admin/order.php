@@ -295,19 +295,40 @@
                 success: function(data) {
                     //scrollPleaseWaitClose('InviteInfoSpinLoader');
                     $("#myModalOrderSchedule").modal({ backdrop: 'static', keyboard: false,show:false });
+                    $("#myModalLabel22").text("Schedule the order");
                     $("#myModalOrderScheduleDiv").html(data.html);
                     $('#myModalOrderSchedule').modal('show');
+                    
                 },
                 error: function(data) { // if error occured
                     alert("Error occured.please try again");
                 }
             });
-        }
-        else{alert(data+"===");
-              /*$.ajax({
+        } else if(value=='Cancel'){
+            $.ajax({
                 type: 'POST',
                 dataType: 'json',
-                url: '<?php //echo Yii::app()->createAbsoluteUrl("/admin/orderStatus"); ?>',
+                url: '<?php echo Yii::app()->createAbsoluteUrl("/admin/orderCancel"); ?>',
+                data: data,
+                success: function(data) {
+                    $("#myModalOrderSchedule").modal({ backdrop: 'static', keyboard: false,show:false });
+                    $("#myModalOrderScheduleDiv").html(data.html);
+                    $("#myModalLabel22").text("Cancel the order");
+                    
+                    $('#myModalOrderSchedule').modal('show');
+                    
+                },
+                error: function(data) { // if error occured
+                    alert("Error occured.please try again");
+
+                }
+            });
+            }else{
+            
+                $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: '<?php echo Yii::app()->createAbsoluteUrl("/admin/orderOpenStatus"); ?>',
                 data: data,
                 success: function(data) {
                     //scrollPleaseWaitClose('InviteInfoSpinLoader');
@@ -320,30 +341,12 @@
                 },
                 error: function(data) { // if error occured
                 }
-            });*/
-            $.ajax({
-                type: 'POST',
-                dataType: 'json',
-                url: '<?php echo Yii::app()->createAbsoluteUrl("/admin/orderCancel"); ?>',
-                data: data,
-                success: function(data) {
-                    $("#myModalOrderSchedule").modal({ backdrop: 'static', keyboard: false,show:false });
-                    $("#myModalOrderScheduleDiv").html(data.html);
-                    $("#myModalLabel22").text("Cancel the Order");
-                    
-                    $('#myModalOrderSchedule').modal('show');
-                    
-                },
-                error: function(data) { // if error occured
-                    alert("Error occured.please try again");
-
-                }
             });
             }
     
     
     }
-    function activeFormHandler2(data, status, rowNos,value) {alert("----enter handler--1--"+data.status+"==2="+status+"==3=="+rowNos+"==4=="+value);
+    function activeFormHandler2(data, status, rowNos,value) {
         if (value == 'Schedule') {
             $('#status_' + rowNos).text('Schedule');
         } else if (value == 'Cancel') {

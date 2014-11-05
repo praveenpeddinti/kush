@@ -85,7 +85,7 @@ $address;
         <td style="width: 75%"><textarea id="assignedVendors" style="width: 95%" readonly=""></textarea></td>
     </tr>
 </table>
-<input type="button" class="btn btn-primary" value="Schedule" onclick="ScheduleClick();">
+<input type="button" class="btn btn-primary" value="Submit" style="margin-left: 480px" onclick="ScheduleClick();">
 </form>
 <script type="text/javascript">
     $(document).ready(function() {

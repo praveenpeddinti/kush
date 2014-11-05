@@ -95,7 +95,7 @@ class OrderDetails extends CActiveRecord {
     }
     public function getTotalOrdersForVendor($type,$orderNo,$vId){
         try{
-             $query="SELECT count(*) as count FROM KG_Order_details WHERE find_in_set('".$vId."',assign_vendors)<>0";
+             $query="SELECT count(*) as count FROM KG_Order_details WHERE status=1 and find_in_set('".$vId."',assign_vendors)<>0";
             $result = Yii::app()->db->createCommand($query)->queryRow();
         }catch(Exception $ex){
             error_log("################Exception Occurred  getAllContacts##############".$ex->getMessage());

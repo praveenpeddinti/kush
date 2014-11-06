@@ -134,15 +134,15 @@
                                 <div class="row-fluid">
                                     <div class="span4">
                                         <label>Order Number</label>
-                                        <input type="text" id="orderNumber" class="span12" maxlength="50"/>
+                                        <input type="text" id="orderNumber" class="span12" maxlength="50" onKeydown="Javascript: if (event.keyCode==13) search();"/>
                                     </div>
                                     <div class="span3">
                                         <label>Invoice Number</label>
-                                        <input type="text" id="invoiceNo" class="span12" maxlength="25" />
+                                        <input type="text" id="invoiceNo" class="span12" maxlength="25" onKeydown="Javascript: if (event.keyCode==13) search();"/>
                                     </div>
                                     <div class="span3">
                                         <label>Status</label>
-                                        <select id="status" class="span12">
+                                        <select id="status" class="span12" onchange="search();">
                                             <option value="20">All</option>
                                             <option value="0">Open</option>
                                             <option value="1">Paid</option>

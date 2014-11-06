@@ -36,7 +36,7 @@
                                 <div class="row-fluid">
                                     <div class="span4">
                                         <label>Service</label>
-                                        <select id="serviceType" class="span12">
+                                        <select id="serviceType" class="span12" onchange="search()">
                                             <option value="">Select Service</option>
                                             <option value="1">House Cleaning</option>
                                             <option value="2">Car Wash</option>
@@ -45,11 +45,11 @@
                                     </div>
                                     <div class="span3">
                                         <label>Order Number</label>
-                                        <input type="text" id="orderNo" class="span6"/>
+                                        <input type="text" id="orderNo" class="span6" onKeydown="Javascript: if (event.keyCode==13) search();"/>
                                     </div>
                                     <div class="span3">
                                         <label>Status</label>
-                                        <select id="status" class="span12">
+                                        <select id="status" class="span12" onchange="search();">
                                             <option value="20">Select Status</option>
                                             <option value="0">Open</option>
                                             <option value="1">Schedule</option>

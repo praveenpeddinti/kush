@@ -21,4 +21,14 @@ class Locations extends CActiveRecord {
         }
         return $result;
     }
+    public function getLocationDetails($id){
+        try{
+            $query="SELECT * FROM KG_Locations where Id=".$id;
+            $result = YII::app()->db->createCommand($query)->queryRow();
+        }
+        catch (Exception $ex) {
+            error_log("getCityDetailsById Exception occured==" . $ex->getMessage());
+        }
+        return $result;
+    }
 }

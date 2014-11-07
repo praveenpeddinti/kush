@@ -885,12 +885,18 @@ class KushGharService {
     public function getCityNameByID($id){
         return Locations::model()->getCityNameByID($id);
     }
-    public function getCity(){
+    public function getAllCitiesView(){
         try {
             $result = Cities::model()->getCity();
         } catch (Exception $ex) {
-            error_log("=============exception occurred in Makes=============" . $ex->getMessage());
+            error_log("=============exception occurred in Cities=============" . $ex->getMessage());
         }
         return $result;
+    }
+    public function checkNewCityExistInCitiesTableByState($cityName,$stateId){
+        return Cities::model()->checkNewCityExistInCitiesTableByState($cityName,$stateId);
+    }
+    public function newCityAdd($CityName,$StateId){
+        return Cities::model()->newCityAdd($CityName,$StateId);
     }
 } ?>

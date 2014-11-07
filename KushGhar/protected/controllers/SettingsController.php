@@ -300,14 +300,38 @@ class SettingsController extends Controller {
             $CityForm = new CitiesForm();
             if(isset($_POST['Id'])) $id=$_POST['Id'];
             else $id=-1;
-            $makes=$this->kushGharService->getCity();
-            $getmodelDetails=$this->kushGharService->getModelDetails($id);
-            $renderHtml=  $this->renderPartial('editmodel',array("model"=>$Model,"getmodelDetails"=>$getmodelDetails,"makes"=>$makes,"make"=>$_POST['makeId']),true);
+            $States=$this->kushGharService->getStates();
+            //$getCityDetails=$this->kushGharService->getCityDetails($id);
+            $renderHtml=  $this->renderPartial('newCity',array("model"=>$Model,"States"=>$States),true);
+            error_log("bjhbdj-----------------".$renderHtml);
             $obj=array('status'=>'success','html'=>$renderHtml);
+            error_log("object---------------".print_r($obj, TRUE));
             $renderScript=  $this->rendering($obj);
             echo $renderScript;
         } catch (Exception $ex) {
 
         }
+    }
+    
+    public function actionNewCitySave(){
+        $newCityForm = new CitiesForm();
+        $request = yii::app()->getRequest();
+        $formName = $request->getParam('CitiesForm');
+        if ($formName != '') {
+            $newCityForm->attributes = $request->getParam('CitiesForm');
+            error_log("new city----------".print_r($newCityForm, TRUE));
+            //$makename=  $this->kushGharService->getMakeNameByID($newCityForm->makeId);
+            $modelName = $this->kushGharService->checkNewCityExistInCitiesTableByState($newCityForm->CityName,$newCityForm->StateId);
+            if($modelName=='No city'){
+                    $result=  $this->kushGharService->newCityAdd($newCityForm->CityName,$newCityForm->StateId);
+                $obj = array('status' => 'success', 'data' => $result, 'error' => 'City Added successfully.');
+            } else{
+                $result = 'failure';
+                $errors = array("CitiesForm_error" => 'City already exists.');
+                $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
+            }
+        }
+        $renderScript = $this->rendering($obj);
+        echo $renderScript;
     }
 }

@@ -10,13 +10,15 @@ class CitiesForm extends CFormModel {
     public $StateId;
     public $Status;
     public $CityName;
-    
+    public $StateName;
+
+
     /**
      * Declares the validation rules.
      */
     public function rules() {
         return array(
-            array('Id,StateId, Status, CityName', 'safe'),
+            array('Id,StateId, Status, CityName,StateName', 'safe'),
         );
     }
 

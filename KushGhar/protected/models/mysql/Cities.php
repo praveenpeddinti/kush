@@ -80,8 +80,39 @@ class Cities extends CActiveRecord {
             error_log("############Error Occurred in update make Details= #############" . $ex->getMessage());
         }
     }
-    public function getCity(){
-        
+    public function getAllCitiesView(){
+        try {
+            $Criteria = new CDbCriteria();
+            $Criteria->order = 'CityName ASC';
+            $Criteria->condition='status=1';
+            $cityData = CarMakes::model()->findAll($Criteria);
+        } catch (Exception $ex) {
+            error_log("############Error Occurred in getAllCitiesView= #############" . $ex->getMessage());
+        }
+        return $cityData;
+    }
+    public function checkNewCityExistInCitiesTableByState($cityName,$stateId){
+        try {
+            $query = "select * from KG_Cities where CityName='".$cityName."' and StateId=".$stateId;
+            $Cities = YII::app()->db->createCommand($query)->queryAll();
+            if (empty($Cities)) { $result = "No city";} 
+            else {
+                $result = "Yes city";
+            }
+        } catch (Exception $ex) {
+            error_log("############Error Occurred checkNewCityExistInCitiesTableByState= #############" . $ex->getMessage());
+        }
+        return $result;
+    }
+    public function newCityAdd($CityName,$StateId){
+        try{
+            $query="INSERT INTO KG_Cities(CityName,StateId,Status) VALUES ('".$CityName."',".$StateId.",1)";
+            $result = YII::app()->db->createCommand($query)->execute();
+            if($result>0) return "success";
+            else return "failure";
+        } catch (Exception $ex) {
+            error_log("############Error Occurred in Add new nodel Details= #############" . $ex->getMessage());
+        }
     }
 }
 ?>

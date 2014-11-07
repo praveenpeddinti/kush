@@ -640,7 +640,11 @@ class AdminController extends Controller {
         try {
             $Model = new OrderForm;
             $id = $_POST['Id'];
-            $renderHtml = $this->renderPartial('ordercanceldetails', array("model" => $Model, "OrderNumber" => $id), true);
+            $OrderDetails = $this->kushGharService->getOrderDetailsById($id);
+            $vendors=$OrderDetails['assign_vendors'];
+            $individualVendor= explode(",", $vendors);
+            $count=count($individualVendor);
+            $renderHtml = $this->renderPartial('ordercanceldetails', array("model" => $Model, "OrderNumber" => $id, "vendors"=>$count), true);
             $obj = array('status' => 'success', 'html' => $renderHtml);
             $renderScript = $this->rendering($obj);
             echo $renderScript;

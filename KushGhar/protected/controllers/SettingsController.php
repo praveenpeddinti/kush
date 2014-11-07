@@ -225,4 +225,89 @@ class SettingsController extends Controller {
             error_log("#########Exception Occurred########" . $ex->getMessage());
         }
     }
+    public function actionNewCities(){
+        try {           
+                if (isset($_GET['userDetails_page'])) {
+                $totalcount = $this->kushGharService->getAllCitiesCount();
+                $startLimit = ((int) $_GET['userDetails_page'] - 1) * (int) $_GET['pageSize'];
+                $endLimit = $_GET['pageSize'];
+                $userDetails = $this->kushGharService->getAllCities($startLimit, $endLimit);
+                $renderHtml = $this->renderPartial('newCities', array('userDetails' => $userDetails, 'totalCount' => $totalcount), true);
+                $obj = array('status' => 'success', 'html' => $renderHtml, 'totalCount' => $totalcount);
+                $renderScript = $this->rendering($obj);
+                echo $renderScript;
+            }
+        } catch (Exception $ex) {
+            error_log("######### Exception Occurred##########".$ex->getMessage());
+        }
+    }
+    public function actionChangeCityStatus(){
+        try{
+            $changeUserStatus = $this->kushGharService->ChangeCityStatus($_POST['Id'], $_POST['status']);
+            $obj = array('status' => 'error', 'data' => '', 'error' => $changeUserStatus);
+            echo CJSON::encode($obj);
+        } catch (Exception $ex) {
+            error_log("##### Exception occurred in changing status#####".$ex->getMessage());
+        }
+    }
+    public function actionEditCity(){
+        try{            
+            $Model = new CitiesForm;
+            $getCityDetails=$this->kushGharService->getCityDetails($_POST['Id']);
+            error_log("City details========".print_r($getCityDetails, true));
+            $renderHtml=  $this->renderPartial('editCity',array("model"=>$Model,"getCityDetails"=>$getCityDetails),true);
+            $obj=array('status'=>'success','html'=>$renderHtml);
+            $renderScript=  $this->rendering($obj);
+            echo $renderScript;
+        } catch (Exception $ex) {
+            error_log("####### Exception Occurred in editing the make ##########".$ex->getMessage());
+        }
+    }
+
+    public function actionEditCitySave(){
+        $EditForm = new CitiesForm();
+        $request = yii::app()->getRequest();
+        $formName = $request->getParam('CitiesForm');
+        if ($formName != '') {
+            $EditForm->attributes = $request->getParam('CitiesForm');
+            $cityName = $this->kushGharService->checkNewCityExistInCitiesTable($EditForm->CityName);
+            if($cityName=='No city'){
+                $result = $this->kushGharService->UpdateCity($EditForm);
+                $obj = array('status' => 'success', 'data' => $result, 'error' => 'City Name updated successfully.');
+            } else{
+                $result = 'failure';
+                $errors = array("CitiesForm_error" => 'City Name already exists.');
+                $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
+            }
+        }
+        $renderScript = $this->rendering($obj);
+        echo $renderScript;
+    }
+    
+    public function actionLocations(){
+        try {
+            $this->pageTitle="KushGhar-Settings";
+            $cityName=  $this->kushGharService->getCityNameByID($_REQUEST['StateId']);
+            $this->render('Locations',array('stateId' => $_REQUEST['StateId'],'CityName'=>$cityName['CityName']));
+        } catch (Exception $ex) {
+            error_log("#########Exception Occurred########" . $ex->getMessage());
+        }
+    }
+    public function actionNewCity(){
+        try{
+            $Model = new CitiesForm;
+            unset($CityForm);
+            $CityForm = new CitiesForm();
+            if(isset($_POST['Id'])) $id=$_POST['Id'];
+            else $id=-1;
+            $makes=$this->kushGharService->getCity();
+            $getmodelDetails=$this->kushGharService->getModelDetails($id);
+            $renderHtml=  $this->renderPartial('editmodel',array("model"=>$Model,"getmodelDetails"=>$getmodelDetails,"makes"=>$makes,"make"=>$_POST['makeId']),true);
+            $obj=array('status'=>'success','html'=>$renderHtml);
+            $renderScript=  $this->rendering($obj);
+            echo $renderScript;
+        } catch (Exception $ex) {
+
+        }
+    }
 }

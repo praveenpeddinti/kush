@@ -864,6 +864,33 @@ class KushGharService {
     public function getUserExcelDataCount(){
         return InviteUser::model()->getUserExcelDataCount();
     }
-
-    
+    public function getAllCitiesCount(){
+        return Cities::model()->getAllCitiesCount();
+    }
+    public function getAllCities($strt,$end){
+        return Cities::model()->getAllCities($strt,$end);
+    }
+    public function ChangeCityStatus($id,$status){
+        return Cities::model()->ChangeCityStatus($id,$status);
+    }
+    public function getCityDetails($id){
+        return Cities::model()->getCityDetails($id);
+    }
+    public function checkNewCityExistInCitiesTable($cityName){
+        return Cities::model()->checkNewCityExistInCitiesTable($cityName);
+    }
+    public function UpdateCity($model){
+        return Cities::model()->UpdateCity($model);
+    }
+    public function getCityNameByID($id){
+        return Locations::model()->getCityNameByID($id);
+    }
+    public function getCity(){
+        try {
+            $result = Cities::model()->getCity();
+        } catch (Exception $ex) {
+            error_log("=============exception occurred in Makes=============" . $ex->getMessage());
+        }
+        return $result;
+    }
 } ?>

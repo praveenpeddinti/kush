@@ -20,7 +20,7 @@
                                 <li><a href="/admin/order"> <i class="fa fa-file-text"></i> Orders</a></li>
                                 <li><a href="/admin/invoice"> <i class="fa fa-list-alt"></i> Invoice Management</a></li>
                                 <li><a href="/admin/payments"> <i class="fa fa-file"></i> Payments</a></li>
-                                <li class="active"><a href="/settings/carMakes"> <i class="fa fa-cog"></i> Settings</a></li>
+                                <li class="active"><a href="/settings/settingsDashboard"> <i class="fa fa-cog"></i> Settings</a></li>
                             </ul>
                         </div>
                     </div>

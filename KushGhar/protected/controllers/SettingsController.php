@@ -55,6 +55,14 @@ class SettingsController extends Controller {
             error_log("#########Exception Occurred########" . $ex->getMessage());
         }
     }
+    public function actionSettingsDashboard(){
+        try{
+            $this->pageTitle="KushGhar-Settings";
+            $this->render("settingsDashboard");
+        } catch (Exception $ex) {
+            error_log("##########Exception Occurred########".$ex->getMessage());
+        }
+    }
     public function actionNewCarMakes(){
         try {           
                 if (isset($_GET['userDetails_page'])) {
@@ -209,5 +217,12 @@ class SettingsController extends Controller {
         $renderScript = $this->rendering($obj);
         echo $renderScript;
     }
-    
+    public function actionCities(){
+         try {
+            $this->pageTitle="KushGhar-Settings";
+            $this->render("cities");
+        } catch (Exception $ex) {
+            error_log("#########Exception Occurred########" . $ex->getMessage());
+        }
+    }
 }

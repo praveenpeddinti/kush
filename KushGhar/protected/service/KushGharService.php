@@ -887,7 +887,7 @@ class KushGharService {
     }
     public function getAllCitiesView(){
         try {
-            $result = Cities::model()->getCity();
+            $result = Cities::model()->getAllCitiesView();
         } catch (Exception $ex) {
             error_log("=============exception occurred in Cities=============" . $ex->getMessage());
         }
@@ -898,5 +898,13 @@ class KushGharService {
     }
     public function newCityAdd($CityName,$StateId){
         return Cities::model()->newCityAdd($CityName,$StateId);
+    }
+    public function getAllLocationsView(){
+        try {
+            $result = Locations::model()->getAllLocationsView();
+        } catch (Exception $ex) {
+            error_log("=============exception occurred in Cities=============" . $ex->getMessage());
+        }
+        return $result;
     }
 } ?>

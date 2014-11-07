@@ -85,7 +85,7 @@ class Cities extends CActiveRecord {
             $Criteria = new CDbCriteria();
             $Criteria->order = 'CityName ASC';
             $Criteria->condition='status=1';
-            $cityData = CarMakes::model()->findAll($Criteria);
+            $cityData = Cities::model()->findAll($Criteria);
         } catch (Exception $ex) {
             error_log("############Error Occurred in getAllCitiesView= #############" . $ex->getMessage());
         }

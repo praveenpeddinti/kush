@@ -31,4 +31,15 @@ class Locations extends CActiveRecord {
         }
         return $result;
     }
+    public function getAllLocationsView(){
+        try {
+            $Criteria = new CDbCriteria();
+            $Criteria->order = 'LocationName ASC';
+            $Criteria->condition='status=1';
+            $locationData = Locations::model()->findAll($Criteria);
+        } catch (Exception $ex) {
+            error_log("############Error Occurred in getAllCitiesView= #############" . $ex->getMessage());
+        }
+        return $locationData;
+    }
 }

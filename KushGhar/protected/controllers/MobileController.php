@@ -1,15 +1,32 @@
 <?php
-
 class MobileController extends Controller {
-    public function init() {
+    public function init() { error_log("Message from mobile operator===in Init======");
         parent::init();
     }
 
     public function actionLogin() {
+                error_log("Message from mobile operator====In login=====");
         $model = new LoginForm;
         parse_str($_POST["formdata"], $values);
         $model->UserId=$values['UserId'];
         $model->Password=$values['Password'];
+        $result = $this->kushGharService->login($model, 'User');
+        $data = array();
+        if(isset($result)){
+        $data['status']='success';
+        $data['message']="Login success";
+        $data['data']=$result;
+        }
+        else{
+            $data['status']='error';
+            $data['message']="Invalid Username and Password";
+        }
+        echo json_encode($data);
+    }
+    public function actionAutoLogin(){        error_log("In Auto Login==========");
+        $model = new LoginForm;
+        $model->UserId=$_POST['email'];
+        $model->Password=$_POST['password'];
         $result = $this->kushGharService->login($model, 'User');
         $data = array();
         if(isset($result)){
@@ -31,7 +48,7 @@ class MobileController extends Controller {
         $data['status'] = "success";
         echo json_encode($data);
     }
-    public function actionRegistration() {
+     public function actionRegistration() {
         try {   
              $model = new RegistrationForm;
              if(isset($_POST["isMobile"]) && $_POST["isMobile"]==true){
@@ -42,11 +59,12 @@ class MobileController extends Controller {
              $model->Phone=$values['Phone'];
              $model->Password=$values['Password1'];
              $model->RepeatPassword=$values['RepeatPassword'];
-               
+             error_log("After values=======");
              $Dresult = $this->kushGharService->getcheckUserExist($model);
              $data = array();
              
              if ($Dresult == 'No user') {
+                                  error_log("No user======");
             $result = $this->kushGharService->saveRegistrationData($model);
             $getUserDetails = $this->kushGharService->getUserDetailsWithEmail($model->Email);
             $custAddressDetails = $this->kushGharService->saveCustomerAddressDumpInfoDetails('',$getUserDetails->customer_id);
@@ -56,6 +74,7 @@ class MobileController extends Controller {
             $obj = array('status' => $status,'data' => $getUserDetails, 'error' => 'Login success');
         }
         else{
+                        error_log("Yes user======");
             $obj = array('status' => 'error', 'data' => '', 'error' => array("RegistrationForm_error" => 'User already exists'));
         }
         }
@@ -67,6 +86,35 @@ class MobileController extends Controller {
             error_log("_EXCEPTION____" . $exc->getMessage());
             Yii::log($exc->getMessage(), 'error', 'userController');
         }
+    }
+    public function actionRegistration1() {
+        $model = new RegistrationForm;
+        parse_str($_POST["formdata"], $values);
+        error_log("Values for registration======".print_r($values, true));
+        $model->FirstName=$values['FirstName'];
+        $model->LastName=$values['LastName'];
+        $model->Email=$values['Email'];
+        $model->Phone=$values['Phone'];
+        $model->Password=$values['Password1'];
+        $model->RepeatPassword=$values['RepeatPassword'];
+        $Dresult = $this->kushGharService->getcheckUserExist($model);
+        $data = array();
+        if ($Dresult == 'No user') {
+            $result = $this->kushGharService->saveRegistrationData($model);
+            $getUserDetails = $this->kushGharService->getUserDetailsWithEmail($model->Email);
+            $custAddressDetails = $this->kushGharService->saveCustomerAddressDumpInfoDetails($model->Location,$getUserDetails->customer_id);
+            $paymentId = $this->kushGharService->saveCustomerPaymentDumpInfoDetails($getUserDetails->customer_id);
+            $this->session['UserId'] = $getUserDetails->customer_id;
+            $data['status']='success';
+            $data['message']="Login success";
+            $data['data']=$getUserDetails;
+        }
+        else{
+            $data['status']='error';
+            $data['message']="User already exists";
+        }
+        error_log("data=====".print_r($data, TRUE));
+        echo json_encode($data);
     }
     public function actionInviteFriends(){
         $inviteFriends = new InviteForm;
@@ -198,5 +246,4 @@ class MobileController extends Controller {
         echo json_encode($data);
     }
 }
-
 ?>

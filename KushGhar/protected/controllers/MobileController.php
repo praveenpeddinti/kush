@@ -32,7 +32,7 @@ class MobileController extends Controller {
         echo json_encode($data);
     }
     public function actionRegistration() {
-        try {
+        try {   
              $model = new RegistrationForm;
              if(isset($_POST["isMobile"]) && $_POST["isMobile"]==true){
              parse_str($_POST["formdata"], $values);

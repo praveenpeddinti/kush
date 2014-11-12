@@ -858,12 +858,27 @@ class KushGharService {
     public function getOrderDetailsCronJob() {
         return HouseCleaningService::model()->getOrderDetailsCronJob();
     }
+    /*
+     * XLS Reports start
+     */
      public function GetAllUserExcelData(){
         return InviteUser::model()->GetAllUserExcelData();
     }
     public function getUserExcelDataCount(){
         return InviteUser::model()->getUserExcelDataCount();
     }
+    
+    public function GetPaidUsersExcelDataCount(){
+        return InviteUser::model()->GetPaidUsersExcelDataCount();
+    }
+    public function GetPaidUserDetailsWithInvoiceExcelData(){
+        return InviteUser::model()->GetPaidUserDetailsWithInvoiceExcelData();
+    }
+    
+    
+    /*
+     * XLS Reports End
+     */
     public function getAllCitiesCount(){
         return Cities::model()->getAllCitiesCount();
     }

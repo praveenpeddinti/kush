@@ -1006,4 +1006,132 @@ class AdminController extends Controller {
             error_log("############Exception occurred in GenerateXLS ###############" . $ex->getMessage());
         } 
     }
+    
+    /*
+     * @praveen Report for paid customer details with invoice
+     */
+    
+    public function actionGenerateXLSforPaidCustomer(){
+        try{   
+            $objPHPExcel = new PHPExcel();
+            $objPHPExcel->createSheet(1);
+            $objPHPExcel->setActiveSheetIndex(0);
+            $objPHPExcel->getActiveSheet()->setTitle('Paid Customer Details');
+            $objPHPExcel->setActiveSheetIndex(0)->setCellValue('A1', ' Paid Customer Details');
+            $objPHPExcel->getActiveSheet()->getStyle('A1:N1')->getFont()->setBold(true);
+            $objPHPExcel->getActiveSheet()->getPageSetup()->setRowsToRepeatAtTopByStartAndEnd(9, 1);
+            $objPHPExcel->getActiveSheet()->mergeCells('A1:N1');
+            // setting cell perperty to display border
+            $styleThinBlackBorderOutline = array(
+            'borders' => array(
+            'allborders' => array(
+            'style' => PHPExcel_Style_Border::BORDER_THIN,
+            'color' => array('argb' => 'FF000000'),
+            ),
+            ),
+            );
+            $styleThickBorderOutline = array(
+            'borders' => array(
+            'outline' => array(
+            'style' => PHPExcel_Style_Border::BORDER_THICK,
+            'color' => array('argb' => 'FF000000'),
+                    ),
+                ),
+            );
+            $style = array(
+                'alignment' => array(
+                'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+                )
+            );
+            $usersDataCount=  $this->kushGharService->GetPaidUsersExcelDataCount();
+            $usersData=  $this->kushGharService->GetPaidUserDetailsWithInvoiceExcelData();
+            $objPHPExcel->getActiveSheet()->getStyle('A1:N1')->applyFromArray($styleThinBlackBorderOutline);
+            $objPHPExcel->getActiveSheet()->getStyle('A1:N1')->applyFromArray($style);
+            $objPHPExcel->getActiveSheet()->getStyle('A1:N1')->getFont()->setSize(18);
+            $objPHPExcel->getActiveSheet()
+                    ->setCellValue('A2','OrderNo')
+                    ->setCellValue('B2','Service Date')
+                    ->setCellValue('C2','Name')
+                    ->setCellValue('D2','Email')
+                    ->setCellValue('E2','Phone')
+                    ->setCellValue('F2','LivingRom(s)')
+                    ->setCellValue('G2','BedRom(s)')
+                    ->setCellValue('H2','Kitchen')
+                    ->setCellValue('I2','BathRom(s)')
+                    ->setCellValue('J2','Other')
+                    ->setCellValue('K2','Additionalservices')
+                    ->setCellValue('L2','Service Hours')
+                    ->setCellValue('M2','Service People')
+                    ->setCellValue('N2','Amount')
+                    
+                    ;
+            $objPHPExcel->getActiveSheet()->getStyle('A2:N2')->getFont()->setBold(true);
+            $objPHPExcel->getActiveSheet()->getStyle('A2:N2')->applyFromArray($style);
+            $objPHPExcel->getActiveSheet()->getStyle('A2:N2')->getFont()->setSize(14);
+            if($usersDataCount>0){
+                $rowCount = 3; 
+                foreach ($usersData as $row){
+                    $objPHPExcel->getActiveSheet()->getStyle('A'.$rowCount)->applyFromArray($style);
+                    $objPHPExcel->getActiveSheet()->getStyle('B'.$rowCount)->applyFromArray($style);
+                    $objPHPExcel->getActiveSheet()->getStyle('E'.$rowCount)->applyFromArray($style);
+                    $objPHPExcel->getActiveSheet()->getStyle('F'.$rowCount)->applyFromArray($style);
+                    $objPHPExcel->getActiveSheet()->getStyle('G'.$rowCount)->applyFromArray($style);
+                    $objPHPExcel->getActiveSheet()->getStyle('H'.$rowCount)->applyFromArray($style);
+                    $objPHPExcel->getActiveSheet()->getStyle('I'.$rowCount)->applyFromArray($style);
+                    $objPHPExcel->getActiveSheet()->getStyle('J'.$rowCount)->applyFromArray($style);
+                    $objPHPExcel->getActiveSheet()->getStyle('K'.$rowCount)->applyFromArray($style);
+                    $objPHPExcel->getActiveSheet()->getStyle('L'.$rowCount)->applyFromArray($style);
+                    $objPHPExcel->getActiveSheet()->getStyle('M'.$rowCount)->applyFromArray($style);
+                    $objPHPExcel->getActiveSheet()->getStyle('N'.$rowCount)->applyFromArray($style);                    
+                    $objPHPExcel->getActiveSheet()
+                        ->setCellValue('A'.$rowCount,$row['OrderId'])
+                        ->setCellValue('B'.$rowCount,$row['service_date'])
+                        ->setCellValue('C'.$rowCount,$row['UserName'])
+                        ->setCellValue('D'.$rowCount,$row['email_address'])
+                        ->setCellValue('E'.$rowCount,$row['phone'])
+                        ->setCellValue('F'.$rowCount,$row['total_livingRooms'])
+                        ->setCellValue('G'.$rowCount,$row['total_bedRooms'])
+                        ->setCellValue('H'.$rowCount,$row['total_kitchens'])
+                        ->setCellValue('I'.$rowCount,$row['total_bathRooms'])
+                        ->setCellValue('J'.$rowCount,$row['other_rooms'])
+                        ->setCellValue('K'.$rowCount,$row['Additionalservices'])
+                        ->setCellValue('L'.$rowCount,$row['total_service_hours'])
+                        ->setCellValue('M'.$rowCount,$row['total_service_people'])
+                        ->setCellValue('N'.$rowCount,$row['Amount'])
+                        ;
+                    $rowCount++;
+                }
+            }
+            else {
+                $objPHPExcel->getActiveSheet()->setCellValue('A3','No User Data exists');
+            }
+            $objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(10);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(15);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('C')->setWidth(20);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('D')->setWidth(25);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('E')->setWidth(15);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('F')->setWidth(15);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('G')->setWidth(15);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('H')->setWidth(15);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('I')->setWidth(15);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('J')->setWidth(15);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('K')->setWidth(15);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('L')->setWidth(15);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('M')->setWidth(15);
+            $objPHPExcel->getActiveSheet()->getColumnDimension('N')->setWidth(15);
+            // Rename worksheet
+            $objPHPExcel->getActiveSheet()->setTitle('No Paid Customer(s)');
+            // Set active sheet index to the first sheet, so Excel opens this as the first sheet
+            $objPHPExcel->setActiveSheetIndex(0);
+            // Redirect output to a client’s web browser (Excel2007) ...
+            header('Content-Type: application/vnd.ms-excel');
+            header('Content-Disposition: attachment;filename="UsersList1.xls"');
+            header('Cache-Control: max-age=0');
+            $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+            $objWriter->save('php://output');
+            Yii::app()->end();
+        } catch (PHPExcel_Exception $ex) {
+            error_log("############Exception occurred in GenerateXLS ###############" . $ex->getMessage());
+        } 
+    }
 }

@@ -481,6 +481,7 @@ class InviteUser extends CActiveRecord {
     public function GetAllUserExcelData(){
         try{
             $query="select customer_id as UserId,CONCAT_WS(' ',first_name,middle_name,last_name) as UserName,email_address,phone,create_timestamp as RegisteredOn from KG_Customer";
+             
             $result = Yii::app()->db->createCommand($query)->queryAll();
         } catch (Exception $ex) {
             error_log("#########Exception raised in get Al user data for excel########".$ex->getMessage());
@@ -495,6 +496,28 @@ class InviteUser extends CActiveRecord {
             error_log("#######Exception raised in Get user count for excel data#######".$ex->getMessage());
         }
         return $result['count'];
+    }
+    /*
+     * @praveen Report for paid customer details with invoice
+     */
+    public function GetPaidUsersExcelDataCount(){
+    try{
+            $query="select count(*) as count from KG_Invoice_details where Status=1";
+            $result = Yii::app()->db->createCommand($query)->queryRow();
+        } catch (Exception $ex) {
+            error_log("#######Exception raised in Get user count for excel data#######".$ex->getMessage());
+        }
+        return $result['count'];
+    }
+    public function GetPaidUserDetailsWithInvoiceExcelData(){
+        try{
+            $query="SELECT c.customer_id as UserId,i.OrderId,o.service_date,CONCAT_WS(' ',c.first_name,c.middle_name,c.last_name) as UserName,c.email_address,c.phone,h.total_livingRooms,h.total_bedRooms,h.total_kitchens,h.total_bathRooms,h.other_rooms,(sum(h.window_grills)+sum(h.cupboard_cleaning)+sum(h.fridge_interior)+sum(h.microwave_oven_interior)) as Additionalservices,o.total_service_hours,o.total_service_people,i.Amount from KG_Order_details o, KG_House_cleaning_service h,KG_Invoice_details i,KG_Customer c where o.order_number=h.order_number and o.order_number=i.OrderId and c.customer_id=h.CustId and h.order_number=i.OrderId and i.Status=1 group by o.order_number order by i.OrderId desc";
+            
+            $result = Yii::app()->db->createCommand($query)->queryAll();
+        } catch (Exception $ex) {
+            error_log("#########Exception raised in get Al user data for excel########".$ex->getMessage());
+        }
+        return $result;
     }
 }
 

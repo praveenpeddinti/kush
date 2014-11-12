@@ -154,6 +154,16 @@
                                         <input type="button" class="btn btn-primary" name="Search" value="Search" onclick="search();"/>
                                     </div>
                                 </div>
+                                <div class="row-fluid">
+                                    <div class="span12">
+                                    <div class="span10">
+                                        &nbsp;
+                                    </div>
+                                        <div class="span2">
+                                            <input type="button" class="btn btn-primary" name="Export" value="Export" onclick="reportPaidCustomer();"/>
+                                        </div>
+                                    </div>
+                                </div>
                                 <table id="userTable" class="table table-hover">
                                     <thead><tr><th>Service</th><th nowrap>Order #</th><th>InvoiceNumber</th><th nowrap>Amount</th><th>Status</th><th>Actions</th></tr></thead>
                                     <tbody id="abusedWords_tbody">
@@ -208,7 +218,9 @@
         getCollectionDataWithPagination('/admin/viewInvoice','userDetails', 'abusedWords_tbody',1,5,'','','20', '');
     });
     
-    
+ function reportPaidCustomer(){
+        window.location.href = "/admin/generateXLSforPaidCustomer";
+    }   
 function ajaxRequest(url, queryString,callback,dataType,beforeSendCallback) { 
         var data = queryString;
     if(dataType==null || dataType==undefined){

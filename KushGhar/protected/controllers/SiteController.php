@@ -13,8 +13,7 @@ class SiteController extends Controller {
         $diff=date_diff($date1,$date2);
         $rrr=$diff->format("%R%a days");
         if($t==$today){
-        error_log($t."--if---date=====".$rrr);}else{
-            error_log($t."--else---date=====".$today);
+        }else{
         }
         $this->session['UserType']='';
         $this->pageTitle="KushGhar-Home";

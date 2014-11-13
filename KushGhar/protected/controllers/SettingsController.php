@@ -379,11 +379,11 @@ class SettingsController extends Controller {
             if($locationName=='No location'){
                 if($EditForm->Id==''){
                     $result=  $this->kushGharService->newLocation($EditForm);
-                    $obj = array('status' => 'success', 'data' => $result, 'error' => 'City Name inserted successfully.');
+                    $obj = array('status' => 'success', 'data' => $result, 'error' => 'Location Name inserted successfully.');
                 }
                 else{
                     $result = $this->kushGharService->UpdateLocation($EditForm);
-                $obj = array('status' => 'success', 'data' => $result, 'error' => 'City Name updated successfully.');
+                $obj = array('status' => 'success', 'data' => $result, 'error' => 'Location Name updated successfully.');
                 }
             } else{
                 $result = 'failure';

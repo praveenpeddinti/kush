@@ -28,15 +28,26 @@
             </aside>
             <article>
                 <div class="row-fluid" style="height:480px">
-                    <div class="span12">
-                        <h4 class="paddingL20">Car Models of <?php echo $MakeName;?></h4>
+                    <div class="span12">                         
+                        <div class="row-fluid">
+                        <div class="span12">
+                            <div class="span8">
+                                <h4 class="paddingL20">Car Models of <?php echo $MakeName; ?></h4>
+                            </div>
+                            <div class="span4">
+                                <div class="paddinground">  
+                                <input type="button" id="btnBack" class="btn btn-primary" value="Back" onclick="newMake()" style="padding-top: 10px"/>
+                            </div>
+                           </div>
+                          </div>
+                         </div>                        
                         <div id="TC" style="display:none"></div>                       
                         <div class="paddinground">    
                             <div id="InviteInfoSpinLoader"></div>
                             <div id="tablewidget"  style="margin: auto;"><div id="message" style="display:none"></div>
-                               <input type="button" id="btnNewModel" class="btn btn-primary" value="New Model" onclick="newModel()"/>
+                                <input type="button" id="btnNewModel" class="btn btn-primary" value="New Model" onclick="newModel()"/>                        
                                 <div class="table-responsive"> <table id="userTable" class="table table-hover usermanagement_table">
-                                       <thead><tr><th>Model Name</th><th>Actions</th></tr></thead>
+                                    <thead><tr><th>Model Name</th><th>Actions</th></tr></thead>
                                     <tbody id="abusedWords_tbody">
 
                                     </tbody>
@@ -202,6 +213,10 @@
     }
     function close_click(){
     window.location.href = '<?php echo Yii::app()->request->baseUrl; ?>/settings/carModels?MakeId='+makeId;
+    }
+    function newMake(){
+        window.location.href = '<?php echo Yii::app()->request->baseUrl; ?>/settings/carMakes?MakeId='+makeId;
+
     }
 </script>
 

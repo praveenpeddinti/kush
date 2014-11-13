@@ -28,16 +28,27 @@
             </aside>
             <article>
                 <div class="row-fluid" style="height:480px">
-                    <div class="span12">
-                        <h4 class="paddingL20">Locations of <?php echo $CityName; ?></h4>
+                    <div class="span12">                         
+                        <div class="row-fluid">
+                        <div class="span12">
+                            <div class="span8">
+                                <h4 class="paddingL20">Locations of <?php echo $CityName; ?></h4>
+                            </div>
+                            <div class="span4">
+                                <div class="paddinground">  
+                                <input type="button" id="btnBack" class="btn btn-primary" value="Back" onclick="newCity()" style="padding-top: 10px"/>
+                            </div>
+                           </div>
+                          </div>
+                         </div>                        
                         <div id="TC" style="display:none"></div>                       
                         <div class="paddinground">    
                             <div id="InviteInfoSpinLoader"></div>
                             <div id="tablewidget"  style="margin: auto;"><div id="message" style="display:none"></div>
-                                <input type="button" id="btnNewCity" class="btn btn-primary" value="New Location" onclick="newLocation()"/>
+                                <input type="button" id="btnNewCity" class="btn btn-primary" value="New Location" onclick="newLocation()"/>                        
                                 <div class="table-responsive"> <table id="userTable" class="table table-hover usermanagement_table">
 
-                                    <thead><tr><th>Name</th><th>Actions</th></tr></thead>
+                                    <thead><tr><th>Location Name</th><th>Actions</th></tr></thead>
                                     <tbody id="abusedWords_tbody">
 
                                     </tbody>
@@ -204,5 +215,11 @@ function statusChange(rowNos, Status) {
     }
     function close_click(){
     window.location.href = '<?php echo Yii::app()->request->baseUrl; ?>/settings/Locations?CityId='+CityId;
+    }
+    
+    
+    function newCity(){
+        window.location.href = '<?php echo Yii::app()->request->baseUrl; ?>/settings/cities?CityId='+CityId;
+
     }
 </script>

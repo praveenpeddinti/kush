@@ -29,12 +29,12 @@
             <article>
                 <div class="row-fluid" style="height:480px">
                     <div class="span12">
-                        <h4 class="paddingL20">Cities</h4>
+                        <h4 class="paddingL20">Locations of <?php echo $CityName; ?></h4>
                         <div id="TC" style="display:none"></div>                       
                         <div class="paddinground">    
                             <div id="InviteInfoSpinLoader"></div>
                             <div id="tablewidget"  style="margin: auto;"><div id="message" style="display:none"></div>
-                                <input type="button" id="btnNewCity" class="btn btn-primary" value="New City" onclick="newCity()"/>
+                                <input type="button" id="btnNewCity" class="btn btn-primary" value="New Location" onclick="newLocation()"/>
                                 <div class="table-responsive"> <table id="userTable" class="table table-hover usermanagement_table">
 
                                     <thead><tr><th>Name</th><th>Actions</th></tr></thead>
@@ -56,7 +56,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h3 id="myModalLabel">Edit City</h3>
+                                <h3 id="myModalLabel">Edit Location</h3>
                             </div>
                             <div class="modal-body" id="modelBodyDiv1" style="padding:15px;">
                             </div>
@@ -68,7 +68,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h3 id="myModalLabel">New City</h3>
+                                <h3 id="myModalLabel">New Location</h3>
                             </div>
                             <div class="modal-body" id="modelBodyNew" style="padding:15px;">
                             </div>
@@ -81,14 +81,15 @@
 </div>
 <script type="text/javascript">
     var pageno;
+    var CityId=<?php echo $CityId;?>;
     $(function(){
-        getCollectionDataWithPagination('/settings/newCities','userDetails', 'abusedWords_tbody',1,5,'');
+        getCollectionDataWithPagination('/settings/newLocations','userDetails', 'abusedWords_tbody',1,5,CityId,'');
     });
-    function getCollectionDataWithPagination(URL,CollectionName, MainDiv, CurrentPage, PageSize,callback){
+    function getCollectionDataWithPagination(URL,CollectionName, MainDiv, CurrentPage, PageSize,CityId,callback){
         globalspace[MainDiv+'_page'] = Number(CurrentPage);
         globalspace[MainDiv+'_pageSize']=Number(PageSize);
         pageno=Number(CurrentPage);
-        var newURL =  URL+"?"+CollectionName+"_page="+globalspace[MainDiv+'_page']+"&pageSize="+globalspace[MainDiv+'_pageSize'];
+        var newURL =  URL+"?"+CollectionName+"_page="+globalspace[MainDiv+'_page']+"&pageSize="+globalspace[MainDiv+'_pageSize']+"&CityId="+CityId;
         var data = "";  
         ajaxRequest(newURL,data,function(data){getCollectionDataWithPaginationHandler(data,URL,CollectionName,MainDiv,callback)});
     }
@@ -104,7 +105,7 @@
                     onPageClick: function(pageNumber, event) {
                         globalspace[MainDiv+'_page'] = pageNumber;
                         pageno=pageNumber;
-                        getCollectionDataWithPagination(URL,CollectionName, MainDiv, globalspace[MainDiv+'_page'], globalspace[MainDiv+'_pageSize'], callback)
+                        getCollectionDataWithPagination(URL,CollectionName, MainDiv, globalspace[MainDiv+'_page'], globalspace[MainDiv+'_pageSize'],CityId, callback)
                     }
                 });
             if(callback!=''){
@@ -119,11 +120,9 @@
             if(id1.indexOf("status") > -1)
                 statusChange(Number(id),status);
             else if(id1.indexOf("edit")> -1)
-                editCity(Number(id));
-            else if(id1.indexOf("model")> -1)
-                viewLocations(Number(id));
+                editLocation(Number(id));
         });
-});
+    });
 
 function statusChange(rowNos, Status) {
         if (Status == 1) {
@@ -137,11 +136,11 @@ function statusChange(rowNos, Status) {
             $.ajax({
                 type: 'POST',
                 dataType: 'json',
-                url: '<?php echo Yii::app()->createAbsoluteUrl("/settings/changeCityStatus"); ?>',
+                url: '<?php echo Yii::app()->createAbsoluteUrl("/settings/changeLocationStatus"); ?>',
                 data: data,
                 success: function(data) {
                     activeFormHandler(data, Status, rowNos);
-                    getCollectionDataWithPagination('/settings/newCities','userDetails', 'abusedWords_tbody',pageno,5, '');
+                    getCollectionDataWithPagination('/settings/newLocations','userDetails', 'abusedWords_tbody',pageno,5, '');
                 },
                 error: function(data) { // if error occured
                     alert("Error occured.please try again");
@@ -167,12 +166,12 @@ function statusChange(rowNos, Status) {
 //            alert("else part");
         }
     }
-    function editCity(id){
-        var data = "Id=" + id;
-            $.ajax({
+    function editLocation(Id){
+        var data = "Id=" + Id + "&CityId=" + CityId;
+             $.ajax({
                 type: 'POST',
                 dataType: 'json',
-                url: '<?php echo Yii::app()->createAbsoluteUrl("/settings/editCity"); ?>',
+                url: '<?php echo Yii::app()->createAbsoluteUrl("/settings/editLocation"); ?>',
                 data: data,
                 success: function(data) {
                     $("#myModalforgot1").modal({ backdrop: 'static', keyboard: false,show:false });
@@ -185,10 +184,13 @@ function statusChange(rowNos, Status) {
                 }
             });
     }
-    function newCity(){
+    function newLocation(){
+        var data="CityId=" + CityId;
         $.ajax({
+                type: 'POST',
                 dataType: 'json',
-                url: '<?php echo Yii::app()->createAbsoluteUrl("/settings/newCity"); ?>',
+                url: '<?php echo Yii::app()->createAbsoluteUrl("/settings/editLocation"); ?>',
+                data: data,
                 success: function(data) {
                     $("#myModalforgot").modal({ backdrop: 'static', keyboard: false,show:false });
                     $("#modelBodyNew").html(data.html);
@@ -200,7 +202,7 @@ function statusChange(rowNos, Status) {
                 }
             });
     }
-    function viewLocations(id){
-        window.location.href = '<?php echo Yii::app()->request->baseUrl; ?>/settings/Locations?CityId='+id;
+    function close_click(){
+    window.location.href = '<?php echo Yii::app()->request->baseUrl; ?>/settings/Locations?CityId='+CityId;
     }
 </script>

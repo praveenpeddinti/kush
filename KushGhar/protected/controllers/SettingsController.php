@@ -243,8 +243,8 @@ class SettingsController extends Controller {
     }
     public function actionChangeCityStatus(){
         try{
-            $changeUserStatus = $this->kushGharService->ChangeCityStatus($_POST['Id'], $_POST['status']);
-            $obj = array('status' => 'error', 'data' => '', 'error' => $changeUserStatus);
+            $changeUserStatus = $this->kushGharService->ChangeCityStatus($_POST['Id'], $_POST['Status']);
+            $obj = array('Status' => 'error', 'data' => '', 'error' => $changeUserStatus);
             echo CJSON::encode($obj);
         } catch (Exception $ex) {
             error_log("##### Exception occurred in changing status#####".$ex->getMessage());
@@ -254,7 +254,6 @@ class SettingsController extends Controller {
         try{            
             $Model = new CitiesForm;
             $getCityDetails=$this->kushGharService->getCityDetails($_POST['Id']);
-            error_log("City details========".print_r($getCityDetails, true));
             $renderHtml=  $this->renderPartial('editCity',array("model"=>$Model,"getCityDetails"=>$getCityDetails),true);
             $obj=array('status'=>'success','html'=>$renderHtml);
             $renderScript=  $this->rendering($obj);
@@ -284,15 +283,6 @@ class SettingsController extends Controller {
         echo $renderScript;
     }
     
-    public function actionLocations(){
-        try {
-            $this->pageTitle="KushGhar-Settings";
-            $cityName=  $this->kushGharService->getCityNameByID($_REQUEST['StateId']);
-            $this->render('Locations',array('stateId' => $_REQUEST['StateId'],'CityName'=>$cityName['CityName']));
-        } catch (Exception $ex) {
-            error_log("#########Exception Occurred########" . $ex->getMessage());
-        }
-    }
     public function actionNewCity(){
         try{
             $Model = new CitiesForm;
@@ -303,9 +293,7 @@ class SettingsController extends Controller {
             $States=$this->kushGharService->getStates();
             //$getCityDetails=$this->kushGharService->getCityDetails($id);
             $renderHtml=  $this->renderPartial('newCity',array("model"=>$Model,"States"=>$States),true);
-            error_log("bjhbdj-----------------".$renderHtml);
             $obj=array('status'=>'success','html'=>$renderHtml);
-            error_log("object---------------".print_r($obj, TRUE));
             $renderScript=  $this->rendering($obj);
             echo $renderScript;
         } catch (Exception $ex) {
@@ -319,7 +307,6 @@ class SettingsController extends Controller {
         $formName = $request->getParam('CitiesForm');
         if ($formName != '') {
             $newCityForm->attributes = $request->getParam('CitiesForm');
-            error_log("new city----------".print_r($newCityForm, TRUE));
             //$makename=  $this->kushGharService->getMakeNameByID($newCityForm->makeId);
             $modelName = $this->kushGharService->checkNewCityExistInCitiesTableByState($newCityForm->CityName,$newCityForm->StateId);
             if($modelName=='No city'){
@@ -334,4 +321,77 @@ class SettingsController extends Controller {
         $renderScript = $this->rendering($obj);
         echo $renderScript;
     }
-}
+   
+    public function actionLocations(){
+        try {
+            $this->pageTitle="KushGhar-Settings";
+            $cityname=  $this->kushGharService->getCityNameByID($_REQUEST['CityId']);
+            $this->render('Locations',array('CityId' => $_REQUEST['CityId'],'CityName'=>$cityname['CityName']));
+        } catch (Exception $ex) {
+            error_log("#########Exception Occurred########" . $ex->getMessage());
+        }
+    }
+    public function actionNewLocations(){
+        try {           
+                if (isset($_GET['userDetails_page'])) {
+               $totalcount = $this->kushGharService->getAllLocationsCount($_GET['CityId']);              
+                $startLimit = ((int) $_GET['userDetails_page'] - 1) * (int) $_GET['pageSize'];
+                $endLimit = $_GET['pageSize'];
+                $userDetails = $this->kushGharService->getLocations($_GET['CityId'],$startLimit, $endLimit);
+                $renderHtml = $this->renderPartial('newLocation', array('userDetails' => $userDetails, 'totalCount' => $totalcount), true);
+                $obj = array('status' => 'success', 'html' => $renderHtml, 'totalCount' => $totalcount);
+                $renderScript = $this->rendering($obj);
+                echo $renderScript;
+            }
+        } catch (Exception $ex) {
+            error_log("######### Exception Occurred##########".$ex->getMessage());
+        }
+    }
+    public function actionEditLocation(){ 
+        try{
+            $Model = new LocationsForm;
+//            unset($Model);
+//            $Model = new LocationsForm;
+            if(isset($_POST['Id'])) $Id=$_POST['Id'];
+            else $Id=-1;
+            $cities=$this->kushGharService->getCities();
+            $getLocationDetails=$this->kushGharService->getLocationDetails($Id);
+            $renderHtml=  $this->renderPartial('editLocation',array("model"=>$Model,"getLocationDetails"=>$getLocationDetails,"cities"=>$cities,"city"=>$_POST['CityId']),true);
+            $obj=array('status'=>'success','html'=>$renderHtml);
+            $renderScript=  $this->rendering($obj);
+            echo $renderScript;
+        } catch (Exception $ex) {
+
+        }
+    }
+    public function actionChangeLocationStatus(){
+        $changeUserStatus = $this->kushGharService->ChangeLocationStatus($_POST['Id'], $_POST['Status']);
+        $obj = array('status' => 'error', 'data' => '', 'error' => $changeUserStatus);
+        echo CJSON::encode($obj);
+    }
+    public function actionEditLocationSave(){
+        $EditForm = new LocationsForm();
+        $request = yii::app()->getRequest();
+        $formName = $request->getParam('LocationsForm');
+        if ($formName != '') {
+            $EditForm->attributes = $request->getParam('LocationsForm');
+            $locationName = $this->kushGharService->checkNewLocationExistInLocationTable($EditForm->LocationName,$EditForm->CityId);
+            if($locationName=='No location'){
+                if($EditForm->Id==''){
+                    $result=  $this->kushGharService->newLocation($EditForm);
+                    $obj = array('status' => 'success', 'data' => $result, 'error' => 'City Name inserted successfully.');
+                }
+                else{
+                    $result = $this->kushGharService->UpdateLocation($EditForm);
+                $obj = array('status' => 'success', 'data' => $result, 'error' => 'City Name updated successfully.');
+                }
+            } else{
+                $result = 'failure';
+                $errors = array("LocationsForm_error" => 'Location already exists.');
+                $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
+            }
+        }
+        $renderScript = $this->rendering($obj);
+        echo $renderScript;
+    }
+}?>

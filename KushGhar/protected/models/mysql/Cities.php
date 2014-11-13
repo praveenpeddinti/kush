@@ -17,7 +17,7 @@ class Cities extends CActiveRecord {
             $query="select count(*) as count from KG_Cities";
             $result = Yii::app()->db->createCommand($query)->queryRow();
         }catch(Exception $ex){
-            error_log("################Exception Occurred  get car makes count##############".$ex->getMessage());
+            error_log("################Exception Occurred  get Cities count##############".$ex->getMessage());
         }
         return $result['count'];
     }
@@ -26,7 +26,7 @@ class Cities extends CActiveRecord {
             $query="select * from KG_Cities limit ".$startLimit.",".$endLimit;
             $result = Yii::app()->db->createCommand($query)->queryAll();
         }catch(Exception $ex){
-            error_log("################Exception Occurred  get All car makes list##############".$ex->getMessage());
+            error_log("################Exception Occurred  get All Cities list##############".$ex->getMessage());
         }
         return $result;
     }
@@ -34,9 +34,9 @@ class Cities extends CActiveRecord {
         $result="failed";
        try{
            if($val==1)
-                $query="update KG_Cities set status=0 where Id=".$id;
+                $query="update KG_Cities set Status=0 where Id=".$id;
            else if ($val==0)
-                $query="update KG_Cities set status=1 where Id=".$id;
+                $query="update KG_Cities set Status=1 where Id=".$id;
            $result1 = YII::app()->db->createCommand($query)->execute();
            if($result1>0)
                $result = "success";
@@ -48,7 +48,7 @@ class Cities extends CActiveRecord {
     }
     public function getCityDetails($id){
         try{
-            $query="SELECT * FROM KG_Cities where id=".$id;
+            $query="SELECT * FROM KG_Cities where Id=".$id;
             $result = YII::app()->db->createCommand($query)->queryRow();
         }
         catch (Exception $ex) {
@@ -66,7 +66,7 @@ class Cities extends CActiveRecord {
                 $result = "Yes city";
             }
         } catch (Exception $ex) {
-            error_log("############Error Occurred in Make get Details= #############" . $ex->getMessage());
+            error_log("############Error Occurred in City get Details= #############" . $ex->getMessage());
         }
         return $result; 
     }
@@ -77,14 +77,14 @@ class Cities extends CActiveRecord {
             if($result>0) return "success";
             else return "failure";
         } catch (Exception $ex) {
-            error_log("############Error Occurred in update make Details= #############" . $ex->getMessage());
+            error_log("############Error Occurred in update City Details= #############" . $ex->getMessage());
         }
     }
     public function getAllCitiesView(){
         try {
             $Criteria = new CDbCriteria();
             $Criteria->order = 'CityName ASC';
-            $Criteria->condition='status=1';
+            $Criteria->condition='Status=1';
             $cityData = Cities::model()->findAll($Criteria);
         } catch (Exception $ex) {
             error_log("############Error Occurred in getAllCitiesView= #############" . $ex->getMessage());
@@ -111,7 +111,7 @@ class Cities extends CActiveRecord {
             if($result>0) return "success";
             else return "failure";
         } catch (Exception $ex) {
-            error_log("############Error Occurred in Add new nodel Details= #############" . $ex->getMessage());
+            error_log("############Error Occurred in Add new Location Details= #############" . $ex->getMessage());
         }
     }
 }

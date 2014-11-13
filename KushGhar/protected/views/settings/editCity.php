@@ -65,7 +65,7 @@
     } 
     function activeFormHandler2(data, rowNos,value) {
         if (value == 'Edit') {
-            $('#make_' + rowNos).text(data);
+            $('#city_' + rowNos).text(data);
         } 
     }
     function validate(){

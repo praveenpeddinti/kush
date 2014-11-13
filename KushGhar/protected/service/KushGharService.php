@@ -18,7 +18,7 @@ class KushGharService {
     }
 
     public function adminAsCustomerlogin($uname,$psw, $role) {
-        try {error_log("---enter service--".$uname."==".$psw);
+        try {
             if ($role == 'User') {
                 $user = Registration::model()->checkAuthenticationAssumeCustomer($uname,$psw);
             }
@@ -897,8 +897,8 @@ class KushGharService {
     public function UpdateCity($model){
         return Cities::model()->UpdateCity($model);
     }
-    public function getCityNameByID($id){
-        return Locations::model()->getCityNameByID($id);
+    public function getCityNameByID($CityId){
+        return Locations::model()->getCityNameByID($CityId);
     }
     public function getAllCitiesView(){
         try {
@@ -913,13 +913,36 @@ class KushGharService {
     }
     public function newCityAdd($CityName,$StateId){
         return Cities::model()->newCityAdd($CityName,$StateId);
+    }    
+    
+    
+    public function getAllLocationsCount($CityId){
+        return Locations::model()->getAllLocationsCount($CityId);
     }
-    public function getAllLocationsView(){
+    public function getLocations($CityId,$startLimit,$endLimit){
+        return Locations::model()->getLocations($CityId,$startLimit,$endLimit);
+    }
+    public function getCities() {
         try {
-            $result = Locations::model()->getAllLocationsView();
+            $result = Cities::model()->getAllCitiesView();
         } catch (Exception $ex) {
             error_log("=============exception occurred in Cities=============" . $ex->getMessage());
         }
         return $result;
+    }
+    public function getLocationDetails($Id){
+        return Locations::model()->getLocationDetails($Id);
+    }
+    public function ChangeLocationStatus($id,$status){
+        return Locations::model()->ChangeLocationStatus($id,$status);
+    }
+    public function checkNewLocationExistInLocationTable($LocationName,$CityId){
+        return Locations::model()->checkNewLocationExistInLocationTable($LocationName,$CityId);
+    }
+    public function newLocation($model){
+        return Locations::model()->newLocation($model);
+    }
+    public function UpdateLocation($model){
+        return Locations::model()->UpdateLocation($model);
     }
 } ?>

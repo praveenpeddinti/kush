@@ -29,7 +29,7 @@
          </div>
 <script type="text/javascript">
     function saveChanges(){
-        if(validate()){alert("validation------------");
+        if(validate()){
             var data = $("#newCityForm").serialize();
             ajaxRequest('/settings/newCitySave', data, newCityHandler)
         }

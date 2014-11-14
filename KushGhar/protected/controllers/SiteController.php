@@ -275,19 +275,42 @@ class SiteController extends Controller {
                     $getUserDetails = $this->kushGharService->getUserDetailsWithEmail($model->Email);
                     $custAddressDetails = $this->kushGharService->saveCustomerAddressDumpInfoDetails($model->Location,$getUserDetails->customer_id);
                     $paymentId = $this->kushGharService->saveCustomerPaymentDumpInfoDetails($getUserDetails->customer_id);
-                    $this->session['UserId'] = $getUserDetails->customer_id;
+                    //$this->session['UserId'] = $getUserDetails->customer_id;
                 } else {
                     $result = "failed";
                     $errors = array("RegistrationForm_error" => 'User already exists.');
                     $obj = array('status' => 'error', 'data' => '', 'error' => $errors);
                 }
                 if ($result == "success") {
-                    $message = array("RegistrationForm_error" => 'Registration successfully.');
-                    $obj = array('status' => 'success', 'data' => $message, 'error' => '');
-                } else {
-                    $message = array("RegistrationForm_error" => 'User already exists.');
-                    $obj = array('status' => 'error', 'data' => '', 'error' => $message);
-                }
+                    /*
+                    * Customer Mail Details
+                    */
+                $to1 = $model->Email;
+                $name = $model->FirstName . ' ' . $model->LastName;
+                $phone = $model->Phone;
+                $subject ='KushGhar Invitation';
+                $Logo = YII::app()->params['SERVER_URL'] . "/images/color_logo.png";
+                $employerEmail = "no-reply@kushghar.com";
+                $messageview1="InvitationMail";
+                $mess1 = 'http://113.193.178.88:6060/site/registration?Uname='.$model->Email. "\r\n\n";
+                //$mess1 = 'http://www.kushghar.com/site/registration?Uname=' . $model->Email . "\r\n\n";
+                $params1 = array('Logo' => $Logo, 'Name' =>$name,'Message' =>$mess1);
+                 /*
+                 * KG Team mail details
+                 */
+                $to = 'praveen.peddinti@gmail.com';
+                $messageview="RegistrationMailToKGTeam";
+                $params = array('Logo' => $Logo, 'Name' =>$name, 'Email' =>$to1, 'Phone'=>$phone);
+                $sendMailToUser=new CommonUtility;
+                $sendMailToUser->actionSendmail($messageview1,$params1, $subject, $to1,$employerEmail);
+                $mailSendStatusw=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);                   
+                $message = array("RegistrationForm_error" => 'Registration successfully.');
+                $obj = array('status' => 'success', 'data' => $message, 'error' => '');
+                } 
+//                else {
+//                    $message = array("RegistrationForm_error" => 'User already exists.');
+//                    $obj = array('status' => 'error', 'data' => '', 'error' => $message);
+//                }
             }
             $renderScript = $this->rendering($obj);
             echo $renderScript;

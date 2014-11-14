@@ -71,11 +71,11 @@
                                     </div>
                                 </li>
                                 <li class="dropdown ">
-                                    <div class="btn-group">
+<!--                                    <div class="btn-group">
                                         <button class="btn btn-large dropdown-toggle Login_button" data-toggle="dropdown" onclick="loginpopup();">
                                             Request Invite 
                                             <span class="caret">&nbsp;</span>
-                                        </button></div>
+                                        </button></div>-->
                                     <div class="btn-group">
                                         <button class="btn btn-large dropdown-toggle Login_button" data-toggle="dropdown" onclick="SignInpopup();">
                                             SignIn 
@@ -185,11 +185,11 @@
 <script type="text/javascript">
     
     
-    function loginpopup(){
-        window.location.href='<?php echo Yii::app()->request->baseUrl; ?>/site/registration';
-        
-        //getCollectionDataWithPagination('/user/inviteRegistration','my', 'modelBodyDiv', '');
-    }
+//    function loginpopup(){
+//        window.location.href='<?php //echo Yii::app()->request->baseUrl; ?>/site/registration';
+//        
+//        //getCollectionDataWithPagination('/user/inviteRegistration','my', 'modelBodyDiv', '');
+//    }
     function adminLoginpopup(){
         window.location.href='<?php echo Yii::app()->request->baseUrl; ?>/admin/login';
     }

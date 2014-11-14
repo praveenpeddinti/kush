@@ -1,42 +1,42 @@
 <script src="../../../js/common.js" type="text/javascript"></script>
 <script type="text/javascript">
-        $( document ).ready(function() {
-            var qStringInt='<?php echo empty($_REQUEST['Uname'])?NULL : $_REQUEST['Uname'];?>';
-            var qString= '<?php echo empty($_REQUEST['ClickBy'])? NULL : $_REQUEST['ClickBy'];?>';
-
-            if((readCookie("Invited")==null) && (qString=='') && (qStringInt==''))
-            {
-                $("#myModal").modal({ backdrop: 'static', keyboard: false,show:false });
-                if(document.getElementById('VV').value!='inviteToEmail'){
-                $("#modelBodyDiv").load("/site/inviteregistration",{},""); 
-                $('#myModal').modal('show');
-                }
-            }
-            if(qString=="SignIn")
-            {
-                document.getElementById("ModalDivLogin").style.display = "none";
-                document.getElementById("ModalDiv").style.display = "block";
-            }
-            if(qStringInt!='')
-            {
-                document.getElementById("ModalDiv").style.display = "none";
-                document.getElementById("ModalDivLogin").style.display = "block";
-            }
-        });
-        function readCookie(name) {
-	var nameEQ = name + "=";
-	var ca = document.cookie.split(';');
-	for(var i=0;i < ca.length;i++) {
-		var c = ca[i];
-		while (c.charAt(0)==' ') c = c.substring(1,c.length);
-		if (c.indexOf(nameEQ) == 0)  return c.substring(nameEQ.length,c.length);
-	}
-	return null;
-}
+//        $( document ).ready(function() {
+//            var qStringInt='<?php //echo empty($_REQUEST['Uname'])?NULL : $_REQUEST['Uname'];?>';
+//            var qString= '<?php //echo empty($_REQUEST['ClickBy'])? NULL : $_REQUEST['ClickBy'];?>';
+//
+//            if((readCookie("Invited")==null) && (qString=='') && (qStringInt==''))
+//            {
+//                //$("#myModal").modal({ backdrop: 'static', keyboard: false,show:false });
+//               // if(document.getElementById('VV').value!='inviteToEmail'){
+//               // $("#modelBodyDiv").load("/site/inviteregistration",{},""); 
+//               // $('#myModal').modal('show');
+//               // }
+//            }
+//            if(qString=="SignIn")
+//            {
+//                //document.getElementById("ModalDivLogin").style.display = "block";
+//               // document.getElementById("ModalDiv").style.display = "block";
+//            }
+//            if(qStringInt!='')
+//            {
+//                document.getElementById("ModalDiv").style.display = "none";
+//                document.getElementById("ModalDivLogin").style.display = "block";
+//            }
+//        });
+//        function readCookie(name) {
+//	var nameEQ = name + "=";
+//	var ca = document.cookie.split(';');
+//	for(var i=0;i < ca.length;i++) {
+//		var c = ca[i];
+//		while (c.charAt(0)==' ') c = c.substring(1,c.length);
+//		if (c.indexOf(nameEQ) == 0)  return c.substring(nameEQ.length,c.length);
+//	}
+//	return null;
+//}
      function addNewUserhandler(data){
         scrollPleaseWaitClose('registrationSpinLoader');
         if(data.status=='success'){
-            window.location.href='<?php echo Yii::app()->request->baseUrl; ?>/user/basicinfo';
+            window.location.href='<?php echo Yii::app()->request->baseUrl; ?>/site/registration';
         }else{
             var error=[];
             if(typeof(data.error)=='string'){
@@ -131,8 +131,8 @@
                     <div class="reg_div" id="RegDiv">
                         <div class="paddinground">
                             <h2 class="reg_title">New User Registration</h2>
-                            <div id="ModalDiv" style="position: absolute;left:0;right: 0;top:0;bottom: 0;background: #fff;opacity: 0.5;display:none;"></div>
-                            
+<!--                            <div id="ModalDiv" style="position: absolute;left:0;right: 0;top:0;bottom: 0;background: #fff;opacity: 0.5;display:none;"></div>
+                            -->
                             <div id="registrationSpinLoader" style="top:26px"></div>
                             <?php
                             $form = $this->beginWidget('CActiveForm', array(

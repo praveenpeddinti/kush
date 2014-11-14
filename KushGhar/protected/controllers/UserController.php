@@ -1174,9 +1174,9 @@ class UserController extends Controller {
                         $messageview="orderreplacemessagetoKG";
                         $params = array('Logo' => $Logo, 'Message' =>$customerDetails, 'Reason'=>$rescheduleForm->Reason,'HouseService'=>$getServiceDetails,'CarService'=>$getCarWashServiceDetails,'StewardService'=>$getStewardsServiceDetails,'getCars'=>$getTotalCars);       
                         //$params = '';
-                        $sendMailToUser=new CommonUtility;
-                        $sendMailToUser->actionSendmail($messageview1,$params1, $subject1, $to1,$employerEmail);
-                        $mailSendStatus=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
+                      //  $sendMailToUser=new CommonUtility;
+                    //    $sendMailToUser->actionSendmail($messageview1,$params1, $subject1, $to1,$employerEmail);
+                   //     $mailSendStatus=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
                         $obj = array('status' => 'success', 'data' => $result, 'error' => 'Re-Scheduled Successfully.');
                     }
                     else

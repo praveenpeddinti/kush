@@ -596,3 +596,7 @@ p.jRatingInfos span.maxRate {color:#fff;font-size:14px;}
 .btn_backAdmin, .btn_backAdmin:hover {
     background: none repeat scroll 0 0 #444B4C;
     color: #FFFFFF;}
+.headercontent_links{background: none repeat scroll 0 0 #F58220;min-height: 35px}
+.header_links{color:#fff; margin-bottom:5px;margin-left:275px;font-family: bold}
+.header_links a{color:#fff; text-decoration:none }
+.header_links a:hover, .header_links a:focus{color:#fff; text-decoration:underline }

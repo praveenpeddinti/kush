@@ -29,43 +29,24 @@
                         </div>
                         <div class="header_menu_items">
                             <ul role="navigation" class="nav">
-                                <!--<li class="dropdown ">
-                                    <div class="btn-group">
-                                        <button class="btn btn-primary Login_button" data-toggle="dropdown" onclick="adminLoginpopup();">
-                                            Admin <span class="caret">&nbsp;</span>
-                                        </button>                                       
-                                    </div>
-                                </li>-->
-                                <li class="dropdown ">
-                                   
-                                        
-                                        <a class="vendor_b" href="/site/vregistration"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/vendor_b.png" class="logo" /></a>
-
-                                   
-                                    
+                                <li class="dropdown "> 
+                                    <a class="vendor_b" href="/site/vregistration"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/vendor_b.png" class="logo" /></a>
                                 </li>
-                                <!--<li class="mobilemiddle ">
-                                    <div class="btn-group">
-                                        <a href="/vendor/vregistration" class="btn btn-primary"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/vendor_b.png" class="logo" /></a>
-                                        
-                                    </div>
-                                </li>-->
                                 <li class="mobilemiddle">
                                     <div class="input-append " style="width:187px">
-                                        <!--<div id='cse' style='width: 100%;'>Loading</div>-->
-                                        <script>
-  (function() {
-    var cx = '001516148304717743126:d3ggxtr1sve';
-    var gcse = document.createElement('script');
-    gcse.type = 'text/javascript';
-    gcse.async = true;
-    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-        '//www.google.com/cse/cse.js?cx=' + cx;
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(gcse, s);
-  })();
-</script>
-<gcse:search></gcse:search>
+                                    <script>
+                                        (function() {
+                                          var cx = '001516148304717743126:d3ggxtr1sve';
+                                          var gcse = document.createElement('script');
+                                          gcse.type = 'text/javascript';
+                                          gcse.async = true;
+                                          gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                                              '//www.google.com/cse/cse.js?cx=' + cx;
+                                          var s = document.getElementsByTagName('script')[0];
+                                          s.parentNode.insertBefore(gcse, s);
+                                        })();
+                                      </script>
+                                      <gcse:search></gcse:search>
                                         <!--<input class="serachInput" id="appendedInputButton" type="text" placeholder="Search...">
                                         <button class="btn btn-large btn-search" type="button"><i class="fa fa-search"></i></button>-->
                                     </div>
@@ -114,12 +95,20 @@
                 </div>
             </div>
             <!--h_right end -->
-        </div>
+        <div class="headercontent_links">
+<div class="row-fluid">
+                <div class="header_links paddingT10">
+                    
+                        <a href="#" onclick="HomeClick();">Home</a> | <a href="/site/cleaning">Services</a> | <a href="/site/aboutus">About Us</a> | <a href="/site/press">Press</a> | <a href="/site/careers">Careers</a> | <a href="/site/mission">KushGhar's Mission</a> | <a href="/site/termsofService">Terms of Service </a> | <a href="/site/privacyPolicy">Privacy Notice</a> | <a href="<?php echo Yii::app()->request->baseUrl; ?>/site/customerFeedback">Customer Feedback</a>
+                    
+                </div>
+            </div>
+</div>
     </header>
 <?php } else { ?>
     <header class="inner_header">
         <div class="container">
-            <div class="row-fluid"><?php //echo "===2====".$this->getUniqueId()."=====".$this->session['Type']."===Id==".$this->session['UserId'];?>
+            <div class="row-fluid">
 
                 <?php if (!empty($this->session['UserId'])) { ?>
                 <div class="pull-left">
@@ -138,7 +127,7 @@
                 <div class="pull-right">
                     <ul class=" pull-right header_profile">
                         <?php if ($this->session['is_Assumed_By_Admin']==1) { ?><li id="backtoadmin" class=" pull-left back_to_admin">Admin logged in on behalf of <?php echo $this->session['firstName']; ?> <!--<a href="<?php //echo Yii::app()->request->baseUrl; ?>/site/adminlogin">Back to Admin</a>-->
-                        <input type="button" value="Back to Admin" class="btn" onclick="backToAdmin(1)" /></li><?php }?>
+                        <input type="button" value="Back to Admin" class="btn btn_backAdmin" onclick="backToAdmin(1)" /></li><?php }?>
                         <li id="welcome" class=" pull-left welcome_text">Welcome <?php echo $this->session['firstName']; ?></li>
                         <li class=" pull-left  header_profile_settings dropdown">
 

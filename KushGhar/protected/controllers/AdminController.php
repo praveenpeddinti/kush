@@ -85,8 +85,8 @@ class AdminController extends Controller {
                         $employerEmail = "no-reply@kushghar.com";
                         $messageview1 = "InvitationMail";
                         //$params1 = array('Logo' => $Logo, 'Name' =>$name, 'Referrer'=>$referrer);
-                        $mess1 = 'http://113.193.178.88:6060/site/registration?Uname=' . $inviteFriends->Email . "\r\n\n";
-                        //$mess1 = 'http://www.kushghar.com/site/registration?Uname=' . $inviteFriends->Email . "\r\n\n";
+                        //$mess1 = 'http://113.193.178.88:6060/site/registration?Uname=' . $inviteFriends->Email . "\r\n\n";
+                        $mess1 = 'http://www.kushghar.com/site/registration?Uname=' . $inviteFriends->Email . "\r\n\n";
                         $params1 = array('Logo' => $Logo, 'Name' => $name, 'Message' => $mess1);
                         /*
                          * KG Team mail details
@@ -187,8 +187,8 @@ class AdminController extends Controller {
     public function actionInviteStatus() {
         $email = $_POST['email'];
 
-        $mess1 = 'http://113.193.187.88:6060/site/registration?Uname=' . $email . "\r\n\n";
-        //$mess1 = 'http://www.kushghar.com/site/registration?Uname=' . $email . "\r\n\n";
+        //$mess1 = 'http://113.193.187.88:6060/site/registration?Uname=' . $email . "\r\n\n";
+        $mess1 = 'http://www.kushghar.com/site/registration?Uname=' . $email . "\r\n\n";
         $changeUserStatus = $this->kushGharService->sendInviteMailToUser($_POST['Id'], $_POST['status']);
         $to = $_POST['email'];
         $subject = "KushGhar Invitation";
@@ -583,8 +583,8 @@ class AdminController extends Controller {
                                         $Logo = YII::app()->params['SERVER_URL'] . "/images/color_logo.png";
                                         $employerEmail = "no-reply@kushghar.com";
                                         $messageview1 = "InvitationMail";
-                                        $mess1 = 'http://113.193.178.88:6060/site/registration?Uname=' . $var[3] . "\r\n\n";
-                                        //$mess1 = 'http://www.kushghar.com/site/registration?Uname=' . $var[3] . "\r\n\n";
+                                        //$mess1 = 'http://113.193.178.88:6060/site/registration?Uname=' . $var[3] . "\r\n\n";
+                                        $mess1 = 'http://www.kushghar.com/site/registration?Uname=' . $var[3] . "\r\n\n";
                                         $params1 = array('Logo' => $Logo, 'Name' => $name, 'Message' => $mess1);
                                         //$this->sendMailToUser($to1, $name, $subject, $mess1,'KushGhar', 'no-reply@kushghar.com', 'InvitationMail');            
                                         /** KG Team mail details */

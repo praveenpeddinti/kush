@@ -868,8 +868,8 @@ class UserController extends Controller {
                 $employerEmail = "no-reply@kushghar.com";
                 $messageview1="InvitationMail";
                 
-                $mess1 = 'http://113.193.178.88:6060/site/registration?Uname=' . $inviteFriends->Email . "\r\n\n";
-                //$mess1 = 'http://www.kushghar.com/site/registration?Uname=' . $inviteFriends->Email . "\r\n\n";
+                //$mess1 = 'http://113.193.178.88:6060/site/registration?Uname=' . $inviteFriends->Email . "\r\n\n";
+                $mess1 = 'http://www.kushghar.com/site/registration?Uname=' . $inviteFriends->Email . "\r\n\n";
                 $params1 = array('Logo' => $Logo, 'Name' =>$name, 'Message' =>$mess1);
                 /*
                  * KG Team mail details
@@ -1174,9 +1174,9 @@ class UserController extends Controller {
                         $messageview="orderreplacemessagetoKG";
                         $params = array('Logo' => $Logo, 'Message' =>$customerDetails, 'Reason'=>$rescheduleForm->Reason,'HouseService'=>$getServiceDetails,'CarService'=>$getCarWashServiceDetails,'StewardService'=>$getStewardsServiceDetails,'getCars'=>$getTotalCars);       
                         //$params = '';
-                      //  $sendMailToUser=new CommonUtility;
-                    //    $sendMailToUser->actionSendmail($messageview1,$params1, $subject1, $to1,$employerEmail);
-                   //     $mailSendStatus=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
+                        $sendMailToUser=new CommonUtility;
+                        $sendMailToUser->actionSendmail($messageview1,$params1, $subject1, $to1,$employerEmail);
+                        $mailSendStatus=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
                         $obj = array('status' => 'success', 'data' => $result, 'error' => 'Re-Scheduled Successfully.');
                     }
                     else

@@ -292,8 +292,8 @@ class SiteController extends Controller {
                 $Logo = YII::app()->params['SERVER_URL'] . "/images/color_logo.png";
                 $employerEmail = "no-reply@kushghar.com";
                 $messageview1="InvitationMail";
-                $mess1 = 'http://113.193.178.88:6060/site/registration?Uname='.$model->Email. "\r\n\n";
-                //$mess1 = 'http://www.kushghar.com/site/registration?Uname=' . $model->Email . "\r\n\n";
+                //$mess1 = 'http://113.193.178.88:6060/site/registration?Uname='.$model->Email. "\r\n\n";
+                $mess1 = 'http://www.kushghar.com/site/registration?Uname=' . $model->Email . "\r\n\n";
                 $params1 = array('Logo' => $Logo, 'Name' =>$name,'Message' =>$mess1);
                  /*
                  * KG Team mail details

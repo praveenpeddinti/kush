@@ -36,7 +36,7 @@
                         <div class="panel-group" id="accordion">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <div class="panel-title  carwash_title2">
+                                    <div class="panel-title  carwash_title2" style="cursor: pointer">
                                         <a data-toggle="collapse" data-parent="#accordion" class="collapsed" style="display:block" onclick="loadCarSettings()">
                                             <span class="pull-left">Car Settings</span>
                                         </a>
@@ -45,7 +45,7 @@
                             </div>
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <div class="panel-title  housecleaning_title2">
+                                    <div class="panel-title  housecleaning_title2" style="cursor: pointer">
                                         <a data-toggle="collapse" data-parent="#accordion" class="collapsed" style="display:block" onclick="loadCitiesSettings()">
                                             <span class="pull-left">Location Settings</span>
                                         </a>

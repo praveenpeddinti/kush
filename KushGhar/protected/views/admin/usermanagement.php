@@ -27,9 +27,15 @@
                 </div>
             </aside>
             <article>
+                
+                
+
                 <div class="row-fluid" style="height:480px">
                     <div class="span12">
-                        <h4 class="paddingL20">User Management</h4>
+                        <h4 class="paddingL20">User Management
+                        <div style="margin:-32px 40px 0 440px">  
+                                    <input type="button" class="btn btn-primary" name="Export" value="User Details Export" onclick="exportxlsCLick();"/>
+                                </div></h4>
                         <hr>
                         <div id="TC" style="display:none"></div>                       
                         <div class="paddinground">    
@@ -61,16 +67,7 @@
                                         <input type="button" class="btn btn-primary" name="Search" value="Search" onclick="search();"/>
                                     </div>
                                 </div>
-                                <div class="row-fluid">
-                                    <div class="span12">
-                                    <div class="span10">
-                                        &nbsp;
-                                    </div>
-                                        <div class="span2">
-                                            <input type="button" class="btn btn-primary" name="Export" value="Export" onclick="exportxlsCLick();"/>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                                <div class="table-responsive"> <table id="userTable" class="table table-hover usermanagement_table">
 
                                     <thead><tr><th>Name</th><th>Email Address</th><th>Phone</th><th>Location</th><th>City</th><th>Status</th><th>Actions</th></tr></thead>

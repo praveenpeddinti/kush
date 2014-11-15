@@ -127,6 +127,9 @@
                 <div class="row-fluid" style="height:480px">
                     <div class="span12">
                         <h4 class="paddingL20">Invoice Management</h4>
+                        <div style="margin:-37px 40px 0 400px">  
+                                    <input type="button" class="btn btn-primary" name="Export" value="Paid Users Details Export" onclick="reportPaidCustomer();"/>
+                                </div>
                         <hr>
                         <div class="paddinground">    
                             <div id="InviteInfoSpinLoader"></div>
@@ -154,16 +157,7 @@
                                         <input type="button" class="btn btn-primary" name="Search" value="Search" onclick="search();"/>
                                     </div>
                                 </div>
-                                <div class="row-fluid">
-                                    <div class="span12">
-                                    <div class="span10">
-                                        &nbsp;
-                                    </div>
-                                        <div class="span2">
-                                            <input type="button" class="btn btn-primary" name="Export" value="Export" onclick="reportPaidCustomer();"/>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                                 <table id="userTable" class="table table-hover">
                                     <thead><tr><th>Service</th><th nowrap>Order #</th><th>InvoiceNumber</th><th nowrap>Amount</th><th>Status</th><th>Actions</th></tr></thead>
                                     <tbody id="abusedWords_tbody">

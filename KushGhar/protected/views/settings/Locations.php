@@ -28,19 +28,13 @@
             </aside>
             <article>
                 <div class="row-fluid" style="height:480px">
-                    <div class="span12">                         
-                        <div class="row-fluid">
-                        <div class="span12">
-                            <div class="span8">
-                                <h4 class="paddingL20">Locations of <?php echo $CityName; ?></h4>
-                            </div>
-                            <div class="span4">
-                                <div class="paddinground">  
-                                <input type="button" id="btnBack" class="btn btn-primary" value="Back" onclick="newCity()" style="padding-top: 10px"/>
-                            </div>
-                           </div>
-                          </div>
-                         </div>                        
+                    <div class="span12"> 
+                        <h4 class="paddingL20">Locations of <?php echo $CityName; ?>
+                                <div style="margin:-35px 40px 0 440px">  
+                                    <input type="button" id="btnBack" class="btn btn-primary" value="Back" onclick="newCity()" style="padding-top: 10px"/>
+                                </div></h4>
+                            <hr>
+                                                   
                         <div id="TC" style="display:none"></div>                       
                         <div class="paddinground">    
                             <div id="InviteInfoSpinLoader"></div>

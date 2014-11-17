@@ -945,4 +945,19 @@ class KushGharService {
     public function UpdateLocation($model){
         return Locations::model()->UpdateLocation($model);
     }
+    public function getAllLocationsView(){
+        return Locations::model()->getAllLocationsView();
+    }
+    public function getAllCitiesByState($stateId){
+        return Cities::model()->getAllCitiesByState($stateId);
+    }
+    public function getAllCitiesByStateCount($stateId){
+        return Cities::model()->getAllCitiesByStateCount($stateId);
+    }
+    public function getAllLocationsByCity($cityID){
+        return Locations::model()->getAllLocationsByCity($cityID);
+    }
+    public function getAllLocationsByCityCount($cityId){
+        return Locations::model()->getAllLocationsByCityCount($cityId);
+    }
 } ?>

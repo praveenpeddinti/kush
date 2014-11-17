@@ -120,4 +120,33 @@ class Locations extends CActiveRecord {
         }
         return $result;
     }
+    public function getAllLocationsView(){
+        try {
+            $Criteria = new CDbCriteria();
+            $Criteria->order = 'LocationName ASC';
+            $Criteria->condition='Status=1';
+            $LocationData = Locations::model()->findAll($Criteria);
+        } catch (Exception $ex) {
+            error_log("############Error Occurred in getAllCitiesView= #############" . $ex->getMessage());
+        }
+        return $LocationData;
+    }
+    public function getAllLocationsByCity($cityId){
+        try{
+            $query="select * from KG_Locations where CityId=".$cityId;
+            $Locations = YII::app()->db->createCommand($query)->queryAll();
+        } catch (Exception $ex) {
+            error_log("############Error Occurred in fetching all cities by state #############" . $ex->getMessage());
+        }
+        return $Locations;
+    }
+    public function getAllLocationsByCityCount($cityId){
+        try{
+            $query="select count(*) as count from KG_Locations where CityId=".$cityId;
+            $Locations = YII::app()->db->createCommand($query)->queryRow();
+        } catch (Exception $ex) {
+            error_log("############Error Occurred in fetching all cities count by state #############" . $ex->getMessage());
+        }
+        return $Locations['count'];
+    }
 }?>

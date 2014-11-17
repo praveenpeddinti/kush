@@ -111,8 +111,26 @@ class Cities extends CActiveRecord {
             if($result>0) return "success";
             else return "failure";
         } catch (Exception $ex) {
-            error_log("############Error Occurred in Add new Location Details= #############" . $ex->getMessage());
+            error_log("############Error Occurred in Add new Location Details #############" . $ex->getMessage());
         }
+    }
+    public function getAllCitiesByState($stateId){
+        try{
+            $query="select * from KG_Cities where StateId=".$stateId;
+            $Cities = YII::app()->db->createCommand($query)->queryAll();
+        } catch (Exception $ex) {
+            error_log("############Error Occurred in fetching all cities by state #############" . $ex->getMessage());
+        }
+        return $Cities;
+    }
+    public function getAllCitiesByStateCount($stateId){
+        try{
+            $query="select count(*) as count from KG_Cities where StateId=".$stateId;
+            $Cities = YII::app()->db->createCommand($query)->queryRow();
+        } catch (Exception $ex) {
+            error_log("############Error Occurred in fetching all cities count by state #############" . $ex->getMessage());
+        }
+        return $Cities['count'];
     }
 }
 ?>

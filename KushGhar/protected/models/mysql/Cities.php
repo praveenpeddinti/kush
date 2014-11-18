@@ -132,5 +132,14 @@ class Cities extends CActiveRecord {
         }
         return $Cities['count'];
     }
+    public function getCityNameByCityId($cityId){
+        try{
+            $query="select CityName from KG_Cities where Id=".$cityId;
+            $result=YII::app()->db->createCommand($query)->queryRow();
+        } catch (Exception $ex) {
+            error_log("#######Error occurred in fetching city name by city Id#####".$ex->getMessage());
+        }
+        return $result['CityName'];
+    }
 }
 ?>

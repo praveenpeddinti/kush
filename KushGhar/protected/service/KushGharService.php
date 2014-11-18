@@ -960,4 +960,7 @@ class KushGharService {
     public function getAllLocationsByCityCount($cityId){
         return Locations::model()->getAllLocationsByCityCount($cityId);
     }
+    public function getCityNameByCityId($cityId){
+        return Cities::model()->getCityNameByCityId($cityId);
+    }
 } ?>

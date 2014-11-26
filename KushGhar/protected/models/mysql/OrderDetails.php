@@ -150,7 +150,9 @@ public function sendorderStatus($id,$val){
     
     public function getOrderHServicesDetails($oId) {
         try {
-            $query = "SELECT * FROM KG_House_cleaning_service WHERE order_number = $oId ORDER BY Id DESC LIMIT 1";
+            //$query = "SELECT * FROM KG_House_cleaning_service WHERE order_number = $oId ORDER BY Id DESC LIMIT 1";
+            $query = "SELECT h.*,o.reason FROM KG_House_cleaning_service h,KG_Order_details o WHERE h.order_number=o.order_number and h.order_number = $oId ORDER BY h.Id DESC LIMIT 1";
+            
             $result = YII::app()->db->createCommand($query)->queryRow();
         } catch (Exception $ex) {
             error_log("getServiceDetailsById Exception occured==" . $ex->getMessage());
@@ -183,7 +185,8 @@ public function sendorderStatus($id,$val){
         $query="update KG_Order_details set status=2, reason='".$reason."', update_timestamp=now() where order_number=".$id;
         $result1 = YII::app()->db->createCommand($query)->execute();
         if($result1>0)
-            $result = "success"; 
+            //$result = "success"; 
+            return "success";
     }
     public function getServiceType($id){
         $query="select ServiceId,CustId,id from KG_Order_details where order_number=".$id;

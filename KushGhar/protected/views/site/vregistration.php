@@ -32,7 +32,7 @@
     }
     function addNewVendorhandler(data) {
         scrollPleaseWaitClose('vendorRegistrationSpinLoader');
-        if (data.status == 'success') {alert("success"+data);
+        if (data.status == 'success') {
             $("#VendorRegistrationForm_error_em_").show();
             $("#VendorRegistrationForm_error_em_").removeClass('errorMessage');
             $("#VendorRegistrationForm_error_em_").addClass('alert alert-success');

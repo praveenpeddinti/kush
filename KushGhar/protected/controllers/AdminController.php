@@ -802,7 +802,8 @@ class AdminController extends Controller {
             $InvoiceDetails = $this->kushGharService->getInvoiceDetails($_POST['OrderId']);
             $customerDetails = $this->kushGharService->getCustomerDetails($_POST['CustId']);
             $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($_POST['CustId']);
-            $renderHtml = $this->renderPartial("printInvoice", array("customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "InvoiceDetails" => $InvoiceDetails), true);
+            $cityName=  $this->kushGharService->getCityNameByCityId($customerAddressDetails['address_city']);
+            $renderHtml = $this->renderPartial("printInvoice", array("customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "InvoiceDetails" => $InvoiceDetails,'cityName'=>$cityName), true);
             //$renderHtml=  $this->renderPartial("printInvoice",array("customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails),true);
             $obj = array('status' => 'success', 'html' => $renderHtml);
             $renderScript = $this->rendering($obj);

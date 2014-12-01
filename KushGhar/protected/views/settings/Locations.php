@@ -33,8 +33,7 @@
                                 <div style="margin:-35px 40px 0 440px">  
                                     <input type="button" id="btnBack" class="btn btn-primary" value="Back" onclick="newCity()" style="padding-top: 10px"/>
                                 </div></h4>
-                            <hr>
-                                                   
+                            <hr>                                                   
                         <div id="TC" style="display:none"></div>                       
                         <div class="paddinground">    
                             <div id="InviteInfoSpinLoader"></div>
@@ -87,6 +86,7 @@
 <script type="text/javascript">
     var pageno;
     var CityId=<?php echo $CityId;?>;
+    var StateID=<?php echo $StateId; ?>;
     $(function(){
         getCollectionDataWithPagination('/settings/newLocations','userDetails', 'abusedWords_tbody',1,5,CityId,'');
     });
@@ -213,7 +213,6 @@ function statusChange(rowNos, Status) {
     
     
     function newCity(){
-        window.location.href = '<?php echo Yii::app()->request->baseUrl; ?>/settings/cities?CityId='+CityId;
-
+        window.location.href = '<?php echo Yii::app()->request->baseUrl; ?>/settings/cities?StateId='+StateID;
     }
 </script>

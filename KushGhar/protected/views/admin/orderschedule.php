@@ -8,11 +8,11 @@ $address;
      $addressline2="";
  else
      $addressline2=$customerAddressDetails['address_line2'].", ";
- if($customerAddressDetails['address_city']=='')
-     $addresscity="";
+ if($cityName=='')
+     $addressCity="";
  else
-     $addresscity=$customerAddressDetails['address_city'];
-  $address=$addressline1.$addressline2.$addresscity;
+     $addressCity=$cityName.", ";
+  $address=$addressline1.$addressline2.$addressCity;
 ?>
 <div id="inviteSpinLoader"></div>
 <div id="errormessage"></div>

@@ -12,18 +12,18 @@ class Cities extends CActiveRecord {
     public function tableName() {
         return 'KG_Cities';
     }
-    public function getAllCitiesCount(){
+    public function getAllCitiesCount($StateId){
         try{
-            $query="select count(*) as count from KG_Cities";
+            $query="select count(*) as count from KG_Cities where StateId = ".$StateId;
             $result = Yii::app()->db->createCommand($query)->queryRow();
         }catch(Exception $ex){
             error_log("################Exception Occurred  get Cities count##############".$ex->getMessage());
         }
         return $result['count'];
     }
-    public function getAllCities($startLimit,$endLimit){
+    public function getAllCities($StateId,$startLimit,$endLimit){
         try{  
-            $query="select * from KG_Cities limit ".$startLimit.",".$endLimit;
+            $query="select * from KG_Cities where StateId = ".$StateId." limit ".$startLimit.",".$endLimit;
             $result = Yii::app()->db->createCommand($query)->queryAll();
         }catch(Exception $ex){
             error_log("################Exception Occurred  get All Cities list##############".$ex->getMessage());
@@ -140,6 +140,15 @@ class Cities extends CActiveRecord {
             error_log("#######Error occurred in fetching city name by city Id#####".$ex->getMessage());
         }
         return $result['CityName'];
+    }
+    public function getIdByCityName($CityName,$StateId){
+        try{
+            $query="select Id from KG_Cities where CityName='$CityName' and StateId=".$StateId;
+            $result=YII::app()->db->createCommand($query)->queryRow();
+        } catch (Exception $ex) {
+            error_log("#######Error occurred in fetching city Id by city Name#####".$ex->getMessage());
+        }
+        return $result['Id'];
     }
 }
 ?>

@@ -66,9 +66,9 @@ class StewardsCleaningService extends CActiveRecord {
             $servicesDetails->S_state=$model->state;
             else
             $servicesDetails->S_state = $model->State;
-            if($model->City=='')
-            $servicesDetails->S_city=$model->city;
-            else
+//            if($model->City=='')
+//            $servicesDetails->S_city=$model->city;
+//            else
             $servicesDetails->S_city = $model->City;
             $servicesDetails->S_pincode = $model->PinCode;
             $servicesDetails->status = 0;

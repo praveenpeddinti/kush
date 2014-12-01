@@ -28,6 +28,7 @@
              <?php echo CHtml::Button('Save',array('id' => 'edit_save','class' => 'btn btn-primary','onclick'=>'saveChanges();')); ?>
          </div>
 <script type="text/javascript">
+    var StateId=<?php echo $StateId; ?>;
     function saveChanges(){
         if(validate()){
             var data = $("#newCityForm").serialize();
@@ -43,7 +44,7 @@
                     $("#CitiesForm_error_em_").text(data.error);
                     $("#CitiesForm_error_em_").fadeOut(2000, "");
                     setTimeout(function() {
-         	     window.location.href = '<?php echo Yii::app()->request->baseUrl; ?>/settings/cities';
+         	     window.location.href = '<?php echo Yii::app()->request->baseUrl; ?>/settings/cities?StateId='+StateId;
 	    }, 3000);
         }
         if(data.status == 'error'){

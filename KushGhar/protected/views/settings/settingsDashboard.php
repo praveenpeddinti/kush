@@ -67,6 +67,6 @@
      window.location.href='carMakes';
  }   
  function loadCitiesSettings(){
-     window.location.href='cities';
+     window.location.href='states';
  }
 </script>

@@ -80,19 +80,10 @@
                 <div id="11_AlternatePhone_em" class="errorMessage" style="display:none"></div>
              </div> 
         </div>
-        <div class="row-fluid">
-            <div class=" span4">
-                <label><abbr title="required">*</abbr> City</label>
-                <select name="11_City" id="11_City" class="span12" >
-                    <option value="">Select City</option>
-                    <option value="Hyderabad">Hyderabad</option>
-                    <option value="Secunderabad">Secunderabad</option>
-                    </select>
-                <div id="11_City_em" class="errorMessage" style="display:none"></div>
-           </div>
+        <div class="row-fluid">  
             <div class=" span4">
                 <label><abbr title="required">*</abbr> State</label>
-                <select name="11_State" id="11_State" class="span12" >
+                <select name="11_State" id="11_State" class="span12" onchange = "onChangeState(this.value)">
                     <option value="">Select State</option>
                     <?php foreach ($States as $course) { ?>
                     <option  value="<?php echo $course['Id']; ?>"><?php echo $course['StateName']; ?></option>
@@ -100,9 +91,23 @@
                     </select>
                     <div id="11_State_em" class="errorMessage" style="display:none"></div>
              </div>
+            <div class=" span4" id="cityDev">
+                <label><abbr title="required">*</abbr> City</label>
+                <?php $city_select = isset($getCarWashServiceDetails[0]['address_state'])?'disabled':'';?>
+                <select name="11_City" id="11_City" class="span12" <?php echo $city_select; ?>>
+                    
+                    <option value="">Select City</option>                    
+                <?php foreach ($cities as $city) { ?>
+                    <option  value="<?php echo $city['Id']; ?>"><?php echo $city['CityName']; ?></option>
+                    <?php } ?>
+                </select>
+                <div id="11_City_em" class="errorMessage" style="display:none"></div>
+           </div>
+                  
+            
            <div class=" span4">
                 <label><abbr title="required">*</abbr> Pin Code</label>
-                <input type="text" class="span12" id="11_PinCode" value="" maxLength="6"  onkeypress="return isNumberKey(event);" >
+                <input type="text" class="span12" id="11_PinCode" value="" maxLength="6" onkeypress="return isNumberKey(event);" >
                 <div id="11_PinCode_em" class="errorMessage" style="display:none"></div>
            </div>
            </div>
@@ -288,4 +293,14 @@
 function checkBox(obj){
     //alert(obj.toSource());
 } 
+
+function onChangeState(val){
+    var queryString="stateId="+val+"&dumpcityId=11";
+    ajaxRequest('/user/getCitiesCar',queryString,getCityHandler);
+}
+function getCityHandler(data){
+    if(data.status=='success'){
+        $("#cityDev").html(data.html);
+    }
+}
 </script>

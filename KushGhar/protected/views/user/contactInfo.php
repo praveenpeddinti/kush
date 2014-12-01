@@ -123,6 +123,8 @@
         //'action'=>"/user/basicinfo"
 )); ?>
           <?php echo $form->error($model, 'error',array('value'=>'Hide')); ?>
+           <?php echo $form->hiddenField($model,'City',array('value'=>$customerAddressDetails->address_city)); ?>
+           <?php echo $form->hiddenField($model,'Location',array('value'=>$customerAddressDetails->address_notes)); ?>
            <fieldset>
     <?php echo $form->hiddenField($model,'Id'); ?>
     <div class="row-fluid">
@@ -156,60 +158,68 @@
         <?php echo $form->textField($model,'Address1',array('value'=>$customerAddressDetails->address_line1, 'maxLength' => 100, 'class'=>'span12')); ?>
         <?php echo $form->error($model,'Address1'); ?>
 
-   </div>
+    </div>
     <div class=" span4">
         <?php echo $form->labelEx($model,'address Line2'); ?>
         <?php echo $form->textField($model,'Address2',array('value'=>$customerAddressDetails->address_line2, 'maxLength' => 100, 'class'=>'span12')); ?>
         <?php echo $form->error($model,'Address2'); ?>
     </div>
     <div class=" span4">
-        <?php echo $form->labelEx($model,'Location'); ?>
-        <?php echo $form->dropDownList($model,'Location', array(''=>'Select Location','AG Colony'=>'AG Colony','Ameerpet'=>'Ameerpet','Banjara Hills'=>'Banjara Hills','Begumpet'=>'Begumpet','Bharath Nagar'=>'Bharath Nagar','Chikalguda'=>'Chikalguda','Domalguda'=>'Domalguda',
-                        'Gachibowli'=>'Gachibowli','Hitech City'=>'Hitech City','JNTU'=>'JNTU','Jubilee Hills'=>'Jubilee Hills','Kalyan Nagar'=>'Kalyan Nagar','Khairatabad'=>'Khairatabad','Kondapur'=>'Kondapur',
-                        'KPHB'=>'KPHB','Kukatpally'=>'Kukatpally','Lingampally'=>'Lingampally','Madhapur'=>'Madhapur','Madinaguda'=>'Madinaguda','Malaysian Town Ship'=>'Malaysian Town Ship','Mehdipatnam'=>'Mehdipatnam',
-                        'Miyapur'=>'Miyapur','Moosapet'=>'Moosapet','Musheerabad'=>'Musheerabad','Nizampet'=>'Nizampet','Padmarao Nagar'=>'Padmarao Nagar','Panjagutta'=>'Panjagutta','Ram Nagar'=>'Ram Nagar',
-                        'Rasoolpura'=>'Rasoolpura','RTC X Roads'=>'RTC X Roads','Sanath Nagar'=>'Sanath Nagar','Tarnaka'=>'Tarnaka','Tolichowki'=>'Tolichowki','Vengal Rao Nagar'=>'Vengal Rao Nagar',
-                        'Vivekananda Nagar'=>'Vivekananda Nagar','Warasiguda'=>'Warasiguda','Yousufguda'=>'Yousufguda'), array('options' => '', 'class' => 'span12','options' => array($customerAddressDetails->address_notes => array('selected' => 'selected'))));?>
-            <?php echo $form->error($model,'Location'); ?>
-
-    </div>
-    </div>
-
-    <div class="row-fluid">
-    <div class=" span4">
-    <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> city'); ?>
-        <?php echo $form->dropDownList($model,'City', array(''=>'Select City','Hyderabad' => 'Hyderabad', 'Secunderabad'=>'Secunderabad'), array('class' => 'span12','options' => array($customerAddressDetails->address_city => array('selected' => 'selected'))));?>       
-        <?php echo $form->error($model,'City'); ?>
-   </div>
-    <div class=" span4">
     <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> state'); ?>
-        <?php //echo $form->textField($model,'State',array('value'=>$customerAddressDetails->address_state,'class'=>'span12')); ?>
-        
-        <?php echo $form->dropDownList($model, 'State', CHtml::listData($States, 'Id', 'StateName'), array('prompt'=>'Select State','options' => array($customerAddressDetails->address_state => array('selected' => 'selected')), 'class' => 'span12')); ?>
+        <?php echo $form->dropDownList($model, 'State', CHtml::listData($States, 'Id', 'StateName'), array('prompt'=>'Select State','options' => array($customerAddressDetails->address_state => array('selected' => 'selected')), 'class' => 'span12','onchange' => 'javascript:onChangeState(this.value);')); ?>
         <?php echo $form->error($model,'State'); ?>
-   </div>   
-    <div class=" span4">
-    <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> pin code'); ?>
+    </div>
+    </div>               
+               
+               
+    <div class="row-fluid">
+        <div class="span4" id="cityDev" style="display:block">
+            <label><abbr title="required">*</abbr> City</label>
+            <?php $city_select = isset($customerAddressDetails->address_state)?'disabled':'';?>
+            <select <?php echo $city_select; ?> name="City" id="City" class="span12" onchange="onChangeCity(this.value);">
+                <option value="">Select City</option>
+                <?php if(isset($customerAddressDetails->address_city)){?>
+                <?php foreach ($cities as $CityName) { ?>
+                <?php
+                $model_status = isset($customerAddressDetails->address_city)?$customerAddressDetails->address_city:'';
+                $modelselected = $model_status==$CityName['Id']?'selected':''; ?>
+                <option  <?php echo $modelselected; ?> value="<?php echo $CityName['Id']; ?>"><?php echo $CityName['CityName']; ?></option>
+                <?php } }?>
+            </select>
+        <div id="City_em" class="errorMessage" style="display:none"></div>
+        </div>
+        
+        <div class="span4" id="locationDev" style="display:block">
+            <label>Location</label>
+            <?php $location_select = isset($customerAddressDetails->address_city)?'disabled':'';?>
+            <select <?php echo $location_select; ?> name="Location" id="Location" class="span12" onchange="locationChange(this.value);">
+                <option value="">Select Location</option>
+                <?php if(isset($customerAddressDetails->address_notes)){?>
+                <?php foreach ($locations as $LocationName) { ?>
+                <?php
+                $location_status = isset($customerAddressDetails->address_notes)?$customerAddressDetails->address_notes:'';
+                $locationselected = $location_status==$LocationName['LocationName']?'selected':''; ?>
+                <option  <?php echo $locationselected; ?> value="<?php echo $LocationName['LocationName']; ?>"><?php echo $LocationName['LocationName']; ?></option>
+                <?php } }?>
+            </select>
+        <div id="Location_em" class="errorMessage" style="display:none"></div>
+        </div>
+        
+        
+        <div class=" span4">
+        <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> pin code'); ?>
         <?php echo $form->textField($model,'PinCode',array('value'=>$customerAddressDetails->address_pin_code, 'class'=>'span12', 'maxLength' => 6, 'onkeypress' => 'return isNumberKey(event);')); ?>
         <?php echo $form->error($model,'PinCode'); ?>
-   </div>
-   </div>
-
+        </div>
+    </div>
     <div class="row-fluid">
     <div class=" span12">
         <?php $model->Landmark=$customerAddressDetails->address_landmark;?>
     <?php echo $form->labelEx($model,'<abbr title="required">*</abbr> landmark'); ?>
         <?php echo $form->textArea($model,'Landmark',array('maxlength' => 150, 'class' => 'span12')); ?>
         <?php echo $form->error($model,'Landmark'); ?>
-
    </div>
-
    </div>
-
-
-
-
-
    <div class="row-fluid">
    <div class="span12">
     <div class="pull-right">
@@ -218,9 +228,8 @@
             'dataType' => 'json',
             'beforeSend' => 'function(){
                              scrollPleaseWait("contactInfoSpinLoader","contactInfo-form");}',
-'success' => 'function(data,status,xhr) { addContactInformationhandler(data,status,xhr);}'), array('class'=>'btn btn-primary')); ?>
-		
-	</div>
+'success' => 'function(data,status,xhr) { addContactInformationhandler(data,status,xhr);}'), array('class'=>'btn btn-primary')); ?>	
+    </div>
    </div>
    </div>
     </fieldset>
@@ -260,7 +269,7 @@
             window.location.href = '#';
             //window.location.href='paymentInfo';
         }, 3000);
-    }else{
+    }else{ 
          var error=[];
             if(typeof(data.error)=='string'){
                 var error=eval("("+data.error.toString()+")");
@@ -290,8 +299,27 @@ function isNumberKey(evt)
     return true;
  }
 
+ function onChangeState(val){
+     var queryString="stateId="+val;
+     ajaxRequest('/user/getCity',queryString,getCityHandler);
+ }
+ function getCityHandler(data){
+     if(data.status=='success'){
+         $("#cityDev").html(data.html);
+     }
+ }  
 
-
- 
-
+ function onChangeCity(obj){
+     $("#ContactInfoForm_City").val(obj);
+     var queryString = 'CityId=' + obj;
+     ajaxRequest('/user/getLocation', queryString, getLocationhandler);
+ }
+ function getLocationhandler(data) {
+     if (data.status == 'success') {
+         $("#locationDev").html(data.html);
+     }
+ }
+ function locationChange(value){
+     $("#ContactInfoForm_Location").val(value);
+ }
 </script>

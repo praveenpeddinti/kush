@@ -8,10 +8,10 @@
      $addressline2="";
  else
      $addressline2=$customerAddressDetails['address_line2'].", ";
- if($customerAddressDetails['address_city']=='')
-     $addresscity="";
+ if($cityName=='')
+     $addressCity="";
  else
-     $addresscity=$customerAddressDetails['address_city'].", ";
+     $addressCity=$cityName.", ";
  if($customerAddressDetails['address_pin_code']=='')
      $addressPin="";
  else
@@ -20,7 +20,7 @@
      $addresslandmark="";
  else
      $addresslandmark="Landmark : ".$customerAddressDetails['address_landmark'];
-  $address=$addressline1.$addressline2.$addresscity.$addressPin;
+  $address=$addressline1.$addressline2.$addressCity.$addressPin;
     ?>
   <div class="row-fluid">
         <div class="span12">

@@ -15,6 +15,7 @@ class InviteForm extends CFormModel
         public $LastName;
         public $Phone;
         public $City;
+        public $State;
         public $HServices;
         public $CServices;
         public $SServices;
@@ -41,7 +42,7 @@ class InviteForm extends CFormModel
                 //array('Phone', 'numerical', 'integerOnly'=>true),
                 //array('Phone', 'length', "min" => "10"),
                 array('Phone','numerical','integerOnly'=>true,'min'=>1111111111,'tooSmall'=>'{attribute} is too short(minimum is 10 characters)',),
-                array('City', 'required', 'message' => 'Please select {attribute}.'),
+                array('State', 'required', 'message' => 'Please select {attribute}.'),
                 array('InviteType', 'ext.YiiConditionalValidator.YiiConditionalValidator',
                 'if' => array(
                 array('InviteType', 'compare', 'compareValue'=>"1")),
@@ -58,7 +59,7 @@ class InviteForm extends CFormModel
                 //array('EmailIds', 'required','message'=>'Please enter a value for {attribute}.'),
                 // Email has to be a valid email address
                 
-                array(' FirstName,LastName,City,Phone,HServices,CServices,SServices,Email,EmailIds,Location,Referrer,InviteType', 'safe'),
+                array(' FirstName,LastName,City,Phone,HServices,CServices,SServices,Email,EmailIds,Location,Referrer,InviteType,State', 'safe'),
                        
 		
 		);

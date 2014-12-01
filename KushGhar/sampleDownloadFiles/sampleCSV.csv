@@ -1,5 +1,4 @@
-FistName,LastName,Phone Number,Email Id,Location,City
-Admin,Admin,1234566751,admin@kushghar.com,Ameerpet,Hyderabad
-Sample,Test,1230124532,sample@gmail.com,,Banglore
-Test,Admin,5642145612,test@yahoo.com,,Chennai
-Mohan,Test,1234567890,kumar.narukulla@gmail.com,,Hyderabad
+FistName,LastName,Phone Number,Email Id,Location,City,State
+Admin,Admin,1234566751,admin@kushghar.com,Ameerpet,Hyderabad,Telangana
+Sample,Test,1230124532,sample@gmail.com,,Secunderabad,Telangana
+Test,Admin,5642145612,test@yahoo.com,,Hyderabad,Telangana

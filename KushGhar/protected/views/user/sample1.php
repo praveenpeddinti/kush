@@ -70,30 +70,8 @@
         </div>
         <div class="row-fluid">
             <div class=" span4">
-                <label><abbr title="required">*</abbr> City</label><?php //echo "-----".isset($getCarWashServiceDetails[$i])?$getCarWashServiceDetails[$i]['address_city']:'';?>
-                <?php 
-                    $address_city = isset($getCarWashServiceDetails[$i])?$getCarWashServiceDetails[$i]['address_city']:'';
-                    if($address_city=='Hyderabad'){
-                      $selected1 = 'selected'; 
-                    }else{
-                      $selected1 = '';   
-                    }
-                    if($address_city=='Secunderabad'){
-                        $selected2 = 'selected';
-                    }else {
-                        $selected2 = '';
-                    }
-                    //$selected = $address_state==$course['Id']?'selected':''; ?>
-                <select name="<?php echo $i+1; ?>_City" id="<?php echo $i+1; ?>_City" class="span12" >
-                    <option value="">Select City</option>
-                    <option <?php echo $selected1; ?> value="Hyderabad">Hyderabad</option>
-                    <option <?php echo $selected2; ?> value="Secunderabad">Secunderabad</option>
-                </select>
-                <div id="<?php echo $i+1; ?>_City_em" class="errorMessage" style="display:none"></div>
-           </div>
-            <div class=" span4">
                 <label><abbr title="required">*</abbr> State</label>
-                <select name="<?php echo $i+1; ?>_State" id="<?php echo $i+1; ?>_State" class="span12" >
+                <select name="<?php echo $i+1; ?>_State" id="<?php echo $i+1; ?>_State" class="span12" onchange = "onChangeState<?php echo $i?>(this.value)">
                     <option value="">Select State</option>
                     <?php foreach ($States as $course) { ?>
                     <?php 
@@ -105,6 +83,29 @@
                     </select>
                     <div id="<?php echo $i+1; ?>_State_em" class="errorMessage" style="display:none"></div>
              </div>
+            <div class=" span4" id="cityDev<?php echo $i ?>" style="display:block">
+                <label><abbr title="required">*</abbr> City</label>
+                
+                <?php $city_select = isset($getCarWashServiceDetails[$i])?'disabled':''; ?>
+                <select <?php echo $city_select ?> name="<?php echo $i+1; ?>_City" id="<?php echo $i+1; ?>_City" class="span12" >
+                    <option value="">Select City</option>
+                    <?php if(isset($getCarWashServiceDetails[$i])){
+                     foreach ($cities as $city) { ?>
+                    <?php 
+                    $city_status = isset($getCarWashServiceDetails[$i])?$getCarWashServiceDetails[$i]['address_city']:'';
+                    $cityselected = $city_status==$city['Id']?'selected':''; ?>
+                    
+                    <option  <?php echo $cityselected; ?> value="<?php echo $city['Id']; ?>"><?php echo $city['CityName']; ?></option>
+                    <?php } }?>
+                    
+            
+                    
+                    <!--<option <?php //echo $selected1; ?> value="Hyderabad">Hyderabad</option>
+                    <option <?php //echo $selected2; ?> value="Secunderabad">Secunderabad</option>-->
+                </select>
+                <div id="<?php echo $i+1; ?>_City_em" class="errorMessage" style="display:none"></div>
+           </div>
+            
            <div class=" span4">
                <label><abbr title="required">*</abbr> Pin Code</label>
                 <input type="text" class="span12" value="<?php echo isset($getCarWashServiceDetails[$i])?$getCarWashServiceDetails[$i]['address_pin_code']:'';?>" id="<?php echo $i+1; ?>_PinCode" maxLength="6" onkeypress="return isNumberKey(event);">
@@ -139,4 +140,23 @@
 
         }
     }
+
+    function onChangeState0(val){
+    var queryString="stateId="+val+"&dumpcityId=1";
+    ajaxRequest('/user/getCitiesCar',queryString,getCityHandler0);
+      }
+      function getCityHandler0(data){
+       if(data.status=='success'){
+        $("#cityDev0").html(data.html);
+       }
+   }      
+   function onChangeState1(val){
+    var queryString="stateId="+val+"&dumpcityId=2";
+    ajaxRequest('/user/getCitiesCar',queryString,getCityHandler1);
+      }
+   function getCityHandler1(data){
+    if(data.status=='success'){
+        $("#cityDev1").html(data.html);
+    }
+  }
 </script>

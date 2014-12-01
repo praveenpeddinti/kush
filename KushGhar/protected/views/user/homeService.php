@@ -443,7 +443,6 @@ $(document).ready(function() {
             }else{
                 queryString += '&Type=' + type+'&ContactInfo=No';
             }
-            
             ajaxRequest('/user/services', queryString, addHouseCleaningServicehandler);
         }
     }

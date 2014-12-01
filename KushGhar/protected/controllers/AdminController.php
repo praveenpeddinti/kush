@@ -52,6 +52,7 @@ class AdminController extends Controller {
 
     public function actionDashboard() {
         $inviteFriends = new InviteForm;
+        $States = $this->kushGharService->getStates();
         if ($_REQUEST) {
             $request = yii::app()->getRequest();
             $formName = $request->getParam('InviteForm');
@@ -77,7 +78,7 @@ class AdminController extends Controller {
                         $to1 = $inviteFriends->Email;
                         $name = $inviteFriends->FirstName . ' ' . $inviteFriends->LastName;
                         $phone = $inviteFriends->Phone;
-                        $city = $inviteFriends->City;
+                        $city = $this->kushGharService->getCityNameByCityId($inviteFriends->City);
                         $location = $inviteFriends->Location;
                         $subject = 'KushGhar Invitation';
 
@@ -113,7 +114,7 @@ class AdminController extends Controller {
             }
         } else {
             $this->pageTitle = "KushGhar-Dashboard";
-            $this->render('dashboard', array("inviteModel" => $inviteFriends));
+            $this->render('dashboard', array("inviteModel" => $inviteFriends,"States" => $States));
         }
     }
 
@@ -358,7 +359,8 @@ class AdminController extends Controller {
             }
             $customerDetails = $this->kushGharService->getCustomerDetails($CustId);
             $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($CustId);
-            $renderHtml = $this->renderPartial('viewData', array('userDetails1' => $customerDetails, 'services' => $servicedetails, 'serviceId' => $_POST['ServiceId'], 'Vendors' => $vendordetails, 'ServiceDate' => $ServiceDate, 'customerAddressDetails' => $customerAddressDetails, 'Type' => $_POST['Type'], 'reviewDetails' => $reviewdetails, 'status' => $_POST['status']), true);
+            $cityName=  $this->kushGharService->getCityNameByCityId($customerAddressDetails['address_city']);
+            $renderHtml = $this->renderPartial('viewData', array('userDetails1' => $customerDetails, 'services' => $servicedetails, 'serviceId' => $_POST['ServiceId'], 'Vendors' => $vendordetails, 'ServiceDate' => $ServiceDate, 'customerAddressDetails' => $customerAddressDetails, 'Type' => $_POST['Type'], 'reviewDetails' => $reviewdetails, 'status' => $_POST['status'],'cityName'=>$cityName), true);
             $obj = array('status' => 'success', 'html' => $renderHtml);
             $renderScript = $this->rendering($obj);
             echo $renderScript;
@@ -557,17 +559,22 @@ class AdminController extends Controller {
                             if (count($var) <= 1) {
                                 $error.="Delimiter mismatch! => " . $line . "<br>";
                             } else {
-                                if ($var[0] != "" && $var[1] != "" && $var[2] != "" && $var[3] != "" && $var[5] != "") {
+                                if ($var[0] != "" && $var[1] != "" && $var[2] != "" && $var[3] != ""  && $var[5] != "" && $var[6] != "") {
                                     $var[0] = str_replace('"', '', $var[0]);
                                     $var[1] = str_replace('"', '', $var[1]);
                                     $var[2] = str_replace('"', '', $var[2]);
                                     $var[3] = str_replace('"', '', $var[3]);
                                     $var[4] = str_replace('"', '', $var[4]);
                                     $var[5] = str_replace('"', '', $var[5]);
+                                    $var[6] = str_replace('"', '', $var[6]);
+                                    $var[6] = str_replace(';', '', $var[6]);
+                                    $var[6]=preg_replace("/[\\n\\r]+/", " ", $var[6]);
+                                    $StateId = $this->kushGharService->getIdByStateName($var[6]);
+                                    $CityId = $this->kushGharService->getIdByCityName($var[5],$StateId);
                                     $inviteUser = $this->kushGharService->checkNewUserExistInInviteTable($var[3]);
                                     $custUser = $this->kushGharService->checkNewUserExistInCustomerTable($var[3]);
                                     if (($inviteUser == 'No user') && ($custUser == 'No user')) {
-                                        $resultObject = $this->setUserBeanObject($var);
+                                        $resultObject = $this->setUserBeanObject($var,$CityId);
                                         $result = $this->kushGharService->getInvitationFriendUser($resultObject, $this->session['Type']);
                                     } else {
                                         $result = 'failure';
@@ -624,14 +631,14 @@ class AdminController extends Controller {
         echo $renderScript; // it's array
     }
 
-    public function setUserBeanObject($var) {
+    public function setUserBeanObject($var,$CityId) {
         $model = new InviteForm();
         $model->FirstName = $var[0];
         $model->LastName = $var[1];
         $model->Phone = $var[2];
         $model->Email = $var[3];
         $model->Location = $var[4];
-        $model->City = $var[5];
+        $model->City = $CityId;
         return $model;
     }
 
@@ -712,7 +719,8 @@ class AdminController extends Controller {
             $OrderDetails = $this->kushGharService->getOrderDetailsById($id);
             $customerDetails = $this->kushGharService->getCustomerDetails($OrderDetails['CustId']);
             $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($OrderDetails['CustId']);
-            $renderHtml = $this->renderPartial("orderschedule", array("customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "OrderDetails" => $OrderDetails, 'vendors' => $vendors, "id" => $id), true);
+            $cityName=  $this->kushGharService->getCityNameByCityId($customerAddressDetails['address_city']);            
+            $renderHtml = $this->renderPartial("orderschedule", array("customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "OrderDetails" => $OrderDetails, 'vendors' => $vendors, "id" => $id,'cityName'=>$cityName), true);
             $obj = array('status' => 'success', 'html' => $renderHtml);
             $renderScript = $this->rendering($obj);
             echo $renderScript;
@@ -773,8 +781,9 @@ class AdminController extends Controller {
             $serviceDetails = $this->kushGharService->getServiceDetailsofHouseCleaning($_POST['Id']);
             $custId = $serviceDetails[0]['CustId'];
             $customerDetails = $this->kushGharService->getCustomerDetails($custId);
-            $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($custId);
-            $renderHtml = $this->renderPartial("printOrder", array("customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "serviceDetails" => $serviceDetails, "vendors" => $vendorDetails, "OrderNumber" => $_POST['Id']), true);
+            $customerAddressDetails = $this->kushGharService->getCustomerAddressDetails($custId);            
+            $cityName=  $this->kushGharService->getCityNameByCityId($customerAddressDetails['address_city']);
+            $renderHtml = $this->renderPartial("printOrder", array("customerDetails" => $customerDetails, "customerAddressDetails" => $customerAddressDetails, "serviceDetails" => $serviceDetails, "vendors" => $vendorDetails, "OrderNumber" => $_POST['Id'],'cityName'=>$cityName), true);
             $obj = array('status' => 'success', 'html' => $renderHtml);
             $renderScript = $this->rendering($obj);
             echo $renderScript;

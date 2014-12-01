@@ -14,7 +14,7 @@ $form = $this->beginWidget('CActiveForm', array(
 <?php echo $form->hiddenField($model, 'PriceFlag', array('value' => $PriceFlag)); ?> 
 <?php echo $form->hiddenField($model, 'ContactAddress', array('value' => $customerAddressDetails->address_line1)); ?> 
 <?php echo $form->hiddenField($model, 'state', array('value' => $customerAddressDetails->address_state)); ?>
-<?php echo $form->hiddenField($model, 'city', array('value' => $customerAddressDetails->address_city)); ?>
+<?php echo $form->hiddenField($model, 'City', array('value' => $customerAddressDetails->address_city)); ?>
 <fieldset>
     <div class=" row-fluid borderB">
         <div class="span12 ">
@@ -140,15 +140,44 @@ $form = $this->beginWidget('CActiveForm', array(
     </div>
     <div class="row-fluid">
         <div class=" span4">
-            <label><abbr title="required">*</abbr> City</label>
-            <?php echo $form->dropDownList($model, 'City', array('' => 'Select City', 'Hyderabad' => 'Hyderabad', 'Secunderabad' => 'Secunderabad'), array('class' => 'span12', 'options' => array($getServiceDetails['H_city'] => array('selected' => 'selected')))); ?>       
-            <?php echo $form->error($model, 'City'); ?>               
-        </div>
-        <div class=" span4">
             <label><abbr title="required">*</abbr> State</label>
-            <?php echo $form->dropDownList($model, 'State', CHtml::listData($States, 'Id', 'StateName'), array('prompt' => 'Select State', 'options' => array($getServiceDetails['H_state'] => array('selected' => 'selected')), 'class' => 'span12')); ?>
+            <?php echo $form->dropDownList($model, 'State', CHtml::listData($States, 'Id', 'StateName'), array('prompt' => 'Select State', 'options' => array($getServiceDetails['H_state'] => array('selected' => 'selected')), 'class' => 'span12','onchange' => 'javascript:onChangeState(this.value);')); ?>
             <?php echo $form->error($model, 'State'); ?>
-        </div>      
+        </div>
+        <div class="span4" id="cityDev" style="display:block">
+            <label><abbr title="required">*</abbr> City</label>
+            <?php $city_select = isset($getServiceDetails['H_state'])?'disabled':'';?>
+            <select <?php echo $city_select; ?> name="City" id="City" class="span12" onchange="onChangeCity(this.value);">
+                <option value="">Select City</option>
+                <?php if(isset($getServiceDetails['H_city'])){ 
+                
+                    if($getServiceDetails['H_city']!=''){
+                        $model_status = $getServiceDetails['H_city'];
+                       }else{
+                        $model_status = '';
+                        }?>
+                    <?php foreach ($cities as $CityName) { ?>
+                <?php
+                $modelselected = $model_status==$CityName['Id']?'selected':''; ?>
+                <option  <?php echo $modelselected; ?> value="<?php echo $CityName['Id']; ?>"><?php echo $CityName['CityName']; ?></option>
+                <?php } }
+                else{
+                    if($customerAddressDetails['address_city']!=''){
+                        $model_status1 = $customerAddressDetails['address_city'];
+                       }else{
+                       $model_status1 = '';
+                      }
+                    foreach ($cities as $CityName){?>
+               <?php 
+                $modelselected = $model_status1==$CityName['Id']?'selected':'';
+                ?>
+                <option  <?php echo $modelselected; ?> value="<?php echo $CityName['Id']; ?>"><?php echo $CityName['CityName']; ?></option>
+     <?php }
+                }
+?>
+            </select>
+        <div id="HouseCleaningForm_City_em" class="errorMessage" style="display:none"></div>
+        </div>  
         <div class=" span4">
             <label><abbr title="required">*</abbr> Pin Code</label>
             <?php echo $form->textField($model, 'PinCode', array('value' => $getServiceDetails['H_pincode'], 'maxLength' => '6', 'class' => 'span12', 'onkeypress' => 'return isNumberKey(event);')); ?>
@@ -194,7 +223,8 @@ $form = $this->beginWidget('CActiveForm', array(
             $('#HouseCleaningForm_Address2').attr('readOnly', false);
             $('#HouseCleaningForm_AlternatePhone').attr('readOnly', false);
             $('#HouseCleaningForm_State').attr('disabled', false);
-            $('#HouseCleaningForm_City').attr('disabled', false);
+            //$('#HouseCleaningForm_City').attr('disabled', true);
+            //$('#City').attr('disabled', false);
             $('#HouseCleaningForm_PinCode').attr('readOnly', false);
         } else {
             document.getElementById('diffDiv').style.display = 'block';
@@ -203,7 +233,8 @@ $form = $this->beginWidget('CActiveForm', array(
             $('#HouseCleaningForm_Address2').attr('readOnly', true);
             $('#HouseCleaningForm_AlternatePhone').attr('readOnly', true);
             $('#HouseCleaningForm_State').attr('disabled', true);
-            $('#HouseCleaningForm_City').attr('disabled', true);
+            //$('#HouseCleaningForm_City').attr('disabled', true);
+            $('#City').attr('disabled', true);
             $('#HouseCleaningForm_PinCode').attr('readOnly', true);
             $('#HouseCleaningForm_Address1').val('<?php echo $customerAddressDetails->address_line1; ?>');
             $('#HouseCleaningForm_Address2').val('<?php echo $customerAddressDetails->address_line2; ?>');
@@ -211,7 +242,7 @@ $form = $this->beginWidget('CActiveForm', array(
             $('#HouseCleaningForm_State').val('<?php echo $customerAddressDetails->address_state; ?>');
             $('#HouseCleaningForm_state').val('<?php echo $customerAddressDetails->address_state; ?>');
             $('#HouseCleaningForm_City').val('<?php echo $customerAddressDetails->address_city; ?>');
-            $('#HouseCleaningForm_city').val('<?php echo $customerAddressDetails->address_city; ?>');
+            $('#City').val('<?php echo $customerAddressDetails->address_city; ?>');
             $('#HouseCleaningForm_PinCode').val('<?php echo $customerAddressDetails->address_pin_code; ?>');
         }
         if ($('#HouseCleaningForm_ServiceStartTime').val() != '') {
@@ -220,13 +251,15 @@ $form = $this->beginWidget('CActiveForm', array(
             $('#HouseCleaningForm_Address2').attr('readOnly', false);
             $('#HouseCleaningForm_AlternatePhone').attr('readOnly', false);
             $('#HouseCleaningForm_State').attr('disabled', false);
-            $('#HouseCleaningForm_City').attr('disabled', false);
+            //$('#HouseCleaningForm_City').attr('disabled', false);
+            $('#City').attr('disabled', true);
             $('#HouseCleaningForm_PinCode').attr('readOnly', false);
             $('#HouseCleaningForm_Address1').val('<?php echo $getServiceDetails["H_address1"]; ?>');
             $('#HouseCleaningForm_Address2').val('<?php echo $getServiceDetails["H_address2"]; ?>');
             $('#HouseCleaningForm_AlternatePhone').val('<?php echo $getServiceDetails["H_alternate_phone"]; ?>');
             $('#HouseCleaningForm_State').val('<?php echo $getServiceDetails["H_state"] ?>');
             $('#HouseCleaningForm_City').val('<?php echo $getServiceDetails["H_city"]; ?>');
+            $('#City').val('<?php echo $getServiceDetails["H_city"]; ?>');
             $('#HouseCleaningForm_PinCode').val('<?php echo $getServiceDetails["H_pincode"]; ?>');
         }
 <?php if ($getServiceDetails['window_grills'] == 1) { ?>
@@ -273,12 +306,14 @@ $form = $this->beginWidget('CActiveForm', array(
                 $('#HouseCleaningForm_AlternatePhone').val('<?php echo $customerAddressDetails->alternate_phone; ?>');
                 $('#HouseCleaningForm_State').val('<?php echo $customerAddressDetails->address_state; ?>');
                 $('#HouseCleaningForm_City').val('<?php echo $customerAddressDetails->address_city; ?>');
+                $('#City').val('<?php echo $customerAddressDetails->address_city; ?>');
                 $('#HouseCleaningForm_PinCode').val('<?php echo $customerAddressDetails->address_pin_code; ?>');
                 $('#HouseCleaningForm_Address1').attr('readOnly', false);
                 $('#HouseCleaningForm_Address2').attr('readOnly', false);
                 $('#HouseCleaningForm_AlternatePhone').attr('readOnly', false);
                 $('#HouseCleaningForm_State').attr('disabled', false);
-                $('#HouseCleaningForm_City').attr('disabled', false);
+               // $('#HouseCleaningForm_City').attr('disabled', false);
+                $('#City').attr('disabled',false);
                 $('#HouseCleaningForm_PinCode').attr('readOnly', false);
             }
             else {
@@ -294,8 +329,9 @@ $form = $this->beginWidget('CActiveForm', array(
                 $('#HouseCleaningForm_AlternatePhone').attr('readOnly', true);
                 $('#HouseCleaningForm_State').attr('disabled', true);
                 $('#HouseCleaningForm_state').val('<?php echo $customerAddressDetails->address_state; ?>');
-                $('#HouseCleaningForm_City').attr('disabled', true);
-                $('#HouseCleaningForm_city').val('<?php echo $customerAddressDetails->address_city; ?>');
+               // $('#HouseCleaningForm_City').attr('disabled', true);
+                $('#City').attr('disabled',true);
+                $('#City').val('<?php echo $customerAddressDetails->address_city; ?>');
                 $('#HouseCleaningForm_PinCode').attr('readOnly', true);
             }
         });
@@ -414,5 +450,19 @@ $form = $this->beginWidget('CActiveForm', array(
                 .blur(hidePopover)
                 .hover(showPopover, hidePopover);
     });
-
+function onChangeState(state){
+    $("#HouseCleaningForm_state").val(state);
+    $('#HouseCleaningForm_State').val(state);
+     var queryString="stateId="+state;
+     ajaxRequest('/user/getCity',queryString,getCityHandler);
+ }
+ function getCityHandler(data){
+     if(data.status=='success'){
+         $("#cityDev").html(data.html);
+     }
+ }  
+ function onChangeCity(city){
+//     $("#HouseCleaningForm_city").val(city);
+     $("#HouseCleaningForm_City").val(city);
+ }
 </script>

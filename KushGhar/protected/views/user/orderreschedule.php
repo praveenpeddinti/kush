@@ -346,7 +346,8 @@
     }
     $(document).ready(function() {
     $(function () {
-       var date=new Date.today();
+       var date=new Date;
+       var time=date.getHours()+":"+date.getMinutes();
        var cyear=date.getFullYear();
        var eyear=cyear+1;
        $('#OrderRescheduleForm_ServiceStartTime').datetimepicker({
@@ -367,6 +368,7 @@
             minDate:date,
             scrollMonth:false,
             defaultDate:date,
+            defaultTime:time,
             yearStart:cyear,
             yearEnd:eyear
         });
@@ -376,6 +378,7 @@
             yearStart:cyear,
             yearEnd:eyear,
             defaultDate:date,
+            defaultTime:time,
             onShow:function( ct ){
                 this.setOptions({
                 minDate:$('#StewardCleaningForm_StartTime').val()?$('#StewardCleaningForm_StartTime').val():false

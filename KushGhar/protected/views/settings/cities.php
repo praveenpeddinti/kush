@@ -29,7 +29,12 @@
             <article>
                 <div class="row-fluid" style="height:480px">
                     <div class="span12">
-                        <h4 class="paddingL20">Cities</h4><hr>
+                        <h4 class="paddingL20">Cities of <?php echo $CityName ?>
+                        <div style="margin:-35px 40px 0 440px">  
+                                    <input type="button" id="btnBack" class="btn btn-primary" value="Back" onclick="cityBack()" style="padding-top: 10px"/>
+                                </div>
+                        </h4>
+                        <hr>
                         <div id="TC" style="display:none"></div>                       
                         <div class="paddinground">    
                             <div id="InviteInfoSpinLoader"></div>
@@ -81,14 +86,15 @@
 </div>
 <script type="text/javascript">
     var pageno;
+    var StateId = '<?php echo $StateId; ?>';
     $(function(){
-        getCollectionDataWithPagination('/settings/newCities','userDetails', 'abusedWords_tbody',1,5,'');
+        getCollectionDataWithPagination('/settings/newCities','userDetails', 'abusedWords_tbody',1,5,StateId,'');
     });
-    function getCollectionDataWithPagination(URL,CollectionName, MainDiv, CurrentPage, PageSize,callback){
+    function getCollectionDataWithPagination(URL,CollectionName, MainDiv, CurrentPage, PageSize,StateId,callback){
         globalspace[MainDiv+'_page'] = Number(CurrentPage);
         globalspace[MainDiv+'_pageSize']=Number(PageSize);
         pageno=Number(CurrentPage);
-        var newURL =  URL+"?"+CollectionName+"_page="+globalspace[MainDiv+'_page']+"&pageSize="+globalspace[MainDiv+'_pageSize'];
+        var newURL =  URL+"?"+CollectionName+"_page="+globalspace[MainDiv+'_page']+"&pageSize="+globalspace[MainDiv+'_pageSize']+"&StateId="+StateId;
         var data = "";  
         ajaxRequest(newURL,data,function(data){getCollectionDataWithPaginationHandler(data,URL,CollectionName,MainDiv,callback)});
     }
@@ -104,7 +110,7 @@
                     onPageClick: function(pageNumber, event) {
                         globalspace[MainDiv+'_page'] = pageNumber;
                         pageno=pageNumber;
-                        getCollectionDataWithPagination(URL,CollectionName, MainDiv, globalspace[MainDiv+'_page'], globalspace[MainDiv+'_pageSize'], callback)
+                        getCollectionDataWithPagination(URL,CollectionName, MainDiv, globalspace[MainDiv+'_page'], globalspace[MainDiv+'_pageSize'],StateId, callback)
                     }
                 });
             if(callback!=''){
@@ -186,8 +192,10 @@ function statusChange(rowNos, Status) {
             });
     }
     function newCity(){
+    var data="StateId="+StateId;
         $.ajax({
                 dataType: 'json',
+                data:data,
                 url: '<?php echo Yii::app()->createAbsoluteUrl("/settings/newCity"); ?>',
                 success: function(data) {
                     $("#myModalforgot").modal({ backdrop: 'static', keyboard: false,show:false });
@@ -201,6 +209,9 @@ function statusChange(rowNos, Status) {
             });
     }
     function viewLocations(id){
-        window.location.href = '<?php echo Yii::app()->request->baseUrl; ?>/settings/Locations?CityId='+id;
+        window.location.href = '<?php echo Yii::app()->request->baseUrl; ?>/settings/Locations?CityId='+id+"&StateId="+StateId;
+    }
+    function cityBack(){
+        window.location.href = '<?php echo Yii::app()->request->baseUrl; ?>/settings/states';
     }
 </script>

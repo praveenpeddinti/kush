@@ -88,48 +88,55 @@
                                                                         'validateOnSubmit'=>true,
                                                                 )
                                 )); ?>
-                                                        
+                                <?php echo $inviteFriends->hiddenField($inviteModel, 'City'); ?>
+                                <?php echo $inviteFriends->hiddenField($inviteModel, 'Location'); ?>                        
                                 <?php echo $inviteFriends->error($inviteModel, 'error'); ?>
                                 <?php echo $inviteFriends->hiddenField($inviteModel,'InviteType', array('value'=>'0')); ?>
                                 <?php echo $inviteFriends->hiddenField($inviteModel,'Referrer',array('value'=>$this->session['email'])); ?>
                                 <div class='row-fluid'>
-                                    <div class='span4'>
+                                    <div class='span6'>
                                         <?php echo $inviteFriends->labelEx($inviteModel,'<abbr title="required">*</abbr> First Name'); ?>
                                         <?php echo $inviteFriends->textField($inviteModel,'FirstName', array( 'class'=>'span12', 'maxLength' => 50)); ?>
                                         <?php echo $inviteFriends->error($inviteModel,'FirstName'); ?>
                                     </div>
-                                    <div class='span4'>
+                                    <div class='span6'>
                                         <?php echo $inviteFriends->labelEx($inviteModel,'<abbr title="required">*</abbr> Last Name'); ?>
                                         <?php echo $inviteFriends->textField($inviteModel,'LastName', array( 'class'=>'span12', 'maxLength' => 50)); ?>
                                         <?php echo $inviteFriends->error($inviteModel,'LastName'); ?>
-                                    </div>
-                                    <div class=" span4">
+                                    </div>                                    
+                                </div>
+                                <div class='row-fluid'>
+                                    <div class=" span6">
                                         <?php echo $inviteFriends->labelEx($inviteModel,'<abbr title="required">*</abbr> phone'); ?>
                                         <input type="text" value="+91" disabled="disabled" style="width:40px" class="span2" />&nbsp;<?php echo $inviteFriends->textField($inviteModel,'Phone',array('class'=>'span9', 'maxLength' => 10, 'onkeypress' => 'return isNumberKey(event);')); ?>
                                         <?php echo $inviteFriends->error($inviteModel,'Phone'); ?>
                                     </div>
-                                </div>
-                                <div class='row-fluid'>
-                                    <div class='span4'>
+                                    <div class='span6'>
                                         <?php echo $inviteFriends->labelEx($inviteModel,'<abbr title="required">*</abbr> Email'); ?>
                                         <?php echo $inviteFriends->textField($inviteModel,'Email', array( 'class'=>'span12', 'maxLength' => 100)); ?>
                                         <?php echo $inviteFriends->error($inviteModel,'Email'); ?>
                                     </div>
-                                    <div class="span4">
-                                       <label><?php echo $inviteFriends->labelEx($inviteModel, '<abbr title="required">*</abbr> City'); ?></label>
-                                       <?php echo $inviteFriends->dropDownList($inviteModel,'City', array(''=>'Select City','Hyderabad' => 'Hyderabad', 'Secunderabad'=>'Secunderabad'), array('class' => 'span12'));?>
-                                       <?php echo $inviteFriends->error($inviteModel, 'City'); ?>
-                                    </div>
-                                    <div class='span4'>
-                                        <?php echo $inviteFriends->labelEx($inviteModel,'Location'); ?>
-                                        <?php echo $inviteFriends->dropDownList($inviteModel,'Location', array(''=>'Select Location','AG Colony'=>'AG Colony','Ameerpet'=>'Ameerpet','Banjara Hills'=>'Banjara Hills','Begumpet'=>'Begumpet','Bharath Nagar'=>'Bharath Nagar','Chikalguda'=>'Chikalguda','Domalguda'=>'Domalguda',
-                                            'Gachibowli'=>'Gachibowli','Hitech City'=>'Hitech City','JNTU'=>'JNTU','Jubilee Hills'=>'Jubilee Hills','Kalyan Nagar'=>'Kalyan Nagar','Khairatabad'=>'Khairatabad','Kondapur'=>'Kondapur',
-                                            'KPHB'=>'KPHB','Kukatpally'=>'Kukatpally','Lingampally'=>'Lingampally','Madhapur'=>'Madhapur','Madinaguda'=>'Madinaguda','Malaysian Town Ship'=>'Malaysian Town Ship','Mehdipatnam'=>'Mehdipatnam',
-                                            'Miyapur'=>'Miyapur','Moosapet'=>'Moosapet','Musheerabad'=>'Musheerabad','Nizampet'=>'Nizampet','Padmarao Nagar'=>'Padmarao Nagar','Panjagutta'=>'Panjagutta','Ram Nagar'=>'Ram Nagar',
-                                            'Rasoolpura'=>'Rasoolpura','RTC X Roads'=>'RTC X Roads','Sanath Nagar'=>'Sanath Nagar','Tarnaka'=>'Tarnaka','Tolichowki'=>'Tolichowki','Vengal Rao Nagar'=>'Vengal Rao Nagar',
-                                            'Vivekananda Nagar'=>'Vivekananda Nagar','Warasiguda'=>'Warasiguda','Yousufguda'=>'Yousufguda'), array('options' => '', 'class' => 'span12'));?>
-                                        <?php echo $inviteFriends->error($inviteModel,'Location'); ?> 
-                                    </div>
+                                </div>
+                                <div class="row-fluid">    
+                                    <div class=" span4">
+                      <?php echo $inviteFriends->labelEx($inviteModel,'<abbr title="required">*</abbr> State'); ?>
+                      <?php echo $inviteFriends->dropDownList($inviteModel, 'State', CHtml::listData($States, 'Id', 'StateName'), array('prompt'=>'Select State', 'class' => 'span12','onchange' => 'javascript:onChangeState(this.value);')); ?>
+                      <?php echo $inviteFriends->error($inviteModel,'State'); ?>
+                  </div>                              
+                  <div class="span4" id="cityDev" style="display:block">
+                      <label><abbr title="required">*</abbr> City</label>
+                      <select name="City" id="City" class="span12" onchange="onChangeCity(this.value);">
+                          <option value="">Select City</option>
+                      </select>
+                      <div id="City_em" class="errorMessage" style="display:none"></div>
+                  </div>
+                  <div class="span4" id="locationDev" style="display:block">
+                      <label>Location</label>
+                      <select name="Location" id="Location" class="span12" onchange="locationChange(this.value);">
+                          <option value="">Select Location</option>
+                      </select>
+                      <div id="Location_em" class="errorMessage" style="display:none"></div>
+                  </div>
                                 </div>
                                 <?php $this->endWidget(); ?>
                                 <div style="text-align: right">
@@ -268,4 +275,27 @@ function inviteMailHandler(data)
             }
             
         } 
-    </script>
+        
+function onChangeState(val){
+    var queryString="stateId="+val;
+    ajaxRequest('/user/getCity',queryString,getCityHandler);
+}
+function getCityHandler(data){
+    if(data.status=='success'){
+        $("#cityDev").html(data.html);
+    }
+}  
+function onChangeCity(obj){
+    $("#InviteForm_City").val(obj);
+    var queryString = 'CityId=' + obj;
+    ajaxRequest('/user/getLocation', queryString, getLocationhandler);
+}
+function getLocationhandler(data) {
+    if (data.status == 'success') {
+        $("#locationDev").html(data.html);
+    }
+}
+function locationChange(value){
+    $("#InviteForm_Location").val(value);
+}
+</script>

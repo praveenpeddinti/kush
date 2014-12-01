@@ -220,7 +220,8 @@ class SettingsController extends Controller {
     public function actionCities(){
          try {
             $this->pageTitle="KushGhar-Settings";
-            $this->render("cities");
+            $statename=  $this->kushGharService->getStateNameByID($_REQUEST['StateId']);
+            $this->render('cities',array('StateId' => $_REQUEST['StateId'],'CityName'=>$statename));
         } catch (Exception $ex) {
             error_log("#########Exception Occurred########" . $ex->getMessage());
         }
@@ -228,10 +229,10 @@ class SettingsController extends Controller {
     public function actionNewCities(){
         try {           
                 if (isset($_GET['userDetails_page'])) {
-                $totalcount = $this->kushGharService->getAllCitiesCount();
+                $totalcount = $this->kushGharService->getAllCitiesCount($_GET['StateId']);
                 $startLimit = ((int) $_GET['userDetails_page'] - 1) * (int) $_GET['pageSize'];
                 $endLimit = $_GET['pageSize'];
-                $userDetails = $this->kushGharService->getAllCities($startLimit, $endLimit);
+                $userDetails = $this->kushGharService->getAllCities($_GET['StateId'],$startLimit, $endLimit);
                 $renderHtml = $this->renderPartial('newCities', array('userDetails' => $userDetails, 'totalCount' => $totalcount), true);
                 $obj = array('status' => 'success', 'html' => $renderHtml, 'totalCount' => $totalcount);
                 $renderScript = $this->rendering($obj);
@@ -292,7 +293,7 @@ class SettingsController extends Controller {
             else $id=-1;
             $States=$this->kushGharService->getStates();
             //$getCityDetails=$this->kushGharService->getCityDetails($id);
-            $renderHtml=  $this->renderPartial('newCity',array("model"=>$Model,"States"=>$States),true);
+            $renderHtml=  $this->renderPartial('newCity',array("model"=>$Model,"States"=>$States,'StateId'=>$_REQUEST['StateId']),true);
             $obj=array('status'=>'success','html'=>$renderHtml);
             $renderScript=  $this->rendering($obj);
             echo $renderScript;
@@ -326,7 +327,7 @@ class SettingsController extends Controller {
         try {
             $this->pageTitle="KushGhar-Settings";
             $cityname=  $this->kushGharService->getCityNameByID($_REQUEST['CityId']);
-            $this->render('Locations',array('CityId' => $_REQUEST['CityId'],'CityName'=>$cityname['CityName']));
+            $this->render('Locations',array('CityId' => $_REQUEST['CityId'],'CityName'=>$cityname['CityName'],'StateId'=>$_REQUEST['StateId']));
         } catch (Exception $ex) {
             error_log("#########Exception Occurred########" . $ex->getMessage());
         }
@@ -393,5 +394,30 @@ class SettingsController extends Controller {
         }
         $renderScript = $this->rendering($obj);
         echo $renderScript;
+    }    
+    public function actionStates(){
+         try {
+            $this->pageTitle="KushGhar-Settings";
+            $this->render("states");
+        } catch (Exception $ex) {
+            error_log("#########Exception Occurred########" . $ex->getMessage());
+        }
     }
+    public function actionNewStates(){
+        try {           
+                if (isset($_GET['userDetails_page'])) {
+                $totalcount = $this->kushGharService->getAllStatesCount();
+                $startLimit = ((int) $_GET['userDetails_page'] - 1) * (int) $_GET['pageSize'];
+                $endLimit = $_GET['pageSize'];
+                $userDetails = $this->kushGharService->getAllStatesView($startLimit, $endLimit);
+                $renderHtml = $this->renderPartial('newStates', array('userDetails' => $userDetails, 'totalCount' => $totalcount), true);
+                $obj = array('status' => 'success', 'html' => $renderHtml, 'totalCount' => $totalcount);
+                $renderScript = $this->rendering($obj);
+                echo $renderScript;
+            }
+        } catch (Exception $ex) {
+            error_log("######### Exception Occurred##########".$ex->getMessage());
+        }
+    }
+    
 }?>

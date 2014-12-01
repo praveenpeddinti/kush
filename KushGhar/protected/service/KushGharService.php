@@ -879,11 +879,11 @@ class KushGharService {
     /*
      * XLS Reports End
      */
-    public function getAllCitiesCount(){
-        return Cities::model()->getAllCitiesCount();
+    public function getAllCitiesCount($StateId){
+        return Cities::model()->getAllCitiesCount($StateId);
     }
-    public function getAllCities($strt,$end){
-        return Cities::model()->getAllCities($strt,$end);
+    public function getAllCities($StateId,$strt,$end){
+        return Cities::model()->getAllCities($StateId,$strt,$end);
     }
     public function ChangeCityStatus($id,$status){
         return Cities::model()->ChangeCityStatus($id,$status);
@@ -963,4 +963,19 @@ class KushGharService {
     public function getCityNameByCityId($cityId){
         return Cities::model()->getCityNameByCityId($cityId);
     }
+    public function getAllStatesCount(){
+        return States::model()->getAllStatesCount();
+    }
+    public function getAllStatesView($strt,$end){
+        return States::model()->getAllStatesView($strt,$end);
+    }
+    public function getStateNameByID($StateId){
+        return States::model()->getStateNameByID($StateId); 
+    }
+    public function getIdByStateName($stateName){
+        return States::model()->getIdByStateName($stateName);
+    }
+    public function getIdByCityName($CityName,$StateId){
+        return Cities::model()->getIdByCityName($CityName,$StateId);
+    }    
 } ?>

@@ -8,20 +8,20 @@ if($userAllDetails['address_line2']=='')
      $addressline2="";
  else
      $addressline2=$userAllDetails['address_line2'].", ";
- if($userAllDetails['address_city']=='')
-     $addresscity="";
+ if($cityName=='')
+     $addressCity="";
  else
-     $addresscity=$userAllDetails['address_city'].", ";
+     $addressCity=$cityName;
 if($UserType!='Vendor')
 {
     if($userAllDetails['address_notes']=='')
         $addresslocation="";
     else
-        $addresslocation=$userAllDetails['address_notes'];
-    $address=$addressline1.$addressline2.$addresscity.$addresslocation;
+        $addresslocation=",".$userAllDetails['address_notes'];
+    $address=$addressline1.$addressline2.$addressCity.$addresslocation;
   }
   else
-    $address=$addressline1.$addressline2.$addresscity;
+    $address=$addressline1.$addressline2.$addressCity;
 ?>
 <table style="padding: 20px; width: 100%; ">
     <tr>

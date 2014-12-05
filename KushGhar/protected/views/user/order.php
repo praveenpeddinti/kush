@@ -172,7 +172,6 @@
     
     
     $(document).ready(function() { 
-        alert
         <?php $totalPercent = $basicPercent+$contactPercent+$payPercent; ?>
         $( "#progressbar" ).progressbar({value: <?php echo $totalPercent;?>});
         $("#instant_notifications").fadeOut(6000, "");

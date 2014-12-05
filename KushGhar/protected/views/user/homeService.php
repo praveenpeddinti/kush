@@ -105,8 +105,9 @@
                         <div class="paddinground paddingTop0">
                             <div id="serviceSpinLoader"></div>
                             <div id="homeServicesMainDiv">
+                                <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/kum_image.jpg" />
                                 <?php
-                                $form = $this->beginWidget('CActiveForm', array(
+                                /*$form = $this->beginWidget('CActiveForm', array(
                                     'id' => 'homeservices-form',
                                     'enableClientValidation' => true,
                                     'clientOptions' => array(
@@ -155,7 +156,7 @@
                                         </div>
                                     </div>
                                 </fieldset>
-                                <?php $this->endWidget(); ?>
+                                <?php $this->endWidget(); */?>
                             </div>
                             <div id="ServiceMainDiv" class="services" style="display: none">
                             </div>

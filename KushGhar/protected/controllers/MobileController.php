@@ -3,21 +3,21 @@ class MobileController extends Controller {
     public function init() { 
         parent::init();
     }
-    public function actionLogin() {
-        $model = new LoginForm;
-        parse_str($_POST["formdata"], $values);
-        $model->UserId=$values['UserId'];
-        $model->Password=$values['Password'];
-        $result = $this->kushGharService->login($model, 'User');
-        $data = array();
+    public function actionLogin() {       
+        $model = new LoginForm; 
+        parse_str($_POST["formdata"], $values);  
+        $model->UserId=$values['UserId']; 
+        $model->Password=$values['Password']; 
+        $result = $this->kushGharService->login($model, 'User'); 
+        $data = array(); 
         if(isset($result)){
-            $data['status']='success';
-            $data['message']="Login success";
-            $data['data']=$result;
+            $data['status']='success'; 
+            $data['message']="Login success"; 
+            $data['data']=$result; 
         }
-        else{
-            $data['status']='error';
-            $data['message']="Invalid Username and Password";
+        else{ 
+            $data['status']='error'; 
+            $data['message']="Invalid Username and Password"; 
         }
         echo json_encode($data);
     }
@@ -75,6 +75,7 @@ class MobileController extends Controller {
     public function actionOrderDetails() {
         $data = array();
         $customerDetails = $this->kushGharService->getOrderDetails($_POST['UserId']);
+        $data['count']=  count($customerDetails);
         $data['data']=$customerDetails;
         $data['status'] = "success";
         echo json_encode($data);
@@ -505,11 +506,6 @@ class MobileController extends Controller {
                 $sendMailToUser=new CommonUtility;
                 $sendMailToUser->actionSendmail($messageview1,$params1, $subject1, $to1,$employerEmail);
                 $mailSendStatus=$sendMailToUser->actionSendmail($messageview,$params, $subject, $to,$employerEmail);
-                
-//        $data=$this->renderPartial('serviceOrder', array("customerDetails" => $customerDetails, 'HouseService'=>$getServiceDetails,'CarService'=>$getCarWashServiceDetails,'StewardService'=>$getStewardsServiceDetails,'getCars'=>$getTotalCars,'HO'=>$HOrder,'CO'=>$COrder,'SO'=>$SOrder), true);
-//        $obj = array('status' => 'success', 'data' => $data, 'error' => '');
-//        $renderScript = $this->rendering($obj);
-//        echo $renderScript;
                 $data=array();
                 $data['dataStatus']="success";
                 $data['message']='Order submitted successfully';

@@ -405,7 +405,8 @@ class AdminController extends Controller {
         try {
             $id = $_POST['Id'];
             $userAllDetails = $this->kushGharService->getFullUserDetails($id);
-            $renderHtml = $this->renderPartial('getfulldetails', array('userAllDetails' => $userAllDetails, 'UserType' => 'user'), true);
+            $cityName=  $this->kushGharService->getCityNameByCityId($userAllDetails['address_city']);
+            $renderHtml = $this->renderPartial('getfulldetails', array('userAllDetails' => $userAllDetails, 'UserType' => 'user', 'cityName'=>$cityName), true);
             $obj = array('status' => 'success', 'html' => $renderHtml);
             $renderScript = $this->rendering($obj);
             echo $renderScript;
